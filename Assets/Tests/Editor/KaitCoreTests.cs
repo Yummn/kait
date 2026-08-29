@@ -71,6 +71,31 @@ public sealed class KaitCoreTests
         Assert.AreEqual(2, run.spawns.Count);
     }
 
+    [Test]
+    public void StrongEnemy_BlocksShortChargeInsteadOfBeingCrossed()
+    {
+        var run = new KaitRun();
+        run.Reset(919);
+        KaitDirection direction = FindValidDirection(run);
+        Vector2Int enemyCell = run.katePos + KaitRun.Delta(direction);
+        run.enemies.Add(new KaitEnemy
+        {
+            id = 99,
+            type = KaitEnemyType.Guard,
+            pos = enemyCell,
+            threshold = 4,
+            life = KaitEnemyLife.Preparing
+        });
+        Vector2Int start = run.katePos;
+
+        KaitTurnResult result = run.TryTurn(direction);
+
+        Assert.IsTrue(result.valid);
+        Assert.AreEqual(start, run.katePos);
+        Assert.AreEqual(enemyCell, result.blockedEnemyCell);
+        Assert.AreNotEqual(KaitEnemyLife.Dead, run.enemies[0].life);
+    }
+
     private static KaitDirection FindValidDirection(KaitRun run)
     {
         foreach (KaitDirection direction in new[] { KaitDirection.Up, KaitDirection.Down, KaitDirection.Left, KaitDirection.Right })
