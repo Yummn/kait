@@ -28,7 +28,9 @@ public sealed class KaitGame : MonoBehaviour
     private bool busy;
     private Vector2Int? displayKate;
     private Vector2Int? trailCell;
+    private bool hideKate;
     private List<KaitEnemy> animatedEnemies;
+    private List<KaitSpawnRequest> animatedSpawns;
     private int[,] displayedThreat;
     private bool hideThreatValues;
     private readonly HashSet<Vector2Int> impactCells = new HashSet<Vector2Int>();
@@ -36,6 +38,14 @@ public sealed class KaitGame : MonoBehaviour
 
     private sealed class ThreatVisual
     {
+        public RectTransform rect;
+        public Vector3 from;
+        public Vector3 to;
+    }
+
+    private sealed class EnemyMoveVisual
+    {
+        public KaitEnemy enemy;
         public RectTransform rect;
         public Vector3 from;
         public Vector3 to;
@@ -263,6 +273,7 @@ public sealed class KaitGame : MonoBehaviour
         if (busy || run.ended) return;
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
+        List<KaitSpawnRequest> spawnSnapshot = SnapshotSpawns();
         KaitTurnResult result = run.TryTurn(direction);
         if (!result.valid)
         {
@@ -271,56 +282,37 @@ public sealed class KaitGame : MonoBehaviour
             return;
         }
         AppendLog(direction, start, result);
-        StartCoroutine(PlayTurn(result, start, enemySnapshot));
+        StartCoroutine(PlayTurn(result, start, enemySnapshot, spawnSnapshot));
     }
 
-    private IEnumerator PlayTurn(KaitTurnResult result, Vector2Int start, List<KaitEnemy> enemySnapshot)
+    private IEnumerator PlayTurn(KaitTurnResult result, Vector2Int start, List<KaitEnemy> enemySnapshot, List<KaitSpawnRequest> spawnSnapshot)
     {
         busy = true;
         animatedEnemies = enemySnapshot;
+        animatedSpawns = spawnSnapshot;
         displayedThreat = result.threatBefore;
-        displayKate = start;
-        foreach (Vector2Int step in result.katePath)
-        {
-            trailCell = displayKate;
-            displayKate = step;
-            RefreshBattle();
-            yield return new WaitForSecondsRealtime(0.09f);
-            if (result.killedEnemyCells.Contains(step))
-            {
-                impactCells.Add(step);
-                RefreshBattle();
-                yield return PulseBattleCell(step, Gold, 0.18f);
-                impactCells.Remove(step);
-                animatedEnemies.RemoveAll(e => e.pos == step);
-                RefreshBattle();
-                yield return new WaitForSecondsRealtime(0.08f);
-            }
-        }
-        if (result.blockedEnemyCell.x >= 0)
-        {
-            impactCells.Add(result.blockedEnemyCell);
-            yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.22f);
-            impactCells.Remove(result.blockedEnemyCell);
-        }
-        displayKate = null;
-        trailCell = null;
 
-        foreach (KaitEnemyAction action in result.enemyActions)
-            yield return AnimateEnemyAction(action);
+        bool kateDone = false;
+        bool threatDone = result.threatAfter == null;
+        StartCoroutine(RunPhase(AnimateKateSlide(result, start), () => kateDone = true));
+        if (!threatDone) StartCoroutine(RunPhase(AnimateThreat(result), () => threatDone = true));
+        while (!kateDone || !threatDone) yield return null;
+
+        yield return AnimateAllEnemyActions(result.enemyActions);
 
         animatedEnemies = null;
+        animatedSpawns = null;
+        hideKate = false;
+        displayKate = null;
+        trailCell = null;
         RefreshBattle();
 
-        if (result.threatAfter != null)
-            yield return AnimateThreat(result);
-
+        var spawnPulses = new List<RectTransform>();
         foreach (Vector2Int cell in result.spawnedEnemyCells)
-            yield return ScalePulse(battleCells[cell.x + cell.y * 9].rectTransform, 0.15f, 1.18f, 0.2f);
-
+            spawnPulses.Add(battleCells[cell.x + cell.y * 9].rectTransform);
         foreach (KaitSpawnRequest spawn in run.spawns)
-            if (spawn.targetCell.x >= 0)
-                yield return ScalePulse(battleCells[spawn.targetCell.x + spawn.targetCell.y * 9].rectTransform, 0.82f, 1.08f, 0.16f);
+            if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * 9].rectTransform);
+        if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
 
         displayedThreat = null;
         statusText.text = result.message + (result.merges.Count > 0 ? $" · 威胁合并 ×{result.merges.Count}" : "");
@@ -365,7 +357,7 @@ public sealed class KaitGame : MonoBehaviour
                 if (trailCell.HasValue && trailCell.Value == p) image.color = new Color(Peach.r, Peach.g, Peach.b, 0.45f);
                 if (impactCells.Contains(p)) image.color = Gold;
 
-                KaitSpawnRequest spawn = run.SpawnAt(p);
+                KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitMirage mirage = run.MirageAt(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
                 if (spawn != null)
@@ -388,7 +380,7 @@ public sealed class KaitGame : MonoBehaviour
                     label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type}\n准备" : $"{type} {enemy.EffectiveThreshold}\n{intent}";
                     label.color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
                 }
-                if (kate == p)
+                if (!hideKate && kate == p)
                 {
                     image.color = Coral;
                     label.text = "凯";
@@ -438,6 +430,127 @@ public sealed class KaitGame : MonoBehaviour
         return snapshot;
     }
 
+    private List<KaitSpawnRequest> SnapshotSpawns()
+    {
+        var snapshot = new List<KaitSpawnRequest>();
+        foreach (KaitSpawnRequest spawn in run.spawns)
+            snapshot.Add(new KaitSpawnRequest
+            {
+                tier = spawn.tier,
+                sourceThreatCell = spawn.sourceThreatCell,
+                targetCell = spawn.targetCell,
+                turnsUntilSpawn = spawn.turnsUntilSpawn
+            });
+        return snapshot;
+    }
+
+    private KaitSpawnRequest SpawnAtVisual(Vector2Int p)
+    {
+        if (animatedSpawns == null) return run.SpawnAt(p);
+        return animatedSpawns.Find(s => s.targetCell == p);
+    }
+
+    private IEnumerator RunPhase(IEnumerator phase, Action onComplete)
+    {
+        yield return StartCoroutine(phase);
+        onComplete();
+    }
+
+    private IEnumerator AnimateKateSlide(KaitTurnResult result, Vector2Int start)
+    {
+        if (result.katePath.Count == 0)
+        {
+            if (result.blockedEnemyCell.x >= 0)
+                yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.16f);
+            yield break;
+        }
+
+        hideKate = true;
+        RefreshBattle();
+        RectTransform token = CreateFloatingToken("凯", Coral, battleCells[start.x + start.y * 9].rectTransform, new Vector2(72, 72), 28);
+        var points = new List<Vector3> { battleCells[start.x + start.y * 9].rectTransform.position };
+        foreach (Vector2Int cell in result.katePath) points.Add(battleCells[cell.x + cell.y * 9].rectTransform.position);
+
+        int segments = points.Count - 1;
+        float duration = Mathf.Min(0.36f, 0.16f + segments * 0.025f);
+        float elapsed = 0f;
+        int lastReached = 0;
+        while (elapsed < duration)
+        {
+            float progress = Mathf.SmoothStep(0f, 1f, elapsed / duration) * segments;
+            int segment = Mathf.Min(segments - 1, Mathf.FloorToInt(progress));
+            token.position = Vector3.Lerp(points[segment], points[segment + 1], progress - segment);
+            int reached = Mathf.Min(segments, Mathf.FloorToInt(progress));
+            while (lastReached < reached)
+            {
+                lastReached++;
+                Vector2Int cell = result.katePath[lastReached - 1];
+                if (result.killedEnemyCells.Contains(cell))
+                {
+                    animatedEnemies.RemoveAll(e => e.pos == cell);
+                    impactCells.Add(cell);
+                    RefreshBattle();
+                }
+            }
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        token.position = points[points.Count - 1];
+        Destroy(token.gameObject);
+        foreach (Vector2Int killed in result.killedEnemyCells) animatedEnemies.RemoveAll(e => e.pos == killed);
+        impactCells.Clear();
+        hideKate = false;
+        displayKate = null;
+        RefreshBattle();
+        if (result.blockedEnemyCell.x >= 0)
+            yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.14f);
+    }
+
+    private IEnumerator AnimateAllEnemyActions(List<KaitEnemyAction> actions)
+    {
+        var moves = new List<EnemyMoveVisual>();
+        foreach (KaitEnemyAction action in actions)
+        {
+            KaitEnemy enemy = animatedEnemies?.Find(e => e.id == action.enemyId);
+            if (enemy == null) continue;
+            if (action.type == KaitIntentType.Move && action.from != action.to)
+            {
+                string type = enemy.type == KaitEnemyType.Grunt ? "兵" : enemy.type == KaitEnemyType.Guard ? "盾" : enemy.type == KaitEnemyType.Archer ? "弓" : "精";
+                RectTransform token = CreateFloatingToken($"{type} {enemy.EffectiveThreshold}", EnemyColor(enemy.type, enemy.life), battleCells[action.from.x + action.from.y * 9].rectTransform, new Vector2(72, 72), 17);
+                moves.Add(new EnemyMoveVisual
+                {
+                    enemy = enemy,
+                    rect = token,
+                    from = battleCells[action.from.x + action.from.y * 9].rectTransform.position,
+                    to = battleCells[action.to.x + action.to.y * 9].rectTransform.position
+                });
+                animatedEnemies.Remove(enemy);
+            }
+            if (action.type == KaitIntentType.Melee || action.type == KaitIntentType.LineShot)
+                foreach (Vector2Int cell in action.affectedCells) if (InsideBattle(cell)) impactCells.Add(cell);
+        }
+
+        RefreshBattle();
+        if (moves.Count == 0 && impactCells.Count == 0) yield break;
+        float elapsed = 0f;
+        const float duration = 0.2f;
+        while (elapsed < duration)
+        {
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            foreach (EnemyMoveVisual move in moves) move.rect.position = Vector3.Lerp(move.from, move.to, t);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        foreach (EnemyMoveVisual move in moves)
+        {
+            move.enemy.pos = run.enemies.Find(e => e.id == move.enemy.id)?.pos ?? move.enemy.pos;
+            animatedEnemies.Add(move.enemy);
+            Destroy(move.rect.gameObject);
+        }
+        impactCells.Clear();
+        RefreshBattle();
+    }
+
     private KaitEnemy EnemyAtVisual(Vector2Int p)
     {
         if (animatedEnemies == null) return run.EnemyAt(p);
@@ -472,41 +585,6 @@ public sealed class KaitGame : MonoBehaviour
 
     private static bool InsideBattle(Vector2Int p) => p.x >= 0 && p.x < 9 && p.y >= 0 && p.y < 9;
 
-    private IEnumerator AnimateEnemyAction(KaitEnemyAction action)
-    {
-        KaitEnemy enemy = animatedEnemies?.Find(e => e.id == action.enemyId);
-        if (enemy == null) yield break;
-
-        if (action.type == KaitIntentType.Move && action.from != action.to)
-        {
-            animatedEnemies.Remove(enemy);
-            RefreshBattle();
-            string type = enemy.type == KaitEnemyType.Grunt ? "兵" : enemy.type == KaitEnemyType.Guard ? "盾" : enemy.type == KaitEnemyType.Archer ? "弓" : "精";
-            RectTransform token = CreateFloatingToken($"{type} {enemy.EffectiveThreshold}", EnemyColor(enemy.type, enemy.life), battleCells[action.from.x + action.from.y * 9].rectTransform, new Vector2(72, 72), 17);
-            yield return MoveToken(token, battleCells[action.to.x + action.to.y * 9].rectTransform.position, 0.2f);
-            Destroy(token.gameObject);
-            enemy.pos = action.to;
-            animatedEnemies.Add(enemy);
-            RefreshBattle();
-            yield return new WaitForSecondsRealtime(0.05f);
-            yield break;
-        }
-
-        if (action.type == KaitIntentType.Melee || action.type == KaitIntentType.LineShot)
-        {
-            foreach (Vector2Int cell in action.affectedCells)
-            {
-                if (!InsideBattle(cell)) continue;
-                impactCells.Add(cell);
-                RefreshBattle();
-                yield return new WaitForSecondsRealtime(action.type == KaitIntentType.LineShot ? 0.045f : 0.12f);
-            }
-            yield return new WaitForSecondsRealtime(0.1f);
-            impactCells.Clear();
-            RefreshBattle();
-        }
-    }
-
     private IEnumerator AnimateThreat(KaitTurnResult result)
     {
         displayedThreat = result.threatBefore;
@@ -522,7 +600,7 @@ public sealed class KaitGame : MonoBehaviour
         }
 
         float elapsed = 0f;
-        const float duration = 0.22f;
+        const float duration = 0.18f;
         while (elapsed < duration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
@@ -538,15 +616,17 @@ public sealed class KaitGame : MonoBehaviour
         if (result.merges.Count > 0)
         {
             int strongest = 0;
+            var mergeCells = new List<RectTransform>();
             foreach (KaitMergeEvent merge in result.merges)
             {
                 strongest = Mathf.Max(strongest, merge.resultValue);
-                yield return ScalePulse(threatCells[merge.threatCell.x + merge.threatCell.y * 4].rectTransform, 0.7f, 1.22f, 0.2f);
+                mergeCells.Add(threatCells[merge.threatCell.x + merge.threatCell.y * 4].rectTransform);
             }
+            yield return ScalePulseMany(mergeCells, 0.72f, 1.2f, 0.14f);
             GameAudio.PlayMerge(strongest);
         }
         if (result.newThreatCell.x >= 0)
-            yield return ScalePulse(threatCells[result.newThreatCell.x + result.newThreatCell.y * 4].rectTransform, 0.08f, 1.12f, 0.22f);
+            yield return ScalePulse(threatCells[result.newThreatCell.x + result.newThreatCell.y * 4].rectTransform, 0.1f, 1.1f, 0.14f);
     }
 
     private RectTransform CreateFloatingToken(string label, Color color, RectTransform source, Vector2 size, int fontSize)
@@ -558,19 +638,6 @@ public sealed class KaitGame : MonoBehaviour
         Text text = MakeText(label, image.transform, Vector2.zero, size, fontSize, color.grayscale < 0.55f ? Cream : Void, TextAnchor.MiddleCenter, FontStyle.Bold);
         Stretch(text.rectTransform, 2);
         return rect;
-    }
-
-    private IEnumerator MoveToken(RectTransform token, Vector3 destination, float duration)
-    {
-        Vector3 start = token.position;
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            token.position = Vector3.Lerp(start, destination, Mathf.SmoothStep(0f, 1f, elapsed / duration));
-            elapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        token.position = destination;
     }
 
     private IEnumerator PulseBattleCell(Vector2Int cell, Color color, float duration)
@@ -595,6 +662,22 @@ public sealed class KaitGame : MonoBehaviour
             yield return null;
         }
         rect.localScale = Vector3.one;
+    }
+
+    private IEnumerator ScalePulseMany(List<RectTransform> rects, float from, float peak, float duration)
+    {
+        if (rects.Count == 0) yield break;
+        float elapsed = 0f;
+        foreach (RectTransform rect in rects) rect.localScale = Vector3.one * from;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            float scale = t < 0.55f ? Mathf.Lerp(from, peak, t / 0.55f) : Mathf.Lerp(peak, 1f, (t - 0.55f) / 0.45f);
+            foreach (RectTransform rect in rects) rect.localScale = Vector3.one * scale;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        foreach (RectTransform rect in rects) rect.localScale = Vector3.one;
     }
 
     private void RefreshSkills()

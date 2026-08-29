@@ -96,6 +96,29 @@ public sealed class KaitCoreTests
         Assert.AreNotEqual(KaitEnemyLife.Dead, run.enemies[0].life);
     }
 
+    [Test]
+    public void CrossingSpawnWarning_DoesNotRemoveTheRift()
+    {
+        var run = new KaitRun();
+        run.Reset(1204);
+        KaitDirection direction = FindValidDirection(run);
+        Vector2Int riftCell = run.katePos + KaitRun.Delta(direction);
+        run.spawns.Add(new KaitSpawnRequest
+        {
+            tier = 1,
+            sourceThreatCell = Vector2Int.zero,
+            targetCell = riftCell,
+            turnsUntilSpawn = 2
+        });
+
+        KaitTurnResult result = run.TryTurn(direction);
+
+        Assert.IsTrue(result.valid);
+        Assert.Contains(riftCell, result.katePath);
+        Assert.IsNotNull(run.SpawnAt(riftCell));
+        Assert.AreEqual(1, run.SpawnAt(riftCell).turnsUntilSpawn);
+    }
+
     private static KaitDirection FindValidDirection(KaitRun run)
     {
         foreach (KaitDirection direction in new[] { KaitDirection.Up, KaitDirection.Down, KaitDirection.Left, KaitDirection.Right })
