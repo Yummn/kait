@@ -140,7 +140,7 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Dual-Board Strategy Prototype v0.3.3", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("Kait · Dual-Board Strategy Prototype v0.3.4", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
         MakeText("整理威胁盘 · 铺路削弱 · 连杀兑现 · 合成64", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
@@ -227,7 +227,7 @@ public sealed class KaitGame : MonoBehaviour
         statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
 
         Image rules = Rect("Momentum Rules", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("v0.3.3 双盘规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("v0.3.4 双盘规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
         MakeText("首次方向=双盘全局输入；任一盘响应即成立\n凯特可贴墙等待；有效回合固定增加新2\n击杀后四向转向只影响凯特，不推进时间", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
 
         Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
@@ -262,7 +262,7 @@ public sealed class KaitGame : MonoBehaviour
         int seed = Environment.TickCount;
         run.Reset(seed);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-        File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
+        File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
         statusText.text = "选择全局方向：凯特与威胁盘分别响应。";
         RefreshAll();
@@ -348,7 +348,7 @@ public sealed class KaitGame : MonoBehaviour
                 Text label = battleLabels[index];
                 label.text = "";
                 image.color = run.walls[x, y] ? Void : Hex("#796573");
-                if (run.walls[x, y] && y == 3 && (x == 1 || x == 5)) { label.text = "墙"; label.color = Peach; }
+                if (run.walls[x, y] && x > 0 && y > 0 && x < KaitRun.BattleSize - 1 && y < KaitRun.BattleSize - 1) { label.text = "墙"; label.color = Peach; }
                 Color? intentTint = IntentTintAt(p);
                 if (!run.walls[x, y] && intentTint.HasValue) image.color = Color.Lerp(image.color, intentTint.Value, 0.55f);
                 if (run.chainActive)
@@ -725,7 +725,7 @@ public sealed class KaitGame : MonoBehaviour
         int occupied = 0;
         foreach (int value in run.threat) if (value != 0) occupied++;
         float occupancy = occupied / (float)run.threat.Length;
-        string line = $"{run.turn},{result.globalDirection},{result.kaitWaited},{result.threatChanged},{result.chainStepCount},{result.chainKillCount},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.directKills},{run.nonLethalHits},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.activeWallStops},{run.spawnSuppressedCount},{run.riftBlocks},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
+        string line = $"{run.turn},{result.globalDirection},{result.kaitWaited},{result.threatChanged},{result.chainStepCount},{result.chainKillCount},{result.chainPower},{result.chainMoves},{result.chainEndedByStrongEnemy},{result.chainEndedByWall},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.directKills},{run.nonLethalHits},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.activeWallStops},{run.spawnSuppressedCount},{run.riftBlocks},{run.wallSuppressedSpawns},{run.clusterClearCount},{run.threatOrientedWaitCount},{run.emptyMapReachable},{run.emptyMapMaxInputs},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
         File.AppendAllText(logPath, line, Encoding.UTF8);
     }
 

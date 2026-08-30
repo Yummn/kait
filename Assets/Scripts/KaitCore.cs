@@ -11,7 +11,7 @@ public enum KaitSpawnState { Preview, Ready }
 [Serializable] public sealed class KaitBalanceConfig
 {
     public int threatSize = 5, initialThreatTiles = 3, newThreatTilesPerTurn = 1, winValue = 64;
-    public int baseMomentum = 1, momentumPerEmptyCell = 1, momentumLossOnKill = 0;
+    public int baseMomentum = 0, momentumPerEmptyCell = 1, momentumLossOnKill = 0;
     public int kateMaxHp = 3, wallCollisionDamage = 1, unitCollisionDamage = 1, riftBlockDamage = 1;
     public int archerRange = 3;
     public bool enablePush = true, enableFriendlyFire = true, enableInternalObstacle = true;
@@ -72,6 +72,8 @@ public sealed class KaitTurnResult
     public bool threatChanged, kaitWaited;
     public KaitDirection globalDirection;
     public int chainStepCount, chainKillCount;
+    public int chainPower, chainMoves;
+    public bool powerLocked, chainEndedByStrongEnemy, chainEndedByWall;
     public Vector2Int pushFrom = new Vector2Int(-1, -1), pushTo = new Vector2Int(-1, -1);
     public Vector2Int blockedEnemyCell = new Vector2Int(-1, -1);
     public string message;
@@ -96,6 +98,9 @@ public sealed class KaitRun
     public int highestMomentum { get; private set; }
     public int currentChainKills { get; private set; }
     public int longestChainKills { get; private set; }
+    public int chainPower { get; private set; }
+    public int currentChainMoves { get; private set; }
+    public bool powerLocked { get; private set; }
     public int pushCount { get; private set; }
     public int friendlyFireDamage { get; private set; }
     public int riftBlocks { get; private set; }
@@ -104,6 +109,13 @@ public sealed class KaitRun
     public int activeWallStops { get; private set; }
     public int wallSuppressedSpawns { get; private set; }
     public int spawnSuppressedCount { get; private set; }
+    public int chainEndByStrongEnemy { get; private set; }
+    public int chainEndByWall { get; private set; }
+    public int clusterClearCount { get; private set; }
+    public int threatOrientedWaitCount { get; private set; }
+    public bool emptyMapReachable { get; private set; }
+    public int emptyMapMaxInputs { get; private set; }
+    public readonly int[] lockedPowerCounts = new int[BattleSize];
     public KaitDirection currentGlobalDirection { get; private set; }
     public bool threatChangedThisTurn { get; private set; }
     public bool kaitWaitedThisTurn { get; private set; }
@@ -131,12 +143,15 @@ public sealed class KaitRun
         random = new System.Random(seed); Array.Clear(threat, 0, threat.Length); Array.Clear(walls, 0, walls.Length);
         enemies.Clear(); spawns.Clear(); nextEnemyId = 1; turn = kills = threatLocks = pushCount = friendlyFireDamage = riftBlocks = 0;
         directKills = nonLethalHits = activeWallStops = wallSuppressedSpawns = spawnSuppressedCount = 0;
-        threatChangedThisTurn = kaitWaitedThisTurn = false; chainStepCount = 0;
-        highestThreat = 2; momentum = highestMomentum = currentChainKills = longestChainKills = 0; chainActive = ended = won = false; endReason = string.Empty;
+        chainEndByStrongEnemy = chainEndByWall = clusterClearCount = threatOrientedWaitCount = 0;
+        threatChangedThisTurn = kaitWaitedThisTurn = false; chainStepCount = currentChainMoves = 0;
+        highestThreat = 2; momentum = highestMomentum = currentChainKills = longestChainKills = chainPower = 0;
+        powerLocked = chainActive = ended = won = false; endReason = string.Empty; Array.Clear(lockedPowerCounts, 0, lockedPowerCounts.Length);
         for (int y = 0; y < BattleSize; y++) for (int x = 0; x < BattleSize; x++) walls[x, y] = x == 0 || y == 0 || x == BattleSize - 1 || y == BattleSize - 1;
         mapIndex = 1;
-        walls[1, 3] = true;
-        walls[5, 3] = true;
+        walls[1, 2] = true;
+        walls[5, 4] = true;
+        EvaluateEmptyMapReachability();
         katePos = FindOpenNearCenter(); kateHp = config.kateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
         LockEnemyIntents();
@@ -161,7 +176,9 @@ public sealed class KaitRun
         result.threatBefore = before; result.threatAfter = after;
         if (!threatChanged) result.threatMotions.Clear();
         currentGlobalDirection = direction; threatChangedThisTurn = threatChanged; kaitWaitedThisTurn = !kaitCanRespond;
-        currentDirection = direction; momentum = kaitCanRespond ? config.baseMomentum : 0; currentChainKills = 0; chainStepCount = 0; chainActive = kaitCanRespond;
+        currentDirection = direction; momentum = 0; chainPower = 0; powerLocked = false;
+        currentChainKills = 0; currentChainMoves = 0; chainStepCount = 0; chainActive = kaitCanRespond;
+        if (!kaitCanRespond && threatChanged) threatOrientedWaitCount++;
         foreach (KaitMergeEvent merge in result.merges) if (merge.resultValue < config.winValue) QueueSpawn(merge);
         result.spawnSuppressed += result.merges.FindAll(m => m.spawnSuppressed).Count;
         if (!kaitCanRespond)
@@ -178,7 +195,8 @@ public sealed class KaitRun
         result.valid = true; currentDirection = direction; chainStepCount++;
         if (IsHardBlocked(katePos + Delta(direction)))
         {
-            result.activeBrake = true; activeWallStops++; result.message = "主动撞墙刹车：原地结束连锁"; FinishTurn(result); ApplyTurnContext(result); return result;
+            result.activeBrake = true; result.chainEndedByWall = true; activeWallStops++; chainEndByWall++;
+            result.message = "主动撞墙刹车：原地结束连锁"; FinishTurn(result); ApplyTurnContext(result); return result;
         }
         ResolveKateSegment(result); result.slideDistance = result.katePath.Count; ApplyTurnContext(result); return result;
     }
@@ -195,15 +213,30 @@ public sealed class KaitRun
         for (int guard = 0; guard < 64; guard++)
         {
             Vector2Int next = katePos + delta;
-            if (IsHardBlocked(next)) { FinishTurn(result); return; }
+            if (IsHardBlocked(next))
+            {
+                if (powerLocked) { result.chainEndedByWall = true; chainEndByWall++; }
+                FinishTurn(result); return;
+            }
             KaitEnemy enemy = EnemyAt(next);
             if (enemy == null)
             {
-                katePos = next; momentum += config.momentumPerEmptyCell; highestMomentum = Mathf.Max(highestMomentum, momentum);
+                katePos = next;
+                if (!powerLocked)
+                {
+                    momentum += config.momentumPerEmptyCell;
+                    highestMomentum = Mathf.Max(highestMomentum, momentum);
+                }
+                else currentChainMoves++;
                 result.katePath.Add(katePos); result.pathMomentum.Add(momentum); continue;
             }
 
-            int damage = momentum; DamageEnemy(enemy, damage, true, result);
+            if (!powerLocked)
+            {
+                chainPower = momentum; powerLocked = true;
+                lockedPowerCounts[Mathf.Clamp(chainPower, 0, lockedPowerCounts.Length - 1)]++;
+            }
+            int damage = chainPower; DamageEnemy(enemy, damage, true, result);
             result.damagedEnemyId = enemy.id; result.damageDealt = damage; result.enemyHpAfter = enemy.hp; result.blockedEnemyCell = enemy.pos;
             if (enemy.life == KaitEnemyLife.Dead)
             {
@@ -217,6 +250,7 @@ public sealed class KaitRun
             }
 
             nonLethalHits++;
+            result.chainEndedByStrongEnemy = true; chainEndByStrongEnemy++;
             ResolvePush(enemy, delta, result); FinishTurn(result); return;
         }
         FinishTurn(result);
@@ -255,6 +289,7 @@ public sealed class KaitRun
     {
         ApplyTurnContext(result);
         chainActive = false; result.turnComplete = true; result.momentumAfter = momentum;
+        if (currentChainKills >= 3) clusterClearCount++;
         ResolveEnemyIntents(result);
         if (!ended)
         {
@@ -264,7 +299,7 @@ public sealed class KaitRun
             if (highestThreat >= config.winValue) End("Victory 64", true);
             else if (kateHp <= 0) End("Kate Defeated", false);
         }
-        turn++; momentum = 0; LockEnemyIntents();
+        turn++; momentum = 0; chainPower = 0; powerLocked = false; currentChainMoves = 0; LockEnemyIntents();
         ApplyTurnContext(result);
         if (string.IsNullOrEmpty(result.message))
         {
@@ -426,6 +461,52 @@ public sealed class KaitRun
         result.kaitWaited = kaitWaitedThisTurn;
         result.chainStepCount = chainStepCount;
         result.chainKillCount = currentChainKills;
+        if (!result.turnComplete)
+        {
+            result.chainPower = chainPower;
+            result.powerLocked = powerLocked;
+            result.chainMoves = currentChainMoves;
+        }
+    }
+
+    private void EvaluateEmptyMapReachability()
+    {
+        int center = BattleSize / 2, far = BattleSize - 2;
+        int[] checks =
+        {
+            InputsToReachRegion(new Vector2Int(1, center), p => p.x >= far - 1, 3),
+            InputsToReachRegion(new Vector2Int(far, center), p => p.x <= 2, 3),
+            InputsToReachRegion(new Vector2Int(center, 1), p => p.y >= far - 1, 3),
+            InputsToReachRegion(new Vector2Int(center, far), p => p.y <= 2, 3)
+        };
+        emptyMapReachable = true; emptyMapMaxInputs = 0;
+        foreach (int inputs in checks)
+        {
+            if (inputs < 0) { emptyMapReachable = false; continue; }
+            emptyMapMaxInputs = Mathf.Max(emptyMapMaxInputs, inputs);
+        }
+    }
+
+    private int InputsToReachRegion(Vector2Int start, Func<Vector2Int, bool> target, int maxInputs)
+    {
+        var distances = new Dictionary<Vector2Int, int> { [start] = 0 };
+        var queue = new Queue<Vector2Int>(); queue.Enqueue(start);
+        while (queue.Count > 0)
+        {
+            Vector2Int origin = queue.Dequeue(); int nextDepth = distances[origin] + 1;
+            if (nextDepth > maxInputs) continue;
+            foreach (KaitDirection direction in (KaitDirection[])Enum.GetValues(typeof(KaitDirection)))
+            {
+                Vector2Int delta = Delta(direction), current = origin;
+                while (!IsHardBlocked(current + delta))
+                {
+                    current += delta;
+                    if (target(current)) return nextDepth;
+                }
+                if (current != origin && !distances.ContainsKey(current)) { distances[current] = nextDepth; queue.Enqueue(current); }
+            }
+        }
+        return -1;
     }
     private bool ThreatEquals(int[,] a, int[,] b)
     {
