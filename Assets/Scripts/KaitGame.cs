@@ -16,11 +16,13 @@ public sealed class KaitGame : MonoBehaviour
     private Canvas canvas;
     private Image[] battleCells;
     private Text[] battleLabels;
+    private Image[] battleDangerBadges;
     private Image[] threatCells;
     private Text[] threatLabels;
     private Text turnText;
     private Text statusText;
     private Text helpText;
+    private Text dangerText;
     private GameObject endOverlay;
     private Text endText;
     private bool busy;
@@ -151,6 +153,7 @@ public sealed class KaitGame : MonoBehaviour
     {
         Image frame = Rect("Battle Panel", parent, new Vector2(-365, -38), new Vector2(748, 748), Panel);
         MakeText("7 × 7  滑行战场 · 活动区 5 × 5", frame.transform, new Vector2(0, 347), new Vector2(700, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        dangerText = MakeText("", frame.transform, new Vector2(172, 347), new Vector2(350, 42), 17, Gold, TextAnchor.MiddleRight, FontStyle.Bold);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform gridRect = gridGo.GetComponent<RectTransform>();
@@ -166,6 +169,7 @@ public sealed class KaitGame : MonoBehaviour
 
         battleCells = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleDangerBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         for (int visualY = KaitRun.BattleSize - 1; visualY >= 0; visualY--)
         {
             for (int x = 0; x < KaitRun.BattleSize; x++)
@@ -175,6 +179,13 @@ public sealed class KaitGame : MonoBehaviour
                 battleCells[index] = cell;
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 19, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
+                Image dangerBadge = Rect("Rift Danger Badge", cell.transform, new Vector2(31, 31), new Vector2(30, 30), Gold);
+                dangerBadge.raycastTarget = false;
+                Text dangerBadgeText = MakeText("!", dangerBadge.transform, Vector2.zero, new Vector2(30, 30), 22, Void, TextAnchor.MiddleCenter, FontStyle.Bold);
+                dangerBadgeText.raycastTarget = false;
+                Stretch(dangerBadgeText.rectTransform, 0);
+                dangerBadge.gameObject.SetActive(false);
+                battleDangerBadges[index] = dangerBadge;
             }
         }
     }
@@ -326,6 +337,7 @@ public sealed class KaitGame : MonoBehaviour
     private void RefreshBattle()
     {
         Vector2Int kate = displayKate ?? run.katePos;
+        bool kateOnRift = false;
         for (int y = 0; y < KaitRun.BattleSize; y++)
         {
             for (int x = 0; x < KaitRun.BattleSize; x++)
@@ -349,6 +361,9 @@ public sealed class KaitGame : MonoBehaviour
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
+                bool showRiftDanger = !hideKate && kate == p && spawn != null;
+                battleDangerBadges[index].gameObject.SetActive(showRiftDanger);
+                if (showRiftDanger) kateOnRift = true;
                 if (spawn != null)
                 {
                     image.color = intentTint.HasValue ? Color.Lerp(Wine, intentTint.Value, 0.55f) : Wine;
@@ -365,14 +380,17 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (!hideKate && kate == p)
                 {
-                    image.color = Coral;
-                    label.text = run.chainActive ? $"凯 HP{run.kateHp}\nM{run.momentum}" : $"凯\nHP{run.kateHp}";
-                    label.fontSize = run.chainActive ? 18 : 28;
+                    image.color = showRiftDanger ? Color.Lerp(Coral, Gold, 0.3f) : Coral;
+                    label.text = showRiftDanger
+                        ? $"凯 HP{run.kateHp}\n裂隙危险"
+                        : run.chainActive ? $"凯 HP{run.kateHp}\nM{run.momentum}" : $"凯\nHP{run.kateHp}";
+                    label.fontSize = showRiftDanger || run.chainActive ? 18 : 28;
                     label.color = Cream;
                 }
                 else label.fontSize = 17;
             }
         }
+        dangerText.text = kateOnRift ? $"危险：停留在裂隙上，将受到 {run.config.riftBlockDamage} 点伤害" : "";
     }
 
     private void RefreshThreat()
