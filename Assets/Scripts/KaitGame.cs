@@ -333,7 +333,7 @@ public sealed class KaitGame : MonoBehaviour
                 label.text = "";
                 image.color = run.walls[x, y] ? Void : Hex("#796573");
                 Color? intentTint = IntentTintAt(p);
-                if (!run.walls[x, y] && intentTint.HasValue) image.color = intentTint.Value;
+                if (!run.walls[x, y] && intentTint.HasValue) image.color = Color.Lerp(image.color, intentTint.Value, 0.55f);
                 if (run.chainActive)
                 {
                     foreach (KaitDirection choice in run.AllowedTurnDirections())
@@ -346,7 +346,7 @@ public sealed class KaitGame : MonoBehaviour
                 KaitEnemy enemy = EnemyAtVisual(p);
                 if (spawn != null)
                 {
-                    image.color = Wine;
+                    image.color = intentTint.HasValue ? Color.Lerp(Wine, intentTint.Value, 0.55f) : Wine;
                     label.text = $"裂\nT{spawn.tier}";
                     label.color = Cream;
                 }

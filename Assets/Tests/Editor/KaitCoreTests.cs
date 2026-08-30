@@ -102,7 +102,7 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void OccupiedSpawn_RemainsPendingAtExactCell()
+    public void OccupiedSpawn_IsCancelledInsteadOfRemainingPending()
     {
         KaitRun run = OpenRun(7); Vector2Int occupied = new Vector2Int(2, 2);
         run.enemies.Add(Enemy(1, occupied, 3));
@@ -111,8 +111,25 @@ public sealed class KaitCoreTests
         KaitTurnResult result = run.TryTurn(KaitDirection.Right);
 
         Assert.IsTrue(result.turnComplete);
-        Assert.IsNotNull(run.SpawnAt(occupied));
-        Assert.AreEqual(occupied, run.SpawnAt(occupied).targetCell);
+        Assert.IsNull(run.SpawnAt(occupied));
+    }
+
+    [Test]
+    public void EnemyCanMoveIntoRiftCell_AndCancelsThatSpawn()
+    {
+        KaitRun run = OpenRun(71);
+        Vector2Int from = new Vector2Int(2, 2);
+        Vector2Int rift = new Vector2Int(3, 2);
+        KaitEnemy enemy = Enemy(1, from, 1);
+        enemy.life = KaitEnemyLife.Active;
+        enemy.intent = new KaitIntent { type = KaitIntentType.Move, target = rift, direction = Vector2Int.right };
+        run.enemies.Add(enemy);
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, sourceThreatCell = new Vector2Int(2, 1), targetCell = rift, turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+
+        run.TryTurn(KaitDirection.Right);
+
+        Assert.AreEqual(rift, enemy.pos);
+        Assert.IsNull(run.SpawnAt(rift));
     }
 
     [Test]

@@ -273,7 +273,8 @@ public sealed class KaitRun
         for (int i = 0; i < spawns.Count && made < config.maxMaterializePerTurn && active < config.maxActiveEnemies;)
         {
             KaitSpawnRequest request = spawns[i]; request.turnsUntilSpawn = Mathf.Max(0, request.turnsUntilSpawn - 1); request.state = request.turnsUntilSpawn > 0 ? KaitSpawnState.Preview : KaitSpawnState.Ready;
-            if (request.turnsUntilSpawn > 0 || !IsFreeForSpawn(request.targetCell)) { i++; continue; }
+            if (request.turnsUntilSpawn > 0) { i++; continue; }
+            if (!IsFreeForSpawn(request.targetCell)) { spawns.RemoveAt(i); continue; }
             KaitEnemyType type = TierType(request.tier); if ((type == KaitEnemyType.Guard || type == KaitEnemyType.Elite) && hard >= config.maxHardBlockers) type = KaitEnemyType.Grunt;
             int hp = type == KaitEnemyType.Grunt || type == KaitEnemyType.Archer ? 1 : 3;
             enemies.Add(new KaitEnemy { id = nextEnemyId++, type = type, pos = request.targetCell, hp = hp, maxHp = hp, life = KaitEnemyLife.Preparing });
@@ -302,7 +303,7 @@ public sealed class KaitRun
     { var c = new List<Vector2Int>(); for (int y = 3; y <= 5; y++) for (int x = 3; x <= 5; x++) if (!walls[x, y]) c.Add(new Vector2Int(x, y)); return c[random.Next(c.Count)]; }
     private bool CanEnterFrom(Vector2Int from, KaitDirection d) { Vector2Int p = from + Delta(d); return !IsHardBlocked(p) || EnemyAt(p) != null; }
     private bool IsHardBlocked(Vector2Int p) => !Inside(p) || walls[p.x, p.y];
-    private bool IsFreeForEnemy(Vector2Int p) => !IsHardBlocked(p) && p != katePos && EnemyAt(p) == null && SpawnAt(p) == null;
+    private bool IsFreeForEnemy(Vector2Int p) => !IsHardBlocked(p) && p != katePos && EnemyAt(p) == null;
     private bool IsFreeForSpawn(Vector2Int p) => Inside(p) && !walls[p.x, p.y] && p != katePos && EnemyAt(p) == null;
     private static bool Inside(Vector2Int p) => p.x >= 0 && p.x < BattleSize && p.y >= 0 && p.y < BattleSize;
     private bool HasLineOfSight(Vector2Int from, Vector2Int to)
