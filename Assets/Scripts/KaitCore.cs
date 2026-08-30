@@ -35,7 +35,7 @@ public enum KaitSpawnState { Preview, Ready }
 }
 [Serializable] public sealed class KaitSpawnRequest
 {
-    public int tier, turnsUntilSpawn;
+    public int tier, turnsUntilSpawn, createdTurn = -1;
     public Vector2Int sourceThreatCell, targetCell;
     public KaitSpawnState state;
 }
@@ -337,13 +337,15 @@ public sealed class KaitRun
     {
         Vector2Int target = MapThreatToBattle(merge.threatCell); if (walls[target.x, target.y]) return;
         int tier = Mathf.Clamp((int)Mathf.Log(merge.resultValue, 2f) - 1, 1, 4);
-        spawns.Add(new KaitSpawnRequest { tier = tier, sourceThreatCell = merge.threatCell, targetCell = target, turnsUntilSpawn = 1, state = KaitSpawnState.Preview });
+        spawns.Add(new KaitSpawnRequest { tier = tier, sourceThreatCell = merge.threatCell, targetCell = target, turnsUntilSpawn = 1, createdTurn = turn, state = KaitSpawnState.Preview });
     }
     private void ResolveSpawnRequests(KaitTurnResult result)
     {
         for (int i = 0; i < spawns.Count;)
         {
-            KaitSpawnRequest request = spawns[i]; request.turnsUntilSpawn = Mathf.Max(0, request.turnsUntilSpawn - 1); request.state = request.turnsUntilSpawn > 0 ? KaitSpawnState.Preview : KaitSpawnState.Ready;
+            KaitSpawnRequest request = spawns[i];
+            if (request.createdTurn == turn) { i++; continue; }
+            request.turnsUntilSpawn = Mathf.Max(0, request.turnsUntilSpawn - 1); request.state = request.turnsUntilSpawn > 0 ? KaitSpawnState.Preview : KaitSpawnState.Ready;
             if (request.turnsUntilSpawn > 0) { i++; continue; }
             KaitEnemy occupant = EnemyAt(request.targetCell);
             if (katePos == request.targetCell)

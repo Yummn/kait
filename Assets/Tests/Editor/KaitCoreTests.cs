@@ -193,6 +193,30 @@ public sealed class KaitCoreTests
         Assert.AreEqual("Victory 64", run.endReason);
     }
 
+    [Test]
+    public void RiftCreatedThisTurn_WarnsBeforeSpawningOnNextValidAction()
+    {
+        KaitRun run = OpenRun(13, new Vector2Int(3, 3)); ClearThreat(run);
+        run.threat[0, 0] = 2; run.threat[1, 0] = 2;
+
+        KaitTurnResult first = run.TryTurn(KaitDirection.Right);
+
+        Assert.IsTrue(first.turnComplete);
+        Assert.AreEqual(1, run.spawns.Count);
+        Assert.AreEqual(0, first.spawnedEnemyCells.Count);
+        KaitSpawnRequest warning = run.spawns.Single();
+        Assert.AreEqual(KaitSpawnState.Preview, warning.state);
+        Assert.AreEqual(1, warning.turnsUntilSpawn);
+        Assert.IsNull(run.EnemyAt(warning.targetCell));
+
+        Vector2Int target = warning.targetCell;
+        KaitTurnResult second = run.TryTurn(KaitDirection.Left);
+
+        Assert.IsTrue(second.turnComplete);
+        Assert.AreEqual(0, run.spawns.Count);
+        Assert.AreEqual(KaitEnemyLife.Preparing, run.EnemyAt(target).life);
+    }
+
     private static KaitRun OpenRun(int seed, Vector2Int? kate = null)
     {
         var run = new KaitRun(); run.Reset(seed);

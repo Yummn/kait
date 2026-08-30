@@ -426,6 +426,7 @@ public sealed class KaitGame : MonoBehaviour
                 sourceThreatCell = spawn.sourceThreatCell,
                 targetCell = spawn.targetCell,
                 turnsUntilSpawn = spawn.turnsUntilSpawn,
+                createdTurn = spawn.createdTurn,
                 state = spawn.state
             });
         return snapshot;
