@@ -138,8 +138,8 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Momentum Prototype v0.2", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("初始方向共享 · 击杀转向只控制凯特", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
+        MakeText("Kait · Spatial Combat Prototype v0.3", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("5×5 精确威胁 · 推动 · 友伤 · 合成64胜利", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
         BuildThreatBoard(bg.transform);
@@ -150,27 +150,27 @@ public sealed class KaitGame : MonoBehaviour
     private void BuildBattleBoard(Transform parent)
     {
         Image frame = Rect("Battle Panel", parent, new Vector2(-365, -38), new Vector2(748, 748), Panel);
-        MakeText("9 × 9  滑行战场", frame.transform, new Vector2(0, 347), new Vector2(700, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("7 × 7  滑行战场 · 活动区 5 × 5", frame.transform, new Vector2(0, 347), new Vector2(700, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform gridRect = gridGo.GetComponent<RectTransform>();
         gridRect.sizeDelta = new Vector2(690, 690);
         gridRect.anchoredPosition = new Vector2(0, -20);
         GridLayoutGroup grid = gridGo.GetComponent<GridLayoutGroup>();
-        grid.cellSize = new Vector2(72, 72);
+        grid.cellSize = new Vector2(94, 94);
         grid.spacing = new Vector2(5, 5);
         grid.padding = new RectOffset(1, 1, 1, 1);
         grid.startCorner = GridLayoutGroup.Corner.UpperLeft;
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        grid.constraintCount = 9;
+        grid.constraintCount = KaitRun.BattleSize;
 
-        battleCells = new Image[81];
-        battleLabels = new Text[81];
-        for (int visualY = 8; visualY >= 0; visualY--)
+        battleCells = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
+        for (int visualY = KaitRun.BattleSize - 1; visualY >= 0; visualY--)
         {
-            for (int x = 0; x < 9; x++)
+            for (int x = 0; x < KaitRun.BattleSize; x++)
             {
-                int index = x + visualY * 9;
+                int index = x + visualY * KaitRun.BattleSize;
                 Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, PanelLight);
                 battleCells[index] = cell;
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 19, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
@@ -182,16 +182,16 @@ public sealed class KaitGame : MonoBehaviour
     private void BuildThreatBoard(Transform parent)
     {
         Image frame = Rect("Threat Panel", parent, new Vector2(477, 164), new Vector2(420, 465), Panel);
-        MakeText("7 × 7  全尺寸威胁盘", frame.transform, new Vector2(0, 202), new Vector2(374, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("逐格映射 · 每个有效回合新增 2", frame.transform, new Vector2(0, 172), new Vector2(374, 28), 14, Peach, TextAnchor.MiddleLeft);
+        MakeText("5 × 5  精确威胁盘", frame.transform, new Vector2(0, 202), new Vector2(374, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("逐格映射 · 每回合新增 1 · 64 胜利", frame.transform, new Vector2(0, 172), new Vector2(374, 28), 14, Peach, TextAnchor.MiddleLeft);
         var gridGo = new GameObject("Threat Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform rt = gridGo.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358, 358);
         rt.anchoredPosition = new Vector2(0, -25);
         GridLayoutGroup grid = gridGo.GetComponent<GridLayoutGroup>();
-        grid.cellSize = new Vector2(46, 46);
-        grid.spacing = new Vector2(5, 5);
+        grid.cellSize = new Vector2(68, 68);
+        grid.spacing = new Vector2(4, 4);
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         grid.constraintCount = run.ThreatSize;
 
@@ -203,7 +203,7 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + visualY * run.ThreatSize;
                 threatCells[index] = Rect($"Threat {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Void);
-                threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 24, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(threatLabels[index].rectTransform, 2);
             }
         }
@@ -216,8 +216,8 @@ public sealed class KaitGame : MonoBehaviour
         statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
 
         Image rules = Rect("Momentum Rules", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("v0.2 动量规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("起步 M1 · 每走空格 +1\n碰撞伤害 = 当前动量 · 未击杀会保留 HP\n击杀后 M-1，可直行 / 左转 / 右转", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
+        MakeText("v0.3 空间规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("起步 M1 · 每走空格 +1 · 击杀不减动量\n未击杀推动1格；撞墙/撞敌追加伤害\n敌人静止，攻击锁定且会造成友伤", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
 
         Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
         MakeText("WASD / 方向键", controls.transform, new Vector2(-88, 30), new Vector2(180, 28), 14, Peach, TextAnchor.MiddleLeft);
@@ -251,7 +251,7 @@ public sealed class KaitGame : MonoBehaviour
         int seed = Environment.TickCount;
         run.Reset(seed);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-        File.WriteAllText(logPath, "turn,direction,kateStart,kateEnd,slideDistance,damage,kills,chainActive,momentum,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
+        File.WriteAllText(logPath, "turn,direction,kateStart,kateEnd,kateHp,slideDistance,damage,kills,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,riftBlocks,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
         statusText.text = "选择方向开始。不能主动刹车。";
         RefreshAll();
@@ -287,6 +287,10 @@ public sealed class KaitGame : MonoBehaviour
         if (!threatDone) StartCoroutine(RunPhase(AnimateThreat(result), () => threatDone = true));
         while (!kateDone || !threatDone) yield return null;
 
+        if (result.pushed) yield return AnimatePush(result);
+        else if (result.pushBlockedByWall || result.pushBlockedByUnit)
+            yield return PulseBattleCell(result.pushFrom, Gold, 0.18f);
+
         yield return AnimateAllEnemyActions(result.enemyActions);
 
         animatedEnemies = null;
@@ -298,9 +302,9 @@ public sealed class KaitGame : MonoBehaviour
 
         var spawnPulses = new List<RectTransform>();
         foreach (Vector2Int cell in result.spawnedEnemyCells)
-            spawnPulses.Add(battleCells[cell.x + cell.y * 9].rectTransform);
+            spawnPulses.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform);
         foreach (KaitSpawnRequest spawn in run.spawns)
-            if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * 9].rectTransform);
+            if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
         if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
 
         displayedThreat = null;
@@ -314,19 +318,19 @@ public sealed class KaitGame : MonoBehaviour
     {
         RefreshBattle();
         RefreshThreat();
-        turnText.text = $"回合 {run.turn}   击杀 {run.kills}   敌人 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}/{run.spawns.Count}   动量 M{run.momentum}";
-        helpText.text = run.chainActive ? "击杀转向：仅高亮方向可用，禁止 180°；此输入不会推动威胁盘" : "青色格=移动/可选方向  红色格=攻击范围  敌人数字=当前 HP";
+        turnText.text = $"回合 {run.turn}   凯特 HP {run.kateHp}/{run.config.kateMaxHp}   敌人 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}   M{run.momentum}";
+        helpText.text = run.chainActive ? "击杀转向：仅高亮方向可用，禁止 180°；此输入不会推动威胁盘" : "半透明红/青=已锁定攻击范围  裂=下次生成/封堵冲击  目标：合成64";
         if (run.ended) ShowEnd();
     }
 
     private void RefreshBattle()
     {
         Vector2Int kate = displayKate ?? run.katePos;
-        for (int y = 0; y < 9; y++)
+        for (int y = 0; y < KaitRun.BattleSize; y++)
         {
-            for (int x = 0; x < 9; x++)
+            for (int x = 0; x < KaitRun.BattleSize; x++)
             {
-                int index = x + y * 9;
+                int index = x + y * KaitRun.BattleSize;
                 Vector2Int p = new Vector2Int(x, y);
                 Image image = battleCells[index];
                 Text label = battleLabels[index];
@@ -361,7 +365,7 @@ public sealed class KaitGame : MonoBehaviour
                 if (!hideKate && kate == p)
                 {
                     image.color = Coral;
-                    label.text = run.chainActive ? $"凯\nM{run.momentum}" : "凯";
+                    label.text = run.chainActive ? $"凯 HP{run.kateHp}\nM{run.momentum}" : $"凯\nHP{run.kateHp}";
                     label.fontSize = run.chainActive ? 18 : 28;
                     label.color = Cream;
                 }
@@ -389,6 +393,15 @@ public sealed class KaitGame : MonoBehaviour
         foreach (KaitEnemy enemy in run.enemies)
         {
             if (enemy.life == KaitEnemyLife.Dead) continue;
+            var intent = new KaitIntent
+            {
+                type = enemy.intent.type,
+                origin = enemy.intent.origin,
+                target = enemy.intent.target,
+                direction = enemy.intent.direction,
+                damage = enemy.intent.damage
+            };
+            intent.affectedCells.AddRange(enemy.intent.affectedCells);
             snapshot.Add(new KaitEnemy
             {
                 id = enemy.id,
@@ -397,12 +410,7 @@ public sealed class KaitGame : MonoBehaviour
                 hp = enemy.hp,
                 maxHp = enemy.maxHp,
                 life = enemy.life,
-                intent = new KaitIntent
-                {
-                    type = enemy.intent.type,
-                    target = enemy.intent.target,
-                    direction = enemy.intent.direction
-                }
+                intent = intent
             });
         }
         return snapshot;
@@ -418,8 +426,7 @@ public sealed class KaitGame : MonoBehaviour
                 sourceThreatCell = spawn.sourceThreatCell,
                 targetCell = spawn.targetCell,
                 turnsUntilSpawn = spawn.turnsUntilSpawn,
-                state = spawn.state,
-                initialDirection = spawn.initialDirection
+                state = spawn.state
             });
         return snapshot;
     }
@@ -447,9 +454,9 @@ public sealed class KaitGame : MonoBehaviour
 
         hideKate = true;
         RefreshBattle();
-        RectTransform token = CreateFloatingToken("凯", Coral, battleCells[start.x + start.y * 9].rectTransform, new Vector2(72, 72), 28);
-        var points = new List<Vector3> { battleCells[start.x + start.y * 9].rectTransform.position };
-        foreach (Vector2Int cell in result.katePath) points.Add(battleCells[cell.x + cell.y * 9].rectTransform.position);
+        RectTransform token = CreateFloatingToken("凯", Coral, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 28);
+        var points = new List<Vector3> { battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position };
+        foreach (Vector2Int cell in result.katePath) points.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform.position);
 
         int segments = points.Count - 1;
         float duration = Mathf.Min(0.36f, 0.16f + segments * 0.025f);
@@ -496,13 +503,13 @@ public sealed class KaitGame : MonoBehaviour
             if (action.type == KaitIntentType.Move && action.from != action.to)
             {
                 string type = enemy.type == KaitEnemyType.Grunt ? "兵" : enemy.type == KaitEnemyType.Guard ? "盾" : enemy.type == KaitEnemyType.Archer ? "弓" : "精";
-                RectTransform token = CreateFloatingToken($"{type} {enemy.hp}", EnemyColor(enemy.type, enemy.life), battleCells[action.from.x + action.from.y * 9].rectTransform, new Vector2(72, 72), 17);
+                RectTransform token = CreateFloatingToken($"{type} {enemy.hp}", EnemyColor(enemy.type, enemy.life), battleCells[action.from.x + action.from.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 17);
                 moves.Add(new EnemyMoveVisual
                 {
                     enemy = enemy,
                     rect = token,
-                    from = battleCells[action.from.x + action.from.y * 9].rectTransform.position,
-                    to = battleCells[action.to.x + action.to.y * 9].rectTransform.position
+                    from = battleCells[action.from.x + action.from.y * KaitRun.BattleSize].rectTransform.position,
+                    to = battleCells[action.to.x + action.to.y * KaitRun.BattleSize].rectTransform.position
                 });
                 animatedEnemies.Remove(enemy);
             }
@@ -531,6 +538,32 @@ public sealed class KaitGame : MonoBehaviour
         RefreshBattle();
     }
 
+    private IEnumerator AnimatePush(KaitTurnResult result)
+    {
+        KaitEnemy enemy = animatedEnemies?.Find(e => e.pos == result.pushFrom && e.life != KaitEnemyLife.Dead);
+        if (enemy == null || !InsideBattle(result.pushTo)) yield break;
+        KaitEnemy resolved = run.enemies.Find(e => e.id == enemy.id);
+        if (resolved != null) enemy.hp = resolved.hp;
+        string type = enemy.type == KaitEnemyType.Grunt ? "兵" : enemy.type == KaitEnemyType.Guard ? "盾" : enemy.type == KaitEnemyType.Archer ? "弓" : "精";
+        RectTransform token = CreateFloatingToken($"{type} {enemy.hp}", EnemyColor(enemy.type, enemy.life), battleCells[result.pushFrom.x + result.pushFrom.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 17);
+        animatedEnemies.Remove(enemy);
+        RefreshBattle();
+        Vector3 from = battleCells[result.pushFrom.x + result.pushFrom.y * KaitRun.BattleSize].rectTransform.position;
+        Vector3 to = battleCells[result.pushTo.x + result.pushTo.y * KaitRun.BattleSize].rectTransform.position;
+        float elapsed = 0f;
+        const float duration = 0.18f;
+        while (elapsed < duration)
+        {
+            token.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, elapsed / duration));
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        enemy.pos = result.pushTo;
+        animatedEnemies.Add(enemy);
+        Destroy(token.gameObject);
+        RefreshBattle();
+    }
+
     private KaitEnemy EnemyAtVisual(Vector2Int p)
     {
         if (animatedEnemies == null) return run.EnemyAt(p);
@@ -543,16 +576,9 @@ public sealed class KaitGame : MonoBehaviour
         foreach (KaitEnemy enemy in source)
         {
             if (enemy.life != KaitEnemyLife.Active) continue;
-            if (enemy.intent.type == KaitIntentType.Move && enemy.intent.target == p)
-                return Hex("#547978");
             if (enemy.intent.type == KaitIntentType.Melee && enemy.intent.target == p)
                 return Hex("#A64F5A");
-            if (enemy.intent.type == KaitIntentType.LineShot)
-            {
-                Vector2Int direction = enemy.intent.direction;
-                for (Vector2Int cell = enemy.pos + direction; InsideBattle(cell) && !BlocksIntentLine(cell, source); cell += direction)
-                    if (cell == p) return Hex("#944A58");
-            }
+            if (enemy.intent.type == KaitIntentType.LineShot && enemy.intent.affectedCells.Contains(p)) return Hex("#944A58");
         }
         return null;
     }
@@ -563,7 +589,7 @@ public sealed class KaitGame : MonoBehaviour
         return source.Exists(e => e.life != KaitEnemyLife.Dead && e.pos == p);
     }
 
-    private static bool InsideBattle(Vector2Int p) => p.x >= 0 && p.x < 9 && p.y >= 0 && p.y < 9;
+    private static bool InsideBattle(Vector2Int p) => p.x >= 0 && p.x < KaitRun.BattleSize && p.y >= 0 && p.y < KaitRun.BattleSize;
 
     private IEnumerator AnimateThreat(KaitTurnResult result)
     {
@@ -622,7 +648,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private IEnumerator PulseBattleCell(Vector2Int cell, Color color, float duration)
     {
-        Image image = battleCells[cell.x + cell.y * 9];
+        Image image = battleCells[cell.x + cell.y * KaitRun.BattleSize];
         Color original = image.color;
         image.color = color;
         yield return ScalePulse(image.rectTransform, 0.92f, 1.16f, duration);
@@ -663,8 +689,8 @@ public sealed class KaitGame : MonoBehaviour
     private void ShowEnd()
     {
         endOverlay.SetActive(true);
-        string reason = run.endReason == "Threat Overload" ? "威胁盘锁死" : "凯特被敌人击中";
-        endText.text = $"{reason}\n\n生存回合：{run.turn}    击杀：{run.kills}\n最高威胁：{run.highestThreat}";
+        string reason = run.won ? "合成 64 · 本局胜利" : "凯特 HP 归零 · 本局失败";
+        endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    友伤：{run.friendlyFireDamage}";
     }
 
     private void AppendLog(KaitDirection direction, Vector2Int start, KaitTurnResult result)
@@ -672,7 +698,7 @@ public sealed class KaitGame : MonoBehaviour
         int occupied = 0;
         foreach (int value in run.threat) if (value != 0) occupied++;
         float occupancy = occupied / (float)run.threat.Length;
-        string line = $"{run.turn},{direction},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{result.slideDistance},{result.damageDealt},{run.kills},{run.chainActive},{run.momentum},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
+        string line = $"{run.turn},{direction},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.riftBlocks},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
         File.AppendAllText(logPath, line, Encoding.UTF8);
     }
 

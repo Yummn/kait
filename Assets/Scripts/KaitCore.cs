@@ -10,13 +10,21 @@ public enum KaitSpawnState { Preview, Ready }
 
 [Serializable] public sealed class KaitBalanceConfig
 {
-    public int threatSize = 7, initialThreatTiles = 4, newThreatTilesPerTurn = 2;
-    public int baseMomentum = 1, momentumPerEmptyCell = 1, momentumLossOnKill = 1;
-    public int maxActiveEnemies = 8, maxMaterializePerTurn = 2, maxHardBlockers = 2;
+    public int threatSize = 5, initialThreatTiles = 3, newThreatTilesPerTurn = 1, winValue = 64;
+    public int baseMomentum = 1, momentumPerEmptyCell = 1, momentumLossOnKill = 0;
+    public int kateMaxHp = 3, wallCollisionDamage = 1, unitCollisionDamage = 1, riftBlockDamage = 1;
+    public int archerRange = 3;
+    public bool enablePush = true, enableFriendlyFire = true, enableInternalObstacle = false;
 }
 
 [Serializable] public sealed class KaitMergeEvent { public int resultValue; public Vector2Int threatCell; }
-[Serializable] public sealed class KaitIntent { public KaitIntentType type; public Vector2Int target, direction; }
+[Serializable] public sealed class KaitIntent
+{
+    public KaitIntentType type;
+    public Vector2Int origin, target, direction;
+    public int damage;
+    public readonly List<Vector2Int> affectedCells = new List<Vector2Int>();
+}
 [Serializable] public sealed class KaitEnemy
 {
     public int id, hp, maxHp;
@@ -24,22 +32,23 @@ public enum KaitSpawnState { Preview, Ready }
     public Vector2Int pos;
     public KaitEnemyLife life;
     public KaitIntent intent = new KaitIntent();
-    public bool IsHardBlocker => type == KaitEnemyType.Guard || type == KaitEnemyType.Elite;
 }
 [Serializable] public sealed class KaitSpawnRequest
 {
     public int tier, turnsUntilSpawn;
     public Vector2Int sourceThreatCell, targetCell;
     public KaitSpawnState state;
-    public KaitDirection initialDirection;
 }
 [Serializable] public sealed class KaitEnemyAction
 {
-    public int enemyId; public KaitIntentType type; public Vector2Int from, to;
-    public readonly List<Vector2Int> affectedCells = new List<Vector2Int>(); public bool hitKate;
+    public int enemyId, damage;
+    public KaitIntentType type;
+    public Vector2Int from, to;
+    public readonly List<Vector2Int> affectedCells = new List<Vector2Int>();
+    public readonly List<int> friendlyHitIds = new List<int>();
+    public bool hitKate;
 }
-[Serializable] public sealed class KaitThreatMotion
-{ public int value; public Vector2Int from, to; public bool merged; }
+[Serializable] public sealed class KaitThreatMotion { public int value; public Vector2Int from, to; public bool merged; }
 
 public sealed class KaitTurnResult
 {
@@ -56,40 +65,45 @@ public sealed class KaitTurnResult
     public readonly List<Vector2Int> newThreatCells = new List<Vector2Int>();
     public int[,] threatBefore, threatAfter;
     public int slideDistance, damagedEnemyId = -1, damageDealt, enemyHpAfter = -1, momentumBefore, momentumAfter;
+    public int collisionDamage, friendlyFireDamage, riftBlockDamage;
+    public bool pushed, pushBlockedByWall, pushBlockedByUnit;
+    public Vector2Int pushFrom = new Vector2Int(-1, -1), pushTo = new Vector2Int(-1, -1);
     public Vector2Int blockedEnemyCell = new Vector2Int(-1, -1);
     public string message;
 }
 
 public sealed class KaitRun
 {
-    public const int BattleSize = 9, DefaultThreatSize = 7;
+    public const int BattleSize = 7, DefaultThreatSize = 5;
     public readonly KaitBalanceConfig config;
     public readonly int[,] threat;
     public readonly bool[,] walls = new bool[BattleSize, BattleSize];
     public readonly List<KaitEnemy> enemies = new List<KaitEnemy>();
     public readonly List<KaitSpawnRequest> spawns = new List<KaitSpawnRequest>();
+
     public int ThreatSize => config.threatSize;
     public Vector2Int katePos { get; private set; }
+    public int kateHp { get; private set; }
     public int turn { get; private set; }
     public int kills { get; private set; }
     public int highestThreat { get; private set; }
     public int momentum { get; private set; }
+    public int highestMomentum { get; private set; }
+    public int currentChainKills { get; private set; }
+    public int longestChainKills { get; private set; }
+    public int pushCount { get; private set; }
+    public int friendlyFireDamage { get; private set; }
+    public int riftBlocks { get; private set; }
     public bool chainActive { get; private set; }
     public KaitDirection currentDirection { get; private set; }
     public int threatLocks { get; private set; }
     public bool ended { get; private set; }
+    public bool won { get; private set; }
     public string endReason { get; private set; }
     public int mapIndex { get; private set; }
 
     private System.Random random;
     private int nextEnemyId;
-
-    private static readonly string[][] Maps =
-    {
-        new[] { "#########", "#.......#", "#.......#", "#.......#", "#.......#", "#.......#", "#.......#", "#.......#", "#########" },
-        new[] { "#########", "#.......#", "#.......#", "#...#...#", "#.......#", "#.....#.#", "#.......#", "#.......#", "#########" },
-        new[] { "#########", "#.......#", "#..#....#", "#.......#", "#.....#.#", "#.......#", "#...#...#", "#.......#", "#########" }
-    };
 
     public KaitRun(KaitBalanceConfig balance = null)
     {
@@ -101,13 +115,14 @@ public sealed class KaitRun
     public void Reset(int seed)
     {
         random = new System.Random(seed); Array.Clear(threat, 0, threat.Length); Array.Clear(walls, 0, walls.Length);
-        enemies.Clear(); spawns.Clear(); nextEnemyId = 1; turn = kills = threatLocks = 0; highestThreat = 2;
-        momentum = 0; chainActive = ended = false; endReason = string.Empty; mapIndex = random.Next(Maps.Length);
-        string[] map = Maps[mapIndex];
-        for (int y = 0; y < BattleSize; y++) for (int x = 0; x < BattleSize; x++) walls[x, BattleSize - 1 - y] = map[y][x] == '#';
-        katePos = FindOpenNearCenter();
+        enemies.Clear(); spawns.Clear(); nextEnemyId = 1; turn = kills = threatLocks = pushCount = friendlyFireDamage = riftBlocks = 0;
+        highestThreat = 2; momentum = highestMomentum = currentChainKills = longestChainKills = 0; chainActive = ended = won = false; endReason = string.Empty;
+        for (int y = 0; y < BattleSize; y++) for (int x = 0; x < BattleSize; x++) walls[x, y] = x == 0 || y == 0 || x == BattleSize - 1 || y == BattleSize - 1;
+        mapIndex = config.enableInternalObstacle ? 1 : 0;
+        if (config.enableInternalObstacle) walls[3, 3] = true;
+        katePos = FindOpenNearCenter(); kateHp = config.kateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
-        GenerateIntents();
+        LockEnemyIntents();
     }
 
     public KaitTurnResult TryTurn(KaitDirection direction)
@@ -115,11 +130,10 @@ public sealed class KaitRun
         var result = new KaitTurnResult();
         if (ended) { result.message = "本局已结束"; return result; }
         if (chainActive) { result.message = "请选择击杀后的转向"; return result; }
-        if (!CanEnterFrom(katePos, direction)) { result.message = "紧贴障碍，未消耗回合"; return result; }
-        result.valid = true; currentDirection = direction; momentum = config.baseMomentum; chainActive = true;
-        result.threatBefore = CopyThreat();
-        result.merges.AddRange(MoveThreat(direction, result.threatMotions));
-        foreach (KaitMergeEvent merge in result.merges) QueueSpawn(merge, direction);
+        if (!CanEnterFrom(katePos, direction)) { result.message = "紧贴边界，未消耗回合"; return result; }
+        result.valid = true; currentDirection = direction; momentum = config.baseMomentum; currentChainKills = 0; chainActive = true;
+        result.threatBefore = CopyThreat(); result.merges.AddRange(MoveThreat(direction, result.threatMotions));
+        foreach (KaitMergeEvent merge in result.merges) if (merge.resultValue < config.winValue) QueueSpawn(merge);
         result.threatAfter = CopyThreat(); ResolveKateSegment(result); result.slideDistance = result.katePath.Count; return result;
     }
 
@@ -134,8 +148,7 @@ public sealed class KaitRun
     public List<KaitDirection> AllowedTurnDirections()
     {
         var choices = new List<KaitDirection>(); if (!chainActive) return choices;
-        foreach (KaitDirection d in new[] { TurnLeft(currentDirection), currentDirection, TurnRight(currentDirection) })
-            if (CanEnterFrom(katePos, d)) choices.Add(d);
+        foreach (KaitDirection d in new[] { TurnLeft(currentDirection), currentDirection, TurnRight(currentDirection) }) if (CanEnterFrom(katePos, d)) choices.Add(d);
         return choices;
     }
 
@@ -149,37 +162,71 @@ public sealed class KaitRun
             KaitEnemy enemy = EnemyAt(next);
             if (enemy == null)
             {
-                katePos = next; momentum += config.momentumPerEmptyCell;
+                katePos = next; momentum += config.momentumPerEmptyCell; highestMomentum = Mathf.Max(highestMomentum, momentum);
                 result.katePath.Add(katePos); result.pathMomentum.Add(momentum); continue;
             }
-            int damage = momentum; enemy.hp = Mathf.Max(0, enemy.hp - damage);
+
+            int damage = momentum; DamageEnemy(enemy, damage, true, result);
             result.damagedEnemyId = enemy.id; result.damageDealt = damage; result.enemyHpAfter = enemy.hp; result.blockedEnemyCell = enemy.pos;
-            if (enemy.hp > 0) { FinishTurn(result); return; }
-            enemy.life = KaitEnemyLife.Dead; kills++; result.killedEnemyIds.Add(enemy.id); result.killedEnemyCells.Add(enemy.pos);
-            result.blockedEnemyCell = new Vector2Int(-1, -1);
-            katePos = next; result.katePath.Add(katePos); momentum = Mathf.Max(1, momentum - config.momentumLossOnKill); result.pathMomentum.Add(momentum);
-            List<KaitDirection> choices = AllowedTurnDirections();
-            if (choices.Count == 0) { FinishTurn(result); return; }
-            result.awaitingTurnChoice = true; result.availableDirections.AddRange(choices); result.momentumAfter = momentum;
-            result.message = "击杀成功：选择直行、左转或右转继续"; return;
+            if (enemy.life == KaitEnemyLife.Dead)
+            {
+                katePos = next; result.katePath.Add(katePos); result.pathMomentum.Add(momentum); result.blockedEnemyCell = new Vector2Int(-1, -1);
+                currentChainKills++; longestChainKills = Mathf.Max(longestChainKills, currentChainKills);
+                List<KaitDirection> choices = AllowedTurnDirections();
+                if (choices.Count == 0) { FinishTurn(result); return; }
+                result.awaitingTurnChoice = true; result.availableDirections.AddRange(choices); result.momentumAfter = momentum;
+                result.message = "击杀成功：选择直行、左转或右转继续"; return;
+            }
+
+            ResolvePush(enemy, delta, result); FinishTurn(result); return;
         }
         FinishTurn(result);
     }
 
+    private void ResolvePush(KaitEnemy enemy, Vector2Int delta, KaitTurnResult result)
+    {
+        Vector2Int origin = enemy.pos, target = origin + delta; result.pushFrom = origin; result.pushTo = target;
+        if (!config.enablePush) return;
+        pushCount++;
+        KaitEnemy blocker = EnemyAt(target);
+        if (IsHardBlocked(target))
+        {
+            result.pushBlockedByWall = true; result.collisionDamage += config.wallCollisionDamage;
+            DamageEnemy(enemy, config.wallCollisionDamage, true, result);
+        }
+        else if (blocker != null)
+        {
+            result.pushBlockedByUnit = true; result.collisionDamage += config.unitCollisionDamage * 2;
+            DamageEnemy(enemy, config.unitCollisionDamage, true, result); DamageEnemy(blocker, config.unitCollisionDamage, false, result);
+        }
+        else
+        {
+            enemy.pos = target; result.pushed = true;
+        }
+        katePos = origin; result.katePath.Add(katePos); result.pathMomentum.Add(momentum);
+        result.enemyHpAfter = enemy.hp;
+    }
+
     private void FinishTurn(KaitTurnResult result)
     {
-        chainActive = false; result.turnComplete = true; result.momentumAfter = momentum; ResolveEnemyIntents(result);
+        chainActive = false; result.turnComplete = true; result.momentumAfter = momentum;
+        ResolveEnemyIntents(result);
         if (!ended)
         {
-            AgePreparingEnemies(); AdvanceSpawnRequests(result);
+            AgePreparingEnemies(); ResolveSpawnRequests(result);
             for (int i = 0; i < config.newThreatTilesPerTurn; i++) { Vector2Int p = SpawnThreatTwo(); if (p.x >= 0) result.newThreatCells.Add(p); }
             if (ThreatLocked()) ResetLockedThreat();
+            if (highestThreat >= config.winValue) End("Victory 64", true);
+            else if (kateHp <= 0) End("Kate Defeated", false);
         }
-        turn++; momentum = 0; GenerateIntents();
+        turn++; momentum = 0; LockEnemyIntents();
         if (string.IsNullOrEmpty(result.message))
-            result.message = result.damagedEnemyId >= 0 && result.enemyHpAfter > 0
-                ? $"造成 {result.damageDealt} 点伤害，敌人剩余 {result.enemyHpAfter} HP"
-                : result.killedEnemyIds.Count > 0 ? "击杀后无可行方向，回合结束" : "回合完成";
+        {
+            if (result.pushed) result.message = "未击杀：推动敌人 1 格，连锁结束";
+            else if (result.pushBlockedByWall) result.message = "撞墙：敌人额外受到 1 点伤害";
+            else if (result.pushBlockedByUnit) result.message = "撞敌：双方受到 1 点碰撞伤害";
+            else result.message = "回合完成";
+        }
     }
 
     public KaitEnemy EnemyAt(Vector2Int p) => enemies.Find(e => e.life != KaitEnemyLife.Dead && e.pos == p);
@@ -189,37 +236,64 @@ public sealed class KaitRun
     private void ResolveEnemyIntents(KaitTurnResult result)
     {
         enemies.Sort((a, b) => a.id.CompareTo(b.id));
-        foreach (KaitEnemy enemy in enemies)
+        var committed = new List<KaitEnemy>(enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.intent.type != KaitIntentType.None));
+        foreach (KaitEnemy attacker in committed)
         {
-            if (enemy.life != KaitEnemyLife.Active) continue;
-            KaitIntent intent = enemy.intent; var action = new KaitEnemyAction { enemyId = enemy.id, type = intent.type, from = enemy.pos, to = enemy.pos };
-            if (intent.type == KaitIntentType.Move && IsFreeForEnemy(intent.target)) { enemy.pos = intent.target; action.to = enemy.pos; }
-            else if (intent.type == KaitIntentType.Melee)
-            { action.affectedCells.Add(intent.target); action.hitKate = katePos == intent.target; if (action.hitKate) End("Kate Defeated"); }
-            else if (intent.type == KaitIntentType.LineShot)
-            { action.affectedCells.AddRange(ShotCells(enemy.pos, intent.direction)); action.hitKate = action.affectedCells.Contains(katePos); if (action.hitKate) End("Kate Defeated"); }
-            result.enemyActions.Add(action); if (ended) return;
+            if (attacker.life == KaitEnemyLife.Dead) continue;
+            KaitIntent intent = attacker.intent;
+            var action = new KaitEnemyAction { enemyId = attacker.id, type = intent.type, from = intent.origin, to = intent.target, damage = intent.damage };
+            action.affectedCells.AddRange(intent.affectedCells);
+            foreach (Vector2Int cell in intent.affectedCells)
+            {
+                if (katePos == cell)
+                {
+                    kateHp = Mathf.Max(0, kateHp - intent.damage); action.hitKate = true;
+                }
+                if (!config.enableFriendlyFire) continue;
+                foreach (KaitEnemy victim in enemies.FindAll(e => e.life != KaitEnemyLife.Dead && e.id != attacker.id && e.pos == cell))
+                {
+                    int before = victim.hp; DamageEnemy(victim, intent.damage, false, result); int dealt = before - victim.hp;
+                    friendlyFireDamage += dealt; result.friendlyFireDamage += dealt; action.friendlyHitIds.Add(victim.id);
+                }
+            }
+            result.enemyActions.Add(action);
         }
+        if (kateHp <= 0) End("Kate Defeated", false);
     }
 
-    private void GenerateIntents()
+    private void LockEnemyIntents()
     {
         foreach (KaitEnemy enemy in enemies)
         {
-            enemy.intent = new KaitIntent(); if (enemy.life != KaitEnemyLife.Active) continue; Vector2Int diff = katePos - enemy.pos;
-            if (Mathf.Abs(diff.x) + Mathf.Abs(diff.y) == 1) { enemy.intent.type = KaitIntentType.Melee; enemy.intent.target = katePos; }
-            else if (enemy.type == KaitEnemyType.Archer && (diff.x == 0 || diff.y == 0) && HasLineOfSight(enemy.pos, katePos))
-            { enemy.intent.type = KaitIntentType.LineShot; enemy.intent.direction = new Vector2Int(Math.Sign(diff.x), Math.Sign(diff.y)); enemy.intent.target = katePos; }
-            else
+            enemy.intent = new KaitIntent { origin = enemy.pos };
+            if (enemy.life != KaitEnemyLife.Active) continue;
+            Vector2Int diff = katePos - enemy.pos;
+            if (enemy.type == KaitEnemyType.Archer || enemy.type == KaitEnemyType.Elite)
             {
-                Vector2Int step = Mathf.Abs(diff.x) >= Mathf.Abs(diff.y) ? new Vector2Int(Math.Sign(diff.x), 0) : new Vector2Int(0, Math.Sign(diff.y));
-                if (!IsFreeForEnemy(enemy.pos + step)) step = step.x != 0 ? new Vector2Int(0, Math.Sign(diff.y)) : new Vector2Int(Math.Sign(diff.x), 0);
-                enemy.intent.type = KaitIntentType.Move; enemy.intent.target = enemy.pos + step; enemy.intent.direction = step;
+                Vector2Int direction = Mathf.Abs(diff.x) >= Mathf.Abs(diff.y) ? new Vector2Int(Math.Sign(diff.x), 0) : new Vector2Int(0, Math.Sign(diff.y));
+                if (direction == Vector2Int.zero) direction = Vector2Int.up;
+                enemy.intent.type = KaitIntentType.LineShot; enemy.intent.direction = direction; enemy.intent.damage = 1;
+                int range = enemy.type == KaitEnemyType.Elite ? config.archerRange + 1 : config.archerRange;
+                for (int i = 1; i <= range; i++) { Vector2Int p = enemy.pos + direction * i; if (!Inside(p) || walls[p.x, p.y]) break; enemy.intent.affectedCells.Add(p); }
+                if (enemy.intent.affectedCells.Count > 0) enemy.intent.target = enemy.intent.affectedCells[enemy.intent.affectedCells.Count - 1];
+            }
+            else if (Mathf.Abs(diff.x) + Mathf.Abs(diff.y) == 1)
+            {
+                enemy.intent.type = KaitIntentType.Melee; enemy.intent.target = katePos; enemy.intent.damage = enemy.type == KaitEnemyType.Guard ? 2 : 1; enemy.intent.affectedCells.Add(katePos);
             }
         }
     }
 
     private void AgePreparingEnemies() { foreach (KaitEnemy e in enemies) if (e.life == KaitEnemyLife.Preparing) e.life = KaitEnemyLife.Active; }
+    private void DamageEnemy(KaitEnemy enemy, int amount, bool creditKate, KaitTurnResult result)
+    {
+        if (enemy == null || enemy.life == KaitEnemyLife.Dead || amount <= 0) return;
+        enemy.hp = Mathf.Max(0, enemy.hp - amount);
+        if (enemy.hp > 0) return;
+        enemy.life = KaitEnemyLife.Dead;
+        if (creditKate) kills++;
+        if (!result.killedEnemyIds.Contains(enemy.id)) { result.killedEnemyIds.Add(enemy.id); result.killedEnemyCells.Add(enemy.pos); }
+    }
 
     private sealed class ThreatToken { public int value; public readonly List<Vector2Int> sources = new List<Vector2Int>(); public bool merged; }
     private List<KaitMergeEvent> MoveThreat(KaitDirection direction, List<KaitThreatMotion> motions)
@@ -256,62 +330,51 @@ public sealed class KaitRun
     private Vector2Int SpawnThreatTwo()
     {
         var empty = new List<Vector2Int>();
-        for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++) if (threat[x, y] == 0) empty.Add(new Vector2Int(x, y));
+        for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++) if (threat[x, y] == 0 && !walls[x + 1, y + 1]) empty.Add(new Vector2Int(x, y));
         if (empty.Count == 0) return new Vector2Int(-1, -1); Vector2Int p = empty[random.Next(empty.Count)]; threat[p.x, p.y] = 2; return p;
     }
-
-    private void QueueSpawn(KaitMergeEvent merge, KaitDirection direction)
+    private void QueueSpawn(KaitMergeEvent merge)
     {
-        int tier = Mathf.Clamp((int)Mathf.Log(merge.resultValue, 2f) - 1, 1, 4); Vector2Int exact = MapThreatToBattle(merge.threatCell);
-        Vector2Int target = walls[exact.x, exact.y] ? FindDeterministicObstacleFallback(exact, direction) : exact; if (target.x < 0) return;
-        spawns.Add(new KaitSpawnRequest { tier = tier, sourceThreatCell = merge.threatCell, targetCell = target, turnsUntilSpawn = 1, state = KaitSpawnState.Preview, initialDirection = direction });
+        Vector2Int target = MapThreatToBattle(merge.threatCell); if (walls[target.x, target.y]) return;
+        int tier = Mathf.Clamp((int)Mathf.Log(merge.resultValue, 2f) - 1, 1, 4);
+        spawns.Add(new KaitSpawnRequest { tier = tier, sourceThreatCell = merge.threatCell, targetCell = target, turnsUntilSpawn = 1, state = KaitSpawnState.Preview });
     }
-
-    private void AdvanceSpawnRequests(KaitTurnResult result)
+    private void ResolveSpawnRequests(KaitTurnResult result)
     {
-        int made = 0, active = enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count, hard = enemies.FindAll(e => e.life != KaitEnemyLife.Dead && e.IsHardBlocker).Count;
-        for (int i = 0; i < spawns.Count && made < config.maxMaterializePerTurn && active < config.maxActiveEnemies;)
+        for (int i = 0; i < spawns.Count;)
         {
             KaitSpawnRequest request = spawns[i]; request.turnsUntilSpawn = Mathf.Max(0, request.turnsUntilSpawn - 1); request.state = request.turnsUntilSpawn > 0 ? KaitSpawnState.Preview : KaitSpawnState.Ready;
             if (request.turnsUntilSpawn > 0) { i++; continue; }
-            if (!IsFreeForSpawn(request.targetCell)) { spawns.RemoveAt(i); continue; }
-            KaitEnemyType type = TierType(request.tier); if ((type == KaitEnemyType.Guard || type == KaitEnemyType.Elite) && hard >= config.maxHardBlockers) type = KaitEnemyType.Grunt;
-            int hp = type == KaitEnemyType.Grunt || type == KaitEnemyType.Archer ? 1 : 3;
+            KaitEnemy occupant = EnemyAt(request.targetCell);
+            if (katePos == request.targetCell)
+            {
+                kateHp = Mathf.Max(0, kateHp - config.riftBlockDamage); result.riftBlockDamage += config.riftBlockDamage; riftBlocks++; spawns.RemoveAt(i); continue;
+            }
+            if (occupant != null)
+            {
+                DamageEnemy(occupant, config.riftBlockDamage, false, result); result.riftBlockDamage += config.riftBlockDamage; riftBlocks++; spawns.RemoveAt(i); continue;
+            }
+            KaitEnemyType type = request.tier <= 1 ? KaitEnemyType.Grunt : request.tier == 2 ? KaitEnemyType.Archer : request.tier == 3 ? KaitEnemyType.Guard : KaitEnemyType.Elite;
+            int hp = type == KaitEnemyType.Grunt || type == KaitEnemyType.Archer ? 1 : type == KaitEnemyType.Guard ? 2 : 3;
             enemies.Add(new KaitEnemy { id = nextEnemyId++, type = type, pos = request.targetCell, hp = hp, maxHp = hp, life = KaitEnemyLife.Preparing });
-            if (type == KaitEnemyType.Guard || type == KaitEnemyType.Elite) hard++; active++; made++; result.spawnedEnemyCells.Add(request.targetCell); spawns.RemoveAt(i);
+            result.spawnedEnemyCells.Add(request.targetCell); spawns.RemoveAt(i);
         }
-    }
-
-    private static KaitEnemyType TierType(int tier) => tier <= 1 ? KaitEnemyType.Grunt : tier == 2 ? KaitEnemyType.Archer : tier == 3 ? KaitEnemyType.Guard : KaitEnemyType.Elite;
-    private Vector2Int FindDeterministicObstacleFallback(Vector2Int origin, KaitDirection initial)
-    {
-        KaitDirection reverse = Opposite(initial), left = TurnLeft(reverse), right = TurnRight(reverse);
-        for (int d = 1; d < BattleSize; d++) foreach (KaitDirection direction in new[] { reverse, left, right })
-        { Vector2Int p = origin + Delta(direction) * d; if (Inside(p) && !walls[p.x, p.y]) return p; }
-        return new Vector2Int(-1, -1);
     }
 
     private void ResetLockedThreat() { threatLocks++; Array.Clear(threat, 0, threat.Length); for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo(); }
     private bool ThreatLocked()
     {
         for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++)
-        { if (threat[x, y] == 0) return false; if (x + 1 < ThreatSize && threat[x, y] == threat[x + 1, y]) return false; if (y + 1 < ThreatSize && threat[x, y] == threat[x, y + 1]) return false; }
+        { if (threat[x, y] == 0 && !walls[x + 1, y + 1]) return false; if (x + 1 < ThreatSize && threat[x, y] == threat[x + 1, y]) return false; if (y + 1 < ThreatSize && threat[x, y] == threat[x, y + 1]) return false; }
         return true;
     }
-
     private Vector2Int FindOpenNearCenter()
-    { var c = new List<Vector2Int>(); for (int y = 3; y <= 5; y++) for (int x = 3; x <= 5; x++) if (!walls[x, y]) c.Add(new Vector2Int(x, y)); return c[random.Next(c.Count)]; }
+    { Vector2Int center = new Vector2Int(BattleSize / 2, BattleSize / 2); if (!walls[center.x, center.y]) return center; return center + Vector2Int.left; }
     private bool CanEnterFrom(Vector2Int from, KaitDirection d) { Vector2Int p = from + Delta(d); return !IsHardBlocked(p) || EnemyAt(p) != null; }
     private bool IsHardBlocked(Vector2Int p) => !Inside(p) || walls[p.x, p.y];
-    private bool IsFreeForEnemy(Vector2Int p) => !IsHardBlocked(p) && p != katePos && EnemyAt(p) == null;
-    private bool IsFreeForSpawn(Vector2Int p) => Inside(p) && !walls[p.x, p.y] && p != katePos && EnemyAt(p) == null;
     private static bool Inside(Vector2Int p) => p.x >= 0 && p.x < BattleSize && p.y >= 0 && p.y < BattleSize;
-    private bool HasLineOfSight(Vector2Int from, Vector2Int to)
-    { Vector2Int step = new Vector2Int(Math.Sign(to.x - from.x), Math.Sign(to.y - from.y)); for (Vector2Int p = from + step; p != to; p += step) if (IsHardBlocked(p) || EnemyAt(p) != null) return false; return true; }
-    private List<Vector2Int> ShotCells(Vector2Int from, Vector2Int direction)
-    { var cells = new List<Vector2Int>(); for (Vector2Int p = from + direction; Inside(p) && !IsHardBlocked(p); p += direction) { if (EnemyAt(p) != null) break; cells.Add(p); } return cells; }
     private int[,] CopyThreat() { var copy = new int[ThreatSize, ThreatSize]; Array.Copy(threat, copy, threat.Length); return copy; }
-    private void End(string reason) { ended = true; endReason = reason; chainActive = false; }
+    private void End(string reason, bool victory) { ended = true; won = victory; endReason = reason; chainActive = false; }
 
     public static Vector2Int Delta(KaitDirection d)
     { switch (d) { case KaitDirection.Up: return Vector2Int.up; case KaitDirection.Down: return Vector2Int.down; case KaitDirection.Left: return Vector2Int.left; default: return Vector2Int.right; } }
