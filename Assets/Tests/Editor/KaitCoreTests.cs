@@ -6,7 +6,7 @@ using UnityEngine;
 public sealed class KaitCoreTests
 {
     [Test]
-    public void V034Baseline_UsesRevisedWallsAndHighDurabilityTable()
+    public void V035Baseline_UsesSharedPillarsAndHighDurabilityTable()
     {
         KaitRun run = OpenRun(100);
         Assert.AreEqual(7, KaitRun.BattleSize);
@@ -15,6 +15,13 @@ public sealed class KaitCoreTests
         Assert.AreEqual(3, run.kateHp);
         Assert.IsTrue(run.walls[1, 2]);
         Assert.IsTrue(run.walls[5, 4]);
+        Assert.IsTrue(run.IsThreatPillar(new Vector2Int(0, 1)));
+        Assert.IsTrue(run.IsThreatPillar(new Vector2Int(4, 3)));
+        Assert.AreEqual(new Vector2Int(1, 2), run.MapThreatToBattle(new Vector2Int(0, 1)));
+        Assert.AreEqual(new Vector2Int(5, 4), run.MapThreatToBattle(new Vector2Int(4, 3)));
+        Assert.AreEqual(2, CountThreatPillars(run));
+        Assert.AreEqual(0, run.threat[0, 1]);
+        Assert.AreEqual(0, run.threat[4, 3]);
         Assert.IsFalse(run.walls[1, 3]);
         Assert.IsFalse(run.walls[5, 3]);
         Assert.AreEqual(2, KaitRun.MaxHpFor(KaitEnemyType.Grunt));
@@ -293,17 +300,19 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V031_ThreatMergeOnBattleWall_KeepsNumberAndSuppressesSpawn()
+    public void V035_ThreatPillar_SplitsColumnAndPreventsCrossPillarMerge()
     {
         KaitRun run = OpenRun(18, new Vector2Int(3, 3)); ClearThreat(run);
-        run.threat[0, 1] = 2; run.threat[1, 1] = 2;
+        run.threat[0, 0] = 2; run.threat[0, 2] = 2;
 
-        KaitTurnResult result = run.TryTurn(KaitDirection.Left);
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Up);
 
-        Assert.AreEqual(4, run.threat[0, 1]);
-        Assert.AreEqual(1, result.merges.Count);
+        Assert.AreEqual(2, run.threat[0, 0]);
+        Assert.AreEqual(0, run.threat[0, 1]);
+        Assert.AreEqual(2, run.threat[0, 4]);
+        Assert.AreEqual(0, result.merges.Count);
         Assert.AreEqual(0, run.spawns.Count);
-        Assert.AreEqual(1, run.wallSuppressedSpawns);
+        Assert.AreEqual(0, run.wallSuppressedSpawns);
     }
 
     [Test]
@@ -393,16 +402,40 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V033_WallMerge_RecordsSpawnSuppression()
+    public void V035_ThreatPillar_AllowsMergeInsideOneSegmentAndMapsSpawnExactly()
     {
         KaitRun run = OpenRun(25, new Vector2Int(3, 3)); ClearThreat(run);
-        run.threat[0, 1] = 2; run.threat[1, 1] = 2;
+        run.threat[0, 2] = 2; run.threat[0, 3] = 2;
 
-        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Left);
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Up);
+        KaitMergeEvent merge = result.merges.Single();
+        KaitSpawnRequest warning = run.spawns.Single();
 
-        Assert.AreEqual(1, result.spawnSuppressed);
-        Assert.IsTrue(result.merges.Single().spawnSuppressed);
-        Assert.AreEqual(1, run.spawnSuppressedCount);
+        Assert.AreEqual(4, run.threat[0, 4]);
+        Assert.AreEqual(new Vector2Int(0, 4), merge.threatCell);
+        Assert.AreEqual(new Vector2Int(1, 5), warning.targetCell);
+        Assert.AreEqual(merge.threatCell, warning.sourceThreatCell);
+        Assert.AreEqual(1, run.mergeHeatmap[0, 4]);
+        Assert.AreEqual(0, run.wallSuppressedSpawns);
+    }
+
+    [Test]
+    public void V035_NewTwoNeverUsesPillarCell()
+    {
+        KaitRun run = OpenRun(251, new Vector2Int(3, 3)); ClearThreat(run);
+        for (int y = 0; y < run.ThreatSize; y++)
+            for (int x = 0; x < run.ThreatSize; x++)
+                if (!run.IsThreatPillar(new Vector2Int(x, y))) run.threat[x, y] = 2;
+        Vector2Int onlyEmpty = new Vector2Int(2, 2);
+        run.threat[onlyEmpty.x, onlyEmpty.y] = 0;
+
+        MethodInfo spawn = typeof(KaitRun).GetMethod("SpawnThreatTwo", BindingFlags.Instance | BindingFlags.NonPublic);
+        Vector2Int spawned = (Vector2Int)spawn.Invoke(run, null);
+
+        Assert.AreEqual(onlyEmpty, spawned);
+        Assert.AreEqual(2, run.threat[onlyEmpty.x, onlyEmpty.y]);
+        Assert.AreEqual(0, run.threat[0, 1]);
+        Assert.AreEqual(0, run.threat[4, 3]);
     }
 
     [Test]
@@ -532,4 +565,10 @@ public sealed class KaitCoreTests
     private static int[,] CopyThreat(KaitRun run) { var copy = new int[run.ThreatSize, run.ThreatSize]; System.Array.Copy(run.threat, copy, run.threat.Length); return copy; }
     private static int CountThreat(KaitRun run, int value) { int count = 0; foreach (int cell in run.threat) if (cell == value) count++; return count; }
     private static int CountOccupiedThreat(KaitRun run) { int count = 0; foreach (int cell in run.threat) if (cell != 0) count++; return count; }
+    private static int CountThreatPillars(KaitRun run)
+    {
+        int count = 0;
+        for (int y = 0; y < run.ThreatSize; y++) for (int x = 0; x < run.ThreatSize; x++) if (run.IsThreatPillar(new Vector2Int(x, y))) count++;
+        return count;
+    }
 }

@@ -84,6 +84,9 @@ public sealed class KaitRun
     public const int BattleSize = 7, DefaultThreatSize = 5;
     public readonly KaitBalanceConfig config;
     public readonly int[,] threat;
+    public readonly bool[,] threatPillars;
+    public readonly int[,] mergeHeatmap;
+    public readonly int[,] spawnHeatmap;
     public readonly bool[,] walls = new bool[BattleSize, BattleSize];
     public readonly List<KaitEnemy> enemies = new List<KaitEnemy>();
     public readonly List<KaitSpawnRequest> spawns = new List<KaitSpawnRequest>();
@@ -115,6 +118,8 @@ public sealed class KaitRun
     public int threatOrientedWaitCount { get; private set; }
     public bool emptyMapReachable { get; private set; }
     public int emptyMapMaxInputs { get; private set; }
+    public int internalMergeCount { get; private set; }
+    public int internalSpawnCount { get; private set; }
     public readonly int[] lockedPowerCounts = new int[BattleSize];
     public KaitDirection currentGlobalDirection { get; private set; }
     public bool threatChangedThisTurn { get; private set; }
@@ -136,14 +141,18 @@ public sealed class KaitRun
         config = balance ?? new KaitBalanceConfig();
         config.threatSize = Mathf.Max(2, config.threatSize);
         threat = new int[config.threatSize, config.threatSize];
+        threatPillars = new bool[config.threatSize, config.threatSize];
+        mergeHeatmap = new int[config.threatSize, config.threatSize];
+        spawnHeatmap = new int[config.threatSize, config.threatSize];
     }
 
     public void Reset(int seed)
     {
         random = new System.Random(seed); Array.Clear(threat, 0, threat.Length); Array.Clear(walls, 0, walls.Length);
+        Array.Clear(threatPillars, 0, threatPillars.Length); Array.Clear(mergeHeatmap, 0, mergeHeatmap.Length); Array.Clear(spawnHeatmap, 0, spawnHeatmap.Length);
         enemies.Clear(); spawns.Clear(); nextEnemyId = 1; turn = kills = threatLocks = pushCount = friendlyFireDamage = riftBlocks = 0;
         directKills = nonLethalHits = activeWallStops = wallSuppressedSpawns = spawnSuppressedCount = 0;
-        chainEndByStrongEnemy = chainEndByWall = clusterClearCount = threatOrientedWaitCount = 0;
+        chainEndByStrongEnemy = chainEndByWall = clusterClearCount = threatOrientedWaitCount = internalMergeCount = internalSpawnCount = 0;
         threatChangedThisTurn = kaitWaitedThisTurn = false; chainStepCount = currentChainMoves = 0;
         highestThreat = 2; momentum = highestMomentum = currentChainKills = longestChainKills = chainPower = 0;
         powerLocked = chainActive = ended = won = false; endReason = string.Empty; Array.Clear(lockedPowerCounts, 0, lockedPowerCounts.Length);
@@ -151,6 +160,8 @@ public sealed class KaitRun
         mapIndex = 1;
         walls[1, 2] = true;
         walls[5, 4] = true;
+        AddSharedThreatPillar(new Vector2Int(1, 2));
+        AddSharedThreatPillar(new Vector2Int(5, 4));
         EvaluateEmptyMapReachability();
         katePos = FindOpenNearCenter(); kateHp = config.kateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
@@ -314,6 +325,7 @@ public sealed class KaitRun
     public KaitEnemy EnemyAt(Vector2Int p) => enemies.Find(e => e.life != KaitEnemyLife.Dead && e.pos == p);
     public KaitSpawnRequest SpawnAt(Vector2Int p) => spawns.Find(s => s.targetCell == p);
     public Vector2Int MapThreatToBattle(Vector2Int p) => p + Vector2Int.one;
+    public bool IsThreatPillar(Vector2Int p) => p.x >= 0 && p.x < ThreatSize && p.y >= 0 && p.y < ThreatSize && threatPillars[p.x, p.y];
 
     private void ResolveEnemyIntents(KaitTurnResult result)
     {
@@ -385,35 +397,57 @@ public sealed class KaitRun
         bool reverse = direction == KaitDirection.Right || direction == KaitDirection.Up;
         for (int line = 0; line < ThreatSize; line++)
         {
-            var values = new List<ThreatToken>();
+            var segment = new List<Vector2Int>();
             for (int i = 0; i < ThreatSize; i++)
             {
                 int index = reverse ? ThreatSize - 1 - i : i, x = horizontal ? index : line, y = horizontal ? line : index;
-                if (threat[x, y] == 0) continue; var token = new ThreatToken { value = threat[x, y] }; token.sources.Add(new Vector2Int(x, y)); values.Add(token);
+                Vector2Int cell = new Vector2Int(x, y);
+                if (IsThreatPillar(cell))
+                {
+                    ProcessThreatSegment(segment, motions, merges); segment.Clear();
+                }
+                else segment.Add(cell);
             }
-            var packed = new List<ThreatToken>();
-            for (int i = 0; i < values.Count; i++)
-            {
-                if (i + 1 < values.Count && values[i].value == values[i + 1].value)
-                { var merged = new ThreatToken { value = values[i].value * 2, merged = true }; merged.sources.AddRange(values[i].sources); merged.sources.AddRange(values[++i].sources); packed.Add(merged); }
-                else packed.Add(values[i]);
-            }
-            for (int i = 0; i < ThreatSize; i++)
-            {
-                int index = reverse ? ThreatSize - 1 - i : i, x = horizontal ? index : line, y = horizontal ? line : index;
-                ThreatToken token = i < packed.Count ? packed[i] : null; threat[x, y] = token?.value ?? 0; if (token == null) continue;
-                Vector2Int destination = new Vector2Int(x, y);
-                foreach (Vector2Int source in token.sources) motions.Add(new KaitThreatMotion { value = token.merged ? token.value / 2 : token.value, from = source, to = destination, merged = token.merged });
-                if (token.merged) merges.Add(new KaitMergeEvent { resultValue = token.value, threatCell = destination }); highestThreat = Mathf.Max(highestThreat, token.value);
-            }
+            ProcessThreatSegment(segment, motions, merges);
         }
         return merges;
+    }
+
+    private void ProcessThreatSegment(List<Vector2Int> segment, List<KaitThreatMotion> motions, List<KaitMergeEvent> merges)
+    {
+        if (segment.Count == 0) return;
+        var values = new List<ThreatToken>();
+        foreach (Vector2Int cell in segment)
+        {
+            if (threat[cell.x, cell.y] == 0) continue;
+            var token = new ThreatToken { value = threat[cell.x, cell.y] }; token.sources.Add(cell); values.Add(token);
+        }
+        var packed = new List<ThreatToken>();
+        for (int i = 0; i < values.Count; i++)
+        {
+            if (i + 1 < values.Count && values[i].value == values[i + 1].value)
+            {
+                var merged = new ThreatToken { value = values[i].value * 2, merged = true };
+                merged.sources.AddRange(values[i].sources); merged.sources.AddRange(values[++i].sources); packed.Add(merged);
+            }
+            else packed.Add(values[i]);
+        }
+        foreach (Vector2Int cell in segment) threat[cell.x, cell.y] = 0;
+        for (int i = 0; i < packed.Count; i++)
+        {
+            ThreatToken token = packed[i]; Vector2Int destination = segment[i]; threat[destination.x, destination.y] = token.value;
+            foreach (Vector2Int source in token.sources) motions.Add(new KaitThreatMotion { value = token.merged ? token.value / 2 : token.value, from = source, to = destination, merged = token.merged });
+            if (!token.merged) continue;
+            merges.Add(new KaitMergeEvent { resultValue = token.value, threatCell = destination });
+            mergeHeatmap[destination.x, destination.y]++; if (IsInternalThreatCell(destination)) internalMergeCount++;
+            highestThreat = Mathf.Max(highestThreat, token.value);
+        }
     }
 
     private Vector2Int SpawnThreatTwo()
     {
         var empty = new List<Vector2Int>();
-        for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++) if (threat[x, y] == 0) empty.Add(new Vector2Int(x, y));
+        for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++) if (!threatPillars[x, y] && threat[x, y] == 0) empty.Add(new Vector2Int(x, y));
         if (empty.Count == 0) return new Vector2Int(-1, -1); Vector2Int p = empty[random.Next(empty.Count)]; threat[p.x, p.y] = 2; return p;
     }
     private void QueueSpawn(KaitMergeEvent merge)
@@ -443,6 +477,7 @@ public sealed class KaitRun
             KaitEnemyType type = EnemyTypeForSpawn(request);
             int hp = MaxHpFor(type);
             enemies.Add(new KaitEnemy { id = nextEnemyId++, type = type, pos = request.targetCell, hp = hp, maxHp = hp, life = KaitEnemyLife.Preparing });
+            spawnHeatmap[request.sourceThreatCell.x, request.sourceThreatCell.y]++; if (IsInternalThreatCell(request.sourceThreatCell)) internalSpawnCount++;
             result.spawnedEnemyCells.Add(request.targetCell); spawns.RemoveAt(i);
         }
     }
@@ -451,9 +486,22 @@ public sealed class KaitRun
     private bool ThreatLocked()
     {
         for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++)
-        { if (threat[x, y] == 0) return false; if (x + 1 < ThreatSize && threat[x, y] == threat[x + 1, y]) return false; if (y + 1 < ThreatSize && threat[x, y] == threat[x, y + 1]) return false; }
+        {
+            if (threatPillars[x, y]) continue;
+            if (threat[x, y] == 0) return false;
+            if (x + 1 < ThreatSize && !threatPillars[x + 1, y] && threat[x, y] == threat[x + 1, y]) return false;
+            if (y + 1 < ThreatSize && !threatPillars[x, y + 1] && threat[x, y] == threat[x, y + 1]) return false;
+        }
         return true;
     }
+
+    private void AddSharedThreatPillar(Vector2Int battleCell)
+    {
+        Vector2Int threatCell = battleCell - Vector2Int.one;
+        if (threatCell.x >= 0 && threatCell.x < ThreatSize && threatCell.y >= 0 && threatCell.y < ThreatSize) threatPillars[threatCell.x, threatCell.y] = true;
+    }
+
+    private bool IsInternalThreatCell(Vector2Int p) => p.x > 0 && p.y > 0 && p.x < ThreatSize - 1 && p.y < ThreatSize - 1;
     private void ApplyTurnContext(KaitTurnResult result)
     {
         result.globalDirection = currentGlobalDirection;
