@@ -70,6 +70,17 @@ public sealed class GameAudio : MonoBehaviour
         instance.effectSource.PlayOneShot(clip, 0.72f);
     }
 
+    public static void PlayKaitKill(int chainKills)
+    {
+        if (instance == null || instance.effectSource == null) return;
+        AudioClip clip = Resources.Load<AudioClip>(MergePath);
+        if (clip == null) return;
+
+        chainKills = Mathf.Clamp(chainKills, 1, 8);
+        instance.effectSource.pitch = Mathf.Lerp(0.82f, 1.42f, (chainKills - 1) / 7f);
+        instance.effectSource.PlayOneShot(clip, Mathf.Lerp(0.58f, 0.92f, chainKills / 8f));
+    }
+
     public static void SetCombo(int comboCount)
     {
         if (instance == null || instance.fireSource == null) return;

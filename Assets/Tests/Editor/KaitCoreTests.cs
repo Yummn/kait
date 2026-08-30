@@ -6,40 +6,46 @@ using UnityEngine;
 public sealed class KaitCoreTests
 {
     [Test]
-    public void V03Baseline_UsesSevenTotalFiveThreatAndThreeTwos()
+    public void V031Baseline_UsesFixedWallsAndHighDurabilityTable()
     {
         KaitRun run = OpenRun(100);
         Assert.AreEqual(7, KaitRun.BattleSize);
         Assert.AreEqual(5, run.ThreatSize);
         Assert.AreEqual(3, CountThreat(run, 2));
         Assert.AreEqual(3, run.kateHp);
+        Assert.IsTrue(run.walls[1, 3]);
+        Assert.IsTrue(run.walls[5, 3]);
+        Assert.AreEqual(2, KaitRun.MaxHpFor(KaitEnemyType.Grunt));
+        Assert.AreEqual(4, KaitRun.MaxHpFor(KaitEnemyType.Swordsman));
+        Assert.AreEqual(2, KaitRun.MaxHpFor(KaitEnemyType.Archer));
+        Assert.AreEqual(6, KaitRun.MaxHpFor(KaitEnemyType.Guard));
+        Assert.AreEqual(8, KaitRun.MaxHpFor(KaitEnemyType.Elite));
     }
 
     [Test]
     public void T01_BasicMomentum_KillsAndEntersEnemyCell()
     {
-        KaitRun run = OpenRun(1, new Vector2Int(1, 3));
-        KaitEnemy enemy = Enemy(1, new Vector2Int(4, 3), 1);
+        KaitRun run = OpenRun(1, new Vector2Int(1, 2));
+        KaitEnemy enemy = Enemy(1, new Vector2Int(4, 2), 1);
         run.enemies.Add(enemy);
 
         KaitTurnResult result = run.TryTurn(KaitDirection.Right);
 
         Assert.AreEqual(KaitEnemyLife.Dead, enemy.life);
-        Assert.AreEqual(new Vector2Int(4, 3), run.katePos);
+        Assert.AreEqual(new Vector2Int(4, 2), run.katePos);
         Assert.AreEqual(3, run.momentum);
         Assert.IsTrue(result.awaitingTurnChoice);
     }
 
     [Test]
-    public void T02_KillTurn_AllowsForwardLeftRightButNotReverse()
+    public void T02_KillTurn_AllowsAllFourDirectionsIncludingReverse()
     {
         KaitRun run = OpenRun(2, new Vector2Int(2, 3));
         run.enemies.Add(Enemy(1, new Vector2Int(3, 3), 1));
 
         KaitTurnResult result = run.TryTurn(KaitDirection.Right);
 
-        CollectionAssert.AreEquivalent(new[] { KaitDirection.Up, KaitDirection.Right, KaitDirection.Down }, result.availableDirections);
-        CollectionAssert.DoesNotContain(result.availableDirections, KaitDirection.Left);
+        CollectionAssert.AreEquivalent(new[] { KaitDirection.Up, KaitDirection.Down, KaitDirection.Left, KaitDirection.Right }, result.availableDirections);
     }
 
     [Test]
@@ -61,29 +67,29 @@ public sealed class KaitCoreTests
     [Test]
     public void T04_NonLethalHit_PushesOneCellAndKateEntersOrigin()
     {
-        KaitRun run = OpenRun(4, new Vector2Int(1, 3));
-        KaitEnemy enemy = Enemy(1, new Vector2Int(2, 3), 2); run.enemies.Add(enemy);
+        KaitRun run = OpenRun(4, new Vector2Int(1, 2));
+        KaitEnemy enemy = Enemy(1, new Vector2Int(2, 2), 2); run.enemies.Add(enemy);
 
         KaitTurnResult result = run.TryTurn(KaitDirection.Right);
 
         Assert.IsTrue(result.pushed);
-        Assert.AreEqual(new Vector2Int(3, 3), enemy.pos);
-        Assert.AreEqual(new Vector2Int(2, 3), run.katePos);
+        Assert.AreEqual(new Vector2Int(3, 2), enemy.pos);
+        Assert.AreEqual(new Vector2Int(2, 2), run.katePos);
         Assert.IsTrue(result.turnComplete);
     }
 
     [Test]
     public void T05_WallCollision_DealsExtraDamageWithoutMovingEnemy()
     {
-        KaitRun run = OpenRun(5, new Vector2Int(4, 3));
-        KaitEnemy enemy = Enemy(1, new Vector2Int(5, 3), 3); run.enemies.Add(enemy);
+        KaitRun run = OpenRun(5, new Vector2Int(3, 3));
+        KaitEnemy enemy = Enemy(1, new Vector2Int(4, 3), 3); run.enemies.Add(enemy);
 
         KaitTurnResult result = run.TryTurn(KaitDirection.Right);
 
         Assert.IsTrue(result.pushBlockedByWall);
         Assert.AreEqual(1, enemy.hp);
-        Assert.AreEqual(new Vector2Int(5, 3), enemy.pos);
-        Assert.AreEqual(new Vector2Int(5, 3), run.katePos);
+        Assert.AreEqual(new Vector2Int(4, 3), enemy.pos);
+        Assert.AreEqual(new Vector2Int(3, 3), run.katePos);
     }
 
     [Test]
@@ -100,6 +106,7 @@ public sealed class KaitCoreTests
         Assert.AreEqual(1, b.hp);
         Assert.AreEqual(new Vector2Int(3, 3), a.pos);
         Assert.AreEqual(new Vector2Int(4, 3), b.pos);
+        Assert.AreEqual(new Vector2Int(2, 3), run.katePos);
     }
 
     [Test]
@@ -217,6 +224,99 @@ public sealed class KaitCoreTests
         Assert.AreEqual(KaitEnemyLife.Preparing, run.EnemyAt(target).life);
     }
 
+    [Test]
+    public void V031_MomentumFour_KillsHpFourWithoutConversion()
+    {
+        KaitRun run = OpenRun(14, new Vector2Int(1, 2));
+        KaitEnemy swordsman = Enemy(1, new Vector2Int(5, 2), 4, KaitEnemyType.Swordsman); run.enemies.Add(swordsman);
+
+        KaitTurnResult result = run.TryTurn(KaitDirection.Right);
+
+        Assert.AreEqual(4, result.damageDealt);
+        Assert.AreEqual(KaitEnemyLife.Dead, swordsman.life);
+        Assert.IsTrue(result.awaitingTurnChoice);
+    }
+
+    [Test]
+    public void V031_MomentumThree_LeavesHpOneAndPushes()
+    {
+        KaitRun run = OpenRun(15, new Vector2Int(1, 2));
+        KaitEnemy swordsman = Enemy(1, new Vector2Int(4, 2), 4, KaitEnemyType.Swordsman); run.enemies.Add(swordsman);
+
+        KaitTurnResult result = run.TryTurn(KaitDirection.Right);
+
+        Assert.AreEqual(3, result.damageDealt);
+        Assert.AreEqual(1, swordsman.hp);
+        Assert.AreEqual(new Vector2Int(5, 2), swordsman.pos);
+        Assert.AreEqual(new Vector2Int(4, 2), run.katePos);
+        Assert.IsTrue(result.turnComplete);
+    }
+
+    [Test]
+    public void V031_ReverseDirection_IsValidAndDoesNotMoveThreatAgain()
+    {
+        KaitRun run = OpenRun(16, new Vector2Int(2, 3)); ClearThreat(run);
+        run.threat[0, 0] = 2; run.threat[1, 0] = 4;
+        run.enemies.Add(Enemy(1, new Vector2Int(3, 3), 1));
+
+        KaitTurnResult first = run.TryTurn(KaitDirection.Right);
+        int[,] afterInitialInput = CopyThreat(run);
+        KaitTurnResult reverse = run.ContinueChain(KaitDirection.Left);
+
+        Assert.IsTrue(first.awaitingTurnChoice);
+        Assert.IsTrue(reverse.valid);
+        Assert.IsNull(reverse.threatBefore);
+        Assert.AreEqual(0, reverse.threatMotions.Count);
+        for (int y = 0; y < run.ThreatSize; y++)
+            for (int x = 0; x < run.ThreatSize; x++)
+                if (afterInitialInput[x, y] != 0) Assert.AreEqual(afterInitialInput[x, y], run.threat[x, y]);
+    }
+
+    [Test]
+    public void V031_ChoosingAdjacentWallAfterKill_ActivelyBrakes()
+    {
+        KaitRun run = OpenRun(17, new Vector2Int(4, 3));
+        run.enemies.Add(Enemy(1, new Vector2Int(2, 3), 2));
+
+        KaitTurnResult kill = run.TryTurn(KaitDirection.Left);
+        KaitTurnResult brake = run.ContinueChain(KaitDirection.Left);
+
+        Assert.IsTrue(kill.awaitingTurnChoice);
+        Assert.IsTrue(brake.activeBrake);
+        Assert.IsTrue(brake.turnComplete);
+        Assert.AreEqual(new Vector2Int(2, 3), run.katePos);
+        Assert.AreEqual(1, run.activeWallStops);
+    }
+
+    [Test]
+    public void V031_ThreatMergeOnBattleWall_KeepsNumberAndSuppressesSpawn()
+    {
+        KaitRun run = OpenRun(18, new Vector2Int(3, 3)); ClearThreat(run);
+        run.threat[0, 2] = 2; run.threat[1, 2] = 2;
+
+        KaitTurnResult result = run.TryTurn(KaitDirection.Left);
+
+        Assert.AreEqual(4, run.threat[0, 2]);
+        Assert.AreEqual(1, result.merges.Count);
+        Assert.AreEqual(0, run.spawns.Count);
+        Assert.AreEqual(1, run.wallSuppressedSpawns);
+    }
+
+    [Test]
+    public void PlayerKill_ClearsCommittedIntentImmediately()
+    {
+        KaitRun run = OpenRun(19, new Vector2Int(2, 2));
+        KaitEnemy archer = Enemy(1, new Vector2Int(3, 2), 1, KaitEnemyType.Archer, KaitEnemyLife.Active);
+        archer.intent = LineIntent(archer.pos, Vector2Int.right, new Vector2Int(4, 2), new Vector2Int(5, 2));
+        run.enemies.Add(archer);
+
+        KaitTurnResult result = run.TryTurn(KaitDirection.Right);
+
+        Assert.AreEqual(KaitEnemyLife.Dead, archer.life);
+        Assert.AreEqual(KaitIntentType.None, archer.intent.type);
+        CollectionAssert.Contains(result.playerKilledEnemyIds, archer.id);
+    }
+
     private static KaitRun OpenRun(int seed, Vector2Int? kate = null)
     {
         var run = new KaitRun(); run.Reset(seed);
@@ -231,5 +331,6 @@ public sealed class KaitCoreTests
         intent.affectedCells.AddRange(cells); return intent;
     }
     private static void ClearThreat(KaitRun run) { for (int y = 0; y < run.ThreatSize; y++) for (int x = 0; x < run.ThreatSize; x++) run.threat[x, y] = 0; }
+    private static int[,] CopyThreat(KaitRun run) { var copy = new int[run.ThreatSize, run.ThreatSize]; System.Array.Copy(run.threat, copy, run.threat.Length); return copy; }
     private static int CountThreat(KaitRun run, int value) { int count = 0; foreach (int cell in run.threat) if (cell == value) count++; return count; }
 }
