@@ -21,8 +21,6 @@ public sealed class KaitGame : MonoBehaviour
     private Text turnText;
     private Text statusText;
     private Text helpText;
-    private Text[] skillTexts = new Text[3];
-    private Image[] skillImages = new Image[3];
     private GameObject endOverlay;
     private Text endText;
     private bool busy;
@@ -140,8 +138,8 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Shared Direction Prototype", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("同一个方向，同时改变滑行战场与威胁盘", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
+        MakeText("Kait · Momentum Prototype v0.2", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("初始方向共享 · 击杀转向只控制凯特", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
         BuildThreatBoard(bg.transform);
@@ -184,28 +182,28 @@ public sealed class KaitGame : MonoBehaviour
     private void BuildThreatBoard(Transform parent)
     {
         Image frame = Rect("Threat Panel", parent, new Vector2(477, 164), new Vector2(420, 465), Panel);
-        MakeText("4 × 4  威胁盘", frame.transform, new Vector2(0, 202), new Vector2(374, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("共享方向 · 每个有效回合新增 2", frame.transform, new Vector2(0, 172), new Vector2(374, 28), 14, Peach, TextAnchor.MiddleLeft);
+        MakeText("7 × 7  全尺寸威胁盘", frame.transform, new Vector2(0, 202), new Vector2(374, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("逐格映射 · 每个有效回合新增 2", frame.transform, new Vector2(0, 172), new Vector2(374, 28), 14, Peach, TextAnchor.MiddleLeft);
         var gridGo = new GameObject("Threat Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform rt = gridGo.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(358, 358);
         rt.anchoredPosition = new Vector2(0, -25);
         GridLayoutGroup grid = gridGo.GetComponent<GridLayoutGroup>();
-        grid.cellSize = new Vector2(82, 82);
-        grid.spacing = new Vector2(8, 8);
+        grid.cellSize = new Vector2(46, 46);
+        grid.spacing = new Vector2(5, 5);
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        grid.constraintCount = 4;
+        grid.constraintCount = run.ThreatSize;
 
-        threatCells = new Image[16];
-        threatLabels = new Text[16];
-        for (int visualY = 3; visualY >= 0; visualY--)
+        threatCells = new Image[run.ThreatSize * run.ThreatSize];
+        threatLabels = new Text[run.ThreatSize * run.ThreatSize];
+        for (int visualY = run.ThreatSize - 1; visualY >= 0; visualY--)
         {
-            for (int x = 0; x < 4; x++)
+            for (int x = 0; x < run.ThreatSize; x++)
             {
-                int index = x + visualY * 4;
+                int index = x + visualY * run.ThreatSize;
                 threatCells[index] = Rect($"Threat {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Void);
-                threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 29, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(threatLabels[index].rectTransform, 2);
             }
         }
@@ -217,18 +215,9 @@ public sealed class KaitGame : MonoBehaviour
         turnText = MakeText("", info.transform, new Vector2(0, 16), new Vector2(380, 34), 18, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
         statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
 
-        Image skills = Rect("Skills", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("战技 · 在方向输入前预选", skills.transform, new Vector2(0, 57), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        KaitSkill[] values = { KaitSkill.Curse, KaitSkill.Mirage, KaitSkill.FearSlash };
-        for (int i = 0; i < values.Length; i++)
-        {
-            int captured = i;
-            Button button = MakeButton(skills.transform, new Vector2(-128 + i * 128, -17), new Vector2(116, 82), "");
-            skillImages[i] = button.GetComponent<Image>();
-            skillTexts[i] = button.GetComponentInChildren<Text>();
-            skillTexts[i].fontSize = 14;
-            button.onClick.AddListener(() => OnSkill(values[captured]));
-        }
+        Image rules = Rect("Momentum Rules", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
+        MakeText("v0.2 动量规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("起步 M1 · 每走空格 +1\n碰撞伤害 = 当前动量 · 未击杀会保留 HP\n击杀后 M-1，可直行 / 左转 / 右转", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
 
         Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
         MakeText("WASD / 方向键", controls.transform, new Vector2(-88, 30), new Vector2(180, 28), 14, Peach, TextAnchor.MiddleLeft);
@@ -262,7 +251,7 @@ public sealed class KaitGame : MonoBehaviour
         int seed = Environment.TickCount;
         run.Reset(seed);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-        File.WriteAllText(logPath, "turn,direction,kateStart,kateEnd,slideDistance,kills,enemyCount,highestThreat,endReason\n", Encoding.UTF8);
+        File.WriteAllText(logPath, "turn,direction,kateStart,kateEnd,slideDistance,damage,kills,chainActive,momentum,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
         statusText.text = "选择方向开始。不能主动刹车。";
         RefreshAll();
@@ -274,14 +263,14 @@ public sealed class KaitGame : MonoBehaviour
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
         List<KaitSpawnRequest> spawnSnapshot = SnapshotSpawns();
-        KaitTurnResult result = run.TryTurn(direction);
+        KaitTurnResult result = run.chainActive ? run.ContinueChain(direction) : run.TryTurn(direction);
         if (!result.valid)
         {
             statusText.text = result.message;
             StartCoroutine(FlashStatus());
             return;
         }
-        AppendLog(direction, start, result);
+        if (result.turnComplete) AppendLog(direction, start, result);
         StartCoroutine(PlayTurn(result, start, enemySnapshot, spawnSnapshot));
     }
 
@@ -321,21 +310,12 @@ public sealed class KaitGame : MonoBehaviour
         if (run.ended) ShowEnd();
     }
 
-    private void OnSkill(KaitSkill skill)
-    {
-        if (busy || run.ended) return;
-        run.SelectOrArmSkill(skill, out string message);
-        statusText.text = message;
-        RefreshSkills();
-    }
-
     private void RefreshAll()
     {
         RefreshBattle();
         RefreshThreat();
-        RefreshSkills();
-        turnText.text = $"回合 {run.turn}   击杀 {run.kills}   最高威胁 {run.highestThreat}";
-        helpText.text = run.pendingSkillChoices > 0 ? $"成长触发：请从右侧选择 {run.pendingSkillChoices} 个新战技" : "青色格=敌人移动目标  红色格=攻击范围  箭头=移动方向  数字=穿透阈值";
+        turnText.text = $"回合 {run.turn}   击杀 {run.kills}   敌人 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}/{run.spawns.Count}   动量 M{run.momentum}";
+        helpText.text = run.chainActive ? "击杀转向：仅高亮方向可用，禁止 180°；此输入不会推动威胁盘" : "青色格=移动/可选方向  红色格=攻击范围  敌人数字=当前 HP";
         if (run.ended) ShowEnd();
     }
 
@@ -354,11 +334,15 @@ public sealed class KaitGame : MonoBehaviour
                 image.color = run.walls[x, y] ? Void : Hex("#796573");
                 Color? intentTint = IntentTintAt(p);
                 if (!run.walls[x, y] && intentTint.HasValue) image.color = intentTint.Value;
+                if (run.chainActive)
+                {
+                    foreach (KaitDirection choice in run.AllowedTurnDirections())
+                        if (run.katePos + KaitRun.Delta(choice) == p) image.color = Cyan;
+                }
                 if (trailCell.HasValue && trailCell.Value == p) image.color = new Color(Peach.r, Peach.g, Peach.b, 0.45f);
                 if (impactCells.Contains(p)) image.color = Gold;
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
-                KaitMirage mirage = run.MirageAt(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
                 if (spawn != null)
                 {
@@ -366,25 +350,19 @@ public sealed class KaitGame : MonoBehaviour
                     label.text = $"裂\nT{spawn.tier}";
                     label.color = Cream;
                 }
-                if (mirage != null)
-                {
-                    image.color = Hex("#6C77A8");
-                    label.text = $"幻\n{mirage.turnsLeft}";
-                    label.color = Cream;
-                }
                 if (enemy != null)
                 {
                     image.color = EnemyColor(enemy.type, enemy.life);
                     string type = enemy.type == KaitEnemyType.Grunt ? "兵" : enemy.type == KaitEnemyType.Guard ? "盾" : enemy.type == KaitEnemyType.Archer ? "弓" : "精";
                     string intent = IntentGlyph(enemy.intent.type, enemy.intent.direction);
-                    label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type}\n准备" : $"{type} {enemy.EffectiveThreshold}\n{intent}";
+                    label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type} {enemy.hp}\n准备" : $"{type} HP{enemy.hp}\n{intent}";
                     label.color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
                 }
                 if (!hideKate && kate == p)
                 {
                     image.color = Coral;
-                    label.text = "凯";
-                    label.fontSize = 28;
+                    label.text = run.chainActive ? $"凯\nM{run.momentum}" : "凯";
+                    label.fontSize = run.chainActive ? 18 : 28;
                     label.color = Cream;
                 }
                 else label.fontSize = 17;
@@ -394,10 +372,10 @@ public sealed class KaitGame : MonoBehaviour
 
     private void RefreshThreat()
     {
-        for (int y = 0; y < 4; y++)
-            for (int x = 0; x < 4; x++)
+        for (int y = 0; y < run.ThreatSize; y++)
+            for (int x = 0; x < run.ThreatSize; x++)
             {
-                int index = x + y * 4;
+                int index = x + y * run.ThreatSize;
                 int value = displayedThreat == null ? run.threat[x, y] : displayedThreat[x, y];
                 threatLabels[index].text = value == 0 || hideThreatValues ? "" : value.ToString();
                 threatCells[index].color = ThreatColor(value);
@@ -416,9 +394,9 @@ public sealed class KaitGame : MonoBehaviour
                 id = enemy.id,
                 type = enemy.type,
                 pos = enemy.pos,
-                threshold = enemy.threshold,
+                hp = enemy.hp,
+                maxHp = enemy.maxHp,
                 life = enemy.life,
-                curseTurns = enemy.curseTurns,
                 intent = new KaitIntent
                 {
                     type = enemy.intent.type,
@@ -439,7 +417,9 @@ public sealed class KaitGame : MonoBehaviour
                 tier = spawn.tier,
                 sourceThreatCell = spawn.sourceThreatCell,
                 targetCell = spawn.targetCell,
-                turnsUntilSpawn = spawn.turnsUntilSpawn
+                turnsUntilSpawn = spawn.turnsUntilSpawn,
+                state = spawn.state,
+                initialDirection = spawn.initialDirection
             });
         return snapshot;
     }
@@ -516,7 +496,7 @@ public sealed class KaitGame : MonoBehaviour
             if (action.type == KaitIntentType.Move && action.from != action.to)
             {
                 string type = enemy.type == KaitEnemyType.Grunt ? "兵" : enemy.type == KaitEnemyType.Guard ? "盾" : enemy.type == KaitEnemyType.Archer ? "弓" : "精";
-                RectTransform token = CreateFloatingToken($"{type} {enemy.EffectiveThreshold}", EnemyColor(enemy.type, enemy.life), battleCells[action.from.x + action.from.y * 9].rectTransform, new Vector2(72, 72), 17);
+                RectTransform token = CreateFloatingToken($"{type} {enemy.hp}", EnemyColor(enemy.type, enemy.life), battleCells[action.from.x + action.from.y * 9].rectTransform, new Vector2(72, 72), 17);
                 moves.Add(new EnemyMoveVisual
                 {
                     enemy = enemy,
@@ -579,7 +559,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private bool BlocksIntentLine(Vector2Int p, List<KaitEnemy> source)
     {
-        if (run.walls[p.x, p.y] || run.MirageAt(p) != null) return true;
+        if (run.walls[p.x, p.y]) return true;
         return source.Exists(e => e.life != KaitEnemyLife.Dead && e.pos == p);
     }
 
@@ -593,9 +573,9 @@ public sealed class KaitGame : MonoBehaviour
         var visuals = new List<ThreatVisual>();
         foreach (KaitThreatMotion motion in result.threatMotions)
         {
-            RectTransform fromCell = threatCells[motion.from.x + motion.from.y * 4].rectTransform;
-            RectTransform toCell = threatCells[motion.to.x + motion.to.y * 4].rectTransform;
-            RectTransform token = CreateFloatingToken(motion.value.ToString(), ThreatColor(motion.value), fromCell, new Vector2(82, 82), 29);
+            RectTransform fromCell = threatCells[motion.from.x + motion.from.y * run.ThreatSize].rectTransform;
+            RectTransform toCell = threatCells[motion.to.x + motion.to.y * run.ThreatSize].rectTransform;
+            RectTransform token = CreateFloatingToken(motion.value.ToString(), ThreatColor(motion.value), fromCell, new Vector2(46, 46), 18);
             visuals.Add(new ThreatVisual { rect = token, from = fromCell.position, to = toCell.position });
         }
 
@@ -620,13 +600,13 @@ public sealed class KaitGame : MonoBehaviour
             foreach (KaitMergeEvent merge in result.merges)
             {
                 strongest = Mathf.Max(strongest, merge.resultValue);
-                mergeCells.Add(threatCells[merge.threatCell.x + merge.threatCell.y * 4].rectTransform);
+                mergeCells.Add(threatCells[merge.threatCell.x + merge.threatCell.y * run.ThreatSize].rectTransform);
             }
             yield return ScalePulseMany(mergeCells, 0.72f, 1.2f, 0.14f);
             GameAudio.PlayMerge(strongest);
         }
-        if (result.newThreatCell.x >= 0)
-            yield return ScalePulse(threatCells[result.newThreatCell.x + result.newThreatCell.y * 4].rectTransform, 0.1f, 1.1f, 0.14f);
+        foreach (Vector2Int cell in result.newThreatCells)
+            yield return ScalePulse(threatCells[cell.x + cell.y * run.ThreatSize].rectTransform, 0.1f, 1.1f, 0.1f);
     }
 
     private RectTransform CreateFloatingToken(string label, Color color, RectTransform source, Vector2 size, int fontSize)
@@ -680,22 +660,6 @@ public sealed class KaitGame : MonoBehaviour
         foreach (RectTransform rect in rects) rect.localScale = Vector3.one;
     }
 
-    private void RefreshSkills()
-    {
-        KaitSkill[] values = { KaitSkill.Curse, KaitSkill.Mirage, KaitSkill.FearSlash };
-        for (int i = 0; i < values.Length; i++)
-        {
-            KaitSkill skill = values[i];
-            bool owned = run.skills.Contains(skill);
-            bool armed = run.armedSkill == skill;
-            int cd = run.cooldowns[skill];
-            skillImages[i].color = armed ? Gold : owned ? PanelLight : new Color(0.18f, 0.16f, 0.19f, 1f);
-            string footer = owned ? (cd > 0 ? $"CD {cd}" : armed ? "已预选" : "可用") : run.pendingSkillChoices > 0 ? "点击解锁" : "未解锁";
-            skillTexts[i].text = run.SkillName(skill).Replace("次级", "次级\n").Replace("咒剑", "咒剑\n") + "\n" + footer;
-            skillTexts[i].color = owned || run.pendingSkillChoices > 0 ? Cream : new Color(0.62f, 0.56f, 0.62f, 1f);
-        }
-    }
-
     private void ShowEnd()
     {
         endOverlay.SetActive(true);
@@ -705,7 +669,10 @@ public sealed class KaitGame : MonoBehaviour
 
     private void AppendLog(KaitDirection direction, Vector2Int start, KaitTurnResult result)
     {
-        string line = $"{run.turn},{direction},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{result.slideDistance},{run.kills},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.highestThreat},{run.endReason}\n";
+        int occupied = 0;
+        foreach (int value in run.threat) if (value != 0) occupied++;
+        float occupancy = occupied / (float)run.threat.Length;
+        string line = $"{run.turn},{direction},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{result.slideDistance},{result.damageDealt},{run.kills},{run.chainActive},{run.momentum},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
         File.AppendAllText(logPath, line, Encoding.UTF8);
     }
 
@@ -722,7 +689,10 @@ public sealed class KaitGame : MonoBehaviour
         KaitDirection[] sequence = { KaitDirection.Up, KaitDirection.Left, KaitDirection.Down, KaitDirection.Right };
         for (int i = 0; i < demoSteps && !run.ended; i++)
         {
-            HandleDirection(sequence[i % sequence.Length]);
+            KaitDirection next = run.chainActive && run.AllowedTurnDirections().Count > 0
+                ? run.AllowedTurnDirections()[0]
+                : sequence[i % sequence.Length];
+            HandleDirection(next);
             while (busy) yield return null;
             yield return new WaitForSecondsRealtime(0.08f);
         }
