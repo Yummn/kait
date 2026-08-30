@@ -138,8 +138,8 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Spatial Combat Prototype v0.3.1", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("高耐久 · 四向连杀 · 主动刹车 · 合成64胜利", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
+        MakeText("Kait · Dual-Board Strategy Prototype v0.3.3", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("整理威胁盘 · 铺路削弱 · 连杀兑现 · 合成64", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
         BuildThreatBoard(bg.transform);
@@ -216,8 +216,8 @@ public sealed class KaitGame : MonoBehaviour
         statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
 
         Image rules = Rect("Momentum Rules", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("v0.3.1 空间规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("起步 M1 · 每走空格 +1 · 击杀后四向选择\n未击杀推动1格；固定墙可碰撞/主动刹车\n敌人静止，攻击锁定且会造成友伤", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
+        MakeText("v0.3.3 双盘规则", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("首次方向=双盘全局输入；任一盘响应即成立\n凯特可贴墙等待；有效回合固定增加新2\n击杀后四向转向只影响凯特，不推进时间", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
 
         Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
         MakeText("WASD / 方向键", controls.transform, new Vector2(-88, 30), new Vector2(180, 28), 14, Peach, TextAnchor.MiddleLeft);
@@ -251,9 +251,9 @@ public sealed class KaitGame : MonoBehaviour
         int seed = Environment.TickCount;
         run.Reset(seed);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-        File.WriteAllText(logPath, "turn,direction,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,wallSuppressedSpawns,riftBlocks,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
+        File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
-        statusText.text = "选择方向开始；击杀后可四向转向或撞墙刹车。";
+        statusText.text = "选择全局方向：凯特与威胁盘分别响应。";
         RefreshAll();
     }
 
@@ -263,14 +263,14 @@ public sealed class KaitGame : MonoBehaviour
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
         List<KaitSpawnRequest> spawnSnapshot = SnapshotSpawns();
-        KaitTurnResult result = run.chainActive ? run.ContinueChain(direction) : run.TryTurn(direction);
+        KaitTurnResult result = run.chainActive ? run.ContinueChain(direction) : run.TryGlobalInput(direction);
         if (!result.valid)
         {
             statusText.text = result.message;
             StartCoroutine(FlashStatus());
             return;
         }
-        if (result.turnComplete) AppendLog(direction, start, result);
+        if (result.turnComplete) AppendLog(start, result);
         StartCoroutine(PlayTurn(result, start, enemySnapshot, spawnSnapshot));
     }
 
@@ -319,7 +319,7 @@ public sealed class KaitGame : MonoBehaviour
         RefreshBattle();
         RefreshThreat();
         turnText.text = $"回合 {run.turn}   凯特 HP {run.kateHp}/{run.config.kateMaxHp}   敌人 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}   M{run.momentum}";
-        helpText.text = run.chainActive ? "击杀转向：上下左右均可；选择相邻墙体可原地刹车；Threat 不再移动" : "半透明红/青=已锁定攻击范围  裂=下次生成/封堵冲击  目标：合成64";
+        helpText.text = run.chainActive ? "连杀方向：只影响凯特；不移动威胁盘、不推进裂隙/敌军/新2" : "全局方向：任一盘可响应即推进；凯特贴墙时可用回合整理威胁盘";
         if (run.ended) ShowEnd();
     }
 
@@ -699,15 +699,15 @@ public sealed class KaitGame : MonoBehaviour
     {
         endOverlay.SetActive(true);
         string reason = run.won ? "合成 64 · 本局胜利" : "凯特 HP 归零 · 本局失败";
-        endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    主动刹车：{run.activeWallStops}\n墙格抑制生成：{run.wallSuppressedSpawns}    友伤：{run.friendlyFireDamage}";
+        endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    主动刹车：{run.activeWallStops}\n刷怪抑制：{run.spawnSuppressedCount}    友伤：{run.friendlyFireDamage}";
     }
 
-    private void AppendLog(KaitDirection direction, Vector2Int start, KaitTurnResult result)
+    private void AppendLog(Vector2Int start, KaitTurnResult result)
     {
         int occupied = 0;
         foreach (int value in run.threat) if (value != 0) occupied++;
         float occupancy = occupied / (float)run.threat.Length;
-        string line = $"{run.turn},{direction},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.directKills},{run.nonLethalHits},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.activeWallStops},{run.wallSuppressedSpawns},{run.riftBlocks},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
+        string line = $"{run.turn},{result.globalDirection},{result.kaitWaited},{result.threatChanged},{result.chainStepCount},{result.chainKillCount},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.directKills},{run.nonLethalHits},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.activeWallStops},{run.spawnSuppressedCount},{run.riftBlocks},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
         File.AppendAllText(logPath, line, Encoding.UTF8);
     }
 

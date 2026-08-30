@@ -17,7 +17,7 @@ public enum KaitSpawnState { Preview, Ready }
     public bool enablePush = true, enableFriendlyFire = true, enableInternalObstacle = true;
 }
 
-[Serializable] public sealed class KaitMergeEvent { public int resultValue; public Vector2Int threatCell; }
+[Serializable] public sealed class KaitMergeEvent { public int resultValue; public Vector2Int threatCell; public bool spawnSuppressed; }
 [Serializable] public sealed class KaitIntent
 {
     public KaitIntentType type;
@@ -67,7 +67,11 @@ public sealed class KaitTurnResult
     public int[,] threatBefore, threatAfter;
     public int slideDistance, damagedEnemyId = -1, damageDealt, enemyHpAfter = -1, momentumBefore, momentumAfter;
     public int collisionDamage, friendlyFireDamage, riftBlockDamage;
+    public int spawnSuppressed;
     public bool pushed, pushBlockedByWall, pushBlockedByUnit, activeBrake;
+    public bool threatChanged, kaitWaited;
+    public KaitDirection globalDirection;
+    public int chainStepCount, chainKillCount;
     public Vector2Int pushFrom = new Vector2Int(-1, -1), pushTo = new Vector2Int(-1, -1);
     public Vector2Int blockedEnemyCell = new Vector2Int(-1, -1);
     public string message;
@@ -99,6 +103,11 @@ public sealed class KaitRun
     public int nonLethalHits { get; private set; }
     public int activeWallStops { get; private set; }
     public int wallSuppressedSpawns { get; private set; }
+    public int spawnSuppressedCount { get; private set; }
+    public KaitDirection currentGlobalDirection { get; private set; }
+    public bool threatChangedThisTurn { get; private set; }
+    public bool kaitWaitedThisTurn { get; private set; }
+    public int chainStepCount { get; private set; }
     public bool chainActive { get; private set; }
     public KaitDirection currentDirection { get; private set; }
     public int threatLocks { get; private set; }
@@ -121,7 +130,8 @@ public sealed class KaitRun
     {
         random = new System.Random(seed); Array.Clear(threat, 0, threat.Length); Array.Clear(walls, 0, walls.Length);
         enemies.Clear(); spawns.Clear(); nextEnemyId = 1; turn = kills = threatLocks = pushCount = friendlyFireDamage = riftBlocks = 0;
-        directKills = nonLethalHits = activeWallStops = wallSuppressedSpawns = 0;
+        directKills = nonLethalHits = activeWallStops = wallSuppressedSpawns = spawnSuppressedCount = 0;
+        threatChangedThisTurn = kaitWaitedThisTurn = false; chainStepCount = 0;
         highestThreat = 2; momentum = highestMomentum = currentChainKills = longestChainKills = 0; chainActive = ended = won = false; endReason = string.Empty;
         for (int y = 0; y < BattleSize; y++) for (int x = 0; x < BattleSize; x++) walls[x, y] = x == 0 || y == 0 || x == BattleSize - 1 || y == BattleSize - 1;
         mapIndex = 1;
@@ -132,28 +142,45 @@ public sealed class KaitRun
         LockEnemyIntents();
     }
 
-    public KaitTurnResult TryTurn(KaitDirection direction)
+    public KaitTurnResult TryTurn(KaitDirection direction) => TryGlobalInput(direction);
+
+    public KaitTurnResult TryGlobalInput(KaitDirection direction)
     {
         var result = new KaitTurnResult();
         if (ended) { result.message = "本局已结束"; return result; }
         if (chainActive) { result.message = "请选择击杀后的转向"; return result; }
-        if (!CanEnterFrom(katePos, direction)) { result.message = "紧贴边界，未消耗回合"; return result; }
-        result.valid = true; currentDirection = direction; momentum = config.baseMomentum; currentChainKills = 0; chainActive = true;
-        result.threatBefore = CopyThreat(); result.merges.AddRange(MoveThreat(direction, result.threatMotions));
+        bool kaitCanRespond = CanEnterFrom(katePos, direction);
+        int[,] before = CopyThreat(); result.merges.AddRange(MoveThreat(direction, result.threatMotions)); int[,] after = CopyThreat();
+        bool threatChanged = !ThreatEquals(before, after);
+        if (!kaitCanRespond && !threatChanged)
+        {
+            result.merges.Clear(); result.threatMotions.Clear(); result.message = "两盘均无法响应，未消耗回合"; return result;
+        }
+
+        result.valid = true; result.globalDirection = direction; result.threatChanged = threatChanged; result.kaitWaited = !kaitCanRespond;
+        result.threatBefore = before; result.threatAfter = after;
+        if (!threatChanged) result.threatMotions.Clear();
+        currentGlobalDirection = direction; threatChangedThisTurn = threatChanged; kaitWaitedThisTurn = !kaitCanRespond;
+        currentDirection = direction; momentum = kaitCanRespond ? config.baseMomentum : 0; currentChainKills = 0; chainStepCount = 0; chainActive = kaitCanRespond;
         foreach (KaitMergeEvent merge in result.merges) if (merge.resultValue < config.winValue) QueueSpawn(merge);
-        result.threatAfter = CopyThreat(); ResolveKateSegment(result); result.slideDistance = result.katePath.Count; return result;
+        result.spawnSuppressed += result.merges.FindAll(m => m.spawnSuppressed).Count;
+        if (!kaitCanRespond)
+        {
+            result.message = "凯特原地等待：威胁盘已整理，时间正常推进"; FinishTurn(result); ApplyTurnContext(result); return result;
+        }
+        ResolveKateSegment(result); result.slideDistance = result.katePath.Count; ApplyTurnContext(result); return result;
     }
 
     public KaitTurnResult ContinueChain(KaitDirection direction)
     {
         var result = new KaitTurnResult();
         if (!chainActive) { result.message = "当前没有可继续的连斩"; return result; }
-        result.valid = true; currentDirection = direction;
+        result.valid = true; currentDirection = direction; chainStepCount++;
         if (IsHardBlocked(katePos + Delta(direction)))
         {
-            result.activeBrake = true; activeWallStops++; result.message = "主动撞墙刹车：原地结束连锁"; FinishTurn(result); return result;
+            result.activeBrake = true; activeWallStops++; result.message = "主动撞墙刹车：原地结束连锁"; FinishTurn(result); ApplyTurnContext(result); return result;
         }
-        ResolveKateSegment(result); result.slideDistance = result.katePath.Count; return result;
+        ResolveKateSegment(result); result.slideDistance = result.katePath.Count; ApplyTurnContext(result); return result;
     }
 
     public List<KaitDirection> AllowedTurnDirections()
@@ -226,6 +253,7 @@ public sealed class KaitRun
 
     private void FinishTurn(KaitTurnResult result)
     {
+        ApplyTurnContext(result);
         chainActive = false; result.turnComplete = true; result.momentumAfter = momentum;
         ResolveEnemyIntents(result);
         if (!ended)
@@ -237,6 +265,7 @@ public sealed class KaitRun
             else if (kateHp <= 0) End("Kate Defeated", false);
         }
         turn++; momentum = 0; LockEnemyIntents();
+        ApplyTurnContext(result);
         if (string.IsNullOrEmpty(result.message))
         {
             if (result.pushed) result.message = "未击杀：推动敌人 1 格，连锁结束";
@@ -355,7 +384,7 @@ public sealed class KaitRun
     private void QueueSpawn(KaitMergeEvent merge)
     {
         Vector2Int target = MapThreatToBattle(merge.threatCell);
-        if (walls[target.x, target.y]) { wallSuppressedSpawns++; return; }
+        if (walls[target.x, target.y]) { merge.spawnSuppressed = true; wallSuppressedSpawns++; spawnSuppressedCount++; return; }
         int tier = Mathf.Clamp((int)Mathf.Log(merge.resultValue, 2f) - 1, 1, 4);
         spawns.Add(new KaitSpawnRequest { tier = tier, sourceThreatCell = merge.threatCell, targetCell = target, turnsUntilSpawn = 1, createdTurn = turn, state = KaitSpawnState.Preview });
     }
@@ -370,11 +399,11 @@ public sealed class KaitRun
             KaitEnemy occupant = EnemyAt(request.targetCell);
             if (katePos == request.targetCell)
             {
-                kateHp = Mathf.Max(0, kateHp - config.riftBlockDamage); result.riftBlockDamage += config.riftBlockDamage; riftBlocks++; spawns.RemoveAt(i); continue;
+                kateHp = Mathf.Max(0, kateHp - config.riftBlockDamage); result.riftBlockDamage += config.riftBlockDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
             }
             if (occupant != null)
             {
-                DamageEnemy(occupant, config.riftBlockDamage, false, result); result.riftBlockDamage += config.riftBlockDamage; riftBlocks++; spawns.RemoveAt(i); continue;
+                DamageEnemy(occupant, config.riftBlockDamage, false, result); result.riftBlockDamage += config.riftBlockDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
             }
             KaitEnemyType type = EnemyTypeForSpawn(request);
             int hp = MaxHpFor(type);
@@ -388,6 +417,19 @@ public sealed class KaitRun
     {
         for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++)
         { if (threat[x, y] == 0) return false; if (x + 1 < ThreatSize && threat[x, y] == threat[x + 1, y]) return false; if (y + 1 < ThreatSize && threat[x, y] == threat[x, y + 1]) return false; }
+        return true;
+    }
+    private void ApplyTurnContext(KaitTurnResult result)
+    {
+        result.globalDirection = currentGlobalDirection;
+        result.threatChanged = threatChangedThisTurn;
+        result.kaitWaited = kaitWaitedThisTurn;
+        result.chainStepCount = chainStepCount;
+        result.chainKillCount = currentChainKills;
+    }
+    private bool ThreatEquals(int[,] a, int[,] b)
+    {
+        for (int y = 0; y < ThreatSize; y++) for (int x = 0; x < ThreatSize; x++) if (a[x, y] != b[x, y]) return false;
         return true;
     }
     private static KaitEnemyType EnemyTypeForSpawn(KaitSpawnRequest request)

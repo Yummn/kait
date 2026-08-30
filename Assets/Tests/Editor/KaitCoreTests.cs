@@ -317,6 +317,90 @@ public sealed class KaitCoreTests
         CollectionAssert.Contains(result.playerKilledEnemyIds, archer.id);
     }
 
+    [Test]
+    public void V033_KateBlockedButThreatMoves_WaitsAndAdvancesGlobalTurn()
+    {
+        KaitRun run = OpenRun(21, new Vector2Int(2, 3)); ClearThreat(run);
+        run.threat[4, 4] = 2;
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Left);
+
+        Assert.IsTrue(result.valid);
+        Assert.IsTrue(result.kaitWaited);
+        Assert.IsTrue(result.threatChanged);
+        Assert.IsTrue(result.turnComplete);
+        Assert.AreEqual(new Vector2Int(2, 3), run.katePos);
+        Assert.AreEqual(1, run.turn);
+        Assert.AreEqual(2, CountOccupiedThreat(run));
+    }
+
+    [Test]
+    public void V033_KateMovesWhenThreatCannot_NewTwoStillAppears()
+    {
+        KaitRun run = OpenRun(22, new Vector2Int(2, 2)); ClearThreat(run);
+        run.threat[4, 0] = 2;
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+
+        Assert.IsTrue(result.valid);
+        Assert.IsFalse(result.kaitWaited);
+        Assert.IsFalse(result.threatChanged);
+        Assert.IsTrue(result.turnComplete);
+        Assert.AreEqual(1, run.turn);
+        Assert.AreEqual(2, CountOccupiedThreat(run));
+        Assert.AreEqual(2, run.threat[4, 0]);
+    }
+
+    [Test]
+    public void V033_BothBoardsCannotRespond_InputIsFreeAndInvalid()
+    {
+        KaitRun run = OpenRun(23, new Vector2Int(2, 3)); ClearThreat(run);
+        run.threat[0, 0] = 2;
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Left);
+
+        Assert.IsFalse(result.valid);
+        Assert.AreEqual(0, run.turn);
+        Assert.AreEqual(1, CountOccupiedThreat(run));
+        Assert.AreEqual(0, run.spawns.Count);
+    }
+
+    [Test]
+    public void V033_ChainInputs_DoNotAdvanceThreatRiftEnemyOrNewTwo()
+    {
+        KaitRun run = OpenRun(24, new Vector2Int(2, 2)); ClearThreat(run);
+        run.threat[0, 0] = 2; run.threat[1, 0] = 4;
+        run.enemies.Add(Enemy(1, new Vector2Int(3, 2), 1));
+        run.enemies.Add(Enemy(2, new Vector2Int(3, 3), 1));
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, targetCell = new Vector2Int(4, 4), turnsUntilSpawn = 1, state = KaitSpawnState.Preview });
+
+        KaitTurnResult initial = run.TryGlobalInput(KaitDirection.Right);
+        int[,] afterGlobal = CopyThreat(run);
+        KaitTurnResult chain = run.ContinueChain(KaitDirection.Up);
+
+        Assert.IsTrue(initial.awaitingTurnChoice);
+        Assert.IsTrue(chain.awaitingTurnChoice);
+        Assert.AreEqual(0, run.turn);
+        Assert.AreEqual(1, run.spawns.Single().turnsUntilSpawn);
+        Assert.AreEqual(0, chain.threatMotions.Count);
+        CollectionAssert.AreEqual(afterGlobal, run.threat);
+        Assert.AreEqual(1, chain.chainStepCount);
+        Assert.AreEqual(2, chain.chainKillCount);
+    }
+
+    [Test]
+    public void V033_WallMerge_RecordsSpawnSuppression()
+    {
+        KaitRun run = OpenRun(25, new Vector2Int(3, 3)); ClearThreat(run);
+        run.threat[0, 2] = 2; run.threat[1, 2] = 2;
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Left);
+
+        Assert.AreEqual(1, result.spawnSuppressed);
+        Assert.IsTrue(result.merges.Single().spawnSuppressed);
+        Assert.AreEqual(1, run.spawnSuppressedCount);
+    }
+
     private static KaitRun OpenRun(int seed, Vector2Int? kate = null)
     {
         var run = new KaitRun(); run.Reset(seed);
@@ -333,4 +417,5 @@ public sealed class KaitCoreTests
     private static void ClearThreat(KaitRun run) { for (int y = 0; y < run.ThreatSize; y++) for (int x = 0; x < run.ThreatSize; x++) run.threat[x, y] = 0; }
     private static int[,] CopyThreat(KaitRun run) { var copy = new int[run.ThreatSize, run.ThreatSize]; System.Array.Copy(run.threat, copy, run.threat.Length); return copy; }
     private static int CountThreat(KaitRun run, int value) { int count = 0; foreach (int cell in run.threat) if (cell == value) count++; return count; }
+    private static int CountOccupiedThreat(KaitRun run) { int count = 0; foreach (int cell in run.threat) if (cell != 0) count++; return count; }
 }
