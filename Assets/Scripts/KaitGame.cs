@@ -366,8 +366,8 @@ public sealed class KaitGame : MonoBehaviour
 
         displayedThreat = null;
         statusText.text = result.message + (result.merges.Count > 0 ? $" · 威胁合并 ×{result.merges.Count}" : "");
-        RefreshAll();
         busy = false;
+        RefreshAll();
         if (run.ended) ShowEnd();
     }
 
