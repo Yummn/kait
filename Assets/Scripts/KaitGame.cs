@@ -140,7 +140,7 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Dual-Board Strategy Prototype v0.3.5", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("Kait · Dual-Board Strategy Prototype v0.3.6", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
         MakeText("整理威胁盘 · 铺路削弱 · 连杀兑现 · 合成64", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
@@ -227,8 +227,8 @@ public sealed class KaitGame : MonoBehaviour
         statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
 
         Image rules = Rect("Momentum Rules", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("v0.3.5 共享柱子实验", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("双盘共享同坐标柱子；威胁数字分段移动\n柱子不可移动、合并或生成新2\n击杀后四向转向只影响凯特，不推进时间", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
+        MakeText("v0.3.6 碰撞处决与两拍射击", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("主目标被墙/单位碰撞击杀后仍可续链\n弓手先瞄准一回合，下一敌人阶段射击\n箭矢命中第一个单位停止；墙体阻挡", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
 
         Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
         MakeText("WASD / 方向键", controls.transform, new Vector2(-88, 30), new Vector2(180, 28), 14, Peach, TextAnchor.MiddleLeft);
@@ -374,7 +374,9 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     image.color = EnemyColor(enemy.type, enemy.life);
                     string type = EnemyGlyph(enemy.type);
-                    string intent = IntentGlyph(enemy.intent.type, enemy.intent.direction);
+                    string intent = enemy.type == KaitEnemyType.Archer && enemy.archerState == KaitArcherState.Aim
+                        ? $"瞄准 {DirectionGlyph(enemy.intent.direction)}"
+                        : IntentGlyph(enemy.intent.type, enemy.intent.direction);
                     label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type} {enemy.hp}\n准备" : $"{type} HP{enemy.hp}\n{intent}";
                     label.color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
                 }
@@ -437,6 +439,7 @@ public sealed class KaitGame : MonoBehaviour
                 hp = enemy.hp,
                 maxHp = enemy.maxHp,
                 life = enemy.life,
+                archerState = enemy.archerState,
                 intent = intent
             });
         }
@@ -834,6 +837,15 @@ public sealed class KaitGame : MonoBehaviour
         if (direction == Vector2Int.left) return "←";
         if (direction == Vector2Int.right) return "→";
         return "移动";
+    }
+
+    private static string DirectionGlyph(Vector2Int direction)
+    {
+        if (direction == Vector2Int.up) return "↑";
+        if (direction == Vector2Int.down) return "↓";
+        if (direction == Vector2Int.left) return "←";
+        if (direction == Vector2Int.right) return "→";
+        return "·";
     }
 
     private static string EnemyGlyph(KaitEnemyType type)
