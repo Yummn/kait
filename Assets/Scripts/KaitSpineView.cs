@@ -79,12 +79,16 @@ public sealed class KaitSpineView
         skeletonGraphic.MatchRectTransformWithBounds();
 
         RectTransform skeletonRect = skeletonGraphic.rectTransform;
+        Mesh mesh = skeletonGraphic.GetLastMesh();
+        Bounds meshBounds = mesh != null ? mesh.bounds : new Bounds(Vector3.zero, skeletonRect.sizeDelta);
         skeletonRect.anchorMin = skeletonRect.anchorMax = new Vector2(0.5f, 0.5f);
-        skeletonRect.anchoredPosition = Vector2.zero;
-        float width = Mathf.Max(0.01f, skeletonRect.sizeDelta.x);
-        float height = Mathf.Max(0.01f, skeletonRect.sizeDelta.y);
-        float scale = Mathf.Min(size.x * 0.9f / width, size.y * 0.9f / height);
+        skeletonRect.pivot = new Vector2(0.5f, 0.5f);
+        skeletonRect.sizeDelta = meshBounds.size;
+        float width = Mathf.Max(0.01f, meshBounds.size.x);
+        float height = Mathf.Max(0.01f, meshBounds.size.y);
+        float scale = Mathf.Min(size.x * 0.78f / width, size.y * 0.78f / height);
         skeletonRect.localScale = Vector3.one * scale;
+        skeletonRect.anchoredPosition = new Vector2(-meshBounds.center.x * scale, -meshBounds.center.y * scale);
 
         return new KaitSpineView(hostRect, skeletonGraphic);
     }

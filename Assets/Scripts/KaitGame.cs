@@ -231,6 +231,8 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + visualY * KaitRun.BattleSize;
                 Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, PanelLight);
+                Mask cellMask = cell.gameObject.AddComponent<Mask>();
+                cellMask.showMaskGraphic = true;
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
