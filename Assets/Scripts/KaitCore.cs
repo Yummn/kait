@@ -160,10 +160,10 @@ public sealed class KaitRun
         powerLocked = chainActive = ended = won = false; endReason = string.Empty; Array.Clear(lockedPowerCounts, 0, lockedPowerCounts.Length);
         for (int y = 0; y < BattleSize; y++) for (int x = 0; x < BattleSize; x++) walls[x, y] = x == 0 || y == 0 || x == BattleSize - 1 || y == BattleSize - 1;
         mapIndex = 1;
-        walls[2, 1] = true;
+        walls[1, 2] = true;
         walls[5, 4] = true;
-        AddSharedThreatPillar(new Vector2Int(2, 1));
-        AddSharedThreatPillar(new Vector2Int(5, 4));
+        AddThreatPillar(1, 2);
+        AddThreatPillar(5, 4);
         EvaluateEmptyMapReachability();
         katePos = FindOpenNearCenter(); kateHp = config.kateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
@@ -552,9 +552,9 @@ public sealed class KaitRun
         return true;
     }
 
-    private void AddSharedThreatPillar(Vector2Int battleCell)
+    private void AddThreatPillar(int displayRow, int displayColumn)
     {
-        Vector2Int threatCell = battleCell - Vector2Int.one;
+        Vector2Int threatCell = new Vector2Int(displayColumn - 1, ThreatSize - displayRow);
         if (threatCell.x >= 0 && threatCell.x < ThreatSize && threatCell.y >= 0 && threatCell.y < ThreatSize) threatPillars[threatCell.x, threatCell.y] = true;
     }
 
