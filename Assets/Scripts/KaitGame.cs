@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Spine.Unity;
 
 public sealed class KaitGame : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public sealed class KaitGame : MonoBehaviour
     private Image edgePulse;
     private GameObject tutorialOverlay;
     private Sprite kaitPortrait;
+    private SkeletonDataAsset makotoSkeletonData;
+    private KaitSpineView kaitSpine;
     private Sprite gruntPortrait;
     private Sprite swordsmanPortrait;
     private Sprite archerPortrait;
@@ -105,6 +108,7 @@ public sealed class KaitGame : MonoBehaviour
         if (uiFont == null) uiFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
         if (uiFont == null) uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         kaitPortrait = LoadPixelSprite("KenneyTinyDungeon/Kait");
+        makotoSkeletonData = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
         gruntPortrait = LoadPixelSprite("KenneyTinyDungeon/Grunt");
         swordsmanPortrait = LoadPixelSprite("KenneyTinyDungeon/Swordsman");
         archerPortrait = LoadPixelSprite("KenneyTinyDungeon/Archer");
@@ -390,6 +394,8 @@ public sealed class KaitGame : MonoBehaviour
         targetingSkill = KaitSkill.None;
         int seed = Environment.TickCount;
         run.Reset(seed);
+        EnsureKaitSpine();
+        kaitSpine?.PlayLoop(KaitSpineView.Idle);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
         File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,internalMerges,internalSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
@@ -560,6 +566,7 @@ public sealed class KaitGame : MonoBehaviour
         if (run.TryUseSkill(skill, target.id, out string message))
         {
             targetingSkill = KaitSkill.None;
+            kaitSpine?.PlayOnce(KaitSpineView.OtherSkill);
             StartCoroutine(PulseBattleCell(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
         }
         statusText.text = message;
@@ -569,16 +576,21 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator AnimateShadowStep(Vector2Int start)
     {
         busy = true; hideKate = true; RefreshBattle();
-        RectTransform token = CreateFloatingPortrait(kaitPortrait, ThreatColor(2), battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
+        KaitSpineView movingKait = CreateFloatingKait(battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, run.currentDirection);
+        RectTransform token = movingKait != null ? movingKait.Root : CreateFloatingPortrait(kaitPortrait, Color.clear, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
+        movingKait?.PlayOnce(KaitSpineView.ShadowStep, null);
         Vector3 from = battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position;
         Vector3 to = battleCells[run.katePos.x + run.katePos.y * KaitRun.BattleSize].rectTransform.position;
         float elapsed = 0f;
-        while (elapsed < 0.14f)
+        float duration = Mathf.Max(0.14f, movingKait?.Duration(KaitSpineView.ShadowStep) ?? 0.14f);
+        while (elapsed < duration)
         {
-            token.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, elapsed / 0.14f));
+            token.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, elapsed / duration));
             elapsed += Time.unscaledDeltaTime; yield return null;
         }
-        Destroy(token.gameObject); hideKate = false; busy = false;
+        if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
+        hideKate = false; busy = false;
+        kaitSpine?.PlayLoop(KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
         RefreshAll();
     }
@@ -599,6 +611,8 @@ public sealed class KaitGame : MonoBehaviour
 
     private void RefreshBattle()
     {
+        EnsureKaitSpine();
+        kaitSpine?.SetVisible(false);
         Vector2Int kate = displayKate ?? run.katePos;
         bool kateOnRift = false;
         List<KaitDirection> allowed = run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
@@ -680,8 +694,16 @@ public sealed class KaitGame : MonoBehaviour
                 if (!hideKate && kate == p)
                 {
                     image.color = showRiftDanger ? Color.Lerp(ThreatColor(2), Gold, 0.32f) : ThreatColor(2);
-                    battlePortraits[index].sprite = kaitPortrait;
-                    battlePortraits[index].gameObject.SetActive(true);
+                    if (kaitSpine != null)
+                    {
+                        kaitSpine.SetParent(image.transform, 3);
+                        kaitSpine.SetVisible(true);
+                    }
+                    else
+                    {
+                        battlePortraits[index].sprite = kaitPortrait;
+                        battlePortraits[index].gameObject.SetActive(true);
+                    }
                     battleHpLabels[index].text = run.kateHp.ToString();
                     battleHpLabels[index].color = Void;
                     if (run.chainActive) battleFacingLabels[index].text = ">";
@@ -780,13 +802,22 @@ public sealed class KaitGame : MonoBehaviour
         if (result.katePath.Count == 0)
         {
             if (result.blockedEnemyCell.x >= 0)
+            {
+                kaitSpine?.Face(result.globalDirection);
+                kaitSpine?.PlayOnce(KaitSpineView.Attack);
                 yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.16f);
+            }
+            else if (result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
+                kaitSpine?.PlayOnce(KaitSpineView.StandBy);
             yield break;
         }
 
         hideKate = true;
+        kaitSpine?.Face(result.globalDirection);
         RefreshBattle();
-        RectTransform token = CreateFloatingPortrait(kaitPortrait, ThreatColor(2), battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
+        KaitSpineView movingKait = CreateFloatingKait(battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, result.globalDirection);
+        RectTransform token = movingKait != null ? movingKait.Root : CreateFloatingPortrait(kaitPortrait, Color.clear, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
+        movingKait?.PlayLoop(KaitSpineView.Run);
         var ghosts = new List<RectTransform>();
         var points = new List<Vector3> { battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position };
         foreach (Vector2Int cell in result.katePath) points.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform.position);
@@ -823,6 +854,7 @@ public sealed class KaitGame : MonoBehaviour
                         GameAudio.PlayKaitKill(Mathf.Max(1, run.currentChainKills));
                         killAudioPlayed = true;
                     }
+                    movingKait?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack, KaitSpineView.Run);
                     RefreshBattle();
                 }
             }
@@ -830,7 +862,7 @@ public sealed class KaitGame : MonoBehaviour
             yield return null;
         }
         token.position = points[points.Count - 1];
-        Destroy(token.gameObject);
+        if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
         foreach (RectTransform ghost in ghosts) StartCoroutine(FadeAndDestroy(ghost, 0.22f));
         animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
         impactCells.Clear();
@@ -838,7 +870,17 @@ public sealed class KaitGame : MonoBehaviour
         displayKate = null;
         RefreshBattle();
         if (result.blockedEnemyCell.x >= 0)
+        {
+            kaitSpine?.Face(result.globalDirection);
+            kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
             yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.14f);
+        }
+        else if (result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
+            kaitSpine?.PlayOnce(KaitSpineView.StandBy);
+        else if (result.playerKilledEnemyIds.Count > 0)
+            kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
+        else
+            kaitSpine?.PlayLoop(KaitSpineView.Idle);
     }
 
     private IEnumerator AnimateAllEnemyActions(List<KaitEnemyAction> actions)
@@ -1024,6 +1066,27 @@ public sealed class KaitGame : MonoBehaviour
         return image.rectTransform;
     }
 
+    private KaitSpineView CreateFloatingKait(RectTransform source, KaitDirection direction)
+    {
+        if (makotoSkeletonData == null) return null;
+        KaitSpineView view = KaitSpineView.Create(makotoSkeletonData, canvas.transform, new Vector2(115, 115), "Kait Spine Animation");
+        if (view == null) return null;
+        view.Root.position = source.position;
+        view.Root.SetAsLastSibling();
+        view.Face(direction);
+        return view;
+    }
+
+    private void EnsureKaitSpine()
+    {
+        if (kaitSpine != null || makotoSkeletonData == null || battleCells == null) return;
+        int index = run.katePos.x + run.katePos.y * KaitRun.BattleSize;
+        Transform parent = index >= 0 && index < battleCells.Length && battleCells[index] != null
+            ? battleCells[index].transform
+            : canvas.transform;
+        kaitSpine = KaitSpineView.Create(makotoSkeletonData, parent, new Vector2(115, 115));
+    }
+
     private RectTransform CreateGhostToken(RectTransform source, int momentumValue)
     {
         float tier = Mathf.Clamp01((momentumValue - 1) / 4f);
@@ -1031,11 +1094,8 @@ public sealed class KaitGame : MonoBehaviour
         Image image = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(72, 72), ghostColor);
         image.raycastTarget = false;
         image.rectTransform.position = source.position;
-        Image portrait = Rect("Trail Portrait", image.transform, Vector2.zero, new Vector2(58, 58), new Color(1f, 1f, 1f, 0.55f));
-        portrait.sprite = kaitPortrait;
-        portrait.type = Image.Type.Simple;
-        portrait.preserveAspect = true;
-        portrait.raycastTarget = false;
+        Text trail = MakeText(">", image.transform, Vector2.zero, new Vector2(58, 58), 30, new Color(Cream.r, Cream.g, Cream.b, 0.7f), TextAnchor.MiddleCenter, FontStyle.Bold);
+        trail.raycastTarget = false;
         return image.rectTransform;
     }
 
@@ -1056,6 +1116,7 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator AnimateCombatFeedback(KaitTurnResult result)
     {
         bool hasImpact = false;
+        bool kateHit = false;
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
         {
             StartCoroutine(FloatDamage(result.blockedEnemyCell, result.damageDealt, Coral));
@@ -1064,9 +1125,17 @@ public sealed class KaitGame : MonoBehaviour
         foreach (KaitEnemyAction action in result.enemyActions)
             if (action.hitKate)
             {
+                kateHit = true;
+                kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
                 StartCoroutine(FloatDamage(run.katePos, Mathf.Max(1, action.damage), Gold));
                 hasImpact = true;
             }
+        if (!kateHit && result.collisionDamage + result.riftBlockDamage > 0)
+        {
+            kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
+            StartCoroutine(FloatDamage(run.katePos, result.collisionDamage + result.riftBlockDamage, Gold));
+            hasImpact = true;
+        }
         foreach (Vector2Int cell in result.killedEnemyCells)
             if (InsideBattle(cell))
             {
@@ -1128,6 +1197,11 @@ public sealed class KaitGame : MonoBehaviour
 
     private IEnumerator AnimateSkillPulse(KaitSkill skill)
     {
+        string animation = KaitSpineView.OtherSkill;
+        if (skill == KaitSkill.SwiftBoots) animation = KaitSpineView.JoyShort;
+        else if (skill == KaitSkill.CatAgility) animation = KaitSpineView.JoyLong;
+        else if (skill == KaitSkill.DreadSlash) animation = KaitSpineView.LargeAttack;
+        kaitSpine?.PlayOnce(animation);
         int slot = run.skills.IndexOf(skill);
         if (slot >= 0 && slot < skillButtons.Length)
             yield return ScalePulse(skillButtons[slot].GetComponent<RectTransform>(), 0.92f, 1.08f, 0.14f);
@@ -1195,6 +1269,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void ShowEnd()
     {
+        if (run.won) kaitSpine?.PlayLoop(KaitSpineView.Victory);
         endOverlay.SetActive(true);
         endOverlay.transform.SetAsLastSibling();
         string reason = run.won ? "击败盾骑士 · 本局胜利" : "凯特 HP 归零 · 本局失败";
