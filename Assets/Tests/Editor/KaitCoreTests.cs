@@ -199,7 +199,7 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void T12_Merging64_WinsAfterCurrentTurnFinishes()
+    public void T12_Merging64_OffersThirdSkillChoiceInsteadOfWinning()
     {
         KaitRun run = OpenRun(12, new Vector2Int(3, 3)); ClearThreat(run);
         run.threat[0, 0] = 32; run.threat[1, 0] = 32;
@@ -207,9 +207,9 @@ public sealed class KaitCoreTests
         KaitTurnResult result = run.TryTurn(KaitDirection.Right);
 
         Assert.IsTrue(result.turnComplete);
-        Assert.IsTrue(run.ended);
-        Assert.IsTrue(run.won);
-        Assert.AreEqual("Victory 64", run.endReason);
+        Assert.IsFalse(run.ended);
+        Assert.AreEqual(64, run.pendingSkillMilestone);
+        CollectionAssert.AreEquivalent(new[] { KaitSkill.CatAgility, KaitSkill.ShadowStep }, run.SkillChoicesForMilestone(64));
     }
 
     [Test]
@@ -707,6 +707,158 @@ public sealed class KaitCoreTests
             Assert.IsTrue(run.emptyMapReachable, $"seed {seed}");
         }
     }
+
+    [Test]
+    public void V037_T01_Milestone16_OffersExactlyOneOfTwoSkillsWithoutAdvancingTurn()
+    {
+        KaitRun run = OpenRun(3701); QueueMilestone(run, 16); int before = run.turn;
+        CollectionAssert.AreEquivalent(new[] { KaitSkill.SwiftBoots, KaitSkill.DreadSlash }, run.SkillChoicesForMilestone(run.pendingSkillMilestone));
+        Assert.IsTrue(run.ChooseSkill(KaitSkill.SwiftBoots)); Assert.AreEqual(before, run.turn); Assert.AreEqual(1, run.skills.Count);
+    }
+
+    [Test]
+    public void V037_T02_Milestones32And64_ProduceSecondAndThirdSkillSlots()
+    {
+        KaitRun run = OpenRun(3702); Unlock(run, 16, KaitSkill.SwiftBoots); Unlock(run, 32, KaitSkill.IceTomb); Unlock(run, 64, KaitSkill.ShadowStep);
+        CollectionAssert.AreEqual(new[] { KaitSkill.SwiftBoots, KaitSkill.IceTomb, KaitSkill.ShadowStep }, run.skills);
+    }
+
+    [Test]
+    public void V037_T03_SwiftBoots_AddsOneBeforeFirstContact()
+    {
+        KaitRun run = OpenRun(3703, new Vector2Int(1, 1)); Unlock(run, 16, KaitSkill.SwiftBoots); run.enemies.Add(Enemy(1, new Vector2Int(4, 1), 3));
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.SwiftBoots, -1, out _)); KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.AreEqual(3, result.chainPower); Assert.AreEqual(3, result.damageDealt);
+    }
+
+    [Test]
+    public void V037_T04_DreadSlash_DoesNotMoveKateAndMovesNormalEnemiesTogether()
+    {
+        KaitRun run = OpenRun(3704, new Vector2Int(3, 3)); Unlock(run, 16, KaitSkill.DreadSlash);
+        KaitEnemy a = Enemy(1, new Vector2Int(1, 1), 3), b = Enemy(2, new Vector2Int(2, 4), 3); run.enemies.Add(a); run.enemies.Add(b);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.DreadSlash, -1, out _)); KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.AreEqual(new Vector2Int(3, 3), run.katePos); Assert.IsTrue(result.dreadSlash); Assert.AreEqual(2, result.enemyActions.Count(x => x.type == KaitIntentType.Move));
+    }
+
+    [Test]
+    public void V037_T05_IceTomb_SkipsExactlyOneEnemyPhase()
+    {
+        KaitRun run = OpenRun(3705, new Vector2Int(3, 3)); Unlock(run, 32, KaitSkill.IceTomb);
+        KaitEnemy enemy = Enemy(1, new Vector2Int(4, 3), 4, KaitEnemyType.Swordsman, KaitEnemyLife.Active); run.enemies.Add(enemy); LockEnemyIntents(run);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.IceTomb, enemy.id, out _)); ResolveEnemyPhase(run); Assert.AreEqual(3, run.kateHp); Assert.AreEqual(0, enemy.frozenActions);
+        LockEnemyIntents(run); ResolveEnemyPhase(run); Assert.AreEqual(2, run.kateHp);
+    }
+
+    [Test]
+    public void V037_T06_LesserPhantom_RejectsTargetsNoEnemyCanLegallyAttack()
+    {
+        KaitRun run = OpenRun(3706); Unlock(run, 32, KaitSkill.LesserPhantom);
+        KaitEnemy target = Enemy(1, new Vector2Int(1, 1), 2, KaitEnemyType.Grunt, KaitEnemyLife.Active); run.enemies.Add(target);
+        Assert.IsFalse(run.TryUseSkill(KaitSkill.LesserPhantom, target.id, out string message)); StringAssert.Contains("合法攻击", message);
+    }
+
+    [Test]
+    public void V037_T07_LesserPhantom_RedirectsLegalMeleeForOnePhase()
+    {
+        KaitRun run = OpenRun(3707, new Vector2Int(5, 5)); Unlock(run, 32, KaitSkill.LesserPhantom);
+        KaitEnemy target = Enemy(1, new Vector2Int(3, 3), 2, KaitEnemyType.Grunt, KaitEnemyLife.Active);
+        KaitEnemy attacker = Enemy(2, new Vector2Int(2, 3), 4, KaitEnemyType.Swordsman, KaitEnemyLife.Active); run.enemies.Add(target); run.enemies.Add(attacker);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.LesserPhantom, target.id, out _)); ResolveEnemyPhase(run);
+        Assert.AreEqual(1, target.hp); Assert.AreEqual(-1, run.forcedTargetEnemyId);
+    }
+
+    [Test]
+    public void V037_T08_CatAgility_DoublesMomentumBeforeFirstContact()
+    {
+        KaitRun run = OpenRun(3708, new Vector2Int(1, 1)); Unlock(run, 64, KaitSkill.CatAgility); run.enemies.Add(Enemy(1, new Vector2Int(4, 1), 4));
+        run.TryUseSkill(KaitSkill.CatAgility, -1, out _); KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.AreEqual(4, result.chainPower);
+    }
+
+    [Test]
+    public void V037_T09_SpeedSkillOrder_IsDeterministic()
+    {
+        KaitRun bootsThenCat = OpenRun(3709, new Vector2Int(1, 1)); Unlock(bootsThenCat, 16, KaitSkill.SwiftBoots); Unlock(bootsThenCat, 64, KaitSkill.CatAgility); bootsThenCat.enemies.Add(Enemy(1, new Vector2Int(4, 1), 9));
+        bootsThenCat.TryUseSkill(KaitSkill.SwiftBoots, -1, out _); bootsThenCat.TryUseSkill(KaitSkill.CatAgility, -1, out _);
+        KaitRun catThenBoots = OpenRun(3710, new Vector2Int(1, 1)); Unlock(catThenBoots, 16, KaitSkill.SwiftBoots); Unlock(catThenBoots, 64, KaitSkill.CatAgility); catThenBoots.enemies.Add(Enemy(1, new Vector2Int(4, 1), 9));
+        catThenBoots.TryUseSkill(KaitSkill.CatAgility, -1, out _); catThenBoots.TryUseSkill(KaitSkill.SwiftBoots, -1, out _);
+        Assert.AreEqual(6, bootsThenCat.TryGlobalInput(KaitDirection.Right).chainPower); Assert.AreEqual(5, catThenBoots.TryGlobalInput(KaitDirection.Right).chainPower);
+    }
+
+    [Test]
+    public void V037_T10_CooldownTicksOnGlobalInputButNotChainInput()
+    {
+        KaitRun run = OpenRun(3711, new Vector2Int(1, 1)); Unlock(run, 16, KaitSkill.SwiftBoots); run.enemies.Add(Enemy(1, new Vector2Int(5, 1), 4));
+        run.TryUseSkill(KaitSkill.SwiftBoots, -1, out _); run.TryGlobalInput(KaitDirection.Right); Assert.AreEqual(2, run.SkillCooldown(KaitSkill.SwiftBoots));
+        run.ContinueChain(KaitDirection.Right); Assert.AreEqual(2, run.SkillCooldown(KaitSkill.SwiftBoots));
+        run.TryGlobalInput(KaitDirection.Left); Assert.AreEqual(1, run.SkillCooldown(KaitSkill.SwiftBoots));
+    }
+
+    [Test]
+    public void V037_T11_ShadowStep_MovesOneForwardWithoutAdvancingGlobalTurn()
+    {
+        KaitRun run = OpenRun(3712, new Vector2Int(1, 3)); Unlock(run, 64, KaitSkill.ShadowStep); run.enemies.Add(Enemy(1, new Vector2Int(3, 3), 1));
+        run.TryGlobalInput(KaitDirection.Right); int before = run.turn; Assert.IsTrue(run.shadowStepAvailable); Assert.IsTrue(run.TryShadowStep());
+        Assert.AreEqual(new Vector2Int(4, 3), run.katePos); Assert.AreEqual(before, run.turn); Assert.IsTrue(run.chainActive);
+    }
+
+    [Test]
+    public void V037_T12_First128SpawnsBossAndDoesNotAutoWin()
+    {
+        KaitRun run = OpenRun(3713, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.IsFalse(run.ended); Assert.IsTrue(run.bossSpawned); Assert.IsTrue(result.bossSpawned); Assert.AreEqual(8, run.enemies.Single(e => e.type == KaitEnemyType.ShieldKnight).hp);
+    }
+
+    [Test]
+    public void V037_T13_BossSpawnReplacesOccupantWithoutKillCredit()
+    {
+        KaitRun run = OpenRun(3714, new Vector2Int(5, 5)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;
+        KaitEnemy occupant = Enemy(77, new Vector2Int(3, 1), 2); run.enemies.Add(occupant); run.TryGlobalInput(KaitDirection.Right);
+        Assert.AreEqual(KaitEnemyLife.Dead, occupant.life); Assert.AreEqual(0, run.kills); Assert.AreEqual(KaitEnemyType.ShieldKnight, run.EnemyAt(new Vector2Int(3, 1)).type);
+    }
+
+    [Test]
+    public void V037_T14_ShieldKnight_IsStaticAndUsesSwordsmanMelee()
+    {
+        KaitRun run = OpenRun(3715, new Vector2Int(4, 3)); KaitEnemy boss = Enemy(1, new Vector2Int(3, 3), 8, KaitEnemyType.ShieldKnight, KaitEnemyLife.Active); run.enemies.Add(boss); LockEnemyIntents(run);
+        ResolveEnemyPhase(run); Assert.AreEqual(new Vector2Int(3, 3), boss.pos); Assert.AreEqual(2, run.kateHp);
+    }
+
+    [Test]
+    public void V037_T15_ShieldKnightFrontTakesZeroDirectAndCollisionDamage()
+    {
+        KaitRun run = OpenRun(3716, new Vector2Int(5, 3)); KaitEnemy boss = Enemy(1, new Vector2Int(3, 3), 8, KaitEnemyType.ShieldKnight); boss.facing = Vector2Int.right; run.enemies.Add(boss);
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Left); Assert.AreEqual(0, result.damageDealt); Assert.AreEqual(8, boss.hp);
+    }
+
+    [Test]
+    public void V037_T16_ShieldKnightSideTakesNormalDamage()
+    {
+        KaitRun run = OpenRun(3717, new Vector2Int(5, 3)); KaitEnemy boss = Enemy(1, new Vector2Int(3, 3), 8, KaitEnemyType.ShieldKnight); boss.facing = Vector2Int.up; run.enemies.Add(boss);
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Left); Assert.AreEqual(1, result.damageDealt); Assert.AreEqual(7, boss.hp);
+    }
+
+    [Test]
+    public void V037_T17_PhantomMakesBossFaceForcedTargetAtEnemyPhaseStart()
+    {
+        KaitRun run = OpenRun(3718, new Vector2Int(5, 5)); Unlock(run, 32, KaitSkill.LesserPhantom);
+        KaitEnemy boss = Enemy(1, new Vector2Int(3, 3), 8, KaitEnemyType.ShieldKnight, KaitEnemyLife.Active);
+        KaitEnemy target = Enemy(2, new Vector2Int(2, 3), 2, KaitEnemyType.Grunt, KaitEnemyLife.Active); run.enemies.Add(boss); run.enemies.Add(target);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.LesserPhantom, target.id, out _)); ResolveEnemyPhase(run); Assert.AreEqual(Vector2Int.left, boss.facing);
+    }
+
+    [Test]
+    public void V037_T18_KillingShieldKnightEndsRunInVictoryImmediately()
+    {
+        KaitRun run = OpenRun(3719, new Vector2Int(1, 3)); KaitEnemy boss = Enemy(1, new Vector2Int(5, 3), 3, KaitEnemyType.ShieldKnight); boss.facing = Vector2Int.up; run.enemies.Add(boss);
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.IsTrue(run.ended); Assert.IsTrue(run.won); Assert.AreEqual("Victory: Shield Knight", run.endReason); Assert.IsTrue(result.turnComplete);
+    }
+
+    private static void QueueMilestone(KaitRun run, int value)
+        => typeof(KaitRun).GetMethod("HandleMilestoneMerge", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { new KaitMergeEvent { resultValue = value } });
+    private static void Unlock(KaitRun run, int milestone, KaitSkill skill) { QueueMilestone(run, milestone); Assert.IsTrue(run.ChooseSkill(skill)); }
 
     private static KaitRun OpenRun(int seed, Vector2Int? kate = null)
     {

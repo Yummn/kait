@@ -23,6 +23,14 @@ public sealed class KaitGame : MonoBehaviour
     private Text statusText;
     private Text helpText;
     private Text dangerText;
+    private Text skillStatusText;
+    private readonly Button[] skillButtons = new Button[3];
+    private readonly Text[] skillButtonLabels = new Text[3];
+    private GameObject skillChoiceOverlay;
+    private Text skillChoiceTitle;
+    private readonly Button[] skillChoiceButtons = new Button[2];
+    private readonly Text[] skillChoiceLabels = new Text[2];
+    private KaitSkill targetingSkill;
     private GameObject endOverlay;
     private Text endText;
     private bool busy;
@@ -76,7 +84,9 @@ public sealed class KaitGame : MonoBehaviour
         if (instance != null && instance != this) { Destroy(gameObject); return; }
         instance = this;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        uiFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
+        uiFont = Resources.Load<Font>("NotoSansCJKsc-Regular");
+        if (uiFont == null) uiFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
+        if (uiFont == null) uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
     }
 
     private void OnDestroy()
@@ -140,13 +150,14 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Dual-Board Strategy Prototype v0.3.6", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("整理威胁盘 · 铺路削弱 · 连杀兑现 · 合成64", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
+        MakeText("Kait · Dual-Board Strategy Prototype v0.3.7", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("三阶段技能成长 · 合成128召唤盾骑士", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
         BuildThreatBoard(bg.transform);
         BuildSidebar(bg.transform);
         BuildEndOverlay(bg.transform);
+        BuildSkillChoiceOverlay(bg.transform);
     }
 
     private void BuildBattleBoard(Transform parent)
@@ -176,6 +187,8 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + visualY * KaitRun.BattleSize;
                 Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, PanelLight);
+                Vector2Int targetCell = new Vector2Int(x, visualY);
+                cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 19, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
@@ -194,7 +207,7 @@ public sealed class KaitGame : MonoBehaviour
     {
         Image frame = Rect("Threat Panel", parent, new Vector2(477, 164), new Vector2(420, 465), Panel);
         MakeText("5 × 5  精确威胁盘", frame.transform, new Vector2(0, 202), new Vector2(374, 42), 22, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("逐格映射 · 每回合新增 1 · 64 胜利", frame.transform, new Vector2(0, 172), new Vector2(374, 28), 14, Peach, TextAnchor.MiddleLeft);
+        MakeText("逐格映射 · 每回合新增 1 · 128 召唤 Boss", frame.transform, new Vector2(0, 172), new Vector2(374, 28), 14, Peach, TextAnchor.MiddleLeft);
         var gridGo = new GameObject("Threat Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform rt = gridGo.GetComponent<RectTransform>();
@@ -226,9 +239,16 @@ public sealed class KaitGame : MonoBehaviour
         turnText = MakeText("", info.transform, new Vector2(0, 16), new Vector2(380, 34), 18, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
         statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
 
-        Image rules = Rect("Momentum Rules", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("v0.3.6 碰撞处决与两拍射击", rules.transform, new Vector2(0, 54), new Vector2(380, 30), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("主目标被墙/单位碰撞击杀后仍可续链\n弓手先瞄准一回合，下一敌人阶段射击\n箭矢命中第一个单位停止；墙体阻挡", rules.transform, new Vector2(0, -16), new Vector2(380, 92), 15, Peach, TextAnchor.MiddleLeft);
+        Image rules = Rect("Skills", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
+        MakeText("技能 · 16 / 32 / 64 三阶段成长", rules.transform, new Vector2(0, 54), new Vector2(380, 28), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 25), new Vector2(380, 24), 13, Peach, TextAnchor.MiddleLeft);
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            int slot = i;
+            skillButtons[i] = MakeButton(rules.transform, new Vector2(-126 + i * 126, -28), new Vector2(116, 62), "未解锁");
+            skillButtonLabels[i] = skillButtons[i].GetComponentInChildren<Text>();
+            skillButtons[i].onClick.AddListener(() => HandleSkillButton(slot));
+        }
 
         Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
         MakeText("WASD / 方向键", controls.transform, new Vector2(-88, 30), new Vector2(180, 28), 14, Peach, TextAnchor.MiddleLeft);
@@ -239,6 +259,24 @@ public sealed class KaitGame : MonoBehaviour
         MakeButton(controls.transform, new Vector2(139, 0), new Vector2(112, 72), "重新开始\nR").onClick.AddListener(NewRun);
 
         helpText = MakeText("", parent, new Vector2(0, -424), new Vector2(760, 35), 15, Peach, TextAnchor.MiddleCenter);
+    }
+
+    private void BuildSkillChoiceOverlay(Transform parent)
+    {
+        Image shade = Rect("Skill Choice Overlay", parent, Vector2.zero, new Vector2(1600, 900), new Color(0.08f, 0.06f, 0.08f, 0.9f));
+        Stretch(shade.rectTransform, 0);
+        skillChoiceOverlay = shade.gameObject;
+        Image card = Rect("Skill Choice Card", shade.transform, Vector2.zero, new Vector2(650, 330), Panel);
+        skillChoiceTitle = MakeText("阶段成长", card.transform, new Vector2(0, 108), new Vector2(580, 60), 30, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        for (int i = 0; i < 2; i++)
+        {
+            int choice = i;
+            skillChoiceButtons[i] = MakeButton(card.transform, new Vector2(-155 + i * 310, -20), new Vector2(270, 150), "");
+            skillChoiceLabels[i] = skillChoiceButtons[i].GetComponentInChildren<Text>();
+            skillChoiceButtons[i].onClick.AddListener(() => ChoosePendingSkill(choice));
+        }
+        MakeText("选择不消耗回合；每个里程碑只能获得一个技能", card.transform, new Vector2(0, -125), new Vector2(580, 34), 15, Peach, TextAnchor.MiddleCenter);
+        skillChoiceOverlay.SetActive(false);
     }
 
     private void BuildEndOverlay(Transform parent)
@@ -259,18 +297,21 @@ public sealed class KaitGame : MonoBehaviour
         busy = false;
         displayKate = null;
         trailCell = null;
+        targetingSkill = KaitSkill.None;
         int seed = Environment.TickCount;
         run.Reset(seed);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
         File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,internalMerges,internalSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
+        skillChoiceOverlay.SetActive(false);
         statusText.text = "选择全局方向：凯特与威胁盘分别响应。";
         RefreshAll();
     }
 
     private void HandleDirection(KaitDirection direction)
     {
-        if (busy || run.ended) return;
+        if (busy || run.ended || run.pendingSkillMilestone > 0) return;
+        targetingSkill = KaitSkill.None;
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
         List<KaitSpawnRequest> spawnSnapshot = SnapshotSpawns();
@@ -302,7 +343,12 @@ public sealed class KaitGame : MonoBehaviour
         else if (result.pushBlockedByWall || result.pushBlockedByUnit)
             yield return PulseBattleCell(result.pushFrom, Gold, 0.18f);
 
-        yield return AnimateAllEnemyActions(result.enemyActions);
+        if (result.dreadSlash)
+        {
+            yield return AnimateAllEnemyActions(result.enemyActions.FindAll(a => a.type == KaitIntentType.Move));
+            yield return AnimateAllEnemyActions(result.enemyActions.FindAll(a => a.type != KaitIntentType.Move));
+        }
+        else yield return AnimateAllEnemyActions(result.enemyActions);
 
         animatedEnemies = null;
         animatedSpawns = null;
@@ -329,9 +375,117 @@ public sealed class KaitGame : MonoBehaviour
     {
         RefreshBattle();
         RefreshThreat();
+        RefreshSkillUI();
         turnText.text = $"回合 {run.turn}   凯特 HP {run.kateHp}/{run.config.kateMaxHp}   敌人 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}   M{run.momentum}";
-        helpText.text = run.chainActive ? "连杀方向：只影响凯特；不移动威胁盘、不推进裂隙/敌军/新2" : "全局方向：任一盘可响应即推进；凯特贴墙时可用回合整理威胁盘";
+        helpText.text = targetingSkill != KaitSkill.None ? "点选战场中的存活敌人作为技能目标" : run.chainActive ? "连杀方向：只影响凯特；不移动威胁盘、不推进裂隙/敌军/新2" : "全局方向：任一盘可响应即推进；凯特贴墙时可用回合整理威胁盘";
+        ShowPendingSkillChoice();
         if (run.ended) ShowEnd();
+    }
+
+    private void RefreshSkillUI()
+    {
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            bool unlocked = i < run.skills.Count;
+            KaitSkill skill = unlocked ? run.skills[i] : KaitSkill.None;
+            int cooldown = unlocked ? run.SkillCooldown(skill) : 0;
+            skillButtonLabels[i].text = !unlocked ? "未解锁" : $"{KaitRun.SkillName(skill)}\n{(cooldown > 0 ? $"CD {cooldown}" : skill == KaitSkill.ShadowStep ? "击杀后点按" : "可用")}";
+            bool passiveReady = skill == KaitSkill.ShadowStep && run.chainActive && run.shadowStepAvailable;
+            skillButtons[i].interactable = unlocked && !busy && run.pendingSkillMilestone == 0 && !run.ended &&
+                (skill == KaitSkill.ShadowStep ? passiveReady : !run.chainActive && cooldown == 0);
+            skillButtons[i].GetComponent<Image>().color = targetingSkill == skill ? Cyan : PanelLight;
+        }
+        if (targetingSkill != KaitSkill.None) skillStatusText.text = $"{KaitRun.SkillName(targetingSkill)}：请选择敌人";
+        else if (run.skills.Count == 0) skillStatusText.text = "尚未解锁技能";
+        else if (run.dreadSlashArmed) skillStatusText.text = "惊惧斩已准备：输入一个方向发动";
+        else skillStatusText.text = string.Join(" · ", run.skills.ConvertAll(KaitRun.SkillName));
+    }
+
+    private void ShowPendingSkillChoice()
+    {
+        int milestone = run.pendingSkillMilestone;
+        if (milestone == 0 || run.ended) { skillChoiceOverlay.SetActive(false); return; }
+        List<KaitSkill> choices = run.SkillChoicesForMilestone(milestone);
+        if (choices.Count != 2) return;
+        skillChoiceTitle.text = $"合成 {milestone} · 选择一个成长";
+        for (int i = 0; i < 2; i++) skillChoiceLabels[i].text = SkillChoiceDescription(choices[i]);
+        skillChoiceOverlay.SetActive(true);
+        skillChoiceOverlay.transform.SetAsLastSibling();
+    }
+
+    private void ChoosePendingSkill(int choiceIndex)
+    {
+        if (busy || run.pendingSkillMilestone == 0) return;
+        List<KaitSkill> choices = run.SkillChoicesForMilestone(run.pendingSkillMilestone);
+        if (choiceIndex < 0 || choiceIndex >= choices.Count || !run.ChooseSkill(choices[choiceIndex])) return;
+        targetingSkill = KaitSkill.None;
+        statusText.text = $"已获得：{KaitRun.SkillName(choices[choiceIndex])}（不消耗回合）";
+        RefreshAll();
+    }
+
+    private void HandleSkillButton(int slot)
+    {
+        if (busy || run.ended || slot < 0 || slot >= run.skills.Count) return;
+        KaitSkill skill = run.skills[slot];
+        if (skill == KaitSkill.ShadowStep)
+        {
+            Vector2Int start = run.katePos;
+            if (run.TryShadowStep()) StartCoroutine(AnimateShadowStep(start));
+            else { statusText.text = "踏影当前不可用"; RefreshAll(); }
+            return;
+        }
+        if (skill == KaitSkill.IceTomb || skill == KaitSkill.LesserPhantom)
+        {
+            targetingSkill = targetingSkill == skill ? KaitSkill.None : skill;
+            statusText.text = targetingSkill == KaitSkill.None ? "已取消选择目标" : $"{KaitRun.SkillName(skill)}：请点选一个敌人";
+            RefreshAll();
+            return;
+        }
+        if (run.TryUseSkill(skill, -1, out string message)) statusText.text = message;
+        else statusText.text = message;
+        RefreshAll();
+    }
+
+    private void HandleBattleCellClick(Vector2Int cell)
+    {
+        if (busy || targetingSkill == KaitSkill.None) return;
+        KaitEnemy target = run.EnemyAt(cell);
+        if (target == null) { statusText.text = "这里没有可选敌人"; return; }
+        KaitSkill skill = targetingSkill;
+        if (run.TryUseSkill(skill, target.id, out string message)) targetingSkill = KaitSkill.None;
+        statusText.text = message;
+        RefreshAll();
+    }
+
+    private IEnumerator AnimateShadowStep(Vector2Int start)
+    {
+        busy = true; hideKate = true; RefreshBattle();
+        RectTransform token = CreateFloatingToken("凯", Coral, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 28);
+        Vector3 from = battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position;
+        Vector3 to = battleCells[run.katePos.x + run.katePos.y * KaitRun.BattleSize].rectTransform.position;
+        float elapsed = 0f;
+        while (elapsed < 0.14f)
+        {
+            token.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, elapsed / 0.14f));
+            elapsed += Time.unscaledDeltaTime; yield return null;
+        }
+        Destroy(token.gameObject); hideKate = false; busy = false;
+        statusText.text = "踏影：额外前进 1 格，可继续选择转向";
+        RefreshAll();
+    }
+
+    private static string SkillChoiceDescription(KaitSkill skill)
+    {
+        switch (skill)
+        {
+            case KaitSkill.SwiftBoots: return "疾步之靴\n当前回合动量 +1\n冷却 2 回合";
+            case KaitSkill.DreadSlash: return "惊惧斩\n凯特不动，普通敌人推至最远\n冷却 4 回合";
+            case KaitSkill.IceTomb: return "冰墓\n冻结一个敌人的下一次行动\n冷却 3 回合";
+            case KaitSkill.LesserPhantom: return "次级幻影\n敌人下一阶段改攻所选目标\n冷却 4 回合";
+            case KaitSkill.CatAgility: return "猫之迅捷\n当前回合动量 ×2\n冷却 5 回合";
+            case KaitSkill.ShadowStep: return "踏影（被动）\n击杀后可额外向前 1 格\n不推进任何全局时间";
+            default: return "";
+        }
     }
 
     private void RefreshBattle()
@@ -358,6 +512,7 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (trailCell.HasValue && trailCell.Value == p) image.color = new Color(Peach.r, Peach.g, Peach.b, 0.45f);
                 if (impactCells.Contains(p)) image.color = Gold;
+                if (targetingSkill != KaitSkill.None && run.EnemyAt(p) != null) image.color = Color.Lerp(image.color, Cyan, 0.55f);
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
@@ -377,7 +532,9 @@ public sealed class KaitGame : MonoBehaviour
                     string intent = enemy.type == KaitEnemyType.Archer && enemy.archerState == KaitArcherState.Aim
                         ? $"瞄准 {DirectionGlyph(enemy.intent.direction)}"
                         : IntentGlyph(enemy.intent.type, enemy.intent.direction);
-                    label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type} {enemy.hp}\n准备" : $"{type} HP{enemy.hp}\n{intent}";
+                    if (enemy.type == KaitEnemyType.ShieldKnight) intent = $"朝向 {DirectionGlyph(enemy.facing)}";
+                    string frozen = enemy.frozenActions > 0 ? " 冻" : "";
+                    label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type} {enemy.hp}\n准备{frozen}" : $"{type} HP{enemy.hp}\n{intent}{frozen}";
                     label.color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
                 }
                 if (!hideKate && kate == p)
@@ -440,6 +597,8 @@ public sealed class KaitGame : MonoBehaviour
                 maxHp = enemy.maxHp,
                 life = enemy.life,
                 archerState = enemy.archerState,
+                frozenActions = enemy.frozenActions,
+                facing = enemy.facing,
                 intent = intent
             });
         }
@@ -727,7 +886,8 @@ public sealed class KaitGame : MonoBehaviour
     private void ShowEnd()
     {
         endOverlay.SetActive(true);
-        string reason = run.won ? "合成 64 · 本局胜利" : "凯特 HP 归零 · 本局失败";
+        endOverlay.transform.SetAsLastSibling();
+        string reason = run.won ? "击败盾骑士 · 本局胜利" : "凯特 HP 归零 · 本局失败";
         endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    主动刹车：{run.activeWallStops}\n刷怪抑制：{run.spawnSuppressedCount}    友伤：{run.friendlyFireDamage}";
     }
 
@@ -854,6 +1014,7 @@ public sealed class KaitGame : MonoBehaviour
         if (type == KaitEnemyType.Swordsman) return "剑";
         if (type == KaitEnemyType.Archer) return "弓";
         if (type == KaitEnemyType.Guard) return "盾";
+        if (type == KaitEnemyType.ShieldKnight) return "骑";
         return "精";
     }
 
@@ -864,6 +1025,7 @@ public sealed class KaitGame : MonoBehaviour
         if (type == KaitEnemyType.Swordsman) return Hex("#A85B68");
         if (type == KaitEnemyType.Guard) return Hex("#875064");
         if (type == KaitEnemyType.Archer) return Hex("#507C83");
+        if (type == KaitEnemyType.ShieldKnight) return Hex("#3D6070");
         return Hex("#693347");
     }
 
