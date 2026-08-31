@@ -14,8 +14,14 @@ public sealed class KaitGame : MonoBehaviour
     private readonly KaitRun run = new KaitRun();
     private Font uiFont;
     private Canvas canvas;
+    private Sprite roundedSprite;
     private Image[] battleCells;
     private Text[] battleLabels;
+    private Text[] battleHpLabels;
+    private Text[] battleFacingLabels;
+    private Text[] battleStatusLabels;
+    private Image[] battleWarningLines;
+    private Image[] battleRifts;
     private Image[] battleDangerBadges;
     private Image[] threatCells;
     private Text[] threatLabels;
@@ -27,6 +33,7 @@ public sealed class KaitGame : MonoBehaviour
     private readonly Button[] skillButtons = new Button[3];
     private readonly Text[] skillButtonLabels = new Text[3];
     private GameObject skillChoiceOverlay;
+    private GameObject controlsPanel;
     private Text skillChoiceTitle;
     private readonly Button[] skillChoiceButtons = new Button[2];
     private readonly Text[] skillChoiceLabels = new Text[2];
@@ -42,6 +49,9 @@ public sealed class KaitGame : MonoBehaviour
     private int[,] displayedThreat;
     private bool hideThreatValues;
     private readonly HashSet<Vector2Int> impactCells = new HashSet<Vector2Int>();
+    private Image edgePulse;
+    private Text scoreText;
+    private int displayedScore;
     private string logPath;
 
     private sealed class ThreatVisual
@@ -103,6 +113,11 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator SetupAfterSceneLoad()
     {
         yield return null;
+        if (roundedSprite == null)
+        {
+            foreach (Image source in FindObjectsByType<Image>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                if (source.sprite != null && source.sprite.name == "Tile_0") { roundedSprite = source.sprite; break; }
+        }
         foreach (Canvas oldCanvas in FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             if (oldCanvas != canvas) oldCanvas.gameObject.SetActive(false);
         foreach (GameManager oldManager in FindObjectsByType<GameManager>(FindObjectsInactive.Include, FindObjectsSortMode.None)) oldManager.enabled = false;
@@ -150,14 +165,18 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait · Dual-Board Strategy Prototype v0.3.7", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeText("三阶段技能成长 · 合成128召唤盾骑士", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
+        MakeText("Kait · 双盘战略 v0.4", bg.transform, new Vector2(-320, 406), new Vector2(900, 54), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("读图行动 · 连锁转向 · 非阻塞成长", bg.transform, new Vector2(480, 407), new Vector2(520, 42), 17, Peach, TextAnchor.MiddleRight);
 
         BuildBattleBoard(bg.transform);
         BuildThreatBoard(bg.transform);
         BuildSidebar(bg.transform);
         BuildEndOverlay(bg.transform);
         BuildSkillChoiceOverlay(bg.transform);
+        edgePulse = Rect("Chain Edge Pulse", bg.transform, Vector2.zero, new Vector2(1570, 870), new Color(Coral.r, Coral.g, Coral.b, 0f));
+        Stretch(edgePulse.rectTransform, 15);
+        edgePulse.raycastTarget = false;
+        edgePulse.transform.SetAsLastSibling();
     }
 
     private void BuildBattleBoard(Transform parent)
@@ -180,6 +199,11 @@ public sealed class KaitGame : MonoBehaviour
 
         battleCells = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleHpLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleFacingLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleStatusLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleWarningLines = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleRifts = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleDangerBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         for (int visualY = KaitRun.BattleSize - 1; visualY >= 0; visualY--)
         {
@@ -190,8 +214,20 @@ public sealed class KaitGame : MonoBehaviour
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
-                battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 19, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                Image warning = Rect("Attack Warning", cell.transform, Vector2.zero, new Vector2(82, 82), new Color(Wine.r, Wine.g, Wine.b, 0.38f));
+                warning.raycastTarget = false;
+                warning.gameObject.SetActive(false);
+                battleWarningLines[index] = warning;
+                Image rift = Rect("Spawn Rift", cell.transform, Vector2.zero, new Vector2(72, 72), new Color(Coral.r, Coral.g, Coral.b, 0.3f));
+                rift.raycastTarget = false;
+                rift.rectTransform.localRotation = Quaternion.Euler(0f, 0f, 45f);
+                rift.gameObject.SetActive(false);
+                battleRifts[index] = rift;
+                battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 34, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
+                battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -30), new Vector2(50, 28), 22, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                battleHpLabels[index] = MakeText("", cell.transform, new Vector2(30, 31), new Vector2(30, 26), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-30, 31), new Vector2(30, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Image dangerBadge = Rect("Rift Danger Badge", cell.transform, new Vector2(31, 31), new Vector2(30, 30), Gold);
                 dangerBadge.raycastTarget = false;
                 Text dangerBadgeText = MakeText("!", dangerBadge.transform, Vector2.zero, new Vector2(30, 30), 22, Void, TextAnchor.MiddleCenter, FontStyle.Bold);
@@ -235,47 +271,47 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildSidebar(Transform parent)
     {
-        Image info = Rect("Run Info", parent, new Vector2(477, -119), new Vector2(420, 82), Panel);
-        turnText = MakeText("", info.transform, new Vector2(0, 16), new Vector2(380, 34), 18, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        statusText = MakeText("", info.transform, new Vector2(0, -18), new Vector2(380, 30), 15, Peach, TextAnchor.MiddleLeft);
+        Image info = Rect("Run Info", parent, new Vector2(477, -107), new Vector2(420, 72), Panel);
+        turnText = MakeText("", info.transform, new Vector2(0, 15), new Vector2(380, 32), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        statusText = MakeText("", info.transform, new Vector2(0, -17), new Vector2(310, 26), 13, Peach, TextAnchor.MiddleLeft);
+        scoreText = MakeText("0", info.transform, new Vector2(151, -17), new Vector2(70, 28), 18, Gold, TextAnchor.MiddleRight, FontStyle.Bold);
 
-        Image rules = Rect("Skills", parent, new Vector2(477, -249), new Vector2(420, 156), Panel);
-        MakeText("技能 · 16 / 32 / 64 三阶段成长", rules.transform, new Vector2(0, 54), new Vector2(380, 28), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 25), new Vector2(380, 24), 13, Peach, TextAnchor.MiddleLeft);
+        Image rules = Rect("Skills", parent, new Vector2(477, -239), new Vector2(420, 174), Panel);
+        MakeText("技能栏", rules.transform, new Vector2(0, 62), new Vector2(380, 28), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 34), new Vector2(380, 24), 13, Peach, TextAnchor.MiddleLeft);
         for (int i = 0; i < skillButtons.Length; i++)
         {
             int slot = i;
-            skillButtons[i] = MakeButton(rules.transform, new Vector2(-126 + i * 126, -28), new Vector2(116, 62), "未解锁");
+            skillButtons[i] = MakeButton(rules.transform, new Vector2(-126 + i * 126, -25), new Vector2(116, 74), "未解锁");
             skillButtonLabels[i] = skillButtons[i].GetComponentInChildren<Text>();
             skillButtons[i].onClick.AddListener(() => HandleSkillButton(slot));
         }
 
-        Image controls = Rect("Controls", parent, new Vector2(477, -393), new Vector2(420, 114), Panel);
-        MakeText("WASD / 方向键", controls.transform, new Vector2(-88, 30), new Vector2(180, 28), 14, Peach, TextAnchor.MiddleLeft);
-        MakeButton(controls.transform, new Vector2(-20, 28), new Vector2(48, 42), "W").onClick.AddListener(() => HandleDirection(KaitDirection.Up));
-        MakeButton(controls.transform, new Vector2(-72, -20), new Vector2(48, 42), "A").onClick.AddListener(() => HandleDirection(KaitDirection.Left));
-        MakeButton(controls.transform, new Vector2(-20, -20), new Vector2(48, 42), "S").onClick.AddListener(() => HandleDirection(KaitDirection.Down));
-        MakeButton(controls.transform, new Vector2(32, -20), new Vector2(48, 42), "D").onClick.AddListener(() => HandleDirection(KaitDirection.Right));
-        MakeButton(controls.transform, new Vector2(139, 0), new Vector2(112, 72), "重新开始\nR").onClick.AddListener(NewRun);
+        Image controls = Rect("Controls", parent, new Vector2(477, -412), new Vector2(420, 62), Panel);
+        controlsPanel = controls.gameObject;
+        MakeText("WASD / 方向键", controls.transform, new Vector2(-118, 0), new Vector2(145, 28), 13, Peach, TextAnchor.MiddleLeft);
+        MakeButton(controls.transform, new Vector2(-23, 0), new Vector2(38, 38), "W").onClick.AddListener(() => HandleDirection(KaitDirection.Up));
+        MakeButton(controls.transform, new Vector2(19, 0), new Vector2(38, 38), "A").onClick.AddListener(() => HandleDirection(KaitDirection.Left));
+        MakeButton(controls.transform, new Vector2(61, 0), new Vector2(38, 38), "S").onClick.AddListener(() => HandleDirection(KaitDirection.Down));
+        MakeButton(controls.transform, new Vector2(103, 0), new Vector2(38, 38), "D").onClick.AddListener(() => HandleDirection(KaitDirection.Right));
+        MakeButton(controls.transform, new Vector2(160, 0), new Vector2(58, 38), "R").onClick.AddListener(NewRun);
 
         helpText = MakeText("", parent, new Vector2(0, -424), new Vector2(760, 35), 15, Peach, TextAnchor.MiddleCenter);
     }
 
     private void BuildSkillChoiceOverlay(Transform parent)
     {
-        Image shade = Rect("Skill Choice Overlay", parent, Vector2.zero, new Vector2(1600, 900), new Color(0.08f, 0.06f, 0.08f, 0.9f));
-        Stretch(shade.rectTransform, 0);
-        skillChoiceOverlay = shade.gameObject;
-        Image card = Rect("Skill Choice Card", shade.transform, Vector2.zero, new Vector2(650, 330), Panel);
-        skillChoiceTitle = MakeText("阶段成长", card.transform, new Vector2(0, 108), new Vector2(580, 60), 30, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        Image card = Rect("Skill Choice Side Panel", parent, new Vector2(477, -389), new Vector2(420, 104), Panel);
+        skillChoiceOverlay = card.gameObject;
+        skillChoiceTitle = MakeText("成长待选择 · 战斗不会暂停", card.transform, new Vector2(0, 35), new Vector2(380, 24), 14, Gold, TextAnchor.MiddleLeft, FontStyle.Bold);
         for (int i = 0; i < 2; i++)
         {
             int choice = i;
-            skillChoiceButtons[i] = MakeButton(card.transform, new Vector2(-155 + i * 310, -20), new Vector2(270, 150), "");
+            skillChoiceButtons[i] = MakeButton(card.transform, new Vector2(-98 + i * 196, -17), new Vector2(186, 62), "");
             skillChoiceLabels[i] = skillChoiceButtons[i].GetComponentInChildren<Text>();
+            skillChoiceLabels[i].fontSize = 12;
             skillChoiceButtons[i].onClick.AddListener(() => ChoosePendingSkill(choice));
         }
-        MakeText("选择不消耗回合；每个里程碑只能获得一个技能", card.transform, new Vector2(0, -125), new Vector2(580, 34), 15, Peach, TextAnchor.MiddleCenter);
         skillChoiceOverlay.SetActive(false);
     }
 
@@ -298,19 +334,21 @@ public sealed class KaitGame : MonoBehaviour
         displayKate = null;
         trailCell = null;
         targetingSkill = KaitSkill.None;
+        displayedScore = 0;
         int seed = Environment.TickCount;
         run.Reset(seed);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
         File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,internalMerges,internalSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
         skillChoiceOverlay.SetActive(false);
+        if (controlsPanel != null) controlsPanel.SetActive(true);
         statusText.text = "选择全局方向：凯特与威胁盘分别响应。";
         RefreshAll();
     }
 
     private void HandleDirection(KaitDirection direction)
     {
-        if (busy || run.ended || run.pendingSkillMilestone > 0) return;
+        if (busy || run.ended) return;
         targetingSkill = KaitSkill.None;
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
@@ -345,10 +383,13 @@ public sealed class KaitGame : MonoBehaviour
 
         if (result.dreadSlash)
         {
+            yield return AnimateDreadSlashWave(result.globalDirection);
             yield return AnimateAllEnemyActions(result.enemyActions.FindAll(a => a.type == KaitIntentType.Move));
             yield return AnimateAllEnemyActions(result.enemyActions.FindAll(a => a.type != KaitIntentType.Move));
         }
         else yield return AnimateAllEnemyActions(result.enemyActions);
+
+        yield return AnimateCombatFeedback(result);
 
         animatedEnemies = null;
         animatedSpawns = null;
@@ -364,6 +405,10 @@ public sealed class KaitGame : MonoBehaviour
             if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
         if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
 
+        int scoreTarget = run.kills * 100;
+        if (scoreTarget > displayedScore) yield return AnimateScoreGain(scoreTarget - displayedScore, scoreTarget);
+        if (result.playerKilledEnemyIds.Count > 0) StartCoroutine(AnimateChainEdge(Mathf.Max(1, result.chainKillCount)));
+
         displayedThreat = null;
         statusText.text = result.message + (result.merges.Count > 0 ? $" · 威胁合并 ×{result.merges.Count}" : "");
         busy = false;
@@ -376,8 +421,9 @@ public sealed class KaitGame : MonoBehaviour
         RefreshBattle();
         RefreshThreat();
         RefreshSkillUI();
-        turnText.text = $"回合 {run.turn}   凯特 HP {run.kateHp}/{run.config.kateMaxHp}   敌人 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}   M{run.momentum}";
-        helpText.text = targetingSkill != KaitSkill.None ? "点选战场中的存活敌人作为技能目标" : run.chainActive ? "连杀方向：只影响凯特；不移动威胁盘、不推进裂隙/敌军/新2" : "全局方向：任一盘可响应即推进；凯特贴墙时可用回合整理威胁盘";
+        turnText.text = $"回合 {run.turn}   HP {run.kateHp}/{run.config.kateMaxHp}   M{run.momentum}   敌 {run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count}";
+        scoreText.text = displayedScore.ToString();
+        helpText.text = targetingSkill != KaitSkill.None ? "点选目标" : run.shadowStepAvailable ? "踏影：选择额外移动" : run.chainActive ? "选择连锁方向" : "WASD / 方向键移动";
         ShowPendingSkillChoice();
         if (run.ended) ShowEnd();
     }
@@ -391,7 +437,7 @@ public sealed class KaitGame : MonoBehaviour
             int cooldown = unlocked ? run.SkillCooldown(skill) : 0;
             skillButtonLabels[i].text = !unlocked ? "未解锁" : $"{KaitRun.SkillName(skill)}\n{(cooldown > 0 ? $"CD {cooldown}" : skill == KaitSkill.ShadowStep ? "击杀后点按" : "可用")}";
             bool passiveReady = skill == KaitSkill.ShadowStep && run.chainActive && run.shadowStepAvailable;
-            skillButtons[i].interactable = unlocked && !busy && run.pendingSkillMilestone == 0 && !run.ended &&
+            skillButtons[i].interactable = unlocked && !busy && !run.ended &&
                 (skill == KaitSkill.ShadowStep ? passiveReady : !run.chainActive && cooldown == 0);
             skillButtons[i].GetComponent<Image>().color = targetingSkill == skill ? Cyan : PanelLight;
         }
@@ -404,12 +450,18 @@ public sealed class KaitGame : MonoBehaviour
     private void ShowPendingSkillChoice()
     {
         int milestone = run.pendingSkillMilestone;
-        if (milestone == 0 || run.ended) { skillChoiceOverlay.SetActive(false); return; }
+        if (milestone == 0 || run.ended)
+        {
+            skillChoiceOverlay.SetActive(false);
+            if (controlsPanel != null) controlsPanel.SetActive(!run.ended);
+            return;
+        }
         List<KaitSkill> choices = run.SkillChoicesForMilestone(milestone);
         if (choices.Count != 2) return;
         skillChoiceTitle.text = $"合成 {milestone} · 选择一个成长";
         for (int i = 0; i < 2; i++) skillChoiceLabels[i].text = SkillChoiceDescription(choices[i]);
         skillChoiceOverlay.SetActive(true);
+        if (controlsPanel != null) controlsPanel.SetActive(false);
         skillChoiceOverlay.transform.SetAsLastSibling();
     }
 
@@ -441,7 +493,11 @@ public sealed class KaitGame : MonoBehaviour
             RefreshAll();
             return;
         }
-        if (run.TryUseSkill(skill, -1, out string message)) statusText.text = message;
+        if (run.TryUseSkill(skill, -1, out string message))
+        {
+            statusText.text = message;
+            StartCoroutine(AnimateSkillPulse(skill));
+        }
         else statusText.text = message;
         RefreshAll();
     }
@@ -452,7 +508,11 @@ public sealed class KaitGame : MonoBehaviour
         KaitEnemy target = run.EnemyAt(cell);
         if (target == null) { statusText.text = "这里没有可选敌人"; return; }
         KaitSkill skill = targetingSkill;
-        if (run.TryUseSkill(skill, target.id, out string message)) targetingSkill = KaitSkill.None;
+        if (run.TryUseSkill(skill, target.id, out string message))
+        {
+            targetingSkill = KaitSkill.None;
+            StartCoroutine(PulseBattleCell(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
+        }
         statusText.text = message;
         RefreshAll();
     }
@@ -460,7 +520,7 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator AnimateShadowStep(Vector2Int start)
     {
         busy = true; hideKate = true; RefreshBattle();
-        RectTransform token = CreateFloatingToken("凯", Coral, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 28);
+        RectTransform token = CreateFloatingToken("♞", Coral, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 38);
         Vector3 from = battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position;
         Vector3 to = battleCells[run.katePos.x + run.katePos.y * KaitRun.BattleSize].rectTransform.position;
         float elapsed = 0f;
@@ -492,6 +552,7 @@ public sealed class KaitGame : MonoBehaviour
     {
         Vector2Int kate = displayKate ?? run.katePos;
         bool kateOnRift = false;
+        List<KaitDirection> allowed = run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
         for (int y = 0; y < KaitRun.BattleSize; y++)
         {
             for (int x = 0; x < KaitRun.BattleSize; x++)
@@ -501,18 +562,37 @@ public sealed class KaitGame : MonoBehaviour
                 Image image = battleCells[index];
                 Text label = battleLabels[index];
                 label.text = "";
+                battleHpLabels[index].text = "";
+                battleFacingLabels[index].text = "";
+                battleStatusLabels[index].text = "";
+                battleWarningLines[index].gameObject.SetActive(false);
+                battleRifts[index].gameObject.SetActive(false);
                 image.color = run.walls[x, y] ? Void : Hex("#796573");
-                if (run.walls[x, y] && x > 0 && y > 0 && x < KaitRun.BattleSize - 1 && y < KaitRun.BattleSize - 1) { label.text = "柱"; label.color = Peach; }
-                Color? intentTint = IntentTintAt(p);
-                if (!run.walls[x, y] && intentTint.HasValue) image.color = Color.Lerp(image.color, intentTint.Value, 0.55f);
-                if (run.chainActive)
+                if (run.walls[x, y] && x > 0 && y > 0 && x < KaitRun.BattleSize - 1 && y < KaitRun.BattleSize - 1)
                 {
-                    foreach (KaitDirection choice in run.AllowedTurnDirections())
-                        if (run.katePos + KaitRun.Delta(choice) == p) image.color = Cyan;
+                    label.text = "◆";
+                    label.color = Peach;
+                    label.fontSize = 30;
                 }
-                if (trailCell.HasValue && trailCell.Value == p) image.color = new Color(Peach.r, Peach.g, Peach.b, 0.45f);
+                Color? intentTint = IntentTintAt(p);
+                if (!run.walls[x, y] && intentTint.HasValue)
+                {
+                    Image warning = battleWarningLines[index];
+                    warning.gameObject.SetActive(true);
+                    warning.color = new Color(intentTint.Value.r, intentTint.Value.g, intentTint.Value.b, 0.42f);
+                    warning.rectTransform.sizeDelta = new Vector2(76, 12);
+                    warning.rectTransform.localRotation = Quaternion.Euler(0f, 0f, IntentAngleAt(p));
+                }
+                if (run.chainActive)
+                    foreach (KaitDirection choice in allowed)
+                        if (run.katePos + KaitRun.Delta(choice) == p)
+                        {
+                            label.text = run.shadowStepAvailable ? $"•{DirectionGlyph(KaitRun.Delta(choice))}" : DirectionGlyph(KaitRun.Delta(choice));
+                            label.fontSize = run.shadowStepAvailable ? 27 : 34;
+                            label.color = run.shadowStepAvailable ? Gold : Cyan;
+                        }
                 if (impactCells.Contains(p)) image.color = Gold;
-                if (targetingSkill != KaitSkill.None && run.EnemyAt(p) != null) image.color = Color.Lerp(image.color, Cyan, 0.55f);
+                if (targetingSkill != KaitSkill.None && run.EnemyAt(p) != null) image.color = Color.Lerp(image.color, Cyan, 0.35f);
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
@@ -521,35 +601,41 @@ public sealed class KaitGame : MonoBehaviour
                 if (showRiftDanger) kateOnRift = true;
                 if (spawn != null)
                 {
-                    image.color = intentTint.HasValue ? Color.Lerp(Wine, intentTint.Value, 0.55f) : Wine;
-                    label.text = $"裂\nT{spawn.tier}";
-                    label.color = Cream;
+                    Image rift = battleRifts[index];
+                    rift.gameObject.SetActive(true);
+                    rift.color = new Color(Coral.r, Coral.g, Coral.b, 0.48f);
+                    if (enemy == null && label.text.Length == 0) { label.text = "✣"; label.fontSize = 30; label.color = Coral; }
+                    battleStatusLabels[index].text = spawn.turnsUntilSpawn > 0 ? spawn.turnsUntilSpawn.ToString() : "!";
+                    battleStatusLabels[index].color = Gold;
                 }
                 if (enemy != null)
                 {
-                    image.color = EnemyColor(enemy.type, enemy.life);
-                    string type = EnemyGlyph(enemy.type);
-                    string intent = enemy.type == KaitEnemyType.Archer && enemy.archerState == KaitArcherState.Aim
-                        ? $"瞄准 {DirectionGlyph(enemy.intent.direction)}"
-                        : IntentGlyph(enemy.intent.type, enemy.intent.direction);
-                    if (enemy.type == KaitEnemyType.ShieldKnight) intent = $"朝向 {DirectionGlyph(enemy.facing)}";
-                    string frozen = enemy.frozenActions > 0 ? " 冻" : "";
-                    label.text = enemy.life == KaitEnemyLife.Preparing ? $"{type} {enemy.hp}\n准备{frozen}" : $"{type} HP{enemy.hp}\n{intent}{frozen}";
-                    label.color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
+                    label.text = EnemyGlyph(enemy.type);
+                    label.fontSize = enemy.type == KaitEnemyType.ShieldKnight ? 42 : 36;
+                    label.color = enemy.frozenActions > 0 ? Cyan : EnemyColor(enemy.type, enemy.life);
+                    if (enemy.life == KaitEnemyLife.Preparing) label.color = new Color(label.color.r, label.color.g, label.color.b, 0.62f);
+                    battleHpLabels[index].text = enemy.hp.ToString();
+                    battleHpLabels[index].color = Cream;
+                    Vector2Int facing = enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction;
+                    battleFacingLabels[index].text = DirectionGlyph(facing);
+                    battleFacingLabels[index].color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
+                    if (enemy.frozenActions > 0) { battleStatusLabels[index].text = "❄"; battleStatusLabels[index].color = Cyan; }
+                    if (run.forcedTargetEnemyId == enemy.id) { battleStatusLabels[index].text = "!"; battleStatusLabels[index].color = Coral; }
                 }
                 if (!hideKate && kate == p)
                 {
-                    image.color = showRiftDanger ? Color.Lerp(Coral, Gold, 0.3f) : Coral;
-                    label.text = showRiftDanger
-                        ? $"凯 HP{run.kateHp}\n裂隙危险"
-                        : run.chainActive ? $"凯 HP{run.kateHp}\nM{run.momentum}" : $"凯\nHP{run.kateHp}";
-                    label.fontSize = showRiftDanger || run.chainActive ? 18 : 28;
+                    image.color = showRiftDanger ? Color.Lerp(image.color, Gold, 0.32f) : image.color;
+                    label.text = "♞";
+                    label.fontSize = 43;
                     label.color = Cream;
+                    battleHpLabels[index].text = run.kateHp.ToString();
+                    battleHpLabels[index].color = Cream;
+                    battleFacingLabels[index].text = run.chainActive ? DirectionGlyph(KaitRun.Delta(run.currentDirection)) : "";
+                    if (showRiftDanger) { battleStatusLabels[index].text = "!"; battleStatusLabels[index].color = Gold; }
                 }
-                else label.fontSize = 17;
             }
         }
-        dangerText.text = kateOnRift ? $"危险：停留在裂隙上，将受到 {run.config.riftBlockDamage} 点伤害" : "";
+        dangerText.text = kateOnRift ? "危险格 !" : "";
     }
 
     private void RefreshThreat()
@@ -644,7 +730,8 @@ public sealed class KaitGame : MonoBehaviour
 
         hideKate = true;
         RefreshBattle();
-        RectTransform token = CreateFloatingToken("凯", Coral, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 28);
+        RectTransform token = CreateFloatingToken("♞", Coral, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(94, 94), 38);
+        var ghosts = new List<RectTransform>();
         var points = new List<Vector3> { battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position };
         foreach (Vector2Int cell in result.katePath) points.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform.position);
 
@@ -663,6 +750,14 @@ public sealed class KaitGame : MonoBehaviour
             {
                 lastReached++;
                 Vector2Int cell = result.katePath[lastReached - 1];
+                int momentumAtCell = result.pathMomentum.Count >= lastReached ? result.pathMomentum[lastReached - 1] : run.momentum;
+                RectTransform ghost = CreateGhostToken(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform, momentumAtCell);
+                ghosts.Add(ghost);
+                while (ghosts.Count > Mathf.Clamp(momentumAtCell, 1, 5))
+                {
+                    Destroy(ghosts[0].gameObject);
+                    ghosts.RemoveAt(0);
+                }
                 if (animatedEnemies.Exists(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id)))
                 {
                     animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
@@ -680,6 +775,7 @@ public sealed class KaitGame : MonoBehaviour
         }
         token.position = points[points.Count - 1];
         Destroy(token.gameObject);
+        foreach (RectTransform ghost in ghosts) StartCoroutine(FadeAndDestroy(ghost, 0.22f));
         animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
         impactCells.Clear();
         hideKate = false;
@@ -780,6 +876,19 @@ public sealed class KaitGame : MonoBehaviour
         return null;
     }
 
+    private float IntentAngleAt(Vector2Int p)
+    {
+        List<KaitEnemy> source = animatedEnemies ?? run.enemies;
+        foreach (KaitEnemy enemy in source)
+        {
+            if (enemy.life != KaitEnemyLife.Active || !enemy.intent.affectedCells.Contains(p)) continue;
+            Vector2Int direction = enemy.intent.direction;
+            if (direction == Vector2Int.up || direction == Vector2Int.down) return 90f;
+            if (direction == Vector2Int.left || direction == Vector2Int.right) return 0f;
+        }
+        return 45f;
+    }
+
     private bool BlocksIntentLine(Vector2Int p, List<KaitEnemy> source)
     {
         if (run.walls[p.x, p.y]) return true;
@@ -841,6 +950,154 @@ public sealed class KaitGame : MonoBehaviour
         Text text = MakeText(label, image.transform, Vector2.zero, size, fontSize, color.grayscale < 0.55f ? Cream : Void, TextAnchor.MiddleCenter, FontStyle.Bold);
         Stretch(text.rectTransform, 2);
         return rect;
+    }
+
+    private RectTransform CreateGhostToken(RectTransform source, int momentumValue)
+    {
+        float tier = Mathf.Clamp01((momentumValue - 1) / 4f);
+        Color ghostColor = Color.Lerp(new Color(1f, 1f, 1f, 0.22f), new Color(Coral.r, 0.18f, 0.24f, 0.48f), tier);
+        Image image = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(72, 72), ghostColor);
+        image.raycastTarget = false;
+        image.rectTransform.position = source.position;
+        Text glyph = MakeText("♞", image.transform, Vector2.zero, new Vector2(64, 64), 31, new Color(Cream.r, Cream.g, Cream.b, 0.62f), TextAnchor.MiddleCenter, FontStyle.Bold);
+        Stretch(glyph.rectTransform, 2);
+        return image.rectTransform;
+    }
+
+    private IEnumerator FadeAndDestroy(RectTransform rect, float duration)
+    {
+        if (rect == null) yield break;
+        CanvasGroup group = rect.gameObject.AddComponent<CanvasGroup>();
+        float elapsed = 0f;
+        while (elapsed < duration && rect != null)
+        {
+            group.alpha = 1f - elapsed / duration;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        if (rect != null) Destroy(rect.gameObject);
+    }
+
+    private IEnumerator AnimateCombatFeedback(KaitTurnResult result)
+    {
+        bool hasImpact = false;
+        if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
+        {
+            StartCoroutine(FloatDamage(result.blockedEnemyCell, result.damageDealt, Coral));
+            hasImpact = true;
+        }
+        foreach (KaitEnemyAction action in result.enemyActions)
+            if (action.hitKate)
+            {
+                StartCoroutine(FloatDamage(run.katePos, Mathf.Max(1, action.damage), Gold));
+                hasImpact = true;
+            }
+        foreach (Vector2Int cell in result.killedEnemyCells)
+            if (InsideBattle(cell))
+            {
+                StartCoroutine(KillFlashAt(cell));
+                hasImpact = true;
+            }
+        if (hasImpact) yield return new WaitForSecondsRealtime(0.055f);
+    }
+
+    private IEnumerator FloatDamage(Vector2Int cell, int amount, Color color)
+    {
+        RectTransform anchor = battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform;
+        Text text = MakeText($"-{amount}", canvas.transform, Vector2.zero, new Vector2(86, 42), 24, color, TextAnchor.MiddleCenter, FontStyle.Bold);
+        text.raycastTarget = false;
+        text.rectTransform.position = anchor.position + new Vector3(25f, 20f, 0f);
+        Vector3 from = text.rectTransform.position;
+        Color original = text.color;
+        float elapsed = 0f;
+        const float duration = 0.44f;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            text.rectTransform.position = from + Vector3.up * (30f * t);
+            text.color = new Color(original.r, original.g, original.b, 1f - t);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        Destroy(text.gameObject);
+    }
+
+    private IEnumerator KillFlashAt(Vector2Int cell)
+    {
+        RectTransform anchor = battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform;
+        Image flash = Rect("Kill Highlight", canvas.transform, Vector2.zero, new Vector2(88, 88), new Color(Cream.r, Cream.g, Cream.b, 0.85f));
+        flash.raycastTarget = false;
+        flash.rectTransform.position = anchor.position;
+        yield return ScalePulse(flash.rectTransform, 0.72f, 1.16f, 0.08f);
+        yield return FadeAndDestroy(flash.rectTransform, 0.2f);
+    }
+
+    private IEnumerator AnimateScoreGain(int amount, int target)
+    {
+        Text popup = MakeText($"+{amount}", canvas.transform, Vector2.zero, new Vector2(110, 38), 22, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
+        popup.raycastTarget = false;
+        popup.rectTransform.position = scoreText.rectTransform.position + new Vector3(0f, -28f, 0f);
+        Vector3 from = popup.rectTransform.position;
+        Color original = popup.color;
+        float elapsed = 0f;
+        const float duration = 0.32f;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            popup.rectTransform.position = Vector3.Lerp(from, scoreText.rectTransform.position, t);
+            popup.color = new Color(original.r, original.g, original.b, 1f - t * 0.8f);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        displayedScore = target;
+        scoreText.text = displayedScore.ToString();
+        Destroy(popup.gameObject);
+    }
+
+    private IEnumerator AnimateChainEdge(int chainCount)
+    {
+        if (edgePulse == null || chainCount < 2) yield break;
+        float peak = Mathf.Min(0.18f, 0.055f + chainCount * 0.018f);
+        float elapsed = 0f;
+        const float duration = 0.18f;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            float alpha = Mathf.Sin(t * Mathf.PI) * peak;
+            edgePulse.color = new Color(Coral.r, 0.12f, 0.18f, alpha);
+            edgePulse.rectTransform.localScale = Vector3.one * (1f + Mathf.Sin(t * Mathf.PI * 4f) * 0.003f * Mathf.Min(chainCount, 6));
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        edgePulse.color = new Color(Coral.r, Coral.g, Coral.b, 0f);
+        edgePulse.rectTransform.localScale = Vector3.one;
+    }
+
+    private IEnumerator AnimateSkillPulse(KaitSkill skill)
+    {
+        int slot = run.skills.IndexOf(skill);
+        if (slot >= 0 && slot < skillButtons.Length)
+            yield return ScalePulse(skillButtons[slot].GetComponent<RectTransform>(), 0.92f, 1.08f, 0.14f);
+        if (skill == KaitSkill.SwiftBoots || skill == KaitSkill.CatAgility)
+            yield return PulseBattleCell(run.katePos, Coral, 0.15f);
+    }
+
+    private IEnumerator AnimateDreadSlashWave(KaitDirection direction)
+    {
+        Vector2Int delta = KaitRun.Delta(direction);
+        Vector2Int p = run.katePos + delta;
+        var waves = new List<RectTransform>();
+        while (InsideBattle(p) && !run.walls[p.x, p.y])
+        {
+            Image wave = Rect("Dread Slash Wave", canvas.transform, Vector2.zero, new Vector2(60, 34), new Color(Coral.r, Coral.g, Coral.b, 0.72f));
+            wave.raycastTarget = false;
+            wave.rectTransform.position = battleCells[p.x + p.y * KaitRun.BattleSize].rectTransform.position;
+            wave.rectTransform.localRotation = Quaternion.Euler(0f, 0f, direction == KaitDirection.Up || direction == KaitDirection.Down ? 90f : 0f);
+            waves.Add(wave.rectTransform);
+            yield return new WaitForSecondsRealtime(0.025f);
+            p += delta;
+        }
+        foreach (RectTransform wave in waves) StartCoroutine(FadeAndDestroy(wave, 0.16f));
     }
 
     private IEnumerator PulseBattleCell(Vector2Int cell, Color color, float duration)
@@ -943,6 +1200,11 @@ public sealed class KaitGame : MonoBehaviour
         rt.anchoredPosition = position;
         Image image = go.GetComponent<Image>();
         image.color = color;
+        if (roundedSprite != null)
+        {
+            image.sprite = roundedSprite;
+            image.type = Image.Type.Sliced;
+        }
         return image;
     }
 
@@ -1010,12 +1272,12 @@ public sealed class KaitGame : MonoBehaviour
 
     private static string EnemyGlyph(KaitEnemyType type)
     {
-        if (type == KaitEnemyType.Grunt) return "兵";
-        if (type == KaitEnemyType.Swordsman) return "剑";
-        if (type == KaitEnemyType.Archer) return "弓";
-        if (type == KaitEnemyType.Guard) return "盾";
-        if (type == KaitEnemyType.ShieldKnight) return "骑";
-        return "精";
+        if (type == KaitEnemyType.Grunt) return "●";
+        if (type == KaitEnemyType.Swordsman) return "⚔";
+        if (type == KaitEnemyType.Archer) return "➶";
+        if (type == KaitEnemyType.Guard) return "⬟";
+        if (type == KaitEnemyType.ShieldKnight) return "♜";
+        return "✦";
     }
 
     private static Color EnemyColor(KaitEnemyType type, KaitEnemyLife life)

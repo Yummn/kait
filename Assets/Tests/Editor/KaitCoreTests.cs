@@ -856,6 +856,29 @@ public sealed class KaitCoreTests
         Assert.IsTrue(run.ended); Assert.IsTrue(run.won); Assert.AreEqual("Victory: Shield Knight", run.endReason); Assert.IsTrue(result.turnComplete);
     }
 
+    [Test]
+    public void V040_T01_PendingSkillChoice_DoesNotBlockGlobalInput()
+    {
+        KaitRun run = OpenRun(4001, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 2; QueueMilestone(run, 16);
+        int before = run.turn; KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.IsTrue(result.valid); Assert.Greater(run.turn, before); Assert.AreEqual(16, run.pendingSkillMilestone);
+    }
+
+    [Test]
+    public void V040_T02_PendingLaterMilestone_DoesNotBlockUnlockedSkill()
+    {
+        KaitRun run = OpenRun(4002); Unlock(run, 16, KaitSkill.SwiftBoots); QueueMilestone(run, 32);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.SwiftBoots, -1, out string message), message);
+        Assert.AreEqual(32, run.pendingSkillMilestone);
+    }
+
+    [Test]
+    public void V040_T03_ChoosingPendingSkill_StillDoesNotAdvanceTurn()
+    {
+        KaitRun run = OpenRun(4003); QueueMilestone(run, 16); int before = run.turn;
+        Assert.IsTrue(run.ChooseSkill(KaitSkill.DreadSlash)); Assert.AreEqual(before, run.turn); Assert.AreEqual(0, run.pendingSkillMilestone);
+    }
+
     private static void QueueMilestone(KaitRun run, int value)
         => typeof(KaitRun).GetMethod("HandleMilestoneMerge", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { new KaitMergeEvent { resultValue = value } });
     private static void Unlock(KaitRun run, int milestone, KaitSkill skill) { QueueMilestone(run, milestone); Assert.IsTrue(run.ChooseSkill(skill)); }

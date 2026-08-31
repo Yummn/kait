@@ -32,11 +32,11 @@ public static class KaitBuild
     public static void BuildAndroidDemo()
     {
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
-        string output = Path.Combine(projectRoot, "Build", "kait-v0.3.7.apk");
+        string output = Path.Combine(projectRoot, "Build", "kait-v0.4.apk");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
 
         PlayerSettings.productName = "Kait";
-        PlayerSettings.bundleVersion = "0.3.7";
+        PlayerSettings.bundleVersion = "0.4";
         PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "com.kaitprototype.demo");
         PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
         PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;

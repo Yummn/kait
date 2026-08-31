@@ -213,7 +213,7 @@ public sealed class KaitRun
     public bool TryUseSkill(KaitSkill skill, int targetEnemyId, out string message)
     {
         message = string.Empty;
-        if (ended || chainActive || pendingSkillMilestones.Count > 0) { message = "当前不能使用技能"; return false; }
+        if (ended || chainActive) { message = "当前不能使用技能"; return false; }
         if (!skills.Contains(skill) || skill == KaitSkill.ShadowStep) { message = "尚未获得该主动技能"; return false; }
         if (SkillCooldown(skill) > 0) { message = $"技能冷却中：{SkillCooldown(skill)}"; return false; }
         KaitEnemy target = targetEnemyId < 0 ? null : enemies.Find(e => e.id == targetEnemyId && e.life != KaitEnemyLife.Dead);
@@ -255,7 +255,6 @@ public sealed class KaitRun
     {
         var result = new KaitTurnResult();
         if (ended) { result.message = "本局已结束"; return result; }
-        if (pendingSkillMilestones.Count > 0) { result.message = "请先完成技能二选一"; return result; }
         if (chainActive) { result.message = "请选择击杀后的转向"; return result; }
         bool useDreadSlash = dreadSlashArmed;
         bool kaitCanRespond = useDreadSlash || CanEnterFrom(katePos, direction);
