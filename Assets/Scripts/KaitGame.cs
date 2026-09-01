@@ -489,7 +489,8 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + visualY * run.ThreatSize;
                 threatCells[index] = Rect($"Threat {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Void);
-                threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 24, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                // Keep the original 2048-board number treatment unchanged.
+                threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 24, Cream, TextAnchor.MiddleCenter, FontStyle.Bold, false);
                 threatLabels[index].font = threatBoardFont;
                 Stretch(threatLabels[index].rectTransform, 2);
             }
@@ -1181,7 +1182,7 @@ public sealed class KaitGame : MonoBehaviour
                     Text arrow = MakeText(">", canvas.transform, Vector2.zero, new Vector2(48, 48), 42, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
                     arrow.gameObject.name = "Archer Projectile";
                     arrow.raycastTarget = false;
-                    Outline outline = arrow.gameObject.AddComponent<Outline>();
+                    Outline outline = arrow.GetComponent<Outline>();
                     outline.effectColor = new Color(Wine.r, Wine.g, Wine.b, 0.95f);
                     outline.effectDistance = new Vector2(2f, -2f);
                     RectTransform arrowRect = arrow.rectTransform;
@@ -1371,7 +1372,7 @@ public sealed class KaitGame : MonoBehaviour
         RectTransform rect = image.rectTransform;
         rect.position = source.position;
         rect.SetAsLastSibling();
-        Text text = MakeText(label, image.transform, Vector2.zero, size, fontSize, color.grayscale < 0.55f ? Cream : Void, TextAnchor.MiddleCenter, FontStyle.Bold);
+        Text text = MakeText(label, image.transform, Vector2.zero, size, fontSize, color.grayscale < 0.55f ? Cream : Void, TextAnchor.MiddleCenter, FontStyle.Bold, false);
         Stretch(text.rectTransform, 2);
         return rect;
     }
@@ -1946,7 +1947,7 @@ public sealed class KaitGame : MonoBehaviour
         return 0f;
     }
 
-    private Text MakeText(string value, Transform parent, Vector2 position, Vector2 size, int fontSize, Color color, TextAnchor anchor, FontStyle style = FontStyle.Normal)
+    private Text MakeText(string value, Transform parent, Vector2 position, Vector2 size, int fontSize, Color color, TextAnchor anchor, FontStyle style = FontStyle.Normal, bool addOutline = true)
     {
         var go = new GameObject("Text", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
         go.transform.SetParent(parent, false);
@@ -1971,6 +1972,14 @@ public sealed class KaitGame : MonoBehaviour
             text.resizeTextMaxSize = fontSize;
         }
         text.alignByGeometry = anchor == TextAnchor.MiddleCenter;
+        if (addOutline && fontSize >= 8)
+        {
+            Outline outline = go.AddComponent<Outline>();
+            outline.effectColor = new Color(0.035f, 0.027f, 0.035f, 0.94f);
+            float thickness = fontSize >= 24 ? 1.5f : 1f;
+            outline.effectDistance = new Vector2(thickness, -thickness);
+            outline.useGraphicAlpha = true;
+        }
         return text;
     }
 
