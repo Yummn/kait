@@ -18,7 +18,6 @@ public sealed class KaitGame : MonoBehaviour
     private Canvas canvas;
     private RectTransform gameContent;
     private Coroutine screenShakeRoutine;
-    private Coroutine chainSpeedAuraRoutine;
     private Vector2 gameContentBasePosition;
     private Sprite roundedSprite;
     private Image[] battleCells;
@@ -591,7 +590,6 @@ public sealed class KaitGame : MonoBehaviour
     private void NewRun()
     {
         StopAllCoroutines();
-        chainSpeedAuraRoutine = null;
         ClearAllTrailVisuals();
         ClearEnemySpines();
         busy = false;
@@ -624,7 +622,6 @@ public sealed class KaitGame : MonoBehaviour
             StartCoroutine(FlashStatus());
             return;
         }
-        StopChainSpeedAura();
         if (result.turnComplete) AppendLog(start, result);
         StartCoroutine(PlayTurn(result, start, enemySnapshot, spawnSnapshot));
     }
@@ -700,7 +697,6 @@ public sealed class KaitGame : MonoBehaviour
         else
         {
             if (run.chainActive) kaitSpine?.PlayLoop(KaitSpineView.ChainDirectionChoice);
-            StartChainSpeedAuraIfNeeded();
         }
     }
 
@@ -826,7 +822,6 @@ public sealed class KaitGame : MonoBehaviour
         kaitSpine?.PlayLoop(run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
         RefreshAll();
-        StartChainSpeedAuraIfNeeded();
     }
 
     private static string SkillChoiceDescription(KaitSkill skill)
@@ -1502,57 +1497,6 @@ public sealed class KaitGame : MonoBehaviour
         while (elapsed < duration && trail.rect != null)
         {
             group.alpha = 1f - elapsed / duration;
-            elapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        DestroyTrailVisual(trail);
-    }
-
-    private void StartChainSpeedAuraIfNeeded()
-    {
-        if (chainSpeedAuraRoutine != null || busy || run.ended || !run.chainActive || run.AllowedTurnDirections().Count == 0) return;
-        chainSpeedAuraRoutine = StartCoroutine(EmitChainSpeedAura());
-    }
-
-    private void StopChainSpeedAura()
-    {
-        if (chainSpeedAuraRoutine == null) return;
-        StopCoroutine(chainSpeedAuraRoutine);
-        chainSpeedAuraRoutine = null;
-    }
-
-    private IEnumerator EmitChainSpeedAura()
-    {
-        KaitDirection[] directions = { KaitDirection.Up, KaitDirection.Right, KaitDirection.Down, KaitDirection.Left };
-        Vector2[] offsets = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
-        while (!busy && !run.ended && run.chainActive)
-        {
-            int speed = Mathf.Max(1, Mathf.Max(run.momentum, run.chainPower));
-            float tier = Mathf.Clamp01((speed - 1) / 4f);
-            int index = run.katePos.x + run.katePos.y * KaitRun.BattleSize;
-            if (index < 0 || index >= battleCells.Length || battleCells[index] == null) break;
-            Vector3 center = battleCells[index].rectTransform.position;
-            float radius = Mathf.Lerp(13f, 24f, tier);
-            for (int i = 0; i < directions.Length; i++)
-            {
-                KaitTrailVisual trail = CreateGhostToken(center, speed, directions[i], Mathf.Lerp(0.34f, 0.5f, tier));
-                StartCoroutine(RadiateAndDestroyTrail(trail, center, center + (Vector3)(offsets[i] * radius), Mathf.Lerp(0.3f, 0.22f, tier)));
-            }
-            yield return new WaitForSecondsRealtime(Mathf.Lerp(0.42f, 0.26f, tier));
-        }
-        chainSpeedAuraRoutine = null;
-    }
-
-    private IEnumerator RadiateAndDestroyTrail(KaitTrailVisual trail, Vector3 from, Vector3 to, float duration)
-    {
-        if (trail == null || trail.rect == null) yield break;
-        CanvasGroup group = trail.rect.gameObject.AddComponent<CanvasGroup>();
-        float elapsed = 0f;
-        while (elapsed < duration && trail.rect != null)
-        {
-            float t = elapsed / duration;
-            trail.rect.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, t));
-            group.alpha = 1f - t;
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
