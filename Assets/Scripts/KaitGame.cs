@@ -71,7 +71,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite attackWarningSprite;
     private Sprite dungeonFloorSprite;
     private Sprite dungeonWallSprite;
-    private Sprite stoneFenceSprite;
+    private readonly Sprite[] stoneFenceTiles = new Sprite[7];
     private Sprite spawnRiftSprite;
     private Sprite dungeonPanelSprite;
     private Sprite dungeonButtonSprite;
@@ -154,7 +154,8 @@ public sealed class KaitGame : MonoBehaviour
         attackWarningSprite = LoadUiSprite("KaitVisuals/AttackWarningStripes");
         dungeonFloorSprite = LoadPixelSprite("KaitVisuals/DungeonFloor");
         dungeonWallSprite = LoadPixelSprite("KaitVisuals/DungeonWall");
-        stoneFenceSprite = LoadPixelSprite("KaitVisuals/StoneFence");
+        for (int i = 0; i < stoneFenceTiles.Length; i++)
+            stoneFenceTiles[i] = LoadPixelSprite($"KaitVisuals/TownWall/GK_OB_C_{68 + i:D3}");
         spawnRiftSprite = LoadPixelSprite("KaitVisuals/SpawnRift");
         dungeonPanelSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/TileMap1", new Rect(16f, 160f, 48f, 48f), 16f);
         dungeonButtonSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/ButtonsMap", new Rect(0f, 54f, 16f, 16f), 4f);
@@ -306,7 +307,7 @@ public sealed class KaitGame : MonoBehaviour
         RectTransform boardRect = boardGo.GetComponent<RectTransform>();
         boardRect.anchorMin = boardRect.anchorMax = boardRect.pivot = new Vector2(0.5f, 0.5f);
         boardRect.sizeDelta = new Vector2(600, 600);
-        boardRect.anchoredPosition = new Vector2(-460, 0);
+        boardRect.anchoredPosition = new Vector2(-440, 0);
         BuildStoneFence(boardGo.transform);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(boardGo.transform, false);
@@ -409,23 +410,38 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildStoneFence(Transform parent)
     {
-        if (stoneFenceSprite == null) return;
-        const float offset = 306f;
-        const float length = 624f;
-        const float thickness = 32f;
-        MakeStoneFenceSide("Stone Fence Top", parent, new Vector2(0f, offset), new Vector2(length, thickness), 0f);
-        MakeStoneFenceSide("Stone Fence Bottom", parent, new Vector2(0f, -offset), new Vector2(length, thickness), 180f);
-        MakeStoneFenceSide("Stone Fence Left", parent, new Vector2(-offset, 0f), new Vector2(length, thickness), 90f);
-        MakeStoneFenceSide("Stone Fence Right", parent, new Vector2(offset, 0f), new Vector2(length, thickness), -90f);
+        if (stoneFenceTiles[0] == null) return;
+        const int tilesPerSide = 15;
+        const float tileSize = 40f;
+        const float edgeCenter = 320f;
+        const float firstAxis = -280f;
+        for (int i = 0; i < tilesPerSide; i++)
+        {
+            float axis = firstAxis + i * tileSize;
+            MakeStoneFenceTile($"Town Wall Top {i}", parent, new Vector2(axis, edgeCenter), i, 0f);
+            MakeStoneFenceTile($"Town Wall Bottom {i}", parent, new Vector2(axis, -edgeCenter), i + 3, 180f);
+            MakeStoneFenceTile($"Town Wall Left {i}", parent, new Vector2(-edgeCenter, axis), i + 5, 90f);
+            MakeStoneFenceTile($"Town Wall Right {i}", parent, new Vector2(edgeCenter, axis), i + 1, -90f);
+        }
+
+        // Dedicated corner blocks close the four 40 px outer gaps without
+        // stretching a side texture across the turn.
+        MakeStoneFenceTile("Town Wall Corner TL", parent, new Vector2(-edgeCenter, edgeCenter), 0, 0f);
+        MakeStoneFenceTile("Town Wall Corner TR", parent, new Vector2(edgeCenter, edgeCenter), 1, 0f);
+        MakeStoneFenceTile("Town Wall Corner BL", parent, new Vector2(-edgeCenter, -edgeCenter), 2, 180f);
+        MakeStoneFenceTile("Town Wall Corner BR", parent, new Vector2(edgeCenter, -edgeCenter), 3, 180f);
     }
 
-    private void MakeStoneFenceSide(string name, Transform parent, Vector2 position, Vector2 size, float rotation)
+    private void MakeStoneFenceTile(string name, Transform parent, Vector2 position, int tileIndex, float rotation)
     {
-        Image side = Rect(name, parent, position, size, Color.white);
-        side.sprite = stoneFenceSprite;
-        side.type = Image.Type.Tiled;
-        side.raycastTarget = false;
-        side.rectTransform.localRotation = Quaternion.Euler(0f, 0f, rotation);
+        Sprite sprite = stoneFenceTiles[Mathf.Abs(tileIndex) % stoneFenceTiles.Length];
+        if (sprite == null) return;
+        Image tile = Rect(name, parent, position, new Vector2(40f, 40f), Color.white);
+        tile.sprite = sprite;
+        tile.type = Image.Type.Simple;
+        tile.preserveAspect = true;
+        tile.raycastTarget = false;
+        tile.rectTransform.localRotation = Quaternion.Euler(0f, 0f, rotation);
     }
 
     private void BuildThreatBoard(Transform parent)

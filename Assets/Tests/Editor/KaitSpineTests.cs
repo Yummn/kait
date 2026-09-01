@@ -124,4 +124,19 @@ public sealed class KaitSpineTests
         Assert.AreEqual(96, texture.width);
         Assert.AreEqual(96, texture.height);
     }
+
+    [TestCase(68)]
+    [TestCase(69)]
+    [TestCase(70)]
+    [TestCase(71)]
+    [TestCase(72)]
+    [TestCase(73)]
+    [TestCase(74)]
+    public void TownWallTile_IsPackagedAtOriginalResolution(int tileNumber)
+    {
+        Texture2D texture = Resources.Load<Texture2D>($"KaitVisuals/TownWall/GK_OB_C_{tileNumber:D3}");
+        Assert.IsNotNull(texture);
+        Assert.AreEqual(32, texture.width);
+        Assert.AreEqual(32, texture.height);
+    }
 }
