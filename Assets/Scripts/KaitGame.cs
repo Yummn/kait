@@ -571,7 +571,7 @@ public sealed class KaitGame : MonoBehaviour
         Text body = MakeText(
             "双盘联动\n每次输入方向，战场与右侧数字盘同步响应。数字盘按 2048 规则移动与合并；合成会在战场对应位置留下出生裂隙。\n\n" +
             "战场与边界\n画面显示 5×5 活动区域。凯特会沿方向滑行；抵达画面边界等同撞墙停止，逻辑仍保留原 7×7 外圈边界。\n\n" +
-            "单位信息\n人物直接绘制在地砖上，右上角血条表示剩余生命，下方半箭头表示朝向。武器可自然伸出格子，但人物身体始终以格子中心定位。\n\n" +
+            "单位信息\n人物直接绘制在地砖上，脚下血条表示剩余生命，血条上方的半箭头表示朝向。武器可自然伸出格子，但人物身体始终以格子中心定位。\n\n" +
             "预警\n红色虚线表示敌人下一次攻击路径；裂纹与向上标记表示敌人即将从该格生成。预警位于头像下方，不遮挡生命。\n\n" +
             "连锁与技能\n击杀后用半箭头选择下一方向。合成 16 / 32 / 64 时，右侧出现成长二选一；不选择也可以继续行动，选择本身不消耗回合。\n\n" +
             "操作\nWASD 或方向键：移动　　R：重新开始　　鼠标：技能、目标与成长选择",
@@ -1968,8 +1968,9 @@ public sealed class KaitGame : MonoBehaviour
             // Bordered UI may shrink long localized strings, but never enlarge
             // short labels beyond the intended visual hierarchy.
             text.resizeTextForBestFit = true;
-            text.resizeTextMinSize = Mathf.Max(8, Mathf.RoundToInt(fontSize * 0.58f));
-            text.resizeTextMaxSize = fontSize;
+            int safeMaxSize = Mathf.Max(8, fontSize - (addOutline ? 2 : 0));
+            text.resizeTextMinSize = Mathf.Min(safeMaxSize, Mathf.Max(8, Mathf.RoundToInt(fontSize * 0.54f)));
+            text.resizeTextMaxSize = safeMaxSize;
         }
         text.alignByGeometry = anchor == TextAnchor.MiddleCenter;
         if (addOutline && fontSize >= 8)
