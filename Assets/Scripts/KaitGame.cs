@@ -741,13 +741,18 @@ public sealed class KaitGame : MonoBehaviour
                     label.text = "";
                 }
                 Color? intentTint = IntentTintAt(p);
-                if (!run.walls[x, y] && intentTint.HasValue)
+                bool impact = impactCells.Contains(p);
+                if (!run.walls[x, y] && (intentTint.HasValue || impact))
                 {
                     Image warning = battleWarningLines[index];
                     warning.gameObject.SetActive(true);
-                    warning.color = warning.sprite != null ? new Color(1f, 1f, 1f, 0.52f) : Color.clear;
+                    Color warningTint = impact ? Gold : Hex("#B64832");
+                    float warningAlpha = impact ? 0.9f : 0.52f;
+                    warning.color = warning.sprite != null
+                        ? new Color(warningTint.r, warningTint.g, warningTint.b, warningAlpha)
+                        : Color.clear;
                     foreach (Image dash in warning.GetComponentsInChildren<Image>(true))
-                        if (dash != warning) dash.color = new Color(intentTint.Value.r, intentTint.Value.g, intentTint.Value.b, 0.72f);
+                        if (dash != warning) dash.color = new Color(warningTint.r, warningTint.g, warningTint.b, impact ? 0.95f : 0.72f);
                     warning.rectTransform.localRotation = Quaternion.identity;
                 }
                 if (run.chainActive)
@@ -759,7 +764,6 @@ public sealed class KaitGame : MonoBehaviour
                             label.fontSize = run.shadowStepAvailable ? 30 : 38;
                             label.color = run.shadowStepAvailable ? Gold : Cyan;
                         }
-                if (impactCells.Contains(p)) image.color = BattleTint(Gold);
                 if (targetingSkill != KaitSkill.None && run.EnemyAt(p) != null) image.color = Color.Lerp(image.color, Cyan, 0.35f);
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
