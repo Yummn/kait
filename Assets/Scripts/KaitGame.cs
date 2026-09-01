@@ -61,7 +61,6 @@ public sealed class KaitGame : MonoBehaviour
     private GameObject tutorialOverlay;
     private Sprite kaitPortrait;
     private SkeletonDataAsset makotoSkeletonData;
-    private SkeletonDataAsset enemyAttackReadySkeletonData;
     private KaitSpineView kaitSpine;
     private Sprite gruntPortrait;
     private Sprite swordsmanPortrait;
@@ -82,8 +81,6 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite grassBackgroundSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
-    private readonly Dictionary<int, SpineEffectView> enemyAttackReadyEffects = new Dictionary<int, SpineEffectView>();
-    private readonly HashSet<int> enemiesExecutingAttack = new HashSet<int>();
     private string logPath;
 
     private sealed class ThreatVisual
@@ -148,7 +145,6 @@ public sealed class KaitGame : MonoBehaviour
         Font.textureRebuilt += OnFontTextureRebuilt;
         kaitPortrait = LoadPixelSprite("KenneyTinyDungeon/Kait");
         makotoSkeletonData = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
-        enemyAttackReadySkeletonData = Resources.Load<SkeletonDataAsset>("Effects/EnemyAttackReady/Buff_Effect_shixue_1_tx_SkeletonData");
         gruntPortrait = LoadPortraitSprite("EnemyPortraits/100161", new Rect(0.3452f, 0.1883f, 0.1913f, 0.3315f));
         swordsmanPortrait = LoadPortraitSprite("EnemyPortraits/105731", new Rect(0.3635f, 0.1883f, 0.2190f, 0.3400f));
         archerPortrait = LoadPortraitSprite("EnemyPortraits/106331", new Rect(0.3452f, 0.1883f, 0.2373f, 0.3293f));
@@ -619,7 +615,6 @@ public sealed class KaitGame : MonoBehaviour
 
         var previousEnemyIds = new HashSet<int>();
         foreach (KaitEnemy enemy in enemySnapshot) previousEnemyIds.Add(enemy.id);
-        enemiesExecutingAttack.Clear();
         animatedEnemies = null;
         animatedSpawns = null;
         hideKate = false;
@@ -796,7 +791,6 @@ public sealed class KaitGame : MonoBehaviour
         EnsureKaitSpine();
         kaitSpine?.SetVisible(false);
         foreach (EnemySpineView view in enemySpines.Values) view.SetVisible(false);
-        foreach (SpineEffectView view in enemyAttackReadyEffects.Values) view.SetVisible(false);
         Vector2Int kate = displayKate ?? run.katePos;
         List<KaitDirection> allowed = run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
         for (int y = 1; y < KaitRun.BattleSize - 1; y++)
@@ -871,14 +865,7 @@ public sealed class KaitGame : MonoBehaviour
                     unitClip.gameObject.SetActive(true);
                     image.color = Color.clear;
                     Color unitTint = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
-                    bool showAttackReady = EnemyIsPreparingAttack(enemy) && !enemiesExecutingAttack.Contains(enemy.id);
                     EnemySpineView enemySpine = EnemySpine(enemy);
-                    SpineEffectView attackReadyEffect = showAttackReady ? EnemyAttackReadyEffect(enemy) : null;
-                    if (attackReadyEffect != null)
-                    {
-                        attackReadyEffect.SetParent(unitClip.transform, 0);
-                        attackReadyEffect.SetVisible(showAttackReady);
-                    }
                     if (enemySpine != null)
                     {
                         enemySpine.SetParent(unitClip.transform, 1);
@@ -1136,7 +1123,6 @@ public sealed class KaitGame : MonoBehaviour
             }
             if (action.type == KaitIntentType.Melee || action.type == KaitIntentType.LineShot || action.type == KaitIntentType.CrossBlast)
             {
-                enemiesExecutingAttack.Add(enemy.id);
                 EnemySpineView attacker = EnemySpine(enemy);
                 if (attacker != null)
                 {
@@ -1818,31 +1804,6 @@ public sealed class KaitGame : MonoBehaviour
     {
         foreach (EnemySpineView view in enemySpines.Values) view.Destroy();
         enemySpines.Clear();
-        foreach (SpineEffectView view in enemyAttackReadyEffects.Values) view.Destroy();
-        enemyAttackReadyEffects.Clear();
-        enemiesExecutingAttack.Clear();
-    }
-
-    private SpineEffectView EnemyAttackReadyEffect(KaitEnemy enemy)
-    {
-        if (enemy == null || enemyAttackReadySkeletonData == null) return null;
-        if (enemyAttackReadyEffects.TryGetValue(enemy.id, out SpineEffectView existing)) return existing;
-        SpineEffectView created = SpineEffectView.Create(
-            enemyAttackReadySkeletonData,
-            canvas.transform,
-            new Vector2(108, 108),
-            "texiao",
-            $"Enemy {enemy.id} Attack Ready Effect");
-        if (created != null) enemyAttackReadyEffects[enemy.id] = created;
-        return created;
-    }
-
-    private static bool EnemyIsPreparingAttack(KaitEnemy enemy)
-    {
-        if (enemy == null || enemy.life != KaitEnemyLife.Active || enemy.frozenActions > 0) return false;
-        return enemy.intent.type == KaitIntentType.Melee ||
-               enemy.intent.type == KaitIntentType.LineShot ||
-               enemy.intent.type == KaitIntentType.CrossBlast;
     }
 
     private static string EnemyAnimationPrefix(KaitEnemyType type)
