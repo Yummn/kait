@@ -63,6 +63,8 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite guardPortrait;
     private Sprite warlockPortrait;
     private Sprite bossPortrait;
+    private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
+    private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
     private string logPath;
 
     private sealed class ThreatVisual
@@ -116,6 +118,12 @@ public sealed class KaitGame : MonoBehaviour
         guardPortrait = LoadPortraitSprite("EnemyPortraits/112731", new Rect(0.3386f, 0.1883f, 0.2623f, 0.4137f));
         warlockPortrait = LoadPortraitSprite("EnemyPortraits/111031", new Rect(0.3635f, 0.1883f, 0.2269f, 0.3426f));
         bossPortrait = LoadPortraitSprite("EnemyPortraits/104731", new Rect(0.3632f, 0.1885f, 0.2285f, 0.3793f));
+        LoadEnemySkeleton(KaitEnemyType.Grunt, "100161");
+        LoadEnemySkeleton(KaitEnemyType.Swordsman, "105731");
+        LoadEnemySkeleton(KaitEnemyType.Archer, "106331");
+        LoadEnemySkeleton(KaitEnemyType.Guard, "112731");
+        LoadEnemySkeleton(KaitEnemyType.Warlock, "111031");
+        LoadEnemySkeleton(KaitEnemyType.ShieldKnight, "104731");
     }
 
     private void OnDestroy()
@@ -416,6 +424,7 @@ public sealed class KaitGame : MonoBehaviour
     private void NewRun()
     {
         StopAllCoroutines();
+        ClearEnemySpines();
         busy = false;
         displayKate = null;
         trailCell = null;
@@ -478,12 +487,25 @@ public sealed class KaitGame : MonoBehaviour
 
         yield return AnimateCombatFeedback(result);
 
+        var previousEnemyIds = new HashSet<int>();
+        foreach (KaitEnemy enemy in enemySnapshot) previousEnemyIds.Add(enemy.id);
         animatedEnemies = null;
         animatedSpawns = null;
         hideKate = false;
         displayKate = null;
         trailCell = null;
         RefreshBattle();
+
+        float landingDuration = 0f;
+        foreach (KaitEnemy enemy in run.enemies)
+            if (enemy.life != KaitEnemyLife.Dead && !previousEnemyIds.Contains(enemy.id))
+            {
+                EnemySpineView view = EnemySpine(enemy);
+                if (view == null) continue;
+                view.PlayLanding();
+                landingDuration = Mathf.Max(landingDuration, view.LandingDuration);
+            }
+        if (landingDuration > 0f) yield return new WaitForSecondsRealtime(Mathf.Min(landingDuration, 0.55f));
 
         var spawnPulses = new List<RectTransform>();
         foreach (Vector2Int cell in result.spawnedEnemyCells)
@@ -641,6 +663,7 @@ public sealed class KaitGame : MonoBehaviour
     {
         EnsureKaitSpine();
         kaitSpine?.SetVisible(false);
+        foreach (EnemySpineView view in enemySpines.Values) view.SetVisible(false);
         Vector2Int kate = displayKate ?? run.katePos;
         bool kateOnRift = false;
         List<KaitDirection> allowed = run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
@@ -707,9 +730,21 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     image.color = EnemyTileColor(enemy.type);
                     if (enemy.life == KaitEnemyLife.Preparing) image.color = Color.Lerp(image.color, Panel, 0.28f);
-                    battlePortraits[index].sprite = EnemyPortrait(enemy.type);
-                    battlePortraits[index].gameObject.SetActive(true);
-                    battlePortraits[index].color = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
+                    Color unitTint = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
+                    EnemySpineView enemySpine = EnemySpine(enemy);
+                    if (enemySpine != null)
+                    {
+                        enemySpine.SetParent(image.transform, 3);
+                        enemySpine.SetTint(unitTint);
+                        enemySpine.Face(enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction);
+                        enemySpine.SetVisible(true);
+                    }
+                    else
+                    {
+                        battlePortraits[index].sprite = EnemyPortrait(enemy.type);
+                        battlePortraits[index].gameObject.SetActive(true);
+                        battlePortraits[index].color = unitTint;
+                    }
                     battleHpLabels[index].text = enemy.hp.ToString();
                     battleHpLabels[index].color = image.color.grayscale > 0.62f ? Void : Cream;
                     battleHpBadges[index].color = image.color.grayscale > 0.62f ? new Color(Cream.r, Cream.g, Cream.b, 0.92f) : new Color(Void.r, Void.g, Void.b, 0.9f);
@@ -878,7 +913,8 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (animatedEnemies.Exists(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id)))
                 {
-                    animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
+                    KaitEnemy struckEnemy = animatedEnemies.Find(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id));
+                    EnemySpine(struckEnemy)?.PlayDamage();
                     impactCells.Add(cell);
                     if (!killAudioPlayed)
                     {
@@ -917,6 +953,7 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator AnimateAllEnemyActions(List<KaitEnemyAction> actions)
     {
         var moves = new List<EnemyMoveVisual>();
+        float actionAnimationDuration = 0f;
         foreach (KaitEnemyAction action in actions)
         {
             KaitEnemy enemy = animatedEnemies?.Find(e => e.id == action.enemyId);
@@ -934,13 +971,29 @@ public sealed class KaitGame : MonoBehaviour
                 animatedEnemies.Remove(enemy);
             }
             if (action.type == KaitIntentType.Melee || action.type == KaitIntentType.LineShot || action.type == KaitIntentType.CrossBlast)
+            {
+                EnemySpineView attacker = EnemySpine(enemy);
+                if (attacker != null)
+                {
+                    attacker.Face(action.to - action.from);
+                    attacker.PlayAttack();
+                    actionAnimationDuration = Mathf.Max(actionAnimationDuration, attacker.AttackDuration);
+                }
                 foreach (Vector2Int cell in action.affectedCells) if (InsideBattle(cell)) impactCells.Add(cell);
+                foreach (int victimId in action.friendlyHitIds)
+                {
+                    EnemySpineView victim = EnemySpine(victimId);
+                    if (victim == null) continue;
+                    victim.PlayDamage();
+                    actionAnimationDuration = Mathf.Max(actionAnimationDuration, victim.DamageDuration);
+                }
+            }
         }
 
         RefreshBattle();
         if (moves.Count == 0 && impactCells.Count == 0) yield break;
         float elapsed = 0f;
-        const float duration = 0.2f;
+        float duration = Mathf.Max(0.2f, Mathf.Min(actionAnimationDuration, 0.5f));
         while (elapsed < duration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
@@ -1162,6 +1215,8 @@ public sealed class KaitGame : MonoBehaviour
         bool hasImpact = false;
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
         {
+            EnemySpineView damagedEnemy = EnemySpine(result.damagedEnemyId);
+            damagedEnemy?.PlayDamage();
             StartCoroutine(FloatDamage(result.blockedEnemyCell, result.damageDealt, Coral));
             hasImpact = true;
         }
@@ -1400,6 +1455,45 @@ public sealed class KaitGame : MonoBehaviour
         if (type == KaitEnemyType.Guard) return guardPortrait;
         if (type == KaitEnemyType.ShieldKnight) return bossPortrait;
         return warlockPortrait;
+    }
+
+    private void LoadEnemySkeleton(KaitEnemyType type, string assetId)
+    {
+        SkeletonDataAsset data = Resources.Load<SkeletonDataAsset>($"Characters/Enemies/{assetId}/{assetId}_SkeletonData");
+        if (data != null) enemySkeletonData[type] = data;
+    }
+
+    private EnemySpineView EnemySpine(KaitEnemy enemy)
+    {
+        if (enemy == null) return null;
+        if (enemySpines.TryGetValue(enemy.id, out EnemySpineView existing)) return existing;
+        if (!enemySkeletonData.TryGetValue(enemy.type, out SkeletonDataAsset data) || data == null) return null;
+        EnemySpineView created = EnemySpineView.Create(data, EnemyAnimationPrefix(enemy.type), canvas.transform, new Vector2(115, 115), $"Enemy {enemy.id} Spine");
+        if (created != null) enemySpines[enemy.id] = created;
+        return created;
+    }
+
+    private EnemySpineView EnemySpine(int enemyId)
+    {
+        if (enemySpines.TryGetValue(enemyId, out EnemySpineView existing)) return existing;
+        KaitEnemy enemy = animatedEnemies?.Find(e => e.id == enemyId) ?? run.enemies.Find(e => e.id == enemyId);
+        return EnemySpine(enemy);
+    }
+
+    private void ClearEnemySpines()
+    {
+        foreach (EnemySpineView view in enemySpines.Values) view.Destroy();
+        enemySpines.Clear();
+    }
+
+    private static string EnemyAnimationPrefix(KaitEnemyType type)
+    {
+        if (type == KaitEnemyType.Grunt) return "01_";
+        if (type == KaitEnemyType.Swordsman) return "04_";
+        if (type == KaitEnemyType.Archer) return "08_";
+        if (type == KaitEnemyType.Guard) return "06_";
+        if (type == KaitEnemyType.Warlock) return "26_";
+        return "05_";
     }
 
     private static Color EnemyTileColor(KaitEnemyType type)

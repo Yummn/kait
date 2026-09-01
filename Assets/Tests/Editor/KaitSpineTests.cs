@@ -50,4 +50,24 @@ public sealed class KaitSpineTests
         Assert.Greater(portrait.width, 0);
         Assert.Greater(portrait.height, 0);
     }
+
+    [TestCase("100161", "01_")]
+    [TestCase("105731", "04_")]
+    [TestCase("106331", "08_")]
+    [TestCase("112731", "06_")]
+    [TestCase("111031", "26_")]
+    [TestCase("104731", "05_")]
+    public void EnemySpineExport_LoadsGameplayAnimations(string assetId, string prefix)
+    {
+        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>($"Characters/Enemies/{assetId}/{assetId}_SkeletonData");
+        Assert.IsNotNull(asset, $"Enemy SkeletonDataAsset is missing: {assetId}");
+        Spine.SkeletonData data = asset.GetSkeletonData(false);
+        Assert.IsNotNull(data, $"Enemy Spine export could not be parsed: {assetId}");
+        foreach (string suffix in new[] { EnemySpineView.LandingSuffix, EnemySpineView.IdleSuffix, EnemySpineView.AttackSuffix, EnemySpineView.DamageSuffix })
+        {
+            Spine.Animation animation = data.FindAnimation(prefix + suffix);
+            Assert.IsNotNull(animation, $"Required enemy animation is missing: {assetId}/{prefix + suffix}");
+            Assert.Greater(animation.Duration, 0f);
+        }
+    }
 }
