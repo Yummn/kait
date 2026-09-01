@@ -280,7 +280,7 @@ public sealed class KaitGame : MonoBehaviour
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait", bg.transform, new Vector2(-860, 500), new Vector2(180, 48), 32, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("Kait", bg.transform, new Vector2(-860, 500), new Vector2(180, 48), 32, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         MakeButton(bg.transform, new Vector2(908, 500), new Vector2(48, 48), "?").onClick.AddListener(() => tutorialOverlay.SetActive(true));
 
         var contentGo = new GameObject("Game Content", typeof(RectTransform));
@@ -466,15 +466,15 @@ public sealed class KaitGame : MonoBehaviour
         Image info = Rect("Run Info", parent, new Vector2(55, 245), new Vector2(250, 70), Panel);
         SkinPanel(info);
         turnText = MakeText("", info.transform, new Vector2(0, 14), new Vector2(220, 26), 16, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-        MakeText("生命", info.transform, new Vector2(-86, -16), new Vector2(44, 20), 13, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("生命", info.transform, new Vector2(-86, -16), new Vector2(44, 20), 13, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         runHealthBar = MakeHealthBar(info.transform, new Vector2(26, -16), new Vector2(164, 16));
         statusText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         statusText.gameObject.SetActive(false);
 
         Image rules = Rect("Skills", parent, new Vector2(55, -20), new Vector2(250, 420), Panel);
         SkinPanel(rules);
-        MakeText("技能栏", rules.transform, new Vector2(0, 176), new Vector2(220, 30), 18, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 145), new Vector2(220, 26), 13, Peach, TextAnchor.MiddleLeft);
+        MakeText("技能栏", rules.transform, new Vector2(0, 176), new Vector2(204, 30), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 145), new Vector2(204, 26), 13, Peach, TextAnchor.MiddleCenter);
         for (int i = 0; i < skillButtons.Length; i++)
         {
             int slot = i;
@@ -501,7 +501,7 @@ public sealed class KaitGame : MonoBehaviour
         Image card = Rect("Skill Choice Side Panel", parent, new Vector2(460, -205), new Vector2(390, 230), Panel);
         SkinPanel(card);
         skillChoiceOverlay = card.gameObject;
-        skillChoiceTitle = MakeText("选择成长", card.transform, new Vector2(0, 84), new Vector2(350, 26), 15, Gold, TextAnchor.MiddleLeft, FontStyle.Bold);
+        skillChoiceTitle = MakeText("选择成长", card.transform, new Vector2(0, 84), new Vector2(350, 26), 15, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
         for (int i = 0; i < 2; i++)
         {
             int choice = i;
@@ -533,7 +533,7 @@ public sealed class KaitGame : MonoBehaviour
         tutorialOverlay = shade.gameObject;
         Image card = Rect("Tutorial Card", shade.transform, Vector2.zero, new Vector2(940, 680), Panel);
         SkinPanel(card);
-        MakeText("玩法教程", card.transform, new Vector2(-390, 295), new Vector2(220, 52), 30, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeText("玩法教程", card.transform, new Vector2(0, 295), new Vector2(820, 52), 30, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         Text body = MakeText(
             "双盘联动\n每次输入方向，战场与右侧数字盘同步响应。数字盘按 2048 规则移动与合并；合成会在战场对应位置留下出生裂隙。\n\n" +
             "战场与边界\n画面显示 5×5 活动区域。凯特会沿方向滑行；抵达画面边界等同撞墙停止，逻辑仍保留原 7×7 外圈边界。\n\n" +
@@ -1890,6 +1890,15 @@ public sealed class KaitGame : MonoBehaviour
         text.fontStyle = style;
         text.horizontalOverflow = HorizontalWrapMode.Wrap;
         text.verticalOverflow = VerticalWrapMode.Truncate;
+        if (fontSize >= 8)
+        {
+            // Bordered UI may shrink long localized strings, but never enlarge
+            // short labels beyond the intended visual hierarchy.
+            text.resizeTextForBestFit = true;
+            text.resizeTextMinSize = Mathf.Max(8, Mathf.RoundToInt(fontSize * 0.58f));
+            text.resizeTextMaxSize = fontSize;
+        }
+        text.alignByGeometry = anchor == TextAnchor.MiddleCenter;
         return text;
     }
 
@@ -1911,7 +1920,7 @@ public sealed class KaitGame : MonoBehaviour
         sprites.disabledSprite = dungeonButtonSprite;
         button.spriteState = sprites;
         Text text = MakeText(label, image.transform, Vector2.zero, size - new Vector2(8, 8), 17, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-        Stretch(text.rectTransform, 4);
+        Stretch(text.rectTransform, 10);
         return button;
     }
 
