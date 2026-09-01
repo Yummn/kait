@@ -72,7 +72,7 @@ public sealed class KaitTurnResult
     public readonly List<Vector2Int> newThreatCells = new List<Vector2Int>();
     public int[,] threatBefore, threatAfter;
     public int slideDistance, damagedEnemyId = -1, damageDealt, enemyHpAfter = -1, momentumBefore, momentumAfter;
-    public int collisionDamage, friendlyFireDamage, riftBlockDamage;
+    public int collisionDamage, friendlyFireDamage, riftBlockDamage, playerDamage;
     public int spawnSuppressed;
     public bool pushed, pushBlockedByWall, pushBlockedByUnit, activeBrake;
     public bool threatChanged, kaitWaited;
@@ -473,7 +473,8 @@ public sealed class KaitRun
                 bool hitUnit = false;
                 if (katePos == cell)
                 {
-                    kateHp = Mathf.Max(0, kateHp - intent.damage); action.hitKate = true; hitUnit = true;
+                    int appliedDamage = Mathf.Min(kateHp, Mathf.Max(0, intent.damage));
+                    kateHp -= appliedDamage; result.playerDamage += appliedDamage; action.hitKate = true; hitUnit = true;
                 }
                 if (config.enableFriendlyFire)
                 {
@@ -637,7 +638,8 @@ public sealed class KaitRun
             KaitEnemy occupant = EnemyAt(request.targetCell);
             if (katePos == request.targetCell)
             {
-                kateHp = Mathf.Max(0, kateHp - config.riftBlockDamage); result.riftBlockDamage += config.riftBlockDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
+                int appliedDamage = Mathf.Min(kateHp, Mathf.Max(0, config.riftBlockDamage));
+                kateHp -= appliedDamage; result.playerDamage += appliedDamage; result.riftBlockDamage += appliedDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
             }
             if (occupant != null)
             {

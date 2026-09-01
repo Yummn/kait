@@ -100,6 +100,7 @@ public sealed class KaitCoreTests
         Assert.AreEqual(1, enemy.hp);
         Assert.AreEqual(new Vector2Int(4, 4), enemy.pos);
         Assert.AreEqual(new Vector2Int(3, 4), run.katePos);
+        Assert.AreEqual(0, result.playerDamage);
     }
 
     [Test]
@@ -117,6 +118,7 @@ public sealed class KaitCoreTests
         Assert.AreEqual(new Vector2Int(3, 3), a.pos);
         Assert.AreEqual(new Vector2Int(4, 3), b.pos);
         Assert.AreEqual(new Vector2Int(2, 3), run.katePos);
+        Assert.AreEqual(0, result.playerDamage);
     }
 
     [Test]
@@ -178,8 +180,23 @@ public sealed class KaitCoreTests
 
         Assert.AreEqual(1, occupant.hp);
         Assert.AreEqual(1, result.riftBlockDamage);
+        Assert.AreEqual(0, result.playerDamage);
         Assert.IsNull(run.SpawnAt(occupant.pos));
         Assert.AreEqual(1, run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead && e.pos == occupant.pos).Count);
+    }
+
+    [Test]
+    public void T10B_RiftOnKate_RecordsPlayerDamageSeparately()
+    {
+        KaitRun run = OpenRun(101, new Vector2Int(3, 3));
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, sourceThreatCell = Vector2Int.one, targetCell = run.katePos, turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+        var result = new KaitTurnResult();
+
+        typeof(KaitRun).GetMethod("ResolveSpawnRequests", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { result });
+
+        Assert.AreEqual(2, run.kateHp);
+        Assert.AreEqual(1, result.playerDamage);
+        Assert.AreEqual(1, result.riftBlockDamage);
     }
 
     [Test]
@@ -533,6 +550,7 @@ public sealed class KaitCoreTests
 
         Assert.AreEqual(2, run.kateHp);
         Assert.IsTrue(result.enemyActions.Single().hitKate);
+        Assert.AreEqual(1, result.playerDamage);
         Assert.AreEqual(KaitArcherState.Ready, archer.archerState);
         Assert.AreEqual(KaitIntentType.None, archer.intent.type);
     }

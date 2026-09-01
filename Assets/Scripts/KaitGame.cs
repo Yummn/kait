@@ -1147,24 +1147,15 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator AnimateCombatFeedback(KaitTurnResult result)
     {
         bool hasImpact = false;
-        bool kateHit = false;
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
         {
             StartCoroutine(FloatDamage(result.blockedEnemyCell, result.damageDealt, Coral));
             hasImpact = true;
         }
-        foreach (KaitEnemyAction action in result.enemyActions)
-            if (action.hitKate)
-            {
-                kateHit = true;
-                kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
-                StartCoroutine(FloatDamage(run.katePos, Mathf.Max(1, action.damage), Gold));
-                hasImpact = true;
-            }
-        if (!kateHit && result.collisionDamage + result.riftBlockDamage > 0)
+        if (result.playerDamage > 0)
         {
             kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
-            StartCoroutine(FloatDamage(run.katePos, result.collisionDamage + result.riftBlockDamage, Gold));
+            StartCoroutine(FloatDamage(run.katePos, result.playerDamage, Gold));
             hasImpact = true;
         }
         foreach (Vector2Int cell in result.killedEnemyCells)
