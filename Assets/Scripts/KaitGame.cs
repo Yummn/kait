@@ -249,7 +249,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildBattleBoard(Transform parent)
     {
-        Image frame = Rect("Battle Panel", parent, new Vector2(-365, -28), new Vector2(640, 640), Panel);
+        Image frame = Rect("Battle Panel", parent, new Vector2(-460, 0), new Vector2(640, 640), Panel);
         dangerText = MakeText("", frame.transform, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         dangerText.gameObject.SetActive(false);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
@@ -367,7 +367,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildThreatBoard(Transform parent)
     {
-        Image frame = Rect("Threat Panel", parent, new Vector2(457, 204), new Vector2(390, 390), Panel);
+        Image frame = Rect("Threat Panel", parent, new Vector2(460, 125), new Vector2(390, 390), Panel);
         var gridGo = new GameObject("Threat Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform rt = gridGo.GetComponent<RectTransform>();
@@ -395,29 +395,29 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildSidebar(Transform parent)
     {
-        Image info = Rect("Run Info", parent, new Vector2(457, -28), new Vector2(390, 62), Panel);
-        turnText = MakeText("", info.transform, Vector2.zero, new Vector2(350, 34), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        Image info = Rect("Run Info", parent, new Vector2(55, 245), new Vector2(250, 70), Panel);
+        turnText = MakeText("", info.transform, Vector2.zero, new Vector2(230, 38), 16, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         statusText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         statusText.gameObject.SetActive(false);
 
-        Image rules = Rect("Skills", parent, new Vector2(457, -155), new Vector2(390, 174), Panel);
-        MakeText("技能栏", rules.transform, new Vector2(0, 62), new Vector2(380, 28), 17, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 34), new Vector2(380, 24), 13, Peach, TextAnchor.MiddleLeft);
+        Image rules = Rect("Skills", parent, new Vector2(55, -20), new Vector2(250, 420), Panel);
+        MakeText("技能栏", rules.transform, new Vector2(0, 176), new Vector2(220, 30), 18, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 145), new Vector2(220, 26), 13, Peach, TextAnchor.MiddleLeft);
         for (int i = 0; i < skillButtons.Length; i++)
         {
             int slot = i;
-            skillButtons[i] = MakeButton(rules.transform, new Vector2(-126 + i * 126, -25), new Vector2(116, 74), "未解锁");
+            skillButtons[i] = MakeButton(rules.transform, new Vector2(0, 70 - i * 100), new Vector2(220, 82), "未解锁");
             skillButtonLabels[i] = skillButtons[i].GetComponentInChildren<Text>();
             skillButtons[i].onClick.AddListener(() => HandleSkillButton(slot));
         }
 
-        Image controls = Rect("Controls", parent, new Vector2(457, -350), new Vector2(390, 146), Panel);
+        Image controls = Rect("Controls", parent, new Vector2(460, -205), new Vector2(390, 230), Panel);
         controlsPanel = controls.gameObject;
-        MakeButton(controls.transform, new Vector2(-20, 35), new Vector2(54, 46), "W").onClick.AddListener(() => HandleDirection(KaitDirection.Up));
-        MakeButton(controls.transform, new Vector2(-78, -18), new Vector2(54, 46), "A").onClick.AddListener(() => HandleDirection(KaitDirection.Left));
-        MakeButton(controls.transform, new Vector2(-20, -18), new Vector2(54, 46), "S").onClick.AddListener(() => HandleDirection(KaitDirection.Down));
-        MakeButton(controls.transform, new Vector2(38, -18), new Vector2(54, 46), "D").onClick.AddListener(() => HandleDirection(KaitDirection.Right));
-        MakeButton(controls.transform, new Vector2(127, 7), new Vector2(92, 76), "重开\nR").onClick.AddListener(NewRun);
+        MakeButton(controls.transform, new Vector2(-20, 55), new Vector2(58, 50), "W").onClick.AddListener(() => HandleDirection(KaitDirection.Up));
+        MakeButton(controls.transform, new Vector2(-82, -3), new Vector2(58, 50), "A").onClick.AddListener(() => HandleDirection(KaitDirection.Left));
+        MakeButton(controls.transform, new Vector2(-20, -3), new Vector2(58, 50), "S").onClick.AddListener(() => HandleDirection(KaitDirection.Down));
+        MakeButton(controls.transform, new Vector2(42, -3), new Vector2(58, 50), "D").onClick.AddListener(() => HandleDirection(KaitDirection.Right));
+        MakeButton(controls.transform, new Vector2(130, 25), new Vector2(96, 88), "重开\nR").onClick.AddListener(NewRun);
 
         helpText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         helpText.gameObject.SetActive(false);
@@ -425,13 +425,13 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildSkillChoiceOverlay(Transform parent)
     {
-        Image card = Rect("Skill Choice Side Panel", parent, new Vector2(457, -350), new Vector2(390, 146), Panel);
+        Image card = Rect("Skill Choice Side Panel", parent, new Vector2(460, -205), new Vector2(390, 230), Panel);
         skillChoiceOverlay = card.gameObject;
-        skillChoiceTitle = MakeText("选择成长", card.transform, new Vector2(0, 53), new Vector2(350, 24), 15, Gold, TextAnchor.MiddleLeft, FontStyle.Bold);
+        skillChoiceTitle = MakeText("选择成长", card.transform, new Vector2(0, 84), new Vector2(350, 26), 15, Gold, TextAnchor.MiddleLeft, FontStyle.Bold);
         for (int i = 0; i < 2; i++)
         {
             int choice = i;
-            skillChoiceButtons[i] = MakeButton(card.transform, new Vector2(-91 + i * 182, -14), new Vector2(172, 92), "");
+            skillChoiceButtons[i] = MakeButton(card.transform, new Vector2(-91 + i * 182, -18), new Vector2(172, 138), "");
             skillChoiceLabels[i] = skillChoiceButtons[i].GetComponentInChildren<Text>();
             skillChoiceLabels[i].fontSize = 12;
             skillChoiceButtons[i].onClick.AddListener(() => ChoosePendingSkill(choice));
@@ -461,7 +461,7 @@ public sealed class KaitGame : MonoBehaviour
         Text body = MakeText(
             "双盘联动\n每次输入方向，战场与右侧数字盘同步响应。数字盘按 2048 规则移动与合并；合成会在战场对应位置留下出生裂隙。\n\n" +
             "战场与边界\n画面显示 5×5 活动区域。凯特会沿方向滑行；抵达画面边界等同撞墙停止，逻辑仍保留原 7×7 外圈边界。\n\n" +
-            "单位信息\n头像表示单位类型，右上角数字是生命。单位背景颜色对应其来源数字：例如由 2+2 合成产生的单位使用数字 4 的底色。下方半箭头表示朝向。\n\n" +
+            "单位信息\n人物直接绘制在地砖上，右上角数字是生命，下方半箭头表示朝向。武器可自然伸出格子，但人物身体始终以格子中心定位。\n\n" +
             "预警\n红色虚线表示敌人下一次攻击路径；裂纹与向上标记表示敌人即将从该格生成。预警位于头像下方，不遮挡生命。\n\n" +
             "连锁与技能\n击杀后用半箭头选择下一方向。合成 16 / 32 / 64 时，右侧出现成长二选一；不选择也可以继续行动，选择本身不消耗回合。\n\n" +
             "操作\nWASD 或方向键：移动　　R：重新开始　　鼠标：技能、目标与成长选择",
