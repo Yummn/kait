@@ -662,9 +662,9 @@ public sealed class KaitGame : MonoBehaviour
 
         yield return AnimateEnemyAttackPreparation();
 
+        // Enemy arrival is communicated by the Spine `landing` animation only;
+        // do not scale the underlying board cell when the enemy appears.
         var spawnPulses = new List<RectTransform>();
-        foreach (Vector2Int cell in result.spawnedEnemyCells)
-            spawnPulses.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform);
         foreach (KaitSpawnRequest spawn in run.spawns)
             if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
         if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
