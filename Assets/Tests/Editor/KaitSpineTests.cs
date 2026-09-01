@@ -86,7 +86,7 @@ public sealed class KaitSpineTests
     {
         Texture2D texture = Resources.Load<Texture2D>(resourcePath);
         Assert.IsNotNull(texture);
-        Assert.AreEqual(16, texture.width);
-        Assert.AreEqual(16, texture.height);
+        Assert.AreEqual(80, texture.width);
+        Assert.AreEqual(80, texture.height);
     }
 }
