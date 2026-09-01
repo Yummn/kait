@@ -18,6 +18,7 @@ public sealed class KaitGame : MonoBehaviour
     private Canvas canvas;
     private RectTransform gameContent;
     private Coroutine screenShakeRoutine;
+    private Coroutine kaitSkillAnimationRoutine;
     private Vector2 gameContentBasePosition;
     private Sprite roundedSprite;
     private Image[] battleCells;
@@ -82,6 +83,7 @@ public sealed class KaitGame : MonoBehaviour
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
     private readonly Dictionary<int, float> enemyDeathAnimationStartedAt = new Dictionary<int, float>();
     private readonly List<EnemySpineView> detachedEnemyDeaths = new List<EnemySpineView>();
+    private readonly List<KaitSpineView> activeFloatingKaits = new List<KaitSpineView>();
     private readonly List<KaitTrailVisual> activeTrailVisuals = new List<KaitTrailVisual>();
     private string logPath;
 
@@ -186,6 +188,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void OnDestroy()
     {
+        ClearFloatingKaitAnimations();
         ClearAllTrailVisuals();
         SceneManager.sceneLoaded -= OnSceneLoaded;
         Font.textureRebuilt -= OnFontTextureRebuilt;
@@ -566,8 +569,13 @@ public sealed class KaitGame : MonoBehaviour
     private void NewRun()
     {
         StopAllCoroutines();
+        screenShakeRoutine = null;
+        kaitSkillAnimationRoutine = null;
+        ClearFloatingKaitAnimations();
         ClearAllTrailVisuals();
+        ClearTransientAnimationObjects();
         ClearEnemySpines();
+        ResetInterruptedAnimationState();
         busy = false;
         displayKate = null;
         targetingSkill = KaitSkill.None;
@@ -586,7 +594,9 @@ public sealed class KaitGame : MonoBehaviour
 
     private void HandleDirection(KaitDirection direction)
     {
-        if (run.ended || busy) return;
+        if (run.ended) return;
+        InterruptKaitAnimationForMovement();
+        if (busy) InterruptActivePresentationForMovement();
         targetingSkill = KaitSkill.None;
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
@@ -600,6 +610,74 @@ public sealed class KaitGame : MonoBehaviour
         }
         if (result.turnComplete) AppendLog(start, result);
         StartCoroutine(PlayTurn(result, start, enemySnapshot, spawnSnapshot));
+    }
+
+    private void InterruptKaitAnimationForMovement()
+    {
+        if (kaitSkillAnimationRoutine != null)
+        {
+            StopCoroutine(kaitSkillAnimationRoutine);
+            kaitSkillAnimationRoutine = null;
+        }
+        kaitSpine?.SetHitFlash(0f);
+        kaitSpine?.SetTint(Color.white);
+        kaitSpine?.PlayLoop(run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
+    }
+
+    private void InterruptActivePresentationForMovement()
+    {
+        // The turn has already been resolved by KaitRun before its presentation
+        // starts. Cancelling presentation is therefore safe: snap every visual
+        // to that authoritative state, then accept the next direction at once.
+        StopAllCoroutines();
+        screenShakeRoutine = null;
+        kaitSkillAnimationRoutine = null;
+        ClearFloatingKaitAnimations();
+        ClearAllTrailVisuals();
+        ClearTransientAnimationObjects();
+        ClearEnemySpines();
+        animatedEnemies = null;
+        animatedSpawns = null;
+        displayedThreat = null;
+        hideThreatValues = false;
+        hideKate = false;
+        displayKate = null;
+        impactCells.Clear();
+        ResetInterruptedAnimationState();
+        busy = false;
+        RefreshAll();
+    }
+
+    private void ResetInterruptedAnimationState()
+    {
+        if (gameContent != null) gameContent.anchoredPosition = gameContentBasePosition;
+        if (battleCells != null)
+            foreach (Image cell in battleCells) if (cell != null) cell.rectTransform.localScale = Vector3.one;
+        if (battleUnitClips != null)
+            foreach (Image unit in battleUnitClips) if (unit != null) unit.rectTransform.localScale = Vector3.one;
+        if (threatCells != null)
+            foreach (Image cell in threatCells) if (cell != null) cell.rectTransform.localScale = Vector3.one;
+        foreach (Button button in skillButtons)
+            if (button != null) button.GetComponent<RectTransform>().localScale = Vector3.one;
+        kaitSpine?.SetHitFlash(0f);
+        kaitSpine?.SetTint(Color.white);
+    }
+
+    private void ClearTransientAnimationObjects()
+    {
+        if (canvas == null) return;
+        Transform[] transforms = canvas.GetComponentsInChildren<Transform>(true);
+        foreach (Transform candidate in transforms)
+        {
+            if (candidate == null || candidate == canvas.transform) continue;
+            string objectName = candidate.gameObject.name;
+            if (objectName != "Animation Token" && objectName != "Animation Unit" &&
+                objectName != "Archer Projectile" && objectName != "Dread Slash Wave" &&
+                objectName != "Floating Damage") continue;
+            candidate.gameObject.SetActive(false);
+            if (Application.isPlaying) Destroy(candidate.gameObject);
+            else DestroyImmediate(candidate.gameObject);
+        }
     }
 
     private IEnumerator PlayTurn(KaitTurnResult result, Vector2Int start, List<KaitEnemy> enemySnapshot, List<KaitSpawnRequest> spawnSnapshot)
@@ -770,7 +848,8 @@ public sealed class KaitGame : MonoBehaviour
         if (run.TryUseSkill(skill, -1, out string message))
         {
             statusText.text = message;
-            StartCoroutine(AnimateSkillPulse(skill));
+            if (kaitSkillAnimationRoutine != null) StopCoroutine(kaitSkillAnimationRoutine);
+            kaitSkillAnimationRoutine = StartCoroutine(RunKaitSkillAnimation(skill));
         }
         else statusText.text = message;
         RefreshAll();
@@ -808,7 +887,7 @@ public sealed class KaitGame : MonoBehaviour
             token.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, elapsed / duration));
             elapsed += Time.unscaledDeltaTime; yield return null;
         }
-        if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
+        if (movingKait != null) DestroyFloatingKait(movingKait); else Destroy(token.gameObject);
         hideKate = false; busy = false;
         kaitSpine?.PlayLoop(run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
@@ -1134,7 +1213,7 @@ public sealed class KaitGame : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.08f);
         bool killedBlockedEnemyAfterSlide = result.blockedEnemyCell.x >= 0 && animatedEnemies.Exists(e =>
             e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
-        if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
+        if (movingKait != null) DestroyFloatingKait(movingKait); else Destroy(token.gameObject);
         foreach (KaitTrailVisual ghost in ghosts) StartCoroutine(FadeAndDestroyTrail(ghost, 0.24f));
         // Keep defeated enemies rendered until the finishing attack completes.
         // The normal turn path removes them after `die`; the chain-direction path
@@ -1462,7 +1541,29 @@ public sealed class KaitGame : MonoBehaviour
         view.Root.position = source.position;
         view.Root.SetAsLastSibling();
         view.Face(direction);
+        activeFloatingKaits.Add(view);
         return view;
+    }
+
+    private void DestroyFloatingKait(KaitSpineView view)
+    {
+        if (view == null) return;
+        activeFloatingKaits.Remove(view);
+        view.SetVisible(false);
+        view.Destroy();
+    }
+
+    private void ClearFloatingKaitAnimations()
+    {
+        if (activeFloatingKaits.Count == 0) return;
+        KaitSpineView[] views = activeFloatingKaits.ToArray();
+        activeFloatingKaits.Clear();
+        foreach (KaitSpineView view in views)
+        {
+            if (view == null) continue;
+            view.SetVisible(false);
+            view.Destroy();
+        }
     }
 
     private void EnsureKaitSpine()
@@ -1715,6 +1816,7 @@ public sealed class KaitGame : MonoBehaviour
     {
         RectTransform anchor = battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform;
         Text text = MakeText($"-{amount}", canvas.transform, Vector2.zero, new Vector2(86, 42), 24, color, TextAnchor.MiddleCenter, FontStyle.Bold);
+        text.gameObject.name = "Floating Damage";
         text.raycastTarget = false;
         text.rectTransform.position = anchor.position + new Vector3(25f, 20f, 0f);
         Vector3 from = text.rectTransform.position;
@@ -1776,6 +1878,12 @@ public sealed class KaitGame : MonoBehaviour
             yield return ScalePulse(skillButtons[slot].GetComponent<RectTransform>(), 0.92f, 1.08f, 0.14f);
         if (skill == KaitSkill.SwiftBoots || skill == KaitSkill.CatAgility)
             yield return PulseBattleUnit(run.katePos, Coral, 0.15f, -1, true);
+    }
+
+    private IEnumerator RunKaitSkillAnimation(KaitSkill skill)
+    {
+        yield return AnimateSkillPulse(skill);
+        kaitSkillAnimationRoutine = null;
     }
 
     private IEnumerator AnimateDreadSlashWave(KaitDirection direction)
@@ -2075,10 +2183,18 @@ public sealed class KaitGame : MonoBehaviour
 
     private void ClearEnemySpines()
     {
-        foreach (EnemySpineView view in enemySpines.Values) view.Destroy();
+        foreach (EnemySpineView view in enemySpines.Values)
+        {
+            view.SetVisible(false);
+            view.Destroy();
+        }
         enemySpines.Clear();
         enemyDeathAnimationStartedAt.Clear();
-        foreach (EnemySpineView view in detachedEnemyDeaths) view.Destroy();
+        foreach (EnemySpineView view in detachedEnemyDeaths)
+        {
+            view.SetVisible(false);
+            view.Destroy();
+        }
         detachedEnemyDeaths.Clear();
     }
 
