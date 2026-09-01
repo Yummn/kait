@@ -500,8 +500,16 @@ public sealed class KaitGame : MonoBehaviour
         MakeButton(controls.transform, new Vector2(42, -3), new Vector2(58, 50), "D").onClick.AddListener(() => HandleDirection(KaitDirection.Right));
         MakeButton(controls.transform, new Vector2(130, 25), new Vector2(96, 88), "重开\nR").onClick.AddListener(NewRun);
 
-        helpText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
-        helpText.gameObject.SetActive(false);
+        Image quickRules = Rect("Quick Rules", parent, new Vector2(460, 382), new Vector2(390, 108), Panel);
+        SkinPanel(quickRules);
+        MakeText("规则速览", quickRules.transform, new Vector2(0, 34), new Vector2(350, 24), 15, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        helpText = MakeText(
+            "方向输入：Kait 滑行，右盘同步按 2048 合并\n" +
+            "合成生成裂隙，裂隙预警后刷新敌人\n" +
+            "撞击造成伤害；击杀后可转向继续连杀\n" +
+            "根据预警避险；生命归零失败，击败盾骑士获胜",
+            quickRules.transform, new Vector2(0, -15), new Vector2(350, 66), 11, Peach, TextAnchor.UpperLeft);
+        helpText.lineSpacing = 0.92f;
     }
 
     private void BuildSkillChoiceOverlay(Transform parent)
