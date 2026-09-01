@@ -19,6 +19,7 @@ public sealed class KaitGame : MonoBehaviour
     private Image[] battleCells;
     private Image[] battleCellTiles;
     private Image[] battleCellTints;
+    private Image[] battleUnitClips;
     private Text[] battleLabels;
     private Image[] battlePortraits;
     private Image[] battleHpBadges;
@@ -248,8 +249,8 @@ public sealed class KaitGame : MonoBehaviour
         gridRect.sizeDelta = new Vector2(600, 600);
         gridRect.anchoredPosition = Vector2.zero;
         GridLayoutGroup grid = gridGo.GetComponent<GridLayoutGroup>();
-        grid.cellSize = new Vector2(115, 115);
-        grid.spacing = new Vector2(6, 6);
+        grid.cellSize = new Vector2(120, 120);
+        grid.spacing = Vector2.zero;
         grid.startCorner = GridLayoutGroup.Corner.UpperLeft;
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         grid.constraintCount = 5;
@@ -266,18 +267,15 @@ public sealed class KaitGame : MonoBehaviour
         battleDangerBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleCellTiles = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleCellTints = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleUnitClips = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         for (int visualY = KaitRun.BattleSize - 2; visualY >= 1; visualY--)
         {
             for (int x = 1; x < KaitRun.BattleSize - 1; x++)
             {
                 int index = x + visualY * KaitRun.BattleSize;
-                Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Color.white);
-                if (roundedSprite != null)
-                {
-                    Mask cellMask = cell.gameObject.AddComponent<Mask>();
-                    cellMask.showMaskGraphic = false;
-                }
-                else cell.color = Color.clear;
+                Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Color.clear);
+                cell.sprite = null;
+                cell.type = Image.Type.Simple;
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
@@ -327,13 +325,24 @@ public sealed class KaitGame : MonoBehaviour
                 spawnArrow.raycastTarget = false;
                 rift.gameObject.SetActive(false);
                 battleRifts[index] = rift;
-                Image portrait = Rect("Unit Portrait", cell.transform, new Vector2(0, -2), new Vector2(112, 112), Color.white);
+                Image unitClip = Rect("Unit Clip", cell.transform, Vector2.zero, new Vector2(114, 114), Color.white);
+                unitClip.raycastTarget = false;
+                unitClip.sprite = roundedSprite;
+                unitClip.type = Image.Type.Sliced;
+                if (roundedSprite != null)
+                {
+                    Mask unitMask = unitClip.gameObject.AddComponent<Mask>();
+                    unitMask.showMaskGraphic = true;
+                }
+                battleUnitClips[index] = unitClip;
+                Image portrait = Rect("Unit Portrait", unitClip.transform, new Vector2(0, -2), new Vector2(112, 112), Color.white);
                 portrait.sprite = null;
                 portrait.type = Image.Type.Simple;
                 portrait.preserveAspect = true;
                 portrait.raycastTarget = false;
                 portrait.gameObject.SetActive(false);
                 battlePortraits[index] = portrait;
+                unitClip.gameObject.SetActive(false);
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 34, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
                 battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -43), new Vector2(72, 28), 25, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
@@ -713,7 +722,6 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + y * KaitRun.BattleSize;
                 Vector2Int p = new Vector2Int(x, y);
-                Image cell = battleCells[index];
                 Image tile = battleCellTiles[index];
                 Image image = battleCellTints[index];
                 Text label = battleLabels[index];
@@ -726,12 +734,13 @@ public sealed class KaitGame : MonoBehaviour
                 battleStatusLabels[index].text = "";
                 battlePortraits[index].gameObject.SetActive(false);
                 battlePortraits[index].color = Color.white;
+                battleUnitClips[index].gameObject.SetActive(false);
                 battleWarningLines[index].gameObject.SetActive(false);
                 battleRifts[index].gameObject.SetActive(false);
                 tile.sprite = dungeonFloorSprite != null ? dungeonFloorSprite : roundedSprite;
                 tile.type = dungeonFloorSprite != null ? Image.Type.Simple : Image.Type.Sliced;
                 tile.color = Color.white;
-                image.color = BattleTint(ThreatColor(0));
+                image.color = new Color(Background.r, Background.g, Background.b, 0.12f);
                 if (run.walls[x, y])
                 {
                     tile.sprite = dungeonWallSprite != null ? dungeonWallSprite : roundedSprite;
@@ -780,13 +789,18 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (enemy != null)
                 {
-                    image.color = BattleTint(EnemyTileColor(enemy.type));
-                    if (enemy.life == KaitEnemyLife.Preparing) image.color = Color.Lerp(image.color, Panel, 0.28f);
+                    Image unitClip = battleUnitClips[index];
+                    Color unitBackground = EnemyTileColor(enemy.type);
+                    if (enemy.life == KaitEnemyLife.Preparing) unitBackground = Color.Lerp(unitBackground, Panel, 0.28f);
+                    unitBackground.a = 1f;
+                    unitClip.color = unitBackground;
+                    unitClip.gameObject.SetActive(true);
+                    image.color = Color.clear;
                     Color unitTint = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
                     EnemySpineView enemySpine = EnemySpine(enemy);
                     if (enemySpine != null)
                     {
-                        enemySpine.SetParent(cell.transform, 3);
+                        enemySpine.SetParent(unitClip.transform, 1);
                         enemySpine.SetTint(unitTint);
                         enemySpine.Face(enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction);
                         enemySpine.SetVisible(true);
@@ -798,8 +812,8 @@ public sealed class KaitGame : MonoBehaviour
                         battlePortraits[index].color = unitTint;
                     }
                     battleHpLabels[index].text = enemy.hp.ToString();
-                    battleHpLabels[index].color = image.color.grayscale > 0.62f ? Void : Cream;
-                    battleHpBadges[index].color = image.color.grayscale > 0.62f ? new Color(Cream.r, Cream.g, Cream.b, 0.92f) : new Color(Void.r, Void.g, Void.b, 0.9f);
+                    battleHpLabels[index].color = unitBackground.grayscale > 0.62f ? Void : Cream;
+                    battleHpBadges[index].color = unitBackground.grayscale > 0.62f ? new Color(Cream.r, Cream.g, Cream.b, 0.92f) : new Color(Void.r, Void.g, Void.b, 0.9f);
                     battleHpBadges[index].gameObject.SetActive(true);
                     Vector2Int facing = enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction;
                     if (facing != Vector2Int.zero) battleFacingLabels[index].text = ">";
@@ -810,10 +824,15 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (!hideKate && kate == p)
                 {
-                    image.color = BattleTint(showRiftDanger ? Color.Lerp(ThreatColor(2), Gold, 0.32f) : ThreatColor(2));
+                    Image unitClip = battleUnitClips[index];
+                    Color unitBackground = showRiftDanger ? Color.Lerp(ThreatColor(2), Gold, 0.32f) : ThreatColor(2);
+                    unitBackground.a = 1f;
+                    unitClip.color = unitBackground;
+                    unitClip.gameObject.SetActive(true);
+                    image.color = Color.clear;
                     if (kaitSpine != null)
                     {
-                        kaitSpine.SetParent(cell.transform, 3);
+                        kaitSpine.SetParent(unitClip.transform, 1);
                         kaitSpine.SetVisible(true);
                     }
                     else

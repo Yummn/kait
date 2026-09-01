@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public sealed class KaitSpineView
 {
+    private const float VisualFill = 1.16f;
     public const string Idle = "05_idle";
     public const string Run = "05_run_gamestart";
     public const string StandBy = "05_multi_standBy";
@@ -90,7 +91,7 @@ public sealed class KaitSpineView
         skeletonRect.sizeDelta = meshBounds.size;
         float width = Mathf.Max(0.01f, meshBounds.size.x);
         float height = Mathf.Max(0.01f, meshBounds.size.y);
-        float scale = Mathf.Min(size.x * 0.96f / width, size.y * 0.96f / height);
+        float scale = Mathf.Min(size.x * VisualFill / width, size.y * VisualFill / height);
         skeletonRect.localScale = Vector3.one * scale;
         float visualWeightOffset = size.x * 0.09f;
         Vector2 centeredPosition = new Vector2(-meshBounds.center.x * scale + visualWeightOffset, -meshBounds.center.y * scale);
