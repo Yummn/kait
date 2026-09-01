@@ -66,7 +66,7 @@ public sealed class GameAudio : MonoBehaviour
         if (clip == null) return;
 
         int level = Mathf.Max(0, Mathf.RoundToInt(Mathf.Log(Mathf.Max(2, tileNumber), 2f)) - 2);
-        instance.effectSource.pitch = Mathf.Clamp(0.94f + level * 0.035f, 0.94f, 1.25f);
+        instance.effectSource.pitch = RisingPitch(level);
         instance.effectSource.PlayOneShot(clip, 0.72f);
     }
 
@@ -76,9 +76,14 @@ public sealed class GameAudio : MonoBehaviour
         AudioClip clip = Resources.Load<AudioClip>(MergePath);
         if (clip == null) return;
 
-        chainKills = Mathf.Clamp(chainKills, 1, 8);
-        instance.effectSource.pitch = Mathf.Lerp(0.82f, 1.42f, (chainKills - 1) / 7f);
-        instance.effectSource.PlayOneShot(clip, Mathf.Lerp(0.58f, 0.92f, chainKills / 8f));
+        chainKills = Mathf.Clamp(chainKills, 1, 10);
+        instance.effectSource.pitch = RisingPitch(chainKills - 1);
+        instance.effectSource.PlayOneShot(clip, 0.72f);
+    }
+
+    private static float RisingPitch(int step)
+    {
+        return Mathf.Clamp(0.94f + Mathf.Max(0, step) * 0.035f, 0.94f, 1.25f);
     }
 
     public static void SetCombo(int comboCount)

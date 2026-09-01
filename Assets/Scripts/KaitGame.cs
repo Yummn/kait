@@ -953,8 +953,15 @@ public sealed class KaitGame : MonoBehaviour
         {
             if (result.blockedEnemyCell.x >= 0)
             {
+                bool killedBlockedEnemy = animatedEnemies != null && animatedEnemies.Exists(e =>
+                    e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
                 kaitSpine?.Face(result.kaitDirection);
-                kaitSpine?.PlayOnce(KaitSpineView.Attack);
+                kaitSpine?.PlayOnce(killedBlockedEnemy ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
+                for (int i = 0; i < result.playerKilledEnemyIds.Count; i++)
+                {
+                    GameAudio.PlayKaitKill(Mathf.Max(1, result.chainKillCount - result.playerKilledEnemyIds.Count + i + 1));
+                    if (i + 1 < result.playerKilledEnemyIds.Count) yield return new WaitForSecondsRealtime(0.06f);
+                }
                 yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.16f);
             }
             else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
@@ -976,7 +983,8 @@ public sealed class KaitGame : MonoBehaviour
         float duration = Mathf.Min(0.36f, 0.16f + segments * 0.025f);
         float elapsed = 0f;
         int lastReached = 0;
-        bool killAudioPlayed = false;
+        int killSoundsPlayed = 0;
+        int chainKillsBeforeTurn = Mathf.Max(0, result.chainKillCount - result.playerKilledEnemyIds.Count);
         while (elapsed < duration)
         {
             float progress = Mathf.SmoothStep(0f, 1f, elapsed / duration) * segments;
@@ -1000,12 +1008,9 @@ public sealed class KaitGame : MonoBehaviour
                     KaitEnemy struckEnemy = animatedEnemies.Find(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id));
                     EnemySpine(struckEnemy)?.PlayDamage();
                     impactCells.Add(cell);
-                    if (!killAudioPlayed)
-                    {
-                        GameAudio.PlayKaitKill(Mathf.Max(1, run.currentChainKills));
-                        killAudioPlayed = true;
-                    }
-                    movingKait?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack, KaitSpineView.Run);
+                    killSoundsPlayed++;
+                    GameAudio.PlayKaitKill(chainKillsBeforeTurn + killSoundsPlayed);
+                    movingKait?.PlayOnce(KaitSpineView.ChainAttack, KaitSpineView.Run);
                     RefreshBattle();
                 }
             }
@@ -1013,6 +1018,8 @@ public sealed class KaitGame : MonoBehaviour
             yield return null;
         }
         token.position = points[points.Count - 1];
+        bool killedBlockedEnemyAfterSlide = result.blockedEnemyCell.x >= 0 && animatedEnemies.Exists(e =>
+            e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
         if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
         foreach (RectTransform ghost in ghosts) StartCoroutine(FadeAndDestroy(ghost, 0.22f));
         animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
@@ -1020,16 +1027,22 @@ public sealed class KaitGame : MonoBehaviour
         hideKate = false;
         displayKate = null;
         RefreshBattle();
+        while (killSoundsPlayed < result.playerKilledEnemyIds.Count)
+        {
+            killSoundsPlayed++;
+            GameAudio.PlayKaitKill(chainKillsBeforeTurn + killSoundsPlayed);
+            if (killSoundsPlayed < result.playerKilledEnemyIds.Count) yield return new WaitForSecondsRealtime(0.06f);
+        }
         if (result.blockedEnemyCell.x >= 0)
         {
             kaitSpine?.Face(result.kaitDirection);
-            kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
+            kaitSpine?.PlayOnce(killedBlockedEnemyAfterSlide ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
             yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.14f);
         }
         else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
             kaitSpine?.PlayOnce(KaitSpineView.StandBy);
         else if (result.playerKilledEnemyIds.Count > 0)
-            kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
+            kaitSpine?.PlayOnce(KaitSpineView.ChainAttack);
         else
             kaitSpine?.PlayLoop(KaitSpineView.Idle);
     }
