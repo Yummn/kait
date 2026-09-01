@@ -57,7 +57,6 @@ public sealed class KaitGame : MonoBehaviour
     private int[,] displayedThreat;
     private bool hideThreatValues;
     private readonly HashSet<Vector2Int> impactCells = new HashSet<Vector2Int>();
-    private Image edgePulse;
     private GameObject tutorialOverlay;
     private Sprite kaitPortrait;
     private SkeletonDataAsset makotoSkeletonData;
@@ -297,10 +296,6 @@ public sealed class KaitGame : MonoBehaviour
         BuildEndOverlay(bg.transform);
         BuildSkillChoiceOverlay(content);
         BuildTutorialOverlay(bg.transform);
-        edgePulse = Rect("Chain Edge Pulse", bg.transform, Vector2.zero, new Vector2(1890, 1050), new Color(Coral.r, Coral.g, Coral.b, 0f));
-        Stretch(edgePulse.rectTransform, 15);
-        edgePulse.raycastTarget = false;
-        edgePulse.transform.SetAsLastSibling();
     }
 
     private void BuildBattleBoard(Transform parent)
@@ -684,8 +679,6 @@ public sealed class KaitGame : MonoBehaviour
         foreach (KaitSpawnRequest spawn in run.spawns)
             if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
         if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
-
-        if (result.playerKilledEnemyIds.Count > 0) StartCoroutine(AnimateChainEdge(Mathf.Max(1, result.chainKillCount)));
 
         displayedThreat = null;
         statusText.text = result.message + (result.merges.Count > 0 ? $" · 威胁合并 ×{result.merges.Count}" : "");
@@ -1598,25 +1591,6 @@ public sealed class KaitGame : MonoBehaviour
         }
         if (gameContent != null) gameContent.anchoredPosition = gameContentBasePosition;
         screenShakeRoutine = null;
-    }
-
-    private IEnumerator AnimateChainEdge(int chainCount)
-    {
-        if (edgePulse == null || chainCount < 2) yield break;
-        float peak = Mathf.Min(0.18f, 0.055f + chainCount * 0.018f);
-        float elapsed = 0f;
-        const float duration = 0.18f;
-        while (elapsed < duration)
-        {
-            float t = elapsed / duration;
-            float alpha = Mathf.Sin(t * Mathf.PI) * peak;
-            edgePulse.color = new Color(Coral.r, 0.12f, 0.18f, alpha);
-            edgePulse.rectTransform.localScale = Vector3.one * (1f + Mathf.Sin(t * Mathf.PI * 4f) * 0.003f * Mathf.Min(chainCount, 6));
-            elapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        edgePulse.color = new Color(Coral.r, Coral.g, Coral.b, 0f);
-        edgePulse.rectTransform.localScale = Vector3.one;
     }
 
     private IEnumerator AnimateSkillPulse(KaitSkill skill)
