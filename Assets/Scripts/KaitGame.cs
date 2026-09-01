@@ -122,6 +122,8 @@ public sealed class KaitGame : MonoBehaviour
     private static readonly Color Gold = Hex("#F3C56B");
     private static readonly Color Cyan = Hex("#83D2C9");
     private static readonly Color GrassBase = Hex("#83AF6F");
+    private static readonly Vector2 UnitHealthBarSize = new Vector2(72f, 16f);
+    private static readonly Vector2 UnitHealthBarPosition = new Vector2(0f, -50f);
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Bootstrap()
@@ -401,8 +403,8 @@ public sealed class KaitGame : MonoBehaviour
                 unitClip.gameObject.SetActive(false);
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 34, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
-                battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -43), new Vector2(72, 28), 25, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-                battleHealthBars[index] = MakeHealthBar(cell.transform, new Vector2(0, 48), new Vector2(72, 16));
+                battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -30), new Vector2(72, 24), 25, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                battleHealthBars[index] = MakeHealthBar(cell.transform, UnitHealthBarPosition, UnitHealthBarSize);
                 battleHealthBars[index].root.gameObject.SetActive(false);
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
             }
@@ -503,7 +505,7 @@ public sealed class KaitGame : MonoBehaviour
         SkinPanel(info);
         turnText = MakeText("", info.transform, new Vector2(0, 14), new Vector2(220, 26), 16, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         MakeText("生命", info.transform, new Vector2(-86, -16), new Vector2(44, 20), 13, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-        runHealthBar = MakeHealthBar(info.transform, new Vector2(26, -16), new Vector2(164, 16));
+        runHealthBar = MakeHealthBar(info.transform, new Vector2(8, -16), UnitHealthBarSize);
         statusText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         statusText.gameObject.SetActive(false);
 
@@ -1389,7 +1391,7 @@ public sealed class KaitGame : MonoBehaviour
         portrait.raycastTarget = false;
         if (hp >= 0 && maxHp > 0)
         {
-            HealthBarView hpBar = MakeHealthBar(image.transform, new Vector2(0f, size.y * 0.41f), new Vector2(size.x * 0.6f, 15f));
+            HealthBarView hpBar = MakeHealthBar(image.transform, new Vector2(0f, -size.y * 0.43f), UnitHealthBarSize);
             SetHealthBar(hpBar, hp);
         }
         return image.rectTransform;
