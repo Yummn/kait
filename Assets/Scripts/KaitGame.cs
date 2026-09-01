@@ -19,6 +19,7 @@ public sealed class KaitGame : MonoBehaviour
     private Image[] battleCells;
     private Text[] battleLabels;
     private Image[] battlePortraits;
+    private Image[] battleHpBadges;
     private Text[] battleHpLabels;
     private Text[] battleFacingLabels;
     private Text[] battleStatusLabels;
@@ -60,7 +61,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite swordsmanPortrait;
     private Sprite archerPortrait;
     private Sprite guardPortrait;
-    private Sprite elitePortrait;
+    private Sprite warlockPortrait;
     private Sprite bossPortrait;
     private string logPath;
 
@@ -110,11 +111,11 @@ public sealed class KaitGame : MonoBehaviour
         kaitPortrait = LoadPixelSprite("KenneyTinyDungeon/Kait");
         makotoSkeletonData = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
         gruntPortrait = LoadPixelSprite("KenneyTinyDungeon/Grunt");
-        swordsmanPortrait = LoadPixelSprite("KenneyTinyDungeon/Swordsman");
-        archerPortrait = LoadPixelSprite("KenneyTinyDungeon/Archer");
-        guardPortrait = LoadPixelSprite("KenneyTinyDungeon/Guard");
-        elitePortrait = LoadPixelSprite("KenneyTinyDungeon/Elite");
-        bossPortrait = LoadPixelSprite("KenneyTinyDungeon/ShieldKnight");
+        swordsmanPortrait = LoadPortraitSprite("EnemyPortraits/105731", new Rect(0.3635f, 0.1883f, 0.2190f, 0.3400f));
+        archerPortrait = LoadPortraitSprite("EnemyPortraits/106331", new Rect(0.3452f, 0.1883f, 0.2373f, 0.3293f));
+        guardPortrait = LoadPortraitSprite("EnemyPortraits/112731", new Rect(0.3386f, 0.1883f, 0.2623f, 0.4137f));
+        warlockPortrait = LoadPortraitSprite("EnemyPortraits/111031", new Rect(0.3635f, 0.1883f, 0.2269f, 0.3426f));
+        bossPortrait = LoadPortraitSprite("EnemyPortraits/104731", new Rect(0.3632f, 0.1885f, 0.2285f, 0.3793f));
     }
 
     private void OnDestroy()
@@ -240,6 +241,7 @@ public sealed class KaitGame : MonoBehaviour
         battleCells = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battlePortraits = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleHpBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleHpLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battleFacingLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battleStatusLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
@@ -277,7 +279,7 @@ public sealed class KaitGame : MonoBehaviour
                 spawnArrow.raycastTarget = false;
                 rift.gameObject.SetActive(false);
                 battleRifts[index] = rift;
-                Image portrait = Rect("Unit Portrait", cell.transform, new Vector2(0, -3), new Vector2(78, 78), Color.white);
+                Image portrait = Rect("Unit Portrait", cell.transform, new Vector2(0, -2), new Vector2(96, 96), Color.white);
                 portrait.sprite = null;
                 portrait.type = Image.Type.Simple;
                 portrait.preserveAspect = true;
@@ -287,9 +289,14 @@ public sealed class KaitGame : MonoBehaviour
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 34, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
                 battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -43), new Vector2(72, 28), 25, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-                battleHpLabels[index] = MakeText("", cell.transform, new Vector2(43, 42), new Vector2(28, 26), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                Image hpBadge = Rect("HP Badge", cell.transform, new Vector2(43, 42), new Vector2(31, 28), new Color(Void.r, Void.g, Void.b, 0.9f));
+                hpBadge.raycastTarget = false;
+                battleHpBadges[index] = hpBadge;
+                battleHpLabels[index] = MakeText("", hpBadge.transform, Vector2.zero, new Vector2(31, 28), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                battleHpLabels[index].raycastTarget = false;
+                hpBadge.gameObject.SetActive(false);
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
-                Image dangerBadge = Rect("Rift Danger Badge", cell.transform, new Vector2(42, 42), new Vector2(28, 28), Gold);
+                Image dangerBadge = Rect("Rift Danger Badge", cell.transform, new Vector2(0, 43), new Vector2(28, 28), Gold);
                 dangerBadge.raycastTarget = false;
                 Text dangerBadgeText = MakeText("!", dangerBadge.transform, Vector2.zero, new Vector2(30, 30), 22, Void, TextAnchor.MiddleCenter, FontStyle.Bold);
                 dangerBadgeText.raycastTarget = false;
@@ -648,6 +655,7 @@ public sealed class KaitGame : MonoBehaviour
                 label.text = "";
                 label.rectTransform.localRotation = Quaternion.identity;
                 battleHpLabels[index].text = "";
+                battleHpBadges[index].gameObject.SetActive(false);
                 battleFacingLabels[index].text = "";
                 battleFacingLabels[index].rectTransform.localRotation = Quaternion.identity;
                 battleStatusLabels[index].text = "";
@@ -704,6 +712,8 @@ public sealed class KaitGame : MonoBehaviour
                     battlePortraits[index].color = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
                     battleHpLabels[index].text = enemy.hp.ToString();
                     battleHpLabels[index].color = image.color.grayscale > 0.62f ? Void : Cream;
+                    battleHpBadges[index].color = image.color.grayscale > 0.62f ? new Color(Cream.r, Cream.g, Cream.b, 0.92f) : new Color(Void.r, Void.g, Void.b, 0.9f);
+                    battleHpBadges[index].gameObject.SetActive(true);
                     Vector2Int facing = enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction;
                     if (facing != Vector2Int.zero) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(facing));
@@ -725,7 +735,9 @@ public sealed class KaitGame : MonoBehaviour
                         battlePortraits[index].gameObject.SetActive(true);
                     }
                     battleHpLabels[index].text = run.kateHp.ToString();
-                    battleHpLabels[index].color = Void;
+                    battleHpLabels[index].color = Cream;
+                    battleHpBadges[index].color = new Color(Void.r, Void.g, Void.b, 0.9f);
+                    battleHpBadges[index].gameObject.SetActive(true);
                     if (run.chainActive) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(KaitRun.Delta(run.currentDirection)));
                     battleFacingLabels[index].color = Void;
@@ -921,7 +933,7 @@ public sealed class KaitGame : MonoBehaviour
                 });
                 animatedEnemies.Remove(enemy);
             }
-            if (action.type == KaitIntentType.Melee || action.type == KaitIntentType.LineShot)
+            if (action.type == KaitIntentType.Melee || action.type == KaitIntentType.LineShot || action.type == KaitIntentType.CrossBlast)
                 foreach (Vector2Int cell in action.affectedCells) if (InsideBattle(cell)) impactCells.Add(cell);
         }
 
@@ -987,6 +999,7 @@ public sealed class KaitGame : MonoBehaviour
             if (enemy.intent.type == KaitIntentType.Melee && enemy.intent.target == p)
                 return Hex("#A64F5A");
             if (enemy.intent.type == KaitIntentType.LineShot && enemy.intent.affectedCells.Contains(p)) return Hex("#944A58");
+            if (enemy.intent.type == KaitIntentType.CrossBlast && enemy.intent.affectedCells.Contains(p)) return Hex("#B05A70");
         }
         return null;
     }
@@ -1072,7 +1085,7 @@ public sealed class KaitGame : MonoBehaviour
         Image image = Rect("Animation Unit", canvas.transform, Vector2.zero, size, background);
         image.rectTransform.position = source.position;
         image.rectTransform.SetAsLastSibling();
-        Image portrait = Rect("Portrait", image.transform, new Vector2(0, -3), size * 0.7f, Color.white);
+        Image portrait = Rect("Portrait", image.transform, new Vector2(0, -2), size * 0.84f, Color.white);
         portrait.sprite = portraitSprite;
         portrait.type = Image.Type.Simple;
         portrait.preserveAspect = true;
@@ -1366,6 +1379,19 @@ public sealed class KaitGame : MonoBehaviour
         return Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 16f);
     }
 
+    private static Sprite LoadPortraitSprite(string resourcePath, Rect normalizedRect)
+    {
+        Texture2D texture = Resources.Load<Texture2D>(resourcePath);
+        if (texture == null) return null;
+        texture.filterMode = FilterMode.Bilinear;
+        Rect pixels = new Rect(
+            normalizedRect.x * texture.width,
+            normalizedRect.y * texture.height,
+            normalizedRect.width * texture.width,
+            normalizedRect.height * texture.height);
+        return Sprite.Create(texture, pixels, new Vector2(0.5f, 0.5f), 100f);
+    }
+
     private Sprite EnemyPortrait(KaitEnemyType type)
     {
         if (type == KaitEnemyType.Grunt) return gruntPortrait;
@@ -1373,16 +1399,18 @@ public sealed class KaitGame : MonoBehaviour
         if (type == KaitEnemyType.Archer) return archerPortrait;
         if (type == KaitEnemyType.Guard) return guardPortrait;
         if (type == KaitEnemyType.ShieldKnight) return bossPortrait;
-        return elitePortrait;
+        return warlockPortrait;
     }
 
     private static Color EnemyTileColor(KaitEnemyType type)
     {
         if (type == KaitEnemyType.Grunt) return ThreatColor(4);
-        if (type == KaitEnemyType.Swordsman || type == KaitEnemyType.Archer) return ThreatColor(8);
-        if (type == KaitEnemyType.Guard) return ThreatColor(16);
+        if (type == KaitEnemyType.Swordsman) return ThreatColor(8);
+        if (type == KaitEnemyType.Archer) return ThreatColor(16);
+        if (type == KaitEnemyType.Guard) return ThreatColor(32);
+        if (type == KaitEnemyType.Warlock) return ThreatColor(64);
         if (type == KaitEnemyType.ShieldKnight) return ThreatColor(128);
-        return ThreatColor(32);
+        return ThreatColor(4);
     }
 
     private static float HalfArrowAngle(Vector2Int direction)
@@ -1441,6 +1469,7 @@ public sealed class KaitGame : MonoBehaviour
         if (type == KaitEnemyType.Swordsman) return Hex("#A85B68");
         if (type == KaitEnemyType.Guard) return Hex("#875064");
         if (type == KaitEnemyType.Archer) return Hex("#507C83");
+        if (type == KaitEnemyType.Warlock) return Hex("#6E527F");
         if (type == KaitEnemyType.ShieldKnight) return Hex("#3D6070");
         return Hex("#693347");
     }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum KaitDirection { Up, Down, Left, Right }
-public enum KaitEnemyType { Grunt = 1, Swordsman = 2, Archer = 3, Guard = 4, Elite = 5, ShieldKnight = 6 }
+public enum KaitEnemyType { Grunt = 1, Swordsman = 2, Archer = 3, Guard = 4, Warlock = 5, ShieldKnight = 6 }
 public enum KaitEnemyLife { Preparing, Active, Dead }
 public enum KaitArcherState { Ready, Aim }
-public enum KaitIntentType { None, Move, Melee, LineShot }
+public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
 public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep }
 public enum KaitSpeedModifier { AddOne, Double }
@@ -515,11 +515,23 @@ public sealed class KaitRun
     private KaitIntent BuildIntentToward(KaitEnemy enemy, Vector2Int target)
     {
         Vector2Int diff = target - enemy.pos;
-        if (enemy.type == KaitEnemyType.Elite)
-            return BuildLineIntent(enemy.pos, DirectionToward(enemy.pos, target), config.archerRange + 1, false);
+        if (enemy.type == KaitEnemyType.Warlock)
+            return BuildCrossIntent(enemy.pos, target);
         var intent = new KaitIntent { origin = enemy.pos };
         if (Mathf.Abs(diff.x) + Mathf.Abs(diff.y) != 1) return intent;
-        intent.type = KaitIntentType.Melee; intent.target = target; intent.damage = enemy.type == KaitEnemyType.Guard ? 2 : 1; intent.affectedCells.Add(target);
+        intent.type = KaitIntentType.Melee; intent.target = target; intent.damage = 1; intent.affectedCells.Add(target);
+        return intent;
+    }
+
+    private KaitIntent BuildCrossIntent(Vector2Int origin, Vector2Int target)
+    {
+        var intent = new KaitIntent { type = KaitIntentType.CrossBlast, origin = origin, target = target, damage = 1 };
+        Vector2Int[] offsets = { Vector2Int.zero, Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+        foreach (Vector2Int offset in offsets)
+        {
+            Vector2Int cell = target + offset;
+            if (Inside(cell) && !walls[cell.x, cell.y]) intent.affectedCells.Add(cell);
+        }
         return intent;
     }
 
@@ -625,7 +637,7 @@ public sealed class KaitRun
     {
         Vector2Int target = MapThreatToBattle(merge.threatCell);
         if (walls[target.x, target.y]) { merge.spawnSuppressed = true; wallSuppressedSpawns++; spawnSuppressedCount++; return; }
-        int tier = Mathf.Clamp((int)Mathf.Log(merge.resultValue, 2f) - 1, 1, 4);
+        int tier = Mathf.Clamp((int)Mathf.Log(merge.resultValue, 2f) - 1, 1, 5);
         spawns.Add(new KaitSpawnRequest { tier = tier, sourceThreatCell = merge.threatCell, targetCell = target, turnsUntilSpawn = 1, createdTurn = turn, state = KaitSpawnState.Preview });
     }
     private void ResolveSpawnRequests(KaitTurnResult result)
@@ -738,18 +750,20 @@ public sealed class KaitRun
     private static KaitEnemyType EnemyTypeForSpawn(KaitSpawnRequest request)
     {
         if (request.tier <= 1) return KaitEnemyType.Grunt;
-        if (request.tier == 2) return (request.targetCell.x + request.targetCell.y) % 2 == 0 ? KaitEnemyType.Swordsman : KaitEnemyType.Archer;
-        if (request.tier == 3) return KaitEnemyType.Guard;
-        return KaitEnemyType.Elite;
+        if (request.tier == 2) return KaitEnemyType.Swordsman;
+        if (request.tier == 3) return KaitEnemyType.Archer;
+        if (request.tier == 4) return KaitEnemyType.Guard;
+        return KaitEnemyType.Warlock;
     }
     public static int MaxHpFor(KaitEnemyType type)
     {
         switch (type)
         {
             case KaitEnemyType.Grunt: return 2;
-            case KaitEnemyType.Swordsman: return 4;
+            case KaitEnemyType.Swordsman: return 3;
             case KaitEnemyType.Archer: return 2;
-            case KaitEnemyType.Guard: return 6;
+            case KaitEnemyType.Guard: return 4;
+            case KaitEnemyType.Warlock: return 2;
             case KaitEnemyType.ShieldKnight: return 8;
             default: return 8;
         }

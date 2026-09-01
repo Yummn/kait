@@ -90,7 +90,7 @@ public sealed class KaitSpineView
         skeletonRect.sizeDelta = meshBounds.size;
         float width = Mathf.Max(0.01f, meshBounds.size.x);
         float height = Mathf.Max(0.01f, meshBounds.size.y);
-        float scale = Mathf.Min(size.x * 0.88f / width, size.y * 0.88f / height);
+        float scale = Mathf.Min(size.x * 0.96f / width, size.y * 0.96f / height);
         skeletonRect.localScale = Vector3.one * scale;
         float visualWeightOffset = size.x * 0.09f;
         Vector2 centeredPosition = new Vector2(-meshBounds.center.x * scale + visualWeightOffset, -meshBounds.center.y * scale);

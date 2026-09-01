@@ -36,4 +36,17 @@ public sealed class KaitSpineTests
         Assert.IsNotNull(material.shader);
         Assert.AreEqual("Spine/SkeletonGraphic", material.shader.name);
     }
+
+    [TestCase("105731")]
+    [TestCase("106331")]
+    [TestCase("112731")]
+    [TestCase("111031")]
+    [TestCase("104731")]
+    public void SpecifiedEnemyPortrait_IsPackagedForPlayerBuilds(string assetId)
+    {
+        Texture2D portrait = Resources.Load<Texture2D>("EnemyPortraits/" + assetId);
+        Assert.IsNotNull(portrait, "Enemy portrait is missing: " + assetId);
+        Assert.Greater(portrait.width, 0);
+        Assert.Greater(portrait.height, 0);
+    }
 }

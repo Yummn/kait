@@ -25,10 +25,63 @@ public sealed class KaitCoreTests
         Assert.IsFalse(run.walls[2, 1]);
         Assert.IsFalse(run.walls[5, 3]);
         Assert.AreEqual(2, KaitRun.MaxHpFor(KaitEnemyType.Grunt));
-        Assert.AreEqual(4, KaitRun.MaxHpFor(KaitEnemyType.Swordsman));
+        Assert.AreEqual(3, KaitRun.MaxHpFor(KaitEnemyType.Swordsman));
         Assert.AreEqual(2, KaitRun.MaxHpFor(KaitEnemyType.Archer));
-        Assert.AreEqual(6, KaitRun.MaxHpFor(KaitEnemyType.Guard));
-        Assert.AreEqual(8, KaitRun.MaxHpFor(KaitEnemyType.Elite));
+        Assert.AreEqual(4, KaitRun.MaxHpFor(KaitEnemyType.Guard));
+        Assert.AreEqual(2, KaitRun.MaxHpFor(KaitEnemyType.Warlock));
+    }
+
+    [Test]
+    public void UnitPointTiers_SpawnTheSpecifiedEnemyTypesAndHp()
+    {
+        KaitRun run = OpenRun(102, new Vector2Int(3, 5));
+        KaitEnemyType[] expected =
+        {
+            KaitEnemyType.Grunt, KaitEnemyType.Swordsman, KaitEnemyType.Archer,
+            KaitEnemyType.Guard, KaitEnemyType.Warlock
+        };
+        for (int tier = 1; tier <= expected.Length; tier++)
+            run.spawns.Add(new KaitSpawnRequest
+            {
+                tier = tier,
+                sourceThreatCell = new Vector2Int(tier - 1, 0),
+                targetCell = new Vector2Int(tier, 1),
+                turnsUntilSpawn = 0,
+                state = KaitSpawnState.Ready
+            });
+
+        var result = new KaitTurnResult();
+        typeof(KaitRun).GetMethod("ResolveSpawnRequests", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { result });
+
+        for (int tier = 1; tier <= expected.Length; tier++)
+        {
+            KaitEnemy enemy = run.EnemyAt(new Vector2Int(tier, 1));
+            Assert.IsNotNull(enemy);
+            Assert.AreEqual(expected[tier - 1], enemy.type);
+            Assert.AreEqual(KaitRun.MaxHpFor(expected[tier - 1]), enemy.hp);
+        }
+    }
+
+    [Test]
+    public void Warlock_LocksKatesCellThenHitsTheFiveCellCrossWithFriendlyFire()
+    {
+        KaitRun run = OpenRun(103, new Vector2Int(3, 3));
+        KaitEnemy warlock = Enemy(1, new Vector2Int(1, 1), 2, KaitEnemyType.Warlock, KaitEnemyLife.Active);
+        KaitEnemy upperVictim = Enemy(2, new Vector2Int(3, 4), 2);
+        KaitEnemy rightVictim = Enemy(3, new Vector2Int(4, 3), 2);
+        run.enemies.Add(warlock); run.enemies.Add(upperVictim); run.enemies.Add(rightVictim);
+
+        LockEnemyIntents(run);
+
+        Assert.AreEqual(KaitIntentType.CrossBlast, warlock.intent.type);
+        Assert.AreEqual(new Vector2Int(3, 3), warlock.intent.target);
+        Assert.AreEqual(5, warlock.intent.affectedCells.Count);
+        KaitTurnResult result = ResolveEnemyPhase(run);
+        Assert.AreEqual(2, run.kateHp);
+        Assert.AreEqual(1, result.playerDamage);
+        Assert.AreEqual(1, upperVictim.hp);
+        Assert.AreEqual(1, rightVictim.hp);
+        Assert.AreEqual(2, result.friendlyFireDamage);
     }
 
     [Test]
