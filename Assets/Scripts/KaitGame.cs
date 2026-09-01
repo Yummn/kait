@@ -51,7 +51,6 @@ public sealed class KaitGame : MonoBehaviour
     private bool busy;
     private KaitDirection? bufferedDirection;
     private Vector2Int? displayKate;
-    private Vector2Int? trailCell;
     private bool hideKate;
     private List<KaitEnemy> animatedEnemies;
     private List<KaitSpawnRequest> animatedSpawns;
@@ -103,6 +102,12 @@ public sealed class KaitGame : MonoBehaviour
         public RectTransform rect;
         public Vector3 from;
         public Vector3 to;
+    }
+
+    private sealed class KaitTrailVisual
+    {
+        public RectTransform rect;
+        public KaitSpineView spine;
     }
 
     private sealed class HealthBarView
@@ -588,7 +593,6 @@ public sealed class KaitGame : MonoBehaviour
         busy = false;
         bufferedDirection = null;
         displayKate = null;
-        trailCell = null;
         targetingSkill = KaitSkill.None;
         int seed = Environment.TickCount;
         run.Reset(seed);
@@ -666,7 +670,6 @@ public sealed class KaitGame : MonoBehaviour
         animatedSpawns = null;
         hideKate = false;
         displayKate = null;
-        trailCell = null;
         RefreshBattle();
 
         float landingDuration = 0f;
@@ -1085,7 +1088,7 @@ public sealed class KaitGame : MonoBehaviour
         KaitSpineView movingKait = CreateFloatingKait(battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, result.kaitDirection);
         RectTransform token = movingKait != null ? movingKait.Root : CreateFloatingPortrait(kaitPortrait, Color.clear, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
         movingKait?.PlayLoop(KaitSpineView.Run);
-        var ghosts = new List<RectTransform>();
+        var ghosts = new List<KaitTrailVisual>();
         var points = new List<Vector3> { battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform.position };
         foreach (Vector2Int cell in result.katePath) points.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform.position);
 
@@ -1106,11 +1109,13 @@ public sealed class KaitGame : MonoBehaviour
                 lastReached++;
                 Vector2Int cell = result.katePath[lastReached - 1];
                 int momentumAtCell = result.pathMomentum.Count >= lastReached ? result.pathMomentum[lastReached - 1] : run.momentum;
-                RectTransform ghost = CreateGhostToken(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform, momentumAtCell, result.kaitDirection);
-                ghosts.Add(ghost);
-                while (ghosts.Count > Mathf.Clamp(momentumAtCell, 1, 5))
+                Vector3 segmentStart = points[lastReached - 1];
+                Vector3 segmentEnd = points[lastReached];
+                ghosts.Add(CreateGhostToken(Vector3.Lerp(segmentStart, segmentEnd, 0.5f), momentumAtCell, result.kaitDirection, 0.78f));
+                ghosts.Add(CreateGhostToken(segmentEnd, momentumAtCell, result.kaitDirection, 1f));
+                while (ghosts.Count > Mathf.Clamp(momentumAtCell * 2, 2, 10))
                 {
-                    Destroy(ghosts[0].gameObject);
+                    DestroyTrailVisual(ghosts[0]);
                     ghosts.RemoveAt(0);
                 }
                 if (animatedEnemies.Exists(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id)))
@@ -1134,7 +1139,7 @@ public sealed class KaitGame : MonoBehaviour
         bool killedBlockedEnemyAfterSlide = result.blockedEnemyCell.x >= 0 && animatedEnemies.Exists(e =>
             e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
         if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
-        foreach (RectTransform ghost in ghosts) StartCoroutine(FadeAndDestroy(ghost, 0.22f));
+        foreach (KaitTrailVisual ghost in ghosts) StartCoroutine(FadeAndDestroyTrail(ghost, 0.24f));
         animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
         impactCells.Clear();
         hideKate = false;
@@ -1437,25 +1442,48 @@ public sealed class KaitGame : MonoBehaviour
         kaitSpine = KaitSpineView.Create(makotoSkeletonData, parent, new Vector2(115, 115));
     }
 
-    private RectTransform CreateGhostToken(RectTransform source, int momentumValue, KaitDirection direction)
+    private KaitTrailVisual CreateGhostToken(Vector3 position, int momentumValue, KaitDirection direction, float opacityMultiplier)
     {
         float tier = Mathf.Clamp01((momentumValue - 1) / 4f);
-        Color borderColor = Color.Lerp(new Color(Peach.r, Peach.g, Peach.b, 0.42f), new Color(Coral.r, Coral.g, Coral.b, 0.72f), tier);
-        Image border = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(88, 88), borderColor);
-        border.raycastTarget = false;
-        border.rectTransform.position = source.position;
-        border.rectTransform.SetAsLastSibling();
-        Image inside = Rect("Trail Inner", border.transform, Vector2.zero, new Vector2(78, 78), new Color(Panel.r, Panel.g, Panel.b, 0.48f));
-        inside.raycastTarget = false;
-        KaitSpineView ghost = makotoSkeletonData == null ? null : KaitSpineView.Create(makotoSkeletonData, inside.transform, new Vector2(78, 78), "Kait Trail Character");
+        Color trailColor = Color.Lerp(Peach, Coral, tier);
+        trailColor.a = Mathf.Lerp(0.3f, 0.62f, tier) * opacityMultiplier;
+        KaitSpineView ghost = makotoSkeletonData == null ? null : KaitSpineView.Create(makotoSkeletonData, canvas.transform, new Vector2(115, 115), "Kait Speed Trail");
         if (ghost != null)
         {
+            ghost.Root.position = position;
+            ghost.Root.SetAsLastSibling();
             ghost.Face(direction);
             ghost.PlayLoop(KaitSpineView.Run);
-            ghost.SetOpacity(Mathf.Lerp(0.42f, 0.68f, tier));
-            return border.rectTransform;
+            ghost.SetTint(trailColor);
+            return new KaitTrailVisual { rect = ghost.Root, spine = ghost };
         }
-        return border.rectTransform;
+        RectTransform fallbackSource = battleCells[run.katePos.x + run.katePos.y * KaitRun.BattleSize].rectTransform;
+        RectTransform fallback = CreateFloatingPortrait(kaitPortrait, Color.clear, fallbackSource, new Vector2(115, 115));
+        fallback.position = position;
+        Image portrait = fallback.Find("Portrait")?.GetComponent<Image>();
+        if (portrait != null) portrait.color = trailColor;
+        return new KaitTrailVisual { rect = fallback };
+    }
+
+    private static void DestroyTrailVisual(KaitTrailVisual trail)
+    {
+        if (trail == null) return;
+        if (trail.spine != null) trail.spine.Destroy();
+        else if (trail.rect != null) Destroy(trail.rect.gameObject);
+    }
+
+    private IEnumerator FadeAndDestroyTrail(KaitTrailVisual trail, float duration)
+    {
+        if (trail == null || trail.rect == null) yield break;
+        CanvasGroup group = trail.rect.gameObject.AddComponent<CanvasGroup>();
+        float elapsed = 0f;
+        while (elapsed < duration && trail.rect != null)
+        {
+            group.alpha = 1f - elapsed / duration;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        DestroyTrailVisual(trail);
     }
 
     private IEnumerator FadeAndDestroy(RectTransform rect, float duration)
