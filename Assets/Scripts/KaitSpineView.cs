@@ -25,17 +25,19 @@ public sealed class KaitSpineView
     private readonly SkeletonGraphic graphic;
     private readonly RectTransform root;
     private readonly RectTransform skeletonRect;
+    private readonly Material flashMaterial;
     private readonly float rightFacingVisualX;
 
     public RectTransform Root => root;
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
 
-    private KaitSpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX)
+    private KaitSpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX, Material flashMaterial)
     {
         this.root = root;
         this.graphic = graphic;
         this.skeletonRect = skeletonRect;
         this.rightFacingVisualX = rightFacingVisualX;
+        this.flashMaterial = flashMaterial;
     }
 
     public static KaitSpineView Create(SkeletonDataAsset data, Transform parent, Vector2 size, string name = "Kait Spine")
@@ -87,6 +89,8 @@ public sealed class KaitSpineView
             Debug.LogError("Kait Spine: Makoto skeleton data could not be initialized.");
             return null;
         }
+        Material flashMaterial = CreateFlashMaterial(name + " Hit Flash");
+        if (flashMaterial != null) skeletonGraphic.material = flashMaterial;
         skeletonGraphic.AnimationState.SetAnimation(0, Idle, true);
         skeletonGraphic.Update(0f);
         skeletonGraphic.MatchRectTransformWithBounds();
@@ -105,7 +109,19 @@ public sealed class KaitSpineView
         Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
 
-        return new KaitSpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x);
+        return new KaitSpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x, flashMaterial);
+    }
+
+    private static Material CreateFlashMaterial(string name)
+    {
+        Material template = Resources.Load<Material>("KaitVisuals/SpineHitFlash");
+        Shader fillShader = template != null ? template.shader : Shader.Find("Spine/Skeleton Fill");
+        if (fillShader == null) return null;
+        var material = template != null ? new Material(template) : new Material(fillShader);
+        material.name = name;
+        material.SetColor("_FillColor", Color.white);
+        material.SetFloat("_FillPhase", 0f);
+        return material;
     }
 
     private static Bounds BodyBounds(SkeletonGraphic skeletonGraphic, Bounds fallback)
@@ -164,6 +180,11 @@ public sealed class KaitSpineView
         if (graphic != null) graphic.color = color;
     }
 
+    public void SetHitFlash(float amount)
+    {
+        if (flashMaterial != null) flashMaterial.SetFloat("_FillPhase", Mathf.Clamp01(amount));
+    }
+
     public void PlayLoop(string animation)
     {
         if (!IsReady || string.IsNullOrEmpty(animation)) return;
@@ -192,6 +213,7 @@ public sealed class KaitSpineView
 
     public void Destroy()
     {
+        if (flashMaterial != null) Object.Destroy(flashMaterial);
         if (root != null) Object.Destroy(root.gameObject);
     }
 }

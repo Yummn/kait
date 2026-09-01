@@ -640,7 +640,7 @@ public sealed class KaitGame : MonoBehaviour
 
         if (result.pushed) yield return AnimatePush(result);
         else if (result.pushBlockedByWall || result.pushBlockedByUnit)
-            yield return PulseBattleUnit(result.pushFrom, Gold, 0.18f);
+            yield return PulseBattleUnit(result.pushFrom, Color.white, 0.18f, result.damagedEnemyId);
 
         if (result.dreadSlash)
         {
@@ -1050,7 +1050,7 @@ public sealed class KaitGame : MonoBehaviour
                     TriggerChainShake(chainKills);
                     if (i + 1 < result.playerKilledEnemyIds.Count) yield return new WaitForSecondsRealtime(0.06f);
                 }
-                yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.16f);
+                yield return PulseBattleUnit(result.blockedEnemyCell, Color.white, 0.16f, result.damagedEnemyId);
             }
             else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
                 kaitSpine?.PlayOnce(KaitSpineView.StandBy);
@@ -1101,7 +1101,7 @@ public sealed class KaitGame : MonoBehaviour
                     TriggerChainShake(chainKills);
                     movingKait?.PlayOnce(KaitSpineView.ChainAttack, KaitSpineView.Run);
                     RefreshBattle();
-                    StartCoroutine(PulseBattleUnit(cell, Coral, 0.16f));
+                    StartCoroutine(PulseBattleUnit(cell, Color.white, 0.16f, struckEnemy.id));
                 }
             }
             elapsed += Time.unscaledDeltaTime;
@@ -1131,7 +1131,7 @@ public sealed class KaitGame : MonoBehaviour
         {
             kaitSpine?.Face(result.kaitDirection);
             kaitSpine?.PlayOnce(killedBlockedEnemyAfterSlide ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
-            yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.14f);
+            yield return PulseBattleUnit(result.blockedEnemyCell, Color.white, 0.14f, result.damagedEnemyId);
         }
         else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
             kaitSpine?.PlayOnce(KaitSpineView.StandBy);
@@ -1227,7 +1227,7 @@ public sealed class KaitGame : MonoBehaviour
         if (defeatedEnemies != null && defeatedEnemies.Count > 0)
         {
             foreach (KaitEnemy defeated in defeatedEnemies)
-                StartCoroutine(PulseBattleUnit(defeated.pos, Coral, 0.16f));
+                StartCoroutine(PulseBattleUnit(defeated.pos, Color.white, 0.16f, defeated.id));
             yield return new WaitForSecondsRealtime(0.12f);
         }
         animatedEnemies?.RemoveAll(e => run.enemies.Find(r => r.id == e.id)?.life == KaitEnemyLife.Dead);
@@ -1469,6 +1469,7 @@ public sealed class KaitGame : MonoBehaviour
             if (!InsideBattle(cell)) continue;
             HealthBarView bar = battleHealthBars[cell.x + cell.y * KaitRun.BattleSize];
             StartCoroutine(AnimateHealthLoss(bar, before.hp, afterHp, afterHp <= 0));
+            StartCoroutine(FlashEnemyWhite(before.id));
             longestHealthLoss = Mathf.Max(longestHealthLoss, before.hp - afterHp);
         }
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
@@ -1481,6 +1482,7 @@ public sealed class KaitGame : MonoBehaviour
         if (result.playerDamage > 0)
         {
             kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
+            StartCoroutine(FlashKaitWhite());
             StartCoroutine(FloatDamage(run.katePos, result.playerDamage, Gold));
             StartCoroutine(AnimateHealthLoss(runHealthBar, kateHpBefore, run.kateHp, false));
             longestHealthLoss = Mathf.Max(longestHealthLoss, kateHpBefore - run.kateHp);
@@ -1591,7 +1593,7 @@ public sealed class KaitGame : MonoBehaviour
         if (slot >= 0 && slot < skillButtons.Length)
             yield return ScalePulse(skillButtons[slot].GetComponent<RectTransform>(), 0.92f, 1.08f, 0.14f);
         if (skill == KaitSkill.SwiftBoots || skill == KaitSkill.CatAgility)
-            yield return PulseBattleUnit(run.katePos, Coral, 0.15f);
+            yield return PulseBattleUnit(run.katePos, Coral, 0.15f, -1, true);
     }
 
     private IEnumerator AnimateDreadSlashWave(KaitDirection direction)
@@ -1612,12 +1614,16 @@ public sealed class KaitGame : MonoBehaviour
         foreach (RectTransform wave in waves) StartCoroutine(FadeAndDestroy(wave, 0.16f));
     }
 
-    private IEnumerator PulseBattleUnit(Vector2Int cell, Color color, float duration)
+    private IEnumerator PulseBattleUnit(Vector2Int cell, Color color, float duration, int expectedEnemyId = -1, bool requireKait = false)
     {
         if (!InsideBattle(cell)) yield break;
         int index = cell.x + cell.y * KaitRun.BattleSize;
-        KaitEnemy enemy = EnemyAtVisual(cell);
-        bool isKate = !hideKate && (displayKate ?? run.katePos) == cell;
+        KaitEnemy enemy = expectedEnemyId >= 0
+            ? animatedEnemies?.Find(e => e.id == expectedEnemyId) ?? run.enemies.Find(e => e.id == expectedEnemyId)
+            : requireKait ? null : EnemyAtVisual(cell);
+        bool isKate = !hideKate && (displayKate ?? run.katePos) == cell && expectedEnemyId < 0;
+        if (expectedEnemyId >= 0 && (enemy == null || enemy.pos != cell)) yield break;
+        if (requireKait && !isKate) yield break;
         if (enemy == null && !isKate) yield break;
 
         Color original = Color.white;
@@ -1651,6 +1657,23 @@ public sealed class KaitGame : MonoBehaviour
             kaitSpine?.SetTint(Color.white);
             if (kaitSpine == null && battlePortraits[index] != null) battlePortraits[index].color = Color.white;
         }
+    }
+
+    private IEnumerator FlashEnemyWhite(int enemyId)
+    {
+        EnemySpineView view = EnemySpine(enemyId);
+        if (view == null) yield break;
+        view.SetHitFlash(1f);
+        yield return new WaitForSecondsRealtime(0.075f);
+        view.SetHitFlash(0f);
+    }
+
+    private IEnumerator FlashKaitWhite()
+    {
+        if (kaitSpine == null) yield break;
+        kaitSpine.SetHitFlash(1f);
+        yield return new WaitForSecondsRealtime(0.075f);
+        kaitSpine.SetHitFlash(0f);
     }
 
     private IEnumerator ScalePulse(RectTransform rect, float from, float peak, float duration)

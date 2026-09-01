@@ -15,19 +15,21 @@ public sealed class EnemySpineView
     private readonly SkeletonGraphic graphic;
     private readonly RectTransform root;
     private readonly RectTransform skeletonRect;
+    private readonly Material flashMaterial;
     private readonly float rightFacingVisualX;
     private readonly string prefix;
 
     public RectTransform Root => root;
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
 
-    private EnemySpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX, string prefix)
+    private EnemySpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX, string prefix, Material flashMaterial)
     {
         this.root = root;
         this.graphic = graphic;
         this.skeletonRect = skeletonRect;
         this.rightFacingVisualX = rightFacingVisualX;
         this.prefix = prefix;
+        this.flashMaterial = flashMaterial;
     }
 
     public static EnemySpineView Create(SkeletonDataAsset data, string animationPrefix, Transform parent, Vector2 size, string name)
@@ -66,6 +68,9 @@ public sealed class EnemySpineView
             return null;
         }
 
+        Material flashMaterial = CreateFlashMaterial(name + " Hit Flash");
+        if (flashMaterial != null) skeletonGraphic.material = flashMaterial;
+
         string idle = animationPrefix + IdleSuffix;
         skeletonGraphic.AnimationState.SetAnimation(0, idle, true);
         skeletonGraphic.Update(0f);
@@ -85,7 +90,19 @@ public sealed class EnemySpineView
         Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
 
-        return new EnemySpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x, animationPrefix);
+        return new EnemySpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x, animationPrefix, flashMaterial);
+    }
+
+    private static Material CreateFlashMaterial(string name)
+    {
+        Material template = Resources.Load<Material>("KaitVisuals/SpineHitFlash");
+        Shader fillShader = template != null ? template.shader : Shader.Find("Spine/Skeleton Fill");
+        if (fillShader == null) return null;
+        var material = template != null ? new Material(template) : new Material(fillShader);
+        material.name = name;
+        material.SetColor("_FillColor", Color.white);
+        material.SetFloat("_FillPhase", 0f);
+        return material;
     }
 
     private static Bounds BodyBounds(SkeletonGraphic skeletonGraphic, Bounds fallback)
@@ -139,6 +156,11 @@ public sealed class EnemySpineView
         if (graphic != null) graphic.color = color;
     }
 
+    public void SetHitFlash(float amount)
+    {
+        if (flashMaterial != null) flashMaterial.SetFloat("_FillPhase", Mathf.Clamp01(amount));
+    }
+
     public void PlayIdle()
     {
         if (!IsReady) return;
@@ -172,6 +194,7 @@ public sealed class EnemySpineView
 
     public void Destroy()
     {
+        if (flashMaterial != null) Object.Destroy(flashMaterial);
         if (root != null) Object.Destroy(root.gameObject);
     }
 }
