@@ -70,4 +70,13 @@ public sealed class KaitSpineTests
             Assert.Greater(animation.Duration, 0f);
         }
     }
+
+    [Test]
+    public void AttackWarningStripeTexture_IsPackagedForPlayerBuilds()
+    {
+        Texture2D texture = Resources.Load<Texture2D>("KaitVisuals/AttackWarningStripes");
+        Assert.IsNotNull(texture);
+        Assert.Greater(texture.width, 0);
+        Assert.Greater(texture.height, 0);
+    }
 }

@@ -63,6 +63,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite guardPortrait;
     private Sprite warlockPortrait;
     private Sprite bossPortrait;
+    private Sprite attackWarningSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
     private string logPath;
@@ -118,6 +119,7 @@ public sealed class KaitGame : MonoBehaviour
         guardPortrait = LoadPortraitSprite("EnemyPortraits/112731", new Rect(0.3386f, 0.1883f, 0.2623f, 0.4137f));
         warlockPortrait = LoadPortraitSprite("EnemyPortraits/111031", new Rect(0.3635f, 0.1883f, 0.2269f, 0.3426f));
         bossPortrait = LoadPortraitSprite("EnemyPortraits/104731", new Rect(0.3632f, 0.1885f, 0.2285f, 0.3793f));
+        attackWarningSprite = LoadUiSprite("KaitVisuals/AttackWarningStripes");
         LoadEnemySkeleton(KaitEnemyType.Grunt, "100161");
         LoadEnemySkeleton(KaitEnemyType.Swordsman, "105731");
         LoadEnemySkeleton(KaitEnemyType.Archer, "106331");
@@ -265,13 +267,18 @@ public sealed class KaitGame : MonoBehaviour
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
-                Image warning = Rect("Attack Warning", cell.transform, Vector2.zero, new Vector2(98, 14), new Color(Wine.r, Wine.g, Wine.b, 0.38f));
+                Image warning = Rect("Attack Warning", cell.transform, Vector2.zero, attackWarningSprite != null ? new Vector2(109, 109) : new Vector2(98, 14), Color.clear);
                 warning.raycastTarget = false;
-                warning.color = Color.clear;
-                for (int dash = -1; dash <= 1; dash++)
+                warning.sprite = attackWarningSprite;
+                warning.type = Image.Type.Simple;
+                warning.preserveAspect = false;
+                if (attackWarningSprite == null)
                 {
-                    Image segment = Rect("Warning Dash", warning.transform, new Vector2(dash * 31, 0), new Vector2(22, 9), new Color(Coral.r, 0.18f, 0.22f, 0.72f));
-                    segment.raycastTarget = false;
+                    for (int dash = -1; dash <= 1; dash++)
+                    {
+                        Image segment = Rect("Warning Dash", warning.transform, new Vector2(dash * 31, 0), new Vector2(22, 9), new Color(Coral.r, 0.18f, 0.22f, 0.72f));
+                        segment.raycastTarget = false;
+                    }
                 }
                 warning.gameObject.SetActive(false);
                 battleWarningLines[index] = warning;
@@ -697,7 +704,7 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     Image warning = battleWarningLines[index];
                     warning.gameObject.SetActive(true);
-                    warning.color = Color.clear;
+                    warning.color = warning.sprite != null ? new Color(1f, 1f, 1f, 0.52f) : Color.clear;
                     foreach (Image dash in warning.GetComponentsInChildren<Image>(true))
                         if (dash != warning) dash.color = new Color(intentTint.Value.r, intentTint.Value.g, intentTint.Value.b, 0.72f);
                     warning.rectTransform.localRotation = Quaternion.Euler(0f, 0f, IntentAngleAt(p));
@@ -1445,6 +1452,14 @@ public sealed class KaitGame : MonoBehaviour
             normalizedRect.width * texture.width,
             normalizedRect.height * texture.height);
         return Sprite.Create(texture, pixels, new Vector2(0.5f, 0.5f), 100f);
+    }
+
+    private static Sprite LoadUiSprite(string resourcePath)
+    {
+        Texture2D texture = Resources.Load<Texture2D>(resourcePath);
+        if (texture == null) return null;
+        texture.filterMode = FilterMode.Bilinear;
+        return Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);
     }
 
     private Sprite EnemyPortrait(KaitEnemyType type)
