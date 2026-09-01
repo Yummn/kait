@@ -78,6 +78,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite grassBackgroundSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
+    private readonly List<EnemySpineView> detachedEnemyDeaths = new List<EnemySpineView>();
     private readonly List<KaitTrailVisual> activeTrailVisuals = new List<KaitTrailVisual>();
     private string logPath;
 
@@ -581,6 +582,21 @@ public sealed class KaitGame : MonoBehaviour
         if (!threatDone) StartCoroutine(RunPhase(AnimateThreat(result), () => threatDone = true));
         while (!kateDone || !threatDone) yield return null;
 
+        if (result.awaitingTurnChoice && run.chainActive)
+        {
+            BeginDetachedEnemyDeaths(healthBefore);
+            animatedEnemies = null;
+            animatedSpawns = null;
+            hideKate = false;
+            displayKate = null;
+            displayedThreat = null;
+            statusText.text = result.message;
+            busy = false;
+            RefreshAll();
+            kaitSpine?.PlayLoop(KaitSpineView.ChainDirectionChoice);
+            yield break;
+        }
+
         if (result.pushed) yield return AnimatePush(result);
         else if (result.pushBlockedByWall || result.pushBlockedByUnit)
             yield return PulseBattleUnit(result.pushFrom, Color.white, 0.18f, result.damagedEnemyId);
@@ -603,19 +619,6 @@ public sealed class KaitGame : MonoBehaviour
         hideKate = false;
         displayKate = null;
         RefreshBattle();
-
-        // A kill-chain turn has no enemy phase or spawn resolution yet. Release
-        // input as soon as the attack/death feedback finishes so the direction
-        // pose can be interrupted immediately by the next move.
-        if (result.awaitingTurnChoice && run.chainActive)
-        {
-            displayedThreat = null;
-            statusText.text = result.message;
-            busy = false;
-            RefreshAll();
-            kaitSpine?.PlayLoop(KaitSpineView.ChainDirectionChoice);
-            yield break;
-        }
 
         float landingDuration = 0f;
         foreach (KaitEnemy enemy in run.enemies)
@@ -1001,12 +1004,19 @@ public sealed class KaitGame : MonoBehaviour
     {
         if (result.katePath.Count == 0)
         {
+            float chainAttackStartedAt = -1f;
+            float chainAttackDuration = 0f;
             if (result.blockedEnemyCell.x >= 0)
             {
                 bool killedBlockedEnemy = animatedEnemies != null && animatedEnemies.Exists(e =>
                     e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
                 kaitSpine?.Face(result.kaitDirection);
                 kaitSpine?.PlayOnce(killedBlockedEnemy ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
+                if (killedBlockedEnemy)
+                {
+                    chainAttackStartedAt = Time.realtimeSinceStartup;
+                    chainAttackDuration = kaitSpine?.Duration(KaitSpineView.ChainAttack) ?? 0f;
+                }
                 for (int i = 0; i < result.playerKilledEnemyIds.Count; i++)
                 {
                     int chainKills = Mathf.Max(1, result.chainKillCount - result.playerKilledEnemyIds.Count + i + 1);
@@ -1018,6 +1028,11 @@ public sealed class KaitGame : MonoBehaviour
             }
             else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
                 kaitSpine?.PlayOnce(KaitSpineView.WallStop);
+            if (result.awaitingTurnChoice && chainAttackStartedAt >= 0f)
+            {
+                float remaining = chainAttackDuration - (Time.realtimeSinceStartup - chainAttackStartedAt);
+                if (remaining > 0f) yield return new WaitForSecondsRealtime(remaining);
+            }
             yield break;
         }
 
@@ -1092,18 +1107,34 @@ public sealed class KaitGame : MonoBehaviour
             TriggerChainShake(chainKills);
             if (killSoundsPlayed < result.playerKilledEnemyIds.Count) yield return new WaitForSecondsRealtime(0.06f);
         }
+        float finalChainAttackStartedAt = -1f;
+        float finalChainAttackDuration = 0f;
         if (result.blockedEnemyCell.x >= 0)
         {
             kaitSpine?.Face(result.kaitDirection);
             kaitSpine?.PlayOnce(killedBlockedEnemyAfterSlide ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
+            if (killedBlockedEnemyAfterSlide)
+            {
+                finalChainAttackStartedAt = Time.realtimeSinceStartup;
+                finalChainAttackDuration = kaitSpine?.Duration(KaitSpineView.ChainAttack) ?? 0f;
+            }
             yield return PulseBattleUnit(result.blockedEnemyCell, Color.white, 0.14f, result.damagedEnemyId);
         }
         else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
             kaitSpine?.PlayOnce(KaitSpineView.WallStop);
         else if (result.playerKilledEnemyIds.Count > 0)
+        {
             kaitSpine?.PlayOnce(KaitSpineView.ChainAttack);
+            finalChainAttackStartedAt = Time.realtimeSinceStartup;
+            finalChainAttackDuration = kaitSpine?.Duration(KaitSpineView.ChainAttack) ?? 0f;
+        }
         else
             kaitSpine?.PlayLoop(KaitSpineView.Idle);
+        if (result.awaitingTurnChoice && finalChainAttackStartedAt >= 0f)
+        {
+            float remaining = finalChainAttackDuration - (Time.realtimeSinceStartup - finalChainAttackStartedAt);
+            if (remaining > 0f) yield return new WaitForSecondsRealtime(remaining);
+        }
     }
 
     private IEnumerator AnimateAllEnemyActions(List<KaitEnemyAction> actions)
@@ -1526,6 +1557,37 @@ public sealed class KaitGame : MonoBehaviour
         RefreshBattle();
     }
 
+    private void BeginDetachedEnemyDeaths(List<KaitEnemy> healthBefore)
+    {
+        foreach (KaitEnemy before in healthBefore)
+        {
+            KaitEnemy resolved = run.enemies.Find(e => e.id == before.id);
+            if (resolved == null || resolved.life != KaitEnemyLife.Dead || before.life == KaitEnemyLife.Dead) continue;
+            EnemySpineView view = EnemySpine(before.id);
+            if (view == null) continue;
+
+            int index = before.pos.x + before.pos.y * KaitRun.BattleSize;
+            if (index < 0 || index >= battleCells.Length || battleCells[index] == null) continue;
+            enemySpines.Remove(before.id);
+            view.SetParent(canvas.transform);
+            view.Root.position = battleCells[index].rectTransform.position;
+            view.Root.SetAsLastSibling();
+            view.SetTint(Color.white);
+            view.Face(before.type == KaitEnemyType.ShieldKnight ? before.facing : before.intent.direction);
+            view.SetVisible(true);
+            view.PlayDeath();
+            detachedEnemyDeaths.Add(view);
+            StartCoroutine(DestroyDetachedEnemyDeath(view, view.DeathDuration));
+        }
+    }
+
+    private IEnumerator DestroyDetachedEnemyDeath(EnemySpineView view, float duration)
+    {
+        if (duration > 0f) yield return new WaitForSecondsRealtime(duration);
+        detachedEnemyDeaths.Remove(view);
+        view?.Destroy();
+    }
+
     private IEnumerator AnimateEnemyAttackPreparation()
     {
         float longestDuration = 0f;
@@ -1913,6 +1975,8 @@ public sealed class KaitGame : MonoBehaviour
     {
         foreach (EnemySpineView view in enemySpines.Values) view.Destroy();
         enemySpines.Clear();
+        foreach (EnemySpineView view in detachedEnemyDeaths) view.Destroy();
+        detachedEnemyDeaths.Clear();
     }
 
     private static string EnemyAnimationPrefix(KaitEnemyType type)
