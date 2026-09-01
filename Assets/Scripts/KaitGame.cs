@@ -24,6 +24,7 @@ public sealed class KaitGame : MonoBehaviour
     private Image[] battleCellTiles;
     private Image[] battleCellTints;
     private Image[] battleUnitClips;
+    private RectTransform[] battleDeathLayers;
     private Text[] battleLabels;
     private Image[] battlePortraits;
     private HealthBarView[] battleHealthBars;
@@ -334,6 +335,7 @@ public sealed class KaitGame : MonoBehaviour
         battleCellTiles = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleCellTints = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleUnitClips = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleDeathLayers = new RectTransform[KaitRun.BattleSize * KaitRun.BattleSize];
         for (int visualY = KaitRun.BattleSize - 2; visualY >= 1; visualY--)
         {
             for (int x = 1; x < KaitRun.BattleSize - 1; x++)
@@ -386,6 +388,11 @@ public sealed class KaitGame : MonoBehaviour
                 rift.preserveAspect = true;
                 rift.gameObject.SetActive(false);
                 battleRifts[index] = rift;
+                var deathLayerObject = new GameObject("Death Visual Layer", typeof(RectTransform));
+                deathLayerObject.transform.SetParent(cell.transform, false);
+                RectTransform deathLayer = deathLayerObject.GetComponent<RectTransform>();
+                Stretch(deathLayer, 0);
+                battleDeathLayers[index] = deathLayer;
                 Image unitClip = Rect("Unit Visual", cell.transform, Vector2.zero, new Vector2(114, 114), Color.clear);
                 unitClip.raycastTarget = false;
                 unitClip.sprite = null;
@@ -904,7 +911,7 @@ public sealed class KaitGame : MonoBehaviour
                     {
                         // Keep Kait outside the legacy per-unit visual container.
                         // Her sword is allowed to extend over adjacent cells.
-                        kaitSpine.SetParent(battleCells[index].transform, 4);
+                        kaitSpine.SetParent(battleCells[index].transform, 5);
                         kaitSpine.SetVisible(true);
                     }
                     else
@@ -1568,10 +1575,10 @@ public sealed class KaitGame : MonoBehaviour
 
             int index = before.pos.x + before.pos.y * KaitRun.BattleSize;
             if (index < 0 || index >= battleCells.Length || battleCells[index] == null) continue;
+            RectTransform deathLayer = battleDeathLayers[index];
+            if (deathLayer == null) continue;
             enemySpines.Remove(before.id);
-            view.SetParent(canvas.transform);
-            view.Root.position = battleCells[index].rectTransform.position;
-            view.Root.SetAsLastSibling();
+            view.SetParent(deathLayer);
             view.SetTint(Color.white);
             view.Face(before.type == KaitEnemyType.ShieldKnight ? before.facing : before.intent.direction);
             view.SetVisible(true);
@@ -1584,6 +1591,14 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator DestroyDetachedEnemyDeath(EnemySpineView view, float duration)
     {
         if (duration > 0f) yield return new WaitForSecondsRealtime(duration);
+        const float fadeDuration = 0.24f;
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            view?.SetOpacity(1f - elapsed / fadeDuration);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
         detachedEnemyDeaths.Remove(view);
         view?.Destroy();
     }

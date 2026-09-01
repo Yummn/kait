@@ -165,6 +165,14 @@ public sealed class EnemySpineView
         if (graphic != null) graphic.color = color;
     }
 
+    public void SetOpacity(float opacity)
+    {
+        if (graphic == null) return;
+        Color color = graphic.color;
+        color.a = Mathf.Clamp01(opacity);
+        graphic.color = color;
+    }
+
     public void SetHitFlash(float amount)
     {
         if (flashMaterial != null) flashMaterial.SetFloat("_FillPhase", Mathf.Clamp01(amount));
