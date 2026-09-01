@@ -74,6 +74,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite dungeonPanelSprite;
     private Sprite dungeonButtonSprite;
     private Sprite dungeonHealthFrameSprite;
+    private Sprite grassBackgroundSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
     private string logPath;
@@ -143,6 +144,7 @@ public sealed class KaitGame : MonoBehaviour
         dungeonPanelSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/Panel", 2f);
         dungeonButtonSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/Button", 2f);
         dungeonHealthFrameSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/HealthFrame", 4f);
+        grassBackgroundSprite = LoadTiledPixelSprite("KaitVisuals/GrassBackground");
         LoadEnemySkeleton(KaitEnemyType.Grunt, "100161");
         LoadEnemySkeleton(KaitEnemyType.Swordsman, "105731");
         LoadEnemySkeleton(KaitEnemyType.Archer, "106331");
@@ -229,6 +231,12 @@ public sealed class KaitGame : MonoBehaviour
         scaler.matchWidthOrHeight = 0.5f;
 
         Image bg = Rect("Background", canvas.transform, Vector2.zero, new Vector2(1920, 1080), Background);
+        if (grassBackgroundSprite != null)
+        {
+            bg.sprite = grassBackgroundSprite;
+            bg.type = Image.Type.Tiled;
+            bg.color = Color.white;
+        }
         bg.rectTransform.anchorMin = Vector2.zero;
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
@@ -1569,6 +1577,15 @@ public sealed class KaitGame : MonoBehaviour
             0,
             SpriteMeshType.FullRect,
             new Vector4(border, border, border, border));
+    }
+
+    private static Sprite LoadTiledPixelSprite(string resourcePath)
+    {
+        Texture2D texture = Resources.Load<Texture2D>(resourcePath);
+        if (texture == null) return null;
+        texture.filterMode = FilterMode.Point;
+        texture.wrapMode = TextureWrapMode.Repeat;
+        return Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);
     }
 
     private Sprite EnemyPortrait(KaitEnemyType type)
