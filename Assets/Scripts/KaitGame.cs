@@ -71,6 +71,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite spawnRiftSprite;
     private Sprite dungeonPanelSprite;
     private Sprite dungeonButtonSprite;
+    private Sprite dungeonButtonPressedSprite;
     private readonly Sprite[] healthFillSprites = new Sprite[3];
     private readonly Sprite[] healthSlotSprites = new Sprite[3];
     private Sprite grassBackgroundSprite;
@@ -148,8 +149,9 @@ public sealed class KaitGame : MonoBehaviour
         dungeonFloorSprite = LoadPixelSprite("KaitVisuals/DungeonFloor");
         dungeonWallSprite = LoadPixelSprite("KaitVisuals/DungeonWall");
         spawnRiftSprite = LoadPixelSprite("KaitVisuals/SpawnRift");
-        dungeonPanelSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/Panel", 2f);
-        dungeonButtonSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/Button", 2f);
+        dungeonPanelSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/TileMap1", new Rect(16f, 160f, 48f, 48f), 16f);
+        dungeonButtonSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/ButtonsMap", new Rect(0f, 54f, 16f, 16f), 4f);
+        dungeonButtonPressedSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/ButtonsMap", new Rect(0f, 36f, 16f, 16f), 4f);
         healthFillSprites[0] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillLeft");
         healthFillSprites[1] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillMiddle");
         healthFillSprites[2] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillRight");
@@ -1648,6 +1650,21 @@ public sealed class KaitGame : MonoBehaviour
             new Vector4(border, border, border, border));
     }
 
+    private static Sprite LoadSlicedAtlasSprite(string resourcePath, Rect pixels, float border)
+    {
+        Texture2D texture = Resources.Load<Texture2D>(resourcePath);
+        if (texture == null) return null;
+        texture.filterMode = FilterMode.Point;
+        return Sprite.Create(
+            texture,
+            pixels,
+            new Vector2(0.5f, 0.5f),
+            16f,
+            0,
+            SpriteMeshType.FullRect,
+            new Vector4(border, border, border, border));
+    }
+
     private static Sprite LoadTiledPixelSprite(string resourcePath)
     {
         Texture2D texture = Resources.Load<Texture2D>(resourcePath);
@@ -1754,11 +1771,13 @@ public sealed class KaitGame : MonoBehaviour
             image.color = Color.white;
         }
         Button button = image.gameObject.AddComponent<Button>();
-        ColorBlock colors = button.colors;
-        colors.normalColor = Color.white;
-        colors.highlightedColor = new Color(1.12f, 1.12f, 1.12f, 1f);
-        colors.pressedColor = new Color(0.82f, 0.82f, 0.82f, 1f);
-        button.colors = colors;
+        button.transition = Selectable.Transition.SpriteSwap;
+        SpriteState sprites = button.spriteState;
+        sprites.highlightedSprite = dungeonButtonSprite;
+        sprites.selectedSprite = dungeonButtonSprite;
+        sprites.pressedSprite = dungeonButtonPressedSprite;
+        sprites.disabledSprite = dungeonButtonSprite;
+        button.spriteState = sprites;
         Text text = MakeText(label, image.transform, Vector2.zero, size - new Vector2(8, 8), 17, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         Stretch(text.rectTransform, 4);
         return button;
@@ -1769,7 +1788,7 @@ public sealed class KaitGame : MonoBehaviour
         if (image == null || dungeonPanelSprite == null) return;
         image.sprite = dungeonPanelSprite;
         image.type = Image.Type.Sliced;
-        image.color = Hex("#71809A");
+        image.color = Color.white;
     }
 
     private HealthBarView MakeHealthBar(Transform parent, Vector2 position, Vector2 size)
