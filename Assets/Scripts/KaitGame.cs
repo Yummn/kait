@@ -1056,19 +1056,21 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     KaitEnemy struckEnemy = animatedEnemies.Find(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id));
                     EnemySpine(struckEnemy)?.PlayDamage();
-                    impactCells.Add(cell);
                     killSoundsPlayed++;
                     int chainKills = chainKillsBeforeTurn + killSoundsPlayed;
                     GameAudio.PlayKaitKill(chainKills);
                     TriggerChainShake(chainKills);
                     movingKait?.PlayOnce(KaitSpineView.ChainAttack, KaitSpineView.Run);
                     RefreshBattle();
+                    StartCoroutine(PulseBattleUnit(cell, Coral, 0.16f));
                 }
             }
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
         token.position = points[points.Count - 1];
+        if (result.playerKilledEnemyIds.Count > 0)
+            yield return new WaitForSecondsRealtime(0.08f);
         bool killedBlockedEnemyAfterSlide = result.blockedEnemyCell.x >= 0 && animatedEnemies.Exists(e =>
             e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
         if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
@@ -1182,6 +1184,13 @@ public sealed class KaitGame : MonoBehaviour
             Destroy(move.rect.gameObject);
         }
         foreach (ProjectileVisual projectile in projectiles) Destroy(projectile.rect.gameObject);
+        List<KaitEnemy> defeatedEnemies = animatedEnemies?.FindAll(e => run.enemies.Find(r => r.id == e.id)?.life == KaitEnemyLife.Dead);
+        if (defeatedEnemies != null && defeatedEnemies.Count > 0)
+        {
+            foreach (KaitEnemy defeated in defeatedEnemies)
+                StartCoroutine(PulseBattleUnit(defeated.pos, Coral, 0.16f));
+            yield return new WaitForSecondsRealtime(0.12f);
+        }
         animatedEnemies?.RemoveAll(e => run.enemies.Find(r => r.id == e.id)?.life == KaitEnemyLife.Dead);
         impactCells.Clear();
         RefreshBattle();
@@ -1193,11 +1202,28 @@ public sealed class KaitGame : MonoBehaviour
         if (enemy == null || !InsideBattle(result.pushTo)) yield break;
         KaitEnemy resolved = run.enemies.Find(e => e.id == enemy.id);
         if (resolved != null) enemy.hp = resolved.hp;
-        RectTransform token = CreateFloatingPortrait(EnemyPortrait(enemy.type), EnemyTileColor(enemy.type), battleCells[result.pushFrom.x + result.pushFrom.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115), enemy.hp, enemy.maxHp);
+        EnemySpineView pushedView = EnemySpine(enemy);
+        RectTransform token = pushedView != null
+            ? pushedView.Root
+            : CreateFloatingPortrait(EnemyPortrait(enemy.type), Color.clear, battleCells[result.pushFrom.x + result.pushFrom.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115), enemy.hp, enemy.maxHp);
         animatedEnemies.Remove(enemy);
         RefreshBattle();
         Vector3 from = battleCells[result.pushFrom.x + result.pushFrom.y * KaitRun.BattleSize].rectTransform.position;
         Vector3 to = battleCells[result.pushTo.x + result.pushTo.y * KaitRun.BattleSize].rectTransform.position;
+        if (pushedView != null)
+        {
+            pushedView.SetParent(canvas.transform);
+            pushedView.Root.position = from;
+            pushedView.Root.SetAsLastSibling();
+            pushedView.SetVisible(true);
+            pushedView.SetTint(Gold);
+            pushedView.PlayDamage();
+        }
+        else
+        {
+            Transform portrait = token.Find("Portrait");
+            if (portrait != null) portrait.GetComponent<Image>().color = Gold;
+        }
         float elapsed = 0f;
         const float duration = 0.18f;
         while (elapsed < duration)
@@ -1208,7 +1234,12 @@ public sealed class KaitGame : MonoBehaviour
         }
         enemy.pos = result.pushTo;
         animatedEnemies.Add(enemy);
-        Destroy(token.gameObject);
+        if (pushedView != null)
+        {
+            pushedView.SetTint(Color.white);
+            pushedView.SetVisible(false);
+        }
+        else Destroy(token.gameObject);
         RefreshBattle();
     }
 
@@ -1416,12 +1447,6 @@ public sealed class KaitGame : MonoBehaviour
             longestHealthLoss = Mathf.Max(longestHealthLoss, kateHpBefore - run.kateHp);
             hasImpact = true;
         }
-        foreach (Vector2Int cell in result.killedEnemyCells)
-            if (InsideBattle(cell))
-            {
-                StartCoroutine(KillFlashAt(cell));
-                hasImpact = true;
-            }
         if (longestHealthLoss > 0) yield return new WaitForSecondsRealtime(longestHealthLoss * 0.15f);
         else if (hasImpact) yield return new WaitForSecondsRealtime(0.055f);
     }
@@ -1464,16 +1489,6 @@ public sealed class KaitGame : MonoBehaviour
             yield return null;
         }
         Destroy(text.gameObject);
-    }
-
-    private IEnumerator KillFlashAt(Vector2Int cell)
-    {
-        RectTransform anchor = battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform;
-        Image flash = Rect("Kill Highlight", canvas.transform, Vector2.zero, new Vector2(88, 88), new Color(Cream.r, Cream.g, Cream.b, 0.85f));
-        flash.raycastTarget = false;
-        flash.rectTransform.position = anchor.position;
-        yield return ScalePulse(flash.rectTransform, 0.72f, 1.16f, 0.08f);
-        yield return FadeAndDestroy(flash.rectTransform, 0.2f);
     }
 
     private void TriggerChainShake(int chainCount)
