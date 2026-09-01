@@ -104,6 +104,20 @@ public sealed class KaitCoreTests
     }
 
     [Test]
+    public void T05B_NormalSlideToBoundary_ReportsWallStopForAnimation()
+    {
+        KaitRun run = OpenRun(51, new Vector2Int(3, 3));
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+
+        Assert.IsTrue(result.turnComplete);
+        Assert.IsTrue(result.stoppedByWall);
+        Assert.IsFalse(result.chainEndedByWall);
+        Assert.AreEqual(KaitDirection.Right, result.kaitDirection);
+        Assert.Greater(result.katePath.Count, 0);
+    }
+
+    [Test]
     public void T06_UnitCollision_DamagesBothAndDoesNotChainPush()
     {
         KaitRun run = OpenRun(6, new Vector2Int(2, 3));
@@ -297,6 +311,8 @@ public sealed class KaitCoreTests
         Assert.IsTrue(reverse.valid);
         Assert.IsNull(reverse.threatBefore);
         Assert.AreEqual(0, reverse.threatMotions.Count);
+        Assert.AreEqual(KaitDirection.Right, reverse.globalDirection);
+        Assert.AreEqual(KaitDirection.Left, reverse.kaitDirection);
         for (int y = 0; y < run.ThreatSize; y++)
             for (int x = 0; x < run.ThreatSize; x++)
                 if (afterInitialInput[x, y] != 0) Assert.AreEqual(afterInitialInput[x, y], run.threat[x, y]);

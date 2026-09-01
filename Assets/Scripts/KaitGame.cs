@@ -822,19 +822,19 @@ public sealed class KaitGame : MonoBehaviour
         {
             if (result.blockedEnemyCell.x >= 0)
             {
-                kaitSpine?.Face(result.globalDirection);
+                kaitSpine?.Face(result.kaitDirection);
                 kaitSpine?.PlayOnce(KaitSpineView.Attack);
                 yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.16f);
             }
-            else if (result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
+            else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
                 kaitSpine?.PlayOnce(KaitSpineView.StandBy);
             yield break;
         }
 
         hideKate = true;
-        kaitSpine?.Face(result.globalDirection);
+        kaitSpine?.Face(result.kaitDirection);
         RefreshBattle();
-        KaitSpineView movingKait = CreateFloatingKait(battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, result.globalDirection);
+        KaitSpineView movingKait = CreateFloatingKait(battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, result.kaitDirection);
         RectTransform token = movingKait != null ? movingKait.Root : CreateFloatingPortrait(kaitPortrait, Color.clear, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
         movingKait?.PlayLoop(KaitSpineView.Run);
         var ghosts = new List<RectTransform>();
@@ -857,7 +857,7 @@ public sealed class KaitGame : MonoBehaviour
                 lastReached++;
                 Vector2Int cell = result.katePath[lastReached - 1];
                 int momentumAtCell = result.pathMomentum.Count >= lastReached ? result.pathMomentum[lastReached - 1] : run.momentum;
-                RectTransform ghost = CreateGhostToken(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform, momentumAtCell, result.globalDirection);
+                RectTransform ghost = CreateGhostToken(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform, momentumAtCell, result.kaitDirection);
                 ghosts.Add(ghost);
                 while (ghosts.Count > Mathf.Clamp(momentumAtCell, 1, 5))
                 {
@@ -890,11 +890,11 @@ public sealed class KaitGame : MonoBehaviour
         RefreshBattle();
         if (result.blockedEnemyCell.x >= 0)
         {
-            kaitSpine?.Face(result.globalDirection);
+            kaitSpine?.Face(result.kaitDirection);
             kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
             yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.14f);
         }
-        else if (result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
+        else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
             kaitSpine?.PlayOnce(KaitSpineView.StandBy);
         else if (result.playerKilledEnemyIds.Count > 0)
             kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);

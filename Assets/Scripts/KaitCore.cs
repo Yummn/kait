@@ -74,9 +74,9 @@ public sealed class KaitTurnResult
     public int slideDistance, damagedEnemyId = -1, damageDealt, enemyHpAfter = -1, momentumBefore, momentumAfter;
     public int collisionDamage, friendlyFireDamage, riftBlockDamage, playerDamage;
     public int spawnSuppressed;
-    public bool pushed, pushBlockedByWall, pushBlockedByUnit, activeBrake;
+    public bool pushed, pushBlockedByWall, pushBlockedByUnit, activeBrake, stoppedByWall;
     public bool threatChanged, kaitWaited;
-    public KaitDirection globalDirection;
+    public KaitDirection globalDirection, kaitDirection;
     public int chainStepCount, chainKillCount;
     public int chainPower, chainMoves;
     public bool powerLocked, chainEndedByStrongEnemy, chainEndedByWall;
@@ -298,7 +298,7 @@ public sealed class KaitRun
         result.valid = true; shadowStepAvailable = false; currentDirection = direction; chainStepCount++;
         if (IsHardBlocked(katePos + Delta(direction)))
         {
-            result.activeBrake = true; result.chainEndedByWall = true; activeWallStops++; chainEndByWall++;
+            result.activeBrake = true; result.stoppedByWall = true; result.chainEndedByWall = true; activeWallStops++; chainEndByWall++;
             result.message = "主动撞墙刹车：原地结束连锁"; FinishTurn(result); ApplyTurnContext(result); return result;
         }
         ResolveKateSegment(result); result.slideDistance = result.katePath.Count; ApplyTurnContext(result); return result;
@@ -318,6 +318,7 @@ public sealed class KaitRun
             Vector2Int next = katePos + delta;
             if (IsHardBlocked(next))
             {
+                result.stoppedByWall = true;
                 if (powerLocked) { result.chainEndedByWall = true; chainEndByWall++; }
                 FinishTurn(result); return;
             }
@@ -676,6 +677,7 @@ public sealed class KaitRun
     private void ApplyTurnContext(KaitTurnResult result)
     {
         result.globalDirection = currentGlobalDirection;
+        result.kaitDirection = currentDirection;
         result.threatChanged = threatChangedThisTurn;
         result.kaitWaited = kaitWaitedThisTurn;
         result.chainStepCount = chainStepCount;
