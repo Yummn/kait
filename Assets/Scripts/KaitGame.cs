@@ -285,7 +285,13 @@ public sealed class KaitGame : MonoBehaviour
                 cellTint.raycastTarget = false;
                 Stretch(cellTint.rectTransform, 0);
                 battleCellTints[index] = cellTint;
-                Image warning = Rect("Attack Warning", cell.transform, Vector2.zero, attackWarningSprite != null ? new Vector2(109, 109) : new Vector2(98, 14), Color.clear);
+                Image warningClip = Rect("Attack Warning Clip", cell.transform, Vector2.zero, new Vector2(109, 109), Color.white);
+                warningClip.raycastTarget = false;
+                warningClip.sprite = roundedSprite;
+                warningClip.type = Image.Type.Sliced;
+                Mask warningMask = warningClip.gameObject.AddComponent<Mask>();
+                warningMask.showMaskGraphic = false;
+                Image warning = Rect("Attack Warning", warningClip.transform, Vector2.zero, attackWarningSprite != null ? new Vector2(109, 109) : new Vector2(98, 14), Color.clear);
                 warning.raycastTarget = false;
                 warning.sprite = attackWarningSprite;
                 warning.type = Image.Type.Simple;
@@ -732,7 +738,7 @@ public sealed class KaitGame : MonoBehaviour
                     warning.color = warning.sprite != null ? new Color(1f, 1f, 1f, 0.52f) : Color.clear;
                     foreach (Image dash in warning.GetComponentsInChildren<Image>(true))
                         if (dash != warning) dash.color = new Color(intentTint.Value.r, intentTint.Value.g, intentTint.Value.b, 0.72f);
-                    warning.rectTransform.localRotation = Quaternion.Euler(0f, 0f, IntentAngleAt(p));
+                    warning.rectTransform.localRotation = Quaternion.identity;
                 }
                 if (run.chainActive)
                     foreach (KaitDirection choice in allowed)
