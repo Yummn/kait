@@ -34,7 +34,7 @@ public sealed class EnemySpineView
         this.flashMaterial = flashMaterial;
     }
 
-    public static EnemySpineView Create(SkeletonDataAsset data, string animationPrefix, Transform parent, Vector2 size, string name)
+    public static EnemySpineView Create(SkeletonDataAsset data, string animationPrefix, Transform parent, Vector2 size, string name, float visualScale = 1f)
     {
         if (data == null || parent == null || string.IsNullOrEmpty(animationPrefix)) return null;
 
@@ -94,7 +94,7 @@ public sealed class EnemySpineView
         skeletonRect.sizeDelta = meshBounds.size;
         float width = Mathf.Max(0.01f, meshBounds.size.x);
         float height = Mathf.Max(0.01f, meshBounds.size.y);
-        float scale = Mathf.Min(size.x * VisualFill / width, size.y * VisualFill / height);
+        float scale = Mathf.Min(size.x * VisualFill / width, size.y * VisualFill / height) * Mathf.Max(0.01f, visualScale);
         skeletonRect.localScale = Vector3.one * scale;
         Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;

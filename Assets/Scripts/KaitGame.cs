@@ -1899,7 +1899,8 @@ public sealed class KaitGame : MonoBehaviour
         if (enemy == null) return null;
         if (enemySpines.TryGetValue(enemy.id, out EnemySpineView existing)) return existing;
         if (!enemySkeletonData.TryGetValue(enemy.type, out SkeletonDataAsset data) || data == null) return null;
-        EnemySpineView created = EnemySpineView.Create(data, EnemyAnimationPrefix(enemy.type), canvas.transform, new Vector2(115, 115), $"Enemy {enemy.id} Spine");
+        float visualScale = enemy.type == KaitEnemyType.Guard ? 1.1f : 1f;
+        EnemySpineView created = EnemySpineView.Create(data, EnemyAnimationPrefix(enemy.type), canvas.transform, new Vector2(115, 115), $"Enemy {enemy.id} Spine", visualScale);
         if (created != null) enemySpines[enemy.id] = created;
         return created;
     }
