@@ -1101,7 +1101,12 @@ public sealed class KaitGame : MonoBehaviour
             e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
         if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
         foreach (KaitTrailVisual ghost in ghosts) StartCoroutine(FadeAndDestroyTrail(ghost, 0.24f));
-        animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
+        // During a chain-direction stop the finishing attack still has to play.
+        // Keep defeated enemies rendered until that attack completes, then move
+        // their existing Spine views straight into the detached death layer.
+        // Removing them here caused a visible blank frame/gap before `die` began.
+        if (!result.awaitingTurnChoice || !run.chainActive)
+            animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
         impactCells.Clear();
         hideKate = false;
         displayKate = null;
@@ -1520,7 +1525,7 @@ public sealed class KaitGame : MonoBehaviour
             if (!InsideBattle(cell)) continue;
             HealthBarView bar = battleHealthBars[cell.x + cell.y * KaitRun.BattleSize];
             StartCoroutine(AnimateHealthLoss(bar, before.hp, afterHp, afterHp <= 0));
-            if (afterHp > 0) StartCoroutine(FlashEnemyWhite(before.id));
+            StartCoroutine(FlashEnemyWhite(before.id));
             longestHealthLoss = Mathf.Max(longestHealthLoss, before.hp - afterHp);
         }
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
@@ -1735,6 +1740,7 @@ public sealed class KaitGame : MonoBehaviour
         if (enemy == null && !isKate) yield break;
 
         Color original = Color.white;
+        EnemySpineView flashedEnemyView = null;
         if (enemy != null)
         {
             original = enemy.frozenActions > 0
@@ -1743,7 +1749,17 @@ public sealed class KaitGame : MonoBehaviour
                     ? new Color(1f, 1f, 1f, 0.68f)
                     : Color.white;
             EnemySpineView view = EnemySpine(enemy);
-            if (view != null) view.SetTint(color);
+            if (view != null)
+            {
+                view.SetTint(color);
+                // Enemy art is normally already white, so tinting it white did
+                // not create a visible hit flash. Use the Spine fill material.
+                if (color == Color.white)
+                {
+                    flashedEnemyView = view;
+                    flashedEnemyView.SetHitFlash(1f);
+                }
+            }
             else if (battlePortraits[index] != null) battlePortraits[index].color = color;
         }
         else
@@ -1753,6 +1769,8 @@ public sealed class KaitGame : MonoBehaviour
         }
 
         yield return ScalePulse(battleUnitClips[index].rectTransform, 0.92f, 1.16f, duration);
+
+        flashedEnemyView?.SetHitFlash(0f);
 
         if (enemy != null)
         {
