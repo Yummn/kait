@@ -28,14 +28,12 @@ public sealed class KaitGame : MonoBehaviour
     private Text[] battleStatusLabels;
     private Image[] battleWarningLines;
     private Image[] battleRifts;
-    private Image[] battleDangerBadges;
     private Image[] threatCells;
     private Text[] threatLabels;
     private Text turnText;
     private Image runHpFill;
     private Text statusText;
     private Text helpText;
-    private Text dangerText;
     private Text skillStatusText;
     private readonly Button[] skillButtons = new Button[3];
     private readonly Text[] skillButtonLabels = new Text[3];
@@ -266,8 +264,6 @@ public sealed class KaitGame : MonoBehaviour
     {
         Image frame = Rect("Battle Panel", parent, new Vector2(-460, 0), new Vector2(640, 640), Panel);
         SkinPanel(frame);
-        dangerText = MakeText("", frame.transform, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
-        dangerText.gameObject.SetActive(false);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform gridRect = gridGo.GetComponent<RectTransform>();
@@ -289,7 +285,6 @@ public sealed class KaitGame : MonoBehaviour
         battleStatusLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battleWarningLines = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleRifts = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
-        battleDangerBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleCellTiles = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleCellTints = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleUnitClips = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
@@ -338,7 +333,7 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 warning.gameObject.SetActive(false);
                 battleWarningLines[index] = warning;
-                Image rift = Rect("Spawn Rift", cell.transform, Vector2.zero, new Vector2(96, 96), Color.white);
+                Image rift = Rect("Spawn Rift", cell.transform, Vector2.zero, new Vector2(106, 106), Color.white);
                 rift.raycastTarget = false;
                 rift.sprite = spawnRiftSprite;
                 rift.type = Image.Type.Simple;
@@ -349,8 +344,7 @@ public sealed class KaitGame : MonoBehaviour
                 unitClip.raycastTarget = false;
                 unitClip.sprite = null;
                 unitClip.type = Image.Type.Simple;
-                // Keep the warning decal above unit art while leaving labels and badges readable.
-                rift.transform.SetSiblingIndex(unitClip.transform.GetSiblingIndex() + 1);
+                // Build order keeps rifts as ground decals below unit art and health bars.
                 battleUnitClips[index] = unitClip;
                 Image portrait = Rect("Unit Portrait", unitClip.transform, new Vector2(0, -2), new Vector2(112, 112), Color.white);
                 portrait.sprite = null;
@@ -366,13 +360,6 @@ public sealed class KaitGame : MonoBehaviour
                 battleHpBadges[index] = MakeHealthBar(cell.transform, new Vector2(22, 48), new Vector2(70, 16), out battleHpFills[index]);
                 battleHpBadges[index].gameObject.SetActive(false);
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
-                Image dangerBadge = Rect("Rift Danger Badge", cell.transform, new Vector2(0, 43), new Vector2(28, 28), Gold);
-                dangerBadge.raycastTarget = false;
-                Text dangerBadgeText = MakeText("!", dangerBadge.transform, Vector2.zero, new Vector2(30, 30), 22, Void, TextAnchor.MiddleCenter, FontStyle.Bold);
-                dangerBadgeText.raycastTarget = false;
-                Stretch(dangerBadgeText.rectTransform, 0);
-                dangerBadge.gameObject.SetActive(false);
-                battleDangerBadges[index] = dangerBadge;
             }
         }
     }
@@ -577,13 +564,6 @@ public sealed class KaitGame : MonoBehaviour
             }
         if (landingDuration > 0f) yield return new WaitForSecondsRealtime(Mathf.Min(landingDuration, 0.55f));
 
-        var spawnPulses = new List<RectTransform>();
-        foreach (Vector2Int cell in result.spawnedEnemyCells)
-            spawnPulses.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform);
-        foreach (KaitSpawnRequest spawn in run.spawns)
-            if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
-        if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
-
         if (result.playerKilledEnemyIds.Count > 0) StartCoroutine(AnimateChainEdge(Mathf.Max(1, result.chainKillCount)));
 
         displayedThreat = null;
@@ -736,7 +716,6 @@ public sealed class KaitGame : MonoBehaviour
         kaitSpine?.SetVisible(false);
         foreach (EnemySpineView view in enemySpines.Values) view.SetVisible(false);
         Vector2Int kate = displayKate ?? run.katePos;
-        bool kateOnRift = false;
         List<KaitDirection> allowed = run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
         for (int y = 1; y < KaitRun.BattleSize - 1; y++)
         {
@@ -798,9 +777,6 @@ public sealed class KaitGame : MonoBehaviour
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
-                bool showRiftDanger = !hideKate && kate == p && spawn != null;
-                battleDangerBadges[index].gameObject.SetActive(showRiftDanger);
-                if (showRiftDanger) kateOnRift = true;
                 if (spawn != null)
                 {
                     Image rift = battleRifts[index];
@@ -859,11 +835,9 @@ public sealed class KaitGame : MonoBehaviour
                     if (run.chainActive) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(KaitRun.Delta(run.currentDirection)));
                     battleFacingLabels[index].color = Void;
-                    if (showRiftDanger) { battleStatusLabels[index].text = "!"; battleStatusLabels[index].color = Gold; }
                 }
             }
         }
-        dangerText.text = kateOnRift ? "危险格 !" : "";
     }
 
     private void RefreshThreat()
