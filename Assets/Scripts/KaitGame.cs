@@ -22,8 +22,7 @@ public sealed class KaitGame : MonoBehaviour
     private Image[] battleUnitClips;
     private Text[] battleLabels;
     private Image[] battlePortraits;
-    private Image[] battleHpBadges;
-    private Image[] battleHpFills;
+    private HealthBarView[] battleHealthBars;
     private Text[] battleFacingLabels;
     private Text[] battleStatusLabels;
     private Image[] battleWarningLines;
@@ -31,7 +30,7 @@ public sealed class KaitGame : MonoBehaviour
     private Image[] threatCells;
     private Text[] threatLabels;
     private Text turnText;
-    private Image runHpFill;
+    private HealthBarView runHealthBar;
     private Text statusText;
     private Text helpText;
     private Text skillStatusText;
@@ -71,7 +70,8 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite spawnRiftSprite;
     private Sprite dungeonPanelSprite;
     private Sprite dungeonButtonSprite;
-    private Sprite dungeonHealthFrameSprite;
+    private readonly Sprite[] healthFillSprites = new Sprite[3];
+    private readonly Sprite[] healthSlotSprites = new Sprite[3];
     private Sprite grassBackgroundSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
@@ -97,6 +97,12 @@ public sealed class KaitGame : MonoBehaviour
         public RectTransform rect;
         public Vector3 from;
         public Vector3 to;
+    }
+
+    private sealed class HealthBarView
+    {
+        public Image root;
+        public readonly Image[] fills = new Image[3];
     }
 
     private static readonly Color Background = Hex("#2F2932");
@@ -141,7 +147,12 @@ public sealed class KaitGame : MonoBehaviour
         spawnRiftSprite = LoadPixelSprite("KaitVisuals/SpawnRift");
         dungeonPanelSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/Panel", 2f);
         dungeonButtonSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/Button", 2f);
-        dungeonHealthFrameSprite = LoadSlicedPixelSprite("KaitVisuals/DungeonUI/HealthFrame", 4f);
+        healthFillSprites[0] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillLeft");
+        healthFillSprites[1] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillMiddle");
+        healthFillSprites[2] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillRight");
+        healthSlotSprites[0] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthSlotLeft");
+        healthSlotSprites[1] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthSlotMiddle");
+        healthSlotSprites[2] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthSlotRight");
         grassBackgroundSprite = LoadTiledPixelSprite("KaitVisuals/GrassBackground");
         LoadEnemySkeleton(KaitEnemyType.Grunt, "100161");
         LoadEnemySkeleton(KaitEnemyType.Swordsman, "105731");
@@ -279,8 +290,7 @@ public sealed class KaitGame : MonoBehaviour
         battleCells = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battlePortraits = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
-        battleHpBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
-        battleHpFills = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleHealthBars = new HealthBarView[KaitRun.BattleSize * KaitRun.BattleSize];
         battleFacingLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battleStatusLabels = new Text[KaitRun.BattleSize * KaitRun.BattleSize];
         battleWarningLines = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
@@ -357,8 +367,8 @@ public sealed class KaitGame : MonoBehaviour
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 34, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
                 battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -43), new Vector2(72, 28), 25, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-                battleHpBadges[index] = MakeHealthBar(cell.transform, new Vector2(22, 48), new Vector2(70, 16), out battleHpFills[index]);
-                battleHpBadges[index].gameObject.SetActive(false);
+                battleHealthBars[index] = MakeHealthBar(cell.transform, new Vector2(22, 48), new Vector2(72, 16));
+                battleHealthBars[index].root.gameObject.SetActive(false);
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
             }
         }
@@ -398,7 +408,7 @@ public sealed class KaitGame : MonoBehaviour
         SkinPanel(info);
         turnText = MakeText("", info.transform, new Vector2(0, 14), new Vector2(220, 26), 16, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         MakeText("生命", info.transform, new Vector2(-86, -16), new Vector2(44, 20), 13, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeHealthBar(info.transform, new Vector2(26, -16), new Vector2(164, 16), out runHpFill);
+        runHealthBar = MakeHealthBar(info.transform, new Vector2(26, -16), new Vector2(164, 16));
         statusText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         statusText.gameObject.SetActive(false);
 
@@ -520,6 +530,10 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator PlayTurn(KaitTurnResult result, Vector2Int start, List<KaitEnemy> enemySnapshot, List<KaitSpawnRequest> spawnSnapshot)
     {
         busy = true;
+        var healthBefore = new List<KaitEnemy>();
+        foreach (KaitEnemy enemy in enemySnapshot)
+            healthBefore.Add(new KaitEnemy { id = enemy.id, hp = enemy.hp, maxHp = enemy.maxHp, pos = enemy.pos, life = enemy.life });
+        int kateHpBefore = run.kateHp + result.playerDamage;
         animatedEnemies = enemySnapshot;
         animatedSpawns = spawnSnapshot;
         displayedThreat = result.threatBefore;
@@ -542,7 +556,7 @@ public sealed class KaitGame : MonoBehaviour
         }
         else yield return AnimateAllEnemyActions(result.enemyActions);
 
-        yield return AnimateCombatFeedback(result);
+        yield return AnimateCombatFeedback(result, healthBefore, kateHpBefore);
 
         var previousEnemyIds = new HashSet<int>();
         foreach (KaitEnemy enemy in enemySnapshot) previousEnemyIds.Add(enemy.id);
@@ -579,7 +593,7 @@ public sealed class KaitGame : MonoBehaviour
         RefreshThreat();
         RefreshSkillUI();
         turnText.text = $"回合 {run.turn}　速度 {run.momentum}";
-        SetHealthBar(runHpFill, run.kateHp, run.config.kateMaxHp);
+        SetHealthBar(runHealthBar, run.kateHp);
         ShowPendingSkillChoice();
         if (run.ended) ShowEnd();
     }
@@ -728,7 +742,7 @@ public sealed class KaitGame : MonoBehaviour
                 Text label = battleLabels[index];
                 label.text = "";
                 label.rectTransform.localRotation = Quaternion.identity;
-                battleHpBadges[index].gameObject.SetActive(false);
+                battleHealthBars[index].root.gameObject.SetActive(false);
                 battleFacingLabels[index].text = "";
                 battleFacingLabels[index].rectTransform.localRotation = Quaternion.identity;
                 battleStatusLabels[index].text = "";
@@ -805,8 +819,8 @@ public sealed class KaitGame : MonoBehaviour
                         battlePortraits[index].gameObject.SetActive(true);
                         battlePortraits[index].color = unitTint;
                     }
-                    SetHealthBar(battleHpFills[index], enemy.hp, enemy.maxHp);
-                    battleHpBadges[index].gameObject.SetActive(true);
+                    SetHealthBar(battleHealthBars[index], enemy.hp);
+                    battleHealthBars[index].root.gameObject.SetActive(true);
                     Vector2Int facing = enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction;
                     if (facing != Vector2Int.zero) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(facing));
@@ -830,8 +844,8 @@ public sealed class KaitGame : MonoBehaviour
                         battlePortraits[index].sprite = kaitPortrait;
                         battlePortraits[index].gameObject.SetActive(true);
                     }
-                    SetHealthBar(battleHpFills[index], run.kateHp, run.config.kateMaxHp);
-                    battleHpBadges[index].gameObject.SetActive(true);
+                    SetHealthBar(battleHealthBars[index], run.kateHp);
+                    battleHealthBars[index].root.gameObject.SetActive(true);
                     if (run.chainActive) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(KaitRun.Delta(run.currentDirection)));
                     battleFacingLabels[index].color = Void;
@@ -1227,8 +1241,8 @@ public sealed class KaitGame : MonoBehaviour
         portrait.raycastTarget = false;
         if (hp >= 0 && maxHp > 0)
         {
-            MakeHealthBar(image.transform, new Vector2(size.x * 0.18f, size.y * 0.41f), new Vector2(size.x * 0.58f, 15f), out Image hpFill);
-            SetHealthBar(hpFill, hp, maxHp);
+            HealthBarView hpBar = MakeHealthBar(image.transform, new Vector2(size.x * 0.18f, size.y * 0.41f), new Vector2(size.x * 0.6f, 15f));
+            SetHealthBar(hpBar, hp);
         }
         return image.rectTransform;
     }
@@ -1292,9 +1306,22 @@ public sealed class KaitGame : MonoBehaviour
         if (rect != null) Destroy(rect.gameObject);
     }
 
-    private IEnumerator AnimateCombatFeedback(KaitTurnResult result)
+    private IEnumerator AnimateCombatFeedback(KaitTurnResult result, List<KaitEnemy> healthBefore, int kateHpBefore)
     {
         bool hasImpact = false;
+        int longestHealthLoss = 0;
+        foreach (KaitEnemy before in healthBefore)
+        {
+            KaitEnemy resolved = run.enemies.Find(e => e.id == before.id);
+            int afterHp = resolved == null || resolved.life == KaitEnemyLife.Dead ? 0 : resolved.hp;
+            if (before.hp <= afterHp) continue;
+            KaitEnemy visual = animatedEnemies?.Find(e => e.id == before.id);
+            Vector2Int cell = visual != null ? visual.pos : before.pos;
+            if (!InsideBattle(cell)) continue;
+            HealthBarView bar = battleHealthBars[cell.x + cell.y * KaitRun.BattleSize];
+            StartCoroutine(AnimateHealthLoss(bar, before.hp, afterHp, afterHp <= 0));
+            longestHealthLoss = Mathf.Max(longestHealthLoss, before.hp - afterHp);
+        }
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
         {
             EnemySpineView damagedEnemy = EnemySpine(result.damagedEnemyId);
@@ -1306,6 +1333,12 @@ public sealed class KaitGame : MonoBehaviour
         {
             kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
             StartCoroutine(FloatDamage(run.katePos, result.playerDamage, Gold));
+            if (InsideBattle(run.katePos))
+            {
+                HealthBarView bar = battleHealthBars[run.katePos.x + run.katePos.y * KaitRun.BattleSize];
+                StartCoroutine(AnimateHealthLoss(bar, kateHpBefore, run.kateHp, run.kateHp <= 0));
+                longestHealthLoss = Mathf.Max(longestHealthLoss, kateHpBefore - run.kateHp);
+            }
             hasImpact = true;
         }
         foreach (Vector2Int cell in result.killedEnemyCells)
@@ -1314,7 +1347,27 @@ public sealed class KaitGame : MonoBehaviour
                 StartCoroutine(KillFlashAt(cell));
                 hasImpact = true;
             }
-        if (hasImpact) yield return new WaitForSecondsRealtime(0.055f);
+        if (longestHealthLoss > 0) yield return new WaitForSecondsRealtime(longestHealthLoss * 0.15f);
+        else if (hasImpact) yield return new WaitForSecondsRealtime(0.055f);
+    }
+
+    private IEnumerator AnimateHealthLoss(HealthBarView bar, int before, int after, bool hideWhenDone)
+    {
+        if (bar == null) yield break;
+        bar.root.gameObject.SetActive(true);
+        SetHealthBar(bar, before);
+        for (int hp = before; hp > after; hp--)
+        {
+            int slot = (hp - 1) % 3;
+            Image segment = bar.fills[slot];
+            segment.gameObject.SetActive(true);
+            segment.color = Hex("#E04444");
+            yield return new WaitForSecondsRealtime(0.11f);
+            SetHealthBar(bar, hp - 1);
+            yield return new WaitForSecondsRealtime(0.04f);
+        }
+        SetHealthBar(bar, after);
+        if (hideWhenDone) bar.root.gameObject.SetActive(false);
     }
 
     private IEnumerator FloatDamage(Vector2Int cell, int amount, Color color)
@@ -1677,42 +1730,48 @@ public sealed class KaitGame : MonoBehaviour
         image.color = Hex("#71809A");
     }
 
-    private Image MakeHealthBar(Transform parent, Vector2 position, Vector2 size, out Image fill)
+    private HealthBarView MakeHealthBar(Transform parent, Vector2 position, Vector2 size)
     {
-        Image frame = Rect("Health Bar", parent, position, size, Color.white);
-        frame.raycastTarget = false;
-        if (dungeonHealthFrameSprite != null)
+        Image root = Rect("Health Bar", parent, position, size, Color.clear);
+        root.sprite = null;
+        root.type = Image.Type.Simple;
+        root.raycastTarget = false;
+        var view = new HealthBarView { root = root };
+        float segmentWidth = size.x / 3f;
+        for (int i = 0; i < 3; i++)
         {
-            frame.sprite = dungeonHealthFrameSprite;
-            frame.type = Image.Type.Sliced;
-        }
-        else
-        {
-            frame.color = Void;
-        }
+            Vector2 segmentPosition = new Vector2((i - 1) * segmentWidth, 0f);
+            Image slot = Rect($"Health Slot {i + 1}", root.transform, segmentPosition, new Vector2(segmentWidth, size.y), Color.white);
+            slot.sprite = healthSlotSprites[i];
+            slot.type = Image.Type.Simple;
+            slot.preserveAspect = false;
+            slot.raycastTarget = false;
 
-        fill = Rect("Health Fill", frame.transform, Vector2.zero, Vector2.zero, Hex("#D94B4B"));
-        fill.sprite = null;
-        fill.type = Image.Type.Simple;
-        fill.raycastTarget = false;
-        fill.rectTransform.anchorMin = new Vector2(0f, 0.5f);
-        fill.rectTransform.anchorMax = new Vector2(0f, 0.5f);
-        fill.rectTransform.pivot = new Vector2(0f, 0.5f);
-        fill.rectTransform.anchoredPosition = new Vector2(-size.x * 0.5f + 5f, 0f);
-        fill.rectTransform.sizeDelta = new Vector2(Mathf.Max(0f, size.x - 10f), Mathf.Max(2f, size.y - 10f));
-        fill.transform.SetAsFirstSibling();
-        return frame;
+            Image fill = Rect($"Health Segment {i + 1}", root.transform, segmentPosition, new Vector2(segmentWidth, size.y), Color.white);
+            fill.sprite = healthFillSprites[i];
+            fill.type = Image.Type.Simple;
+            fill.preserveAspect = false;
+            fill.raycastTarget = false;
+            view.fills[i] = fill;
+        }
+        return view;
     }
 
-    private static void SetHealthBar(Image fill, int current, int maximum)
+    private static void SetHealthBar(HealthBarView bar, int current)
     {
-        if (fill == null) return;
-        float ratio = maximum <= 0 ? 0f : Mathf.Clamp01((float)current / maximum);
-        float fullWidth = Mathf.Max(0f, fill.transform.parent.GetComponent<RectTransform>().rect.width - 10f);
-        Vector2 size = fill.rectTransform.sizeDelta;
-        size.x = fullWidth * ratio;
-        fill.rectTransform.sizeDelta = size;
-        fill.color = ratio > 0.55f ? Hex("#D94B4B") : ratio > 0.25f ? Hex("#E07A43") : Hex("#F1B24A");
+        if (bar == null) return;
+        for (int i = 0; i < bar.fills.Length; i++)
+        {
+            int layer = (current - (i + 1)) / 3;
+            bool visible = current >= i + 1;
+            bar.fills[i].gameObject.SetActive(visible);
+            if (!visible) continue;
+            bar.fills[i].color = layer >= 2
+                ? Hex("#C5CEDA")
+                : layer == 1
+                    ? Hex("#B97852")
+                    : Hex("#65B84F");
+        }
     }
 
     private static void Stretch(RectTransform rt, float inset)
