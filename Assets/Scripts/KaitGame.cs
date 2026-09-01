@@ -79,6 +79,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite grassBackgroundSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
+    private readonly Dictionary<int, float> enemyDeathAnimationStartedAt = new Dictionary<int, float>();
     private readonly List<EnemySpineView> detachedEnemyDeaths = new List<EnemySpineView>();
     private readonly List<KaitTrailVisual> activeTrailVisuals = new List<KaitTrailVisual>();
     private string logPath;
@@ -1021,6 +1022,7 @@ public sealed class KaitGame : MonoBehaviour
                 kaitSpine?.PlayOnce(killedBlockedEnemy ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
                 if (killedBlockedEnemy)
                 {
+                    foreach (int enemyId in result.playerKilledEnemyIds) StartEnemyDeathAnimation(enemyId);
                     chainAttackStartedAt = Time.realtimeSinceStartup;
                     chainAttackDuration = kaitSpine?.Duration(KaitSpineView.ChainAttack) ?? 0f;
                 }
@@ -1087,6 +1089,7 @@ public sealed class KaitGame : MonoBehaviour
                     GameAudio.PlayKaitKill(chainKills);
                     TriggerChainShake(chainKills);
                     movingKait?.PlayOnce(KaitSpineView.ChainAttack, KaitSpineView.Run);
+                    StartEnemyDeathAnimation(struckEnemy.id);
                     RefreshBattle();
                     StartCoroutine(PulseBattleUnit(cell, Color.white, 0.16f, struckEnemy.id));
                 }
@@ -1125,6 +1128,7 @@ public sealed class KaitGame : MonoBehaviour
             kaitSpine?.PlayOnce(killedBlockedEnemyAfterSlide ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
             if (killedBlockedEnemyAfterSlide)
             {
+                foreach (int enemyId in result.playerKilledEnemyIds) StartEnemyDeathAnimation(enemyId);
                 finalChainAttackStartedAt = Time.realtimeSinceStartup;
                 finalChainAttackDuration = kaitSpine?.Duration(KaitSpineView.ChainAttack) ?? 0f;
             }
@@ -1135,6 +1139,7 @@ public sealed class KaitGame : MonoBehaviour
         else if (result.playerKilledEnemyIds.Count > 0)
         {
             kaitSpine?.PlayOnce(KaitSpineView.ChainAttack);
+            foreach (int enemyId in result.playerKilledEnemyIds) StartEnemyDeathAnimation(enemyId);
             finalChainAttackStartedAt = Time.realtimeSinceStartup;
             finalChainAttackDuration = kaitSpine?.Duration(KaitSpineView.ChainAttack) ?? 0f;
         }
@@ -1151,6 +1156,17 @@ public sealed class KaitGame : MonoBehaviour
     {
         var moves = new List<EnemyMoveVisual>();
         var projectiles = new List<ProjectileVisual>();
+        var visualFriendlyHp = new Dictionary<int, int>();
+        foreach (KaitEnemyAction action in actions)
+            foreach (int victimId in action.friendlyHitIds)
+            {
+                if (!visualFriendlyHp.ContainsKey(victimId))
+                {
+                    KaitEnemy resolved = run.enemies.Find(e => e.id == victimId);
+                    visualFriendlyHp[victimId] = resolved == null || resolved.life == KaitEnemyLife.Dead ? 0 : resolved.hp;
+                }
+                visualFriendlyHp[victimId] += Mathf.Max(0, action.damage);
+            }
         float actionAnimationDuration = 0f;
         foreach (KaitEnemyAction action in actions)
         {
@@ -1204,11 +1220,16 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     EnemySpineView victim = EnemySpine(victimId);
                     if (victim == null) continue;
-                    KaitEnemy resolvedVictim = run.enemies.Find(e => e.id == victimId);
-                    if (resolvedVictim != null && resolvedVictim.life != KaitEnemyLife.Dead)
+                    visualFriendlyHp[victimId] = Mathf.Max(0, visualFriendlyHp[victimId] - Mathf.Max(0, action.damage));
+                    if (visualFriendlyHp[victimId] > 0)
                     {
                         victim.PlayDamage();
                         actionAnimationDuration = Mathf.Max(actionAnimationDuration, victim.DamageDuration);
+                    }
+                    else
+                    {
+                        StartEnemyDeathAnimation(victimId);
+                        StartCoroutine(FlashEnemyWhite(victimId));
                     }
                 }
             }
@@ -1523,7 +1544,9 @@ public sealed class KaitGame : MonoBehaviour
             if (!InsideBattle(cell)) continue;
             HealthBarView bar = battleHealthBars[cell.x + cell.y * KaitRun.BattleSize];
             StartCoroutine(AnimateHealthLoss(bar, before.hp, afterHp, afterHp <= 0));
-            StartCoroutine(FlashEnemyWhite(before.id));
+            bool deathAlreadyStarted = enemyDeathAnimationStartedAt.ContainsKey(before.id);
+            if (afterHp <= 0) StartEnemyDeathAnimation(before.id);
+            if (afterHp > 0 || !deathAlreadyStarted) StartCoroutine(FlashEnemyWhite(before.id));
             longestHealthLoss = Mathf.Max(longestHealthLoss, before.hp - afterHp);
         }
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
@@ -1556,14 +1579,12 @@ public sealed class KaitGame : MonoBehaviour
             KaitEnemy resolved = run.enemies.Find(e => e.id == before.id);
             if (resolved == null || resolved.life != KaitEnemyLife.Dead || before.life == KaitEnemyLife.Dead) continue;
             deadIds.Add(before.id);
-            EnemySpineView view = EnemySpine(before.id);
-            if (view == null) continue;
-            view.PlayDeath();
-            longestDuration = Mathf.Max(longestDuration, view.DeathDuration);
+            longestDuration = Mathf.Max(longestDuration, StartEnemyDeathAnimation(before.id));
         }
         if (deadIds.Count == 0) yield break;
         if (longestDuration > 0f) yield return new WaitForSecondsRealtime(longestDuration);
         animatedEnemies?.RemoveAll(e => deadIds.Contains(e.id));
+        foreach (int enemyId in deadIds) enemyDeathAnimationStartedAt.Remove(enemyId);
         RefreshBattle();
     }
 
@@ -1575,6 +1596,7 @@ public sealed class KaitGame : MonoBehaviour
             if (resolved == null || resolved.life != KaitEnemyLife.Dead || before.life == KaitEnemyLife.Dead) continue;
             EnemySpineView view = EnemySpine(before.id);
             if (view == null) continue;
+            float deathRemaining = StartEnemyDeathAnimation(before.id);
 
             int index = before.pos.x + before.pos.y * KaitRun.BattleSize;
             if (index < 0 || index >= battleCells.Length || battleCells[index] == null) continue;
@@ -1585,10 +1607,23 @@ public sealed class KaitGame : MonoBehaviour
             view.SetTint(Color.white);
             view.Face(before.type == KaitEnemyType.ShieldKnight ? before.facing : before.intent.direction);
             view.SetVisible(true);
-            view.PlayDeath();
+            enemyDeathAnimationStartedAt.Remove(before.id);
             detachedEnemyDeaths.Add(view);
-            StartCoroutine(DestroyDetachedEnemyDeath(view, view.DeathDuration));
+            StartCoroutine(DestroyDetachedEnemyDeath(view, deathRemaining));
         }
+    }
+
+    private float StartEnemyDeathAnimation(int enemyId)
+    {
+        EnemySpineView view = EnemySpine(enemyId);
+        if (view == null) return 0f;
+        if (!enemyDeathAnimationStartedAt.TryGetValue(enemyId, out float startedAt))
+        {
+            startedAt = Time.realtimeSinceStartup;
+            enemyDeathAnimationStartedAt[enemyId] = startedAt;
+            view.PlayDeath();
+        }
+        return Mathf.Max(0f, view.DeathDuration - (Time.realtimeSinceStartup - startedAt));
     }
 
     private IEnumerator DestroyDetachedEnemyDeath(EnemySpineView view, float duration)
@@ -2006,6 +2041,7 @@ public sealed class KaitGame : MonoBehaviour
     {
         foreach (EnemySpineView view in enemySpines.Values) view.Destroy();
         enemySpines.Clear();
+        enemyDeathAnimationStartedAt.Clear();
         foreach (EnemySpineView view in detachedEnemyDeaths) view.Destroy();
         detachedEnemyDeaths.Clear();
     }
