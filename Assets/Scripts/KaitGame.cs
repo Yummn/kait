@@ -604,6 +604,19 @@ public sealed class KaitGame : MonoBehaviour
         displayKate = null;
         RefreshBattle();
 
+        // A kill-chain turn has no enemy phase or spawn resolution yet. Release
+        // input as soon as the attack/death feedback finishes so the direction
+        // pose can be interrupted immediately by the next move.
+        if (result.awaitingTurnChoice && run.chainActive)
+        {
+            displayedThreat = null;
+            statusText.text = result.message;
+            busy = false;
+            RefreshAll();
+            kaitSpine?.PlayLoop(KaitSpineView.ChainDirectionChoice);
+            yield break;
+        }
+
         float landingDuration = 0f;
         foreach (KaitEnemy enemy in run.enemies)
             if (enemy.life != KaitEnemyLife.Dead && !previousEnemyIds.Contains(enemy.id))

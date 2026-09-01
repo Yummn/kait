@@ -27,6 +27,7 @@ public sealed class KaitSpineTests
             if (animation != KaitSpineView.ChainDirectionChoice)
                 Assert.Greater(found.Duration, 0f, $"Animation has no duration: {animation}");
         }
+        Assert.AreEqual(0.75f, KaitSpineView.WallStopTimeScale);
     }
 
     [Test]
