@@ -175,25 +175,31 @@ public sealed class KaitGame : MonoBehaviour
         canvas.sortingOrder = 100;
         var scaler = canvasGo.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1600, 900);
+        scaler.referenceResolution = new Vector2(1920, 1080);
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
         scaler.matchWidthOrHeight = 0.5f;
 
-        Image bg = Rect("Background", canvas.transform, Vector2.zero, new Vector2(1600, 900), Background);
+        Image bg = Rect("Background", canvas.transform, Vector2.zero, new Vector2(1920, 1080), Background);
         bg.rectTransform.anchorMin = Vector2.zero;
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
 
-        MakeText("Kait", bg.transform, new Vector2(-700, 410), new Vector2(150, 42), 28, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
-        MakeButton(bg.transform, new Vector2(748, 410), new Vector2(44, 44), "?").onClick.AddListener(() => tutorialOverlay.SetActive(true));
+        MakeText("Kait", bg.transform, new Vector2(-860, 500), new Vector2(180, 48), 32, Cream, TextAnchor.MiddleLeft, FontStyle.Bold);
+        MakeButton(bg.transform, new Vector2(908, 500), new Vector2(48, 48), "?").onClick.AddListener(() => tutorialOverlay.SetActive(true));
 
-        BuildBattleBoard(bg.transform);
-        BuildThreatBoard(bg.transform);
-        BuildSidebar(bg.transform);
+        var contentGo = new GameObject("Game Content", typeof(RectTransform));
+        contentGo.transform.SetParent(bg.transform, false);
+        RectTransform content = contentGo.GetComponent<RectTransform>();
+        content.sizeDelta = new Vector2(1600, 900);
+        content.localScale = Vector3.one * 1.2f;
+
+        BuildBattleBoard(content);
+        BuildThreatBoard(content);
+        BuildSidebar(content);
         BuildEndOverlay(bg.transform);
-        BuildSkillChoiceOverlay(bg.transform);
+        BuildSkillChoiceOverlay(content);
         BuildTutorialOverlay(bg.transform);
-        edgePulse = Rect("Chain Edge Pulse", bg.transform, Vector2.zero, new Vector2(1570, 870), new Color(Coral.r, Coral.g, Coral.b, 0f));
+        edgePulse = Rect("Chain Edge Pulse", bg.transform, Vector2.zero, new Vector2(1890, 1050), new Color(Coral.r, Coral.g, Coral.b, 0f));
         Stretch(edgePulse.rectTransform, 15);
         edgePulse.raycastTarget = false;
         edgePulse.transform.SetAsLastSibling();
@@ -231,8 +237,6 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + visualY * KaitRun.BattleSize;
                 Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, PanelLight);
-                Mask cellMask = cell.gameObject.AddComponent<Mask>();
-                cellMask.showMaskGraphic = true;
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
@@ -639,9 +643,8 @@ public sealed class KaitGame : MonoBehaviour
                 image.color = ThreatColor(0);
                 if (run.walls[x, y])
                 {
-                    label.text = "◆";
-                    label.color = Peach;
-                    label.fontSize = 30;
+                    image.color = Void;
+                    label.text = "";
                 }
                 Color? intentTint = IntentTintAt(p);
                 if (!run.walls[x, y] && intentTint.HasValue)
@@ -727,9 +730,8 @@ public sealed class KaitGame : MonoBehaviour
                 Vector2Int cell = new Vector2Int(x, y);
                 if (run.IsThreatPillar(cell))
                 {
-                    threatLabels[index].text = "柱";
+                    threatLabels[index].text = "";
                     threatCells[index].color = Void;
-                    threatLabels[index].color = Peach;
                     continue;
                 }
                 int value = displayedThreat == null ? run.threat[x, y] : displayedThreat[x, y];
@@ -840,7 +842,7 @@ public sealed class KaitGame : MonoBehaviour
                 lastReached++;
                 Vector2Int cell = result.katePath[lastReached - 1];
                 int momentumAtCell = result.pathMomentum.Count >= lastReached ? result.pathMomentum[lastReached - 1] : run.momentum;
-                RectTransform ghost = CreateGhostToken(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform, momentumAtCell);
+                RectTransform ghost = CreateGhostToken(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform, momentumAtCell, result.globalDirection);
                 ghosts.Add(ghost);
                 while (ghosts.Count > Mathf.Clamp(momentumAtCell, 1, 5))
                 {
@@ -1069,9 +1071,12 @@ public sealed class KaitGame : MonoBehaviour
     }
 
     private KaitSpineView CreateFloatingKait(RectTransform source, KaitDirection direction)
+        => CreateFloatingKait(source, direction, new Vector2(115, 115), "Kait Spine Animation");
+
+    private KaitSpineView CreateFloatingKait(RectTransform source, KaitDirection direction, Vector2 size, string name)
     {
         if (makotoSkeletonData == null) return null;
-        KaitSpineView view = KaitSpineView.Create(makotoSkeletonData, canvas.transform, new Vector2(115, 115), "Kait Spine Animation");
+        KaitSpineView view = KaitSpineView.Create(makotoSkeletonData, canvas.transform, size, name);
         if (view == null) return null;
         view.Root.position = source.position;
         view.Root.SetAsLastSibling();
@@ -1089,16 +1094,20 @@ public sealed class KaitGame : MonoBehaviour
         kaitSpine = KaitSpineView.Create(makotoSkeletonData, parent, new Vector2(115, 115));
     }
 
-    private RectTransform CreateGhostToken(RectTransform source, int momentumValue)
+    private RectTransform CreateGhostToken(RectTransform source, int momentumValue, KaitDirection direction)
     {
         float tier = Mathf.Clamp01((momentumValue - 1) / 4f);
-        Color ghostColor = Color.Lerp(new Color(1f, 1f, 1f, 0.22f), new Color(Coral.r, 0.18f, 0.24f, 0.48f), tier);
-        Image image = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(72, 72), ghostColor);
-        image.raycastTarget = false;
-        image.rectTransform.position = source.position;
-        Text trail = MakeText(">", image.transform, Vector2.zero, new Vector2(58, 58), 30, new Color(Cream.r, Cream.g, Cream.b, 0.7f), TextAnchor.MiddleCenter, FontStyle.Bold);
-        trail.raycastTarget = false;
-        return image.rectTransform;
+        KaitSpineView ghost = CreateFloatingKait(source, direction, new Vector2(82, 82), "Kait Speed Trail");
+        if (ghost != null)
+        {
+            ghost.PlayLoop(KaitSpineView.Run);
+            ghost.SetOpacity(Mathf.Lerp(0.24f, 0.48f, tier));
+            return ghost.Root;
+        }
+        Image fallback = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(64, 64), new Color(Coral.r, Coral.g, Coral.b, 0.3f));
+        fallback.raycastTarget = false;
+        fallback.rectTransform.position = source.position;
+        return fallback.rectTransform;
     }
 
     private IEnumerator FadeAndDestroy(RectTransform rect, float duration)

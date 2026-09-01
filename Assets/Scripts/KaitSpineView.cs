@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public sealed class KaitSpineView
 {
     public const string Idle = "05_idle";
-    public const string Run = "05_run";
-    public const string StandBy = "05_standBy";
+    public const string Run = "05_run_gamestart";
+    public const string StandBy = "05_multi_standBy";
     public const string Attack = "05_attack";
     public const string ChainAttack = "05_attack_skipQuest";
     public const string Damage = "05_damage";
@@ -23,14 +23,18 @@ public sealed class KaitSpineView
     private static Material sharedGraphicMaterial;
     private readonly SkeletonGraphic graphic;
     private readonly RectTransform root;
+    private readonly RectTransform skeletonRect;
+    private readonly float rightFacingVisualX;
 
     public RectTransform Root => root;
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
 
-    private KaitSpineView(RectTransform root, SkeletonGraphic graphic)
+    private KaitSpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX)
     {
         this.root = root;
         this.graphic = graphic;
+        this.skeletonRect = skeletonRect;
+        this.rightFacingVisualX = rightFacingVisualX;
     }
 
     public static KaitSpineView Create(SkeletonDataAsset data, Transform parent, Vector2 size, string name = "Kait Spine")
@@ -86,11 +90,13 @@ public sealed class KaitSpineView
         skeletonRect.sizeDelta = meshBounds.size;
         float width = Mathf.Max(0.01f, meshBounds.size.x);
         float height = Mathf.Max(0.01f, meshBounds.size.y);
-        float scale = Mathf.Min(size.x * 0.78f / width, size.y * 0.78f / height);
+        float scale = Mathf.Min(size.x * 0.88f / width, size.y * 0.88f / height);
         skeletonRect.localScale = Vector3.one * scale;
-        skeletonRect.anchoredPosition = new Vector2(-meshBounds.center.x * scale, -meshBounds.center.y * scale);
+        float visualWeightOffset = size.x * 0.09f;
+        Vector2 centeredPosition = new Vector2(-meshBounds.center.x * scale + visualWeightOffset, -meshBounds.center.y * scale);
+        skeletonRect.anchoredPosition = centeredPosition;
 
-        return new KaitSpineView(hostRect, skeletonGraphic);
+        return new KaitSpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x);
     }
 
     public void SetParent(Transform parent, int siblingIndex = -1)
@@ -111,8 +117,21 @@ public sealed class KaitSpineView
     public void Face(KaitDirection direction)
     {
         if (!IsReady) return;
-        if (direction == KaitDirection.Left) graphic.Skeleton.ScaleX = -Mathf.Abs(graphic.Skeleton.ScaleX);
-        else if (direction == KaitDirection.Right) graphic.Skeleton.ScaleX = Mathf.Abs(graphic.Skeleton.ScaleX);
+        if (direction == KaitDirection.Left)
+        {
+            graphic.Skeleton.ScaleX = -Mathf.Abs(graphic.Skeleton.ScaleX);
+            skeletonRect.anchoredPosition = new Vector2(-rightFacingVisualX, skeletonRect.anchoredPosition.y);
+        }
+        else if (direction == KaitDirection.Right)
+        {
+            graphic.Skeleton.ScaleX = Mathf.Abs(graphic.Skeleton.ScaleX);
+            skeletonRect.anchoredPosition = new Vector2(rightFacingVisualX, skeletonRect.anchoredPosition.y);
+        }
+    }
+
+    public void SetOpacity(float opacity)
+    {
+        if (graphic != null) graphic.color = new Color(1f, 1f, 1f, Mathf.Clamp01(opacity));
     }
 
     public void PlayLoop(string animation)
