@@ -5,7 +5,7 @@ using UnityEngine;
 public enum KaitDirection { Up, Down, Left, Right }
 public enum KaitEnemyType { Grunt = 1, Swordsman = 2, Archer = 3, Guard = 4, Warlock = 5, ShieldKnight = 6 }
 public enum KaitEnemyLife { Preparing, Active, Dead }
-public enum KaitArcherState { Ready, Aim }
+public enum KaitRangedState { Ready, Aim }
 public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
 public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep }
@@ -34,7 +34,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public KaitEnemyType type;
     public Vector2Int pos;
     public KaitEnemyLife life;
-    public KaitArcherState archerState;
+    public KaitRangedState rangedState;
     public int frozenActions;
     public Vector2Int facing;
     public KaitIntent intent = new KaitIntent();
@@ -454,10 +454,10 @@ public sealed class KaitRun
         foreach (KaitEnemy boss in enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.type == KaitEnemyType.ShieldKnight))
             boss.facing = DirectionToward(boss.pos, phaseTarget);
 
-        var readyArchers = new List<KaitEnemy>(enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.type == KaitEnemyType.Archer && e.archerState == KaitArcherState.Ready && e.frozenActions == 0));
+        var readyRanged = new List<KaitEnemy>(enemies.FindAll(e => e.life == KaitEnemyLife.Active && IsTwoPhaseRanged(e) && e.rangedState == KaitRangedState.Ready && e.frozenActions == 0));
         var committed = forcedTarget == null
             ? new List<KaitEnemy>(enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.intent.type != KaitIntentType.None))
-            : new List<KaitEnemy>(enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.id != forcedTarget.id && (e.type != KaitEnemyType.Archer || e.archerState == KaitArcherState.Aim)));
+            : new List<KaitEnemy>(enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.id != forcedTarget.id && (!IsTwoPhaseRanged(e) || e.rangedState == KaitRangedState.Aim)));
         foreach (KaitEnemy attacker in committed)
         {
             if (attacker.life == KaitEnemyLife.Dead) continue;
@@ -489,14 +489,14 @@ public sealed class KaitRun
                 if (attacker.type == KaitEnemyType.Archer && hitUnit) break;
             }
             result.enemyActions.Add(action);
-            if (attacker.type == KaitEnemyType.Archer)
+            if (IsTwoPhaseRanged(attacker))
             {
-                attacker.archerState = KaitArcherState.Ready;
+                attacker.rangedState = KaitRangedState.Ready;
                 attacker.intent = new KaitIntent { origin = attacker.pos };
             }
         }
-        foreach (KaitEnemy archer in readyArchers) if (archer.life == KaitEnemyLife.Active) BeginArcherAim(archer, phaseTarget);
-        foreach (KaitEnemy frozen in enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.frozenActions > 0 && !committed.Contains(e) && !readyArchers.Contains(e))) frozen.frozenActions--;
+        foreach (KaitEnemy ranged in readyRanged) if (ranged.life == KaitEnemyLife.Active) BeginRangedAim(ranged, phaseTarget);
+        foreach (KaitEnemy frozen in enemies.FindAll(e => e.life == KaitEnemyLife.Active && e.frozenActions > 0 && !committed.Contains(e) && !readyRanged.Contains(e))) frozen.frozenActions--;
         forcedTargetEnemyId = -1;
         if (kateHp <= 0) End("Kate Defeated", false);
     }
@@ -505,9 +505,10 @@ public sealed class KaitRun
     {
         foreach (KaitEnemy enemy in enemies)
         {
+            if (enemy.life != KaitEnemyLife.Active) { enemy.intent = new KaitIntent { origin = enemy.pos }; continue; }
+            // A ranged lock must survive this refresh so it can fire on the following Kait action.
+            if (IsTwoPhaseRanged(enemy)) continue;
             enemy.intent = new KaitIntent { origin = enemy.pos };
-            if (enemy.life != KaitEnemyLife.Active) continue;
-            if (enemy.type == KaitEnemyType.Archer) continue;
             enemy.intent = BuildIntentToward(enemy, katePos);
         }
     }
@@ -535,11 +536,15 @@ public sealed class KaitRun
         return intent;
     }
 
-    private void BeginArcherAim(KaitEnemy archer, Vector2Int target)
+    private void BeginRangedAim(KaitEnemy ranged, Vector2Int target)
     {
-        Vector2Int direction = DirectionToward(archer.pos, target);
-        archer.archerState = KaitArcherState.Aim;
-        archer.intent = BuildLineIntent(archer.pos, direction, config.archerRange, false);
+        ranged.rangedState = KaitRangedState.Aim;
+        if (ranged.type == KaitEnemyType.Archer)
+        {
+            Vector2Int direction = DirectionToward(ranged.pos, target);
+            ranged.intent = BuildLineIntent(ranged.pos, direction, config.archerRange, false);
+        }
+        else ranged.intent = BuildCrossIntent(ranged.pos, target);
     }
 
     private KaitIntent BuildArcherFireIntent(KaitEnemy archer)
@@ -802,7 +807,7 @@ public sealed class KaitRun
         {
             if (attacker.life != KaitEnemyLife.Active || attacker.id == target.id || attacker.frozenActions > 0) continue;
             KaitIntent intent;
-            if (attacker.type == KaitEnemyType.Archer && attacker.archerState == KaitArcherState.Aim) intent = BuildArcherFireIntent(attacker);
+            if (attacker.type == KaitEnemyType.Archer && attacker.rangedState == KaitRangedState.Aim) intent = BuildArcherFireIntent(attacker);
             else intent = BuildIntentToward(attacker, target.pos);
             if (intent.affectedCells.Contains(target.pos)) return true;
         }
@@ -892,6 +897,8 @@ public sealed class KaitRun
         if (Mathf.Abs(difference.x) >= Mathf.Abs(difference.y)) return difference.x >= 0 ? Vector2Int.right : Vector2Int.left;
         return difference.y >= 0 ? Vector2Int.up : Vector2Int.down;
     }
+    private static bool IsTwoPhaseRanged(KaitEnemy enemy)
+        => enemy.type == KaitEnemyType.Archer || enemy.type == KaitEnemyType.Warlock;
     private Vector2Int FindOpenNearCenter()
     { Vector2Int center = new Vector2Int(BattleSize / 2, BattleSize / 2); if (!walls[center.x, center.y]) return center; return center + Vector2Int.left; }
     private bool CanEnterFrom(Vector2Int from, KaitDirection d) { Vector2Int p = from + Delta(d); return !IsHardBlocked(p) || EnemyAt(p) != null; }

@@ -89,6 +89,13 @@ public sealed class KaitGame : MonoBehaviour
         public Vector3 to;
     }
 
+    private sealed class ProjectileVisual
+    {
+        public RectTransform rect;
+        public Vector3 from;
+        public Vector3 to;
+    }
+
     private static readonly Color Background = Hex("#2F2932");
     private static readonly Color Panel = Hex("#493E49");
     private static readonly Color PanelLight = Hex("#62525E");
@@ -896,7 +903,7 @@ public sealed class KaitGame : MonoBehaviour
                 hp = enemy.hp,
                 maxHp = enemy.maxHp,
                 life = enemy.life,
-                archerState = enemy.archerState,
+                rangedState = enemy.rangedState,
                 frozenActions = enemy.frozenActions,
                 facing = enemy.facing,
                 intent = intent
@@ -1023,6 +1030,7 @@ public sealed class KaitGame : MonoBehaviour
     private IEnumerator AnimateAllEnemyActions(List<KaitEnemyAction> actions)
     {
         var moves = new List<EnemyMoveVisual>();
+        var projectiles = new List<ProjectileVisual>();
         float actionAnimationDuration = 0f;
         foreach (KaitEnemyAction action in actions)
         {
@@ -1050,6 +1058,28 @@ public sealed class KaitGame : MonoBehaviour
                     actionAnimationDuration = Mathf.Max(actionAnimationDuration, attacker.AttackDuration);
                 }
                 foreach (Vector2Int cell in action.affectedCells) if (InsideBattle(cell)) impactCells.Add(cell);
+                if (action.type == KaitIntentType.LineShot && action.affectedCells.Count > 0 && InsideBattle(action.from))
+                {
+                    Vector2Int firstCell = action.affectedCells[0];
+                    Vector2Int lastCell = action.affectedCells[action.affectedCells.Count - 1];
+                    Text arrow = MakeText(">", canvas.transform, Vector2.zero, new Vector2(48, 48), 42, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
+                    arrow.gameObject.name = "Archer Projectile";
+                    arrow.raycastTarget = false;
+                    Outline outline = arrow.gameObject.AddComponent<Outline>();
+                    outline.effectColor = new Color(Wine.r, Wine.g, Wine.b, 0.95f);
+                    outline.effectDistance = new Vector2(2f, -2f);
+                    RectTransform arrowRect = arrow.rectTransform;
+                    arrowRect.position = battleCells[action.from.x + action.from.y * KaitRun.BattleSize].rectTransform.position;
+                    arrowRect.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(firstCell - action.from));
+                    arrowRect.SetAsLastSibling();
+                    projectiles.Add(new ProjectileVisual
+                    {
+                        rect = arrowRect,
+                        from = arrowRect.position,
+                        to = battleCells[lastCell.x + lastCell.y * KaitRun.BattleSize].rectTransform.position
+                    });
+                    actionAnimationDuration = Mathf.Max(actionAnimationDuration, 0.42f);
+                }
                 foreach (int victimId in action.friendlyHitIds)
                 {
                     EnemySpineView victim = EnemySpine(victimId);
@@ -1061,13 +1091,14 @@ public sealed class KaitGame : MonoBehaviour
         }
 
         RefreshBattle();
-        if (moves.Count == 0 && impactCells.Count == 0) yield break;
+        if (moves.Count == 0 && impactCells.Count == 0 && projectiles.Count == 0) yield break;
         float elapsed = 0f;
         float duration = Mathf.Max(0.2f, Mathf.Min(actionAnimationDuration, 0.5f));
         while (elapsed < duration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
             foreach (EnemyMoveVisual move in moves) move.rect.position = Vector3.Lerp(move.from, move.to, t);
+            foreach (ProjectileVisual projectile in projectiles) projectile.rect.position = Vector3.Lerp(projectile.from, projectile.to, t);
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
@@ -1077,6 +1108,7 @@ public sealed class KaitGame : MonoBehaviour
             animatedEnemies.Add(move.enemy);
             Destroy(move.rect.gameObject);
         }
+        foreach (ProjectileVisual projectile in projectiles) Destroy(projectile.rect.gameObject);
         animatedEnemies?.RemoveAll(e => run.enemies.Find(r => r.id == e.id)?.life == KaitEnemyLife.Dead);
         impactCells.Clear();
         RefreshBattle();
