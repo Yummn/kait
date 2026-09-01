@@ -1101,12 +1101,10 @@ public sealed class KaitGame : MonoBehaviour
             e.pos == result.blockedEnemyCell && result.playerKilledEnemyIds.Contains(e.id));
         if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
         foreach (KaitTrailVisual ghost in ghosts) StartCoroutine(FadeAndDestroyTrail(ghost, 0.24f));
-        // During a chain-direction stop the finishing attack still has to play.
-        // Keep defeated enemies rendered until that attack completes, then move
-        // their existing Spine views straight into the detached death layer.
+        // Keep defeated enemies rendered until the finishing attack completes.
+        // The normal turn path removes them after `die`; the chain-direction path
+        // moves the same visible Spine views into its detached death layer.
         // Removing them here caused a visible blank frame/gap before `die` began.
-        if (!result.awaitingTurnChoice || !run.chainActive)
-            animatedEnemies.RemoveAll(e => result.playerKilledEnemyIds.Contains(e.id));
         impactCells.Clear();
         hideKate = false;
         displayKate = null;
