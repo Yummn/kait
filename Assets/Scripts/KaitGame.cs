@@ -138,6 +138,8 @@ public sealed class KaitGame : MonoBehaviour
         if (threatBoardFont == null) threatBoardFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         uiFont = Resources.Load<Font>("Fonts/FusionPixel12pxProportionalZhHans");
         if (uiFont == null) uiFont = threatBoardFont;
+        ConfigureUiFontAtlas(uiFont);
+        Font.textureRebuilt += OnFontTextureRebuilt;
         kaitPortrait = LoadPixelSprite("KenneyTinyDungeon/Kait");
         makotoSkeletonData = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
         gruntPortrait = LoadPortraitSprite("EnemyPortraits/100161", new Rect(0.3452f, 0.1883f, 0.1913f, 0.3315f));
@@ -172,7 +174,20 @@ public sealed class KaitGame : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        Font.textureRebuilt -= OnFontTextureRebuilt;
         if (instance == this) instance = null;
+    }
+
+    private void OnFontTextureRebuilt(Font rebuiltFont)
+    {
+        if (rebuiltFont == uiFont) ConfigureUiFontAtlas(rebuiltFont);
+    }
+
+    private static void ConfigureUiFontAtlas(Font font)
+    {
+        if (font == null || font.material == null || font.material.mainTexture == null) return;
+        font.material.mainTexture.filterMode = FilterMode.Bilinear;
+        font.material.mainTexture.anisoLevel = 0;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -240,6 +255,7 @@ public sealed class KaitGame : MonoBehaviour
         canvas = canvasGo.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 100;
+        canvas.pixelPerfect = true;
         var scaler = canvasGo.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920, 1080);
