@@ -49,6 +49,7 @@ public sealed class KaitGame : MonoBehaviour
     private GameObject endOverlay;
     private Text endText;
     private bool busy;
+    private KaitDirection? bufferedDirection;
     private Vector2Int? displayKate;
     private Vector2Int? trailCell;
     private bool hideKate;
@@ -246,7 +247,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void Update()
     {
-        if (busy || run.ended) return;
+        if (run.ended) return;
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) HandleDirection(KaitDirection.Up);
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) HandleDirection(KaitDirection.Down);
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) HandleDirection(KaitDirection.Left);
@@ -585,6 +586,7 @@ public sealed class KaitGame : MonoBehaviour
         StopAllCoroutines();
         ClearEnemySpines();
         busy = false;
+        bufferedDirection = null;
         displayKate = null;
         trailCell = null;
         targetingSkill = KaitSkill.None;
@@ -603,7 +605,14 @@ public sealed class KaitGame : MonoBehaviour
 
     private void HandleDirection(KaitDirection direction)
     {
-        if (busy || run.ended) return;
+        if (run.ended) return;
+        if (busy)
+        {
+            // Keep the most recent direction pressed during an animation so the
+            // next action starts immediately when the visual sequence releases.
+            bufferedDirection = direction;
+            return;
+        }
         targetingSkill = KaitSkill.None;
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
@@ -684,7 +693,20 @@ public sealed class KaitGame : MonoBehaviour
         statusText.text = result.message + (result.merges.Count > 0 ? $" · 威胁合并 ×{result.merges.Count}" : "");
         busy = false;
         RefreshAll();
-        if (run.ended) ShowEnd();
+        if (run.ended)
+        {
+            bufferedDirection = null;
+            ShowEnd();
+        }
+        else ConsumeBufferedDirection();
+    }
+
+    private void ConsumeBufferedDirection()
+    {
+        if (busy || run.ended || !bufferedDirection.HasValue) return;
+        KaitDirection next = bufferedDirection.Value;
+        bufferedDirection = null;
+        HandleDirection(next);
     }
 
     private void RefreshAll()
@@ -808,6 +830,7 @@ public sealed class KaitGame : MonoBehaviour
         kaitSpine?.PlayLoop(KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
         RefreshAll();
+        ConsumeBufferedDirection();
     }
 
     private static string SkillChoiceDescription(KaitSkill skill)
