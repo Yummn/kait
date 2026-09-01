@@ -68,6 +68,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite attackWarningSprite;
     private Sprite dungeonFloorSprite;
     private Sprite dungeonWallSprite;
+    private Sprite stoneFenceSprite;
     private Sprite spawnRiftSprite;
     private Sprite dungeonPanelSprite;
     private Sprite dungeonButtonSprite;
@@ -148,6 +149,7 @@ public sealed class KaitGame : MonoBehaviour
         attackWarningSprite = LoadUiSprite("KaitVisuals/AttackWarningStripes");
         dungeonFloorSprite = LoadPixelSprite("KaitVisuals/DungeonFloor");
         dungeonWallSprite = LoadPixelSprite("KaitVisuals/DungeonWall");
+        stoneFenceSprite = LoadPixelSprite("KaitVisuals/StoneFence");
         spawnRiftSprite = LoadPixelSprite("KaitVisuals/SpawnRift");
         dungeonPanelSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/TileMap1", new Rect(16f, 160f, 48f, 48f), 16f);
         dungeonButtonSprite = LoadSlicedAtlasSprite("KaitVisuals/DungeonUI/ButtonsMap", new Rect(0f, 54f, 16f, 16f), 4f);
@@ -284,6 +286,7 @@ public sealed class KaitGame : MonoBehaviour
         boardRect.anchorMin = boardRect.anchorMax = boardRect.pivot = new Vector2(0.5f, 0.5f);
         boardRect.sizeDelta = new Vector2(600, 600);
         boardRect.anchoredPosition = new Vector2(-460, 0);
+        BuildStoneFence(boardGo.transform);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(boardGo.transform, false);
         RectTransform gridRect = gridGo.GetComponent<RectTransform>();
@@ -381,6 +384,27 @@ public sealed class KaitGame : MonoBehaviour
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
             }
         }
+    }
+
+    private void BuildStoneFence(Transform parent)
+    {
+        if (stoneFenceSprite == null) return;
+        const float offset = 306f;
+        const float length = 624f;
+        const float thickness = 24f;
+        MakeStoneFenceSide("Stone Fence Top", parent, new Vector2(0f, offset), new Vector2(length, thickness), 0f);
+        MakeStoneFenceSide("Stone Fence Bottom", parent, new Vector2(0f, -offset), new Vector2(length, thickness), 180f);
+        MakeStoneFenceSide("Stone Fence Left", parent, new Vector2(-offset, 0f), new Vector2(length, thickness), 90f);
+        MakeStoneFenceSide("Stone Fence Right", parent, new Vector2(offset, 0f), new Vector2(length, thickness), -90f);
+    }
+
+    private void MakeStoneFenceSide(string name, Transform parent, Vector2 position, Vector2 size, float rotation)
+    {
+        Image side = Rect(name, parent, position, size, Color.white);
+        side.sprite = stoneFenceSprite;
+        side.type = Image.Type.Tiled;
+        side.raycastTarget = false;
+        side.rectTransform.localRotation = Quaternion.Euler(0f, 0f, rotation);
     }
 
     private void BuildThreatBoard(Transform parent)
