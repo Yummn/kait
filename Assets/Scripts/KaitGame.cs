@@ -863,8 +863,6 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     Image rift = battleRifts[index];
                     rift.gameObject.SetActive(true);
-                    battleStatusLabels[index].text = spawn.turnsUntilSpawn > 0 ? spawn.turnsUntilSpawn.ToString() : "!";
-                    battleStatusLabels[index].color = Gold;
                 }
                 if (enemy != null)
                 {
