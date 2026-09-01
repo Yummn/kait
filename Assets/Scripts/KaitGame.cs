@@ -18,6 +18,7 @@ public sealed class KaitGame : MonoBehaviour
     private Canvas canvas;
     private RectTransform gameContent;
     private Coroutine screenShakeRoutine;
+    private Coroutine chainSpeedAuraRoutine;
     private Vector2 gameContentBasePosition;
     private Sprite roundedSprite;
     private Image[] battleCells;
@@ -80,6 +81,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite grassBackgroundSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
+    private readonly List<KaitTrailVisual> activeTrailVisuals = new List<KaitTrailVisual>();
     private string logPath;
 
     private sealed class ThreatVisual
@@ -185,6 +187,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void OnDestroy()
     {
+        ClearAllTrailVisuals();
         SceneManager.sceneLoaded -= OnSceneLoaded;
         Font.textureRebuilt -= OnFontTextureRebuilt;
         if (instance == this) instance = null;
@@ -589,6 +592,8 @@ public sealed class KaitGame : MonoBehaviour
     private void NewRun()
     {
         StopAllCoroutines();
+        chainSpeedAuraRoutine = null;
+        ClearAllTrailVisuals();
         ClearEnemySpines();
         busy = false;
         bufferedDirection = null;
@@ -628,6 +633,7 @@ public sealed class KaitGame : MonoBehaviour
             StartCoroutine(FlashStatus());
             return;
         }
+        StopChainSpeedAura();
         if (result.turnComplete) AppendLog(start, result);
         StartCoroutine(PlayTurn(result, start, enemySnapshot, spawnSnapshot));
     }
@@ -701,7 +707,11 @@ public sealed class KaitGame : MonoBehaviour
             bufferedDirection = null;
             ShowEnd();
         }
-        else ConsumeBufferedDirection();
+        else
+        {
+            StartChainSpeedAuraIfNeeded();
+            ConsumeBufferedDirection();
+        }
     }
 
     private void ConsumeBufferedDirection()
@@ -833,6 +843,7 @@ public sealed class KaitGame : MonoBehaviour
         kaitSpine?.PlayLoop(KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
         RefreshAll();
+        StartChainSpeedAuraIfNeeded();
         ConsumeBufferedDirection();
     }
 
@@ -1445,7 +1456,7 @@ public sealed class KaitGame : MonoBehaviour
     private KaitTrailVisual CreateGhostToken(Vector3 position, int momentumValue, KaitDirection direction, float opacityMultiplier)
     {
         float tier = Mathf.Clamp01((momentumValue - 1) / 4f);
-        Color trailColor = Color.Lerp(Peach, Coral, tier);
+        Color trailColor = KaitSpeedTrailColor(tier);
         trailColor.a = Mathf.Lerp(0.3f, 0.62f, tier) * opacityMultiplier;
         KaitSpineView ghost = makotoSkeletonData == null ? null : KaitSpineView.Create(makotoSkeletonData, canvas.transform, new Vector2(115, 115), "Kait Speed Trail");
         if (ghost != null)
@@ -1455,21 +1466,50 @@ public sealed class KaitGame : MonoBehaviour
             ghost.Face(direction);
             ghost.PlayLoop(KaitSpineView.Run);
             ghost.SetTint(trailColor);
-            return new KaitTrailVisual { rect = ghost.Root, spine = ghost };
+            var visual = new KaitTrailVisual { rect = ghost.Root, spine = ghost };
+            activeTrailVisuals.Add(visual);
+            return visual;
         }
         RectTransform fallbackSource = battleCells[run.katePos.x + run.katePos.y * KaitRun.BattleSize].rectTransform;
         RectTransform fallback = CreateFloatingPortrait(kaitPortrait, Color.clear, fallbackSource, new Vector2(115, 115));
         fallback.position = position;
         Image portrait = fallback.Find("Portrait")?.GetComponent<Image>();
         if (portrait != null) portrait.color = trailColor;
-        return new KaitTrailVisual { rect = fallback };
+        var fallbackVisual = new KaitTrailVisual { rect = fallback };
+        activeTrailVisuals.Add(fallbackVisual);
+        return fallbackVisual;
     }
 
-    private static void DestroyTrailVisual(KaitTrailVisual trail)
+    private static Color KaitSpeedTrailColor(float tier)
+    {
+        tier = Mathf.Clamp01(tier);
+        if (tier < 0.34f) return Color.Lerp(Cyan, Peach, tier / 0.34f);
+        if (tier < 0.67f) return Color.Lerp(Peach, Gold, (tier - 0.34f) / 0.33f);
+        return Color.Lerp(Gold, Coral, (tier - 0.67f) / 0.33f);
+    }
+
+    private void DestroyTrailVisual(KaitTrailVisual trail)
     {
         if (trail == null) return;
+        activeTrailVisuals.Remove(trail);
         if (trail.spine != null) trail.spine.Destroy();
         else if (trail.rect != null) Destroy(trail.rect.gameObject);
+    }
+
+    private void ClearAllTrailVisuals()
+    {
+        if (activeTrailVisuals.Count == 0) return;
+        KaitTrailVisual[] trails = activeTrailVisuals.ToArray();
+        activeTrailVisuals.Clear();
+        foreach (KaitTrailVisual trail in trails)
+        {
+            if (trail?.spine != null) trail.spine.Destroy();
+            else if (trail?.rect != null)
+            {
+                if (Application.isPlaying) Destroy(trail.rect.gameObject);
+                else DestroyImmediate(trail.rect.gameObject);
+            }
+        }
     }
 
     private IEnumerator FadeAndDestroyTrail(KaitTrailVisual trail, float duration)
@@ -1480,6 +1520,57 @@ public sealed class KaitGame : MonoBehaviour
         while (elapsed < duration && trail.rect != null)
         {
             group.alpha = 1f - elapsed / duration;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        DestroyTrailVisual(trail);
+    }
+
+    private void StartChainSpeedAuraIfNeeded()
+    {
+        if (chainSpeedAuraRoutine != null || busy || run.ended || !run.chainActive || run.AllowedTurnDirections().Count == 0) return;
+        chainSpeedAuraRoutine = StartCoroutine(EmitChainSpeedAura());
+    }
+
+    private void StopChainSpeedAura()
+    {
+        if (chainSpeedAuraRoutine == null) return;
+        StopCoroutine(chainSpeedAuraRoutine);
+        chainSpeedAuraRoutine = null;
+    }
+
+    private IEnumerator EmitChainSpeedAura()
+    {
+        KaitDirection[] directions = { KaitDirection.Up, KaitDirection.Right, KaitDirection.Down, KaitDirection.Left };
+        Vector2[] offsets = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
+        while (!busy && !run.ended && run.chainActive)
+        {
+            int speed = Mathf.Max(1, Mathf.Max(run.momentum, run.chainPower));
+            float tier = Mathf.Clamp01((speed - 1) / 4f);
+            int index = run.katePos.x + run.katePos.y * KaitRun.BattleSize;
+            if (index < 0 || index >= battleCells.Length || battleCells[index] == null) break;
+            Vector3 center = battleCells[index].rectTransform.position;
+            float radius = Mathf.Lerp(13f, 24f, tier);
+            for (int i = 0; i < directions.Length; i++)
+            {
+                KaitTrailVisual trail = CreateGhostToken(center, speed, directions[i], Mathf.Lerp(0.34f, 0.5f, tier));
+                StartCoroutine(RadiateAndDestroyTrail(trail, center, center + (Vector3)(offsets[i] * radius), Mathf.Lerp(0.3f, 0.22f, tier)));
+            }
+            yield return new WaitForSecondsRealtime(Mathf.Lerp(0.42f, 0.26f, tier));
+        }
+        chainSpeedAuraRoutine = null;
+    }
+
+    private IEnumerator RadiateAndDestroyTrail(KaitTrailVisual trail, Vector3 from, Vector3 to, float duration)
+    {
+        if (trail == null || trail.rect == null) yield break;
+        CanvasGroup group = trail.rect.gameObject.AddComponent<CanvasGroup>();
+        float elapsed = 0f;
+        while (elapsed < duration && trail.rect != null)
+        {
+            float t = elapsed / duration;
+            trail.rect.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, t));
+            group.alpha = 1f - t;
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
