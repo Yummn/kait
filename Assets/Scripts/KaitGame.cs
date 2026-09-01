@@ -278,10 +278,14 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildBattleBoard(Transform parent)
     {
-        Image frame = Rect("Battle Panel", parent, new Vector2(-460, 0), new Vector2(640, 640), Panel);
-        SkinPanel(frame);
+        var boardGo = new GameObject("Battle Board", typeof(RectTransform));
+        boardGo.transform.SetParent(parent, false);
+        RectTransform boardRect = boardGo.GetComponent<RectTransform>();
+        boardRect.anchorMin = boardRect.anchorMax = boardRect.pivot = new Vector2(0.5f, 0.5f);
+        boardRect.sizeDelta = new Vector2(600, 600);
+        boardRect.anchoredPosition = new Vector2(-460, 0);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
-        gridGo.transform.SetParent(frame.transform, false);
+        gridGo.transform.SetParent(boardGo.transform, false);
         RectTransform gridRect = gridGo.GetComponent<RectTransform>();
         gridRect.sizeDelta = new Vector2(600, 600);
         gridRect.anchoredPosition = Vector2.zero;
