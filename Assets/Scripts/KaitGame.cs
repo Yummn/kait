@@ -329,16 +329,11 @@ public sealed class KaitGame : MonoBehaviour
                 rift.preserveAspect = true;
                 rift.gameObject.SetActive(false);
                 battleRifts[index] = rift;
-                Image unitClip = Rect("Unit Clip", cell.transform, Vector2.zero, new Vector2(114, 114), Color.white);
+                Image unitClip = Rect("Unit Visual", cell.transform, Vector2.zero, new Vector2(114, 114), Color.clear);
                 unitClip.raycastTarget = false;
-                unitClip.sprite = roundedSprite;
-                unitClip.type = Image.Type.Sliced;
-                if (roundedSprite != null)
-                {
-                    Mask unitMask = unitClip.gameObject.AddComponent<Mask>();
-                    unitMask.showMaskGraphic = true;
-                }
-                // Keep the warning decal above the opaque unit card while leaving labels and badges readable.
+                unitClip.sprite = null;
+                unitClip.type = Image.Type.Simple;
+                // Keep the warning decal above unit art while leaving labels and badges readable.
                 rift.transform.SetSiblingIndex(unitClip.transform.GetSiblingIndex() + 1);
                 battleUnitClips[index] = unitClip;
                 Image portrait = Rect("Unit Portrait", unitClip.transform, new Vector2(0, -2), new Vector2(112, 112), Color.white);
@@ -796,10 +791,7 @@ public sealed class KaitGame : MonoBehaviour
                 if (enemy != null)
                 {
                     Image unitClip = battleUnitClips[index];
-                    Color unitBackground = EnemyTileColor(enemy.type);
-                    if (enemy.life == KaitEnemyLife.Preparing) unitBackground = Color.Lerp(unitBackground, Panel, 0.28f);
-                    unitBackground.a = 1f;
-                    unitClip.color = unitBackground;
+                    unitClip.color = Color.clear;
                     unitClip.gameObject.SetActive(true);
                     image.color = Color.clear;
                     Color unitTint = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
@@ -818,8 +810,8 @@ public sealed class KaitGame : MonoBehaviour
                         battlePortraits[index].color = unitTint;
                     }
                     battleHpLabels[index].text = enemy.hp.ToString();
-                    battleHpLabels[index].color = unitBackground.grayscale > 0.62f ? Void : Cream;
-                    battleHpBadges[index].color = unitBackground.grayscale > 0.62f ? new Color(Cream.r, Cream.g, Cream.b, 0.92f) : new Color(Void.r, Void.g, Void.b, 0.9f);
+                    battleHpLabels[index].color = Cream;
+                    battleHpBadges[index].color = new Color(Void.r, Void.g, Void.b, 0.9f);
                     battleHpBadges[index].gameObject.SetActive(true);
                     Vector2Int facing = enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction;
                     if (facing != Vector2Int.zero) battleFacingLabels[index].text = ">";
@@ -831,9 +823,7 @@ public sealed class KaitGame : MonoBehaviour
                 if (!hideKate && kate == p)
                 {
                     Image unitClip = battleUnitClips[index];
-                    Color unitBackground = showRiftDanger ? Color.Lerp(ThreatColor(2), Gold, 0.32f) : ThreatColor(2);
-                    unitBackground.a = 1f;
-                    unitClip.color = unitBackground;
+                    unitClip.color = Color.clear;
                     unitClip.gameObject.SetActive(true);
                     image.color = Color.clear;
                     if (kaitSpine != null)

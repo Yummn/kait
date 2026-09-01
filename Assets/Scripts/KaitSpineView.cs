@@ -86,6 +86,7 @@ public sealed class KaitSpineView
         RectTransform skeletonRect = skeletonGraphic.rectTransform;
         Mesh mesh = skeletonGraphic.GetLastMesh();
         Bounds meshBounds = mesh != null ? mesh.bounds : new Bounds(Vector3.zero, skeletonRect.sizeDelta);
+        Bounds bodyBounds = BodyBounds(skeletonGraphic, meshBounds);
         skeletonRect.anchorMin = skeletonRect.anchorMax = new Vector2(0.5f, 0.5f);
         skeletonRect.pivot = new Vector2(0.5f, 0.5f);
         skeletonRect.sizeDelta = meshBounds.size;
@@ -93,11 +94,26 @@ public sealed class KaitSpineView
         float height = Mathf.Max(0.01f, meshBounds.size.y);
         float scale = Mathf.Min(size.x * VisualFill / width, size.y * VisualFill / height);
         skeletonRect.localScale = Vector3.one * scale;
-        float visualWeightOffset = size.x * 0.09f;
-        Vector2 centeredPosition = new Vector2(-meshBounds.center.x * scale + visualWeightOffset, -meshBounds.center.y * scale);
+        Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
 
         return new KaitSpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x);
+    }
+
+    private static Bounds BodyBounds(SkeletonGraphic skeletonGraphic, Bounds fallback)
+    {
+        Slot centerSlot = skeletonGraphic.Skeleton.FindSlot("Center");
+        BoundingBoxAttachment bodyBox = centerSlot?.Attachment as BoundingBoxAttachment;
+        if (bodyBox == null || bodyBox.WorldVerticesLength < 4) return fallback;
+        float[] vertices = new float[bodyBox.WorldVerticesLength];
+        bodyBox.ComputeWorldVertices(centerSlot, vertices);
+        float minX = vertices[0], maxX = vertices[0], minY = vertices[1], maxY = vertices[1];
+        for (int i = 2; i < vertices.Length; i += 2)
+        {
+            minX = Mathf.Min(minX, vertices[i]); maxX = Mathf.Max(maxX, vertices[i]);
+            minY = Mathf.Min(minY, vertices[i + 1]); maxY = Mathf.Max(maxY, vertices[i + 1]);
+        }
+        return new Bounds(new Vector3((minX + maxX) * 0.5f, (minY + maxY) * 0.5f, 0f), new Vector3(maxX - minX, maxY - minY, 0f));
     }
 
     public void SetParent(Transform parent, int siblingIndex = -1)
