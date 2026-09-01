@@ -25,6 +25,7 @@ public sealed class KaitGame : MonoBehaviour
     private Image[] battleCellTints;
     private Image[] battleUnitClips;
     private RectTransform[] battleDeathLayers;
+    private RectTransform battleActorLayer;
     private Text[] battleLabels;
     private Image[] battlePortraits;
     private HealthBarView[] battleHealthBars;
@@ -261,6 +262,19 @@ public sealed class KaitGame : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.R)) NewRun();
     }
 
+    private void LateUpdate()
+    {
+        // The actor layer is outside the individual grid cells so later-drawn
+        // neighbour tiles can never cover Kait's sword. Keep it locked to the
+        // current cell after layout/fullscreen changes as well.
+        if (kaitSpine == null || battleActorLayer == null || battleCells == null) return;
+        Vector2Int kate = displayKate ?? run.katePos;
+        int index = kate.x + kate.y * KaitRun.BattleSize;
+        if (index < 0 || index >= battleCells.Length || battleCells[index] == null) return;
+        if (kaitSpine.Root.parent == battleActorLayer)
+            kaitSpine.Root.position = battleCells[index].rectTransform.position;
+    }
+
     private void BuildUI()
     {
         var canvasGo = new GameObject("Kait Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -416,6 +430,13 @@ public sealed class KaitGame : MonoBehaviour
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
             }
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(gridRect);
+        var actorLayerObject = new GameObject("Battle Actor Overlay", typeof(RectTransform));
+        actorLayerObject.transform.SetParent(boardGo.transform, false);
+        battleActorLayer = actorLayerObject.GetComponent<RectTransform>();
+        battleActorLayer.anchorMin = battleActorLayer.anchorMax = battleActorLayer.pivot = new Vector2(0.5f, 0.5f);
+        battleActorLayer.sizeDelta = boardRect.sizeDelta;
+        battleActorLayer.anchoredPosition = Vector2.zero;
     }
 
     private void BuildThreatBoard(Transform parent)
@@ -910,9 +931,12 @@ public sealed class KaitGame : MonoBehaviour
                     image.color = Color.clear;
                     if (kaitSpine != null)
                     {
-                        // Keep Kait outside the legacy per-unit visual container.
-                        // Her sword is allowed to extend over adjacent cells.
-                        kaitSpine.SetParent(battleCells[index].transform, 5);
+                        // Keep Kait above the complete grid, not merely above her
+                        // current cell. Otherwise a later sibling cell can cover
+                        // the part of her sword extending into that neighbour.
+                        Transform actorParent = battleActorLayer != null ? battleActorLayer : battleCells[index].transform;
+                        kaitSpine.SetParent(actorParent);
+                        kaitSpine.Root.position = battleCells[index].rectTransform.position;
                         kaitSpine.SetVisible(true);
                     }
                     else
@@ -1437,10 +1461,14 @@ public sealed class KaitGame : MonoBehaviour
     {
         if (kaitSpine != null || makotoSkeletonData == null || battleCells == null) return;
         int index = run.katePos.x + run.katePos.y * KaitRun.BattleSize;
-        Transform parent = index >= 0 && index < battleCells.Length && battleCells[index] != null
-            ? battleCells[index].transform
+        Transform parent = battleActorLayer != null
+            ? battleActorLayer
+            : index >= 0 && index < battleCells.Length && battleCells[index] != null
+                ? battleCells[index].transform
             : canvas.transform;
         kaitSpine = KaitSpineView.Create(makotoSkeletonData, parent, new Vector2(115, 115));
+        if (kaitSpine != null && index >= 0 && index < battleCells.Length && battleCells[index] != null)
+            kaitSpine.Root.position = battleCells[index].rectTransform.position;
     }
 
     private KaitTrailVisual CreateGhostToken(Vector3 position, int momentumValue, KaitDirection direction, float opacityMultiplier)
