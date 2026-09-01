@@ -724,7 +724,7 @@ public sealed class KaitGame : MonoBehaviour
             skillButtonLabels[i].text = !unlocked ? "未解锁" : $"{KaitRun.SkillName(skill)}\n{(cooldown > 0 ? $"CD {cooldown}" : skill == KaitSkill.ShadowStep ? "击杀后点按" : "可用")}";
             bool passiveReady = skill == KaitSkill.ShadowStep && run.chainActive && run.shadowStepAvailable;
             skillButtons[i].interactable = unlocked && !busy && !run.ended &&
-                (skill == KaitSkill.ShadowStep ? passiveReady : !run.chainActive && cooldown == 0);
+                (skill == KaitSkill.ShadowStep ? passiveReady : cooldown == 0);
             skillButtons[i].GetComponent<Image>().color = targetingSkill == skill ? Cyan : PanelLight;
         }
         if (targetingSkill != KaitSkill.None) skillStatusText.text = $"{KaitRun.SkillName(targetingSkill)}：请选择敌人";

@@ -920,6 +920,38 @@ public sealed class KaitCoreTests
     }
 
     [Test]
+    public void ActiveSpeedSkills_CanBeUsedDuringChainAndUpdatePowerImmediately()
+    {
+        KaitRun run = OpenRun(3714, new Vector2Int(1, 3));
+        Unlock(run, 16, KaitSkill.SwiftBoots); Unlock(run, 64, KaitSkill.CatAgility);
+        run.enemies.Add(Enemy(1, new Vector2Int(5, 3), 3));
+        run.TryGlobalInput(KaitDirection.Right);
+
+        Assert.IsTrue(run.chainActive);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.SwiftBoots, -1, out _));
+        Assert.AreEqual(4, run.momentum); Assert.AreEqual(4, run.chainPower);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.CatAgility, -1, out _));
+        Assert.AreEqual(8, run.momentum); Assert.AreEqual(8, run.chainPower);
+
+        run.enemies.Add(Enemy(2, new Vector2Int(2, 3), 8));
+        KaitTurnResult result = run.ContinueChain(KaitDirection.Left);
+        Assert.AreEqual(8, result.damageDealt); Assert.IsTrue(result.awaitingTurnChoice);
+    }
+
+    [Test]
+    public void DreadSlash_CanBeArmedAndTriggeredDuringChain()
+    {
+        KaitRun run = OpenRun(3715, new Vector2Int(1, 3)); Unlock(run, 16, KaitSkill.DreadSlash);
+        run.enemies.Add(Enemy(1, new Vector2Int(5, 3), 3));
+        run.TryGlobalInput(KaitDirection.Right);
+
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.DreadSlash, -1, out _));
+        KaitTurnResult result = run.ContinueChain(KaitDirection.Left);
+
+        Assert.IsTrue(result.dreadSlash); Assert.IsTrue(result.turnComplete); Assert.IsFalse(run.chainActive);
+    }
+
+    [Test]
     public void V037_T12_First128SpawnsBossAndDoesNotAutoWin()
     {
         KaitRun run = OpenRun(3713, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;

@@ -213,15 +213,15 @@ public sealed class KaitRun
     public bool TryUseSkill(KaitSkill skill, int targetEnemyId, out string message)
     {
         message = string.Empty;
-        if (ended || chainActive) { message = "当前不能使用技能"; return false; }
+        if (ended) { message = "当前不能使用技能"; return false; }
         if (!skills.Contains(skill) || skill == KaitSkill.ShadowStep) { message = "尚未获得该主动技能"; return false; }
         if (SkillCooldown(skill) > 0) { message = $"技能冷却中：{SkillCooldown(skill)}"; return false; }
         KaitEnemy target = targetEnemyId < 0 ? null : enemies.Find(e => e.id == targetEnemyId && e.life != KaitEnemyLife.Dead);
         if ((skill == KaitSkill.IceTomb || skill == KaitSkill.LesserPhantom) && target == null) { message = "请选择一个存活敌人"; return false; }
         if (skill == KaitSkill.LesserPhantom && !HasLegalPhantomAttack(target)) { message = "当前没有敌人能合法攻击该目标"; return false; }
 
-        if (skill == KaitSkill.SwiftBoots) activeSpeedModifiers.Add(KaitSpeedModifier.AddOne);
-        else if (skill == KaitSkill.CatAgility) activeSpeedModifiers.Add(KaitSpeedModifier.Double);
+        if (skill == KaitSkill.SwiftBoots) ApplySpeedSkill(KaitSpeedModifier.AddOne);
+        else if (skill == KaitSkill.CatAgility) ApplySpeedSkill(KaitSpeedModifier.Double);
         else if (skill == KaitSkill.DreadSlash) dreadSlashArmed = true;
         else if (skill == KaitSkill.IceTomb) target.frozenActions = 1;
         else if (skill == KaitSkill.LesserPhantom) forcedTargetEnemyId = target.id;
@@ -296,6 +296,13 @@ public sealed class KaitRun
         var result = new KaitTurnResult();
         if (!chainActive) { result.message = "当前没有可继续的连斩"; return result; }
         result.valid = true; shadowStepAvailable = false; currentDirection = direction; chainStepCount++;
+        if (dreadSlashArmed)
+        {
+            dreadSlashArmed = false; result.dreadSlash = true; result.globalDirection = direction;
+            ResolveDreadSlash(direction, result);
+            result.message = "连杀中发动惊惧斩：凯特原地，敌人已沿输入方向重排";
+            FinishTurn(result); ApplyTurnContext(result); return result;
+        }
         if (IsHardBlocked(katePos + Delta(direction)))
         {
             result.activeBrake = true; result.stoppedByWall = true; result.chainEndedByWall = true; activeWallStops++; chainEndByWall++;
@@ -785,6 +792,19 @@ public sealed class KaitRun
             case KaitSkill.CatAgility: return 5;
             default: return 0;
         }
+    }
+
+    private void ApplySpeedSkill(KaitSpeedModifier modifier)
+    {
+        if (!chainActive || !powerLocked)
+        {
+            activeSpeedModifiers.Add(modifier);
+            return;
+        }
+
+        momentum = modifier == KaitSpeedModifier.AddOne ? momentum + 1 : momentum * 2;
+        chainPower = momentum;
+        highestMomentum = Mathf.Max(highestMomentum, momentum);
     }
 
     private void TickSkillCooldowns()
