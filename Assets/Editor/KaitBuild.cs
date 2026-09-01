@@ -13,6 +13,12 @@ public static class KaitBuild
         string output = Path.Combine(projectRoot, "Build", "kait.exe");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
 
+        PlayerSettings.defaultScreenWidth = 1920;
+        PlayerSettings.defaultScreenHeight = 1080;
+        PlayerSettings.defaultIsNativeResolution = true;
+        PlayerSettings.fullScreenMode = FullScreenMode.FullScreenWindow;
+        PlayerSettings.resizableWindow = false;
+
         var options = new BuildPlayerOptions
         {
             scenes = new[] { "Assets/Scenes/Scene.unity" },

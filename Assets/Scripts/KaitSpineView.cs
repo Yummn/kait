@@ -140,7 +140,8 @@ public sealed class KaitSpineView
         TrackEntry current = graphic.AnimationState.GetCurrent(0);
         if (current != null && current.Animation != null && current.Animation.Name == animation && current.Loop) return;
         graphic.timeScale = 1f;
-        graphic.AnimationState.SetAnimation(0, animation, true);
+        TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, true);
+        if (animation == Run) entry.MixDuration = 0.02f;
     }
 
     public void PlayOnce(string animation, string followUp = Idle)

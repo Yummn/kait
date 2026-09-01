@@ -150,10 +150,25 @@ public sealed class KaitGame : MonoBehaviour
         if (canvas == null) BuildUI();
         NewRun();
         string screenshotPath = CommandLineValue("-kaitScreenshot");
+        if (Application.platform == RuntimePlatform.WindowsPlayer && string.IsNullOrEmpty(screenshotPath))
+            StartCoroutine(EnforceWindowsFullscreen());
         string demoStepsValue = CommandLineValue("-kaitDemoSteps");
         if (CommandLineValue("-kaitTutorial") == "1") tutorialOverlay.SetActive(true);
         int.TryParse(demoStepsValue, out int demoSteps);
         if (!string.IsNullOrEmpty(screenshotPath)) StartCoroutine(CaptureAndQuit(screenshotPath, demoSteps));
+    }
+
+    private IEnumerator EnforceWindowsFullscreen()
+    {
+        for (int frame = 0; frame < 6; frame++)
+        {
+            yield return new WaitForEndOfFrame();
+            Resolution native = Screen.currentResolution;
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.SetResolution(native.width, native.height, FullScreenMode.FullScreenWindow);
+            Screen.fullScreen = true;
+        }
+        Debug.Log($"Kait fullscreen applied: {Screen.width}x{Screen.height}, mode={Screen.fullScreenMode}");
     }
 
     private void Update()
@@ -1097,17 +1112,22 @@ public sealed class KaitGame : MonoBehaviour
     private RectTransform CreateGhostToken(RectTransform source, int momentumValue, KaitDirection direction)
     {
         float tier = Mathf.Clamp01((momentumValue - 1) / 4f);
-        KaitSpineView ghost = CreateFloatingKait(source, direction, new Vector2(82, 82), "Kait Speed Trail");
+        Color borderColor = Color.Lerp(new Color(Peach.r, Peach.g, Peach.b, 0.42f), new Color(Coral.r, Coral.g, Coral.b, 0.72f), tier);
+        Image border = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(88, 88), borderColor);
+        border.raycastTarget = false;
+        border.rectTransform.position = source.position;
+        border.rectTransform.SetAsLastSibling();
+        Image inside = Rect("Trail Inner", border.transform, Vector2.zero, new Vector2(78, 78), new Color(Panel.r, Panel.g, Panel.b, 0.48f));
+        inside.raycastTarget = false;
+        KaitSpineView ghost = makotoSkeletonData == null ? null : KaitSpineView.Create(makotoSkeletonData, inside.transform, new Vector2(78, 78), "Kait Trail Character");
         if (ghost != null)
         {
+            ghost.Face(direction);
             ghost.PlayLoop(KaitSpineView.Run);
-            ghost.SetOpacity(Mathf.Lerp(0.24f, 0.48f, tier));
-            return ghost.Root;
+            ghost.SetOpacity(Mathf.Lerp(0.42f, 0.68f, tier));
+            return border.rectTransform;
         }
-        Image fallback = Rect("Kait Speed Trail", canvas.transform, Vector2.zero, new Vector2(64, 64), new Color(Coral.r, Coral.g, Coral.b, 0.3f));
-        fallback.raycastTarget = false;
-        fallback.rectTransform.position = source.position;
-        return fallback.rectTransform;
+        return border.rectTransform;
     }
 
     private IEnumerator FadeAndDestroy(RectTransform rect, float duration)
