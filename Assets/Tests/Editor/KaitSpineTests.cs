@@ -93,6 +93,34 @@ public sealed class KaitSpineTests
         }
     }
 
+    [TestCase("100161", "01_")]
+    [TestCase("105731", "04_")]
+    [TestCase("106331", "08_")]
+    [TestCase("112731", "06_")]
+    [TestCase("111031", "26_")]
+    [TestCase("104731", "05_")]
+    public void EnemyGraphic_DoesNotUseUiOrSpineClipping(string assetId, string prefix)
+    {
+        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>($"Characters/Enemies/{assetId}/{assetId}_SkeletonData");
+        var canvasObject = new GameObject("Enemy Spine Test Canvas", typeof(Canvas));
+        EnemySpineView view = null;
+        try
+        {
+            view = EnemySpineView.Create(asset, prefix, canvasObject.transform, new Vector2(115f, 115f), "Enemy Test");
+            Assert.IsNotNull(view);
+            SkeletonGraphic graphic = view.Root.GetComponentInChildren<SkeletonGraphic>();
+            Assert.IsNotNull(graphic);
+            Assert.IsFalse(graphic.maskable, "Enemy art must ignore Unity UI masks when it extends outside a cell.");
+            Assert.IsFalse(graphic.MeshGenerator.settings.useClipping, "Enemy art must ignore Spine clipping attachments.");
+            Assert.IsFalse(graphic.canvasRenderer.cullTransparentMesh);
+        }
+        finally
+        {
+            view?.Destroy();
+            Object.DestroyImmediate(canvasObject);
+        }
+    }
+
     [Test]
     public void AttackWarningStripeTexture_IsPackagedForPlayerBuilds()
     {

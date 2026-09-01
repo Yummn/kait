@@ -59,6 +59,13 @@ public sealed class EnemySpineView
         SkeletonGraphic skeletonGraphic = SkeletonGraphic.NewSkeletonGraphicGameObject(data, hostRect, sharedGraphicMaterial);
         skeletonGraphic.name = name + " Skeleton";
         skeletonGraphic.raycastTarget = false;
+        // Enemy weapons and effects are allowed to extend beyond their home cell.
+        // Ignore both Unity UI masks and Spine clipping attachments, matching Kait.
+        skeletonGraphic.maskable = false;
+        skeletonGraphic.canvasRenderer.cullTransparentMesh = false;
+        MeshGenerator.Settings meshSettings = skeletonGraphic.MeshGenerator.settings;
+        meshSettings.useClipping = false;
+        skeletonGraphic.MeshGenerator.settings = meshSettings;
         skeletonGraphic.unscaledTime = true;
         skeletonGraphic.timeScale = 1f;
         skeletonGraphic.Initialize(false);
@@ -194,7 +201,15 @@ public sealed class EnemySpineView
 
     public void Destroy()
     {
-        if (flashMaterial != null) Object.Destroy(flashMaterial);
-        if (root != null) Object.Destroy(root.gameObject);
+        if (Application.isPlaying)
+        {
+            if (flashMaterial != null) Object.Destroy(flashMaterial);
+            if (root != null) Object.Destroy(root.gameObject);
+        }
+        else
+        {
+            if (flashMaterial != null) Object.DestroyImmediate(flashMaterial);
+            if (root != null) Object.DestroyImmediate(root.gameObject);
+        }
     }
 }

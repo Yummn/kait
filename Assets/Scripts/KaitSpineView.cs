@@ -213,7 +213,15 @@ public sealed class KaitSpineView
 
     public void Destroy()
     {
-        if (flashMaterial != null) Object.Destroy(flashMaterial);
-        if (root != null) Object.Destroy(root.gameObject);
+        if (Application.isPlaying)
+        {
+            if (flashMaterial != null) Object.Destroy(flashMaterial);
+            if (root != null) Object.Destroy(root.gameObject);
+        }
+        else
+        {
+            if (flashMaterial != null) Object.DestroyImmediate(flashMaterial);
+            if (root != null) Object.DestroyImmediate(root.gameObject);
+        }
     }
 }
