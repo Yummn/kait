@@ -121,6 +121,7 @@ public sealed class KaitGame : MonoBehaviour
     private static readonly Color Void = Hex("#211E24");
     private static readonly Color Gold = Hex("#F3C56B");
     private static readonly Color Cyan = Hex("#83D2C9");
+    private static readonly Color GrassBase = Hex("#83AF6F");
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Bootstrap()
@@ -415,24 +416,47 @@ public sealed class KaitGame : MonoBehaviour
         const float tileSize = 40f;
         const float edgeCenter = 320f;
         const float firstAxis = -280f;
+
+        // The source artwork is a front-facing wall cap. Side walls therefore
+        // stay upright and overlap from top to bottom, exposing only each
+        // narrow bright cap while the next tile covers its dark wall face.
+        const float sideStep = 6.25f;
+        const int sideStackCount = 97;
+        for (int i = 0; i < sideStackCount; i++)
+        {
+            float y = 300f - i * sideStep;
+            MakeStoneFenceSideCover($"Town Wall Left Cover {i}", parent, new Vector2(-edgeCenter, y));
+            MakeStoneFenceTile($"Town Wall Left {i}", parent, new Vector2(-edgeCenter, y), i + 5);
+            MakeStoneFenceSideCover($"Town Wall Right Cover {i}", parent, new Vector2(edgeCenter, y));
+            MakeStoneFenceTile($"Town Wall Right {i}", parent, new Vector2(edgeCenter, y), i + 1);
+        }
+
+        // Draw horizontal rows after the overlapping side stacks so their end
+        // faces and the four corners are cleanly covered.
         for (int i = 0; i < tilesPerSide; i++)
         {
             float axis = firstAxis + i * tileSize;
-            MakeStoneFenceTile($"Town Wall Top {i}", parent, new Vector2(axis, edgeCenter), i, 0f);
-            MakeStoneFenceTile($"Town Wall Bottom {i}", parent, new Vector2(axis, -edgeCenter), i + 3, 180f);
-            MakeStoneFenceTile($"Town Wall Left {i}", parent, new Vector2(-edgeCenter, axis), i + 5, 90f);
-            MakeStoneFenceTile($"Town Wall Right {i}", parent, new Vector2(edgeCenter, axis), i + 1, -90f);
+            MakeStoneFenceTile($"Town Wall Top {i}", parent, new Vector2(axis, edgeCenter), i);
+            MakeStoneFenceTile($"Town Wall Bottom {i}", parent, new Vector2(axis, -edgeCenter), i + 3);
         }
 
         // Dedicated corner blocks close the four 40 px outer gaps without
         // stretching a side texture across the turn.
-        MakeStoneFenceTile("Town Wall Corner TL", parent, new Vector2(-edgeCenter, edgeCenter), 0, 0f);
-        MakeStoneFenceTile("Town Wall Corner TR", parent, new Vector2(edgeCenter, edgeCenter), 1, 0f);
-        MakeStoneFenceTile("Town Wall Corner BL", parent, new Vector2(-edgeCenter, -edgeCenter), 2, 180f);
-        MakeStoneFenceTile("Town Wall Corner BR", parent, new Vector2(edgeCenter, -edgeCenter), 3, 180f);
+        MakeStoneFenceTile("Town Wall Corner TL", parent, new Vector2(-edgeCenter, edgeCenter), 0);
+        MakeStoneFenceTile("Town Wall Corner TR", parent, new Vector2(edgeCenter, edgeCenter), 1);
+        MakeStoneFenceTile("Town Wall Corner BL", parent, new Vector2(-edgeCenter, -edgeCenter), 2);
+        MakeStoneFenceTile("Town Wall Corner BR", parent, new Vector2(edgeCenter, -edgeCenter), 3);
     }
 
-    private void MakeStoneFenceTile(string name, Transform parent, Vector2 position, int tileIndex, float rotation)
+    private void MakeStoneFenceSideCover(string name, Transform parent, Vector2 position)
+    {
+        Image cover = Rect(name, parent, position, new Vector2(40f, 40f), GrassBase);
+        cover.sprite = null;
+        cover.type = Image.Type.Simple;
+        cover.raycastTarget = false;
+    }
+
+    private void MakeStoneFenceTile(string name, Transform parent, Vector2 position, int tileIndex)
     {
         Sprite sprite = stoneFenceTiles[Mathf.Abs(tileIndex) % stoneFenceTiles.Length];
         if (sprite == null) return;
@@ -441,7 +465,6 @@ public sealed class KaitGame : MonoBehaviour
         tile.type = Image.Type.Simple;
         tile.preserveAspect = true;
         tile.raycastTarget = false;
-        tile.rectTransform.localRotation = Quaternion.Euler(0f, 0f, rotation);
     }
 
     private void BuildThreatBoard(Transform parent)
