@@ -80,6 +80,18 @@ public sealed class KaitSpineTests
         Assert.Greater(texture.height, 0);
     }
 
+    [Test]
+    public void EnemyAttackReadyEffect_IsPackagedAndAnimated()
+    {
+        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>("Effects/EnemyAttackReady/Buff_Effect_shixue_1_tx_SkeletonData");
+        Assert.IsNotNull(asset, "Enemy attack-ready Spine effect is missing from Resources.");
+        Spine.SkeletonData data = asset.GetSkeletonData(false);
+        Assert.IsNotNull(data, "Enemy attack-ready Spine export could not be parsed.");
+        Spine.Animation animation = data.FindAnimation("texiao");
+        Assert.IsNotNull(animation, "Enemy attack-ready Spine animation 'texiao' is missing.");
+        Assert.Greater(animation.Duration, 0f);
+    }
+
     [TestCase("KaitVisuals/DungeonFloor")]
     [TestCase("KaitVisuals/DungeonWall")]
     [TestCase("KaitVisuals/SpawnRift")]

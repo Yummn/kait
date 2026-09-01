@@ -1,0 +1,2002 @@
+fileFormatVersion: 2
+guid: 62cb0b93feb0fa64fb4e59c0244e3b9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5939749759879191233
+    second: Buff_Effect_shixue_1_tx_0
+  - first:
+      213: -7806684299192287864
+    second: Buff_Effect_shixue_1_tx_1
+  - first:
+      213: -5136990747863946149
+    second: Buff_Effect_shixue_1_tx_2
+  - first:
+      213: -3350507330473504721
+    second: Buff_Effect_shixue_1_tx_3
+  - first:
+      213: -5035313401608423477
+    second: Buff_Effect_shixue_1_tx_4
+  - first:
+      213: 5563401508368757426
+    second: Buff_Effect_shixue_1_tx_5
+  - first:
+      213: 4098985560452604536
+    second: Buff_Effect_shixue_1_tx_6
+  - first:
+      213: 4474111367737460686
+    second: Buff_Effect_shixue_1_tx_7
+  - first:
+      213: -930780823350841389
+    second: Buff_Effect_shixue_1_tx_8
+  - first:
+      213: 1244857911245539949
+    second: Buff_Effect_shixue_1_tx_9
+  - first:
+      213: -6226762651066898525
+    second: Buff_Effect_shixue_1_tx_10
+  - first:
+      213: -8265995758525998262
+    second: Buff_Effect_shixue_1_tx_11
+  - first:
+      213: -2189659801672385961
+    second: Buff_Effect_shixue_1_tx_12
+  - first:
+      213: 836164264701064394
+    second: Buff_Effect_shixue_1_tx_13
+  - first:
+      213: 6863625412056452194
+    second: Buff_Effect_shixue_1_tx_14
+  - first:
+      213: 993758593829682634
+    second: Buff_Effect_shixue_1_tx_15
+  - first:
+      213: 1835381779973377448
+    second: Buff_Effect_shixue_1_tx_16
+  - first:
+      213: -3832384261039235920
+    second: Buff_Effect_shixue_1_tx_17
+  - first:
+      213: -6605462022802629400
+    second: Buff_Effect_shixue_1_tx_18
+  - first:
+      213: 8284725699143879574
+    second: Buff_Effect_shixue_1_tx_19
+  - first:
+      213: -5275183439551491547
+    second: Buff_Effect_shixue_1_tx_20
+  - first:
+      213: 5623297012413140697
+    second: Buff_Effect_shixue_1_tx_21
+  - first:
+      213: 2276409920235620747
+    second: Buff_Effect_shixue_1_tx_22
+  - first:
+      213: 820296255849161466
+    second: Buff_Effect_shixue_1_tx_23
+  - first:
+      213: 3580843778054268952
+    second: Buff_Effect_shixue_1_tx_24
+  - first:
+      213: 5000536093794759320
+    second: Buff_Effect_shixue_1_tx_25
+  - first:
+      213: 2701035246044793491
+    second: Buff_Effect_shixue_1_tx_26
+  - first:
+      213: 3070789612957625069
+    second: Buff_Effect_shixue_1_tx_27
+  - first:
+      213: -6028643519169474005
+    second: Buff_Effect_shixue_1_tx_28
+  - first:
+      213: -2402978323468022600
+    second: Buff_Effect_shixue_1_tx_29
+  - first:
+      213: -1336182524509220158
+    second: Buff_Effect_shixue_1_tx_30
+  - first:
+      213: -365889307078346283
+    second: Buff_Effect_shixue_1_tx_31
+  - first:
+      213: -6650898024432069366
+    second: Buff_Effect_shixue_1_tx_32
+  - first:
+      213: 2675183163534760293
+    second: Buff_Effect_shixue_1_tx_33
+  - first:
+      213: 9047257937147878609
+    second: Buff_Effect_shixue_1_tx_34
+  - first:
+      213: 6744467151178753089
+    second: Buff_Effect_shixue_1_tx_35
+  - first:
+      213: 5662044196529183815
+    second: Buff_Effect_shixue_1_tx_36
+  - first:
+      213: 6840076990482553597
+    second: Buff_Effect_shixue_1_tx_37
+  - first:
+      213: 8935874138513819792
+    second: Buff_Effect_shixue_1_tx_38
+  - first:
+      213: -3161886926219629026
+    second: Buff_Effect_shixue_1_tx_39
+  - first:
+      213: 666309700598353650
+    second: Buff_Effect_shixue_1_tx_40
+  - first:
+      213: 6847153213162366895
+    second: Buff_Effect_shixue_1_tx_41
+  - first:
+      213: 1395404476753588839
+    second: Buff_Effect_shixue_1_tx_42
+  - first:
+      213: 7912029551790683198
+    second: Buff_Effect_shixue_1_tx_43
+  - first:
+      213: -1541030844064959668
+    second: Buff_Effect_shixue_1_tx_44
+  - first:
+      213: 4703929924725578327
+    second: Buff_Effect_shixue_1_tx_45
+  - first:
+      213: 9191363428418312714
+    second: Buff_Effect_shixue_1_tx_46
+  - first:
+      213: -7071289167883299417
+    second: Buff_Effect_shixue_1_tx_47
+  - first:
+      213: -8612209231440333661
+    second: Buff_Effect_shixue_1_tx_48
+  - first:
+      213: 5604914504785806578
+    second: Buff_Effect_shixue_1_tx_49
+  - first:
+      213: -5548965584040086710
+    second: Buff_Effect_shixue_1_tx_50
+  - first:
+      213: -5025143495975530876
+    second: Buff_Effect_shixue_1_tx_51
+  - first:
+      213: -5379533724042161087
+    second: Buff_Effect_shixue_1_tx_52
+  - first:
+      213: -7738652807746876152
+    second: Buff_Effect_shixue_1_tx_53
+  - first:
+      213: -7025806327002440412
+    second: Buff_Effect_shixue_1_tx_54
+  - first:
+      213: -911780328502461859
+    second: Buff_Effect_shixue_1_tx_55
+  - first:
+      213: 6570229834399368778
+    second: Buff_Effect_shixue_1_tx_56
+  - first:
+      213: 5787167709262837068
+    second: Buff_Effect_shixue_1_tx_57
+  - first:
+      213: -474444818317398158
+    second: Buff_Effect_shixue_1_tx_58
+  - first:
+      213: -3972479648388888965
+    second: Buff_Effect_shixue_1_tx_59
+  - first:
+      213: -5894896135036949604
+    second: Buff_Effect_shixue_1_tx_60
+  - first:
+      213: 977030649811493630
+    second: Buff_Effect_shixue_1_tx_61
+  - first:
+      213: -4045070950046748908
+    second: Buff_Effect_shixue_1_tx_62
+  - first:
+      213: -8559104228781374309
+    second: Buff_Effect_shixue_1_tx_63
+  - first:
+      213: 8521784159590258612
+    second: Buff_Effect_shixue_1_tx_64
+  - first:
+      213: 6465741615419514918
+    second: Buff_Effect_shixue_1_tx_65
+  - first:
+      213: -2608542209736445554
+    second: Buff_Effect_shixue_1_tx_66
+  - first:
+      213: -475155377777349044
+    second: Buff_Effect_shixue_1_tx_67
+  - first:
+      213: -496062216724414073
+    second: Buff_Effect_shixue_1_tx_68
+  - first:
+      213: -3688195798596226114
+    second: Buff_Effect_shixue_1_tx_69
+  - first:
+      213: -3487845861346430704
+    second: Buff_Effect_shixue_1_tx_70
+  - first:
+      213: 4057115481515199300
+    second: Buff_Effect_shixue_1_tx_71
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 569
+        width: 147
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca9f4cbfea3e6250800000000000000
+      internalID: 5939749759879191233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 598
+        width: 135
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d3601ddf519a390800000000000000
+      internalID: -7806684299192287864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_2
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 593
+        width: 159
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5ce91bb12eb5b8b0800000000000000
+      internalID: -5136990747863946149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_3
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 584
+        width: 181
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f20d8cda55b9081d0800000000000000
+      internalID: -3350507330473504721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_4
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 591
+        width: 183
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc7bd54b329fe1ab0800000000000000
+      internalID: -5035313401608423477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_5
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 591
+        width: 90
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b23139123c253d40800000000000000
+      internalID: 5563401508368757426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_6
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 575
+        width: 157
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872ab3e56a582e830800000000000000
+      internalID: 4098985560452604536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_7
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 597
+        width: 159
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec74787859c371e30800000000000000
+      internalID: 4474111367737460686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_8
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 577
+        width: 156
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3df6d6cc5c33513f0800000000000000
+      internalID: -930780823350841389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_9
+      rect:
+        serializedVersion: 2
+        x: 1521
+        y: 665
+        width: 20
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6a00abbcaf964110800000000000000
+      internalID: 1244857911245539949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_10
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 580
+        width: 155
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a7ec721c581699a0800000000000000
+      internalID: -6226762651066898525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_11
+      rect:
+        serializedVersion: 2
+        x: 1678
+        y: 580
+        width: 159
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4b1c2a17a8494d80800000000000000
+      internalID: -8265995758525998262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_12
+      rect:
+        serializedVersion: 2
+        x: 1837
+        y: 580
+        width: 159
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75a7d5ef204cc91e0800000000000000
+      internalID: -2189659801672385961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 439
+        width: 195
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4f163f7f6aa9b00800000000000000
+      internalID: 836164264701064394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_14
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 451
+        width: 166
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c08fc72fe704f50800000000000000
+      internalID: 6863625412056452194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_15
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 451
+        width: 171
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acdb5b90d2a8acd00800000000000000
+      internalID: 993758593829682634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_16
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 451
+        width: 59
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad898e2106987910800000000000000
+      internalID: 1835381779973377448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_17
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 449
+        width: 96
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc55f5c1d2a0dac0800000000000000
+      internalID: -3832384261039235920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_18
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 396
+        width: 200
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ec1489994fa454a0800000000000000
+      internalID: -6605462022802629400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_19
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 421
+        width: 224
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69b4507012249f270800000000000000
+      internalID: 8284725699143879574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_20
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 526
+        width: 83
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52292806c98cac6b0800000000000000
+      internalID: -5275183439551491547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_21
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 421
+        width: 99
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de866bd6d6f90e40800000000000000
+      internalID: 5623297012413140697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_22
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 414
+        width: 178
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89c1d2f2ce679f10800000000000000
+      internalID: 2276409920235620747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_23
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 385
+        width: 200
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2e87c3917426b00800000000000000
+      internalID: 820296255849161466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_24
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 381
+        width: 200
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 818a71ba176b1b130800000000000000
+      internalID: 3580843778054268952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_25
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 244
+        width: 200
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 892f7255519756540800000000000000
+      internalID: 5000536093794759320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_26
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 256
+        width: 200
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39a4f4ede310c7520800000000000000
+      internalID: 2701035246044793491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_27
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 256
+        width: 200
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea6c4c12e2ad9a20800000000000000
+      internalID: 3070789612957625069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_28
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 405
+        width: 127
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22517219a4f55ca0800000000000000
+      internalID: -6028643519169474005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_29
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 210
+        width: 205
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bc89b242f7e6aed0800000000000000
+      internalID: -2402978323468022600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_30
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 226
+        width: 204
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c21b87c21de47de0800000000000000
+      internalID: -1336182524509220158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_31
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 210
+        width: 88
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d93b702d991ceaf0800000000000000
+      internalID: -365889307078346283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_32
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 377
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0511681c7343b3a0800000000000000
+      internalID: -6650898024432069366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_33
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 375
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569589bd9e8202520800000000000000
+      internalID: 2675183163534760293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_34
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 239
+        width: 135
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc580fc8215e8d70800000000000000
+      internalID: 9047257937147878609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_35
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 193
+        width: 260
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 144ec49e329299d50800000000000000
+      internalID: 6744467151178753089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_36
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 331
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c1faca23f939e40800000000000000
+      internalID: 5662044196529183815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_37
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 354
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa190658c5dcee50800000000000000
+      internalID: 6840076990482553597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_38
+      rect:
+        serializedVersion: 2
+        x: 1854
+        y: 347
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09847b74f2a920c70800000000000000
+      internalID: 8935874138513819792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_39
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 345
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e2abec798be14d0800000000000000
+      internalID: -3161886926219629026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_40
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 239
+        width: 220
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fecf8674253f3900800000000000000
+      internalID: 666309700598353650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_41
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 321
+        width: 36
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa7a731d199f50f50800000000000000
+      internalID: 6847153213162366895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_42
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 191
+        width: 280
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76233ea7af87d5310800000000000000
+      internalID: 1395404476753588839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_43
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 247
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3470e625fc2dcd60800000000000000
+      internalID: 7912029551790683198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_44
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 226
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c43769fac982d9ae0800000000000000
+      internalID: -1541030844064959668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_45
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 207
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75a19931857b74140800000000000000
+      internalID: 4703929924725578327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_46
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 224
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0ad36817584e8f70800000000000000
+      internalID: 9191363428418312714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_47
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 179
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a59f3497fbbddd90800000000000000
+      internalID: -7071289167883299417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_48
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 188
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a4b8ac55594b7880800000000000000
+      internalID: -8612209231440333661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_49
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 190
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f44136cb08a8cd40800000000000000
+      internalID: 5604914504785806578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_50
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 190
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a433c64733d1ef2b0800000000000000
+      internalID: -5548965584040086710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_51
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 173
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e83016d9a134ab0800000000000000
+      internalID: -5025143495975530876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_52
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 171
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1449b39749e0855b0800000000000000
+      internalID: -5379533724042161087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_53
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 166
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d0b22c548ca9490800000000000000
+      internalID: -7738652807746876152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_54
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 164
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42dd352be525f7e90800000000000000
+      internalID: -7025806327002440412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_55
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 2
+        width: 300
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5afb6e3f94b853f0800000000000000
+      internalID: -911780328502461859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_56
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 2
+        width: 321
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a464c0c49352e2b50800000000000000
+      internalID: 6570229834399368778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_57
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 165
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c45f83eae56205050800000000000000
+      internalID: 5787167709262837068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_58
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 172
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27faaa293fe6a69f0800000000000000
+      internalID: -474444818317398158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_59
+      rect:
+        serializedVersion: 2
+        x: 1653
+        y: 166
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b76cf409ecaeed8c0800000000000000
+      internalID: -3972479648388888965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_60
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 155
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9bac4b923f113ea0800000000000000
+      internalID: -5894896135036949604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_61
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 139
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef2eea0133c1f8d00800000000000000
+      internalID: 977030649811493630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_62
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 2
+        width: 295
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41f263317650dd7c0800000000000000
+      internalID: -4045070950046748908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_63
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 155
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9441ff4d04f73980800000000000000
+      internalID: -8559104228781374309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_64
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 147
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b79de4fa85734670800000000000000
+      internalID: 8521784159590258612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_65
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 141
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6206a840ebdeab950800000000000000
+      internalID: 6465741615419514918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_66
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 145
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81fb0f4ea89ccbd0800000000000000
+      internalID: -2608542209736445554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_67
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 147
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ee67e83b8e769f0800000000000000
+      internalID: -475155377777349044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_68
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 2
+        width: 293
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78106a9ca02ad19f0800000000000000
+      internalID: -496062216724414073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_69
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 321
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb3759a4675e0dcc0800000000000000
+      internalID: -3688195798596226114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_70
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 2
+        width: 265
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01131232baea89fc0800000000000000
+      internalID: -3487845861346430704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_shixue_1_tx_71
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 2
+        width: 236
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44b8370f805cd4830800000000000000
+      internalID: 4057115481515199300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Buff_Effect_shixue_1_tx_0: 5939749759879191233
+      Buff_Effect_shixue_1_tx_1: -7806684299192287864
+      Buff_Effect_shixue_1_tx_10: -6226762651066898525
+      Buff_Effect_shixue_1_tx_11: -8265995758525998262
+      Buff_Effect_shixue_1_tx_12: -2189659801672385961
+      Buff_Effect_shixue_1_tx_13: 836164264701064394
+      Buff_Effect_shixue_1_tx_14: 6863625412056452194
+      Buff_Effect_shixue_1_tx_15: 993758593829682634
+      Buff_Effect_shixue_1_tx_16: 1835381779973377448
+      Buff_Effect_shixue_1_tx_17: -3832384261039235920
+      Buff_Effect_shixue_1_tx_18: -6605462022802629400
+      Buff_Effect_shixue_1_tx_19: 8284725699143879574
+      Buff_Effect_shixue_1_tx_2: -5136990747863946149
+      Buff_Effect_shixue_1_tx_20: -5275183439551491547
+      Buff_Effect_shixue_1_tx_21: 5623297012413140697
+      Buff_Effect_shixue_1_tx_22: 2276409920235620747
+      Buff_Effect_shixue_1_tx_23: 820296255849161466
+      Buff_Effect_shixue_1_tx_24: 3580843778054268952
+      Buff_Effect_shixue_1_tx_25: 5000536093794759320
+      Buff_Effect_shixue_1_tx_26: 2701035246044793491
+      Buff_Effect_shixue_1_tx_27: 3070789612957625069
+      Buff_Effect_shixue_1_tx_28: -6028643519169474005
+      Buff_Effect_shixue_1_tx_29: -2402978323468022600
+      Buff_Effect_shixue_1_tx_3: -3350507330473504721
+      Buff_Effect_shixue_1_tx_30: -1336182524509220158
+      Buff_Effect_shixue_1_tx_31: -365889307078346283
+      Buff_Effect_shixue_1_tx_32: -6650898024432069366
+      Buff_Effect_shixue_1_tx_33: 2675183163534760293
+      Buff_Effect_shixue_1_tx_34: 9047257937147878609
+      Buff_Effect_shixue_1_tx_35: 6744467151178753089
+      Buff_Effect_shixue_1_tx_36: 5662044196529183815
+      Buff_Effect_shixue_1_tx_37: 6840076990482553597
+      Buff_Effect_shixue_1_tx_38: 8935874138513819792
+      Buff_Effect_shixue_1_tx_39: -3161886926219629026
+      Buff_Effect_shixue_1_tx_4: -5035313401608423477
+      Buff_Effect_shixue_1_tx_40: 666309700598353650
+      Buff_Effect_shixue_1_tx_41: 6847153213162366895
+      Buff_Effect_shixue_1_tx_42: 1395404476753588839
+      Buff_Effect_shixue_1_tx_43: 7912029551790683198
+      Buff_Effect_shixue_1_tx_44: -1541030844064959668
+      Buff_Effect_shixue_1_tx_45: 4703929924725578327
+      Buff_Effect_shixue_1_tx_46: 9191363428418312714
+      Buff_Effect_shixue_1_tx_47: -7071289167883299417
+      Buff_Effect_shixue_1_tx_48: -8612209231440333661
+      Buff_Effect_shixue_1_tx_49: 5604914504785806578
+      Buff_Effect_shixue_1_tx_5: 5563401508368757426
+      Buff_Effect_shixue_1_tx_50: -5548965584040086710
+      Buff_Effect_shixue_1_tx_51: -5025143495975530876
+      Buff_Effect_shixue_1_tx_52: -5379533724042161087
+      Buff_Effect_shixue_1_tx_53: -7738652807746876152
+      Buff_Effect_shixue_1_tx_54: -7025806327002440412
+      Buff_Effect_shixue_1_tx_55: -911780328502461859
+      Buff_Effect_shixue_1_tx_56: 6570229834399368778
+      Buff_Effect_shixue_1_tx_57: 5787167709262837068
+      Buff_Effect_shixue_1_tx_58: -474444818317398158
+      Buff_Effect_shixue_1_tx_59: -3972479648388888965
+      Buff_Effect_shixue_1_tx_6: 4098985560452604536
+      Buff_Effect_shixue_1_tx_60: -5894896135036949604
+      Buff_Effect_shixue_1_tx_61: 977030649811493630
+      Buff_Effect_shixue_1_tx_62: -4045070950046748908
+      Buff_Effect_shixue_1_tx_63: -8559104228781374309
+      Buff_Effect_shixue_1_tx_64: 8521784159590258612
+      Buff_Effect_shixue_1_tx_65: 6465741615419514918
+      Buff_Effect_shixue_1_tx_66: -2608542209736445554
+      Buff_Effect_shixue_1_tx_67: -475155377777349044
+      Buff_Effect_shixue_1_tx_68: -496062216724414073
+      Buff_Effect_shixue_1_tx_69: -3688195798596226114
+      Buff_Effect_shixue_1_tx_7: 4474111367737460686
+      Buff_Effect_shixue_1_tx_70: -3487845861346430704
+      Buff_Effect_shixue_1_tx_71: 4057115481515199300
+      Buff_Effect_shixue_1_tx_8: -930780823350841389
+      Buff_Effect_shixue_1_tx_9: 1244857911245539949
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
