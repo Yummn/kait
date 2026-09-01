@@ -151,6 +151,11 @@ public sealed class KaitSpineView
         if (graphic != null) graphic.color = new Color(1f, 1f, 1f, Mathf.Clamp01(opacity));
     }
 
+    public void SetTint(Color color)
+    {
+        if (graphic != null) graphic.color = color;
+    }
+
     public void PlayLoop(string animation)
     {
         if (!IsReady || string.IsNullOrEmpty(animation)) return;

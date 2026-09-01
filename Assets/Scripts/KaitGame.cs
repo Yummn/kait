@@ -546,7 +546,7 @@ public sealed class KaitGame : MonoBehaviour
 
         if (result.pushed) yield return AnimatePush(result);
         else if (result.pushBlockedByWall || result.pushBlockedByUnit)
-            yield return PulseBattleCell(result.pushFrom, Gold, 0.18f);
+            yield return PulseBattleUnit(result.pushFrom, Gold, 0.18f);
 
         if (result.dreadSlash)
         {
@@ -577,6 +577,13 @@ public sealed class KaitGame : MonoBehaviour
                 landingDuration = Mathf.Max(landingDuration, view.LandingDuration);
             }
         if (landingDuration > 0f) yield return new WaitForSecondsRealtime(Mathf.Min(landingDuration, 0.55f));
+
+        var spawnPulses = new List<RectTransform>();
+        foreach (Vector2Int cell in result.spawnedEnemyCells)
+            spawnPulses.Add(battleCells[cell.x + cell.y * KaitRun.BattleSize].rectTransform);
+        foreach (KaitSpawnRequest spawn in run.spawns)
+            if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
+        if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
 
         if (result.playerKilledEnemyIds.Count > 0) StartCoroutine(AnimateChainEdge(Mathf.Max(1, result.chainKillCount)));
 
@@ -682,7 +689,7 @@ public sealed class KaitGame : MonoBehaviour
         {
             targetingSkill = KaitSkill.None;
             kaitSpine?.PlayOnce(KaitSpineView.OtherSkill);
-            StartCoroutine(PulseBattleCell(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
+            StartCoroutine(PulseBattleUnit(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
         }
         statusText.text = message;
         RefreshAll();
@@ -942,7 +949,7 @@ public sealed class KaitGame : MonoBehaviour
             {
                 kaitSpine?.Face(result.kaitDirection);
                 kaitSpine?.PlayOnce(KaitSpineView.Attack);
-                yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.16f);
+                yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.16f);
             }
             else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
                 kaitSpine?.PlayOnce(KaitSpineView.StandBy);
@@ -1011,7 +1018,7 @@ public sealed class KaitGame : MonoBehaviour
         {
             kaitSpine?.Face(result.kaitDirection);
             kaitSpine?.PlayOnce(result.chainKillCount > 1 ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
-            yield return PulseBattleCell(result.blockedEnemyCell, Coral, 0.14f);
+            yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.14f);
         }
         else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
             kaitSpine?.PlayOnce(KaitSpineView.StandBy);
@@ -1431,7 +1438,7 @@ public sealed class KaitGame : MonoBehaviour
         if (slot >= 0 && slot < skillButtons.Length)
             yield return ScalePulse(skillButtons[slot].GetComponent<RectTransform>(), 0.92f, 1.08f, 0.14f);
         if (skill == KaitSkill.SwiftBoots || skill == KaitSkill.CatAgility)
-            yield return PulseBattleCell(run.katePos, Coral, 0.15f);
+            yield return PulseBattleUnit(run.katePos, Coral, 0.15f);
     }
 
     private IEnumerator AnimateDreadSlashWave(KaitDirection direction)
@@ -1452,14 +1459,45 @@ public sealed class KaitGame : MonoBehaviour
         foreach (RectTransform wave in waves) StartCoroutine(FadeAndDestroy(wave, 0.16f));
     }
 
-    private IEnumerator PulseBattleCell(Vector2Int cell, Color color, float duration)
+    private IEnumerator PulseBattleUnit(Vector2Int cell, Color color, float duration)
     {
+        if (!InsideBattle(cell)) yield break;
         int index = cell.x + cell.y * KaitRun.BattleSize;
-        Image image = battleCellTints[index];
-        Color original = image.color;
-        image.color = BattleTint(color);
-        yield return ScalePulse(battleCells[index].rectTransform, 0.92f, 1.16f, duration);
-        image.color = original;
+        KaitEnemy enemy = EnemyAtVisual(cell);
+        bool isKate = !hideKate && (displayKate ?? run.katePos) == cell;
+        if (enemy == null && !isKate) yield break;
+
+        Color original = Color.white;
+        if (enemy != null)
+        {
+            original = enemy.frozenActions > 0
+                ? new Color(0.62f, 0.9f, 1f, 1f)
+                : enemy.life == KaitEnemyLife.Preparing
+                    ? new Color(1f, 1f, 1f, 0.68f)
+                    : Color.white;
+            EnemySpineView view = EnemySpine(enemy);
+            if (view != null) view.SetTint(color);
+            else if (battlePortraits[index] != null) battlePortraits[index].color = color;
+        }
+        else
+        {
+            kaitSpine?.SetTint(color);
+            if (kaitSpine == null && battlePortraits[index] != null) battlePortraits[index].color = color;
+        }
+
+        yield return ScalePulse(battleUnitClips[index].rectTransform, 0.92f, 1.16f, duration);
+
+        if (enemy != null)
+        {
+            EnemySpineView view = EnemySpine(enemy);
+            if (view != null) view.SetTint(original);
+            else if (battlePortraits[index] != null) battlePortraits[index].color = original;
+        }
+        else
+        {
+            kaitSpine?.SetTint(Color.white);
+            if (kaitSpine == null && battlePortraits[index] != null) battlePortraits[index].color = Color.white;
+        }
     }
 
     private IEnumerator ScalePulse(RectTransform rect, float from, float peak, float duration)
