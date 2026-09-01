@@ -372,7 +372,7 @@ public sealed class KaitGame : MonoBehaviour
                 battleLabels[index] = MakeText("", cell.transform, Vector2.zero, Vector2.zero, 34, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
                 Stretch(battleLabels[index].rectTransform, 3);
                 battleFacingLabels[index] = MakeText("", cell.transform, new Vector2(0, -43), new Vector2(72, 28), 25, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-                battleHealthBars[index] = MakeHealthBar(cell.transform, new Vector2(22, 48), new Vector2(72, 16));
+                battleHealthBars[index] = MakeHealthBar(cell.transform, new Vector2(0, 48), new Vector2(72, 16));
                 battleHealthBars[index].root.gameObject.SetActive(false);
                 battleStatusLabels[index] = MakeText("", cell.transform, new Vector2(-43, 42), new Vector2(28, 26), 19, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
             }
@@ -857,8 +857,6 @@ public sealed class KaitGame : MonoBehaviour
                         battlePortraits[index].sprite = kaitPortrait;
                         battlePortraits[index].gameObject.SetActive(true);
                     }
-                    SetHealthBar(battleHealthBars[index], run.kateHp);
-                    battleHealthBars[index].root.gameObject.SetActive(true);
                     if (run.chainActive) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(KaitRun.Delta(run.currentDirection)));
                     battleFacingLabels[index].color = Void;
@@ -1267,7 +1265,7 @@ public sealed class KaitGame : MonoBehaviour
         portrait.raycastTarget = false;
         if (hp >= 0 && maxHp > 0)
         {
-            HealthBarView hpBar = MakeHealthBar(image.transform, new Vector2(size.x * 0.18f, size.y * 0.41f), new Vector2(size.x * 0.6f, 15f));
+            HealthBarView hpBar = MakeHealthBar(image.transform, new Vector2(0f, size.y * 0.41f), new Vector2(size.x * 0.6f, 15f));
             SetHealthBar(hpBar, hp);
         }
         return image.rectTransform;
@@ -1359,12 +1357,8 @@ public sealed class KaitGame : MonoBehaviour
         {
             kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
             StartCoroutine(FloatDamage(run.katePos, result.playerDamage, Gold));
-            if (InsideBattle(run.katePos))
-            {
-                HealthBarView bar = battleHealthBars[run.katePos.x + run.katePos.y * KaitRun.BattleSize];
-                StartCoroutine(AnimateHealthLoss(bar, kateHpBefore, run.kateHp, run.kateHp <= 0));
-                longestHealthLoss = Mathf.Max(longestHealthLoss, kateHpBefore - run.kateHp);
-            }
+            StartCoroutine(AnimateHealthLoss(runHealthBar, kateHpBefore, run.kateHp, false));
+            longestHealthLoss = Mathf.Max(longestHealthLoss, kateHpBefore - run.kateHp);
             hasImpact = true;
         }
         foreach (Vector2Int cell in result.killedEnemyCells)
