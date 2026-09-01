@@ -416,7 +416,7 @@ public sealed class KaitGame : MonoBehaviour
         if (stoneFenceSprite == null) return;
         const float offset = 306f;
         const float length = 624f;
-        const float thickness = 24f;
+        const float thickness = 32f;
         MakeStoneFenceSide("Stone Fence Top", parent, new Vector2(0f, offset), new Vector2(length, thickness), 0f);
         MakeStoneFenceSide("Stone Fence Bottom", parent, new Vector2(0f, -offset), new Vector2(length, thickness), 180f);
         MakeStoneFenceSide("Stone Fence Left", parent, new Vector2(-offset, 0f), new Vector2(length, thickness), 90f);
