@@ -16,6 +16,9 @@ public sealed class KaitGame : MonoBehaviour
     private Font uiFont;
     private Font threatBoardFont;
     private Canvas canvas;
+    private RectTransform gameContent;
+    private Coroutine screenShakeRoutine;
+    private Vector2 gameContentBasePosition;
     private Sprite roundedSprite;
     private Image[] battleCells;
     private Image[] battleCellTiles;
@@ -281,6 +284,8 @@ public sealed class KaitGame : MonoBehaviour
         RectTransform content = contentGo.GetComponent<RectTransform>();
         content.sizeDelta = new Vector2(1600, 900);
         content.localScale = Vector3.one * 1.2f;
+        gameContent = content;
+        gameContentBasePosition = content.anchoredPosition;
 
         BuildBattleBoard(content);
         BuildThreatBoard(content);
@@ -1001,7 +1006,9 @@ public sealed class KaitGame : MonoBehaviour
                 kaitSpine?.PlayOnce(killedBlockedEnemy ? KaitSpineView.ChainAttack : KaitSpineView.Attack);
                 for (int i = 0; i < result.playerKilledEnemyIds.Count; i++)
                 {
-                    GameAudio.PlayKaitKill(Mathf.Max(1, result.chainKillCount - result.playerKilledEnemyIds.Count + i + 1));
+                    int chainKills = Mathf.Max(1, result.chainKillCount - result.playerKilledEnemyIds.Count + i + 1);
+                    GameAudio.PlayKaitKill(chainKills);
+                    TriggerChainShake(chainKills);
                     if (i + 1 < result.playerKilledEnemyIds.Count) yield return new WaitForSecondsRealtime(0.06f);
                 }
                 yield return PulseBattleUnit(result.blockedEnemyCell, Coral, 0.16f);
@@ -1051,7 +1058,9 @@ public sealed class KaitGame : MonoBehaviour
                     EnemySpine(struckEnemy)?.PlayDamage();
                     impactCells.Add(cell);
                     killSoundsPlayed++;
-                    GameAudio.PlayKaitKill(chainKillsBeforeTurn + killSoundsPlayed);
+                    int chainKills = chainKillsBeforeTurn + killSoundsPlayed;
+                    GameAudio.PlayKaitKill(chainKills);
+                    TriggerChainShake(chainKills);
                     movingKait?.PlayOnce(KaitSpineView.ChainAttack, KaitSpineView.Run);
                     RefreshBattle();
                 }
@@ -1072,7 +1081,9 @@ public sealed class KaitGame : MonoBehaviour
         while (killSoundsPlayed < result.playerKilledEnemyIds.Count)
         {
             killSoundsPlayed++;
-            GameAudio.PlayKaitKill(chainKillsBeforeTurn + killSoundsPlayed);
+            int chainKills = chainKillsBeforeTurn + killSoundsPlayed;
+            GameAudio.PlayKaitKill(chainKills);
+            TriggerChainShake(chainKills);
             if (killSoundsPlayed < result.playerKilledEnemyIds.Count) yield return new WaitForSecondsRealtime(0.06f);
         }
         if (result.blockedEnemyCell.x >= 0)
@@ -1463,6 +1474,37 @@ public sealed class KaitGame : MonoBehaviour
         flash.rectTransform.position = anchor.position;
         yield return ScalePulse(flash.rectTransform, 0.72f, 1.16f, 0.08f);
         yield return FadeAndDestroy(flash.rectTransform, 0.2f);
+    }
+
+    private void TriggerChainShake(int chainCount)
+    {
+        if (chainCount < 2 || gameContent == null) return;
+        if (screenShakeRoutine != null)
+        {
+            StopCoroutine(screenShakeRoutine);
+            gameContent.anchoredPosition = gameContentBasePosition;
+        }
+        screenShakeRoutine = StartCoroutine(ShakeGameContent(chainCount));
+    }
+
+    private IEnumerator ShakeGameContent(int chainCount)
+    {
+        float intensity = Mathf.InverseLerp(2f, 10f, Mathf.Clamp(chainCount, 2, 10));
+        float magnitude = Mathf.Lerp(2.2f, 4.2f, intensity);
+        float duration = Mathf.Lerp(0.10f, 0.14f, intensity);
+        float elapsed = 0f;
+        while (elapsed < duration && gameContent != null)
+        {
+            float t = elapsed / duration;
+            float fade = 1f - t;
+            float phase = t * Mathf.PI * 8f;
+            Vector2 offset = new Vector2(Mathf.Sin(phase), Mathf.Cos(phase * 1.3f) * 0.65f) * magnitude * fade;
+            gameContent.anchoredPosition = gameContentBasePosition + offset;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        if (gameContent != null) gameContent.anchoredPosition = gameContentBasePosition;
+        screenShakeRoutine = null;
     }
 
     private IEnumerator AnimateChainEdge(int chainCount)
