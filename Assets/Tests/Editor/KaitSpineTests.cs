@@ -85,7 +85,12 @@ public sealed class KaitSpineTests
         Assert.IsNotNull(asset, $"Enemy SkeletonDataAsset is missing: {assetId}");
         Spine.SkeletonData data = asset.GetSkeletonData(false);
         Assert.IsNotNull(data, $"Enemy Spine export could not be parsed: {assetId}");
-        foreach (string suffix in new[] { EnemySpineView.LandingSuffix, EnemySpineView.IdleSuffix, EnemySpineView.AttackSuffix, EnemySpineView.DamageSuffix })
+        foreach (string suffix in new[]
+        {
+            EnemySpineView.LandingSuffix, EnemySpineView.IdleSuffix,
+            EnemySpineView.AttackSuffix, EnemySpineView.DamageSuffix,
+            EnemySpineView.DeathSuffix, EnemySpineView.PrepareAttackSuffix
+        })
         {
             Spine.Animation animation = data.FindAnimation(prefix + suffix);
             Assert.IsNotNull(animation, $"Required enemy animation is missing: {assetId}/{prefix + suffix}");

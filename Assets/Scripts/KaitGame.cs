@@ -651,6 +651,7 @@ public sealed class KaitGame : MonoBehaviour
         else yield return AnimateAllEnemyActions(result.enemyActions);
 
         yield return AnimateCombatFeedback(result, healthBefore, kateHpBefore);
+        yield return AnimateEnemyDeaths(healthBefore);
 
         var previousEnemyIds = new HashSet<int>();
         foreach (KaitEnemy enemy in enemySnapshot) previousEnemyIds.Add(enemy.id);
@@ -671,6 +672,8 @@ public sealed class KaitGame : MonoBehaviour
                 landingDuration = Mathf.Max(landingDuration, view.LandingDuration);
             }
         if (landingDuration > 0f) yield return new WaitForSecondsRealtime(Mathf.Min(landingDuration, 0.55f));
+
+        yield return AnimateEnemyAttackPreparation();
 
         var spawnPulses = new List<RectTransform>();
         foreach (Vector2Int cell in result.spawnedEnemyCells)
@@ -1094,7 +1097,6 @@ public sealed class KaitGame : MonoBehaviour
                 if (animatedEnemies.Exists(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id)))
                 {
                     KaitEnemy struckEnemy = animatedEnemies.Find(e => e.pos == cell && result.playerKilledEnemyIds.Contains(e.id));
-                    EnemySpine(struckEnemy)?.PlayDamage();
                     killSoundsPlayed++;
                     int chainKills = chainKillsBeforeTurn + killSoundsPlayed;
                     GameAudio.PlayKaitKill(chainKills);
@@ -1198,8 +1200,12 @@ public sealed class KaitGame : MonoBehaviour
                 {
                     EnemySpineView victim = EnemySpine(victimId);
                     if (victim == null) continue;
-                    victim.PlayDamage();
-                    actionAnimationDuration = Mathf.Max(actionAnimationDuration, victim.DamageDuration);
+                    KaitEnemy resolvedVictim = run.enemies.Find(e => e.id == victimId);
+                    if (resolvedVictim != null && resolvedVictim.life != KaitEnemyLife.Dead)
+                    {
+                        victim.PlayDamage();
+                        actionAnimationDuration = Mathf.Max(actionAnimationDuration, victim.DamageDuration);
+                    }
                 }
             }
         }
@@ -1223,14 +1229,6 @@ public sealed class KaitGame : MonoBehaviour
             Destroy(move.rect.gameObject);
         }
         foreach (ProjectileVisual projectile in projectiles) Destroy(projectile.rect.gameObject);
-        List<KaitEnemy> defeatedEnemies = animatedEnemies?.FindAll(e => run.enemies.Find(r => r.id == e.id)?.life == KaitEnemyLife.Dead);
-        if (defeatedEnemies != null && defeatedEnemies.Count > 0)
-        {
-            foreach (KaitEnemy defeated in defeatedEnemies)
-                StartCoroutine(PulseBattleUnit(defeated.pos, Color.white, 0.16f, defeated.id));
-            yield return new WaitForSecondsRealtime(0.12f);
-        }
-        animatedEnemies?.RemoveAll(e => run.enemies.Find(r => r.id == e.id)?.life == KaitEnemyLife.Dead);
         impactCells.Clear();
         RefreshBattle();
     }
@@ -1469,13 +1467,14 @@ public sealed class KaitGame : MonoBehaviour
             if (!InsideBattle(cell)) continue;
             HealthBarView bar = battleHealthBars[cell.x + cell.y * KaitRun.BattleSize];
             StartCoroutine(AnimateHealthLoss(bar, before.hp, afterHp, afterHp <= 0));
-            StartCoroutine(FlashEnemyWhite(before.id));
+            if (afterHp > 0) StartCoroutine(FlashEnemyWhite(before.id));
             longestHealthLoss = Mathf.Max(longestHealthLoss, before.hp - afterHp);
         }
         if (result.damageDealt > 0 && InsideBattle(result.blockedEnemyCell))
         {
             EnemySpineView damagedEnemy = EnemySpine(result.damagedEnemyId);
-            damagedEnemy?.PlayDamage();
+            KaitEnemy resolvedEnemy = run.enemies.Find(e => e.id == result.damagedEnemyId);
+            if (resolvedEnemy != null && resolvedEnemy.life != KaitEnemyLife.Dead) damagedEnemy?.PlayDamage();
             StartCoroutine(FloatDamage(result.blockedEnemyCell, result.damageDealt, Coral));
             hasImpact = true;
         }
@@ -1490,6 +1489,41 @@ public sealed class KaitGame : MonoBehaviour
         }
         if (longestHealthLoss > 0) yield return new WaitForSecondsRealtime(longestHealthLoss * 0.15f);
         else if (hasImpact) yield return new WaitForSecondsRealtime(0.055f);
+    }
+
+    private IEnumerator AnimateEnemyDeaths(List<KaitEnemy> healthBefore)
+    {
+        var deadIds = new HashSet<int>();
+        float longestDuration = 0f;
+        foreach (KaitEnemy before in healthBefore)
+        {
+            KaitEnemy resolved = run.enemies.Find(e => e.id == before.id);
+            if (resolved == null || resolved.life != KaitEnemyLife.Dead || before.life == KaitEnemyLife.Dead) continue;
+            deadIds.Add(before.id);
+            EnemySpineView view = EnemySpine(before.id);
+            if (view == null) continue;
+            view.PlayDeath();
+            longestDuration = Mathf.Max(longestDuration, view.DeathDuration);
+        }
+        if (deadIds.Count == 0) yield break;
+        if (longestDuration > 0f) yield return new WaitForSecondsRealtime(longestDuration);
+        animatedEnemies?.RemoveAll(e => deadIds.Contains(e.id));
+        RefreshBattle();
+    }
+
+    private IEnumerator AnimateEnemyAttackPreparation()
+    {
+        float longestDuration = 0f;
+        foreach (KaitEnemy enemy in run.enemies)
+        {
+            if (enemy.life != KaitEnemyLife.Active || enemy.intent.type == KaitIntentType.None) continue;
+            EnemySpineView view = EnemySpine(enemy);
+            if (view == null) continue;
+            view.PlayPrepareAttack();
+            longestDuration = Mathf.Max(longestDuration, view.PrepareAttackDuration);
+        }
+        if (longestDuration > 0f)
+            yield return new WaitForSecondsRealtime(Mathf.Min(longestDuration, 0.4f));
     }
 
     private IEnumerator AnimateHealthLoss(HealthBarView bar, int before, int after, bool hideWhenDone)

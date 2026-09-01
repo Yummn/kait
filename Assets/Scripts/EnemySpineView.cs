@@ -10,6 +10,8 @@ public sealed class EnemySpineView
     public const string IdleSuffix = "idle";
     public const string AttackSuffix = "attack";
     public const string DamageSuffix = "damage";
+    public const string DeathSuffix = "die";
+    public const string PrepareAttackSuffix = "joy_short";
 
     private static Material sharedGraphicMaterial;
     private readonly SkeletonGraphic graphic;
@@ -180,16 +182,20 @@ public sealed class EnemySpineView
     public void PlayLanding() => PlayOnce(prefix + LandingSuffix);
     public void PlayAttack() => PlayOnce(prefix + AttackSuffix);
     public void PlayDamage() => PlayOnce(prefix + DamageSuffix);
+    public void PlayDeath() => PlayOnce(prefix + DeathSuffix, false);
+    public void PlayPrepareAttack() => PlayOnce(prefix + PrepareAttackSuffix);
 
     public float LandingDuration => Duration(prefix + LandingSuffix);
     public float AttackDuration => Duration(prefix + AttackSuffix);
     public float DamageDuration => Duration(prefix + DamageSuffix);
+    public float DeathDuration => Duration(prefix + DeathSuffix);
+    public float PrepareAttackDuration => Duration(prefix + PrepareAttackSuffix);
 
-    private void PlayOnce(string animation)
+    private void PlayOnce(string animation, bool returnToIdle = true)
     {
         if (!IsReady || graphic.Skeleton.Data.FindAnimation(animation) == null) return;
         graphic.AnimationState.SetAnimation(0, animation, false);
-        graphic.AnimationState.AddAnimation(0, prefix + IdleSuffix, true, 0f);
+        if (returnToIdle) graphic.AnimationState.AddAnimation(0, prefix + IdleSuffix, true, 0f);
     }
 
     private float Duration(string animation)
