@@ -69,6 +69,7 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite attackWarningSprite;
     private Sprite dungeonFloorSprite;
     private Sprite dungeonWallSprite;
+    private Sprite spawnRiftSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
     private string logPath;
@@ -127,6 +128,7 @@ public sealed class KaitGame : MonoBehaviour
         attackWarningSprite = LoadUiSprite("KaitVisuals/AttackWarningStripes");
         dungeonFloorSprite = LoadPixelSprite("KaitVisuals/DungeonFloor");
         dungeonWallSprite = LoadPixelSprite("KaitVisuals/DungeonWall");
+        spawnRiftSprite = LoadPixelSprite("KaitVisuals/SpawnRift");
         LoadEnemySkeleton(KaitEnemyType.Grunt, "100161");
         LoadEnemySkeleton(KaitEnemyType.Swordsman, "105731");
         LoadEnemySkeleton(KaitEnemyType.Archer, "106331");
@@ -313,16 +315,11 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 warning.gameObject.SetActive(false);
                 battleWarningLines[index] = warning;
-                Image rift = Rect("Spawn Rift", cell.transform, Vector2.zero, new Vector2(82, 82), Color.clear);
+                Image rift = Rect("Spawn Rift", cell.transform, Vector2.zero, new Vector2(96, 96), Color.white);
                 rift.raycastTarget = false;
-                for (int crack = 0; crack < 3; crack++)
-                {
-                    Image line = Rect("Rift Crack", rift.transform, new Vector2((crack - 1) * 12, -7 + crack * 5), new Vector2(54 - crack * 9, 7), new Color(Gold.r, Coral.g, Coral.b, 0.68f));
-                    line.raycastTarget = false;
-                    line.rectTransform.localRotation = Quaternion.Euler(0f, 0f, -48f + crack * 43f);
-                }
-                Text spawnArrow = MakeText("⌃", rift.transform, new Vector2(0, 28), new Vector2(40, 32), 28, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
-                spawnArrow.raycastTarget = false;
+                rift.sprite = spawnRiftSprite;
+                rift.type = Image.Type.Simple;
+                rift.preserveAspect = true;
                 rift.gameObject.SetActive(false);
                 battleRifts[index] = rift;
                 Image unitClip = Rect("Unit Clip", cell.transform, Vector2.zero, new Vector2(114, 114), Color.white);
@@ -334,6 +331,8 @@ public sealed class KaitGame : MonoBehaviour
                     Mask unitMask = unitClip.gameObject.AddComponent<Mask>();
                     unitMask.showMaskGraphic = true;
                 }
+                // Keep the warning decal above the opaque unit card while leaving labels and badges readable.
+                rift.transform.SetSiblingIndex(unitClip.transform.GetSiblingIndex() + 1);
                 battleUnitClips[index] = unitClip;
                 Image portrait = Rect("Unit Portrait", unitClip.transform, new Vector2(0, -2), new Vector2(112, 112), Color.white);
                 portrait.sprite = null;

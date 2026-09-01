@@ -82,7 +82,8 @@ public sealed class KaitSpineTests
 
     [TestCase("KaitVisuals/DungeonFloor")]
     [TestCase("KaitVisuals/DungeonWall")]
-    public void DungeonTileTexture_IsPackagedForPlayerBuilds(string resourcePath)
+    [TestCase("KaitVisuals/SpawnRift")]
+    public void PixelVisualTexture_IsPackagedForPlayerBuilds(string resourcePath)
     {
         Texture2D texture = Resources.Load<Texture2D>(resourcePath);
         Assert.IsNotNull(texture);
