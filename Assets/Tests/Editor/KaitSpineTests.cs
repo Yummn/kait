@@ -79,4 +79,14 @@ public sealed class KaitSpineTests
         Assert.Greater(texture.width, 0);
         Assert.Greater(texture.height, 0);
     }
+
+    [TestCase("KaitVisuals/DungeonFloor")]
+    [TestCase("KaitVisuals/DungeonWall")]
+    public void DungeonTileTexture_IsPackagedForPlayerBuilds(string resourcePath)
+    {
+        Texture2D texture = Resources.Load<Texture2D>(resourcePath);
+        Assert.IsNotNull(texture);
+        Assert.AreEqual(16, texture.width);
+        Assert.AreEqual(16, texture.height);
+    }
 }

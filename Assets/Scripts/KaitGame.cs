@@ -17,6 +17,7 @@ public sealed class KaitGame : MonoBehaviour
     private Canvas canvas;
     private Sprite roundedSprite;
     private Image[] battleCells;
+    private Image[] battleCellTints;
     private Text[] battleLabels;
     private Image[] battlePortraits;
     private Image[] battleHpBadges;
@@ -64,6 +65,8 @@ public sealed class KaitGame : MonoBehaviour
     private Sprite warlockPortrait;
     private Sprite bossPortrait;
     private Sprite attackWarningSprite;
+    private Sprite dungeonFloorSprite;
+    private Sprite dungeonWallSprite;
     private readonly Dictionary<KaitEnemyType, SkeletonDataAsset> enemySkeletonData = new Dictionary<KaitEnemyType, SkeletonDataAsset>();
     private readonly Dictionary<int, EnemySpineView> enemySpines = new Dictionary<int, EnemySpineView>();
     private string logPath;
@@ -120,6 +123,8 @@ public sealed class KaitGame : MonoBehaviour
         warlockPortrait = LoadPortraitSprite("EnemyPortraits/111031", new Rect(0.3635f, 0.1883f, 0.2269f, 0.3426f));
         bossPortrait = LoadPortraitSprite("EnemyPortraits/104731", new Rect(0.3632f, 0.1885f, 0.2285f, 0.3793f));
         attackWarningSprite = LoadUiSprite("KaitVisuals/AttackWarningStripes");
+        dungeonFloorSprite = LoadPixelSprite("KaitVisuals/DungeonFloor");
+        dungeonWallSprite = LoadPixelSprite("KaitVisuals/DungeonWall");
         LoadEnemySkeleton(KaitEnemyType.Grunt, "100161");
         LoadEnemySkeleton(KaitEnemyType.Swordsman, "105731");
         LoadEnemySkeleton(KaitEnemyType.Archer, "106331");
@@ -258,15 +263,28 @@ public sealed class KaitGame : MonoBehaviour
         battleWarningLines = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleRifts = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         battleDangerBadges = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
+        battleCellTints = new Image[KaitRun.BattleSize * KaitRun.BattleSize];
         for (int visualY = KaitRun.BattleSize - 2; visualY >= 1; visualY--)
         {
             for (int x = 1; x < KaitRun.BattleSize - 1; x++)
             {
                 int index = x + visualY * KaitRun.BattleSize;
-                Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, PanelLight);
+                Image cell = Rect($"Cell {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Color.white);
+                if (dungeonFloorSprite != null)
+                {
+                    cell.sprite = dungeonFloorSprite;
+                    cell.type = Image.Type.Simple;
+                    cell.preserveAspect = false;
+                }
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
                 battleCells[index] = cell;
+                Image cellTint = Rect("Cell Tint", cell.transform, Vector2.zero, Vector2.zero, BattleTint(ThreatColor(0)));
+                cellTint.sprite = null;
+                cellTint.type = Image.Type.Simple;
+                cellTint.raycastTarget = false;
+                Stretch(cellTint.rectTransform, 0);
+                battleCellTints[index] = cellTint;
                 Image warning = Rect("Attack Warning", cell.transform, Vector2.zero, attackWarningSprite != null ? new Vector2(109, 109) : new Vector2(98, 14), Color.clear);
                 warning.raycastTarget = false;
                 warning.sprite = attackWarningSprite;
@@ -680,7 +698,8 @@ public sealed class KaitGame : MonoBehaviour
             {
                 int index = x + y * KaitRun.BattleSize;
                 Vector2Int p = new Vector2Int(x, y);
-                Image image = battleCells[index];
+                Image tile = battleCells[index];
+                Image image = battleCellTints[index];
                 Text label = battleLabels[index];
                 label.text = "";
                 label.rectTransform.localRotation = Quaternion.identity;
@@ -693,10 +712,16 @@ public sealed class KaitGame : MonoBehaviour
                 battlePortraits[index].color = Color.white;
                 battleWarningLines[index].gameObject.SetActive(false);
                 battleRifts[index].gameObject.SetActive(false);
-                image.color = ThreatColor(0);
+                tile.sprite = dungeonFloorSprite != null ? dungeonFloorSprite : roundedSprite;
+                tile.type = dungeonFloorSprite != null ? Image.Type.Simple : Image.Type.Sliced;
+                tile.color = Color.white;
+                image.color = BattleTint(ThreatColor(0));
                 if (run.walls[x, y])
                 {
-                    image.color = Void;
+                    tile.sprite = dungeonWallSprite != null ? dungeonWallSprite : roundedSprite;
+                    tile.type = dungeonWallSprite != null ? Image.Type.Simple : Image.Type.Sliced;
+                    tile.color = dungeonWallSprite != null ? Color.white : Void;
+                    image.color = Color.clear;
                     label.text = "";
                 }
                 Color? intentTint = IntentTintAt(p);
@@ -718,7 +743,7 @@ public sealed class KaitGame : MonoBehaviour
                             label.fontSize = run.shadowStepAvailable ? 30 : 38;
                             label.color = run.shadowStepAvailable ? Gold : Cyan;
                         }
-                if (impactCells.Contains(p)) image.color = Gold;
+                if (impactCells.Contains(p)) image.color = BattleTint(Gold);
                 if (targetingSkill != KaitSkill.None && run.EnemyAt(p) != null) image.color = Color.Lerp(image.color, Cyan, 0.35f);
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
@@ -735,13 +760,13 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (enemy != null)
                 {
-                    image.color = EnemyTileColor(enemy.type);
+                    image.color = BattleTint(EnemyTileColor(enemy.type));
                     if (enemy.life == KaitEnemyLife.Preparing) image.color = Color.Lerp(image.color, Panel, 0.28f);
                     Color unitTint = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
                     EnemySpineView enemySpine = EnemySpine(enemy);
                     if (enemySpine != null)
                     {
-                        enemySpine.SetParent(image.transform, 3);
+                        enemySpine.SetParent(tile.transform, 3);
                         enemySpine.SetTint(unitTint);
                         enemySpine.Face(enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction);
                         enemySpine.SetVisible(true);
@@ -765,10 +790,10 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 if (!hideKate && kate == p)
                 {
-                    image.color = showRiftDanger ? Color.Lerp(ThreatColor(2), Gold, 0.32f) : ThreatColor(2);
+                    image.color = BattleTint(showRiftDanger ? Color.Lerp(ThreatColor(2), Gold, 0.32f) : ThreatColor(2));
                     if (kaitSpine != null)
                     {
-                        kaitSpine.SetParent(image.transform, 3);
+                        kaitSpine.SetParent(tile.transform, 3);
                         kaitSpine.SetVisible(true);
                     }
                     else
@@ -1326,10 +1351,11 @@ public sealed class KaitGame : MonoBehaviour
 
     private IEnumerator PulseBattleCell(Vector2Int cell, Color color, float duration)
     {
-        Image image = battleCells[cell.x + cell.y * KaitRun.BattleSize];
+        int index = cell.x + cell.y * KaitRun.BattleSize;
+        Image image = battleCellTints[index];
         Color original = image.color;
-        image.color = color;
-        yield return ScalePulse(image.rectTransform, 0.92f, 1.16f, duration);
+        image.color = BattleTint(color);
+        yield return ScalePulse(battleCells[index].rectTransform, 0.92f, 1.16f, duration);
         image.color = original;
     }
 
@@ -1592,6 +1618,12 @@ public sealed class KaitGame : MonoBehaviour
         if (value == 16) return Hex("#C96D72");
         if (value == 32) return Hex("#95485B");
         return Hex("#652F47");
+    }
+
+    private static Color BattleTint(Color color)
+    {
+        color.a = 0.68f;
+        return color;
     }
 
     private static Color Hex(string value)
