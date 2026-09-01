@@ -37,6 +37,7 @@ public sealed class KaitSpineTests
         Assert.AreEqual("Spine/SkeletonGraphic", material.shader.name);
     }
 
+    [TestCase("100161")]
     [TestCase("105731")]
     [TestCase("106331")]
     [TestCase("112731")]

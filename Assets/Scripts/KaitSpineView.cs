@@ -148,7 +148,8 @@ public sealed class KaitSpineView
     {
         if (!IsReady || string.IsNullOrEmpty(animation)) return;
         graphic.timeScale = 1f;
-        graphic.AnimationState.SetAnimation(0, animation, false);
+        TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, false);
+        if (animation == StandBy) entry.TimeScale = 1.2f;
         if (!string.IsNullOrEmpty(followUp)) graphic.AnimationState.AddAnimation(0, followUp, true, 0f);
     }
 

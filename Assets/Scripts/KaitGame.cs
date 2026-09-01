@@ -110,7 +110,7 @@ public sealed class KaitGame : MonoBehaviour
         if (uiFont == null) uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         kaitPortrait = LoadPixelSprite("KenneyTinyDungeon/Kait");
         makotoSkeletonData = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
-        gruntPortrait = LoadPixelSprite("KenneyTinyDungeon/Grunt");
+        gruntPortrait = LoadPortraitSprite("EnemyPortraits/100161", new Rect(0.3452f, 0.1883f, 0.1913f, 0.3315f));
         swordsmanPortrait = LoadPortraitSprite("EnemyPortraits/105731", new Rect(0.3635f, 0.1883f, 0.2190f, 0.3400f));
         archerPortrait = LoadPortraitSprite("EnemyPortraits/106331", new Rect(0.3452f, 0.1883f, 0.2373f, 0.3293f));
         guardPortrait = LoadPortraitSprite("EnemyPortraits/112731", new Rect(0.3386f, 0.1883f, 0.2623f, 0.4137f));
@@ -279,7 +279,7 @@ public sealed class KaitGame : MonoBehaviour
                 spawnArrow.raycastTarget = false;
                 rift.gameObject.SetActive(false);
                 battleRifts[index] = rift;
-                Image portrait = Rect("Unit Portrait", cell.transform, new Vector2(0, -2), new Vector2(96, 96), Color.white);
+                Image portrait = Rect("Unit Portrait", cell.transform, new Vector2(0, -2), new Vector2(112, 112), Color.white);
                 portrait.sprite = null;
                 portrait.type = Image.Type.Simple;
                 portrait.preserveAspect = true;
@@ -1085,7 +1085,7 @@ public sealed class KaitGame : MonoBehaviour
         Image image = Rect("Animation Unit", canvas.transform, Vector2.zero, size, background);
         image.rectTransform.position = source.position;
         image.rectTransform.SetAsLastSibling();
-        Image portrait = Rect("Portrait", image.transform, new Vector2(0, -2), size * 0.84f, Color.white);
+        Image portrait = Rect("Portrait", image.transform, new Vector2(0, -2), size * 0.96f, Color.white);
         portrait.sprite = portraitSprite;
         portrait.type = Image.Type.Simple;
         portrait.preserveAspect = true;
