@@ -8,7 +8,8 @@ public sealed class KaitSpineView
     private const float VisualFill = 1.16f;
     public const string Idle = "05_idle";
     public const string Run = "05_run_gamestart";
-    public const string StandBy = "05_multi_standBy";
+    public const string ChainDirectionChoice = "000000_rarityup_posing";
+    public const string WallStop = "05_joy_long_return";
     public const string Attack = "05_attack";
     public const string ChainAttack = "05_attack_skipQuest";
     public const string Damage = "05_damage";
@@ -200,7 +201,7 @@ public sealed class KaitSpineView
         if (!IsReady || string.IsNullOrEmpty(animation)) return;
         graphic.timeScale = 1f;
         TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, false);
-        if (animation == StandBy) entry.TimeScale = 2f;
+        if (animation == WallStop) entry.TimeScale = 2f;
         if (!string.IsNullOrEmpty(followUp)) graphic.AnimationState.AddAnimation(0, followUp, true, 0f);
     }
 

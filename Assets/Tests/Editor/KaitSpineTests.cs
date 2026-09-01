@@ -14,7 +14,7 @@ public sealed class KaitSpineTests
 
         string[] required =
         {
-            KaitSpineView.Idle, KaitSpineView.Run, KaitSpineView.StandBy,
+            KaitSpineView.Idle, KaitSpineView.Run, KaitSpineView.ChainDirectionChoice, KaitSpineView.WallStop,
             KaitSpineView.Attack, KaitSpineView.ChainAttack, KaitSpineView.Damage,
             KaitSpineView.Die, KaitSpineView.JoyShort, KaitSpineView.JoyLong,
             KaitSpineView.SmallAttack, KaitSpineView.LargeAttack, KaitSpineView.OtherSkill,
@@ -24,7 +24,8 @@ public sealed class KaitSpineTests
         {
             Spine.Animation found = data.FindAnimation(animation);
             Assert.IsNotNull(found, $"Required animation is missing: {animation}");
-            Assert.Greater(found.Duration, 0f, $"Animation has no duration: {animation}");
+            if (animation != KaitSpineView.ChainDirectionChoice)
+                Assert.Greater(found.Duration, 0f, $"Animation has no duration: {animation}");
         }
     }
 

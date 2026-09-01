@@ -699,6 +699,7 @@ public sealed class KaitGame : MonoBehaviour
         }
         else
         {
+            if (run.chainActive) kaitSpine?.PlayLoop(KaitSpineView.ChainDirectionChoice);
             StartChainSpeedAuraIfNeeded();
         }
     }
@@ -797,7 +798,8 @@ public sealed class KaitGame : MonoBehaviour
         if (run.TryUseSkill(skill, target.id, out string message))
         {
             targetingSkill = KaitSkill.None;
-            kaitSpine?.PlayOnce(KaitSpineView.OtherSkill);
+            kaitSpine?.PlayOnce(KaitSpineView.OtherSkill,
+                run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
             StartCoroutine(PulseBattleUnit(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
         }
         statusText.text = message;
@@ -821,7 +823,7 @@ public sealed class KaitGame : MonoBehaviour
         }
         if (movingKait != null) movingKait.Destroy(); else Destroy(token.gameObject);
         hideKate = false; busy = false;
-        kaitSpine?.PlayLoop(KaitSpineView.Idle);
+        kaitSpine?.PlayLoop(run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
         RefreshAll();
         StartChainSpeedAuraIfNeeded();
@@ -1069,7 +1071,7 @@ public sealed class KaitGame : MonoBehaviour
                 yield return PulseBattleUnit(result.blockedEnemyCell, Color.white, 0.16f, result.damagedEnemyId);
             }
             else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
-                kaitSpine?.PlayOnce(KaitSpineView.StandBy);
+                kaitSpine?.PlayOnce(KaitSpineView.WallStop);
             yield break;
         }
 
@@ -1151,7 +1153,7 @@ public sealed class KaitGame : MonoBehaviour
             yield return PulseBattleUnit(result.blockedEnemyCell, Color.white, 0.14f, result.damagedEnemyId);
         }
         else if (result.stoppedByWall || result.chainEndedByWall || result.activeBrake || result.pushBlockedByWall)
-            kaitSpine?.PlayOnce(KaitSpineView.StandBy);
+            kaitSpine?.PlayOnce(KaitSpineView.WallStop);
         else if (result.playerKilledEnemyIds.Count > 0)
             kaitSpine?.PlayOnce(KaitSpineView.ChainAttack);
         else
@@ -1721,7 +1723,8 @@ public sealed class KaitGame : MonoBehaviour
         if (skill == KaitSkill.SwiftBoots) animation = KaitSpineView.JoyShort;
         else if (skill == KaitSkill.CatAgility) animation = KaitSpineView.JoyLong;
         else if (skill == KaitSkill.DreadSlash) animation = KaitSpineView.LargeAttack;
-        kaitSpine?.PlayOnce(animation);
+        kaitSpine?.PlayOnce(animation,
+            run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
         int slot = run.skills.IndexOf(skill);
         if (slot >= 0 && slot < skillButtons.Length)
             yield return ScalePulse(skillButtons[slot].GetComponent<RectTransform>(), 0.92f, 1.08f, 0.14f);
