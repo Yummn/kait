@@ -50,7 +50,6 @@ public sealed class KaitGame : MonoBehaviour
     private GameObject endOverlay;
     private Text endText;
     private bool busy;
-    private KaitDirection? bufferedDirection;
     private Vector2Int? displayKate;
     private bool hideKate;
     private List<KaitEnemy> animatedEnemies;
@@ -596,7 +595,6 @@ public sealed class KaitGame : MonoBehaviour
         ClearAllTrailVisuals();
         ClearEnemySpines();
         busy = false;
-        bufferedDirection = null;
         displayKate = null;
         targetingSkill = KaitSkill.None;
         int seed = Environment.TickCount;
@@ -614,14 +612,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void HandleDirection(KaitDirection direction)
     {
-        if (run.ended) return;
-        if (busy)
-        {
-            // Keep the most recent direction pressed during an animation so the
-            // next action starts immediately when the visual sequence releases.
-            bufferedDirection = direction;
-            return;
-        }
+        if (run.ended || busy) return;
         targetingSkill = KaitSkill.None;
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
@@ -704,22 +695,12 @@ public sealed class KaitGame : MonoBehaviour
         RefreshAll();
         if (run.ended)
         {
-            bufferedDirection = null;
             ShowEnd();
         }
         else
         {
             StartChainSpeedAuraIfNeeded();
-            ConsumeBufferedDirection();
         }
-    }
-
-    private void ConsumeBufferedDirection()
-    {
-        if (busy || run.ended || !bufferedDirection.HasValue) return;
-        KaitDirection next = bufferedDirection.Value;
-        bufferedDirection = null;
-        HandleDirection(next);
     }
 
     private void RefreshAll()
@@ -844,7 +825,6 @@ public sealed class KaitGame : MonoBehaviour
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
         RefreshAll();
         StartChainSpeedAuraIfNeeded();
-        ConsumeBufferedDirection();
     }
 
     private static string SkillChoiceDescription(KaitSkill skill)
