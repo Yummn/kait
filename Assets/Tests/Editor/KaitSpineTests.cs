@@ -37,6 +37,28 @@ public sealed class KaitSpineTests
         Assert.AreEqual("Spine/SkeletonGraphic", material.shader.name);
     }
 
+    [Test]
+    public void KaitGraphic_DoesNotUseUiOrSpineClipping()
+    {
+        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
+        var canvasObject = new GameObject("Kait Spine Test Canvas", typeof(Canvas));
+        KaitSpineView view = null;
+        try
+        {
+            view = KaitSpineView.Create(asset, canvasObject.transform, new Vector2(115f, 115f));
+            Assert.IsNotNull(view);
+            SkeletonGraphic graphic = view.Root.GetComponentInChildren<SkeletonGraphic>();
+            Assert.IsNotNull(graphic);
+            Assert.IsFalse(graphic.maskable, "Kait must ignore Unity UI masks so the sword can leave its cell.");
+            Assert.IsFalse(graphic.MeshGenerator.settings.useClipping, "Kait must ignore Spine clipping attachments.");
+            Assert.IsFalse(graphic.canvasRenderer.cullTransparentMesh);
+        }
+        finally
+        {
+            Object.DestroyImmediate(canvasObject);
+        }
+    }
+
     [TestCase("100161")]
     [TestCase("105731")]
     [TestCase("106331")]

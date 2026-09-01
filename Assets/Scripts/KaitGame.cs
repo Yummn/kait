@@ -911,7 +911,9 @@ public sealed class KaitGame : MonoBehaviour
                     image.color = Color.clear;
                     if (kaitSpine != null)
                     {
-                        kaitSpine.SetParent(unitClip.transform, 1);
+                        // Keep Kait outside the legacy per-unit visual container.
+                        // Her sword is allowed to extend over adjacent cells.
+                        kaitSpine.SetParent(battleCells[index].transform, 4);
                         kaitSpine.SetVisible(true);
                     }
                     else

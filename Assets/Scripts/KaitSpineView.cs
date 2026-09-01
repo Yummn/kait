@@ -70,6 +70,14 @@ public sealed class KaitSpineView
         SkeletonGraphic skeletonGraphic = SkeletonGraphic.NewSkeletonGraphicGameObject(data, hostRect, sharedGraphicMaterial);
         skeletonGraphic.name = "Makoto Skeleton";
         skeletonGraphic.raycastTarget = false;
+        // Kait's sword intentionally extends beyond a board cell during several
+        // animations. Ignore both Unity UI masks and Spine clipping so those
+        // vertices are never trimmed when the character changes parent or facing.
+        skeletonGraphic.maskable = false;
+        skeletonGraphic.canvasRenderer.cullTransparentMesh = false;
+        MeshGenerator.Settings meshSettings = skeletonGraphic.MeshGenerator.settings;
+        meshSettings.useClipping = false;
+        skeletonGraphic.MeshGenerator.settings = meshSettings;
         skeletonGraphic.unscaledTime = true;
         skeletonGraphic.timeScale = 1f;
         skeletonGraphic.Initialize(false);
