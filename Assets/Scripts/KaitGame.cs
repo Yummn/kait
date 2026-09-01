@@ -14,6 +14,7 @@ public sealed class KaitGame : MonoBehaviour
     private static KaitGame instance;
     private readonly KaitRun run = new KaitRun();
     private Font uiFont;
+    private Font threatBoardFont;
     private Canvas canvas;
     private Sprite roundedSprite;
     private Image[] battleCells;
@@ -130,9 +131,11 @@ public sealed class KaitGame : MonoBehaviour
         if (instance != null && instance != this) { Destroy(gameObject); return; }
         instance = this;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        uiFont = Resources.Load<Font>("NotoSansCJKsc-Regular");
-        if (uiFont == null) uiFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
-        if (uiFont == null) uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        threatBoardFont = Resources.Load<Font>("NotoSansCJKsc-Regular");
+        if (threatBoardFont == null) threatBoardFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
+        if (threatBoardFont == null) threatBoardFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        uiFont = Resources.Load<Font>("Fonts/FusionPixel12pxProportionalZhHans");
+        if (uiFont == null) uiFont = threatBoardFont;
         kaitPortrait = LoadPixelSprite("KenneyTinyDungeon/Kait");
         makotoSkeletonData = Resources.Load<SkeletonDataAsset>("Characters/Makoto/Makoto_SkeletonData");
         gruntPortrait = LoadPortraitSprite("EnemyPortraits/100161", new Rect(0.3452f, 0.1883f, 0.1913f, 0.3315f));
@@ -397,6 +400,7 @@ public sealed class KaitGame : MonoBehaviour
                 int index = x + visualY * run.ThreatSize;
                 threatCells[index] = Rect($"Threat {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Void);
                 threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 24, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+                threatLabels[index].font = threatBoardFont;
                 Stretch(threatLabels[index].rectTransform, 2);
             }
         }
