@@ -1108,6 +1108,234 @@ public sealed class KaitCoreTests
         Assert.AreEqual(6, enemy.hp);
     }
 
+    [Test]
+    public void V050_T01_MilestoneOffersActiveAndPassiveChoicesWithoutBlocking()
+    {
+        KaitRun run = OpenRun(5001, new Vector2Int(3, 3));
+        QueueMilestone(run, 16);
+
+        Assert.AreEqual(16, run.pendingSkillMilestone);
+        Assert.AreEqual(16, run.pendingPassiveMilestone);
+        Assert.AreEqual(2, run.SkillChoicesForMilestone(16).Count);
+        var passiveChoices = run.PassiveChoicesForMilestone(16);
+        Assert.AreEqual(3, passiveChoices.Count);
+        Assert.GreaterOrEqual(passiveChoices.Select(KaitPassiveCatalog.Category).Distinct().Count(), 2);
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+        Assert.IsTrue(result.valid);
+        Assert.AreEqual(16, run.pendingPassiveMilestone);
+    }
+
+    [Test]
+    public void V050_T02_OwnedPassiveNeverReturnsInLaterOffer()
+    {
+        KaitRun run = OpenRun(5002);
+        QueueMilestone(run, 16);
+        KaitPassive chosen = run.PassiveChoicesForMilestone(16)[0];
+        Assert.IsTrue(run.ChoosePassive(chosen));
+        QueueMilestone(run, 32);
+
+        CollectionAssert.DoesNotContain(run.PassiveChoicesForMilestone(32), chosen);
+        Assert.AreEqual(1, run.passives.Count);
+    }
+
+    [Test]
+    public void V050_T03_BirdEyePreviewIsUsedWhenCellRemainsEmpty()
+    {
+        KaitRun run = OpenRun(5003); ClearThreat(run); run.passives.Add(KaitPassive.BirdEye);
+        Invoke(run, "PrepareThreatTwoPreview");
+        Vector2Int preview = run.nextThreatTwoPreview;
+
+        Vector2Int spawned = (Vector2Int)Invoke(run, "SpawnThreatTwoForTurn", new KaitTurnResult(), true);
+
+        Assert.AreEqual(preview, spawned);
+        Assert.AreEqual(2, run.threat[preview.x, preview.y]);
+    }
+
+    [Test]
+    public void V050_T04_OldNewsArchivesOnlyTheTwoEarliestTwos()
+    {
+        KaitRun run = OpenRun(5004); ClearThreat(run); run.passives.Add(KaitPassive.OldNewsArchive);
+        Vector2Int[] cells = { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(2, 0), new Vector2Int(3, 0), new Vector2Int(4, 0) };
+        for (int i = 0; i < cells.Length; i++) { run.threat[cells[i].x, cells[i].y] = 2; run.threatTwoBirth[cells[i].x, cells[i].y] = i + 1; }
+        var result = new KaitTurnResult();
+
+        Invoke(run, "ResolveOldNewsArchive", result);
+
+        Assert.AreEqual(4, run.threat[0, 0]);
+        Assert.AreEqual(0, run.threat[1, 0]);
+        Assert.AreEqual(3, CountThreat(run, 2));
+        Assert.AreEqual(1, result.merges.Count);
+        Assert.AreEqual(1, run.spawns.Count);
+    }
+
+    [Test]
+    public void V050_T05_SimplifyCompressesPairsWithoutCascading()
+    {
+        KaitRun run = OpenRun(5005); run.passives.Add(KaitPassive.Simplify);
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, createdTurn = run.turn, targetCell = new Vector2Int(1, 1) });
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, createdTurn = run.turn, targetCell = new Vector2Int(2, 1) });
+        run.spawns.Add(new KaitSpawnRequest { tier = 2, createdTurn = run.turn, targetCell = new Vector2Int(3, 1) });
+        run.spawns.Add(new KaitSpawnRequest { tier = 3, createdTurn = run.turn, targetCell = new Vector2Int(4, 1) });
+
+        Invoke(run, "ResolveSimplify", new KaitTurnResult());
+
+        CollectionAssert.AreEquivalent(new[] { 2, 2, 3 }, run.spawns.Select(s => s.tier).ToArray());
+        Assert.AreEqual(new Vector2Int(2, 1), run.spawns.Last(s => s.sourceThreatCell == Vector2Int.zero && s.tier == 2).targetCell);
+    }
+
+    [Test]
+    public void V050_T06_BloodBookmarkRedirectsTheNextBlockedSpawn()
+    {
+        KaitRun run = OpenRun(5006, new Vector2Int(5, 5)); run.passives.Add(KaitPassive.BloodBookmark);
+        Vector2Int blocked = new Vector2Int(2, 2), bookmark = new Vector2Int(4, 4);
+        KaitEnemy occupant = Enemy(1, blocked, 2); run.enemies.Add(occupant);
+        SetAutoProperty(run, "bookmarkCell", bookmark); SetAutoProperty(run, "hasBookmark", true);
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, targetCell = blocked, turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+
+        ResolveSpawnPhase(run);
+
+        Assert.IsNotNull(run.EnemyAt(bookmark));
+        Assert.AreEqual(2, occupant.hp);
+        Assert.IsFalse(run.hasBookmark);
+    }
+
+    [Test]
+    public void V050_T07_MomentumResonanceMovesOnlyTheCorrespondingNumber()
+    {
+        KaitRun run = OpenRun(5007); ClearThreat(run); run.passives.Add(KaitPassive.MomentumResonance);
+        run.threat[1, 1] = 8;
+        var result = new KaitTurnResult();
+
+        Invoke(run, "ResolveMomentumResonance", new Vector2Int(2, 2), Vector2Int.right, result);
+
+        Assert.AreEqual(0, run.threat[1, 1]);
+        Assert.AreEqual(8, run.threat[2, 1]);
+        Assert.AreEqual(1, result.passiveTriggers.Count);
+    }
+
+    [Test]
+    public void V050_T08_MomentumResonanceMergeCreatesSpawnEvent()
+    {
+        KaitRun run = OpenRun(5008); ClearThreat(run); run.passives.Add(KaitPassive.MomentumResonance);
+        run.threat[1, 1] = 4; run.threat[2, 1] = 4;
+        var result = new KaitTurnResult();
+
+        Invoke(run, "ResolveMomentumResonance", new Vector2Int(2, 2), Vector2Int.right, result);
+
+        Assert.AreEqual(8, run.threat[2, 1]);
+        Assert.AreEqual(1, result.merges.Count);
+        Assert.AreEqual(1, run.spawns.Count);
+    }
+
+    [Test]
+    public void V050_T09_DevilReducesAnotherCoolingActiveSkill()
+    {
+        KaitRun run = OpenRun(5009); run.passives.Add(KaitPassive.Devil);
+        run.skills.Add(KaitSkill.SwiftBoots); run.skills.Add(KaitSkill.DreadSlash);
+        SkillCooldowns(run)[KaitSkill.DreadSlash] = 2;
+
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.SwiftBoots, -1, out _));
+
+        Assert.AreEqual(1, run.SkillCooldown(KaitSkill.DreadSlash));
+        Assert.AreEqual(1, run.PassiveTriggerCount(KaitPassive.Devil));
+    }
+
+    [Test]
+    public void V050_T10_CheshireCatKeepsFriendlyFireVictimAtOneHp()
+    {
+        KaitRun run = OpenRun(5010, new Vector2Int(5, 5)); run.passives.Add(KaitPassive.CheshireCat);
+        KaitEnemy attacker = Enemy(1, new Vector2Int(1, 2), 3, KaitEnemyType.Archer, KaitEnemyLife.Active);
+        KaitEnemy victim = Enemy(2, new Vector2Int(2, 2), 1, KaitEnemyType.Grunt, KaitEnemyLife.Active);
+        attacker.rangedState = KaitRangedState.Aim;
+        attacker.intent = LineIntent(attacker.pos, Vector2Int.right, victim.pos);
+        run.enemies.Add(attacker); run.enemies.Add(victim);
+
+        ResolveEnemyPhase(run);
+
+        Assert.AreEqual(1, victim.hp);
+        Assert.AreEqual(KaitEnemyLife.Active, victim.life);
+    }
+
+    [Test]
+    public void V050_T11_SqueezePushesOccupantBeforeSpawning()
+    {
+        KaitRun run = OpenRun(5011, new Vector2Int(5, 5)); run.passives.Add(KaitPassive.Squeeze);
+        SetAutoProperty(run, "currentGlobalDirection", KaitDirection.Right);
+        Vector2Int origin = new Vector2Int(2, 2);
+        KaitEnemy occupant = Enemy(1, origin, 2); run.enemies.Add(occupant);
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, targetCell = origin, turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+
+        KaitTurnResult result = ResolveSpawnPhase(run);
+
+        Assert.AreEqual(new Vector2Int(3, 2), occupant.pos);
+        Assert.IsNotNull(run.EnemyAt(origin));
+        Assert.AreEqual(1, result.enemyActions.Count);
+    }
+
+    [Test]
+    public void V050_T12_FollowerClustersLaterSpawnsNextToTheFirst()
+    {
+        KaitRun run = OpenRun(5012, new Vector2Int(5, 5)); run.passives.Add(KaitPassive.Follower);
+        run.spawns.Add(new KaitSpawnRequest { tier = 1, targetCell = new Vector2Int(2, 2), turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+        run.spawns.Add(new KaitSpawnRequest { tier = 2, targetCell = new Vector2Int(4, 4), turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+
+        ResolveSpawnPhase(run);
+
+        KaitEnemy first = run.EnemyAt(new Vector2Int(2, 2));
+        KaitEnemy second = run.enemies.Single(e => e.id != first.id);
+        Assert.AreEqual(1, Mathf.Abs(first.pos.x - second.pos.x) + Mathf.Abs(first.pos.y - second.pos.y));
+    }
+
+    [Test]
+    public void V050_T13_BladeCovenantTicksEveryThirdChainKill()
+    {
+        KaitRun run = OpenRun(5013); run.passives.Add(KaitPassive.BladeCovenant); run.skills.Add(KaitSkill.DreadSlash);
+        SkillCooldowns(run)[KaitSkill.DreadSlash] = 3;
+        SetAutoProperty(run, "currentChainKills", 3);
+
+        Invoke(run, "ResolveBladeCovenant", new KaitTurnResult());
+
+        Assert.AreEqual(2, run.SkillCooldown(KaitSkill.DreadSlash));
+    }
+
+    [Test]
+    public void V050_T14_TrendSpawnsNewTwoOnOppositeSide()
+    {
+        KaitRun run = OpenRun(5014); ClearThreat(run); run.passives.Add(KaitPassive.Trend);
+        SetAutoProperty(run, "currentGlobalDirection", KaitDirection.Right);
+
+        Vector2Int spawned = (Vector2Int)Invoke(run, "SpawnThreatTwoForTurn", new KaitTurnResult(), true);
+
+        Assert.Less(spawned.x, run.ThreatSize / 2);
+    }
+
+    [Test]
+    public void V050_T15_SweepTailRemovesOnlyAValueTwoAtBrakeCell()
+    {
+        KaitRun run = OpenRun(5015, new Vector2Int(3, 3)); ClearThreat(run); run.passives.Add(KaitPassive.SweepTail);
+        run.threat[2, 2] = 2; run.threat[1, 2] = 4;
+
+        Invoke(run, "ResolveSweepTail", new KaitTurnResult());
+
+        Assert.AreEqual(0, run.threat[2, 2]);
+        Assert.AreEqual(4, run.threat[1, 2]);
+    }
+
+    [Test]
+    public void V050_T16_MultiplePassivesDoNotRecursivelyTriggerEachOther()
+    {
+        KaitRun run = OpenRun(5016); run.passives.Add(KaitPassive.Devil); run.passives.Add(KaitPassive.BladeCovenant);
+        run.skills.Add(KaitSkill.SwiftBoots); run.skills.Add(KaitSkill.DreadSlash);
+        SkillCooldowns(run)[KaitSkill.DreadSlash] = 3;
+
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.SwiftBoots, -1, out _));
+
+        Assert.AreEqual(2, run.SkillCooldown(KaitSkill.DreadSlash));
+        Assert.AreEqual(1, run.PassiveTriggerCount(KaitPassive.Devil));
+        Assert.AreEqual(0, run.PassiveTriggerCount(KaitPassive.BladeCovenant));
+    }
+
     private static void QueueMilestone(KaitRun run, int value)
         => typeof(KaitRun).GetMethod("HandleMilestoneMerge", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { new KaitMergeEvent { resultValue = value } });
     private static void Unlock(KaitRun run, int milestone, KaitSkill skill) { QueueMilestone(run, milestone); Assert.IsTrue(run.ChooseSkill(skill)); }
@@ -1139,6 +1367,12 @@ public sealed class KaitCoreTests
     }
     private static void LockEnemyIntents(KaitRun run)
         => typeof(KaitRun).GetMethod("LockEnemyIntents", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, null);
+    private static object Invoke(KaitRun run, string method, params object[] arguments)
+        => typeof(KaitRun).GetMethod(method, BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, arguments);
+    private static void SetAutoProperty(KaitRun run, string property, object value)
+        => typeof(KaitRun).GetField($"<{property}>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(run, value);
+    private static System.Collections.Generic.Dictionary<KaitSkill, int> SkillCooldowns(KaitRun run)
+        => (System.Collections.Generic.Dictionary<KaitSkill, int>)typeof(KaitRun).GetField("skillCooldowns", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(run);
     private static void ClearThreat(KaitRun run) { for (int y = 0; y < run.ThreatSize; y++) for (int x = 0; x < run.ThreatSize; x++) run.threat[x, y] = 0; }
     private static int[,] CopyThreat(KaitRun run) { var copy = new int[run.ThreatSize, run.ThreatSize]; System.Array.Copy(run.threat, copy, run.threat.Length); return copy; }
     private static int CountThreat(KaitRun run, int value) { int count = 0; foreach (int cell in run.threat) if (cell == value) count++; return count; }

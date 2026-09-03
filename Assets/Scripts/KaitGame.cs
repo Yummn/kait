@@ -64,12 +64,20 @@ public sealed class KaitGame : MonoBehaviour
     private Text skillStatusText;
     private readonly Button[] skillButtons = new Button[3];
     private readonly Text[] skillButtonLabels = new Text[3];
+    private readonly Button[] passiveButtons = new Button[3];
+    private readonly Text[] passiveButtonLabels = new Text[3];
+    private readonly int[] shownPassiveTriggerCounts = new int[3];
+    private Text passiveStatusText;
     private GlobalStyleSplit styleSplit;
     private GameObject skillChoiceOverlay;
     private GameObject controlsPanel;
     private Text skillChoiceTitle;
     private readonly Button[] skillChoiceButtons = new Button[2];
     private readonly Text[] skillChoiceLabels = new Text[2];
+    private GameObject activeChoiceGroup;
+    private GameObject passiveChoiceGroup;
+    private readonly Button[] passiveChoiceButtons = new Button[3];
+    private readonly Text[] passiveChoiceLabels = new Text[3];
     private KaitSkill targetingSkill;
     private GameObject endOverlay;
     private Text endText;
@@ -127,6 +135,7 @@ public sealed class KaitGame : MonoBehaviour
     private bool swipeStartedOverButton;
     private string logPath;
     private int announcedSkillMilestone;
+    private int announcedPassiveMilestone;
     private bool endAudioPlayed;
     private int kaitDefeatingEnemyId = -1;
     private KaitEnemyType kaitDefeatingEnemyType;
@@ -292,6 +301,7 @@ public sealed class KaitGame : MonoBehaviour
 
         if (canvas == null) BuildUI();
         NewRun();
+        if (CommandLineValue("-kaitGrowthPreview") == "1") PrepareGrowthPreview();
         string screenshotPath = CommandLineValue("-kaitScreenshot");
         if (Application.platform == RuntimePlatform.WindowsPlayer && string.IsNullOrEmpty(screenshotPath))
             StartCoroutine(EnforceWindowsFullscreen());
@@ -320,6 +330,20 @@ public sealed class KaitGame : MonoBehaviour
             Screen.fullScreen = true;
         }
         Debug.Log($"Kait fullscreen applied: {Screen.width}x{Screen.height}, mode={Screen.fullScreenMode}");
+    }
+
+    private void PrepareGrowthPreview()
+    {
+        for (int y = 0; y < run.ThreatSize; y++)
+            for (int x = 0; x < run.ThreatSize; x++)
+            {
+                run.threat[x, y] = 0;
+                run.threatTwoBirth[x, y] = 0;
+            }
+        run.threat[0, 0] = 8;
+        run.threat[1, 0] = 8;
+        run.TryGlobalInput(KaitDirection.Right);
+        RefreshAll();
     }
 
     private void Update()
@@ -710,16 +734,26 @@ public sealed class KaitGame : MonoBehaviour
         statusText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         statusText.gameObject.SetActive(false);
 
-        HybridStyleGraphic rules = MakeHybridSurface("Skills", parent, new Vector2(0, 40), new Vector2(250, 420),
+        HybridStyleGraphic rules = MakeHybridSurface("Skills", parent, new Vector2(0, 40), new Vector2(250, 450),
             dungeonPanelSprite, Panel, 5f, 14f);
-        MakeText("技能栏", rules.transform, new Vector2(0, 176), new Vector2(204, 30), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 145), new Vector2(204, 26), 13, Peach, TextAnchor.MiddleCenter);
+        MakeText("技能栏", rules.transform, new Vector2(0, 194), new Vector2(204, 30), 18, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        skillStatusText = MakeText("尚未解锁技能", rules.transform, new Vector2(0, 165), new Vector2(204, 24), 12, Peach, TextAnchor.MiddleCenter);
         for (int i = 0; i < skillButtons.Length; i++)
         {
             int slot = i;
-            skillButtons[i] = MakeHybridButton(rules.transform, new Vector2(0, 70 - i * 100), new Vector2(220, 82), "未解锁");
+            skillButtons[i] = MakeHybridButton(rules.transform, new Vector2(0, 108 - i * 76), new Vector2(220, 64), "未解锁");
             skillButtonLabels[i] = skillButtons[i].GetComponentInChildren<Text>();
+            skillButtonLabels[i].fontSize = 14;
             skillButtons[i].onClick.AddListener(() => HandleSkillButton(slot));
+        }
+        passiveStatusText = MakeText("被动槽", rules.transform, new Vector2(0, -103), new Vector2(210, 24), 12, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
+        for (int i = 0; i < passiveButtons.Length; i++)
+        {
+            int slot = i;
+            passiveButtons[i] = MakeHybridButton(rules.transform, new Vector2(-74 + i * 74, -157), new Vector2(66, 56), "空");
+            passiveButtonLabels[i] = passiveButtons[i].GetComponentInChildren<Text>();
+            passiveButtonLabels[i].fontSize = 12;
+            passiveButtons[i].onClick.AddListener(() => HandlePassiveButton(slot));
         }
 
         Vector2 controlsPosition = new Vector2(0, -320);
@@ -749,17 +783,35 @@ public sealed class KaitGame : MonoBehaviour
 
     private void BuildSkillChoiceOverlay(Transform parent)
     {
-        Image card = Rect("Skill Choice Side Panel", parent, new Vector2(0, -320), new Vector2(330, 220), Panel);
+        Image card = Rect("Growth Choice Panel", parent, new Vector2(0, 58), new Vector2(286, 420), Panel);
         SkinFlatPanel(card);
         skillChoiceOverlay = card.gameObject;
-        skillChoiceTitle = MakeText("选择成长", card.transform, new Vector2(0, 80), new Vector2(300, 26), 15, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
+        skillChoiceTitle = MakeText("选择成长 · 不停顿", card.transform, new Vector2(0, 188), new Vector2(250, 26), 14, Gold, TextAnchor.MiddleCenter, FontStyle.Bold);
+
+        Image activeGroup = Rect("Active Choice Group", card.transform, new Vector2(0, 91), new Vector2(258, 156), new Color(PanelLight.r, PanelLight.g, PanelLight.b, 0.55f));
+        SkinFlatPanel(activeGroup);
+        activeChoiceGroup = activeGroup.gameObject;
+        MakeText("主动技能 · 二选一", activeGroup.transform, new Vector2(0, 61), new Vector2(226, 22), 12, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         for (int i = 0; i < 2; i++)
         {
             int choice = i;
-            skillChoiceButtons[i] = MakeFlatButton(card.transform, new Vector2(-78 + i * 156, -18), new Vector2(148, 132), "");
+            skillChoiceButtons[i] = MakeFlatButton(activeGroup.transform, new Vector2(-59 + i * 118, -22), new Vector2(112, 98), "");
             skillChoiceLabels[i] = skillChoiceButtons[i].GetComponentInChildren<Text>();
-            skillChoiceLabels[i].fontSize = 12;
+            skillChoiceLabels[i].fontSize = 11;
             skillChoiceButtons[i].onClick.AddListener(() => ChoosePendingSkill(choice));
+        }
+
+        Image passiveGroup = Rect("Passive Choice Group", card.transform, new Vector2(0, -87), new Vector2(258, 184), new Color(PanelLight.r, PanelLight.g, PanelLight.b, 0.55f));
+        SkinFlatPanel(passiveGroup);
+        passiveChoiceGroup = passiveGroup.gameObject;
+        MakeText("被动牌 · 三选一", passiveGroup.transform, new Vector2(0, 75), new Vector2(226, 22), 12, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        for (int i = 0; i < 3; i++)
+        {
+            int choice = i;
+            passiveChoiceButtons[i] = MakeFlatButton(passiveGroup.transform, new Vector2(-82 + i * 82, -21), new Vector2(76, 120), "");
+            passiveChoiceLabels[i] = passiveChoiceButtons[i].GetComponentInChildren<Text>();
+            passiveChoiceLabels[i].fontSize = 10;
+            passiveChoiceButtons[i].onClick.AddListener(() => ChoosePendingPassive(choice));
         }
         skillChoiceOverlay.SetActive(false);
     }
@@ -802,7 +854,7 @@ public sealed class KaitGame : MonoBehaviour
             "击杀后立即选择新方向，可继续连杀；敌人未被击杀时会被推动，随后结束本回合。撞到边界可主动停止连杀。\n\n" +
             "单位信息\n" +
             "脚下色条是生命；半箭头 > 表示朝向。红色半透明警示线表示敌人下一次攻击范围。",
-            card.transform, new Vector2(-285, -22), new Vector2(520, 610), 24, Peach, TextAnchor.UpperLeft,
+            card.transform, new Vector2(-285, -22), new Vector2(520, 610), 26, Peach, TextAnchor.UpperLeft,
             FontStyle.Normal, false);
         left.font = threatBoardFont;
         left.lineSpacing = 0.98f;
@@ -813,10 +865,12 @@ public sealed class KaitGame : MonoBehaviour
             "敌人与攻击\n" +
             "近战敌人贴身攻击；弓手和术士先瞄准一回合、下一回合攻击。远程攻击默认会伤到路径上的其他敌人。\n\n" +
             "技能成长\n" +
-            "合成 16 / 32 / 64 时获得成长二选一。技能可随时释放，选择和释放都不额外消耗回合。\n\n" +
+            "合成 16 / 32 / 64 时，会同时出现主动技能二选一与被动牌三选一。候选栏不暂停游戏，未选完的成长会进入队列。\n\n" +
+            "被动构筑\n" +
+            "每局最多持有 3 张永久被动。被动会自动参与预览、2048 整理、出怪、推动、友伤或技能冷却；点击被动槽可查看一句话说明。\n\n" +
             "胜负与快捷键\n" +
             "击败盾骑士获胜；凯特生命归零失败。R：重新开始。设置中可单独关闭墙体或各类伤害。",
-            card.transform, new Vector2(285, -22), new Vector2(520, 610), 24, Peach, TextAnchor.UpperLeft,
+            card.transform, new Vector2(285, -22), new Vector2(520, 610), 26, Peach, TextAnchor.UpperLeft,
             FontStyle.Normal, false);
         right.font = threatBoardFont;
         right.lineSpacing = 0.98f;
@@ -951,6 +1005,8 @@ public sealed class KaitGame : MonoBehaviour
         displayKate = null;
         targetingSkill = KaitSkill.None;
         announcedSkillMilestone = 0;
+        announcedPassiveMilestone = 0;
+        Array.Clear(shownPassiveTriggerCounts, 0, shownPassiveTriggerCounts.Length);
         endAudioPlayed = false;
         kaitDefeatingEnemyId = -1;
         int seed = Environment.TickCount;
@@ -958,7 +1014,7 @@ public sealed class KaitGame : MonoBehaviour
         EnsureKaitSpine();
         kaitSpine?.PlayLoop(KaitSpineView.Idle);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
-        File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,internalMerges,internalSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,endReason\n", Encoding.UTF8);
+        File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,internalMerges,internalSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,passives,passiveTriggers,endReason\n", Encoding.UTF8);
         endOverlay.SetActive(false);
         skillChoiceOverlay.SetActive(false);
         if (controlsPanel != null) controlsPanel.SetActive(true);
@@ -1073,6 +1129,7 @@ public sealed class KaitGame : MonoBehaviour
         StartCoroutine(RunPhase(AnimateKateSlide(result, start), () => kateDone = true));
         if (!threatDone) StartCoroutine(RunPhase(AnimateThreat(result), () => threatDone = true));
         while (!kateDone || !threatDone) yield return null;
+        PlayPassiveTriggerFeedback(result);
 
         if (result.awaitingTurnChoice && run.chainActive)
         {
@@ -1196,28 +1253,53 @@ public sealed class KaitGame : MonoBehaviour
         else if (run.skills.Count == 0) skillStatusText.text = "尚未解锁技能";
         else if (run.dreadSlashArmed) skillStatusText.text = "惊惧斩已准备：输入一个方向发动";
         else skillStatusText.text = string.Join(" · ", run.skills.ConvertAll(KaitRun.SkillName));
+        RefreshPassiveUI();
     }
 
     private void ShowPendingSkillChoice()
     {
-        int milestone = run.pendingSkillMilestone;
-        if (milestone == 0 || run.ended)
+        int activeMilestone = run.pendingSkillMilestone;
+        int passiveMilestone = run.pendingPassiveMilestone;
+        if ((activeMilestone == 0 && passiveMilestone == 0) || run.ended)
         {
             skillChoiceOverlay.SetActive(false);
             if (controlsPanel != null) controlsPanel.SetActive(!run.ended);
             return;
         }
-        List<KaitSkill> choices = run.SkillChoicesForMilestone(milestone);
-        if (choices.Count != 2) return;
-        if (announcedSkillMilestone != milestone)
+        bool showActive = activeMilestone != 0;
+        bool showPassive = passiveMilestone != 0;
+        activeChoiceGroup.SetActive(showActive);
+        passiveChoiceGroup.SetActive(showPassive);
+        if (showActive)
         {
-            announcedSkillMilestone = milestone;
+            List<KaitSkill> choices = run.SkillChoicesForMilestone(activeMilestone);
+            for (int i = 0; i < skillChoiceButtons.Length; i++)
+            {
+                bool visible = i < choices.Count;
+                skillChoiceButtons[i].gameObject.SetActive(visible);
+                if (visible) skillChoiceLabels[i].text = SkillChoiceDescription(choices[i]);
+            }
+        }
+        if (showPassive)
+        {
+            List<KaitPassive> choices = run.PassiveChoicesForMilestone(passiveMilestone);
+            for (int i = 0; i < passiveChoiceButtons.Length; i++)
+            {
+                bool visible = i < choices.Count;
+                passiveChoiceButtons[i].gameObject.SetActive(visible);
+                if (visible) passiveChoiceLabels[i].text = PassiveChoiceDescription(choices[i]);
+            }
+        }
+        int titleMilestone = activeMilestone != 0 ? activeMilestone : passiveMilestone;
+        skillChoiceTitle.text = $"合成 {titleMilestone} · 不停顿选择";
+        if ((showActive && announcedSkillMilestone != activeMilestone) || (showPassive && announcedPassiveMilestone != passiveMilestone))
+        {
+            announcedSkillMilestone = activeMilestone;
+            announcedPassiveMilestone = passiveMilestone;
             GameAudio.PlaySkillReady();
         }
-        skillChoiceTitle.text = $"合成 {milestone} · 选择一个成长";
-        for (int i = 0; i < 2; i++) skillChoiceLabels[i].text = SkillChoiceDescription(choices[i]);
         skillChoiceOverlay.SetActive(true);
-        if (controlsPanel != null) controlsPanel.SetActive(false);
+        if (controlsPanel != null) controlsPanel.SetActive(!run.ended);
         skillChoiceOverlay.transform.SetAsLastSibling();
     }
 
@@ -1230,6 +1312,46 @@ public sealed class KaitGame : MonoBehaviour
         targetingSkill = KaitSkill.None;
         statusText.text = $"已获得：{KaitRun.SkillName(choices[choiceIndex])}（不消耗回合）";
         RefreshAll();
+    }
+
+    private void ChoosePendingPassive(int choiceIndex)
+    {
+        if (busy || run.pendingPassiveMilestone == 0) return;
+        List<KaitPassive> choices = run.PassiveChoicesForMilestone(run.pendingPassiveMilestone);
+        if (choiceIndex < 0 || choiceIndex >= choices.Count || !run.ChoosePassive(choices[choiceIndex])) return;
+        GameAudio.PlayClick();
+        statusText.text = $"已获得被动：{KaitPassiveCatalog.Name(choices[choiceIndex])}（永久生效）";
+        RefreshAll();
+    }
+
+    private void HandlePassiveButton(int slot)
+    {
+        if (slot < 0 || slot >= run.passives.Count) return;
+        GameAudio.PlayClick();
+        KaitPassive passive = run.passives[slot];
+        passiveStatusText.text = $"{KaitPassiveCatalog.Name(passive)}：{KaitPassiveCatalog.Description(passive)}";
+    }
+
+    private void RefreshPassiveUI()
+    {
+        for (int i = 0; i < passiveButtons.Length; i++)
+        {
+            bool owned = i < run.passives.Count;
+            KaitPassive passive = owned ? run.passives[i] : KaitPassive.None;
+            passiveButtonLabels[i].text = owned ? KaitPassiveCatalog.ShortName(passive) : "空";
+            passiveButtons[i].interactable = owned;
+            HybridStyleButton hybrid = passiveButtons[i] as HybridStyleButton;
+            if (hybrid != null) hybrid.SetAccent(owned ? Wine : PanelLight);
+            if (!owned) { shownPassiveTriggerCounts[i] = 0; continue; }
+            int triggerCount = run.PassiveTriggerCount(passive);
+            if (triggerCount > shownPassiveTriggerCounts[i])
+            {
+                shownPassiveTriggerCounts[i] = triggerCount;
+                passiveStatusText.text = $"触发 · {KaitPassiveCatalog.Name(passive)}";
+                StartCoroutine(ScalePulse(passiveButtons[i].GetComponent<RectTransform>(), 0.9f, 1.12f, 0.16f));
+            }
+        }
+        if (run.passives.Count == 0) passiveStatusText.text = "被动槽";
     }
 
     private void HandleSkillButton(int slot)
@@ -1299,6 +1421,23 @@ public sealed class KaitGame : MonoBehaviour
         RefreshAll();
     }
 
+    private void PlayPassiveTriggerFeedback(KaitTurnResult result)
+    {
+        foreach (KaitPassiveTrigger trigger in result.passiveTriggers)
+        {
+            if (trigger.threatCell.x >= 0 && trigger.threatCell.y >= 0 && trigger.threatCell.x < run.ThreatSize && trigger.threatCell.y < run.ThreatSize)
+            {
+                int threatIndex = trigger.threatCell.x + trigger.threatCell.y * run.ThreatSize;
+                StartCoroutine(ScalePulse(threatCells[threatIndex].rectTransform, 0.94f, 1.08f, 0.14f));
+            }
+            if (trigger.battleCell.x > 0 && trigger.battleCell.y > 0 && trigger.battleCell.x < KaitRun.BattleSize - 1 && trigger.battleCell.y < KaitRun.BattleSize - 1)
+            {
+                int battleIndex = trigger.battleCell.x + trigger.battleCell.y * KaitRun.BattleSize;
+                StartCoroutine(ScalePulse(battleCellTints[battleIndex].rectTransform, 0.94f, 1.08f, 0.14f));
+            }
+        }
+    }
+
     private IEnumerator AnimateShadowStep(Vector2Int start)
     {
         PlayGroundSmokeBurst(start, Vector2Int.zero, new Color(0.68f, 0.64f, 0.78f, 0.72f),
@@ -1336,6 +1475,26 @@ public sealed class KaitGame : MonoBehaviour
             case KaitSkill.CatAgility: return "猫之迅捷\n当前回合动量 ×2\n冷却 5 回合";
             case KaitSkill.ShadowStep: return "踏影（被动）\n击杀后可额外向前 1 格\n不推进任何全局时间";
             default: return "";
+        }
+    }
+
+    private static string PassiveChoiceDescription(KaitPassive passive)
+    {
+        switch (passive)
+        {
+            case KaitPassive.BirdEye: return "鸦后之眼\n预览下一枚 2\n的出生位置";
+            case KaitPassive.OldNewsArchive: return "旧闻归档\n第 5 枚 2 出现时\n合并最早两枚";
+            case KaitPassive.Simplify: return "化零为整\n同回合同级出怪\n压缩为高一级";
+            case KaitPassive.BloodBookmark: return "血色书签\n连杀终点接收\n下次受阻出怪";
+            case KaitPassive.MomentumResonance: return "念动力共振\n首次推动同时\n牵动右盘数字";
+            case KaitPassive.Devil: return "魔手\n主动技能联动\n另一技能 CD-1";
+            case KaitPassive.CheshireCat: return "猫戏老鼠\n敌军友伤最低\n保留 1 点生命";
+            case KaitPassive.Squeeze: return "挤压\n出怪受阻时先\n推开占位敌人";
+            case KaitPassive.Follower: return "尾随者\n后续敌人靠近\n本回合首名敌人";
+            case KaitPassive.BladeCovenant: return "刃之魔契\n连杀每满 3 人\n主动技能 CD-1";
+            case KaitPassive.Trend: return "定势\n新 2 从移动方向\n反侧生成";
+            case KaitPassive.SweepTail: return "鸦羽扫尾\n主动刹车清除\n对应位置的 2";
+            default: return string.Empty;
         }
     }
 
@@ -1507,6 +1666,14 @@ public sealed class KaitGame : MonoBehaviour
                     continue;
                 }
                 int value = displayedThreat == null ? run.threat[x, y] : displayedThreat[x, y];
+                bool previewTwo = displayedThreat == null && !hideThreatValues && value == 0 && run.HasPassive(KaitPassive.BirdEye) && run.nextThreatTwoPreview == cell;
+                if (previewTwo)
+                {
+                    threatLabels[index].text = "2";
+                    threatCells[index].color = Color.Lerp(ThreatColor(0), ThreatColor(2), 0.48f);
+                    threatLabels[index].color = new Color(Void.r, Void.g, Void.b, 0.52f);
+                    continue;
+                }
                 threatLabels[index].text = value == 0 || hideThreatValues ? "" : value.ToString();
                 threatCells[index].color = ThreatColor(value);
                 threatLabels[index].color = value >= 16 ? Cream : Void;
@@ -2672,7 +2839,9 @@ public sealed class KaitGame : MonoBehaviour
         int occupied = 0;
         foreach (int value in run.threat) if (value != 0) occupied++;
         float occupancy = occupied / (float)run.threat.Length;
-        string line = $"{run.turn},{result.globalDirection},{result.kaitWaited},{result.threatChanged},{result.chainStepCount},{result.chainKillCount},{result.chainPower},{result.chainMoves},{result.chainEndedByStrongEnemy},{result.chainEndedByWall},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.directKills},{run.nonLethalHits},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.activeWallStops},{run.spawnSuppressedCount},{run.riftBlocks},{run.wallSuppressedSpawns},{run.internalMergeCount},{run.internalSpawnCount},{run.clusterClearCount},{run.threatOrientedWaitCount},{run.emptyMapReachable},{run.emptyMapMaxInputs},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{run.endReason}\n";
+        string passiveList = string.Join("|", run.passives.ConvertAll(KaitPassiveCatalog.ShortName));
+        string passiveTriggers = string.Join("|", result.passiveTriggers.ConvertAll(trigger => KaitPassiveCatalog.ShortName(trigger.passive)));
+        string line = $"{run.turn},{result.globalDirection},{result.kaitWaited},{result.threatChanged},{result.chainStepCount},{result.chainKillCount},{result.chainPower},{result.chainMoves},{result.chainEndedByStrongEnemy},{result.chainEndedByWall},{start.x}:{start.y},{run.katePos.x}:{run.katePos.y},{run.kateHp},{result.slideDistance},{result.damageDealt},{run.kills},{run.directKills},{run.nonLethalHits},{run.chainActive},{run.momentum},{run.highestMomentum},{run.longestChainKills},{run.pushCount},{run.friendlyFireDamage},{run.activeWallStops},{run.spawnSuppressedCount},{run.riftBlocks},{run.wallSuppressedSpawns},{run.internalMergeCount},{run.internalSpawnCount},{run.clusterClearCount},{run.threatOrientedWaitCount},{run.emptyMapReachable},{run.emptyMapMaxInputs},{run.enemies.FindAll(e => e.life != KaitEnemyLife.Dead).Count},{run.spawns.Count},{run.highestThreat},{occupancy:F3},{run.threatLocks},{passiveList},{passiveTriggers},{run.endReason}\n";
         File.AppendAllText(logPath, line, Encoding.UTF8);
     }
 
@@ -2698,9 +2867,56 @@ public sealed class KaitGame : MonoBehaviour
         }
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        ScreenCapture.CaptureScreenshot(path, 1);
-        yield return new WaitForSecondsRealtime(1f);
+        CaptureCanvasToPng(path);
+        yield return new WaitForSecondsRealtime(0.2f);
         Application.Quit();
+    }
+
+    private void CaptureCanvasToPng(string path)
+    {
+        const int width = 1920, height = 1080;
+        RenderMode previousMode = canvas.renderMode;
+        Camera previousCamera = canvas.worldCamera;
+        float previousPlaneDistance = canvas.planeDistance;
+        RenderTexture previousActive = RenderTexture.active;
+        var cameraObject = new GameObject("Automated Screenshot Camera", typeof(Camera));
+        Camera captureCamera = cameraObject.GetComponent<Camera>();
+        RenderTexture target = RenderTexture.GetTemporary(width, height, 24, RenderTextureFormat.ARGB32);
+        var texture = new Texture2D(width, height, TextureFormat.RGB24, false);
+        try
+        {
+            captureCamera.clearFlags = CameraClearFlags.SolidColor;
+            captureCamera.backgroundColor = Color.black;
+            captureCamera.orthographic = true;
+            captureCamera.orthographicSize = height * 0.5f;
+            captureCamera.aspect = width / (float)height;
+            captureCamera.nearClipPlane = 0.01f;
+            captureCamera.farClipPlane = 100f;
+            captureCamera.transform.position = new Vector3(0f, 0f, -10f);
+            captureCamera.targetTexture = target;
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = captureCamera;
+            canvas.planeDistance = 10f;
+            Canvas.ForceUpdateCanvases();
+            captureCamera.Render();
+            RenderTexture.active = target;
+            texture.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            texture.Apply(false);
+            string directory = Path.GetDirectoryName(path);
+            if (!string.IsNullOrEmpty(directory)) Directory.CreateDirectory(directory);
+            File.WriteAllBytes(path, texture.EncodeToPNG());
+        }
+        finally
+        {
+            canvas.renderMode = previousMode;
+            canvas.worldCamera = previousCamera;
+            canvas.planeDistance = previousPlaneDistance;
+            RenderTexture.active = previousActive;
+            captureCamera.targetTexture = null;
+            RenderTexture.ReleaseTemporary(target);
+            Destroy(texture);
+            Destroy(cameraObject);
+        }
     }
 
     private static string CommandLineValue(string key)
