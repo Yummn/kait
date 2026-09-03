@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: f68bcc1ea9711dc48b0ab2aa3a201e68
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3950603179076406236
+    second: Buff_Effect_bingdong_1_tx_0
+  - first:
+      213: 6695287975776260876
+    second: Buff_Effect_bingdong_1_tx_1
+  - first:
+      213: -6346532337137632195
+    second: Buff_Effect_bingdong_1_tx_2
+  - first:
+      213: 5703489203650971491
+    second: Buff_Effect_bingdong_1_tx_3
+  - first:
+      213: -2845618812701344902
+    second: Buff_Effect_bingdong_1_tx_4
+  - first:
+      213: -2425509719121772825
+    second: Buff_Effect_bingdong_1_tx_5
+  - first:
+      213: 357572016683309511
+    second: Buff_Effect_bingdong_1_tx_6
+  - first:
+      213: 5831109935969713085
+    second: Buff_Effect_bingdong_1_tx_7
+  - first:
+      213: 2391810564456130062
+    second: Buff_Effect_bingdong_1_tx_8
+  - first:
+      213: 4591205680503754329
+    second: Buff_Effect_bingdong_1_tx_9
+  - first:
+      213: -4868366162407032880
+    second: Buff_Effect_bingdong_1_tx_10
+  - first:
+      213: -6228846069594381159
+    second: Buff_Effect_bingdong_1_tx_11
+  - first:
+      213: -69075745794223663
+    second: Buff_Effect_bingdong_1_tx_12
+  - first:
+      213: -5499711122651667470
+    second: Buff_Effect_bingdong_1_tx_13
+  - first:
+      213: -1914036498395302451
+    second: Buff_Effect_bingdong_1_tx_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1609
+        width: 195
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdbc06109ac53d630800000000000000
+      internalID: 3950603179076406236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1495
+        width: 195
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c039619d0f07aec50800000000000000
+      internalID: 6695287975776260876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1381
+        width: 195
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3cb169f6769ce7a0800000000000000
+      internalID: -6346532337137632195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1267
+        width: 195
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36744eb563dd62f40800000000000000
+      internalID: 5703489203650971491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1153
+        width: 195
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b74ce34c45288d0800000000000000
+      internalID: -2845618812701344902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_5
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1039
+        width: 195
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee3d78e2cbd65ed0800000000000000
+      internalID: -2425509719121772825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 924
+        width: 195
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9570ccad956f400800000000000000
+      internalID: 357572016683309511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 809
+        width: 195
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbb9bb97934ce050800000000000000
+      internalID: 5831109935969713085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 694
+        width: 195
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e062f68390b613120800000000000000
+      internalID: 2391810564456130062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 579
+        width: 195
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95e8e2dbd3d37bf30800000000000000
+      internalID: 4591205680503754329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 464
+        width: 195
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7723dd4c6107cb0800000000000000
+      internalID: -4868366162407032880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_11
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 349
+        width: 195
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9942d356081be89a0800000000000000
+      internalID: -6228846069594381159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 233
+        width: 195
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d11755a9f79a0ff0800000000000000
+      internalID: -69075745794223663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 117
+        width: 195
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f325176fd91da3b0800000000000000
+      internalID: -5499711122651667470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_bingdong_1_tx_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1
+        width: 195
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc5f30a12f9ff65e0800000000000000
+      internalID: -1914036498395302451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Buff_Effect_bingdong_1_tx_0: 3950603179076406236
+      Buff_Effect_bingdong_1_tx_1: 6695287975776260876
+      Buff_Effect_bingdong_1_tx_10: -4868366162407032880
+      Buff_Effect_bingdong_1_tx_11: -6228846069594381159
+      Buff_Effect_bingdong_1_tx_12: -69075745794223663
+      Buff_Effect_bingdong_1_tx_13: -5499711122651667470
+      Buff_Effect_bingdong_1_tx_14: -1914036498395302451
+      Buff_Effect_bingdong_1_tx_2: -6346532337137632195
+      Buff_Effect_bingdong_1_tx_3: 5703489203650971491
+      Buff_Effect_bingdong_1_tx_4: -2845618812701344902
+      Buff_Effect_bingdong_1_tx_5: -2425509719121772825
+      Buff_Effect_bingdong_1_tx_6: 357572016683309511
+      Buff_Effect_bingdong_1_tx_7: 5831109935969713085
+      Buff_Effect_bingdong_1_tx_8: 2391810564456130062
+      Buff_Effect_bingdong_1_tx_9: 4591205680503754329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

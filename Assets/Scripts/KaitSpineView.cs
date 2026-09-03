@@ -29,9 +29,76 @@ public sealed class KaitSpineView
     private readonly RectTransform skeletonRect;
     private readonly Material flashMaterial;
     private readonly float rightFacingVisualX;
+    private float[] weaponWorldVertices = new float[8];
 
     public RectTransform Root => root;
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
+
+    public bool TryGetSwordTipWorldPosition(out Vector3 worldPosition)
+    {
+        worldPosition = root != null ? root.position : Vector3.zero;
+        if (!IsReady || skeletonRect == null) return false;
+
+        // Follow the visible attachment geometry rather than Bone.Data.Length.
+        // Makoto's weapon bones have almost no authored length, while the
+        // region itself contains the actual blade shape. The weapon vertex
+        // farthest from the character root is the sword tip and remains
+        // correct when the skeleton is mirrored.
+        // Both attack clips explicitly render the blade through weaponMainF.
+        // Other weapon slots can retain setup-pose attachments while hidden;
+        // including them would make the sampled point stick near Kait's feet.
+        string[] candidates = { "weaponMainF" };
+        Vector2 characterRoot = graphic.Skeleton.RootBone == null
+            ? Vector2.zero
+            : new Vector2(graphic.Skeleton.RootBone.WorldX, graphic.Skeleton.RootBone.WorldY);
+        Vector2 bestTip = Vector2.zero;
+        float bestTipDistance = -1f;
+        foreach (string slotName in candidates)
+        {
+            Slot slot = graphic.Skeleton.FindSlot(slotName);
+            if (slot == null || slot.Attachment == null || slot.A <= 0.02f) continue;
+
+            int vertexValueCount;
+            if (slot.Attachment is RegionAttachment region)
+            {
+                vertexValueCount = 8;
+                region.ComputeWorldVertices(slot.Bone, weaponWorldVertices, 0);
+            }
+            else if (slot.Attachment is VertexAttachment vertexAttachment)
+            {
+                vertexValueCount = vertexAttachment.WorldVerticesLength;
+                if (vertexValueCount < 4) continue;
+                if (weaponWorldVertices.Length < vertexValueCount)
+                    weaponWorldVertices = new float[vertexValueCount];
+                vertexAttachment.ComputeWorldVertices(slot, weaponWorldVertices);
+            }
+            else
+            {
+                continue;
+            }
+
+            for (int i = 0; i < vertexValueCount; i += 2)
+            {
+                Vector2 vertex = new Vector2(weaponWorldVertices[i], weaponWorldVertices[i + 1]);
+                float distance = (vertex - characterRoot).sqrMagnitude;
+                if (distance > bestTipDistance)
+                {
+                    bestTipDistance = distance;
+                    bestTip = vertex;
+                }
+            }
+        }
+        if (bestTipDistance < 0f) return false;
+        // SkeletonGraphic multiplies every generated mesh vertex by the
+        // Canvas reference-pixels-per-unit value. ComputeWorldVertices returns
+        // the original Spine-space value, so applying only TransformPoint left
+        // the sampled tip about 100 times too close to the skeleton origin
+        // (visually, at Kait's feet).
+        float uiVertexScale = graphic.canvas != null ? graphic.canvas.referencePixelsPerUnit : 100f;
+        Vector2 uiTip = bestTip * uiVertexScale;
+        worldPosition = skeletonRect.TransformPoint(new Vector3(uiTip.x, uiTip.y, 0f));
+        return true;
+    }
 
     private KaitSpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX, Material flashMaterial)
     {

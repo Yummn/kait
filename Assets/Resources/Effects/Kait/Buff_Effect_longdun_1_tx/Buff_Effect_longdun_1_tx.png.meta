@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 8d5a120c001087649907c09f728ba461
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5070379402024663810
+    second: Buff_Effect_longdun_1_tx_0
+  - first:
+      213: -6384788364898513417
+    second: Buff_Effect_longdun_1_tx_1
+  - first:
+      213: -7883686550564403864
+    second: Buff_Effect_longdun_1_tx_2
+  - first:
+      213: -24251593433374328
+    second: Buff_Effect_longdun_1_tx_3
+  - first:
+      213: 5801128256404305500
+    second: Buff_Effect_longdun_1_tx_4
+  - first:
+      213: -8937303572562047044
+    second: Buff_Effect_longdun_1_tx_5
+  - first:
+      213: 6960896079067284505
+    second: Buff_Effect_longdun_1_tx_6
+  - first:
+      213: 6163185319412220882
+    second: Buff_Effect_longdun_1_tx_7
+  - first:
+      213: -7410303736313031988
+    second: Buff_Effect_longdun_1_tx_8
+  - first:
+      213: 2128662545795275578
+    second: Buff_Effect_longdun_1_tx_9
+  - first:
+      213: 1602588007837893546
+    second: Buff_Effect_longdun_1_tx_10
+  - first:
+      213: -2119619881607062196
+    second: Buff_Effect_longdun_1_tx_11
+  - first:
+      213: -7735645972449902589
+    second: Buff_Effect_longdun_1_tx_12
+  - first:
+      213: 8809678282730001231
+    second: Buff_Effect_longdun_1_tx_13
+  - first:
+      213: -374891972277075992
+    second: Buff_Effect_longdun_1_tx_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1
+        width: 178
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4ccd14cc462a9b0800000000000000
+      internalID: -5070379402024663810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1
+        width: 178
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fd4d286fcca467a0800000000000000
+      internalID: -6384788364898513417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_2
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1
+        width: 178
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86585111ad4879290800000000000000
+      internalID: -7883686550564403864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_3
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 1
+        width: 176
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 881aa24ed47d9aff0800000000000000
+      internalID: -24251593433374328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_4
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 170
+        width: 171
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56b57bd96fb18050800000000000000
+      internalID: 5801128256404305500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_5
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 1
+        width: 178
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf0c9ba0c158f380800000000000000
+      internalID: -8937303572562047044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_6
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 169
+        width: 171
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914073f7a121a9060800000000000000
+      internalID: 6960896079067284505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_7
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 167
+        width: 173
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d3c770e468088550800000000000000
+      internalID: 6163185319412220882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_8
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 1
+        width: 166
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2df476300592990800000000000000
+      internalID: -7410303736313031988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_9
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 1
+        width: 165
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b5ec8ae478a8d10800000000000000
+      internalID: 2128662545795275578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_10
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 1
+        width: 162
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa38a706d498d3610800000000000000
+      internalID: 1602588007837893546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_11
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 1
+        width: 162
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4d94f9a2f89592e0800000000000000
+      internalID: -2119619881607062196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_12
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 1
+        width: 176
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30041f729f675a490800000000000000
+      internalID: -7735645972449902589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_13
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 1
+        width: 176
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f435893f8b3424a70800000000000000
+      internalID: 8809678282730001231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_longdun_1_tx_14
+      rect:
+        serializedVersion: 2
+        x: 1897
+        y: 1
+        width: 129
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ef774bccbd1ccaf0800000000000000
+      internalID: -374891972277075992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Buff_Effect_longdun_1_tx_0: -5070379402024663810
+      Buff_Effect_longdun_1_tx_1: -6384788364898513417
+      Buff_Effect_longdun_1_tx_10: 1602588007837893546
+      Buff_Effect_longdun_1_tx_11: -2119619881607062196
+      Buff_Effect_longdun_1_tx_12: -7735645972449902589
+      Buff_Effect_longdun_1_tx_13: 8809678282730001231
+      Buff_Effect_longdun_1_tx_14: -374891972277075992
+      Buff_Effect_longdun_1_tx_2: -7883686550564403864
+      Buff_Effect_longdun_1_tx_3: -24251593433374328
+      Buff_Effect_longdun_1_tx_4: 5801128256404305500
+      Buff_Effect_longdun_1_tx_5: -8937303572562047044
+      Buff_Effect_longdun_1_tx_6: 6960896079067284505
+      Buff_Effect_longdun_1_tx_7: 6163185319412220882
+      Buff_Effect_longdun_1_tx_8: -7410303736313031988
+      Buff_Effect_longdun_1_tx_9: 2128662545795275578
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

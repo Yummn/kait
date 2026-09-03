@@ -1,0 +1,90 @@
+Buff_Effect_fuhuo_2_tx.png
+size: 1832, 276
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+chutu/dieying/d5/d5_00057
+  rotate: false
+  xy: 1721, 14
+  size: 98, 102
+  orig: 135, 134
+  offset: 18, 17
+  index: -1
+chutu/dieying/d6/d6_00063
+  rotate: false
+  xy: 3, 3
+  size: 273, 271
+  orig: 547, 546
+  offset: 141, 141
+  index: -1
+chutu/dieying/d7/d7_00057
+  rotate: true
+  xy: 1710, 118
+  size: 156, 117
+  orig: 274, 251
+  offset: 62, 38
+  index: -1
+chutu/dieying/d7/d7_00059
+  rotate: true
+  xy: 1028, 20
+  size: 254, 167
+  orig: 274, 251
+  offset: 10, 19
+  index: -1
+chutu/dieying/d7/d7_00061
+  rotate: true
+  xy: 278, 3
+  size: 254, 186
+  orig: 274, 251
+  offset: 10, 18
+  index: -1
+chutu/dieying/d7/d7_00063
+  rotate: true
+  xy: 466, 3
+  size: 252, 187
+  orig: 274, 251
+  offset: 13, 17
+  index: -1
+chutu/dieying/d7/d7_00065
+  rotate: true
+  xy: 655, 3
+  size: 251, 184
+  orig: 274, 251
+  offset: 13, 20
+  index: -1
+chutu/dieying/d7/d7_00067
+  rotate: true
+  xy: 841, 3
+  size: 234, 185
+  orig: 274, 251
+  offset: 29, 19
+  index: -1
+chutu/dieying/d7/d7_00069
+  rotate: true
+  xy: 1197, 20
+  size: 211, 176
+  orig: 274, 251
+  offset: 49, 24
+  index: -1
+chutu/dieying/d7/d7_00071
+  rotate: false
+  xy: 1375, 54
+  size: 173, 177
+  orig: 274, 251
+  offset: 59, 23
+  index: -1
+chutu/dieying/d7/d7_00073
+  rotate: false
+  xy: 1550, 100
+  size: 158, 174
+  orig: 274, 251
+  offset: 59, 21
+  index: -1
+chutu/dieying/d7/d7_00075
+  rotate: true
+  xy: 1550, 11
+  size: 87, 169
+  orig: 274, 251
+  offset: 133, 20
+  index: -1
+

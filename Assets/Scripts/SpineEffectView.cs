@@ -4,6 +4,7 @@ using UnityEngine;
 public sealed class SpineEffectView
 {
     private static Material sharedGraphicMaterial;
+    private static Material sharedHybridGraphicMaterial;
     private readonly SkeletonGraphic graphic;
     private readonly RectTransform root;
     private readonly RectTransform skeletonRect;
@@ -11,6 +12,7 @@ public sealed class SpineEffectView
 
     public RectTransform Root => root;
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
+    public float Duration { get; private set; }
 
     private SpineEffectView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, string animationName)
     {
@@ -20,7 +22,9 @@ public sealed class SpineEffectView
         this.animationName = animationName;
     }
 
-    public static SpineEffectView Create(SkeletonDataAsset data, Transform parent, Vector2 size, string animationName, string name)
+    public static SpineEffectView Create(SkeletonDataAsset data, Transform parent, Vector2 size,
+        string animationName, string name, float playbackSpeed = 1f, float fit = 0.94f,
+        bool hybridStyle = true)
     {
         if (data == null || parent == null || string.IsNullOrEmpty(animationName)) return null;
 
@@ -31,24 +35,18 @@ public sealed class SpineEffectView
         hostRect.sizeDelta = size;
         hostRect.anchoredPosition = Vector2.zero;
 
-        if (sharedGraphicMaterial == null)
-            sharedGraphicMaterial = Resources.Load<Material>("Characters/Makoto/KaitSkeletonGraphic");
-        if (sharedGraphicMaterial == null)
+        Material graphicMaterial = hybridStyle ? HybridMaterial() : DefaultMaterial();
+        if (graphicMaterial == null)
         {
-            Shader shader = Shader.Find("Spine/SkeletonGraphic");
-            if (shader == null)
-            {
-                Object.Destroy(host);
-                return null;
-            }
-            sharedGraphicMaterial = new Material(shader) { name = "Spine Effect UI Material" };
+            Object.Destroy(host);
+            return null;
         }
 
-        SkeletonGraphic skeletonGraphic = SkeletonGraphic.NewSkeletonGraphicGameObject(data, hostRect, sharedGraphicMaterial);
+        SkeletonGraphic skeletonGraphic = SkeletonGraphic.NewSkeletonGraphicGameObject(data, hostRect, graphicMaterial);
         skeletonGraphic.name = name + " Skeleton";
         skeletonGraphic.raycastTarget = false;
         skeletonGraphic.unscaledTime = true;
-        skeletonGraphic.timeScale = 1f;
+        skeletonGraphic.timeScale = Mathf.Max(0.01f, playbackSpeed);
         skeletonGraphic.Initialize(false);
         if (skeletonGraphic.Skeleton == null || skeletonGraphic.AnimationState == null ||
             skeletonGraphic.Skeleton.Data.FindAnimation(animationName) == null)
@@ -57,8 +55,9 @@ public sealed class SpineEffectView
             return null;
         }
 
-        skeletonGraphic.AnimationState.SetAnimation(0, animationName, true);
-        skeletonGraphic.Update(0.35f);
+        Spine.Animation animation = skeletonGraphic.Skeleton.Data.FindAnimation(animationName);
+        skeletonGraphic.AnimationState.SetAnimation(0, animationName, false);
+        skeletonGraphic.Update(Mathf.Min(0.35f, animation.Duration * 0.45f));
         skeletonGraphic.MatchRectTransformWithBounds();
 
         RectTransform graphicRect = skeletonGraphic.rectTransform;
@@ -68,13 +67,40 @@ public sealed class SpineEffectView
         graphicRect.sizeDelta = meshBounds.size;
         float width = Mathf.Max(0.01f, meshBounds.size.x);
         float height = Mathf.Max(0.01f, meshBounds.size.y);
-        float scale = Mathf.Min(size.x * 0.94f / width, size.y * 0.94f / height);
+        float scale = Mathf.Min(size.x * fit / width, size.y * fit / height);
         graphicRect.localScale = Vector3.one * scale;
         graphicRect.anchoredPosition = -new Vector2(meshBounds.center.x, meshBounds.center.y) * scale;
-        skeletonGraphic.AnimationState.SetAnimation(0, animationName, true);
+        skeletonGraphic.AnimationState.SetAnimation(0, animationName, false);
         skeletonGraphic.Update(0f);
 
-        return new SpineEffectView(hostRect, skeletonGraphic, graphicRect, animationName);
+        var view = new SpineEffectView(hostRect, skeletonGraphic, graphicRect, animationName)
+        {
+            Duration = animation.Duration / Mathf.Max(0.01f, playbackSpeed)
+        };
+        return view;
+    }
+
+    private static Material DefaultMaterial()
+    {
+        if (sharedGraphicMaterial != null) return sharedGraphicMaterial;
+        sharedGraphicMaterial = Resources.Load<Material>("Characters/Makoto/KaitSkeletonGraphic");
+        if (sharedGraphicMaterial != null) return sharedGraphicMaterial;
+        Shader shader = Shader.Find("Spine/SkeletonGraphic");
+        if (shader != null) sharedGraphicMaterial = new Material(shader) { name = "Spine Effect UI Material" };
+        return sharedGraphicMaterial;
+    }
+
+    private static Material HybridMaterial()
+    {
+        if (sharedHybridGraphicMaterial != null) return sharedHybridGraphicMaterial;
+        Shader shader = Resources.Load<Shader>("Shaders/SpineEffectHybrid");
+        if (shader == null) shader = Shader.Find("Spine/SkeletonGraphic Hybrid Effect");
+        if (shader == null) return DefaultMaterial();
+        sharedHybridGraphicMaterial = new Material(shader) { name = "Spine Hybrid Effect UI Material" };
+        sharedHybridGraphicMaterial.SetFloat("_SplitBottom", 0.447f);
+        sharedHybridGraphicMaterial.SetFloat("_SplitTop", 0.563f);
+        sharedHybridGraphicMaterial.SetFloat("_PixelSize", 3f);
+        return sharedHybridGraphicMaterial;
     }
 
     public void SetParent(Transform parent, int siblingIndex = -1)
@@ -94,9 +120,24 @@ public sealed class SpineEffectView
         if (visible)
         {
             var current = graphic.AnimationState.GetCurrent(0);
-            if (current == null || current.Animation == null || current.Animation.Name != animationName || !current.Loop)
-                graphic.AnimationState.SetAnimation(0, animationName, true);
+            if (current == null || current.Animation == null || current.Animation.Name != animationName)
+                graphic.AnimationState.SetAnimation(0, animationName, false);
         }
+    }
+
+    public void SetTint(Color color)
+    {
+        if (graphic != null) graphic.color = color;
+    }
+
+    public void SetRotation(float degrees)
+    {
+        if (root != null) root.localRotation = Quaternion.Euler(0f, 0f, degrees);
+    }
+
+    public void SetScale(float scale)
+    {
+        if (root != null) root.localScale = Vector3.one * scale;
     }
 
     public void Destroy()

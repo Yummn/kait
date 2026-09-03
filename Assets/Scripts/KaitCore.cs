@@ -17,7 +17,8 @@ public enum KaitSpeedModifier { AddOne, Double }
     public int baseMomentum = 0, momentumPerEmptyCell = 1, momentumLossOnKill = 0;
     public int kateMaxHp = 3, wallCollisionDamage = 1, unitCollisionDamage = 1, riftBlockDamage = 1;
     public int archerRange = 3;
-    public bool enablePush = true, enableFriendlyFire = true, enableInternalObstacle = true;
+    public bool enablePush = true, enableFriendlyFire = true, enableInternalObstacle = true, enableThreatPillars = true;
+    public bool playerInvincible, enableRiftDamage = true, enableCollisionDamage = true;
 }
 
 [Serializable] public sealed class KaitMergeEvent { public int resultValue; public Vector2Int threatCell; public bool spawnSuppressed; }
@@ -74,7 +75,7 @@ public sealed class KaitTurnResult
     public int slideDistance, damagedEnemyId = -1, damageDealt, enemyHpAfter = -1, momentumBefore, momentumAfter;
     public int collisionDamage, friendlyFireDamage, riftBlockDamage, playerDamage;
     public int spawnSuppressed;
-    public bool pushed, pushBlockedByWall, pushBlockedByUnit, activeBrake, stoppedByWall;
+    public bool pushed, pushBlockedByWall, pushBlockedByUnit, activeBrake, stoppedByWall, playerAttackBlocked;
     public bool threatChanged, kaitWaited;
     public KaitDirection globalDirection, kaitDirection;
     public int chainStepCount, chainKillCount;
@@ -183,8 +184,11 @@ public sealed class KaitRun
         mapIndex = 1;
         walls[1, 2] = true;
         walls[5, 4] = true;
-        AddThreatPillar(1, 2);
-        AddThreatPillar(5, 4);
+        if (config.enableThreatPillars)
+        {
+            AddThreatPillar(1, 2);
+            AddThreatPillar(5, 4);
+        }
         EvaluateEmptyMapReachability();
         katePos = FindOpenNearCenter(); kateHp = config.kateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
@@ -351,6 +355,7 @@ public sealed class KaitRun
                 lockedPowerCounts[Mathf.Clamp(chainPower, 0, lockedPowerCounts.Length - 1)]++;
             }
             bool frontImmune = enemy.type == KaitEnemyType.ShieldKnight && enemy.facing != Vector2Int.zero && -delta == enemy.facing;
+            result.playerAttackBlocked = frontImmune;
             int damage = frontImmune ? 0 : chainPower; DamageEnemy(enemy, damage, true, result);
             result.damagedEnemyId = enemy.id; result.damageDealt = damage; result.enemyHpAfter = enemy.hp; result.blockedEnemyCell = enemy.pos;
             if (enemy.life == KaitEnemyLife.Dead)
@@ -401,16 +406,18 @@ public sealed class KaitRun
         KaitEnemy blocker = EnemyAt(target);
         if (IsHardBlocked(target))
         {
-            result.pushBlockedByWall = true; result.collisionDamage += config.wallCollisionDamage;
-            if (!primaryDamageImmune) DamageEnemy(enemy, config.wallCollisionDamage, true, result);
+            int damage = config.enableCollisionDamage ? config.wallCollisionDamage : 0;
+            result.pushBlockedByWall = true; result.collisionDamage += damage;
+            if (!primaryDamageImmune) DamageEnemy(enemy, damage, true, result);
             if (enemy.life == KaitEnemyLife.Dead && !result.playerKilledEnemyIds.Contains(enemy.id)) result.playerKilledEnemyIds.Add(enemy.id);
             if (enemy.life == KaitEnemyLife.Dead) katePos = origin;
         }
         else if (blocker != null)
         {
-            result.pushBlockedByUnit = true; result.collisionDamage += config.unitCollisionDamage * 2;
-            if (!primaryDamageImmune) DamageEnemy(enemy, config.unitCollisionDamage, true, result);
-            DamageEnemy(blocker, config.unitCollisionDamage, false, result);
+            int damage = config.enableCollisionDamage ? config.unitCollisionDamage : 0;
+            result.pushBlockedByUnit = true; result.collisionDamage += damage * 2;
+            if (!primaryDamageImmune) DamageEnemy(enemy, damage, true, result);
+            DamageEnemy(blocker, damage, false, result);
             if (enemy.life == KaitEnemyLife.Dead && !result.playerKilledEnemyIds.Contains(enemy.id)) result.playerKilledEnemyIds.Add(enemy.id);
             if (enemy.life == KaitEnemyLife.Dead) katePos = origin;
         }
@@ -442,8 +449,8 @@ public sealed class KaitRun
         {
             if (result.pushed) result.message = "未击杀：推动敌人 1 格，连锁结束";
             else if (result.activeBrake) result.message = "主动撞墙刹车：原地结束连锁";
-            else if (result.pushBlockedByWall) result.message = "撞墙：敌人额外受到 1 点伤害";
-            else if (result.pushBlockedByUnit) result.message = "撞敌：双方受到 1 点碰撞伤害";
+            else if (result.pushBlockedByWall) result.message = result.collisionDamage > 0 ? "撞墙：敌人额外受到 1 点伤害" : "撞墙：推动被阻挡";
+            else if (result.pushBlockedByUnit) result.message = result.collisionDamage > 0 ? "撞敌：双方受到 1 点碰撞伤害" : "撞敌：推动被阻挡";
             else result.message = "回合完成";
         }
     }
@@ -481,8 +488,7 @@ public sealed class KaitRun
                 bool hitUnit = false;
                 if (katePos == cell)
                 {
-                    int appliedDamage = Mathf.Min(kateHp, Mathf.Max(0, intent.damage));
-                    kateHp -= appliedDamage; result.playerDamage += appliedDamage; action.hitKate = true; hitUnit = true;
+                    DamageKate(intent.damage, result); action.hitKate = true; hitUnit = true;
                 }
                 if (config.enableFriendlyFire)
                 {
@@ -585,6 +591,15 @@ public sealed class KaitRun
         if (enemy.type == KaitEnemyType.ShieldKnight) End("Victory: Shield Knight", true);
     }
 
+    private int DamageKate(int amount, KaitTurnResult result)
+    {
+        if (config.playerInvincible || amount <= 0) return 0;
+        int appliedDamage = Mathf.Min(kateHp, amount);
+        kateHp -= appliedDamage;
+        result.playerDamage += appliedDamage;
+        return appliedDamage;
+    }
+
     private sealed class ThreatToken { public int value; public readonly List<Vector2Int> sources = new List<Vector2Int>(); public bool merged; }
     private List<KaitMergeEvent> MoveThreat(KaitDirection direction, List<KaitThreatMotion> motions)
     {
@@ -663,12 +678,14 @@ public sealed class KaitRun
             KaitEnemy occupant = EnemyAt(request.targetCell);
             if (katePos == request.targetCell)
             {
-                int appliedDamage = Mathf.Min(kateHp, Mathf.Max(0, config.riftBlockDamage));
-                kateHp -= appliedDamage; result.playerDamage += appliedDamage; result.riftBlockDamage += appliedDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
+                int appliedDamage = config.enableRiftDamage ? DamageKate(config.riftBlockDamage, result) : 0;
+                result.riftBlockDamage += appliedDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
             }
             if (occupant != null)
             {
-                DamageEnemy(occupant, config.riftBlockDamage, false, result); result.riftBlockDamage += config.riftBlockDamage; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
+                int before = occupant.hp;
+                if (config.enableRiftDamage) DamageEnemy(occupant, config.riftBlockDamage, false, result);
+                result.riftBlockDamage += before - occupant.hp; result.spawnSuppressed++; riftBlocks++; spawnSuppressedCount++; spawns.RemoveAt(i); continue;
             }
             KaitEnemyType type = EnemyTypeForSpawn(request);
             int hp = MaxHpFor(type);
@@ -887,16 +904,18 @@ public sealed class KaitRun
                 Vector2Int next = current + delta;
                 if (IsHardBlocked(next))
                 {
-                    DamageEnemy(enemy, config.wallCollisionDamage, true, result);
-                    result.collisionDamage += config.wallCollisionDamage;
+                    int damage = config.enableCollisionDamage ? config.wallCollisionDamage : 0;
+                    DamageEnemy(enemy, damage, true, result);
+                    result.collisionDamage += damage;
                     break;
                 }
                 KaitEnemy blocker = EnemyAt(next);
                 if (blocker != null)
                 {
-                    DamageEnemy(enemy, config.unitCollisionDamage, true, result);
-                    DamageEnemy(blocker, config.unitCollisionDamage, false, result);
-                    result.collisionDamage += config.unitCollisionDamage * 2;
+                    int damage = config.enableCollisionDamage ? config.unitCollisionDamage : 0;
+                    DamageEnemy(enemy, damage, true, result);
+                    DamageEnemy(blocker, damage, false, result);
+                    result.collisionDamage += damage * 2;
                     break;
                 }
                 current = next;

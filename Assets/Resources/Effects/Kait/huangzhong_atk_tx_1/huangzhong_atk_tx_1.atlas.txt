@@ -1,0 +1,69 @@
+huangzhong_atk_tx_1.png
+size: 744, 265
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+images/chutu/atk/gx1/gx1_00015
+  rotate: false
+  xy: 227, 13
+  size: 13, 13
+  orig: 15, 15
+  offset: 1, 1
+  index: -1
+images/chutu/atk/lz1/lz1_00020
+  rotate: false
+  xy: 669, 134
+  size: 73, 129
+  orig: 87, 141
+  offset: 7, 5
+  index: -1
+images/chutu/atk/xl1/xl1_00015
+  rotate: false
+  xy: 657, 19
+  size: 75, 113
+  orig: 242, 152
+  offset: 88, 14
+  index: -1
+images/chutu/atk/xl1/xl1_00016
+  rotate: false
+  xy: 459, 16
+  size: 196, 118
+  orig: 242, 152
+  offset: 16, 14
+  index: -1
+images/chutu/atk/xl1/xl1_00018
+  rotate: false
+  xy: 459, 136
+  size: 208, 127
+  orig: 242, 152
+  offset: 10, 13
+  index: -1
+images/chutu/atk/xl1/xl1_00020
+  rotate: false
+  xy: 2, 121
+  size: 224, 142
+  orig: 242, 152
+  offset: 8, 8
+  index: -1
+images/chutu/atk/xl1/xl1_00022
+  rotate: false
+  xy: 228, 132
+  size: 229, 131
+  orig: 242, 152
+  offset: 6, 14
+  index: -1
+images/chutu/atk/xl1/xl1_00024
+  rotate: false
+  xy: 2, 2
+  size: 223, 117
+  orig: 242, 152
+  offset: 9, 22
+  index: -1
+images/chutu/atk/xl1/xl1_00026
+  rotate: false
+  xy: 228, 28
+  size: 217, 102
+  orig: 242, 152
+  offset: 12, 32
+  index: -1
+

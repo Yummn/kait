@@ -1,0 +1,195 @@
+M_zhangjiao_skill_beaten_1.png
+size: 2032, 408
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+chutu/attack/g1/g1_00001
+  rotate: false
+  xy: 1893, 214
+  size: 35, 37
+  orig: 40, 40
+  offset: 2, 1
+  index: -1
+chutu/attack/g2/g2_00000
+  rotate: false
+  xy: 430, 7
+  size: 78, 80
+  orig: 85, 87
+  offset: 4, 3
+  index: -1
+chutu/skill/g1/g1_00033
+  rotate: false
+  xy: 430, 91
+  size: 79, 80
+  orig: 84, 87
+  offset: 3, 3
+  index: -1
+chutu/skill/g2/g2_00024
+  rotate: false
+  xy: 316, 15
+  size: 78, 63
+  orig: 86, 72
+  offset: 4, 5
+  index: -1
+chutu/skill/g3/g3_00024
+  rotate: false
+  xy: 710, 14
+  size: 78, 63
+  orig: 86, 72
+  offset: 4, 5
+  index: -1
+chutu/skill/hit1/hit1_00033
+  rotate: false
+  xy: 4, 4
+  size: 173, 78
+  orig: 186, 92
+  offset: 3, 7
+  index: -1
+chutu/skill/hit2/hit2_00033
+  rotate: true
+  xy: 520, 48
+  size: 138, 186
+  orig: 181, 191
+  offset: 14, 3
+  index: -1
+chutu/skill/hit3/hit3_00033
+  rotate: false
+  xy: 181, 16
+  size: 131, 62
+  orig: 212, 99
+  offset: 38, 19
+  index: -1
+chutu/skill/hit3/hit3_00035
+  rotate: true
+  xy: 933, 5
+  size: 175, 82
+  orig: 212, 99
+  offset: 18, 10
+  index: -1
+chutu/skill/hit3/hit3_00037
+  rotate: true
+  xy: 1950, 51
+  size: 200, 76
+  orig: 212, 99
+  offset: 5, 8
+  index: -1
+chutu/skill/hit3/hit3_00039
+  rotate: false
+  xy: 1459, 89
+  size: 192, 80
+  orig: 212, 99
+  offset: 10, 9
+  index: -1
+chutu/skill/hit4/hit4_00033
+  rotate: true
+  xy: 1893, 255
+  size: 146, 124
+  orig: 278, 260
+  offset: 68, 28
+  index: -1
+chutu/skill/hit4/hit4_00034
+  rotate: true
+  xy: 1539, 173
+  size: 228, 177
+  orig: 278, 260
+  offset: 24, 10
+  index: -1
+chutu/skill/hit4/hit4_00036
+  rotate: false
+  xy: 785, 184
+  size: 242, 217
+  orig: 278, 260
+  offset: 14, 12
+  index: -1
+chutu/skill/hit4/hit4_00038
+  rotate: false
+  xy: 265, 175
+  size: 251, 226
+  orig: 278, 260
+  offset: 8, 14
+  index: -1
+chutu/skill/hit4/hit4_00040
+  rotate: false
+  xy: 4, 180
+  size: 257, 221
+  orig: 278, 260
+  offset: 6, 24
+  index: -1
+chutu/skill/hit4/hit4_00042
+  rotate: false
+  xy: 520, 190
+  size: 261, 211
+  orig: 278, 260
+  offset: 6, 28
+  index: -1
+chutu/skill/hit4/hit4_00044
+  rotate: false
+  xy: 1031, 229
+  size: 261, 172
+  orig: 278, 260
+  offset: 9, 31
+  index: -1
+chutu/skill/hit4/hit4_00046
+  rotate: false
+  xy: 1296, 229
+  size: 239, 172
+  orig: 278, 260
+  offset: 31, 32
+  index: -1
+chutu/skill/hit4/hit4_00048
+  rotate: true
+  xy: 1720, 190
+  size: 211, 169
+  orig: 278, 260
+  offset: 30, 35
+  index: -1
+chutu/skill/hit4/hit4_00050
+  rotate: false
+  xy: 1031, 66
+  size: 210, 159
+  orig: 278, 260
+  offset: 31, 43
+  index: -1
+chutu/skill/hit4/hit4_00052
+  rotate: false
+  xy: 1245, 69
+  size: 210, 156
+  orig: 278, 260
+  offset: 31, 44
+  index: -1
+chutu/skill/sf1/sf1_00032
+  rotate: false
+  xy: 1720, 81
+  size: 226, 105
+  orig: 243, 116
+  offset: 5, 5
+  index: -1
+chutu/skill/sf1/sf1_00034
+  rotate: false
+  xy: 710, 81
+  size: 219, 99
+  orig: 243, 116
+  offset: 5, 7
+  index: -1
+chutu/skill/sf1/sf1_00036
+  rotate: false
+  xy: 227, 82
+  size: 199, 89
+  orig: 243, 116
+  offset: 13, 10
+  index: -1
+chutu/skill/sf1/sf1_00038
+  rotate: false
+  xy: 4, 86
+  size: 219, 90
+  orig: 243, 116
+  offset: 12, 5
+  index: -1
+chutu/skill/sf1/sf1_00040
+  rotate: false
+  xy: 1459, 9
+  size: 197, 76
+  orig: 243, 116
+  offset: 14, 12
+  index: -1
+

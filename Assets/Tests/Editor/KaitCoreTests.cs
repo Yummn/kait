@@ -6,6 +6,15 @@ using UnityEngine;
 public sealed class KaitCoreTests
 {
     [Test]
+    public void Settings_CanStartThreatBoardWithoutPillars()
+    {
+        var run = new KaitRun(new KaitBalanceConfig { enableThreatPillars = false });
+        run.Reset(7);
+
+        Assert.AreEqual(0, CountThreatPillars(run));
+    }
+
+    [Test]
     public void V036Baseline_UsesIndependentBattleAndThreatPillars()
     {
         KaitRun run = OpenRun(100);
@@ -1028,6 +1037,77 @@ public sealed class KaitCoreTests
         Assert.IsTrue(run.ChooseSkill(KaitSkill.DreadSlash)); Assert.AreEqual(before, run.turn); Assert.AreEqual(0, run.pendingSkillMilestone);
     }
 
+    [Test]
+    public void Settings_PlayerInvincible_PreventsEnemyAndRiftDamage()
+    {
+        KaitRun run = OpenRun(4101, new Vector2Int(3, 3));
+        run.config.playerInvincible = true;
+        KaitEnemy attacker = Enemy(1, new Vector2Int(3, 2), 3, KaitEnemyType.Swordsman, KaitEnemyLife.Active);
+        attacker.intent = new KaitIntent { type = KaitIntentType.Melee, origin = attacker.pos, target = run.katePos, damage = 1 };
+        attacker.intent.affectedCells.Add(run.katePos);
+        run.enemies.Add(attacker);
+
+        KaitTurnResult attack = ResolveEnemyPhase(run);
+        Assert.AreEqual(3, run.kateHp);
+        Assert.AreEqual(0, attack.playerDamage);
+        Assert.IsTrue(attack.enemyActions.Single().hitKate);
+
+        run.spawns.Add(new KaitSpawnRequest { targetCell = run.katePos, turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+        KaitTurnResult rift = ResolveSpawnPhase(run);
+        Assert.AreEqual(3, run.kateHp);
+        Assert.AreEqual(0, rift.riftBlockDamage);
+        Assert.AreEqual(1, rift.spawnSuppressed);
+    }
+
+    [Test]
+    public void Settings_DisableRiftDamage_StillSuppressesBlockedSpawn()
+    {
+        KaitRun run = OpenRun(4102);
+        run.config.enableRiftDamage = false;
+        Vector2Int cell = new Vector2Int(2, 2);
+        KaitEnemy occupant = Enemy(1, cell, 2); run.enemies.Add(occupant);
+        run.spawns.Add(new KaitSpawnRequest { targetCell = cell, turnsUntilSpawn = 0, state = KaitSpawnState.Ready });
+
+        KaitTurnResult result = ResolveSpawnPhase(run);
+
+        Assert.AreEqual(2, occupant.hp);
+        Assert.AreEqual(0, result.riftBlockDamage);
+        Assert.AreEqual(1, result.spawnSuppressed);
+        Assert.AreEqual(0, run.spawns.Count);
+    }
+
+    [Test]
+    public void Settings_DisableFriendlyFire_PreventsEnemyDamage()
+    {
+        KaitRun run = OpenRun(4103, new Vector2Int(5, 5));
+        run.config.enableFriendlyFire = false;
+        KaitEnemy attacker = Enemy(1, new Vector2Int(1, 2), 3, KaitEnemyType.Archer, KaitEnemyLife.Active);
+        KaitEnemy victim = Enemy(2, new Vector2Int(2, 2), 2, KaitEnemyType.Grunt, KaitEnemyLife.Active);
+        attacker.rangedState = KaitRangedState.Aim;
+        attacker.intent = LineIntent(attacker.pos, Vector2Int.right, victim.pos, new Vector2Int(3, 2));
+        run.enemies.Add(attacker); run.enemies.Add(victim);
+
+        KaitTurnResult result = ResolveEnemyPhase(run);
+
+        Assert.AreEqual(2, victim.hp);
+        Assert.AreEqual(0, result.friendlyFireDamage);
+        Assert.AreEqual(0, result.enemyActions.Single().friendlyHitIds.Count);
+    }
+
+    [Test]
+    public void Settings_DisableCollisionDamage_KeepsPushBlockWithoutExtraDamage()
+    {
+        KaitRun run = OpenRun(4104, new Vector2Int(1, 3));
+        run.config.enableCollisionDamage = false;
+        KaitEnemy enemy = Enemy(1, new Vector2Int(5, 3), 9); run.enemies.Add(enemy);
+
+        KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
+
+        Assert.IsTrue(result.pushBlockedByWall);
+        Assert.AreEqual(0, result.collisionDamage);
+        Assert.AreEqual(6, enemy.hp);
+    }
+
     private static void QueueMilestone(KaitRun run, int value)
         => typeof(KaitRun).GetMethod("HandleMilestoneMerge", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { new KaitMergeEvent { resultValue = value } });
     private static void Unlock(KaitRun run, int milestone, KaitSkill skill) { QueueMilestone(run, milestone); Assert.IsTrue(run.ChooseSkill(skill)); }
@@ -1049,6 +1129,12 @@ public sealed class KaitCoreTests
     {
         var result = new KaitTurnResult();
         typeof(KaitRun).GetMethod("ResolveEnemyIntents", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { result });
+        return result;
+    }
+    private static KaitTurnResult ResolveSpawnPhase(KaitRun run)
+    {
+        var result = new KaitTurnResult();
+        typeof(KaitRun).GetMethod("ResolveSpawnRequests", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { result });
         return result;
     }
     private static void LockEnemyIntents(KaitRun run)

@@ -1,0 +1,19 @@
+Combat audio sources
+
+SwordSwing_01-03:
+"20 Sword Sound Effects (Attacks and Clashes)" by StarNinjas
+https://opengameart.org/content/20-sword-sound-effects-attacks-and-clashes
+License: Creative Commons CC0 1.0
+
+ImpactPitch_01-05:
+Files sword_clash.1.ogg through sword_clash.5.ogg from the user-provided
+sword_clash_-_starninjas.zip archive. The archive originates from the same
+StarNinjas OpenGameArt package linked above.
+License: Creative Commons CC0 1.0
+
+The impact files retain their source number because their pitch order is used by
+the combat feedback mapping. No attribution is required by CC0; this notice is
+kept so the source of the project assets remains easy to trace.
+
+Older Kenney impact files in this folder are retained only for rollback and are
+not referenced by the current combat-audio code.

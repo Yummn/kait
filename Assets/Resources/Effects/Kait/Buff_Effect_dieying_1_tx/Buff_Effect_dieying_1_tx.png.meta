@@ -1,0 +1,2002 @@
+fileFormatVersion: 2
+guid: 9c70103f27c05fc4a899213c08858722
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6949615210362957760
+    second: Buff_Effect_dieying_1_tx_0
+  - first:
+      213: 4561406312344667268
+    second: Buff_Effect_dieying_1_tx_1
+  - first:
+      213: 2298427344434753347
+    second: Buff_Effect_dieying_1_tx_2
+  - first:
+      213: 6597913700181418397
+    second: Buff_Effect_dieying_1_tx_3
+  - first:
+      213: 3453217428243027545
+    second: Buff_Effect_dieying_1_tx_4
+  - first:
+      213: -610998104683222551
+    second: Buff_Effect_dieying_1_tx_5
+  - first:
+      213: 2318541433468613181
+    second: Buff_Effect_dieying_1_tx_6
+  - first:
+      213: 7837097151264885156
+    second: Buff_Effect_dieying_1_tx_7
+  - first:
+      213: -8053271486667661180
+    second: Buff_Effect_dieying_1_tx_8
+  - first:
+      213: 7589740316507778117
+    second: Buff_Effect_dieying_1_tx_9
+  - first:
+      213: -353207317939042979
+    second: Buff_Effect_dieying_1_tx_10
+  - first:
+      213: 4692238237565552438
+    second: Buff_Effect_dieying_1_tx_11
+  - first:
+      213: -9150623239752561897
+    second: Buff_Effect_dieying_1_tx_12
+  - first:
+      213: 7719910725056153186
+    second: Buff_Effect_dieying_1_tx_13
+  - first:
+      213: -8547039932624273726
+    second: Buff_Effect_dieying_1_tx_14
+  - first:
+      213: 8747533873358777731
+    second: Buff_Effect_dieying_1_tx_15
+  - first:
+      213: 4277043320516550990
+    second: Buff_Effect_dieying_1_tx_16
+  - first:
+      213: -6011554579534586298
+    second: Buff_Effect_dieying_1_tx_17
+  - first:
+      213: 3029105696582828338
+    second: Buff_Effect_dieying_1_tx_18
+  - first:
+      213: -3042807626246491952
+    second: Buff_Effect_dieying_1_tx_19
+  - first:
+      213: 3510562467515605137
+    second: Buff_Effect_dieying_1_tx_20
+  - first:
+      213: 122208689080482845
+    second: Buff_Effect_dieying_1_tx_21
+  - first:
+      213: -8276550806554123099
+    second: Buff_Effect_dieying_1_tx_22
+  - first:
+      213: -5408446867837087236
+    second: Buff_Effect_dieying_1_tx_23
+  - first:
+      213: 8072288783145790271
+    second: Buff_Effect_dieying_1_tx_24
+  - first:
+      213: 938766568748091439
+    second: Buff_Effect_dieying_1_tx_25
+  - first:
+      213: -3716002213192096283
+    second: Buff_Effect_dieying_1_tx_26
+  - first:
+      213: -2333231380436070945
+    second: Buff_Effect_dieying_1_tx_27
+  - first:
+      213: 1722019003132798216
+    second: Buff_Effect_dieying_1_tx_28
+  - first:
+      213: 7863836418294611022
+    second: Buff_Effect_dieying_1_tx_29
+  - first:
+      213: 8749396330900376693
+    second: Buff_Effect_dieying_1_tx_30
+  - first:
+      213: 7324711626323832695
+    second: Buff_Effect_dieying_1_tx_31
+  - first:
+      213: -4235328737755426374
+    second: Buff_Effect_dieying_1_tx_32
+  - first:
+      213: -997870269839110386
+    second: Buff_Effect_dieying_1_tx_33
+  - first:
+      213: 2130662182529529071
+    second: Buff_Effect_dieying_1_tx_34
+  - first:
+      213: -9073616310320886386
+    second: Buff_Effect_dieying_1_tx_35
+  - first:
+      213: 8201148130240161619
+    second: Buff_Effect_dieying_1_tx_36
+  - first:
+      213: 8052568808965783469
+    second: Buff_Effect_dieying_1_tx_37
+  - first:
+      213: -3281749181313515323
+    second: Buff_Effect_dieying_1_tx_38
+  - first:
+      213: 2894572849138967359
+    second: Buff_Effect_dieying_1_tx_39
+  - first:
+      213: -8429222557668772079
+    second: Buff_Effect_dieying_1_tx_40
+  - first:
+      213: 3045313436225164365
+    second: Buff_Effect_dieying_1_tx_41
+  - first:
+      213: 7311625141579839174
+    second: Buff_Effect_dieying_1_tx_42
+  - first:
+      213: -7534461886241553146
+    second: Buff_Effect_dieying_1_tx_43
+  - first:
+      213: -5985505214550844706
+    second: Buff_Effect_dieying_1_tx_44
+  - first:
+      213: -2337941126431645414
+    second: Buff_Effect_dieying_1_tx_45
+  - first:
+      213: 5044209055692087805
+    second: Buff_Effect_dieying_1_tx_46
+  - first:
+      213: 6103430596171004691
+    second: Buff_Effect_dieying_1_tx_47
+  - first:
+      213: -2924911859790571651
+    second: Buff_Effect_dieying_1_tx_48
+  - first:
+      213: -220328658513852486
+    second: Buff_Effect_dieying_1_tx_49
+  - first:
+      213: 6353207453966894576
+    second: Buff_Effect_dieying_1_tx_50
+  - first:
+      213: -1131481211169996859
+    second: Buff_Effect_dieying_1_tx_51
+  - first:
+      213: 44095870598824520
+    second: Buff_Effect_dieying_1_tx_52
+  - first:
+      213: -4258209438842330118
+    second: Buff_Effect_dieying_1_tx_53
+  - first:
+      213: -7017251004874197739
+    second: Buff_Effect_dieying_1_tx_54
+  - first:
+      213: 8296099703026216288
+    second: Buff_Effect_dieying_1_tx_55
+  - first:
+      213: -3145690427001548021
+    second: Buff_Effect_dieying_1_tx_56
+  - first:
+      213: -1176028247267311377
+    second: Buff_Effect_dieying_1_tx_57
+  - first:
+      213: -6577311185180201425
+    second: Buff_Effect_dieying_1_tx_58
+  - first:
+      213: -1520290899898079580
+    second: Buff_Effect_dieying_1_tx_59
+  - first:
+      213: -7734413016759146558
+    second: Buff_Effect_dieying_1_tx_60
+  - first:
+      213: 5818259209112021762
+    second: Buff_Effect_dieying_1_tx_61
+  - first:
+      213: -5364039673668298062
+    second: Buff_Effect_dieying_1_tx_62
+  - first:
+      213: 4358196242049745334
+    second: Buff_Effect_dieying_1_tx_63
+  - first:
+      213: -2392623102530897578
+    second: Buff_Effect_dieying_1_tx_64
+  - first:
+      213: -4735538523390749719
+    second: Buff_Effect_dieying_1_tx_65
+  - first:
+      213: -2883251614769745868
+    second: Buff_Effect_dieying_1_tx_66
+  - first:
+      213: 8406656621262209652
+    second: Buff_Effect_dieying_1_tx_67
+  - first:
+      213: -215248790065455546
+    second: Buff_Effect_dieying_1_tx_68
+  - first:
+      213: -11734426277759421
+    second: Buff_Effect_dieying_1_tx_69
+  - first:
+      213: -4125280102975903926
+    second: Buff_Effect_dieying_1_tx_70
+  - first:
+      213: -4440162527517243525
+    second: Buff_Effect_dieying_1_tx_71
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 653
+        width: 199
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0401aac69c10e8f90800000000000000
+      internalID: -6949615210362957760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 713
+        width: 244
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484478bafde5d4f30800000000000000
+      internalID: 4561406312344667268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_2
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 582
+        width: 221
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34fe31ffd77a5ef10800000000000000
+      internalID: 2298427344434753347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_3
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 597
+        width: 220
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d912ff59d8f709b50800000000000000
+      internalID: 6597913700181418397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_4
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 597
+        width: 120
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9561d9e74fa4cef20800000000000000
+      internalID: 3453217428243027545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_5
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 705
+        width: 243
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e96be3067c4587f0800000000000000
+      internalID: -610998104683222551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_6
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 703
+        width: 224
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32fbea462d1d2020800000000000000
+      internalID: 2318541433468613181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_7
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 619
+        width: 270
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a98e5b1656f2cc60800000000000000
+      internalID: 7837097151264885156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_8
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 650
+        width: 200
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 480646d30480d3090800000000000000
+      internalID: -8053271486667661180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 396
+        width: 157
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54c28ee0b9c245960800000000000000
+      internalID: 7589740316507778117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_10
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 508
+        width: 210
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d55cc22d0d7291bf0800000000000000
+      internalID: -353207317939042979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_11
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 560
+        width: 210
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 637899701dd2e1140800000000000000
+      internalID: 4692238237565552438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_12
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 600
+        width: 270
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b4d1145a4720180800000000000000
+      internalID: -9150623239752561897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_13
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 455
+        width: 241
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26643b017e1a22b60800000000000000
+      internalID: 7719910725056153186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_14
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 494
+        width: 259
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cef9d62770d26980800000000000000
+      internalID: -8547039932624273726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_15
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 494
+        width: 208
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38d2f3e16bb756970800000000000000
+      internalID: 8747533873358777731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_16
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 446
+        width: 254
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e41a8504d3c1b5b30800000000000000
+      internalID: 4277043320516550990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_17
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 426
+        width: 208
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64ed7f2e5faa29ca0800000000000000
+      internalID: -6011554579534586298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_18
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 582
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2318ee7059b890a20800000000000000
+      internalID: 3029105696582828338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_19
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 547
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d07abdd596c5c5d0800000000000000
+      internalID: -3042807626246491952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_20
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 449
+        width: 316
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1902616e6f508b030800000000000000
+      internalID: 3510562467515605137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_21
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 544
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1cbb1db72c22b100800000000000000
+      internalID: 122208689080482845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_22
+      rect:
+        serializedVersion: 2
+        x: 1818
+        y: 523
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a46ed974e8c32d80800000000000000
+      internalID: -8276550806554123099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_23
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 337
+        width: 208
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf11ff79a3651f4b0800000000000000
+      internalID: -5408446867837087236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_24
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 456
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b66c321e7860070800000000000000
+      internalID: 8072288783145790271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_25
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 370
+        width: 276
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f280e31783b270d00800000000000000
+      internalID: 938766568748091439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_26
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 173
+        width: 111
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5ae12ecab1e6cc0800000000000000
+      internalID: -3716002213192096283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_27
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 316
+        width: 270
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdd4056eb62be9fd0800000000000000
+      internalID: -2333231380436070945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_28
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 299
+        width: 290
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 805e332e827d5e710800000000000000
+      internalID: 1722019003132798216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_29
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 292
+        width: 249
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4cfa3cde85f12d60800000000000000
+      internalID: 7863836418294611022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_30
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 415
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57c4c6e4b991c6970800000000000000
+      internalID: 8749396330900376693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_31
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 317
+        width: 254
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77fa4398a6a96a560800000000000000
+      internalID: 7324711626323832695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_32
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 399
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab19517e3f61935c0800000000000000
+      internalID: -4235328737755426374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_33
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 199
+        width: 208
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0f015ac64ad622f0800000000000000
+      internalID: -997870269839110386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_34
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 386
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4f70e57f1a19d10800000000000000
+      internalID: 2130662182529529071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_35
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 379
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d02233a0a041280800000000000000
+      internalID: -9073616310320886386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_36
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 359
+        width: 35
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357e25dd5c450d170800000000000000
+      internalID: 8201148130240161619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_37
+      rect:
+        serializedVersion: 2
+        x: 1718
+        y: 173
+        width: 208
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dafbbcbdaa870cf60800000000000000
+      internalID: 8052568808965783469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_38
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 199
+        width: 255
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c001edc182e472d0800000000000000
+      internalID: -3281749181313515323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_39
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 331
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f332b619ba69b2820800000000000000
+      internalID: 2894572849138967359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_40
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 150
+        width: 253
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11771756eb2650b80800000000000000
+      internalID: -8429222557668772079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_41
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 306
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d44dceb7f60234a20800000000000000
+      internalID: 3045313436225164365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_42
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 144
+        width: 255
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c67eaed35c187560800000000000000
+      internalID: 7311625141579839174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_43
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 292
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6054ad075d6307790800000000000000
+      internalID: -7534461886241553146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_44
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 162
+        width: 285
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edad27d48b63feca0800000000000000
+      internalID: -5985505214550844706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_45
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 162
+        width: 317
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a11e345bee6fd8fd0800000000000000
+      internalID: -2337941126431645414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_46
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 278
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1e5592961a00640800000000000000
+      internalID: 5044209055692087805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_47
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 243
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31bf5043acdb3b450800000000000000
+      internalID: 6103430596171004691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_48
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 247
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d771bdd0920a867d0800000000000000
+      internalID: -2924911859790571651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_49
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 204
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7817f904c31fcf0800000000000000
+      internalID: -220328658513852486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_50
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 2
+        width: 255
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f58f06c4802b2850800000000000000
+      internalID: 6353207453966894576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_51
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 2
+        width: 259
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cffe2255db2c40f0800000000000000
+      internalID: -1131481211169996859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_52
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 2
+        width: 281
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 842ca1fe5f8ac9000800000000000000
+      internalID: 44095870598824520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_53
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 151
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3669a831dc7e4c0800000000000000
+      internalID: -4258209438842330118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_54
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 145
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51578bad367bd9e90800000000000000
+      internalID: -7017251004874197739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_55
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 2
+        width: 260
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06de91ca9baa12370800000000000000
+      internalID: 8296099703026216288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_56
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 130
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03d93529334854d0800000000000000
+      internalID: -3145690427001548021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_57
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 139
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe08ecb3a88edafe0800000000000000
+      internalID: -1176028247267311377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_58
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 133
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2e612e3352b8b4a0800000000000000
+      internalID: -6577311185180201425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_59
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 2
+        width: 257
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6e05c3b77d6eae0800000000000000
+      internalID: -1520290899898079580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_60
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 133
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7e9e50758d9a490800000000000000
+      internalID: -7734413016759146558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_61
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 116
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b644a9ceb9eb050800000000000000
+      internalID: 5818259209112021762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_62
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 14
+        width: 328
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba16e1365a1f85b0800000000000000
+      internalID: -5364039673668298062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_63
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 2
+        width: 304
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b141d4346c6b7c30800000000000000
+      internalID: 4358196242049745334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_64
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 126
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 659b04407f1bbced0800000000000000
+      internalID: -2392623102530897578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_65
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 94
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3dd1d8dccf74eb0800000000000000
+      internalID: -4735538523390749719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_66
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 94
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 430f397bee1acf7d0800000000000000
+      internalID: -2883251614769745868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_67
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 79
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 472050b18a17aa470800000000000000
+      internalID: 8406656621262209652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_68
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 58
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64ed0d9ad58430df0800000000000000
+      internalID: -215248790065455546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_69
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 56
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 346321af99f46dff0800000000000000
+      internalID: -11734426277759421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_70
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 10
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a47622f5a9f00c6c0800000000000000
+      internalID: -4125280102975903926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_dieying_1_tx_71
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 2
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b77855ac4bf5162c0800000000000000
+      internalID: -4440162527517243525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Buff_Effect_dieying_1_tx_0: -6949615210362957760
+      Buff_Effect_dieying_1_tx_1: 4561406312344667268
+      Buff_Effect_dieying_1_tx_10: -353207317939042979
+      Buff_Effect_dieying_1_tx_11: 4692238237565552438
+      Buff_Effect_dieying_1_tx_12: -9150623239752561897
+      Buff_Effect_dieying_1_tx_13: 7719910725056153186
+      Buff_Effect_dieying_1_tx_14: -8547039932624273726
+      Buff_Effect_dieying_1_tx_15: 8747533873358777731
+      Buff_Effect_dieying_1_tx_16: 4277043320516550990
+      Buff_Effect_dieying_1_tx_17: -6011554579534586298
+      Buff_Effect_dieying_1_tx_18: 3029105696582828338
+      Buff_Effect_dieying_1_tx_19: -3042807626246491952
+      Buff_Effect_dieying_1_tx_2: 2298427344434753347
+      Buff_Effect_dieying_1_tx_20: 3510562467515605137
+      Buff_Effect_dieying_1_tx_21: 122208689080482845
+      Buff_Effect_dieying_1_tx_22: -8276550806554123099
+      Buff_Effect_dieying_1_tx_23: -5408446867837087236
+      Buff_Effect_dieying_1_tx_24: 8072288783145790271
+      Buff_Effect_dieying_1_tx_25: 938766568748091439
+      Buff_Effect_dieying_1_tx_26: -3716002213192096283
+      Buff_Effect_dieying_1_tx_27: -2333231380436070945
+      Buff_Effect_dieying_1_tx_28: 1722019003132798216
+      Buff_Effect_dieying_1_tx_29: 7863836418294611022
+      Buff_Effect_dieying_1_tx_3: 6597913700181418397
+      Buff_Effect_dieying_1_tx_30: 8749396330900376693
+      Buff_Effect_dieying_1_tx_31: 7324711626323832695
+      Buff_Effect_dieying_1_tx_32: -4235328737755426374
+      Buff_Effect_dieying_1_tx_33: -997870269839110386
+      Buff_Effect_dieying_1_tx_34: 2130662182529529071
+      Buff_Effect_dieying_1_tx_35: -9073616310320886386
+      Buff_Effect_dieying_1_tx_36: 8201148130240161619
+      Buff_Effect_dieying_1_tx_37: 8052568808965783469
+      Buff_Effect_dieying_1_tx_38: -3281749181313515323
+      Buff_Effect_dieying_1_tx_39: 2894572849138967359
+      Buff_Effect_dieying_1_tx_4: 3453217428243027545
+      Buff_Effect_dieying_1_tx_40: -8429222557668772079
+      Buff_Effect_dieying_1_tx_41: 3045313436225164365
+      Buff_Effect_dieying_1_tx_42: 7311625141579839174
+      Buff_Effect_dieying_1_tx_43: -7534461886241553146
+      Buff_Effect_dieying_1_tx_44: -5985505214550844706
+      Buff_Effect_dieying_1_tx_45: -2337941126431645414
+      Buff_Effect_dieying_1_tx_46: 5044209055692087805
+      Buff_Effect_dieying_1_tx_47: 6103430596171004691
+      Buff_Effect_dieying_1_tx_48: -2924911859790571651
+      Buff_Effect_dieying_1_tx_49: -220328658513852486
+      Buff_Effect_dieying_1_tx_5: -610998104683222551
+      Buff_Effect_dieying_1_tx_50: 6353207453966894576
+      Buff_Effect_dieying_1_tx_51: -1131481211169996859
+      Buff_Effect_dieying_1_tx_52: 44095870598824520
+      Buff_Effect_dieying_1_tx_53: -4258209438842330118
+      Buff_Effect_dieying_1_tx_54: -7017251004874197739
+      Buff_Effect_dieying_1_tx_55: 8296099703026216288
+      Buff_Effect_dieying_1_tx_56: -3145690427001548021
+      Buff_Effect_dieying_1_tx_57: -1176028247267311377
+      Buff_Effect_dieying_1_tx_58: -6577311185180201425
+      Buff_Effect_dieying_1_tx_59: -1520290899898079580
+      Buff_Effect_dieying_1_tx_6: 2318541433468613181
+      Buff_Effect_dieying_1_tx_60: -7734413016759146558
+      Buff_Effect_dieying_1_tx_61: 5818259209112021762
+      Buff_Effect_dieying_1_tx_62: -5364039673668298062
+      Buff_Effect_dieying_1_tx_63: 4358196242049745334
+      Buff_Effect_dieying_1_tx_64: -2392623102530897578
+      Buff_Effect_dieying_1_tx_65: -4735538523390749719
+      Buff_Effect_dieying_1_tx_66: -2883251614769745868
+      Buff_Effect_dieying_1_tx_67: 8406656621262209652
+      Buff_Effect_dieying_1_tx_68: -215248790065455546
+      Buff_Effect_dieying_1_tx_69: -11734426277759421
+      Buff_Effect_dieying_1_tx_7: 7837097151264885156
+      Buff_Effect_dieying_1_tx_70: -4125280102975903926
+      Buff_Effect_dieying_1_tx_71: -4440162527517243525
+      Buff_Effect_dieying_1_tx_8: -8053271486667661180
+      Buff_Effect_dieying_1_tx_9: 7589740316507778117
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

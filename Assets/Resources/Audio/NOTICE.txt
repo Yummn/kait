@@ -1,0 +1,23 @@
+Additional gameplay audio sources
+
+Female Hurt Grunts & Groans by Nocturnal_Vanguard / AuraVoice
+https://opengameart.org/content/female-hurt-grunts-groans
+License: Creative Commons CC0 1.0
+Used for KaitHurt_01-03. The source recording was split into short clips for gameplay.
+
+80 CC0 RPG SFX by rubberduck
+https://opengameart.org/content/80-cc0-rpg-sfx
+License: Creative Commons CC0 1.0
+Used for enemy hurt/death, arrow impact, magic, landing, pushing and boss voice effects.
+
+Fantasy Sound Effects (Tinysized SFX)
+https://opengameart.org/content/fantasy-sound-effects-tinysized-sfx
+License: Creative Commons CC0 1.0
+Used for bow preparation and arrow-flight effects.
+
+UI Sound Effects (Button Clicks, User Feedback, Notifications)
+https://opengameart.org/content/ui-sound-effects-button-clicks-user-feedback-notifications
+License: Creative Commons CC0 1.0
+Used for click, invalid action, skill, victory and defeat feedback.
+
+CC0 does not require attribution. This file is retained to document asset provenance.

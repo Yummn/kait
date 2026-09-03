@@ -1,0 +1,2314 @@
+fileFormatVersion: 2
+guid: 11252ad1af3c54848a04d3d9ddcdf207
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1475338710415636473
+    second: lvbu_skill1_beaten_1_0
+  - first:
+      213: -3816742256054787315
+    second: lvbu_skill1_beaten_1_1
+  - first:
+      213: 3189338537696394180
+    second: lvbu_skill1_beaten_1_2
+  - first:
+      213: -1485899867966805443
+    second: lvbu_skill1_beaten_1_3
+  - first:
+      213: -2548728672489743338
+    second: lvbu_skill1_beaten_1_4
+  - first:
+      213: -7615319962041166881
+    second: lvbu_skill1_beaten_1_5
+  - first:
+      213: -2357309714060136486
+    second: lvbu_skill1_beaten_1_6
+  - first:
+      213: 5986675092202145541
+    second: lvbu_skill1_beaten_1_7
+  - first:
+      213: 2795086671271370307
+    second: lvbu_skill1_beaten_1_8
+  - first:
+      213: 4790340620398522519
+    second: lvbu_skill1_beaten_1_9
+  - first:
+      213: -2746835455737087899
+    second: lvbu_skill1_beaten_1_10
+  - first:
+      213: -1244405101595935931
+    second: lvbu_skill1_beaten_1_11
+  - first:
+      213: 8885533735346404023
+    second: lvbu_skill1_beaten_1_12
+  - first:
+      213: 4796196510216624497
+    second: lvbu_skill1_beaten_1_13
+  - first:
+      213: -8400447879149257622
+    second: lvbu_skill1_beaten_1_14
+  - first:
+      213: -2474648424461477463
+    second: lvbu_skill1_beaten_1_15
+  - first:
+      213: -3180087151066256888
+    second: lvbu_skill1_beaten_1_16
+  - first:
+      213: -6410365894292799073
+    second: lvbu_skill1_beaten_1_17
+  - first:
+      213: -4098993262403201657
+    second: lvbu_skill1_beaten_1_18
+  - first:
+      213: 5566205063008437657
+    second: lvbu_skill1_beaten_1_19
+  - first:
+      213: 6496013794965857384
+    second: lvbu_skill1_beaten_1_20
+  - first:
+      213: -4571383815035725799
+    second: lvbu_skill1_beaten_1_21
+  - first:
+      213: 8280539313024433898
+    second: lvbu_skill1_beaten_1_22
+  - first:
+      213: -1547411883639319801
+    second: lvbu_skill1_beaten_1_23
+  - first:
+      213: -5532424409259330640
+    second: lvbu_skill1_beaten_1_24
+  - first:
+      213: -8204283666295763999
+    second: lvbu_skill1_beaten_1_25
+  - first:
+      213: -1818624330447942109
+    second: lvbu_skill1_beaten_1_26
+  - first:
+      213: 6505147691979995764
+    second: lvbu_skill1_beaten_1_27
+  - first:
+      213: -2467128381396447726
+    second: lvbu_skill1_beaten_1_28
+  - first:
+      213: 8605201999555933310
+    second: lvbu_skill1_beaten_1_29
+  - first:
+      213: 6794276565152605974
+    second: lvbu_skill1_beaten_1_30
+  - first:
+      213: -6798342082879522627
+    second: lvbu_skill1_beaten_1_31
+  - first:
+      213: -5997723945643752948
+    second: lvbu_skill1_beaten_1_32
+  - first:
+      213: 8494673279439353755
+    second: lvbu_skill1_beaten_1_33
+  - first:
+      213: -6183256058202637264
+    second: lvbu_skill1_beaten_1_34
+  - first:
+      213: 358203538910983649
+    second: lvbu_skill1_beaten_1_35
+  - first:
+      213: -7929435404350400451
+    second: lvbu_skill1_beaten_1_36
+  - first:
+      213: -8327307368056896643
+    second: lvbu_skill1_beaten_1_37
+  - first:
+      213: 1044435703356774656
+    second: lvbu_skill1_beaten_1_38
+  - first:
+      213: -8188259290199826222
+    second: lvbu_skill1_beaten_1_39
+  - first:
+      213: -1792439040540574346
+    second: lvbu_skill1_beaten_1_40
+  - first:
+      213: -2426678895344005128
+    second: lvbu_skill1_beaten_1_41
+  - first:
+      213: 6039856230151311876
+    second: lvbu_skill1_beaten_1_42
+  - first:
+      213: -750184742466742731
+    second: lvbu_skill1_beaten_1_43
+  - first:
+      213: 14488990771361652
+    second: lvbu_skill1_beaten_1_44
+  - first:
+      213: 4781293381499567549
+    second: lvbu_skill1_beaten_1_45
+  - first:
+      213: 4316718515319895333
+    second: lvbu_skill1_beaten_1_46
+  - first:
+      213: 1235837041893953877
+    second: lvbu_skill1_beaten_1_47
+  - first:
+      213: 4395875358692192908
+    second: lvbu_skill1_beaten_1_48
+  - first:
+      213: 7129126216409872152
+    second: lvbu_skill1_beaten_1_49
+  - first:
+      213: -8832960870710453960
+    second: lvbu_skill1_beaten_1_50
+  - first:
+      213: -7072242563854298522
+    second: lvbu_skill1_beaten_1_51
+  - first:
+      213: -1394274290359128247
+    second: lvbu_skill1_beaten_1_52
+  - first:
+      213: 346354142662544395
+    second: lvbu_skill1_beaten_1_53
+  - first:
+      213: 6871863906145097244
+    second: lvbu_skill1_beaten_1_54
+  - first:
+      213: -7133958750425610190
+    second: lvbu_skill1_beaten_1_55
+  - first:
+      213: -290462175366130025
+    second: lvbu_skill1_beaten_1_56
+  - first:
+      213: 2421203512337316754
+    second: lvbu_skill1_beaten_1_57
+  - first:
+      213: -7144177069151852357
+    second: lvbu_skill1_beaten_1_58
+  - first:
+      213: -4820160777719885908
+    second: lvbu_skill1_beaten_1_59
+  - first:
+      213: -3109050770353015728
+    second: lvbu_skill1_beaten_1_60
+  - first:
+      213: -4088645525159485295
+    second: lvbu_skill1_beaten_1_61
+  - first:
+      213: -9205358997105611299
+    second: lvbu_skill1_beaten_1_62
+  - first:
+      213: 2050268123856526275
+    second: lvbu_skill1_beaten_1_63
+  - first:
+      213: -8301966195518274520
+    second: lvbu_skill1_beaten_1_64
+  - first:
+      213: -1370869621754147803
+    second: lvbu_skill1_beaten_1_65
+  - first:
+      213: -4334866062526748379
+    second: lvbu_skill1_beaten_1_66
+  - first:
+      213: -8360205415299258177
+    second: lvbu_skill1_beaten_1_67
+  - first:
+      213: 3867527894823753000
+    second: lvbu_skill1_beaten_1_68
+  - first:
+      213: 3920222515175706990
+    second: lvbu_skill1_beaten_1_69
+  - first:
+      213: 2661437041726982565
+    second: lvbu_skill1_beaten_1_70
+  - first:
+      213: -1294769838318045475
+    second: lvbu_skill1_beaten_1_71
+  - first:
+      213: 3842108187956348768
+    second: lvbu_skill1_beaten_1_72
+  - first:
+      213: 8302004651157845758
+    second: lvbu_skill1_beaten_1_73
+  - first:
+      213: -9052605618681634314
+    second: lvbu_skill1_beaten_1_74
+  - first:
+      213: -8137075900026912110
+    second: lvbu_skill1_beaten_1_75
+  - first:
+      213: 1039943856161520982
+    second: lvbu_skill1_beaten_1_76
+  - first:
+      213: -1121166370106494142
+    second: lvbu_skill1_beaten_1_77
+  - first:
+      213: 7642946952246431121
+    second: lvbu_skill1_beaten_1_78
+  - first:
+      213: 3383732841646355289
+    second: lvbu_skill1_beaten_1_79
+  - first:
+      213: 2928333483855569214
+    second: lvbu_skill1_beaten_1_80
+  - first:
+      213: 1119613951586588249
+    second: lvbu_skill1_beaten_1_81
+  - first:
+      213: -3152656527964141482
+    second: lvbu_skill1_beaten_1_82
+  - first:
+      213: -6560941402248041665
+    second: lvbu_skill1_beaten_1_83
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 591
+        width: 256
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7f4bd8db4797410800000000000000
+      internalID: 1475338710415636473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 591
+        width: 256
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d03a1acd325380bc0800000000000000
+      internalID: -3816742256054787315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_2
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 556
+        width: 40
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb7bdf808ec24c20800000000000000
+      internalID: 3189338537696394180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_3
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 545
+        width: 124
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3ae90651f5016be0800000000000000
+      internalID: -1485899867966805443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_4
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 545
+        width: 95
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61c556fa6c811acd0800000000000000
+      internalID: -2548728672489743338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_5
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 657
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd3589b97d2f05690800000000000000
+      internalID: -7615319962041166881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_6
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 656
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf2edbfd47294fd0800000000000000
+      internalID: -2357309714060136486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_7
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 641
+        width: 42
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50743601741f41350800000000000000
+      internalID: 5986675092202145541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_8
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 530
+        width: 95
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34e1f8db4842ac620800000000000000
+      internalID: 2795086671271370307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_9
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 599
+        width: 70
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7907af7f965ba7240800000000000000
+      internalID: 4790340620398522519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_10
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 516
+        width: 246
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568b754d4b741e9d0800000000000000
+      internalID: -2746835455737087899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_11
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 507
+        width: 94
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bb0ba372cfabee0800000000000000
+      internalID: -1244405101595935931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_12
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 640
+        width: 236
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ba721fcad1cf4b70800000000000000
+      internalID: 8885533735346404023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_13
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 633
+        width: 202
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1791e6090538f8240800000000000000
+      internalID: 4796196510216624497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_14
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 633
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6cff11592d9b6b80800000000000000
+      internalID: -8400447879149257622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_15
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 507
+        width: 100
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a95ef38e5848add0800000000000000
+      internalID: -2474648424461477463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_16
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 603
+        width: 37
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80a69edb59f0ed3d0800000000000000
+      internalID: -3180087151066256888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_17
+      rect:
+        serializedVersion: 2
+        x: 1751
+        y: 625
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f910666ce2ec907a0800000000000000
+      internalID: -6410365894292799073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_18
+      rect:
+        serializedVersion: 2
+        x: 1759
+        y: 514
+        width: 57
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785dcb168537d17c0800000000000000
+      internalID: -4098993262403201657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_19
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 619
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995499783022f3d40800000000000000
+      internalID: 5566205063008437657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_20
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 612
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8642af0112a762a50800000000000000
+      internalID: 6496013794965857384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_21
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 497
+        width: 112
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91853d4f3ae2f80c0800000000000000
+      internalID: -4571383815035725799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_22
+      rect:
+        serializedVersion: 2
+        x: 1815
+        y: 605
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aee7a7d02a26ae270800000000000000
+      internalID: 8280539313024433898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_23
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 305
+        width: 274
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 703d572271d768ae0800000000000000
+      internalID: -1547411883639319801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_24
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 556
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b3b563df41e833b0800000000000000
+      internalID: -5532424409259330640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_25
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 556
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ebc6e14977842e80800000000000000
+      internalID: -8204283666295763999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_26
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 556
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32e84c39ec2f2c6e0800000000000000
+      internalID: -1818624330447942109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_27
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 556
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a7bef2c5de64a50800000000000000
+      internalID: 6505147691979995764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_28
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 556
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21e849bfecff2cdd0800000000000000
+      internalID: -2467128381396447726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_29
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 558
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e74330450a1db6770800000000000000
+      internalID: 8605201999555933310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_30
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 530
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 617aea3d98e1a4e50800000000000000
+      internalID: 6794276565152605974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_31
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 514
+        width: 202
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db8706015ef67a1a0800000000000000
+      internalID: -6798342082879522627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_32
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 282
+        width: 254
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02cc0749ddc3cca0800000000000000
+      internalID: -5997723945643752948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_33
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 549
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b973cf7475423e570800000000000000
+      internalID: 8494673279439353755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_34
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 274
+        width: 232
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03cbc871069a03aa0800000000000000
+      internalID: -6183256058202637264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_35
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 268
+        width: 116
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e5b316883898f400800000000000000
+      internalID: 358203538910983649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_36
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 535
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38d94ef28cf4f190800000000000000
+      internalID: -7929435404350400451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_37
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 266
+        width: 245
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d73c97791167f6c80800000000000000
+      internalID: -8327307368056896643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_38
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 260
+        width: 207
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009d0511db49e7e00800000000000000
+      internalID: 1044435703356774656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_39
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 256
+        width: 233
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0e8de0f857d5e80800000000000000
+      internalID: -8188259290199826222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_40
+      rect:
+        serializedVersion: 2
+        x: 1974
+        y: 504
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67d790b703aff17e0800000000000000
+      internalID: -1792439040540574346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_41
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 250
+        width: 117
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ff451bd664b25ed0800000000000000
+      internalID: -2426678895344005128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_42
+      rect:
+        serializedVersion: 2
+        x: 1679
+        y: 240
+        width: 99
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4025994ad31e1d350800000000000000
+      internalID: 6039856230151311876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_43
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 438
+        width: 204
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5361a5d83fec695f0800000000000000
+      internalID: -750184742466742731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_44
+      rect:
+        serializedVersion: 2
+        x: 1986
+        y: 423
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477b41c09a9733000800000000000000
+      internalID: 14488990771361652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_45
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 359
+        width: 217
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd35338ff09a5240800000000000000
+      internalID: 4781293381499567549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_46
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 276
+        width: 233
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5257ef46e9018eb30800000000000000
+      internalID: 4316718515319895333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_47
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 231
+        width: 133
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 551db5aed33962110800000000000000
+      internalID: 1235837041893953877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_48
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 1
+        width: 255
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82bdbf2959410d30800000000000000
+      internalID: 4395875358692192908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_49
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1
+        width: 258
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 817f808a58ebfe260800000000000000
+      internalID: 7129126216409872152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_50
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 1
+        width: 117
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839d06a13e40b6580800000000000000
+      internalID: -8832960870710453960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_51
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 1
+        width: 233
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6621118cbd85add90800000000000000
+      internalID: -7072242563854298522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_52
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 193
+        width: 234
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94f2fab8bea86ace0800000000000000
+      internalID: -1394274290359128247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_53
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 264
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0cc2e7f14f7ec400800000000000000
+      internalID: 346354142662544395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_54
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 1
+        width: 117
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c165b9e50d3cd5f50800000000000000
+      internalID: 6871863906145097244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_55
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 1
+        width: 227
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238879650561ffc90800000000000000
+      internalID: -7133958750425610190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_56
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 204
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7965d90c03218fbf0800000000000000
+      internalID: -290462175366130025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_57
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 228
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29b3bc134c7d99120800000000000000
+      internalID: 2421203512337316754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_58
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 165
+        width: 27
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb866bc9ec8cadc90800000000000000
+      internalID: -7144177069151852357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_59
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 120
+        width: 136
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caf4cbb9f495b1db0800000000000000
+      internalID: -4820160777719885908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_60
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 114
+        width: 34
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 054347cfbce6ad4d0800000000000000
+      internalID: -3109050770353015728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_61
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 127
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 190e064be863247c0800000000000000
+      internalID: -4088645525159485295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_62
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 119
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddde293a3ceff3080800000000000000
+      internalID: -9205358997105611299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_63
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 86
+        width: 82
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cb56c0fef3047c10800000000000000
+      internalID: 2050268123856526275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_64
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 111
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82405da1bbd79cc80800000000000000
+      internalID: -8301966195518274520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_65
+      rect:
+        serializedVersion: 2
+        x: 1679
+        y: 1
+        width: 50
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52c48f99751b9fce0800000000000000
+      internalID: -1370869621754147803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_66
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 121
+        width: 39
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5296232884677d3c0800000000000000
+      internalID: -4334866062526748379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_67
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 116
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb86ac318759afb80800000000000000
+      internalID: -8360205415299258177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_68
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 120
+        width: 236
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82552e911283ca530800000000000000
+      internalID: 3867527894823753000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_69
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1
+        width: 165
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6159897b9d676630800000000000000
+      internalID: 3920222515175706990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_70
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 99
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a9043873e25fe420800000000000000
+      internalID: 2661437041726982565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_71
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 97
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6b92921bd080ee0800000000000000
+      internalID: -1294769838318045475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_72
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 90
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06702c36a09e15530800000000000000
+      internalID: 3842108187956348768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_73
+      rect:
+        serializedVersion: 2
+        x: 1769
+        y: 100
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef677eb8e35a63370800000000000000
+      internalID: 8302004651157845758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_74
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 1
+        width: 238
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f1a6ce072fae5280800000000000000
+      internalID: -9052605618681634314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_75
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 87
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 292018cb49c431f80800000000000000
+      internalID: -8137075900026912110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_76
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 78
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65d7bd46d6f9e6e00800000000000000
+      internalID: 1039943856161520982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_77
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 83
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24330b76021d070f0800000000000000
+      internalID: -1121166370106494142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_78
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 21
+        width: 39
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d8dcd42c3311a60800000000000000
+      internalID: 7642946952246431121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_79
+      rect:
+        serializedVersion: 2
+        x: 1517
+        y: 5
+        width: 64
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9537729771f65fe20800000000000000
+      internalID: 3383732841646355289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_80
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 63
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e31e711e9c783a820800000000000000
+      internalID: 2928333483855569214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_81
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 40
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 956d3edf4faa98f00800000000000000
+      internalID: 1119613951586588249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_82
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 34
+        width: 41
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65881ef57938f34d0800000000000000
+      internalID: -3152656527964141482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lvbu_skill1_beaten_1_83
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 1
+        width: 27
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b2ad65e8ad2f4a0800000000000000
+      internalID: -6560941402248041665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      lvbu_skill1_beaten_1_0: 1475338710415636473
+      lvbu_skill1_beaten_1_1: -3816742256054787315
+      lvbu_skill1_beaten_1_10: -2746835455737087899
+      lvbu_skill1_beaten_1_11: -1244405101595935931
+      lvbu_skill1_beaten_1_12: 8885533735346404023
+      lvbu_skill1_beaten_1_13: 4796196510216624497
+      lvbu_skill1_beaten_1_14: -8400447879149257622
+      lvbu_skill1_beaten_1_15: -2474648424461477463
+      lvbu_skill1_beaten_1_16: -3180087151066256888
+      lvbu_skill1_beaten_1_17: -6410365894292799073
+      lvbu_skill1_beaten_1_18: -4098993262403201657
+      lvbu_skill1_beaten_1_19: 5566205063008437657
+      lvbu_skill1_beaten_1_2: 3189338537696394180
+      lvbu_skill1_beaten_1_20: 6496013794965857384
+      lvbu_skill1_beaten_1_21: -4571383815035725799
+      lvbu_skill1_beaten_1_22: 8280539313024433898
+      lvbu_skill1_beaten_1_23: -1547411883639319801
+      lvbu_skill1_beaten_1_24: -5532424409259330640
+      lvbu_skill1_beaten_1_25: -8204283666295763999
+      lvbu_skill1_beaten_1_26: -1818624330447942109
+      lvbu_skill1_beaten_1_27: 6505147691979995764
+      lvbu_skill1_beaten_1_28: -2467128381396447726
+      lvbu_skill1_beaten_1_29: 8605201999555933310
+      lvbu_skill1_beaten_1_3: -1485899867966805443
+      lvbu_skill1_beaten_1_30: 6794276565152605974
+      lvbu_skill1_beaten_1_31: -6798342082879522627
+      lvbu_skill1_beaten_1_32: -5997723945643752948
+      lvbu_skill1_beaten_1_33: 8494673279439353755
+      lvbu_skill1_beaten_1_34: -6183256058202637264
+      lvbu_skill1_beaten_1_35: 358203538910983649
+      lvbu_skill1_beaten_1_36: -7929435404350400451
+      lvbu_skill1_beaten_1_37: -8327307368056896643
+      lvbu_skill1_beaten_1_38: 1044435703356774656
+      lvbu_skill1_beaten_1_39: -8188259290199826222
+      lvbu_skill1_beaten_1_4: -2548728672489743338
+      lvbu_skill1_beaten_1_40: -1792439040540574346
+      lvbu_skill1_beaten_1_41: -2426678895344005128
+      lvbu_skill1_beaten_1_42: 6039856230151311876
+      lvbu_skill1_beaten_1_43: -750184742466742731
+      lvbu_skill1_beaten_1_44: 14488990771361652
+      lvbu_skill1_beaten_1_45: 4781293381499567549
+      lvbu_skill1_beaten_1_46: 4316718515319895333
+      lvbu_skill1_beaten_1_47: 1235837041893953877
+      lvbu_skill1_beaten_1_48: 4395875358692192908
+      lvbu_skill1_beaten_1_49: 7129126216409872152
+      lvbu_skill1_beaten_1_5: -7615319962041166881
+      lvbu_skill1_beaten_1_50: -8832960870710453960
+      lvbu_skill1_beaten_1_51: -7072242563854298522
+      lvbu_skill1_beaten_1_52: -1394274290359128247
+      lvbu_skill1_beaten_1_53: 346354142662544395
+      lvbu_skill1_beaten_1_54: 6871863906145097244
+      lvbu_skill1_beaten_1_55: -7133958750425610190
+      lvbu_skill1_beaten_1_56: -290462175366130025
+      lvbu_skill1_beaten_1_57: 2421203512337316754
+      lvbu_skill1_beaten_1_58: -7144177069151852357
+      lvbu_skill1_beaten_1_59: -4820160777719885908
+      lvbu_skill1_beaten_1_6: -2357309714060136486
+      lvbu_skill1_beaten_1_60: -3109050770353015728
+      lvbu_skill1_beaten_1_61: -4088645525159485295
+      lvbu_skill1_beaten_1_62: -9205358997105611299
+      lvbu_skill1_beaten_1_63: 2050268123856526275
+      lvbu_skill1_beaten_1_64: -8301966195518274520
+      lvbu_skill1_beaten_1_65: -1370869621754147803
+      lvbu_skill1_beaten_1_66: -4334866062526748379
+      lvbu_skill1_beaten_1_67: -8360205415299258177
+      lvbu_skill1_beaten_1_68: 3867527894823753000
+      lvbu_skill1_beaten_1_69: 3920222515175706990
+      lvbu_skill1_beaten_1_7: 5986675092202145541
+      lvbu_skill1_beaten_1_70: 2661437041726982565
+      lvbu_skill1_beaten_1_71: -1294769838318045475
+      lvbu_skill1_beaten_1_72: 3842108187956348768
+      lvbu_skill1_beaten_1_73: 8302004651157845758
+      lvbu_skill1_beaten_1_74: -9052605618681634314
+      lvbu_skill1_beaten_1_75: -8137075900026912110
+      lvbu_skill1_beaten_1_76: 1039943856161520982
+      lvbu_skill1_beaten_1_77: -1121166370106494142
+      lvbu_skill1_beaten_1_78: 7642946952246431121
+      lvbu_skill1_beaten_1_79: 3383732841646355289
+      lvbu_skill1_beaten_1_8: 2795086671271370307
+      lvbu_skill1_beaten_1_80: 2928333483855569214
+      lvbu_skill1_beaten_1_81: 1119613951586588249
+      lvbu_skill1_beaten_1_82: -3152656527964141482
+      lvbu_skill1_beaten_1_83: -6560941402248041665
+      lvbu_skill1_beaten_1_9: 4790340620398522519
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

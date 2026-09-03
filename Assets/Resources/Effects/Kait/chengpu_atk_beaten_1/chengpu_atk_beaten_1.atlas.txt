@@ -1,0 +1,97 @@
+chengpu_atk_beaten_1.png
+size: 308, 527
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+images/chutu/atk/bd1/bd1_00013
+  rotate: true
+  xy: 117, 2
+  size: 102, 83
+  orig: 185, 121
+  offset: 47, 15
+  index: -1
+images/chutu/atk/bd1/bd1_00014
+  rotate: true
+  xy: 2, 102
+  size: 134, 96
+  orig: 185, 121
+  offset: 16, 12
+  index: -1
+images/chutu/atk/bd1/bd1_00015
+  rotate: false
+  xy: 150, 422
+  size: 156, 103
+  orig: 185, 121
+  offset: 12, 9
+  index: -1
+images/chutu/atk/bd1/bd1_00017
+  rotate: true
+  xy: 2, 238
+  size: 160, 99
+  orig: 185, 121
+  offset: 17, 13
+  index: -1
+images/chutu/atk/bd1/bd1_00019
+  rotate: false
+  xy: 100, 106
+  size: 113, 104
+  orig: 185, 121
+  offset: 55, 12
+  index: -1
+images/chutu/atk/bd1/bd1_00021
+  rotate: false
+  xy: 2, 2
+  size: 113, 98
+  orig: 185, 121
+  offset: 62, 10
+  index: -1
+images/chutu/atk/bd1/bd1_00023
+  rotate: false
+  xy: 184, 316
+  size: 115, 104
+  orig: 185, 121
+  offset: 63, 6
+  index: -1
+images/chutu/atk/bd1/bd1_00025
+  rotate: false
+  xy: 184, 212
+  size: 116, 102
+  orig: 185, 121
+  offset: 63, 5
+  index: -1
+images/chutu/atk/bd1/bd1_00027
+  rotate: true
+  xy: 215, 95
+  size: 115, 89
+  orig: 185, 121
+  offset: 65, 21
+  index: -1
+images/chutu/atk/bd1/bd1_00029
+  rotate: false
+  xy: 202, 14
+  size: 83, 79
+  orig: 185, 121
+  offset: 88, 23
+  index: -1
+images/chutu/atk/gx1/gx1_00000
+  rotate: false
+  xy: 103, 222
+  size: 25, 25
+  orig: 28, 28
+  offset: 2, 1
+  index: -1
+images/chutu/atk/lz2/lz2_00002
+  rotate: false
+  xy: 103, 249
+  size: 79, 149
+  orig: 86, 157
+  offset: 4, 4
+  index: -1
+images/chutu/atk/lz3/lz3_00002
+  rotate: false
+  xy: 2, 400
+  size: 146, 125
+  orig: 164, 140
+  offset: 9, 6
+  index: -1
+

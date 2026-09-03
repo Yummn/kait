@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: ca1d114d19e2a2b4ba56680dc5c216f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8314151909240112980
+    second: Buff_Effect_fuhuo_2_tx_0
+  - first:
+      213: -3021275852997412322
+    second: Buff_Effect_fuhuo_2_tx_1
+  - first:
+      213: 314771861590071244
+    second: Buff_Effect_fuhuo_2_tx_2
+  - first:
+      213: 3077648728987292258
+    second: Buff_Effect_fuhuo_2_tx_3
+  - first:
+      213: -2687055722058884129
+    second: Buff_Effect_fuhuo_2_tx_4
+  - first:
+      213: -8553868761049946105
+    second: Buff_Effect_fuhuo_2_tx_5
+  - first:
+      213: -9165716915536385548
+    second: Buff_Effect_fuhuo_2_tx_6
+  - first:
+      213: 3807498458096724267
+    second: Buff_Effect_fuhuo_2_tx_7
+  - first:
+      213: -265451797428265039
+    second: Buff_Effect_fuhuo_2_tx_8
+  - first:
+      213: -5376139438412441465
+    second: Buff_Effect_fuhuo_2_tx_9
+  - first:
+      213: -8924529260466414834
+    second: Buff_Effect_fuhuo_2_tx_10
+  - first:
+      213: 6627751370725863874
+    second: Buff_Effect_fuhuo_2_tx_11
+  - first:
+      213: -7737285551126666413
+    second: Buff_Effect_fuhuo_2_tx_12
+  - first:
+      213: -8019025763245273510
+    second: Buff_Effect_fuhuo_2_tx_13
+  - first:
+      213: -8152704418185726901
+    second: Buff_Effect_fuhuo_2_tx_14
+  - first:
+      213: -8254092489807030451
+    second: Buff_Effect_fuhuo_2_tx_15
+  - first:
+      213: 148424124677089003
+    second: Buff_Effect_fuhuo_2_tx_16
+  - first:
+      213: 7511888689500120388
+    second: Buff_Effect_fuhuo_2_tx_17
+  - first:
+      213: -3269379875146928604
+    second: Buff_Effect_fuhuo_2_tx_18
+  - first:
+      213: 2562938601256548135
+    second: Buff_Effect_fuhuo_2_tx_19
+  - first:
+      213: -7094587948252422446
+    second: Buff_Effect_fuhuo_2_tx_20
+  - first:
+      213: 3865283341786255156
+    second: Buff_Effect_fuhuo_2_tx_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1
+        width: 275
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45784e67c1dc16370800000000000000
+      internalID: 8314151909240112980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_1
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 18
+        width: 188
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1abf9d7e954216d0800000000000000
+      internalID: -3021275852997412322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_2
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 20
+        width: 189
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc75d53275b4e5400800000000000000
+      internalID: 314771861590071244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_3
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 21
+        width: 186
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26258b2863106ba20800000000000000
+      internalID: 3077648728987292258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_4
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 38
+        width: 187
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdbdff2be09a5bad0800000000000000
+      internalID: -2687055722058884129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_5
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 1
+        width: 169
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708ae42aead8a4980800000000000000
+      internalID: -8553868761049946105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_6
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 63
+        width: 178
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f92aa10705dcc080800000000000000
+      internalID: -9165716915536385548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_7
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 246
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b29e3b5bca3f6d430800000000000000
+      internalID: 3807498458096724267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_8
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 159
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bf9c452ffce05cf0800000000000000
+      internalID: -265451797428265039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_9
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 44
+        width: 154
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788557e2aad1465b0800000000000000
+      internalID: -5376139438412441465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_10
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 177
+        width: 137
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0bd15afbe3b52480800000000000000
+      internalID: -8924529260466414834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_11
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 30
+        width: 54
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c139bf91c08afb50800000000000000
+      internalID: 6627751370725863874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_12
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 177
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353255ff8c3af9490800000000000000
+      internalID: -7737285551126666413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_13
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 61
+        width: 19
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e4f011e82b6b090800000000000000
+      internalID: -8019025763245273510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_14
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 70
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b44384bc686cbde80800000000000000
+      internalID: -8152704418185726901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_15
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 1
+        width: 119
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4715d1dc92937d80800000000000000
+      internalID: -8254092489807030451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_16
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 44
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be6e97b74fe4f0200800000000000000
+      internalID: 148424124677089003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_17
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 33
+        width: 33
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 445ede1a6f69f3860800000000000000
+      internalID: 7511888689500120388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_18
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 28
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e6e025354d0a2d0800000000000000
+      internalID: -3269379875146928604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_19
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 14
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 727780d2413619320800000000000000
+      internalID: 2562938601256548135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_20
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 15
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2de95ac89d5fa8d90800000000000000
+      internalID: -7094587948252422446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buff_Effect_fuhuo_2_tx_21
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 1
+        width: 67
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f876f58be34a530800000000000000
+      internalID: 3865283341786255156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Buff_Effect_fuhuo_2_tx_0: 8314151909240112980
+      Buff_Effect_fuhuo_2_tx_1: -3021275852997412322
+      Buff_Effect_fuhuo_2_tx_10: -8924529260466414834
+      Buff_Effect_fuhuo_2_tx_11: 6627751370725863874
+      Buff_Effect_fuhuo_2_tx_12: -7737285551126666413
+      Buff_Effect_fuhuo_2_tx_13: -8019025763245273510
+      Buff_Effect_fuhuo_2_tx_14: -8152704418185726901
+      Buff_Effect_fuhuo_2_tx_15: -8254092489807030451
+      Buff_Effect_fuhuo_2_tx_16: 148424124677089003
+      Buff_Effect_fuhuo_2_tx_17: 7511888689500120388
+      Buff_Effect_fuhuo_2_tx_18: -3269379875146928604
+      Buff_Effect_fuhuo_2_tx_19: 2562938601256548135
+      Buff_Effect_fuhuo_2_tx_2: 314771861590071244
+      Buff_Effect_fuhuo_2_tx_20: -7094587948252422446
+      Buff_Effect_fuhuo_2_tx_21: 3865283341786255156
+      Buff_Effect_fuhuo_2_tx_3: 3077648728987292258
+      Buff_Effect_fuhuo_2_tx_4: -2687055722058884129
+      Buff_Effect_fuhuo_2_tx_5: -8553868761049946105
+      Buff_Effect_fuhuo_2_tx_6: -9165716915536385548
+      Buff_Effect_fuhuo_2_tx_7: 3807498458096724267
+      Buff_Effect_fuhuo_2_tx_8: -265451797428265039
+      Buff_Effect_fuhuo_2_tx_9: -5376139438412441465
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,14 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.unity3d.player" xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.unity3d.player">
   <application android:usesCleartextTraffic="false" android:allowBackup="false">
-    <activity android:name="com.unity3d.player.appui.AppUIGameActivity" android:theme="@style/BaseUnityGameActivityTheme" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
+    <activity android:name="com.unity3d.player.UnityPlayerActivity"
+              android:theme="@style/UnityThemeSelector"
+              android:exported="true"
+              android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
-      <meta-data android:name="android.app.lib_name" android:value="game" />
     </activity>
+    <activity android:name="com.unity3d.player.appui.AppUIActivity" tools:node="remove" />
+    <activity android:name="com.unity3d.player.appui.AppUIGameActivity" tools:node="remove" />
   </application>
   <uses-permission android:name="android.permission.VIBRATE" />
 </manifest>

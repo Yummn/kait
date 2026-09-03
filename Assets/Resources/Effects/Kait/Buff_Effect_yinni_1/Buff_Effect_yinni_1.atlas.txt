@@ -1,0 +1,13 @@
+Buff_Effect_yinni_1.png
+size: 204, 116
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+yn1/yn1_00000
+  rotate: false
+  xy: 2, 2
+  size: 200, 112
+  orig: 210, 120
+  offset: 8, 6
+  index: -1
+

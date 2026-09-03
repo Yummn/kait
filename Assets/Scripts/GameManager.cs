@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     {
         mergeStreak = 0;
         scoreFire?.StopFire();
-        GameAudio.SetCombo(0);
 
         // reset score
         SetScore(0);
@@ -97,13 +96,11 @@ public class GameManager : MonoBehaviour
         {
             mergeStreak = 0;
             scoreFire?.StopFire();
-            GameAudio.SetCombo(0);
             return;
         }
 
         mergeStreak = Mathf.Min(10, mergeStreak + mergeCount);
         scoreFire?.SetCombo(mergeStreak);
-        GameAudio.SetCombo(mergeStreak);
     }
 
     private void SetScore(int score)

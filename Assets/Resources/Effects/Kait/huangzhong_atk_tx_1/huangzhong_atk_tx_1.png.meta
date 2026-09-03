@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 40b53aa2ee0cf7a40a771b3d638acb27
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4047237143609904357
+    second: huangzhong_atk_tx_1_0
+  - first:
+      213: 1199475545956069242
+    second: huangzhong_atk_tx_1_1
+  - first:
+      213: -1218492773646362927
+    second: huangzhong_atk_tx_1_2
+  - first:
+      213: -3223191238637308878
+    second: huangzhong_atk_tx_1_3
+  - first:
+      213: -7084611578840941764
+    second: huangzhong_atk_tx_1_4
+  - first:
+      213: -3247331654442593892
+    second: huangzhong_atk_tx_1_5
+  - first:
+      213: 3175733294297861414
+    second: huangzhong_atk_tx_1_6
+  - first:
+      213: 5514373241582840833
+    second: huangzhong_atk_tx_1_7
+  - first:
+      213: -1878153463496992241
+    second: huangzhong_atk_tx_1_8
+  - first:
+      213: 5262774516565137359
+    second: huangzhong_atk_tx_1_9
+  - first:
+      213: 8420425755395708328
+    second: huangzhong_atk_tx_1_10
+  - first:
+      213: 429742025457808877
+    second: huangzhong_atk_tx_1_11
+  - first:
+      213: -1364094105064410029
+    second: huangzhong_atk_tx_1_12
+  - first:
+      213: 976071859937605354
+    second: huangzhong_atk_tx_1_13
+  - first:
+      213: -8839786720772939694
+    second: huangzhong_atk_tx_1_14
+  - first:
+      213: 4654118995638536809
+    second: huangzhong_atk_tx_1_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 145
+        width: 202
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec82aa2dbcaa2830800000000000000
+      internalID: 4047237143609904357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 238
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7faa7967a465a010800000000000000
+      internalID: 1199475545956069242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_2
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 153
+        width: 66
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d69d69374b071fe0800000000000000
+      internalID: -1218492773646362927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_3
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 130
+        width: 198
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2343fd945ace443d0800000000000000
+      internalID: -3223191238637308878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_4
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 132
+        width: 77
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3bf09f0e476ead90800000000000000
+      internalID: -7084611578840941764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_5
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 176
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c91511db0192fe2d0800000000000000
+      internalID: -3247331654442593892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_6
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 152
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62d410cfa98721c20800000000000000
+      internalID: 3175733294297861414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_7
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 139
+        width: 65
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ce67f2f3df68c40800000000000000
+      internalID: 5514373241582840833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_8
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 158
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a979630657fe5e0800000000000000
+      internalID: -1878153463496992241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 226
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc7d7d81a81290940800000000000000
+      internalID: 5262774516565137359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_10
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 136
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a559e77c9c5bd470800000000000000
+      internalID: 8420425755395708328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_11
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 134
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de538746810c6f500800000000000000
+      internalID: 429742025457808877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_12
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 141
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3547e6383a3c11de0800000000000000
+      internalID: -1364094105064410029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_13
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 1
+        width: 231
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae6f5d66f24bb8d00800000000000000
+      internalID: 976071859937605354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_14
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 1
+        width: 210
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2502d1a00d4c25580800000000000000
+      internalID: -8839786720772939694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huangzhong_atk_tx_1_15
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 1
+        width: 75
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ace656190c69040800000000000000
+      internalID: 4654118995638536809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      huangzhong_atk_tx_1_0: 4047237143609904357
+      huangzhong_atk_tx_1_1: 1199475545956069242
+      huangzhong_atk_tx_1_10: 8420425755395708328
+      huangzhong_atk_tx_1_11: 429742025457808877
+      huangzhong_atk_tx_1_12: -1364094105064410029
+      huangzhong_atk_tx_1_13: 976071859937605354
+      huangzhong_atk_tx_1_14: -8839786720772939694
+      huangzhong_atk_tx_1_15: 4654118995638536809
+      huangzhong_atk_tx_1_2: -1218492773646362927
+      huangzhong_atk_tx_1_3: -3223191238637308878
+      huangzhong_atk_tx_1_4: -7084611578840941764
+      huangzhong_atk_tx_1_5: -3247331654442593892
+      huangzhong_atk_tx_1_6: 3175733294297861414
+      huangzhong_atk_tx_1_7: 5514373241582840833
+      huangzhong_atk_tx_1_8: -1878153463496992241
+      huangzhong_atk_tx_1_9: 5262774516565137359
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
