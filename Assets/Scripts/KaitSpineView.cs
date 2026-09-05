@@ -33,6 +33,7 @@ public sealed class KaitSpineView
 
     public RectTransform Root => root;
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
+    public TrackEntry CurrentAnimation => IsReady ? graphic.AnimationState.GetCurrent(0) : null;
 
     public bool TryGetSwordTipWorldPosition(out Vector3 worldPosition)
     {
@@ -177,6 +178,8 @@ public sealed class KaitSpineView
         skeletonRect.localScale = Vector3.one * scale;
         Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
+        if (!name.Contains("Trail"))
+            KaitContactShadow.Create(hostRect, skeletonGraphic, new Vector2(0, -size.y * .38f), new Vector2(size.x * .36f, size.y * .09f));
 
         return new KaitSpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x, flashMaterial);
     }

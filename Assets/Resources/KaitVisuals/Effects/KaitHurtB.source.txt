@@ -1,0 +1,6 @@
+Selected B: compact hollow white/gray-purple contact flash for Kait damage.
+Original file copied unchanged:
+C:/Users/yummn/.codex/generated_images/01a06b89-4f27-7931-8d4d-e654b153d193/exec-7db85b02-4e39-4f58-9fcf-9dcb68634f23.png
+1774x887, 4 columns x 2 rows. Black matte uses existing UI material.
+112 UI-unit quad, 0.26 seconds, alongside existing 0.075 second character white flash.
+Enemy-side hits/kill/chain/block/push now draw above enemies and below stationary/moving Kait.

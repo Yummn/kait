@@ -22,6 +22,8 @@ public sealed class EnemySpineView
     private readonly string prefix;
 
     public RectTransform Root => root;
+    public TrackEntry CurrentAnimation => IsReady ? graphic.AnimationState.GetCurrent(0) : null;
+    public Vector3 GroundPosition => root.TransformPoint(new Vector3(0, -root.rect.height * .36f, 0));
     public bool IsReady => graphic != null && graphic.Skeleton != null && graphic.AnimationState != null;
 
     private EnemySpineView(RectTransform root, SkeletonGraphic graphic, RectTransform skeletonRect, float rightFacingVisualX, string prefix, Material flashMaterial)
@@ -98,6 +100,7 @@ public sealed class EnemySpineView
         skeletonRect.localScale = Vector3.one * scale;
         Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
+        KaitContactShadow.Create(hostRect, skeletonGraphic, new Vector2(0, -size.y * .36f), new Vector2(size.x * .36f, size.y * .09f));
 
         return new EnemySpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x, animationPrefix, flashMaterial);
     }

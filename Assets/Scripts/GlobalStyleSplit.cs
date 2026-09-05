@@ -39,6 +39,8 @@ public sealed class GlobalStyleSplit : MonoBehaviour
         float deltaY = lineTop.y - lineBottom.y;
         float t = Mathf.Abs(deltaY) < 0.0001f ? 0f : (y - lineBottom.y) / deltaY;
         float x = Mathf.LerpUnclamped(lineBottom.x, lineTop.x, t);
-        return Mathf.InverseLerp(rect.xMin, rect.xMax, x);
+        // Keep the intersection outside [0,1]. Clamping bends the diagonal
+        // when a moving card crosses the cut with only one corner.
+        return rect.width > 0.0001f ? (x - rect.xMin) / rect.width : 0f;
     }
 }

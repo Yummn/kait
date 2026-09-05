@@ -1,0 +1,13 @@
+White-gold sword slashes approved from the September 4 preview.
+Normal: exec-553ed048-094f-406f-aba7-e19106a62ec2.png
+Finisher: exec-4475925e-c259-4a14-950b-6ada1466c3d7.png
+Source directory: C:/Users/yummn/.codex/generated_images/01a06b89-4f27-7931-8d4d-e654b153d193
+Both original images are copied unchanged. 1774 x 887, 4 columns x 2 rows.
+VibeGame art analyze verified dimensions, RGB and black matte locally.
+The existing black-matte UI shader removes black only at render time.
+Eight frames play for 0.28 seconds using the current Spine attack track.
+Normal starts at 0.46 seconds; finisher starts at 0.08 seconds.
+Bright-core center of each frame aligned near the current weapon attachment tip; not target-centered.
+Normal/finisher quad size capped at 180/190 UI units. Source images remain unmodified.
+This is a directional atlas overlay, not a mesh reconstructed from the swept blade path.
+New movement/skills cancel it immediately; no input lock or wait is introduced.

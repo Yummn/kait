@@ -1,0 +1,5 @@
+Approved Mage A: purple-white ground cross fracture.
+Original copied unchanged: C:/Users/yummn/.codex/generated_images/01a06b89-4f27-7931-8d4d-e654b153d193/exec-a6856c19-69b8-4ab2-b0dc-a7482871e1ad.png
+1774x887, 4x2 eight-frame black-matte sheet, 0.32 seconds.
+Preview scale: full quad 3.59375 cell widths. Only resolved affected cells receive mesh; UV coordinates remain relative to the full cross.
+Ground layer below all characters. Aim uses purple corner marks and translucent five-cell fill matching the approved preview.

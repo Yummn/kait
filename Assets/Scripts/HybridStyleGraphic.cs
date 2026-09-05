@@ -25,6 +25,8 @@ public sealed class HybridStyleGraphic : MaskableGraphic
     private static Material sharedHybridMaterial;
 
     [SerializeField] private Sprite leftSprite;
+    [SerializeField] private Sprite rightSprite;
+    private Material dualTextureMaterial;
     [SerializeField] private Color leftTint = Color.white;
     [SerializeField] private Color rightColor = Color.gray;
     [SerializeField] private Color seamColor = Color.white;
@@ -62,6 +64,23 @@ public sealed class HybridStyleGraphic : MaskableGraphic
         SetVerticesDirty();
     }
 
+    public void SetRightSprite(Sprite sprite)
+    {
+        rightSprite = sprite;
+        EnsureMaterial();
+        SetAllDirty();
+    }
+
+    protected override void OnDestroy()
+    {
+        if (dualTextureMaterial != null)
+        {
+            if (Application.isPlaying) Destroy(dualTextureMaterial);
+            else DestroyImmediate(dualTextureMaterial);
+        }
+        base.OnDestroy();
+    }
+
     public void SetVisualState(Sprite sprite, Color left, Color right)
     {
         bool textureChanged = leftSprite == null || sprite == null || leftSprite.texture != sprite.texture;
@@ -94,11 +113,12 @@ public sealed class HybridStyleGraphic : MaskableGraphic
         if (rect.width <= 0f || rect.height <= 0f) return;
 
         GetSplits(out float bottomSplit, out float topSplit);
-        float bottomX = Mathf.Lerp(rect.xMin, rect.xMax, bottomSplit);
-        float topX = Mathf.Lerp(rect.xMin, rect.xMax, topSplit);
+        float bottomX = Mathf.LerpUnclamped(rect.xMin, rect.xMax, bottomSplit);
+        float topX = Mathf.LerpUnclamped(rect.xMin, rect.xMax, topSplit);
 
-        AddSlicedLeft(vertexHelper, rect, bottomX, topX);
-        AddSolidSide(vertexHelper, rect, bottomX, topX, false, rightColor);
+        AddSlicedSide(vertexHelper, rect, bottomX, topX, leftSprite, true);
+        if (rightSprite != null) AddSlicedSide(vertexHelper, rect, bottomX, topX, rightSprite, false);
+        else AddSolidSide(vertexHelper, rect, bottomX, topX, false, rightColor);
 
         if (seamWidth > 0f && seamColor.a > 0f)
         {
@@ -110,15 +130,15 @@ public sealed class HybridStyleGraphic : MaskableGraphic
                 MakeVertex(new Vector2(topX + half, rect.yMax), rect, Vector2.zero),
                 MakeVertex(new Vector2(topX - half, rect.yMax), rect, Vector2.zero)
             };
-            AddPolygon(vertexHelper, seam, seamColor, true, rect);
+            AddPolygon(vertexHelper, seam, seamColor, 1f, rect);
         }
     }
 
-    private void AddSlicedLeft(VertexHelper helper, Rect rect, float bottomX, float topX)
+    private void AddSlicedSide(VertexHelper helper, Rect rect, float bottomX, float topX, Sprite sprite, bool left)
     {
-        Vector4 outer = leftSprite != null ? DataUtility.GetOuterUV(leftSprite) : new Vector4(0f, 0f, 1f, 1f);
-        Vector4 inner = leftSprite != null ? DataUtility.GetInnerUV(leftSprite) : outer;
-        Vector4 border = AdjustBorders(leftSprite != null ? leftSprite.border : Vector4.zero, rect);
+        Vector4 outer = sprite != null ? DataUtility.GetOuterUV(sprite) : new Vector4(0f, 0f, 1f, 1f);
+        Vector4 inner = sprite != null ? DataUtility.GetInnerUV(sprite) : outer;
+        Vector4 border = AdjustBorders(sprite != null ? sprite.border : Vector4.zero, rect, sprite);
 
         float[] xs = { rect.xMin, rect.xMin + border.x, rect.xMax - border.z, rect.xMax };
         float[] ys = { rect.yMin, rect.yMin + border.y, rect.yMax - border.w, rect.yMax };
@@ -137,7 +157,8 @@ public sealed class HybridStyleGraphic : MaskableGraphic
                     MakeVertex(new Vector2(xs[x + 1], ys[y + 1]), rect, new Vector2(us[x + 1], vs[y + 1])),
                     MakeVertex(new Vector2(xs[x], ys[y + 1]), rect, new Vector2(us[x], vs[y + 1]))
                 };
-                AddPolygon(helper, ClipToStyleSide(quad, rect, bottomX, topX, true), leftTint, false, rect);
+                AddPolygon(helper, ClipToStyleSide(quad, rect, bottomX, topX, left),
+                    left ? leftTint : rightColor, left ? 0f : 2f, rect);
             }
         }
     }
@@ -151,7 +172,7 @@ public sealed class HybridStyleGraphic : MaskableGraphic
             MakeVertex(new Vector2(rect.xMax, rect.yMax), rect, Vector2.zero),
             MakeVertex(new Vector2(rect.xMin, rect.yMax), rect, Vector2.zero)
         };
-        AddPolygon(helper, ClipToStyleSide(quad, rect, bottomX, topX, left), tint, true, rect);
+        AddPolygon(helper, ClipToStyleSide(quad, rect, bottomX, topX, left), tint, 1f, rect);
     }
 
     private static List<HybridVertex> ClipToStyleSide(List<HybridVertex> input, Rect rect,
@@ -187,7 +208,7 @@ public sealed class HybridStyleGraphic : MaskableGraphic
         return position.x - Mathf.Lerp(bottomX, topX, y);
     }
 
-    private void AddPolygon(VertexHelper helper, List<HybridVertex> polygon, Color tint, bool solid, Rect rect)
+    private void AddPolygon(VertexHelper helper, List<HybridVertex> polygon, Color tint, float textureMode, Rect rect)
     {
         if (polygon == null || polygon.Count < 3) return;
         int start = helper.currentVertCount;
@@ -198,7 +219,7 @@ public sealed class HybridStyleGraphic : MaskableGraphic
             vertex.position = source.position;
             vertex.color = tint;
             vertex.uv0 = source.uv;
-            vertex.uv1 = new Vector4(source.normalizedPosition.x, source.normalizedPosition.y, solid ? 1f : 0f, 0f);
+            vertex.uv1 = new Vector4(source.normalizedPosition.x, source.normalizedPosition.y, textureMode, 0f);
             vertex.uv2 = auxiliary;
             helper.AddVert(vertex);
         }
@@ -212,16 +233,16 @@ public sealed class HybridStyleGraphic : MaskableGraphic
             position = position,
             uv = uv,
             normalizedPosition = new Vector2(
-                Mathf.InverseLerp(rect.xMin, rect.xMax, position.x),
-                Mathf.InverseLerp(rect.yMin, rect.yMax, position.y))
+                (position.x - rect.xMin) / rect.width,
+                (position.y - rect.yMin) / rect.height)
         };
     }
 
-    private Vector4 AdjustBorders(Vector4 border, Rect rect)
+    private Vector4 AdjustBorders(Vector4 border, Rect rect, Sprite sprite)
     {
-        if (leftSprite == null || border == Vector4.zero) return Vector4.zero;
+        if (sprite == null || border == Vector4.zero) return Vector4.zero;
         float referencePixelsPerUnit = canvas != null ? canvas.referencePixelsPerUnit : 100f;
-        float pixelsPerUnit = leftSprite.pixelsPerUnit / Mathf.Max(1f, referencePixelsPerUnit);
+        float pixelsPerUnit = sprite.pixelsPerUnit / Mathf.Max(1f, referencePixelsPerUnit);
         border /= Mathf.Max(0.0001f, pixelsPerUnit);
 
         float horizontal = border.x + border.z;
@@ -263,6 +284,14 @@ public sealed class HybridStyleGraphic : MaskableGraphic
                 sharedHybridMaterial.hideFlags = HideFlags.HideAndDontSave;
             }
         }
-        if (sharedHybridMaterial != null) material = sharedHybridMaterial;
+        if (sharedHybridMaterial == null) return;
+        if (rightSprite != null)
+        {
+            if (dualTextureMaterial == null)
+                dualTextureMaterial = new Material(sharedHybridMaterial) { hideFlags = HideFlags.HideAndDontSave };
+            dualTextureMaterial.SetTexture("_RightTex", rightSprite.texture);
+            material = dualTextureMaterial;
+        }
+        else material = sharedHybridMaterial;
     }
 }

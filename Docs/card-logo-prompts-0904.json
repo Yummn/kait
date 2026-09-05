@@ -1,0 +1,125 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "name": "SwiftBoots",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-58cd5413-d06a-441d-be82-01984ee1492e.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/SwiftBoots.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one chunky chestnut brown leather adventurer ankle boot with a small ivory wing on its heel, emerald cuff and brass buckle, pointing right."
+    },
+    {
+      "name": "CatAgility",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-083b7455-b86b-469d-b21f-b3854f293591.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/CatAgility.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one raised cream cat paw with pink paw pads, two small emerald curved speed strokes."
+    },
+    {
+      "name": "DreadSlash",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-293a6b38-f8fd-47c5-a8fa-ace914fb378c.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/DreadSlash.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: a broad silver greatsword diagonally sweeping through one bold violet crescent, threatening but not gory."
+    },
+    {
+      "name": "IceTomb",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-cdf135dc-cd93-4ff8-b4f9-f40d16534fab.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/IceTomb.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one chunky faceted ice crystal prison, pale cyan and deep blue facets, snowy base."
+    },
+    {
+      "name": "LesserPhantom",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-01ddebb1-548a-48d8-8396-7524f290342f.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/LesserPhantom.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one small translucent-looking lavender ghost cat head with playful eyes and a curling ghost tail."
+    },
+    {
+      "name": "ShadowStep",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-afb3ac7c-1eea-4d84-9a80-480c3fd075bb.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/ShadowStep.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: two staggered ivory cat pawprints, one solid and one pale violet, connected by a short curved teal motion swoosh."
+    },
+    {
+      "name": "BirdEye",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-d3799bc1-3de0-40ca-86ed-11a1c49a7a17.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/BirdEye.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one stylized dark raven head in profile with a prominent luminous gold eye, black-violet feathers and emerald accents."
+    },
+    {
+      "name": "OldNewsArchive",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-f619c895-1bc3-488d-bf3f-a941100dc24a.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/OldNewsArchive.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: two old cream parchment sheets being filed inside a small brown archive box, a jade clasp, no writing."
+    },
+    {
+      "name": "Simplify",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-a678acd6-3e5b-4005-9255-4b785e1d5aef.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/Simplify.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: two small rounded jade stone cubes joining into one larger emerald cube, simple three-block composition."
+    },
+    {
+      "name": "BloodBookmark",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-a4f84b32-9deb-450e-aaab-72b00a0906bb.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/BloodBookmark.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one closed small ivory book with a long crimson red ribbon bookmark and golden corner protectors."
+    },
+    {
+      "name": "MomentumResonance",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-16073a53-4ab0-466b-9022-ba8c4231f7f8.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/MomentumResonance.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: two floating jade cubes sharing a single purple ripple wave, conveying telekinetic linked movement."
+    },
+    {
+      "name": "Devil",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-e6652f5b-53ee-49dd-ac2a-95d2e1fff6db.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/Devil.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one purple gloved claw-like magical hand gripping a tiny gold hourglass, playful dark fantasy."
+    },
+    {
+      "name": "CheshireCat",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-b27cddca-0264-4e8e-97a3-f1a9eaa6062d.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/CheshireCat.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one friendly grinning purple cat face peeking at one small cream mouse head, compact readable pair."
+    },
+    {
+      "name": "Squeeze",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-15f84255-4034-413f-9c48-2e8e6f0f2094.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/Squeeze.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one chunky jade cube squeezed between two ivory stone slabs, two small outward motion marks."
+    },
+    {
+      "name": "Follower",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-234fba82-46db-4437-ab94-4b0b07909ef4.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/Follower.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: two small hooded adventurer silhouettes one just behind the other, cream front figure and jade rear figure."
+    },
+    {
+      "name": "BladeCovenant",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-7fb0427d-a212-4cf3-835b-cb6ee4fe6b63.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/BladeCovenant.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one broad silver sword with a crimson ribbon tied around its grip, small gold magic ring around blade."
+    },
+    {
+      "name": "Trend",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-b9298241-d4f0-4a8a-9a97-5375187e09fc.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/Trend.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: one ivory compass with a strong jade needle pointing right, simple readable thick shapes."
+    },
+    {
+      "name": "SweepTail",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-170a2759-0114-46c2-b7e5-fd4410a893e7.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/CardLogos/SweepTail.png",
+      "prompt": "Use case: stylized-concept. Asset: standalone fantasy game card logo, ONE icon only. Thick dark plum outlines, broad cel-shaded painted color blocks, chunky chibi anime proportions, restrained highlights, consistent overhead frontal item illustration. NOT pixel art, NOT photoreal, NOT intricate filigree, no text or digits. Square image. Full-bleed SOLID dark desaturated indigo background #303447 (this is an intentionally opaque medallion illustration, NOT a transparent cutout). Subject centered, fully visible inside the central 70% width and height; outer 15% on all sides stays empty solid background. No frame, no border, no shadow outside icon, no checkerboard. Subject: three broad black-violet raven feathers sweeping a tiny jade cube aside, small cream sweep arc."
+    },
+    {
+      "name": "BlankPassive",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-8348288f-86f8-41c6-a00c-1b8170d2856f.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/EmeraldCourtyard/PassiveCardBlankHD.png",
+      "prompt": "Use case: precise-object-edit. Edit target: this fantasy passive card frame. Remove ONLY the large central feather-and-wings emblem and the indigo circular disk behind it in the upper half. Fill the entire inner card panel seamlessly with the same warm pale ivory parchment as its lower half. Preserve the exact gold outer border, dark plum outline, four corner leaf decorations, existing dimensions and card silhouette. No icons, no medallion, no text, no additional ornaments. This is a blank card face for separately rendered logos."
+    },
+    {
+      "name": "BlankPassiveFlat",
+      "source": "C:\\Users\\yummn\\.codex\\generated_images\\01a04dd3-06e5-7563-be9d-9815a9c77a36\\exec-37e7a50d-5e3c-4ff2-b0e0-63b45c8334ff.png",
+      "target": "C:/Users/yummn/Downloads/kait/Assets/Resources/KaitVisuals/EmeraldCourtyard/PassiveCardBlankFlat.png",
+      "prompt": "Use case: precise-object-edit. Edit target: this flat minimalist passive card face. Remove ONLY the central peach feather-and-wings symbol in the upper half. Keep the thin decorative panel outline around it, all outer peach border lines, corner details, dark mauve color, rounded silhouette, dimensions, lower blank area unchanged. Fill the removed feather with the same uninterrupted dark mauve background. No new symbol, no text. This is a blank frame for separate runtime logos."
+    }
+  ]
+}

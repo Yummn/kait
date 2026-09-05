@@ -1,0 +1,12 @@
+{
+  "mode": "unity-sidecar",
+  "unityProject": "../..",
+  "upstreamRepository": "https://github.com/tettethu/VibeGame.git",
+  "upstreamCommit": "cab478bf2dafe93bd586aa1043a1e2182f4da197",
+  "unityBaselineCommit": "dc0a65543ec02dd8a3cf1cb8f5f1c842d64e3bdc",
+  "assetStaging": "workspace/output",
+  "unityImportFolder": "Assets/Art/VibeGame",
+  "automaticAssetReplacement": false,
+  "automaticAgentLaunch": false,
+  "paidServicesEnabled": false
+}

@@ -1,0 +1,22 @@
+{
+  "mode": "built-in image_gen",
+  "prompts": [
+    {
+      "name": "GrassBase",
+      "prompt": "Use case: precise-object-edit. Reference is the current game's garden texture. Create its CLEAN GROUND ONLY counterpart. Remove the entire tree trunk and all canopy, every flower and large bush. Fill those areas seamlessly with the same fresh emerald green painted grass in the middle. Keep its exact green hue, medium brightness and broad hand-painted anime color blocks; not yellow-green, no teal wash. Square 1536x1536. Low contrast uncluttered grass texture throughout, a few tiny grass strokes only. No tree shadows or directional cast shadows, no border, no objects, no UI or text. This becomes the ground under independently rendered decorations."
+    },
+    {
+      "name": "TreeTrunk",
+      "prompt": "Use case: stylized-concept. Reference image is STYLE and palette reference only. Produce one isolated stylized tree TRUNK with roots and bare upper branches, NO leafy canopy. Game environment sprite for a top-down anime courtyard, high overhead view similar to reference, broad chunky brown bark planes and dark confident outlines matching chibi characters. Lower root cluster centered near the bottom, trunk curves gently upward right into forks near the top. Entire object visible with 7% empty margin. Transparent PNG background with genuine alpha, including gaps between roots and branches. No grass base, no shadow, no white or checkerboard painted backdrop, no text. Portrait 1024x1536. This trunk will be placed at far left outside the board; leaves are a separate sprite."
+    },
+    {
+      "name": "TreeCanopy",
+      "prompt": "Use case: stylized-concept. Reference image is STYLE and emerald palette reference only. One isolated spreading leafy tree CANOPY, overhead view, no trunk, no ground, no flowers. Chunky irregular clusters of emerald and jade leaves, confident dark green outlines, broad cel-shaded hand-painted anime color blocks, restrained details. Top-left gently lit, underside darker green. Natural open silhouette with several small transparent gaps between leaf clusters. Wide low oval crown, foliage bounding box aspect 1.75:1, centered and fully visible with 6% empty margin, landscape 1536x1024. GENUINELY transparent PNG background (alpha), no checkerboard or colored backdrop, no drop shadow, no text. Match existing game palette, avoid yellow foliage or photorealism."
+    },
+    {
+      "name": "FlowerClump",
+      "prompt": "Use case: stylized-concept. Reference image is STYLE reference only. One isolated small clump of 3 ivory white daisies with warm gold centers and chunky emerald green leaves, viewed from above for an anime fantasy courtyard. Confident dark outlines and broad cel-shaded painted color blocks, simple readable shapes, not intricate or photorealistic. Cluster compact and low-growing; blooms and leaves grow together, no ground patch or pot. Entire clump visible, centered, square 1024x1024 with 8% margin. Genuine transparent alpha PNG background, no checkerboard painted behind it, no white background, no cast shadow, no text. Fresh green consistent with reference."
+    }
+  ],
+  "alphaRetry": "Use case: background-extraction. Edit target: provided tree canopy image. Remove the painted gray/white checkerboard background completely, including holes between foliage. Return a genuine RGBA transparent PNG cutout, alpha zero outside foliage. Do not paint a checkerboard or white background. Preserve the tree canopy shape, green colors, dark outline and size. Only change background into actual transparency."
+}

@@ -1,0 +1,7 @@
+Selected variant A: zero-damage push pressure streaks.
+Original: C:/Users/yummn/.codex/generated_images/01a06b89-4f27-7931-8d4d-e654b153d193/exec-3a98342d-b83c-4da5-8e91-951191ebeefd.png
+Copied unchanged. 1774x887, 4 columns x 2 rows, eight frames.
+Black matte removed by the existing UIWhiteGoldShatter shader at runtime.
+160 UI-unit square, 0.32 seconds, fixed size, positioned on the target's contact side.
+Rendered below actors, no mask and no input interception.
+Block, kill and damage feedback take precedence; no rule or sound changes.

@@ -14,13 +14,17 @@ public enum KaitCombatEffectKind
     Ice,
     Phantom,
     Speed,
-    DreadSlash
+    DreadSlash,
+    Push,
+    KaitHurt,
+    ArrowImpact,
+    LandingDust,
+    BoundaryDust
 }
 
 /// <summary>
-/// Small, texture-free combat marks designed for the battle board. Keeping the
-/// marks inside one local rect prevents a hit flash from turning into a
-/// full-screen overlay, while hard-edged geometry matches the pixel half of the UI.
+/// Local combat feedback. The four primary impacts use the approved white-gold
+/// flipbook; other skills retain their existing procedural marks.
 /// </summary>
 public sealed class KaitCombatEffectGraphic : MaskableGraphic
 {
@@ -31,6 +35,58 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
     private bool autoPlaying;
     private float playbackDuration;
     private float playbackElapsed;
+    private static Texture2D shatterAtlas;
+    private static Texture2D pushAtlas;
+    private static Texture2D hurtAtlas;
+    private static Texture2D arrowAtlas;
+    private static Texture2D landingAtlas;
+    private static Texture2D boundaryAtlas;
+    private static Texture2D speedAtlas;
+    private static Texture2D dreadAtlas;
+    private Vector2Int boundaryDirection = Vector2Int.right;
+    private static Material shatterMaterial;
+    public bool UsesShatterAtlas { get; private set; }
+    public bool UsesPushAtlas { get; private set; }
+    public bool UsesHurtAtlas { get; private set; }
+    public bool UsesArrowAtlas { get; private set; }
+    public bool UsesLandingAtlas { get; private set; }
+    public bool UsesBoundaryAtlas { get; private set; }
+    public bool UsesSpeedAtlas { get; private set; }
+    public bool UsesDreadAtlas { get; private set; }
+    private bool UsesFlipbook => UsesShatterAtlas || UsesPushAtlas || UsesHurtAtlas || UsesArrowAtlas || UsesLandingAtlas || UsesBoundaryAtlas || UsesSpeedAtlas || UsesDreadAtlas;
+    public int PushFrame => Mathf.Min(7, Mathf.FloorToInt(progress * 8f));
+    public int ShatterRow => AtlasRow(kind);
+    public int ShatterFrame => Mathf.Min(5, Mathf.FloorToInt(progress * 6f));
+    public override Texture mainTexture => UsesDreadAtlas ? dreadAtlas : UsesSpeedAtlas ? speedAtlas : UsesBoundaryAtlas ? boundaryAtlas : UsesLandingAtlas ? landingAtlas : UsesArrowAtlas ? arrowAtlas : UsesHurtAtlas ? hurtAtlas : UsesPushAtlas ? pushAtlas : UsesShatterAtlas ? shatterAtlas : base.mainTexture;
+    private static readonly Vector2[] ArrowOrigins = {
+        new Vector2(.51f,.566f), new Vector2(.32f,.566f), new Vector2(.24f,.566f), new Vector2(.34f,.566f),
+        new Vector2(.49f,.43f), new Vector2(.49f,.43f), new Vector2(.49f,.43f), new Vector2(.5f,.5f)
+    };
+
+    public static int AtlasRow(KaitCombatEffectKind value)
+    {
+        switch (value)
+        {
+            case KaitCombatEffectKind.NormalHit: return 0;
+            case KaitCombatEffectKind.Kill: return 1;
+            case KaitCombatEffectKind.ChainKill: return 2;
+            case KaitCombatEffectKind.Block: return 3;
+            default: return -1;
+        }
+    }
+
+    private static bool LoadShatterAssets()
+    {
+        if (shatterAtlas == null)
+            shatterAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/WhiteGoldShatter");
+        if (shatterMaterial == null)
+        {
+            Shader shader = Resources.Load<Shader>("Shaders/UIWhiteGoldShatter");
+            if (shader != null) shatterMaterial = new Material(shader)
+                { name = "White Gold Shatter UI", hideFlags = HideFlags.HideAndDontSave };
+        }
+        return shatterAtlas != null && shatterMaterial != null;
+    }
 
     public void Configure(KaitCombatEffectKind effectKind, Color primary, Color secondary, float strength)
     {
@@ -38,7 +94,54 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
         color = primary;
         secondaryColor = secondary;
         intensity = Mathf.Clamp01(strength);
+        UsesShatterAtlas = AtlasRow(kind) >= 0 && LoadShatterAssets();
+        UsesPushAtlas = false;
+        UsesHurtAtlas = false;
+        UsesArrowAtlas = false;
+        UsesLandingAtlas = false;
+        UsesBoundaryAtlas = false;
+        UsesSpeedAtlas = false;
+        UsesDreadAtlas = false;
+        if (kind == KaitCombatEffectKind.DreadSlash && LoadShatterAssets())
+        {
+            if (dreadAtlas == null) dreadAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/DreadSlashA");
+            UsesDreadAtlas = dreadAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.Speed && LoadShatterAssets())
+        {
+            if (speedAtlas == null) speedAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/SpeedBuffB");
+            UsesSpeedAtlas = speedAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.BoundaryDust && LoadShatterAssets())
+        {
+            if (boundaryAtlas == null) boundaryAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/BoundaryDustA");
+            UsesBoundaryAtlas = boundaryAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.LandingDust && LoadShatterAssets())
+        {
+            if (landingAtlas == null) landingAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/LandingDustA");
+            UsesLandingAtlas = landingAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.ArrowImpact && LoadShatterAssets())
+        {
+            if (arrowAtlas == null) arrowAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/ArrowImpactA");
+            UsesArrowAtlas = arrowAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.KaitHurt && LoadShatterAssets())
+        {
+            if (hurtAtlas == null) hurtAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/KaitHurtB");
+            UsesHurtAtlas = hurtAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.Push && LoadShatterAssets())
+        {
+            if (pushAtlas == null) pushAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/WhiteGoldPush");
+            UsesPushAtlas = pushAtlas != null;
+        }
+        material = UsesFlipbook ? shatterMaterial : null;
+        if (UsesFlipbook && !UsesSpeedAtlas) color = Color.white;
         raycastTarget = false;
+        maskable = false;
+        SetMaterialDirty();
         SetVerticesDirty();
     }
 
@@ -48,13 +151,35 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
         SetVerticesDirty();
     }
 
+    public void SetBoundaryDirection(Vector2Int direction)
+    {
+        boundaryDirection = direction;
+        SetVerticesDirty();
+    }
+
+    // Pin the contact point; quarter turns keep vertical trails on the movement
+    // axis, without the previous sideways shear.
+    public static Vector2 BoundaryFloorPoint(Vector2 point, Vector2Int direction)
+    {
+        if (direction.x < 0) return new Vector2(-point.x, point.y);
+        if (direction.y > 0) return new Vector2(-point.y, point.x);
+        if (direction.y < 0) return new Vector2(point.y, -point.x);
+        return point;
+    }
+
+    private Vector3 FlipbookPoint(float x, float y)
+    {
+        if (UsesSpeedAtlas) return new Vector3(boundaryDirection.x < 0 ? -x : x, y);
+        return UsesBoundaryAtlas ? (Vector3)BoundaryFloorPoint(new Vector2(x, y), boundaryDirection) : new Vector3(x, y);
+    }
+
     public void Play(float duration)
     {
         playbackDuration = Mathf.Max(0.08f, duration);
         playbackElapsed = 0f;
         autoPlaying = true;
         SetProgress(0.02f);
-        rectTransform.localScale = Vector3.one * 0.68f;
+        rectTransform.localScale = Vector3.one * (UsesFlipbook ? 1f : 0.68f);
     }
 
     private void Update()
@@ -66,7 +191,7 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
         float scale = t < 0.28f
             ? Mathf.Lerp(0.68f, 1.08f, Mathf.SmoothStep(0f, 1f, t / 0.28f))
             : Mathf.Lerp(1.08f, 1f, Mathf.SmoothStep(0f, 1f, (t - 0.28f) / 0.72f));
-        rectTransform.localScale = Vector3.one * scale;
+        rectTransform.localScale = Vector3.one * (UsesFlipbook ? 1f : scale);
         if (t < 1f) return;
         autoPlaying = false;
         Destroy(gameObject);
@@ -78,6 +203,58 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
         Rect rect = rectTransform.rect;
         float unit = Mathf.Min(rect.width, rect.height);
         if (unit <= 0f) return;
+        if (UsesPushAtlas || UsesHurtAtlas || UsesArrowAtlas || UsesLandingAtlas || UsesBoundaryAtlas || UsesSpeedAtlas || UsesDreadAtlas)
+        {
+            if (progress >= 1f) return;
+            Texture2D eightFrameAtlas = UsesDreadAtlas ? dreadAtlas : UsesSpeedAtlas ? speedAtlas : UsesBoundaryAtlas ? boundaryAtlas : UsesLandingAtlas ? landingAtlas : UsesArrowAtlas ? arrowAtlas : UsesHurtAtlas ? hurtAtlas : pushAtlas;
+            if (UsesSpeedAtlas)
+            {
+                float anchor = PushFrame < 4 ? .73f : .60f;
+                rect.position += new Vector2(0, (anchor-.5f)*rect.height);
+            }
+            if (UsesBoundaryAtlas)
+            {
+                float baseline = PushFrame < 4 ? .742f : .563f;
+                rect.position += new Vector2((.5f-.835f)*rect.width, (baseline-.5f)*rect.height);
+            }
+            if (UsesLandingAtlas)
+            {
+                // Match the approved preview's floor baseline in each authored row.
+                float baseline = PushFrame < 4 ? .75f : .635f;
+                rect.position += new Vector2(0, (baseline-.5f)*rect.height);
+            }
+            if (UsesArrowAtlas)
+            {
+                // Pin the authored contact point, not the changing frame bounds.
+                // Origins use image coordinates (top-down); UI vertices use bottom-up.
+                Vector2 origin = ArrowOrigins[PushFrame];
+                rect.position += new Vector2((.5f-origin.x)*rect.width, (origin.y-.5f)*rect.height);
+            }
+            Rect uv = KaitSwordAtlasView.FrameUv(PushFrame, eightFrameAtlas.width, eightFrameAtlas.height);
+            float pushFade = 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.72f, 1f, progress));
+            Color tint = new Color(1f, 1f, 1f, pushFade);
+            if (UsesSpeedAtlas) tint = new Color(color.r, color.g, color.b, color.a * pushFade);
+            helper.AddVert(FlipbookPoint(rect.xMin, rect.yMin), tint, new Vector2(uv.xMin, uv.yMin));
+            helper.AddVert(FlipbookPoint(rect.xMin, rect.yMax), tint, new Vector2(uv.xMin, uv.yMax));
+            helper.AddVert(FlipbookPoint(rect.xMax, rect.yMax), tint, new Vector2(uv.xMax, uv.yMax));
+            helper.AddVert(FlipbookPoint(rect.xMax, rect.yMin), tint, new Vector2(uv.xMax, uv.yMin));
+            helper.AddTriangle(0, 1, 2);
+            helper.AddTriangle(2, 3, 0);
+            return;
+        }
+        if (UsesShatterAtlas)
+        {
+            if (progress >= 1f) return;
+            float alpha = 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.8f, 1f, progress));
+            AddAtlasFrame(helper, rect, ShatterRow, ShatterFrame, alpha);
+            // High chains add a few tiny satellite fragments, not a larger flash.
+            if (kind == KaitCombatEffectKind.ChainKill && intensity > 0.65f && progress > 0.3f)
+            {
+                Rect satellites = new Rect(rect.center - rect.size * 0.36f, rect.size * 0.72f);
+                AddAtlasFrame(helper, satellites, 2, 5, alpha * Mathf.InverseLerp(0.65f, 0.86f, intensity));
+            }
+            return;
+        }
 
         float appear = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(progress * 5f));
         // Hold the contact mark for long enough to remain readable during fast
@@ -167,6 +344,23 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
                     new Vector2(0f, unit * 0.12f));
                 break;
         }
+    }
+
+    private static void AddAtlasFrame(VertexHelper helper, Rect rect, int row, int frame, float alpha)
+    {
+        // Sprite sheet is authored from the top; Unity UV coordinates start below.
+        float u0 = frame / 6f + 0.5f / shatterAtlas.width;
+        float u1 = (frame + 1) / 6f - 0.5f / shatterAtlas.width;
+        float v0 = 1f - (row + 1) / 4f + 0.5f / shatterAtlas.height;
+        float v1 = 1f - row / 4f - 0.5f / shatterAtlas.height;
+        int first = helper.currentVertCount;
+        Color tint = new Color(1f, 1f, 1f, alpha);
+        helper.AddVert(new Vector3(rect.xMin, rect.yMin), tint, new Vector2(u0, v0));
+        helper.AddVert(new Vector3(rect.xMin, rect.yMax), tint, new Vector2(u0, v1));
+        helper.AddVert(new Vector3(rect.xMax, rect.yMax), tint, new Vector2(u1, v1));
+        helper.AddVert(new Vector3(rect.xMax, rect.yMin), tint, new Vector2(u1, v0));
+        helper.AddTriangle(first, first + 1, first + 2);
+        helper.AddTriangle(first + 2, first + 3, first);
     }
 
     private static void AddShield(VertexHelper helper, float unit, Color edge, Color spark, float spread)

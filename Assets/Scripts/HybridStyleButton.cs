@@ -58,22 +58,24 @@ public sealed class HybridStyleButton : Button
     {
         if (surface == null) return;
         Sprite sprite = state == SelectionState.Pressed ? pressedSprite : normalSprite;
-        Color left = accent;
+        // The painted left skin already owns its palette; semantic accent
+        // colors belong to the flat half, not a second multiply over blue/gold.
+        Color left = Color.white;
         Color right = accent;
         switch (state)
         {
             case SelectionState.Highlighted:
             case SelectionState.Selected:
-                left = Color.Lerp(accent, Color.white, 0.14f);
+                left = new Color(1.08f, 1.08f, 1.08f, 1f);
                 right = Color.Lerp(accent, Color.white, 0.14f);
                 break;
             case SelectionState.Pressed:
-                left = MultiplyRgb(accent, 0.76f);
+                left = MultiplyRgb(Color.white, 0.76f);
                 right = MultiplyRgb(accent, 0.76f);
                 break;
             case SelectionState.Disabled:
-                left = Color.Lerp(accent, new Color(0.38f, 0.38f, 0.38f, accent.a), 0.62f);
-                right = left;
+                left = new Color(0.64f, 0.67f, 0.73f, 1f);
+                right = Color.Lerp(accent, new Color(0.38f, 0.38f, 0.38f, accent.a), 0.62f);
                 left.a = right.a = 0.72f;
                 break;
         }

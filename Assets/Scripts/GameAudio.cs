@@ -6,8 +6,14 @@ using UnityEngine;
 public sealed class GameAudio : MonoBehaviour
 {
     private const string MusicPath = "Audio/BackgroundMusic";
-    private const string MergePath = "Audio/Merge";
+    private const string MergePath = "Audio/UI/SelectedModel/Merge_B";
     private const string CombatPath = "Audio/Combat/";
+    private const string SelectedWeaponPath = CombatPath + "SelectedModel/";
+    private const string SelectedCardPath = "Audio/UI/SelectedCards/";
+    private const string SelectedRangedPath = "Audio/Ranged/SelectedModel/";
+    private const string SelectedWorldPath = "Audio/World/SelectedModel/";
+    private const string SelectedUiPath = "Audio/UI/SelectedModel/";
+    private const string SelectedSkillPath = "Audio/Skills/SelectedModel/";
     private const string KaitVoicePath = "Audio/Voice/Gloria/";
     private const string EnemyCharacterVoicePath = "Audio/Voice/Enemies/";
     private const float VoiceChannelVolume = 0.5f;
@@ -54,9 +60,12 @@ public sealed class GameAudio : MonoBehaviour
     private AudioSource magicSource;
     private AudioSource worldSource;
     private AudioSource uiSource;
+    private AudioSource cardSource;
+    private AudioClip cardPickUpClip, cardSnapClip, cardPlayClip, passiveConfirmClip;
     private AudioClip[] drawSwordClips;
-    private AudioClip[] swordSwingClips;
-    private AudioClip[] impactPitchClips;
+    private AudioClip swordSwingClip;
+    private AudioClip normalHitClip;
+    private AudioClip blockClip;
     private AudioClip[] kaitNormalAttackVoiceClips;
     private AudioClip[] kaitHurtVoiceClips;
     private AudioClip kaitKillVoiceClip;
@@ -74,7 +83,8 @@ public sealed class GameAudio : MonoBehaviour
     private AudioClip enemyHurtClip;
     private AudioClip magicImpactClip;
     private AudioClip riftWarningClip;
-    private AudioClip landingAndWallClip;
+    private AudioClip landingClip;
+    private AudioClip wallStopClip;
     private AudioClip pushClip;
     private AudioClip enemyDeathClip;
     private AudioClip arrowFlightClip;
@@ -85,7 +95,8 @@ public sealed class GameAudio : MonoBehaviour
     private AudioClip clickClip;
     private AudioClip invalidClip;
     private AudioClip skillReadyClip;
-    private AudioClip skillUseClip;
+    private AudioClip dreadSlashClip;
+    private AudioClip bodyHurtClip;
     private AudioClip winClip;
     private AudioClip loseClip;
     private int enemyHurtFrame = -1;
@@ -136,9 +147,15 @@ public sealed class GameAudio : MonoBehaviour
         magicSource = CreateSource("Magic Effects", null, false, 0.56f);
         worldSource = CreateSource("World Effects", null, false, 0.5f);
         uiSource = CreateSource("UI Effects", null, false, 0.42f);
+        cardSource = CreateSource("Card Effects", null, false, 0.72f);
+        cardPickUpClip = Resources.Load<AudioClip>(SelectedCardPath + "CardPickUp_A");
+        cardSnapClip = Resources.Load<AudioClip>(SelectedCardPath + "CardSnap_A");
+        cardPlayClip = Resources.Load<AudioClip>(SelectedCardPath + "CardPlay_A");
+        passiveConfirmClip = Resources.Load<AudioClip>(SelectedCardPath + "PassiveConfirm_B");
         drawSwordClips = LoadClipGroup("DrawSword", 10);
-        swordSwingClips = LoadClipGroup("SwordSwing", 3);
-        impactPitchClips = LoadClipGroup("ImpactPitch", 5);
+        swordSwingClip = Resources.Load<AudioClip>(SelectedWeaponPath + "SwordSwing_A_OriginalLevel");
+        normalHitClip = Resources.Load<AudioClip>(SelectedWeaponPath + "Hit_A");
+        blockClip = Resources.Load<AudioClip>(SelectedWeaponPath + "Block_A_OriginalLevel");
         kaitNormalAttackVoiceClips = LoadClips(
             "Gloria_Battle_N_2", "Gloria_Battle_N_3", "Gloria_Battle_N_4", "Gloria_Battle_N_5");
         kaitKillVoiceClip = LoadKaitVoice("Gloria_Battle_N_1");
@@ -160,22 +177,24 @@ public sealed class GameAudio : MonoBehaviour
         enemyCharacterVoiceBanks[KaitEnemyType.Warlock] = LoadEnemyCharacterVoiceBank("Aloe");
         enemyCharacterVoiceBanks[KaitEnemyType.ShieldKnight] = LoadEnemyCharacterVoiceBank("Ursula");
         enemyHurtClip = Resources.Load<AudioClip>("Audio/Combat/KaitHurt_03");
-        riftWarningClip = Resources.Load<AudioClip>("Audio/Magic/MagicImpact_01");
-        magicImpactClip = Resources.Load<AudioClip>("Audio/Magic/MagicImpact_02");
-        landingAndWallClip = Resources.Load<AudioClip>("Audio/World/Push_02");
-        pushClip = Resources.Load<AudioClip>("Audio/World/Push_01");
+        riftWarningClip = Resources.Load<AudioClip>(SelectedWorldPath + "RiftOpen_B2");
+        magicImpactClip = Resources.Load<AudioClip>(SelectedRangedPath + "MagicImpact_B2");
+        landingClip = Resources.Load<AudioClip>(SelectedWorldPath + "SpawnLanding_A");
+        wallStopClip = Resources.Load<AudioClip>(SelectedWorldPath + "WallStop_A2");
+        pushClip = Resources.Load<AudioClip>(SelectedWeaponPath + "Push_A_OriginalLevel");
         enemyDeathClip = Resources.Load<AudioClip>("Audio/Combat/KaitHurt_01");
-        arrowFlightClip = Resources.Load<AudioClip>("Audio/Ranged/ArrowFlight_01");
-        arrowImpactClip = Resources.Load<AudioClip>("Audio/Ranged/ArrowImpact_01");
-        magicChargeClip = Resources.Load<AudioClip>("Audio/Magic/MagicCharge_01");
-        magicCastClip = Resources.Load<AudioClip>("Audio/Magic/MagicCast_01");
+        arrowFlightClip = Resources.Load<AudioClip>(SelectedRangedPath + "ArrowFlight_A2");
+        arrowImpactClip = Resources.Load<AudioClip>(SelectedRangedPath + "ArrowImpact_A");
+        magicChargeClip = Resources.Load<AudioClip>(SelectedSkillPath + "MagicCharge_A");
+        magicCastClip = Resources.Load<AudioClip>(SelectedRangedPath + "MagicCast_B2");
         bossRoarClip = Resources.Load<AudioClip>("Audio/World/BossRoar_01");
-        clickClip = Resources.Load<AudioClip>("Audio/UI/Click_01");
-        invalidClip = Resources.Load<AudioClip>("Audio/UI/Invalid_01");
-        skillReadyClip = Resources.Load<AudioClip>("Audio/UI/SkillReady_01");
-        skillUseClip = Resources.Load<AudioClip>("Audio/UI/SkillUse_01");
-        winClip = Resources.Load<AudioClip>("Audio/UI/Win_01");
-        loseClip = Resources.Load<AudioClip>("Audio/UI/Lose_01");
+        clickClip = Resources.Load<AudioClip>(SelectedUiPath + "ButtonClick_A");
+        invalidClip = Resources.Load<AudioClip>(SelectedUiPath + "InvalidAction_Defeat_A");
+        skillReadyClip = Resources.Load<AudioClip>(SelectedWorldPath + "SkillReady_A2");
+        dreadSlashClip = Resources.Load<AudioClip>(SelectedSkillPath + "DreadSlash_B");
+        bodyHurtClip = Resources.Load<AudioClip>(SelectedSkillPath + "BodyHurt_B");
+        winClip = Resources.Load<AudioClip>(SelectedUiPath + "Victory_B3");
+        loseClip = Resources.Load<AudioClip>(SelectedUiPath + "Defeat_B3");
         if (musicSource.clip != null) musicSource.Play();
     }
 
@@ -229,13 +248,10 @@ public sealed class GameAudio : MonoBehaviour
         if (instance == null || instance.killSource == null) return;
 
         chainKills = Mathf.Clamp(chainKills, 1, 10);
-        // The supplied clash samples rise in pitch from file 5 to file 1.
-        // Regular kills use 2; a chain of three or more steps up to 1.
-        AudioClip clip = instance.ImpactPitchClip(chainKills >= 3 ? 1 : 2);
-        if (clip == null) clip = Resources.Load<AudioClip>(MergePath);
+        AudioClip clip = SelectedKillClip(chainKills);
         if (clip == null) return;
-        instance.killSource.pitch = RisingPitch(chainKills - 1);
-        instance.killSource.PlayOneShot(clip, 0.9f);
+        instance.killSource.pitch = Mathf.Clamp(1f + (chainKills - 1) * 0.035f, 1f, 1.25f);
+        instance.killSource.PlayOneShot(clip, 1f);
 
         if (chainKills <= 1)
             instance.PlayKaitVoice(instance.kaitKillVoiceClip, true);
@@ -247,7 +263,7 @@ public sealed class GameAudio : MonoBehaviour
 
     public static void PlaySwordSwing()
     {
-        PlayRandom(instance?.swingSource, instance?.swordSwingClips, 0.96f, 1.04f, 0.92f);
+        PlayOneShot(instance?.swingSource, instance?.swordSwingClip, 1f);
     }
 
     public static void PlayDrawSword()
@@ -257,12 +273,12 @@ public sealed class GameAudio : MonoBehaviour
 
     public static void PlayNormalHit()
     {
-        instance?.PlayImpactPitch(4, 0.9f);
+        PlayOneShot(instance?.impactSource, instance?.normalHitClip, 1f);
     }
 
     public static void PlayBlock()
     {
-        instance?.PlayImpactPitch(5, 0.96f);
+        PlayOneShot(instance?.impactSource, instance?.blockClip, 1f);
     }
 
     public static void PlayKaitNormalAttackVoice()
@@ -426,18 +442,46 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayRiftWarning() => PlayOneShot(instance?.magicSource, instance?.riftWarningClip, 0.62f, 0.96f, 1.02f);
     public static void PlayMagicCast() => PlayOneShot(instance?.magicSource, instance?.magicCastClip, 0.66f, 0.98f, 1.03f);
     public static void PlayMagicImpact() => PlayOneShot(instance?.magicSource, instance?.magicImpactClip, 0.78f, 0.96f, 1.04f);
-    public static void PlayLanding() => PlayOneShot(instance?.worldSource, instance?.landingAndWallClip, 0.66f, 0.94f, 1.02f);
-    public static void PlayPush() => PlayOneShot(instance?.worldSource, instance?.pushClip, 0.7f, 0.94f, 1.02f);
-    public static void PlayWallStop() => PlayOneShot(instance?.worldSource, instance?.landingAndWallClip, 0.62f, 0.88f, 0.96f);
+    public static void PlayLanding() => PlayOneShot(instance?.worldSource, instance?.landingClip, 0.66f, 0.94f, 1.02f);
+    public static void PlayPush() => PlayOneShot(instance?.impactSource, instance?.pushClip, 1f);
+    public static void PlayWallStop() => PlayOneShot(instance?.worldSource, instance?.wallStopClip, 0.62f, 0.88f, 0.96f);
     public static void PlayBossRoar()
     {
         if (instance == null || instance.enemyCharacterVoiceBanks.ContainsKey(KaitEnemyType.ShieldKnight)) return;
         instance.PlayEnemyVoiceOneShot(KaitEnemyType.ShieldKnight, instance.bossRoarClip, 0.86f, 0.92f, 0.98f);
     }
     public static void PlayClick() => PlayOneShot(instance?.uiSource, instance?.clickClip, 0.72f, 0.98f, 1.02f);
+    public static void PlayCardPickUp() => PlayOneShot(instance?.cardSource, instance?.cardPickUpClip, 1f);
+    public static void PlayCardSnap() => PlayOneShot(instance?.cardSource, instance?.cardSnapClip, 1f);
+    public static void PlayCardPlay() => PlayOneShot(instance?.cardSource, instance?.cardPlayClip, 1f);
+    public static void PlayPassiveConfirm() => PlayOneShot(instance?.cardSource, instance?.passiveConfirmClip, 1f);
     public static void PlayInvalid() => PlayOneShot(instance?.uiSource, instance?.invalidClip, 0.72f);
     public static void PlaySkillReady() => PlayOneShot(instance?.uiSource, instance?.skillReadyClip, 0.7f);
-    public static void PlaySkillUse() => PlayOneShot(instance?.uiSource, instance?.skillUseClip, 0.76f);
+    public static void PlayDreadSlash() => PlayOneShot(instance?.swingSource, instance?.dreadSlashClip, 1f);
+    public static void PlayBodyHurt() => PlayOneShot(instance?.impactSource, instance?.bodyHurtClip, 1f);
+    public static void PlaySkillUse(KaitSkill skill = KaitSkill.None)
+    {
+        if (instance == null) return;
+        PlayOneShot(instance.uiSource, SelectedSkillClip(skill), 0.76f);
+    }
+
+    private static AudioClip SelectedSkillClip(KaitSkill skill)
+    {
+        switch (skill)
+        {
+            case KaitSkill.SwiftBoots:
+            case KaitSkill.CatAgility:
+                return Resources.Load<AudioClip>(SelectedSkillPath + "SpeedBuff_A");
+            case KaitSkill.IceTomb:
+                return Resources.Load<AudioClip>(SelectedSkillPath + "FrostBind_B");
+            case KaitSkill.ShadowStep:
+                return Resources.Load<AudioClip>(SelectedSkillPath + "ShadowStep_B");
+            case KaitSkill.LesserPhantom:
+                return Resources.Load<AudioClip>(SelectedSkillPath + "Phantom_B");
+            default:
+                return Resources.Load<AudioClip>("Audio/UI/SkillUse_01");
+        }
+    }
     public static void PlayWin() => PlayOneShot(instance?.uiSource, instance?.winClip, 0.82f);
     public static void PlayLose() => PlayOneShot(instance?.uiSource, instance?.loseClip, 0.82f);
 
@@ -495,21 +539,10 @@ public sealed class GameAudio : MonoBehaviour
         return clips;
     }
 
-    private AudioClip ImpactPitchClip(int sourceNumber)
+    private static AudioClip SelectedKillClip(int chainKills)
     {
-        int index = Mathf.Clamp(sourceNumber, 1, 5) - 1;
-        return impactPitchClips != null && index < impactPitchClips.Length
-            ? impactPitchClips[index]
-            : null;
-    }
-
-    private void PlayImpactPitch(int sourceNumber, float volumeScale)
-    {
-        if (impactSource == null) return;
-        AudioClip clip = ImpactPitchClip(sourceNumber);
-        if (clip == null) return;
-        impactSource.pitch = 1f;
-        impactSource.PlayOneShot(clip, volumeScale);
+        // The second consecutive kill already uses the selected chain sound.
+        return Resources.Load<AudioClip>(SelectedWeaponPath + (chainKills >= 2 ? "Chain_A" : "Kill_A"));
     }
 
     private static AudioClip RandomClip(AudioClip[] clips)

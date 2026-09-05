@@ -1,0 +1,7 @@
+Approved landing A: two light dust wisps beside the feet.
+Original copied unchanged: C:/Users/yummn/.codex/generated_images/01a06b89-4f27-7931-8d4d-e654b153d193/exec-4889e358-1ce8-4ee3-ba5e-437247319dfd.png
+1774x887, 4x2 eight-frame sheet; 120 UI quad; 0.34 second dust playback.
+Baseline matches preview: top row y=.75, bottom row y=.635 (image top-down coordinates).
+Armed with the original Spine landing track; emits at TrackTime .2667, the contact key shared by all six shipped enemy landing clips.
+Position follows the existing foot shadow at contact, then stays fixed on the ground under actors.
+Cancelled if the actor moves, disappears or replaces landing before contact. No input delay is added.

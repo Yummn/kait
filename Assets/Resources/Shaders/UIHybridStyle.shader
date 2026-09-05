@@ -3,6 +3,7 @@ Shader "UI/Hybrid Style"
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+        _RightTex ("Right Card Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
@@ -75,6 +76,7 @@ Shader "UI/Hybrid Style"
             };
 
             sampler2D _MainTex;
+            sampler2D _RightTex;
             fixed4 _Color;
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
@@ -97,7 +99,7 @@ Shader "UI/Hybrid Style"
             {
                 fixed4 sampled = input.style.z < 0.5
                     ? tex2D(_MainTex, input.texcoord) + _TextureSampleAdd
-                    : fixed4(1, 1, 1, 1);
+                    : (input.style.z > 1.5 ? tex2D(_RightTex, input.texcoord) : fixed4(1, 1, 1, 1));
                 fixed4 color = sampled * input.color;
 
                 float2 size = max(input.geometry.xy, float2(1, 1));

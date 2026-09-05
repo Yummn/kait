@@ -1,0 +1,6 @@
+Approved arrow impact A, original copied unchanged from:
+C:/Users/yummn/.codex/generated_images/01a06b89-4f27-7931-8d4d-e654b153d193/exec-0e12406b-2ac7-4182-b5b3-733740e46cfa.png
+1672x941; 4x2 eight-frame black-matte atlas. 112 UI quad, 0.24 seconds.
+Uses the same per-frame contact origins as the approved preview. Incoming-side contact offset: 20 UI units.
+Enemy target: above enemies, below Kait. Kait target: above Kait.
+Flying arrow, hit sound, combat damage and other Kait hurt feedback remain separate.

@@ -27,6 +27,13 @@ __pycache__/
 *.pyc
 *.log
 
+# VibeGame is an isolated development tool, not a Unity runtime dependency.
+/Tools/VibeGame/upstream/
+/Tools/VibeGame/.venv/
+/Tools/VibeGame/workspace/
+/Tools/VibeGame/evidence/
+/Tools/VibeGame/.env
+
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1
 *.blend1.meta

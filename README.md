@@ -6,9 +6,11 @@
 
 ## 运行
 
+当前归档为 `v0.5.1`，主要整理庭院画风、可拖动卡片和战斗反馈。具体变化见 [本次版本说明](Docs/Release-v0.5.1.md)。
+
 - Unity 版本：`6000.0.30f1`
 - 场景：`Assets/Scenes/Scene.unity`
-- Windows 版可以在 GitHub Releases 下载。
+- Windows 版可以在 GitHub Releases 下载。完整解压 Windows 压缩包后运行 `kait.exe`，不要单独移动 exe；同目录的 `kait_Data` 和 `UnityPlayer.dll` 都需要保留。
 
 打开工程后直接运行场景即可。界面由运行时代码创建，不需要手动替换场景里的旧对象。
 
