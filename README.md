@@ -6,11 +6,12 @@
 
 ## 运行
 
-最新源码归档为 `v0.5.2` 开发快照，补充技能特效、盾骑士方向提示和音效节奏调整，详见 [版本说明](Docs/Release-v0.5.2.md)。可下载安装包的版本仍为 `v0.5.1`；开发快照不附旧安装包。
+当前版本为 `v0.5.3`，加入游戏前主界面，采用 A 版驻剑人物和 B 版庭院斜切背景。启动后可以先看教程、调整设置，再开始游戏。详见 [版本说明](Docs/Release-v0.5.3.md)。
 
 - Unity 版本：`6000.0.30f1`
 - 场景：`Assets/Scenes/Scene.unity`
 - Windows 版可以在 GitHub Releases 下载。完整解压 Windows 压缩包后运行 `kait.exe`，不要单独移动 exe；同目录的 `kait_Data` 和 `UnityPlayer.dll` 都需要保留。
+- 安卓安装包为 `kait-v0.5.3.apk`，面向 ARM64、Android 8.0 及以上设备，横屏运行。
 
 打开工程后直接运行场景即可。界面由运行时代码创建，不需要手动替换场景里的旧对象。
 
@@ -37,6 +38,7 @@
 - `Assets/Scripts/KaitCore.cs`：棋盘、回合、敌人、伤害和技能规则
 - `Assets/Scripts/KaitPassives.cs`：被动牌资料、分类和一句话说明
 - `Assets/Scripts/KaitGame.cs`：输入、UI、动画和运行时表现
+- `Assets/Scripts/KaitMainMenu.cs`：主界面按钮、布局、安全区适配和按下反馈
 - `Assets/Tests/Editor`：规则与资源检查
 
 历史版本都保留在 Git 标签中，简要变化见 [VERSION_HISTORY.md](VERSION_HISTORY.md)。

@@ -86,6 +86,10 @@ public sealed class KaitGame : MonoBehaviour
     private readonly HashSet<Vector2Int> impactCells = new HashSet<Vector2Int>();
     private GameObject tutorialOverlay;
     private GameObject settingsOverlay;
+    private KaitMainMenu mainMenu;
+    private GameObject gameplayRoot;
+    private int menuClosedFrame = -1;
+    private bool MainMenuVisible => mainMenu != null && mainMenu.gameObject.activeSelf;
     private Toggle disableThreatPillarsToggle;
     private Toggle playerInvincibleToggle;
     private Toggle disableRiftDamageToggle;
@@ -304,7 +308,11 @@ public sealed class KaitGame : MonoBehaviour
         }
 
         if (canvas == null) BuildUI();
-        NewRun();
+        bool menuPreview = !string.IsNullOrEmpty(CommandLineValue("-kaitMenuPreview"));
+        bool automatedGameplay = !menuPreview && (!string.IsNullOrEmpty(CommandLineValue("-kaitScreenshot")) ||
+            !string.IsNullOrEmpty(CommandLineValue("-kaitVfxPreview")) || !string.IsNullOrEmpty(CommandLineValue("-kaitDemoSteps")));
+        if (automatedGameplay) StartFromMainMenu();
+        else ShowMainMenu();
         if (CommandLineValue("-kaitGrowthPreview") == "1") PrepareGrowthPreview();
         string cardsPreview = CommandLineValue("-kaitCardsPreview");
         if (!string.IsNullOrEmpty(cardsPreview))
@@ -360,7 +368,12 @@ public sealed class KaitGame : MonoBehaviour
         }
         int.TryParse(demoStepsValue, out int demoSteps);
         string vfxPreview = CommandLineValue("-kaitVfxPreview");
-        if (skillPreview == "preview") StartCoroutine(PreviewSkillCardReveal(screenshotPath));
+        if (menuPreview)
+        {
+            var qa = new GameObject("Main Menu QA", typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
+            qa.StartCoroutine(VerifyMainMenu(CommandLineValue("-kaitMenuPreview"), screenshotPath));
+        }
+        else if (skillPreview == "preview") StartCoroutine(PreviewSkillCardReveal(screenshotPath));
         else if (skillPreview == "cast") StartCoroutine(PreviewSkillCardCast(screenshotPath));
         else if (!string.IsNullOrEmpty(vfxPreview)) StartCoroutine(PreviewCombatVfx(vfxPreview, screenshotPath));
         else if (!string.IsNullOrEmpty(screenshotPath)) StartCoroutine(CaptureAndQuit(screenshotPath, demoSteps));
@@ -432,6 +445,10 @@ public sealed class KaitGame : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && settingsOverlay != null && settingsOverlay.activeSelf)
+        {
+            settingsOverlay.SetActive(false); menuClosedFrame = Time.frameCount; return;
+        }
         if (TutorialBlocksInput()) { ResetSwipeTracking(); return; }
         if (run.ended) return;
         HandleTouchSwipe();
@@ -444,7 +461,9 @@ public sealed class KaitGame : MonoBehaviour
 
     private bool TutorialBlocksInput()
     {
-        return (tutorialOverlay != null && tutorialOverlay.activeInHierarchy) || KaitTutorialBook.ClosedFrame == Time.frameCount;
+        return canvas == null || MainMenuVisible || menuClosedFrame == Time.frameCount ||
+            (settingsOverlay != null && settingsOverlay.activeInHierarchy) ||
+            (tutorialOverlay != null && tutorialOverlay.activeInHierarchy) || KaitTutorialBook.ClosedFrame == Time.frameCount;
     }
 
     private void HandleTouchSwipe()
@@ -546,6 +565,7 @@ public sealed class KaitGame : MonoBehaviour
         scaler.matchWidthOrHeight = 0.5f;
 
         Image bg = Rect("Background", canvas.transform, Vector2.zero, new Vector2(1920, 1080), Background);
+        gameplayRoot = bg.gameObject;
         if (grassBackgroundSprite != null)
         {
             Image garden = Rect("Emerald Garden", bg.transform, Vector2.zero, Vector2.zero, Color.white);
@@ -627,8 +647,51 @@ public sealed class KaitGame : MonoBehaviour
         skillDeck.Initialize(skillArea, styleSplit, threatBoardFont, ChoosePendingSkill, HandleSkillCardCast,
             () => { targetingSkill = KaitSkill.None; RefreshAll(); });
         BuildEndOverlay(bg.transform);
-        BuildTutorialOverlay(bg.transform);
-        BuildSettingsOverlay(bg.transform);
+        BuildTutorialOverlay(canvas.transform);
+        BuildSettingsOverlay(canvas.transform);
+        mainMenu = KaitMainMenu.Create(canvas.transform, threatBoardFont, roundedSprite, StartFromMainMenu,
+            OpenMenuTutorial, OpenMenuSettings);
+    }
+
+    private void ShowMainMenu()
+    {
+        StopAllCoroutines();
+        ResetSwipeTracking();
+        targetingSkill = KaitSkill.None;
+        gameplayRoot.SetActive(false);
+        tutorialOverlay.SetActive(false);
+        settingsOverlay.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
+        mainMenu.transform.SetAsLastSibling();
+        mainMenu.Fit();
+        if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void StartFromMainMenu()
+    {
+        mainMenu.gameObject.SetActive(false);
+        tutorialOverlay.SetActive(false);
+        settingsOverlay.SetActive(false);
+        gameplayRoot.SetActive(true);
+        menuClosedFrame = Time.frameCount;
+        ResetSwipeTracking();
+        if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+        NewRun();
+    }
+
+    private void OpenMenuTutorial()
+    {
+        settingsOverlay.SetActive(false);
+        tutorialOverlay.SetActive(true);
+        tutorialOverlay.transform.SetAsLastSibling();
+        tutorialOverlay.GetComponent<KaitTutorialBook>().ShowPage(0);
+    }
+
+    private void OpenMenuSettings()
+    {
+        tutorialOverlay.SetActive(false);
+        settingsOverlay.SetActive(true);
+        settingsOverlay.transform.SetAsLastSibling();
     }
 
     private void AddGardenShadow(Transform parent, string name)
@@ -954,6 +1017,7 @@ public sealed class KaitGame : MonoBehaviour
     private void BuildTutorialOverlay(Transform parent)
     {
         tutorialOverlay = KaitTutorialBook.Create(parent, threatBoardFont, roundedSprite).gameObject;
+        tutorialOverlay.GetComponent<KaitTutorialBook>().Completed = () => { if (MainMenuVisible) StartFromMainMenu(); };
     }
 
     private void BuildSettingsOverlay(Transform parent)
@@ -1002,6 +1066,7 @@ public sealed class KaitGame : MonoBehaviour
         {
             GameAudio.PlayClick();
             settingsOverlay.SetActive(false);
+            menuClosedFrame = Time.frameCount;
         });
         settingsOverlay.SetActive(false);
     }
@@ -1015,7 +1080,7 @@ public sealed class KaitGame : MonoBehaviour
         run.config.enableThreatPillars = enabled;
         PlayerPrefs.SetInt(DisableThreatPillarsPreference, disabled ? 1 : 0);
         PlayerPrefs.Save();
-        NewRun();
+        if (!MainMenuVisible) NewRun();
         if (settingsOverlay != null)
         {
             settingsOverlay.SetActive(true);
@@ -1229,6 +1294,7 @@ public sealed class KaitGame : MonoBehaviour
             statusText.text = result.message;
             busy = false;
             RefreshAll();
+            PlayCrossBoardResonance(result);
             kaitSpine?.PlayLoop(KaitSpineView.ChainDirectionChoice);
             yield break;
         }
@@ -3120,6 +3186,74 @@ public sealed class KaitGame : MonoBehaviour
         Application.Quit();
     }
 
+    private IEnumerator VerifyMainMenu(string mode, string path)
+    {
+        yield return new WaitForSecondsRealtime(.5f);
+        Canvas.ForceUpdateCanvases(); mainMenu.Fit();
+        CaptureCanvasToPng(path);
+        if (mode == "still") { Application.Quit(); yield break; }
+        int initialTurn = run.turn;
+        HandleDirection(KaitDirection.Right);
+        if (!MainMenuVisible || gameplayRoot.activeSelf || run.turn != initialTurn)
+            Debug.LogError("Main menu QA: startup/input gate failed");
+        var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left };
+        var button = mainMenu.StartButton;
+        ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerDownHandler);
+        yield return new WaitForSecondsRealtime(.12f);
+        CaptureCanvasToPng(path + ".pressed.png");
+        if (button.transform.localScale.x >= 1) Debug.LogError("Main menu QA: press feedback missing");
+        ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+        MenuQAClick(mainMenu.TutorialButton);
+        yield return new WaitForSecondsRealtime(.2f);
+        CaptureCanvasToPng(path + ".tutorial.png");
+        if (!tutorialOverlay.activeInHierarchy || !MainMenuVisible) Debug.LogError("Main menu QA: tutorial failed");
+        tutorialOverlay.GetComponent<KaitTutorialBook>().Close();
+        yield return null;
+        if (!MainMenuVisible || gameplayRoot.activeSelf) Debug.LogError("Main menu QA: tutorial close entered game");
+        MenuQAClick(mainMenu.SettingsButton);
+        yield return new WaitForSecondsRealtime(.2f);
+        CaptureCanvasToPng(path + ".settings.png");
+        HandleDirection(KaitDirection.Down);
+        if (!settingsOverlay.activeInHierarchy || run.turn != initialTurn) Debug.LogError("Main menu QA: settings gate failed");
+        bool oldWalls = disableThreatPillarsToggle.isOn;
+        disableThreatPillarsToggle.isOn = !oldWalls;
+        disableThreatPillarsToggle.isOn = oldWalls;
+        if (!MainMenuVisible || gameplayRoot.activeSelf) Debug.LogError("Main menu QA: settings started a game");
+        settingsOverlay.SetActive(false);
+        yield return null;
+        MenuQAClick(mainMenu.StartButton);
+        yield return new WaitForSecondsRealtime(.3f);
+        if (MainMenuVisible || !gameplayRoot.activeSelf) Debug.LogError("Main menu QA: start failed");
+        int before = run.turn;
+        HandleDirection(KaitDirection.Up);
+        yield return new WaitForSecondsRealtime(.8f);
+        if (run.turn <= before) Debug.LogError("Main menu QA: gameplay input failed");
+        CaptureCanvasToPng(path + ".gameplay.png");
+        ShowMainMenu();
+        // Native Graphic depth becomes available after the re-enabled canvas rebuild.
+        yield return new WaitForEndOfFrame();
+        MenuQAClick(mainMenu.TutorialButton);
+        var book = tutorialOverlay.GetComponent<KaitTutorialBook>();
+        book.ShowPage(book.PageCount - 1); book.Next();
+        yield return new WaitForSecondsRealtime(.2f);
+        if (MainMenuVisible || !gameplayRoot.activeSelf || tutorialOverlay.activeSelf)
+            Debug.LogError("Main menu QA: tutorial completion failed");
+        Debug.Log("Main menu QA passed: startup, raycast, pressed, tutorial, settings, start, movement, tutorial completion");
+        Application.Quit();
+    }
+
+    private void MenuQAClick(Button button)
+    {
+        Canvas.ForceUpdateCanvases();
+        var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left,
+            position = RectTransformUtility.WorldToScreenPoint(null, button.transform.position) };
+        var hits = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, hits);
+        if (hits.Count == 0 || hits[0].gameObject.GetComponentInParent<Button>() != button)
+        { Debug.LogError("Main menu QA: blocked raycast " + button.name + " hit=" + (hits.Count > 0 ? hits[0].gameObject.name : "none")); return; }
+        ExecuteEvents.Execute(button.gameObject, pointer, ExecuteEvents.pointerClickHandler);
+    }
+
     private void SaveGardenShadowPreview(string path)
     {
         var field = layeredGarden.ShadowField;
@@ -3679,11 +3813,11 @@ public sealed class KaitGame : MonoBehaviour
             run.spawns.Clear(); animatedSpawns = null;
             var from = new Vector2Int(2,2);
             var to = normalized.Contains("redirect") ? target : run.MapThreatToBattle(from);
-            var result = new KaitTurnResult();
-            result.merges.Add(new KaitMergeEvent { resultValue = 4, threatCell = from, spawnSuppressed = normalized.Contains("blocked") });
+            var previewResult = new KaitTurnResult();
+            previewResult.merges.Add(new KaitMergeEvent { resultValue = 4, threatCell = from, spawnSuppressed = normalized.Contains("blocked") });
             if (!normalized.Contains("blocked")) run.spawns.Add(new KaitSpawnRequest { tier=1,sourceThreatCell=from,targetCell=to,createdTurn=run.turn,turnsUntilSpawn=1,state=KaitSpawnState.Preview });
             RefreshBattle();
-            PlayCrossBoardResonance(result);
+            PlayCrossBoardResonance(previewResult);
             var links = cellSignals.FindAll(s=>s!=null && !s.Warning);
             if (links.Count != (normalized.Contains("blocked") ? 0 : 2)) throw new InvalidOperationException("Cell signal QA: unexpected paired highlight count");
             foreach (var link in links) { link.ManualPreview=true; link.PreviewPhase=.5f; }

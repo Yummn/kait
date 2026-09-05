@@ -18,6 +18,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     public int PageIndex { get; private set; }
     public int PageCount => KaitTutorialPages.All.Length;
     public bool IllustrationLoaded => comic != null && comic.texture != null;
+    public System.Action Completed;
     // Also guards against Escape closing the book before KaitGame.Update runs that frame.
     public static int ClosedFrame { get; private set; } = -1;
 
@@ -78,7 +79,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         nextLabel.text=PageIndex==PageCount-1 ? "开始游戏" : "下一页";
         for(int i=0;i<tabs.Length;i++)tabs[i].color=i==PageIndex ? new Color32(151,104,99,255) : new Color32(93,79,87,255);
     }
-    public void Next() { if(PageIndex==PageCount-1)Close(); else ShowPage(PageIndex+1); }
+    public void Next() { if(PageIndex==PageCount-1) { Close(); Completed?.Invoke(); } else ShowPage(PageIndex+1); }
 
     // Legacy UGUI treats long Chinese runs around Latin spaces as words. Pre-wrap by
     // measured glyph width, keeping punctuation off line starts and Latin tokens intact.
