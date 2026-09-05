@@ -15,7 +15,11 @@ public sealed class KaitShatterImporter : AssetPostprocessor
             assetPath != "Assets/Resources/KaitVisuals/Effects/LandingDustA.png" &&
             assetPath != "Assets/Resources/KaitVisuals/Effects/BoundaryDustA.png" &&
             assetPath != "Assets/Resources/KaitVisuals/Effects/SpeedBuffB.png" &&
-            assetPath != "Assets/Resources/KaitVisuals/Effects/DreadSlashA.png") return;
+            assetPath != "Assets/Resources/KaitVisuals/Effects/DreadSlashA.png" &&
+            assetPath != "Assets/Resources/KaitVisuals/Effects/IceBindingA.png" &&
+            assetPath != "Assets/Resources/KaitVisuals/Effects/PhantomMarkB.png" &&
+            assetPath != "Assets/Resources/KaitVisuals/Effects/ShadowStepA.png" &&
+            assetPath != "Assets/Resources/KaitVisuals/Effects/ShieldFacingB.png") return;
         var importer = (TextureImporter)assetImporter;
         importer.textureType = TextureImporterType.Default;
         importer.sRGBTexture = true;

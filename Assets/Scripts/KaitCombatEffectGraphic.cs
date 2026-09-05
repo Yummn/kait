@@ -13,6 +13,7 @@ public enum KaitCombatEffectKind
     MagicImpact,
     Ice,
     Phantom,
+    ShadowStep,
     Speed,
     DreadSlash,
     Push,
@@ -43,6 +44,9 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
     private static Texture2D boundaryAtlas;
     private static Texture2D speedAtlas;
     private static Texture2D dreadAtlas;
+    private static Texture2D iceAtlas;
+    private static Texture2D phantomAtlas;
+    private static Texture2D shadowStepAtlas;
     private Vector2Int boundaryDirection = Vector2Int.right;
     private static Material shatterMaterial;
     public bool UsesShatterAtlas { get; private set; }
@@ -53,11 +57,14 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
     public bool UsesBoundaryAtlas { get; private set; }
     public bool UsesSpeedAtlas { get; private set; }
     public bool UsesDreadAtlas { get; private set; }
-    private bool UsesFlipbook => UsesShatterAtlas || UsesPushAtlas || UsesHurtAtlas || UsesArrowAtlas || UsesLandingAtlas || UsesBoundaryAtlas || UsesSpeedAtlas || UsesDreadAtlas;
+    public bool UsesIceAtlas { get; private set; }
+    public bool UsesPhantomAtlas { get; private set; }
+    public bool UsesShadowStepAtlas { get; private set; }
+    private bool UsesFlipbook => UsesShatterAtlas || UsesPushAtlas || UsesHurtAtlas || UsesArrowAtlas || UsesLandingAtlas || UsesBoundaryAtlas || UsesSpeedAtlas || UsesDreadAtlas || UsesIceAtlas || UsesPhantomAtlas || UsesShadowStepAtlas;
     public int PushFrame => Mathf.Min(7, Mathf.FloorToInt(progress * 8f));
     public int ShatterRow => AtlasRow(kind);
     public int ShatterFrame => Mathf.Min(5, Mathf.FloorToInt(progress * 6f));
-    public override Texture mainTexture => UsesDreadAtlas ? dreadAtlas : UsesSpeedAtlas ? speedAtlas : UsesBoundaryAtlas ? boundaryAtlas : UsesLandingAtlas ? landingAtlas : UsesArrowAtlas ? arrowAtlas : UsesHurtAtlas ? hurtAtlas : UsesPushAtlas ? pushAtlas : UsesShatterAtlas ? shatterAtlas : base.mainTexture;
+    public override Texture mainTexture => UsesShadowStepAtlas ? shadowStepAtlas : UsesPhantomAtlas ? phantomAtlas : UsesIceAtlas ? iceAtlas : UsesDreadAtlas ? dreadAtlas : UsesSpeedAtlas ? speedAtlas : UsesBoundaryAtlas ? boundaryAtlas : UsesLandingAtlas ? landingAtlas : UsesArrowAtlas ? arrowAtlas : UsesHurtAtlas ? hurtAtlas : UsesPushAtlas ? pushAtlas : UsesShatterAtlas ? shatterAtlas : base.mainTexture;
     private static readonly Vector2[] ArrowOrigins = {
         new Vector2(.51f,.566f), new Vector2(.32f,.566f), new Vector2(.24f,.566f), new Vector2(.34f,.566f),
         new Vector2(.49f,.43f), new Vector2(.49f,.43f), new Vector2(.49f,.43f), new Vector2(.5f,.5f)
@@ -102,6 +109,24 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
         UsesBoundaryAtlas = false;
         UsesSpeedAtlas = false;
         UsesDreadAtlas = false;
+        UsesIceAtlas = false;
+        UsesPhantomAtlas = false;
+        UsesShadowStepAtlas = false;
+        if (kind == KaitCombatEffectKind.ShadowStep && LoadShatterAssets())
+        {
+            if (shadowStepAtlas == null) shadowStepAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/ShadowStepA");
+            UsesShadowStepAtlas = shadowStepAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.Phantom && LoadShatterAssets())
+        {
+            if (phantomAtlas == null) phantomAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/PhantomMarkB");
+            UsesPhantomAtlas = phantomAtlas != null;
+        }
+        if (kind == KaitCombatEffectKind.Ice && LoadShatterAssets())
+        {
+            if (iceAtlas == null) iceAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/IceBindingA");
+            UsesIceAtlas = iceAtlas != null;
+        }
         if (kind == KaitCombatEffectKind.DreadSlash && LoadShatterAssets())
         {
             if (dreadAtlas == null) dreadAtlas = Resources.Load<Texture2D>("KaitVisuals/Effects/DreadSlashA");
@@ -149,6 +174,13 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
     {
         progress = Mathf.Clamp01(value);
         SetVerticesDirty();
+    }
+
+    public void SetHeldProgress(float value)
+    {
+        autoPlaying = false;
+        rectTransform.localScale = Vector3.one;
+        SetProgress(value);
     }
 
     public void SetBoundaryDirection(Vector2Int direction)
@@ -203,10 +235,18 @@ public sealed class KaitCombatEffectGraphic : MaskableGraphic
         Rect rect = rectTransform.rect;
         float unit = Mathf.Min(rect.width, rect.height);
         if (unit <= 0f) return;
-        if (UsesPushAtlas || UsesHurtAtlas || UsesArrowAtlas || UsesLandingAtlas || UsesBoundaryAtlas || UsesSpeedAtlas || UsesDreadAtlas)
+        if (UsesPushAtlas || UsesHurtAtlas || UsesArrowAtlas || UsesLandingAtlas || UsesBoundaryAtlas || UsesSpeedAtlas || UsesDreadAtlas || UsesIceAtlas || UsesPhantomAtlas || UsesShadowStepAtlas)
         {
             if (progress >= 1f) return;
-            Texture2D eightFrameAtlas = UsesDreadAtlas ? dreadAtlas : UsesSpeedAtlas ? speedAtlas : UsesBoundaryAtlas ? boundaryAtlas : UsesLandingAtlas ? landingAtlas : UsesArrowAtlas ? arrowAtlas : UsesHurtAtlas ? hurtAtlas : pushAtlas;
+            Texture2D eightFrameAtlas = UsesShadowStepAtlas ? shadowStepAtlas : UsesPhantomAtlas ? phantomAtlas : UsesIceAtlas ? iceAtlas : UsesDreadAtlas ? dreadAtlas : UsesSpeedAtlas ? speedAtlas : UsesBoundaryAtlas ? boundaryAtlas : UsesLandingAtlas ? landingAtlas : UsesArrowAtlas ? arrowAtlas : UsesHurtAtlas ? hurtAtlas : pushAtlas;
+            if (UsesShadowStepAtlas)
+            {
+                float baseline = PushFrame < 4 ? .83f : .70f;
+                // Source rows use image-space baselines; UI local Y runs upward.
+                rect.position += new Vector2(0, (.5f-baseline)*rect.height);
+            }
+            if (UsesPhantomAtlas) rect.position += new Vector2(0, (PushFrame < 4 ? .06f : .01f) * rect.height);
+            if (UsesIceAtlas) rect.position += new Vector2(0, .33f * rect.height);
             if (UsesSpeedAtlas)
             {
                 float anchor = PushFrame < 4 ? .73f : .60f;

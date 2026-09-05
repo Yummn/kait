@@ -58,6 +58,9 @@ public sealed class GameAudio : MonoBehaviour
         new Dictionary<KaitEnemyType, AudioSource>();
     private AudioSource rangedSource;
     private AudioSource magicSource;
+    private AudioSource magicActionSource;
+    private AudioSource skillChargeSource;
+    private readonly Dictionary<AudioClip, float> actionCueTimes = new Dictionary<AudioClip, float>();
     private AudioSource worldSource;
     private AudioSource uiSource;
     private AudioSource cardSource;
@@ -145,6 +148,8 @@ public sealed class GameAudio : MonoBehaviour
             enemyVoiceSources[type] = CreateSource($"Enemy Voice - {type}", null, false, VoiceChannelVolume);
         rangedSource = CreateSource("Ranged Effects", null, false, 0.58f);
         magicSource = CreateSource("Magic Effects", null, false, 0.56f);
+        magicActionSource = CreateSource("Magic Actions", null, false, 0.56f);
+        skillChargeSource = CreateSource("Skill Charge", null, false, 0.42f);
         worldSource = CreateSource("World Effects", null, false, 0.5f);
         uiSource = CreateSource("UI Effects", null, false, 0.42f);
         cardSource = CreateSource("Card Effects", null, false, 0.72f);
@@ -263,7 +268,7 @@ public sealed class GameAudio : MonoBehaviour
 
     public static void PlaySwordSwing()
     {
-        PlayOneShot(instance?.swingSource, instance?.swordSwingClip, 1f);
+        PlayActionCue(instance?.swingSource, instance?.swordSwingClip, 1f);
     }
 
     public static void PlayDrawSword()
@@ -438,9 +443,9 @@ public sealed class GameAudio : MonoBehaviour
         instance?.PlayEnemyVoiceOneShot(KaitEnemyType.Grunt, instance.enemyDeathClip, 0.76f, 0.96f, 1.04f);
     public static void PlayArrowFlight() => PlayOneShot(instance?.rangedSource, instance?.arrowFlightClip, 0.58f, 0.98f, 1.03f);
     public static void PlayArrowImpact() => PlayOneShot(instance?.impactSource, instance?.arrowImpactClip, 0.86f, 0.97f, 1.04f);
-    public static void PlayMagicCharge() => PlayOneShot(instance?.magicSource, instance?.magicChargeClip, 0.46f, 0.96f, 1.02f);
+    public static void PlayMagicCharge() => PlayActionCue(instance?.magicActionSource, instance?.magicChargeClip, 2f, 0.96f, 1.02f);
     public static void PlayRiftWarning() => PlayOneShot(instance?.magicSource, instance?.riftWarningClip, 0.62f, 0.96f, 1.02f);
-    public static void PlayMagicCast() => PlayOneShot(instance?.magicSource, instance?.magicCastClip, 0.66f, 0.98f, 1.03f);
+    public static void PlayMagicCast() => PlayActionCue(instance?.magicActionSource, instance?.magicCastClip, 0.66f, 0.98f, 1.03f);
     public static void PlayMagicImpact() => PlayOneShot(instance?.magicSource, instance?.magicImpactClip, 0.78f, 0.96f, 1.04f);
     public static void PlayLanding() => PlayOneShot(instance?.worldSource, instance?.landingClip, 0.66f, 0.94f, 1.02f);
     public static void PlayPush() => PlayOneShot(instance?.impactSource, instance?.pushClip, 1f);
@@ -462,7 +467,8 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlaySkillUse(KaitSkill skill = KaitSkill.None)
     {
         if (instance == null) return;
-        PlayOneShot(instance.uiSource, SelectedSkillClip(skill), 0.76f);
+        PlayOneShot(skill == KaitSkill.DreadSlash ? instance.skillChargeSource : instance.uiSource,
+            SelectedSkillClip(skill), 0.76f);
     }
 
     private static AudioClip SelectedSkillClip(KaitSkill skill)
@@ -478,6 +484,8 @@ public sealed class GameAudio : MonoBehaviour
                 return Resources.Load<AudioClip>(SelectedSkillPath + "ShadowStep_B");
             case KaitSkill.LesserPhantom:
                 return Resources.Load<AudioClip>(SelectedSkillPath + "Phantom_B");
+            case KaitSkill.DreadSlash:
+                return Resources.Load<AudioClip>(SelectedSkillPath + "DreadCharge_B");
             default:
                 return Resources.Load<AudioClip>("Audio/UI/SkillUse_01");
         }
@@ -555,6 +563,30 @@ public sealed class GameAudio : MonoBehaviour
             if (clip != null) return clip;
         }
         return null;
+    }
+
+    public static void InterruptActionSounds()
+    {
+        if (instance == null) return;
+        instance.drawSwordSource?.Stop();
+        instance.swingSource?.Stop();
+        instance.rangedSource?.Stop();
+        instance.magicActionSource?.Stop();
+        instance.skillChargeSource?.Stop();
+        instance.actionCueTimes.Clear();
+        // Preserve confirmed impacts, kills, voices, cards and music tails.
+    }
+
+    private static bool AcceptActionCue(float now, float previous) => now - previous >= 0.04f;
+
+    private static void PlayActionCue(AudioSource source, AudioClip clip, float volume,
+        float minimumPitch = 1f, float maximumPitch = 1f)
+    {
+        if (instance == null || source == null || clip == null) return;
+        float now = Time.realtimeSinceStartup;
+        if (instance.actionCueTimes.TryGetValue(clip, out float previous) && !AcceptActionCue(now, previous)) return;
+        instance.actionCueTimes[clip] = now;
+        PlayOneShot(source, clip, volume, minimumPitch, maximumPitch);
     }
 
     private static void PlayRandom(AudioSource source, AudioClip[] clips, float minimumPitch, float maximumPitch, float volumeScale)

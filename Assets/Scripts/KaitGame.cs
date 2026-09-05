@@ -77,6 +77,9 @@ public sealed class KaitGame : MonoBehaviour
     private Vector2Int? displayKate;
     private bool hideKate;
     private List<KaitEnemy> animatedEnemies;
+    private readonly Dictionary<int, KaitShieldFacing> shieldFacings = new Dictionary<int, KaitShieldFacing>();
+    private readonly Dictionary<Vector2Int, KaitCellSignal> riftEdgeSignals = new Dictionary<Vector2Int, KaitCellSignal>();
+    private readonly List<KaitCellSignal> cellSignals = new List<KaitCellSignal>();
     private List<KaitSpawnRequest> animatedSpawns;
     private int[,] displayedThreat;
     private bool hideThreatValues;
@@ -124,6 +127,10 @@ public sealed class KaitGame : MonoBehaviour
     private readonly List<KaitTrailVisual> activeTrailVisuals = new List<KaitTrailVisual>();
     private readonly List<SpineEffectView> activeEffectViews = new List<SpineEffectView>();
     private readonly List<KaitCombatEffectGraphic> activeCombatEffects = new List<KaitCombatEffectGraphic>();
+    private readonly Dictionary<int, KaitIceBinding> iceBindings = new Dictionary<int, KaitIceBinding>();
+    private KaitPhantomMark phantomMark;
+    private int phantomMarkEnemyId = -1;
+    private int visualPhantomTargetId = -1;
     private readonly List<RawImage> activeSwordSlashEffects = new List<RawImage>();
     private int swipeFingerId = -1;
     private Vector2 swipeStartPosition;
@@ -1059,6 +1066,14 @@ public sealed class KaitGame : MonoBehaviour
 
     private void NewRun()
     {
+        foreach (var signal in cellSignals) if (signal != null) Destroy(signal.gameObject);
+        cellSignals.Clear(); riftEdgeSignals.Clear();
+        foreach (var shield in shieldFacings.Values) if (shield != null) Destroy(shield.gameObject);
+        shieldFacings.Clear();
+        foreach (var effect in activeCombatEffects)
+            if (effect != null && effect.UsesPhantomAtlas) Destroy(effect.gameObject);
+        phantomMark = null;
+        phantomMarkEnemyId = -1;
         StopAllCoroutines();
         screenShakeRoutine = null;
         kaitSkillAnimationRoutine = null;
@@ -1101,9 +1116,11 @@ public sealed class KaitGame : MonoBehaviour
         Vector2Int start = run.katePos;
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
         List<KaitSpawnRequest> spawnSnapshot = SnapshotSpawns();
+        visualPhantomTargetId = run.forcedTargetEnemyId;
         KaitTurnResult result = run.chainActive ? run.ContinueChain(direction) : run.TryGlobalInput(direction);
         if (!result.valid)
         {
+            visualPhantomTargetId = -1;
             GameAudio.PlayInvalid();
             statusText.text = result.message;
             StartCoroutine(FlashStatus());
@@ -1127,6 +1144,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void InterruptActivePresentationForMovement()
     {
+        GameAudio.InterruptActionSounds();
         // The turn has already been resolved by KaitRun before its presentation
         // starts. Cancelling presentation is therefore safe: snap every visual
         // to that authoritative state, then accept the next direction at once.
@@ -1153,6 +1171,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void ResetInterruptedAnimationState()
     {
+        visualPhantomTargetId = -1;
         if (gameContent != null) gameContent.anchoredPosition = gameContentBasePosition;
         if (battleCells != null)
             foreach (Image cell in battleCells) if (cell != null) cell.rectTransform.localScale = Vector3.one;
@@ -1233,6 +1252,7 @@ public sealed class KaitGame : MonoBehaviour
             yield return AnimateAllEnemyActions(enemyAttacks);
         }
 
+        visualPhantomTargetId = -1;
         yield return AnimateCombatFeedback(result, healthBefore, kateHpBefore);
         yield return AnimateEnemyDeaths(healthBefore);
 
@@ -1244,6 +1264,8 @@ public sealed class KaitGame : MonoBehaviour
         hideKate = false;
         displayKate = null;
         RefreshBattle();
+
+        PlayCrossBoardResonance(result);
 
         bool newRiftAppeared = run.spawns.Exists(spawn => !spawnSnapshot.Exists(previous =>
             previous.targetCell == spawn.targetCell && previous.sourceThreatCell == spawn.sourceThreatCell && previous.tier == spawn.tier));
@@ -1273,10 +1295,7 @@ public sealed class KaitGame : MonoBehaviour
 
         // Enemy arrival is communicated by the Spine `landing` animation only;
         // do not scale the underlying board cell when the enemy appears.
-        var spawnPulses = new List<RectTransform>();
-        foreach (KaitSpawnRequest spawn in run.spawns)
-            if (spawn.targetCell.x >= 0) spawnPulses.Add(battleCells[spawn.targetCell.x + spawn.targetCell.y * KaitRun.BattleSize].rectTransform);
-        if (spawnPulses.Count > 0) yield return ScalePulseMany(spawnPulses, 0.35f, 1.15f, 0.2f);
+        // The stable edge warning communicates pending spawns without scaling the ground.
 
         displayedThreat = null;
         statusText.text = result.message + (result.merges.Count > 0 ? $" · 威胁合并 ×{result.merges.Count}" : "");
@@ -1409,12 +1428,6 @@ public sealed class KaitGame : MonoBehaviour
             targetingSkill = KaitSkill.None;
             kaitSpine?.PlayOnce(KaitSpineView.OtherSkill,
                 run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
-            if (skill == KaitSkill.IceTomb)
-                PlayCombatEffectAtCell(KaitCombatEffectKind.Ice, cell, new Vector2(124f, 124f),
-                    0.32f, 0.65f, 0f, Vector2.zero, "Ice Tomb Effect");
-            else
-                PlayCombatEffectAtCell(KaitCombatEffectKind.Phantom, cell, new Vector2(132f, 112f),
-                    0.3f, 0.6f, 0f, Vector2.zero, "Lesser Phantom Effect");
             StartCoroutine(PulseBattleUnit(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
         }
         else GameAudio.PlayInvalid();
@@ -1441,8 +1454,9 @@ public sealed class KaitGame : MonoBehaviour
 
     private IEnumerator AnimateShadowStep(Vector2Int start)
     {
-        PlayGroundSmokeBurst(start, Vector2Int.zero, new Color(0.68f, 0.64f, 0.78f, 0.72f),
-            1.05f, "Shadow Step Departure");
+        PlayCombatEffectAtCell(KaitCombatEffectKind.ShadowStep, start,
+            new Vector2(92f, 92f), .34f, .7f, 0f, Vector2.zero,
+            "Shadow Step A Departure", battleUnderEffectLayer);
         busy = true; hideKate = true; RefreshBattle();
         KaitSpineView movingKait = CreateFloatingKait(battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, run.currentDirection);
         RectTransform token = movingKait != null ? movingKait.Root : CreateFloatingPortrait(kaitPortrait, Color.clear, battleCells[start.x + start.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115));
@@ -1457,8 +1471,9 @@ public sealed class KaitGame : MonoBehaviour
             elapsed += Time.unscaledDeltaTime; yield return null;
         }
         if (movingKait != null) DestroyFloatingKait(movingKait); else Destroy(token.gameObject);
-        PlayGroundSmokeBurst(run.katePos, Vector2Int.zero, new Color(0.68f, 0.64f, 0.78f, 0.72f),
-            1.05f, "Shadow Step Arrival");
+        PlayCombatEffectAtCell(KaitCombatEffectKind.ShadowStep, run.katePos,
+            new Vector2(92f, 92f), .34f, .7f, 0f, Vector2.zero,
+            "Shadow Step A Arrival", battleUnderEffectLayer);
         hideKate = false; busy = false;
         kaitSpine?.PlayLoop(run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
         statusText.text = "踏影：额外前进 1 格，可继续选择转向";
@@ -1607,7 +1622,6 @@ public sealed class KaitGame : MonoBehaviour
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(facing));
                     battleFacingLabels[index].color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
                     if (enemy.frozenActions > 0) { battleStatusLabels[index].text = "❄"; battleStatusLabels[index].color = Cyan; }
-                    if (run.forcedTargetEnemyId == enemy.id) { battleStatusLabels[index].text = "!"; battleStatusLabels[index].color = Coral; }
                 }
                 if (!hideKate && kate == p)
                 {
@@ -1657,6 +1671,135 @@ public sealed class KaitGame : MonoBehaviour
         // a chain kill. Detached death views use their own lower cell layer.
         if (kaitSpine != null && battleKaitLayer != null && kaitSpine.Root.parent == battleKaitLayer)
             kaitSpine.Root.SetAsLastSibling();
+        SyncIceBindings();
+        SyncPhantomMark();
+        SyncShieldFacings();
+        SyncRiftEdgeSignals();
+    }
+
+    private int DisplayPhantomTarget => run.forcedTargetEnemyId >= 0 ? run.forcedTargetEnemyId : visualPhantomTargetId;
+
+    private KaitCellSignal CreateCellSignal(RectTransform target, Transform parent, bool warning, float started)
+    {
+        var obj = new GameObject(warning ? "Rift B Edge Warning" : "Cross Board B Resonance", typeof(RectTransform), typeof(CanvasRenderer));
+        obj.transform.SetParent(parent, false);
+        var signal = obj.AddComponent<KaitCellSignal>();
+        signal.rectTransform.anchorMin = signal.rectTransform.anchorMax = signal.rectTransform.pivot = Vector2.one * .5f;
+        signal.Warning = warning; signal.Started = started; signal.Target = target; signal.SyncPose();
+        cellSignals.RemoveAll(s => s == null); cellSignals.Add(signal);
+        return signal;
+    }
+
+    private void SyncRiftEdgeSignals()
+    {
+        foreach (var spawn in (animatedSpawns ?? run.spawns))
+        {
+            Vector2Int cell = spawn.targetCell;
+            if (!InsideBattle(cell) || run.walls[cell.x,cell.y]) continue;
+            if (riftEdgeSignals.TryGetValue(cell,out var current) && current != null) continue;
+            var signal = CreateCellSignal(battleCells[cell.x+cell.y*KaitRun.BattleSize].rectTransform,battleDangerLayer,true,Time.unscaledTime);
+            signal.Exists = () => SpawnAtVisual(cell) != null && !run.walls[cell.x,cell.y];
+            riftEdgeSignals[cell] = signal;
+        }
+    }
+
+    private void PlayCrossBoardResonance(KaitTurnResult result)
+    {
+        float started = Time.unscaledTime;
+        var shownSources = new HashSet<Vector2Int>();
+        var shownTargets = new HashSet<Vector2Int>();
+        foreach (var spawn in run.spawns)
+        {
+            // Use the actual surviving request, including redirects and combined spawns.
+            if (spawn.createdTurn != run.turn || !result.merges.Exists(m => !m.spawnSuppressed && m.threatCell == spawn.sourceThreatCell)) continue;
+            var source = spawn.sourceThreatCell; var target = spawn.targetCell;
+            if (!InsideBattle(target) || source.x<0 || source.y<0 || source.x>=run.ThreatSize || source.y>=run.ThreatSize) continue;
+            if (shownSources.Add(source))
+            {
+                var cell = threatCells[source.x+source.y*run.ThreatSize].rectTransform;
+                CreateCellSignal(cell,cell,false,started);
+            }
+            if (shownTargets.Add(target)) CreateCellSignal(battleCells[target.x+target.y*KaitRun.BattleSize].rectTransform,battleDangerLayer,false,started);
+        }
+    }
+
+    private void SyncShieldFacings()
+    {
+        foreach (var enemy in (animatedEnemies ?? run.enemies))
+        {
+            if (enemy.type != KaitEnemyType.ShieldKnight || enemy.life == KaitEnemyLife.Dead || enemy.hp <= 0) continue;
+            int id = enemy.id;
+            if (shieldFacings.TryGetValue(id, out var existing) && existing != null) continue;
+            var obj = new GameObject("Shield Knight B Facing", typeof(RectTransform), typeof(CanvasRenderer));
+            obj.transform.SetParent(battleUnderEffectLayer, false);
+            var shield = obj.AddComponent<KaitShieldFacing>();
+            shield.Enemy = () => (animatedEnemies ?? run.enemies).Find(e => e.id == id);
+            shield.Position = () =>
+            {
+                var current = shield.Enemy();
+                var spine = current == null ? null : EnemySpine(current);
+                return spine != null ? spine.Root.position : battleCells[current.pos.x + current.pos.y * KaitRun.BattleSize].transform.position;
+            };
+            shieldFacings[id] = shield;
+            shield.Initialize();
+        }
+    }
+
+    private void SyncPhantomMark()
+    {
+        int id = DisplayPhantomTarget;
+        KaitEnemy enemy = run.enemies.Find(e => e.id == id && e.life != KaitEnemyLife.Dead && e.hp > 0);
+        if (enemy == null || !InsideBattle(enemy.pos)) return;
+        if (phantomMark != null && !phantomMark.Releasing && phantomMarkEnemyId == id) return;
+        var graphic = PlayCombatEffectAtCell(KaitCombatEffectKind.Phantom, enemy.pos,
+            Vector2.one * 60f, .3f, .6f, 0, Vector2.zero, "Phantom B Mark", battleEnemyHitLayer);
+        if (graphic == null) return;
+        phantomMarkEnemyId = id;
+        phantomMark = graphic.gameObject.AddComponent<KaitPhantomMark>();
+        phantomMark.IsMarked = () => DisplayPhantomTarget == id && run.enemies.Exists(e => e.id == id && e.hp > 0 && e.life != KaitEnemyLife.Dead);
+        phantomMark.HeadPosition = () =>
+        {
+            EnemySpineView actor = EnemySpine(id);
+            return actor != null && actor.Root != null
+                ? actor.Root.TransformPoint(new Vector3(46f, 44f, 0))
+                : battleCells[enemy.pos.x + enemy.pos.y * KaitRun.BattleSize].rectTransform.TransformPoint(new Vector3(46f,44f,0));
+        };
+        phantomMark.Initialize(graphic);
+        phantomMark.Advance(0);
+    }
+
+    private bool EnemyStillFrozen(int id)
+    {
+        KaitEnemy live = run.enemies.Find(e => e.id == id && e.life != KaitEnemyLife.Dead && e.hp > 0);
+        if (live == null) return false;
+        return (animatedEnemies?.Find(e => e.id == id) ?? live).frozenActions > 0;
+    }
+
+    private void SyncIceBindings()
+    {
+        foreach (KaitEnemy enemy in (animatedEnemies ?? run.enemies))
+        {
+            if (!EnemyStillFrozen(enemy.id) || !InsideBattle(enemy.pos)) continue;
+            if (iceBindings.TryGetValue(enemy.id, out var existing) && existing != null && !existing.Releasing) continue;
+            int id = enemy.id;
+            var graphic = PlayCombatEffectAtCell(KaitCombatEffectKind.Ice, enemy.pos,
+                Vector2.one * 120f, .3f, .65f, 0, Vector2.zero, "Ice Binding A", battleEnemyHitLayer);
+            if (graphic == null) continue;
+            var binding = graphic.gameObject.AddComponent<KaitIceBinding>();
+            binding.IsFrozen = () => EnemyStillFrozen(id);
+            binding.GroundPosition = () =>
+            {
+                EnemySpineView actor = EnemySpine(id);
+                if (actor != null && actor.Root != null) return actor.GroundPosition;
+                KaitEnemy target = run.enemies.Find(e => e.id == id);
+                return target != null && InsideBattle(target.pos)
+                    ? battleCells[target.pos.x + target.pos.y * KaitRun.BattleSize].rectTransform.TransformPoint(new Vector3(0, -41.4f, 0))
+                    : graphic.transform.position;
+            };
+            binding.Initialize(graphic);
+            binding.Advance(0);
+            iceBindings[id] = binding;
+        }
     }
 
     private void RefreshThreat()
@@ -2068,7 +2211,10 @@ public sealed class KaitGame : MonoBehaviour
         yield return new WaitForSecondsRealtime(EnemyAttackReleaseLead);
         if (hasArrowAttack) GameAudio.PlayArrowFlight();
 
-        float projectileDuration = projectiles.Count == 0
+        // Resolve close-range contact now; arrows resolve after their flight.
+        for (int impactPhase = 0; impactPhase < 2; impactPhase++)
+        {
+        float projectileDuration = impactPhase == 0 || projectiles.Count == 0
             ? 0f
             : Mathf.Clamp(0.1f + longestArrowPath * 0.055f, 0.14f, 0.32f);
         float projectileElapsed = 0f;
@@ -2080,7 +2226,8 @@ public sealed class KaitGame : MonoBehaviour
             projectileElapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        foreach (ProjectileVisual projectile in projectiles) projectile.rect.position = projectile.to;
+        if (impactPhase == 1)
+            foreach (ProjectileVisual projectile in projectiles) projectile.rect.position = projectile.to;
 
         bool kaitWasHit = false;
         KaitEnemy kaitAttacker = null;
@@ -2089,6 +2236,7 @@ public sealed class KaitGame : MonoBehaviour
         bool bodyHit = false;
         foreach (KaitEnemyAction action in actions)
         {
+            if (!MatchesImpactPhase(action.type, impactPhase)) continue;
             bool hitUnit = action.hitKate || action.friendlyHitIds.Count > 0;
             if (action.type == KaitIntentType.LineShot && hitUnit) arrowHit = true;
             else if (action.type == KaitIntentType.Melee && action.friendlyHitIds.Count > 0) meleeHit = true;
@@ -2141,7 +2289,7 @@ public sealed class KaitGame : MonoBehaviour
             }
         }
         if (arrowHit) GameAudio.PlayArrowImpact();
-        if (hasMagicAttack) GameAudio.PlayMagicImpact();
+        if (impactPhase == 0 && hasMagicAttack) GameAudio.PlayMagicImpact();
         if (meleeHit) GameAudio.PlayNormalHit();
         if (bodyHit) GameAudio.PlayBodyHurt();
         if (kaitWasHit)
@@ -2155,6 +2303,7 @@ public sealed class KaitGame : MonoBehaviour
         }
 
         RefreshBattle();
+        }
         if (PostImpactHold > 0f) yield return new WaitForSecondsRealtime(PostImpactHold);
         foreach (ProjectileVisual projectile in projectiles)
         {
@@ -2163,6 +2312,13 @@ public sealed class KaitGame : MonoBehaviour
         }
         impactCells.Clear();
         RefreshBattle();
+    }
+
+    private static bool MatchesImpactPhase(KaitIntentType type, int phase)
+    {
+        return phase == 0
+            ? type == KaitIntentType.Melee || type == KaitIntentType.CrossBlast
+            : type == KaitIntentType.LineShot;
     }
 
     private IEnumerator AnimatePush(KaitTurnResult result)
@@ -2292,8 +2448,8 @@ public sealed class KaitGame : MonoBehaviour
                 strongest = Mathf.Max(strongest, merge.resultValue);
                 mergeCells.Add(threatCells[merge.threatCell.x + merge.threatCell.y * run.ThreatSize].rectTransform);
             }
-            yield return ScalePulseMany(mergeCells, 0.72f, 1.2f, 0.14f);
             GameAudio.PlayMerge(strongest);
+            yield return ScalePulseMany(mergeCells, 0.72f, 1.2f, 0.14f);
         }
         foreach (Vector2Int cell in result.newThreatCells)
             yield return ScalePulse(threatCells[cell.x + cell.y * run.ThreatSize].rectTransform, 0.1f, 1.1f, 0.1f);
@@ -3258,6 +3414,9 @@ public sealed class KaitGame : MonoBehaviour
 
     private void ClearAllCombatEffects()
     {
+        phantomMark = null;
+        phantomMarkEnemyId = visualPhantomTargetId = -1;
+        iceBindings.Clear();
         foreach (KaitMageEffectGraphic effect in mageImpacts) if (effect != null) Destroy(effect.gameObject);
         mageImpacts.Clear();
         firingWarlocks.Clear();
@@ -3389,6 +3548,10 @@ public sealed class KaitGame : MonoBehaviour
 
         if (result.playerAttackBlocked)
         {
+            SyncShieldFacings();
+            var boss = (animatedEnemies ?? run.enemies).Find(e => e.pos == cell && e.type == KaitEnemyType.ShieldKnight);
+            if (boss != null && shieldFacings.TryGetValue(boss.id, out var shield) && shield != null)
+            { shield.Block(); return; }
             PlayCombatEffectAtCell(KaitCombatEffectKind.Block, cell,
                 new Vector2(108f, 108f), 0.24f, 1f, rotation,
                 contactOffset, "Shield Block Effect");
@@ -3499,6 +3662,11 @@ public sealed class KaitGame : MonoBehaviour
         return KaitSwordAtlasView.Create(source, layer, finisher);
     }
 
+    private static void VerifyPhantomPreview(bool condition, string message)
+    {
+        if (!condition) throw new InvalidOperationException("Phantom QA: " + message);
+    }
+
     private IEnumerator PreviewCombatVfx(string preview, string screenshotPath = "")
     {
         yield return new WaitForSecondsRealtime(0.25f);
@@ -3506,6 +3674,157 @@ public sealed class KaitGame : MonoBehaviour
         Vector2Int target = attacker + Vector2Int.right;
         if (!InsideBattle(target)) target = attacker + Vector2Int.left;
         string normalized = preview.Trim().ToLowerInvariant();
+        if (normalized.StartsWith("linkb"))
+        {
+            run.spawns.Clear(); animatedSpawns = null;
+            var from = new Vector2Int(2,2);
+            var to = normalized.Contains("redirect") ? target : run.MapThreatToBattle(from);
+            var result = new KaitTurnResult();
+            result.merges.Add(new KaitMergeEvent { resultValue = 4, threatCell = from, spawnSuppressed = normalized.Contains("blocked") });
+            if (!normalized.Contains("blocked")) run.spawns.Add(new KaitSpawnRequest { tier=1,sourceThreatCell=from,targetCell=to,createdTurn=run.turn,turnsUntilSpawn=1,state=KaitSpawnState.Preview });
+            RefreshBattle();
+            PlayCrossBoardResonance(result);
+            var links = cellSignals.FindAll(s=>s!=null && !s.Warning);
+            if (links.Count != (normalized.Contains("blocked") ? 0 : 2)) throw new InvalidOperationException("Cell signal QA: unexpected paired highlight count");
+            foreach (var link in links) { link.ManualPreview=true; link.PreviewPhase=.5f; }
+            foreach (var warning in riftEdgeSignals.Values) if(warning!=null){warning.ManualPreview=true;warning.PreviewPhase=.6f;}
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            foreach(var signal in cellSignals)if(signal!=null)
+            {
+                if(signal.raycastTarget || signal.maskable)throw new InvalidOperationException("Cell signal QA: input or masking enabled");
+                signal.Rebuild(CanvasUpdate.PreRender);
+                foreach(var vertex in signal.canvasRenderer.GetMesh().vertices)
+                    if(!signal.rectTransform.rect.Contains(new Vector2(vertex.x,vertex.y)))throw new InvalidOperationException("Cell signal QA: geometry left the cell");
+            }
+            if (!string.IsNullOrEmpty(screenshotPath)) CaptureCanvasToPng(screenshotPath);
+            foreach(var link in links){link.ManualPreview=false;link.Started=Time.unscaledTime;}
+            run.spawns.Clear();
+            yield return new WaitForSecondsRealtime(.6f);
+            if(cellSignals.Exists(s=>s!=null))throw new InvalidOperationException("Cell signal QA: signals remained after resolution");
+            if (!string.IsNullOrEmpty(screenshotPath)) Application.Quit();
+            yield break;
+        }
+        if (normalized.StartsWith("shield"))
+        {
+            var facing = normalized.Contains("up") ? Vector2Int.up : normalized.Contains("down") ? Vector2Int.down : normalized.Contains("left") ? Vector2Int.left : Vector2Int.right;
+            var boss = new KaitEnemy { id = 987, type = KaitEnemyType.ShieldKnight, pos = target,
+                hp = 8, maxHp = 8, facing = facing, life = KaitEnemyLife.Active };
+            run.enemies.Clear(); run.enemies.Add(boss); animatedEnemies = null; RefreshBattle();
+            yield return new WaitForSecondsRealtime(.4f);
+            var shield = shieldFacings[boss.id];
+            if (shield == null || shield.Frame != 0) throw new InvalidOperationException("Shield QA: idle shield missing");
+            if (normalized.Contains("block"))
+            {
+                PlayKaitImpactEffect(new KaitTurnResult { playerAttackBlocked = true }, false, target);
+                if (shield.Frame != 2) throw new InvalidOperationException("Shield QA: block event not delivered");
+            }
+            if (normalized.Contains("side"))
+            {
+                PlayKaitImpactEffect(new KaitTurnResult { damageDealt = 1 }, false, target);
+                if (shield.Frame != 0) throw new InvalidOperationException("Shield QA: side hit lit the shield");
+            }
+            Canvas.ForceUpdateCanvases();
+            if (!string.IsNullOrEmpty(screenshotPath)) CaptureCanvasToPng(screenshotPath);
+            yield return new WaitForSecondsRealtime(.3f);
+            if (shield.Frame != 0) throw new InvalidOperationException("Shield QA: did not return to idle");
+            boss.life = KaitEnemyLife.Dead; RefreshBattle();
+            yield return null; yield return null;
+            if (shield != null) throw new InvalidOperationException("Shield QA: dead boss retained shield");
+            if (!string.IsNullOrEmpty(screenshotPath)) Application.Quit();
+            yield break;
+        }
+        if (normalized.StartsWith("shadow"))
+        {
+            KaitCombatEffectGraphic departure = PlayCombatEffectAtCell(KaitCombatEffectKind.ShadowStep, attacker,
+                new Vector2(92f, 92f), .55f, .7f, 0f, Vector2.zero, "Shadow Step A QA Departure", battleUnderEffectLayer);
+            KaitCombatEffectGraphic arrival = PlayCombatEffectAtCell(KaitCombatEffectKind.ShadowStep, target,
+                new Vector2(92f, 92f), .55f, .7f, 0f, Vector2.zero, "Shadow Step A QA Arrival", battleUnderEffectLayer);
+            if (departure == null || arrival == null || !departure.UsesShadowStepAtlas || !arrival.UsesShadowStepAtlas)
+                throw new InvalidOperationException("Shadow Step QA: approved A atlas was not created");
+            if (departure.transform.parent != battleUnderEffectLayer || arrival.transform.parent != battleUnderEffectLayer)
+                throw new InvalidOperationException("Shadow Step QA: effect must remain below actors");
+            yield return new WaitForSecondsRealtime(.18f);
+            departure.Rebuild(CanvasUpdate.PreRender);
+            arrival.Rebuild(CanvasUpdate.PreRender);
+            if (!string.IsNullOrEmpty(screenshotPath)) CaptureCanvasToPng(screenshotPath);
+            yield return new WaitForSecondsRealtime(.5f);
+            if (departure != null || arrival != null)
+                throw new InvalidOperationException("Shadow Step QA: effect did not finish independently");
+            if (!string.IsNullOrEmpty(screenshotPath)) Application.Quit();
+            yield break;
+        }
+        if (normalized.StartsWith("phantom"))
+        {
+            var enemy = new KaitEnemy { id=990,type=KaitEnemyType.Grunt,pos=target,hp=2,maxHp=2,life=KaitEnemyLife.Active };
+            run.enemies.Clear();run.enemies.Add(enemy);
+            run.enemies.Add(new KaitEnemy { id=991,type=KaitEnemyType.Grunt,pos=target+Vector2Int.up,hp=2,maxHp=2,life=KaitEnemyLife.Active });
+            run.skills.Add(KaitSkill.LesserPhantom);
+            bool selected = run.TryUseSkill(KaitSkill.LesserPhantom,enemy.id,out string selectionMessage);
+            VerifyPhantomPreview(selected, "QA target must be legally selectable: " + selectionMessage);
+            animatedEnemies=null;RefreshBattle();
+            var mark=phantomMark;
+            yield return new WaitForSecondsRealtime(1f);
+            VerifyPhantomPreview(mark!=null && mark.Graphic.UsesPhantomAtlas && !mark.Releasing, "Mark must hold with B atlas");
+            VerifyPhantomPreview(mark.transform.parent==battleEnemyHitLayer, "Mark layer");
+            if(normalized.Contains("move"))
+            {
+                EnemySpine(enemy).Root.position+=Vector3.right*30;
+                mark.Advance(0);
+                VerifyPhantomPreview(Vector3.Distance(mark.transform.position,EnemySpine(enemy).Root.TransformPoint(new Vector3(46,44,0)))<.01f, "Mark must follow target");
+            }
+            if(normalized.Contains("release"))
+            {
+                visualPhantomTargetId=enemy.id;
+                typeof(KaitRun).GetProperty(nameof(KaitRun.forcedTargetEnemyId)).SetValue(run,-1);
+                mark.Advance(0);
+                VerifyPhantomPreview(!mark.Releasing,"Hold through the visible enemy phase");
+                visualPhantomTargetId=-1;mark.Advance(.08f);
+                VerifyPhantomPreview(mark.Releasing, "Mark must release after phase");
+            }
+            if(normalized.Contains("death")) { enemy.life=KaitEnemyLife.Dead;mark.Advance(.08f);VerifyPhantomPreview(mark.Releasing, "Dead target releases mark"); }
+            mark.Graphic.Rebuild(CanvasUpdate.PreRender);
+            if(!string.IsNullOrEmpty(screenshotPath))CaptureCanvasToPng(screenshotPath);
+            if(normalized.Contains("reset")) ClearAllCombatEffects();
+            else { visualPhantomTargetId=-1;typeof(KaitRun).GetProperty(nameof(KaitRun.forcedTargetEnemyId)).SetValue(run,-1); }
+            yield return new WaitForSecondsRealtime(.4f);
+            VerifyPhantomPreview(mark==null,"Mark must clear after resolution, death or reset");
+            if(!string.IsNullOrEmpty(screenshotPath))Application.Quit();
+            yield break;
+        }
+        if (normalized.StartsWith("ice"))
+        {
+            var enemy = new KaitEnemy { id = 990, type = KaitEnemyType.Grunt, pos = target, hp = 2, maxHp = 2, frozenActions = 1, life = KaitEnemyLife.Active };
+            run.enemies.Clear(); run.enemies.Add(enemy); animatedEnemies = null;
+            RefreshBattle();
+            yield return new WaitForSecondsRealtime(.4f);
+            var binding = iceBindings[enemy.id];
+            Debug.Assert(binding != null && binding.Graphic.UsesIceAtlas);
+            Debug.Assert(binding.transform.parent == battleEnemyHitLayer);
+            Debug.Assert(!binding.Graphic.raycastTarget && !binding.Graphic.maskable);
+            yield return new WaitForSecondsRealtime(.8f);
+            Debug.Assert(!binding.Releasing, "Idle time must not thaw the enemy");
+            if (normalized.Contains("move"))
+            {
+                EnemySpine(enemy).Root.position += Vector3.right * 30f;
+                binding.Advance(0);
+                Debug.Assert(Vector3.Distance(binding.transform.position, EnemySpine(enemy).GroundPosition) < .01f);
+            }
+            if (normalized.Contains("release") || normalized.Contains("death"))
+            {
+                if (normalized.Contains("death")) enemy.life = KaitEnemyLife.Dead;
+                else enemy.frozenActions = 0;
+                binding.Advance(.08f);
+                Debug.Assert(binding.Releasing);
+            }
+            binding.Graphic.Rebuild(CanvasUpdate.PreRender);
+            if (!string.IsNullOrEmpty(screenshotPath)) CaptureCanvasToPng(screenshotPath);
+            enemy.frozenActions = 0;
+            yield return new WaitForSecondsRealtime(.4f);
+            Debug.Assert(binding == null, "Thawed or dead targets must not retain ice");
+            if (!string.IsNullOrEmpty(screenshotPath)) Application.Quit();
+            yield break;
+        }
         if (normalized.StartsWith("dread"))
         {
             var direction = normalized.Contains("left") ? Vector2Int.left : normalized.Contains("up") ? Vector2Int.up : normalized.Contains("down") ? Vector2Int.down : Vector2Int.right;

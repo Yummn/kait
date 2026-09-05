@@ -15,6 +15,7 @@ public sealed class KaitSelectedSkillAudioTests
     [TestCase("DreadSlash_B", .94f)]
     [TestCase("Phantom_B", 1f)]
     [TestCase("BodyHurt_B", .43f)]
+    [TestCase("DreadCharge_B", 1f)]
     public void SelectedSkillClipPreservesAudition(string name, float length)
     {
         AudioClip clip = Resources.Load<AudioClip>(Root + name);
@@ -34,7 +35,7 @@ public sealed class KaitSelectedSkillAudioTests
     [TestCase(KaitSkill.CatAgility, Root + "SpeedBuff_A")]
     [TestCase(KaitSkill.IceTomb, Root + "FrostBind_B")]
     [TestCase(KaitSkill.ShadowStep, Root + "ShadowStep_B")]
-    [TestCase(KaitSkill.DreadSlash, "Audio/UI/SkillUse_01")]
+    [TestCase(KaitSkill.DreadSlash, Root + "DreadCharge_B")]
     [TestCase(KaitSkill.LesserPhantom, Root + "Phantom_B")]
     [TestCase(KaitSkill.None, "Audio/UI/SkillUse_01")]
     public void EachSkillSelectsOnlyItsAssignedClip(KaitSkill skill, string expected)
