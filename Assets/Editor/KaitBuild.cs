@@ -10,12 +10,13 @@ public static class KaitBuild
     [MenuItem("Kait/Build Windows Demo")]
     public static void BuildWindowsDemo()
     {
+        KaitBuildArtSettings.Apply();
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
         string output = Path.Combine(projectRoot, "Build", "kait.exe");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
 
         PlayerSettings.defaultScreenWidth = 1920;
-        PlayerSettings.bundleVersion = "0.5.3";
+        PlayerSettings.bundleVersion = "0.6.1";
         PlayerSettings.defaultScreenHeight = 1080;
         PlayerSettings.defaultIsNativeResolution = true;
         PlayerSettings.fullScreenMode = FullScreenMode.FullScreenWindow;
@@ -40,13 +41,14 @@ public static class KaitBuild
     public static void BuildAndroidDemo()
     {
         KaitAppIconSettings.Apply();
+        KaitBuildArtSettings.Apply();
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
-        string output = Path.Combine(projectRoot, "Build", "kait-v0.5.3.1.apk");
+        string output = Path.Combine(projectRoot, "Build", "kait-v0.6.1.apk");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
 
         PlayerSettings.productName = "Kait";
-        PlayerSettings.bundleVersion = "0.5.3.1";
-        PlayerSettings.Android.bundleVersionCode = 504;
+        PlayerSettings.bundleVersion = "0.6.1";
+        PlayerSettings.Android.bundleVersionCode = 601;
         PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "com.kaitprototype.demo");
         PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
         PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;

@@ -16,7 +16,10 @@ public enum KaitPassive
     Follower,
     BladeCovenant,
     Trend,
-    SweepTail
+    SweepTail,
+    StaggeringSmite, ArcaneLock, Enfeeblement, HexArmor, MasterHex, MaddeningHex,
+    LuckBlade, Lifedrinker, Simulacrum, AccursedSpecter, RepellingBlast,
+    DisplacementCloak, Passwall, BagHolding, ReverseGravity, WildMagic
 }
 
 public enum KaitPassiveCategory
@@ -54,15 +57,18 @@ public static class KaitPassiveCatalog
         KaitPassive.MomentumResonance,
         KaitPassive.Devil,
         KaitPassive.CheshireCat,
-        KaitPassive.Squeeze,
-        KaitPassive.Follower,
         KaitPassive.BladeCovenant,
         KaitPassive.Trend,
-        KaitPassive.SweepTail
+        KaitPassive.StaggeringSmite, KaitPassive.ArcaneLock, KaitPassive.Enfeeblement,
+        KaitPassive.HexArmor, KaitPassive.MasterHex, KaitPassive.MaddeningHex,
+        KaitPassive.LuckBlade, KaitPassive.Lifedrinker, KaitPassive.Simulacrum,
+        KaitPassive.AccursedSpecter, KaitPassive.RepellingBlast, KaitPassive.DisplacementCloak,
+        KaitPassive.Passwall, KaitPassive.BagHolding, KaitPassive.ReverseGravity
     };
 
     public static string Name(KaitPassive passive)
     {
+        var def=KaitAbilityCatalog.Get(passive);if(def!=null) return def.nameZh;
         switch (passive)
         {
             case KaitPassive.BirdEye: return "鸦后之眼";
@@ -83,6 +89,7 @@ public static class KaitPassiveCatalog
 
     public static string ShortName(KaitPassive passive)
     {
+        var def=KaitAbilityCatalog.Get(passive);if(def!=null)return def.nameZh;
         switch (passive)
         {
             case KaitPassive.BirdEye: return "鸦眼";
@@ -103,6 +110,7 @@ public static class KaitPassiveCatalog
 
     public static string Description(KaitPassive passive)
     {
+        var def=KaitAbilityCatalog.Get(passive);if(def!=null) return def.cardText;
         switch (passive)
         {
             case KaitPassive.BirdEye: return "预览下一枚 2 的候选出生位置。";

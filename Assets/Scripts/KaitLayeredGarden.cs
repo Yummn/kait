@@ -12,6 +12,7 @@ public sealed class KaitLayeredGarden : MonoBehaviour
     {
         public Image image;
         public float height, flatten, strength, sway, phase;
+        public Vector2 restPosition;
         public MaterialPropertyBlock properties;
     }
     private readonly List<Caster> casters = new List<Caster>();
@@ -74,7 +75,18 @@ public sealed class KaitLayeredGarden : MonoBehaviour
         var properties=new MaterialPropertyBlock();
         properties.SetTexture("_MainTex",image.sprite.texture); properties.SetFloat("_Strength",strength);
         properties.SetFloat("_Softness",art=="TreeCanopy"?.007f:.012f);
-        casters.Add(new Caster { image=image,height=height,flatten=flatten,strength=strength,sway=sway,phase=casters.Count*1.47f,properties=properties });
+        // Rotate flowers around their base rather than making their roots slide.
+        if(height<30){image.rectTransform.pivot=new Vector2(.5f,0);image.rectTransform.anchoredPosition=position-new Vector2(0,size.y*.5f);}
+        casters.Add(new Caster { image=image,height=height,flatten=flatten,strength=strength,sway=sway,phase=casters.Count*1.47f,restPosition=image.rectTransform.anchoredPosition,properties=properties });
+    }
+
+    // Absolute offsets never accumulate, and are independent of frame rate.
+    public static Vector3 AmbientMotion(float time,float phase,float sway,bool canopy)
+    {
+        float wave=Mathf.Sin(time*.58f+phase)*.72f+Mathf.Sin(time*.93f+phase*1.3f)*.28f;
+        float x=canopy?wave*2.4f*sway:0;
+        float y=canopy?Mathf.Sin(time*.72f+phase)*1.8f*sway:0;
+        return new Vector3(x,y,wave*sway*(canopy?1.25f:1.4f));
     }
 
     private void LateUpdate()
@@ -83,7 +95,9 @@ public sealed class KaitLayeredGarden : MonoBehaviour
         {
             if(caster.image == null) continue;
             var rect=caster.image.rectTransform;
-            rect.localRotation=Quaternion.Euler(0,0,Mathf.Sin(Time.unscaledTime*.65f+caster.phase)*caster.sway);
+            Vector3 motion=AmbientMotion(Time.unscaledTime,caster.phase,caster.sway,caster.height>100);
+            rect.anchoredPosition=caster.restPosition+new Vector2(motion.x,motion.y);
+            rect.localRotation=Quaternion.Euler(0,0,motion.z);
             float alpha=1;
             if(caster.height>100 && actorLayer!=null)
             {

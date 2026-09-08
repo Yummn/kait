@@ -16,6 +16,7 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     public float DockX { get; private set; }
     public bool SuppressedClick { get; private set; }
     private RectTransform bounds;
+    private GlobalStyleSplit styleSplit;
     private HybridStyleGraphic surface;
     private Sprite face;
     private KaitCardLogo logo;
@@ -29,6 +30,11 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     private bool pendingDockSound;
     private int pointerId = int.MinValue;
     private int triggerCount;
+    private Func<bool> rewardBegin;
+    private Action<Vector2> rewardMove, rewardEnd;
+    private Vector2 rewardHome;
+    public void ConfigureRewardDrag(Func<bool> begin, Action<Vector2> move, Action<Vector2> end)
+    { rewardBegin=begin; rewardMove=move; rewardEnd=end; }
 
     public static KaitPassiveCard Create(RectTransform parent, GlobalStyleSplit split, Font font,
         Sprite hd, Sprite flat, Action<KaitPassiveCard> choose, Action<KaitPassiveCard, float> drop)
@@ -40,6 +46,7 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         card.Rect = go.GetComponent<RectTransform>();
         card.Rect.sizeDelta = Size;
         card.bounds = parent;
+        card.styleSplit=split;
         card.face = hd;
         card.chosen = choose;
         card.dropped = drop;
@@ -48,9 +55,9 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         card.surface.Configure(split, hd, Color.white, Color.white, new Color(0.98f, 0.78f, 0.72f), 3f, 8f);
         card.surface.SetRightSprite(KaitSunlitTheme.Load("PassiveCardFlatCompact") ?? flat);
         card.surface.raycastTarget = true;
-        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,62), 92);
-        card.title = card.Label("Name", font, split, new Vector2(0, -19), new Vector2(160, 26), 19, FontStyle.Bold);
-        card.description = card.Label("Description", font, split, new Vector2(0, -64), new Vector2(154, 62), 15);
+        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,38), 68);
+        card.title = card.Label("Name", font, split, new Vector2(0, 88), new Vector2(152, 24), 19, FontStyle.Bold);
+        card.description = card.Label("Description", font, split, new Vector2(0, -64), new Vector2(140, 62), 15);
         card.footer = card.Label("Action", font, split, new Vector2(0, -112), new Vector2(156, 23), 13);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
@@ -93,11 +100,13 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         triggerCount = 0;
         pointerId = int.MinValue;
         title.text = KaitPassiveCatalog.Name(passive);
+        var def=KaitAbilityCatalog.Get(passive);face=KaitCardSkin.Face(def)??face;
+        KaitCardSkin.Apply(gameObject,def,title.font,styleSplit);
         logo.Show(passive);
-        description.text = KaitPassiveCatalog.Description(passive);
-        target = initialPosition;
+        description.text = KaitPassiveCatalog.Description(passive).TrimEnd('。');
+        target = rewardHome = initialPosition;
         Rect.anchoredPosition = initialPosition + (candidate ? new Vector2(0, 24) : Vector2.zero);
-        Rect.localScale = Vector3.one;
+        Rect.localScale = Vector3.one*(rewardBegin!=null?1.18f:1);
         visibility.alpha = 0;
         visibility.blocksRaycasts = true;
         surface.SetVisualState(face, Color.white, Color.white);
@@ -123,10 +132,11 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         revealUntil = Mathf.Max(revealUntil, triggerUntil);
     }
 
-    private void Update()
+    private void Update()=>Advance(Time.unscaledDeltaTime);
+    private void Advance(float deltaTime)
     {
         if (bounds == null) return;
-        float blend = 1f - Mathf.Exp(-20f * Time.unscaledDeltaTime);
+        float blend = 1f - Mathf.Exp(-20f * deltaTime);
         visibility.alpha = Mathf.Lerp(visibility.alpha, covered ? 0f : 1f, blend);
         if (!IsDragging)
         {
@@ -153,9 +163,18 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     private void RefreshDetails()
     {
         bool readable = IsCandidate || Expanded || IsDragging;
+        // The top half is tucked off-screen while docked; keep the card's name visible.
+        title.rectTransform.anchoredPosition=new Vector2(0,readable?88:-48);
         description.gameObject.SetActive(readable);
-        footer.text = Time.unscaledTime < triggerUntil ? $"触发 · {triggerCount}" :
-            IsCandidate ? "点击选择" : readable ? "自动生效 · 拖动收起" : "被动 · 点按展开";
+        footer.text = pendingAbility ? "待生效" : Time.unscaledTime < triggerUntil ? $"触发 ×{triggerCount}" : "";
+    }
+
+    private bool pendingAbility;
+    public void SetPending(bool value) { pendingAbility=value; RefreshDetails(); }
+    public void SetCopiedPassive(KaitPassive copy)
+    {
+        if(Passive==KaitPassive.Simulacrum && !IsCandidate && copy!=KaitPassive.None)
+            description.text="已复制："+KaitPassiveCatalog.Name(copy)+"\n原牌替换后，复制仍保留";
     }
 
     public void OnPointerEnter(PointerEventData e)
@@ -193,6 +212,7 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnBeginDrag(PointerEventData e)
     {
         if (e.pointerId != pointerId || covered || IsDragging) return;
+        if (IsCandidate && rewardBegin!=null && !rewardBegin()) return;
         pendingDockSound = false;
         IsDragging = true;
         GameAudio.PlayCardPickUp();
@@ -205,7 +225,10 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (!IsDragging || e.pointerId != pointerId) return;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(bounds, e.position, e.pressEventCamera, out Vector2 local))
+        {
             Rect.anchoredPosition = ClampToScreen(local + dragOffset, bounds.rect, IsCandidate);
+            if(IsCandidate)rewardMove?.Invoke(local);
+        }
     }
     public void OnEndDrag(PointerEventData e)
     {
@@ -215,7 +238,11 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         hovered = false;
         revealUntil = 0;
         surface.SetVisualState(face, Color.white, Color.white);
-        if (IsCandidate) target = ClampToScreen(Rect.anchoredPosition, bounds.rect, true);
+        if (IsCandidate)
+        {
+            target=rewardBegin!=null?rewardHome:ClampToScreen(Rect.anchoredPosition,bounds.rect,true);
+            if(rewardEnd!=null && RectTransformUtility.ScreenPointToLocalPointInRectangle(bounds,e.position,e.pressEventCamera,out Vector2 release))rewardEnd(release);
+        }
         else
         {
             dropped?.Invoke(this, Rect.anchoredPosition.x);

@@ -20,6 +20,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     // A card may be grabbed by its exposed title rather than its centre.
     public bool InCastZone => KaitSkillDeck.IsInCastZone(Rect.anchoredPosition) || KaitSkillDeck.IsInCastZone(dragPoint);
     private RectTransform bounds;
+    private GlobalStyleSplit styleSplit;
     private HybridStyleGraphic surface;
     private Sprite face;
     private Text title, description, state, footer;
@@ -30,10 +31,17 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     private Func<KaitSkillCard, bool> cast;
     private Vector2 target, offset, dragPoint;
     private bool hovered, covered, targeting, previewDismissed;
-    private bool pendingDockSound;
+    private bool pendingDockSound, pendingAbility;
     private int pointer = int.MinValue, cooldown;
     private float revealUntil, playedUntil, feedbackUntil;
     private string feedback;
+    private Func<bool> rewardBegin;
+    private Action<Vector2> rewardMove, rewardEnd;
+    private Vector2 rewardHome;
+    private float displayScale = 1;
+
+    public void ConfigureRewardDrag(Func<bool> begin, Action<Vector2> move, Action<Vector2> end)
+    { rewardBegin=begin; rewardMove=move; rewardEnd=end; displayScale=1.18f; }
 
     public static KaitSkillCard Create(RectTransform parent, GlobalStyleSplit split, Font font,
         Sprite hd, Sprite flat, Action<KaitSkillCard> choose, Action<KaitSkillCard, float> dock, Func<KaitSkillCard, bool> cast)
@@ -43,15 +51,16 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         go.transform.SetParent(parent, false);
         var card = go.GetComponent<KaitSkillCard>();
         card.Rect = go.GetComponent<RectTransform>(); card.Rect.sizeDelta = Size;
-        card.bounds = parent; card.face = hd; card.choose = choose; card.dock = dock; card.cast = cast;
+        card.bounds = parent; card.styleSplit=split; card.face = hd; card.choose = choose; card.dock = dock; card.cast = cast;
         card.group = go.GetComponent<CanvasGroup>();
         card.surface = go.GetComponent<HybridStyleGraphic>();
         card.surface.Configure(split, hd, Color.white, Color.white, new Color(.68f, .82f, .9f), 3, 8);
         card.surface.SetRightSprite(flat); card.surface.raycastTarget = true;
         card.title = card.Label("Name", font, split, 101, 26, 19, FontStyle.Bold);
         card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,51), 68);
-        card.state = card.Label("Availability", font, split, 2, 22, 15, FontStyle.Bold);
-        card.description = card.Label("Effect", font, split, -55, 75, 15);
+        card.state = card.Label("Availability", font, split, 2, 18, 13, FontStyle.Bold);
+        card.description = card.Label("Effect", font, split, -68, 60, 15);
+        card.description.rectTransform.sizeDelta=new Vector2(140,60);
         card.footer = card.Label("Gesture", font, split, -110, 24, 13);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
@@ -80,9 +89,11 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         IsDragging = hovered = covered = targeting = SuppressedClick = previewDismissed = false;
         pendingDockSound = false;
         pointer = int.MinValue; revealUntil = playedUntil = feedbackUntil = 0;
-        target = position; Rect.anchoredPosition = position;
-        Rect.localScale = Vector3.one; group.alpha = 0; group.blocksRaycasts = true;
+        target = rewardHome = position; Rect.anchoredPosition = position;
+        Rect.localScale = Vector3.one*displayScale; group.alpha = 0; group.blocksRaycasts = true;
         title.text = KaitRun.SkillName(skill);
+        var def=KaitAbilityCatalog.Get(skill);face=KaitCardSkin.Face(def)??face;
+        KaitCardSkin.Apply(gameObject,def,title.font,styleSplit);
         logo.Show(skill); description.text = Description(skill);
         gameObject.SetActive(true); RefreshText();
     }
@@ -90,12 +101,14 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     public void SetDock(float x) => DockX = x;
     public void SetCovered(bool value) { covered = value; group.blocksRaycasts = !value; if (value) { IsDragging = pendingDockSound = false; pointer = int.MinValue; } }
     public void SetAvailability(bool ready, int turns, bool selecting) { Ready = ready; cooldown = turns; targeting = selecting; RefreshText(); }
+    public void SetPending(bool value) { pendingAbility=value; RefreshText(); }
     public void Feedback(string text) { feedback = text; feedbackUntil = Time.unscaledTime + 1.8f; revealUntil = feedbackUntil; }
     public void Pulse() { playedUntil = Time.unscaledTime + .22f; }
 
-    private void Update()
+    private void Update()=>Advance(Time.unscaledDeltaTime);
+    private void Advance(float deltaTime)
     {
-        float blend = 1 - Mathf.Exp(-20 * Time.unscaledDeltaTime);
+        float blend = 1 - Mathf.Exp(-20 * deltaTime);
         group.alpha = Mathf.Lerp(group.alpha, covered ? 0 : 1, blend);
         if (!IsDragging)
         {
@@ -113,7 +126,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
             }
         }
         float scale = !IsDragging && Time.unscaledTime < playedUntil ? .90f : 1;
-        Rect.localScale = Vector3.Lerp(Rect.localScale, Vector3.one * scale, blend);
+        Rect.localScale = Vector3.Lerp(Rect.localScale, Vector3.one * scale * displayScale, blend);
         Color tint = IsCandidate || Ready || targeting ? Color.white : new Color(.72f, .75f, .8f);
         if (IsDragging && InCastZone && Ready) tint = new Color(.82f, 1f, .91f);
         surface.SetVisualState(face, tint, tint);
@@ -126,10 +139,10 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void RefreshText()
     {
-        state.text = IsCandidate ? "主动技能" : targeting ? "请选择敌人" : cooldown > 0 ? $"冷却 {cooldown} 回合" :
-            Ready ? "主动 · 可用" : Skill == KaitSkill.ShadowStep ? "击杀后可用" : "暂不可用";
-        footer.text = Time.unscaledTime < feedbackUntil ? feedback : IsCandidate ? "点击选择 · 不暂停" :
-            IsDragging ? (InCastZone ? Ready ? "松手打出" : "不可用 · 松手归位" : "拖到中间打出") : "拖到中间打出";
+        state.text = IsCandidate ? "" : pendingAbility ? "待生效" : targeting ? (KaitRun.NeedsCellTarget(Skill)?"选择目标格":"选择敌人") : cooldown > 0 ? $"冷却 {cooldown} 回合" :
+            Ready ? "" : Skill == KaitSkill.ShadowStep ? "击杀后可用" : "暂不可用";
+        footer.text = Time.unscaledTime < feedbackUntil ? feedback : IsCandidate ? "" :
+            IsDragging ? (InCastZone ? Ready ? "松手施放" : "不可用" : "拖入战场") : "";
     }
     public bool ShouldPreviewAt(float now) => IsCandidate || IsDragging || (!covered &&
         (hovered || pointer != int.MinValue || now < revealUntil));
@@ -174,6 +187,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnBeginDrag(PointerEventData e)
     {
         if (pointer != e.pointerId || covered || IsDragging) return;
+        if (IsCandidate && rewardBegin!=null && !rewardBegin()) return;
         pendingDockSound = false;
         IsDragging = SuppressedClick = true; hovered = false; e.eligibleForClick = false;
         GameAudio.PlayCardPickUp();
@@ -189,13 +203,19 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
             p.x = Mathf.Clamp(p.x, bounds.rect.xMin + Size.x * .5f + 8, bounds.rect.xMax - Size.x * .5f - 8);
             p.y = Mathf.Clamp(p.y, bounds.rect.yMin, bounds.rect.yMax - Size.y * .5f - 8);
             Rect.anchoredPosition = p;
+            if(IsCandidate) rewardMove?.Invoke(local);
         }
     }
     public void OnEndDrag(PointerEventData e)
     {
         if (!IsDragging || pointer != e.pointerId) return;
         IsDragging = false; pointer = int.MinValue; hovered = false; revealUntil = 0;
-        if (IsCandidate) { target = KaitPassiveCard.ClampToScreen(Rect.anchoredPosition, bounds.rect, true); return; }
+        if (IsCandidate)
+        {
+            target=rewardBegin!=null?rewardHome:KaitPassiveCard.ClampToScreen(Rect.anchoredPosition,bounds.rect,true);
+            if(rewardEnd!=null && RectTransformUtility.ScreenPointToLocalPointInRectangle(bounds,e.position,e.pressEventCamera,out Vector2 release))rewardEnd(release);
+            return;
+        }
         if (InCastZone)
         {
             if (Ready && cast != null && cast(this))
@@ -216,14 +236,24 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         {
             case KaitSkill.SwiftBoots: return "+1";
             case KaitSkill.CatAgility: return "×2";
-            case KaitSkill.DreadSlash: return "斩";
+            case KaitSkill.DreadSlash: return "推∞";
             case KaitSkill.IceTomb: return "冰";
             case KaitSkill.LesserPhantom: return "幻";
+            case KaitSkill.HexCurse: return "咒+1";
+            case KaitSkill.DispelMagic: return "净";
+            case KaitSkill.Command: return "90°";
+            case KaitSkill.MistyStep: return "邻移";
+            case KaitSkill.GraspHadar: return "拉";
+            case KaitSkill.EldritchSmite: return "击退";
+            case KaitSkill.RelentlessHex: return "咒跃";
+            case KaitSkill.LevistusTomb: return "护";
+            case KaitSkill.DimensionDoor: return "镜";
             default: return "跃";
         }
     }
     public static string Description(KaitSkill skill)
     {
+        var def=KaitAbilityCatalog.Get(skill);if(def!=null)return def.cardText.TrimEnd('。');
         switch (skill)
         {
             case KaitSkill.SwiftBoots: return "当前回合速度 +1\n冷却 2 回合";

@@ -77,6 +77,8 @@ public sealed class KaitPassiveDeck : MonoBehaviour
                 rearrange = true;
             }
             int triggers = run.PassiveTriggerCount(run.passives[i]);
+            card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Passive)));
+            card.SetCopiedPassive(run.copiedPassive);
             if (triggers > shownTriggers[i]) card.Pulse(triggers);
             shownTriggers[i] = triggers;
         }

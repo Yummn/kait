@@ -66,7 +66,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
     }
 
     public static bool IsInCastZone(Vector2 position) => CastZone.Contains(position);
-    public static bool IsReady(KaitRun run, KaitSkill skill) => !run.ended && run.skills.Contains(skill) &&
+    public static bool IsReady(KaitRun run, KaitSkill skill) => !run.ended && run.IsSkillActive(skill) &&
         (skill == KaitSkill.ShadowStep ? run.chainActive && run.shadowStepAvailable : run.SkillCooldown(skill) == 0);
 
     public void ResetDeck()
@@ -91,6 +91,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
                 selectedOrigin = null; rearrange = true;
             }
             card.SetAvailability(IsReady(run, card.Skill), run.SkillCooldown(card.Skill), targeting == card.Skill);
+            card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Skill)));
             card.SetCovered(run.ended);
         }
         if (rearrange) Dock(null, 0);
@@ -132,7 +133,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
         if (!visible) return;
         cancel.gameObject.SetActive(targeting != KaitSkill.None && dragging == null);
         releaseText.text = dragging != null ? !dragging.Ready ? "技能尚不可用\n松手返回卡槽" : dragging.InCastZone ? "松手打出技能" : "拖到这里打出技能" :
-            targeting != KaitSkill.None ? KaitRun.SkillName(targeting) + "\n请点选一个敌人" : "惊惧斩已准备\n输入方向发动";
+            targeting != KaitSkill.None ? KaitRun.SkillName(targeting) + (KaitRun.NeedsCellTarget(targeting)?"\n请点选高亮目标格":"\n请点选一个敌人") : "雷鸣波已准备\n输入方向发动";
     }
 
     private void CheckOutsidePreviewPress()

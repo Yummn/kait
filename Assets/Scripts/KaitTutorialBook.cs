@@ -60,7 +60,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         for(int i=0;i<PageCount;i++)
         {
             int index=i;
-            var tab=AddButton(card.transform,(i+1).ToString(),new Vector2((i-(PageCount-1)*.5f)*57,-400),new Vector2(44,44),()=>ShowPage(index));
+            var tab=AddButton(card.transform,(i+1).ToString(),new Vector2((i-(PageCount-1)*.5f)*63,-400),new Vector2(56,54),()=>ShowPage(index));
             tabs[i]=tab.GetComponent<Image>();
         }
         Label(card.transform,"左右滑动 / ← → 翻页 · Esc 关闭",new Vector2(0,-353),new Vector2(750,32),18,new Color32(194,180,190,255),TextAnchor.MiddleCenter);

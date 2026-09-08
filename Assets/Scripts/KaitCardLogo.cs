@@ -58,8 +58,14 @@ public sealed class KaitCardLogo : MonoBehaviour
         return plate;
     }
 
-    public void Show(KaitSkill skill) => Set(skill.ToString(), KaitSkillCard.Sigil(skill));
-    public void Show(KaitPassive passive) => Set(passive.ToString(), PassiveSymbol(passive));
+    public void Show(KaitSkill skill) { Set(skill.ToString(),KaitSkillCard.Sigil(skill));SetGenerated(KaitAbilityCatalog.Get(skill)); }
+    public void Show(KaitPassive passive) { Set(passive.ToString(),PassiveSymbol(passive));SetGenerated(KaitAbilityCatalog.Get(passive)); }
+    private void SetGenerated(KaitAbilityDef def)
+    {
+        var art=KaitCardSkin.Icon(def);
+        if(art!=null) { current=art;picture.SetVisualState(current,Color.white,Color.clear); }
+        if(def!=null && string.IsNullOrEmpty(symbol.text)) symbol.text=def.nameZh.Substring(0,Mathf.Min(2,def.nameZh.Length));
+    }
     private void Set(string name, string text)
     {
         AssetName = name;
@@ -75,6 +81,8 @@ public sealed class KaitCardLogo : MonoBehaviour
     }
     public static Sprite Load(string name)
     {
+        var definition=KaitAbilityCatalog.All.Find(d=>d.kind==KaitAbilityKind.Active?d.skill.ToString()==name:d.passive.ToString()==name);
+        var generated=KaitCardSkin.Icon(definition);if(generated!=null)return generated;
         if (sprites.TryGetValue(name, out var cached) && cached != null) return cached;
         var texture = Resources.Load<Texture2D>(ResourceRoot + "Transparent/" + name)
             ?? Resources.Load<Texture2D>(ResourceRoot + name);
@@ -99,7 +107,7 @@ public sealed class KaitCardLogo : MonoBehaviour
             case KaitPassive.BladeCovenant: return "3杀";
             case KaitPassive.Trend: return "反侧";
             case KaitPassive.SweepTail: return "扫";
-            default: return "";
+            default: var def=KaitAbilityCatalog.Get(passive);return def==null?"":def.nameZh.Substring(0,Mathf.Min(2,def.nameZh.Length));
         }
     }
 }

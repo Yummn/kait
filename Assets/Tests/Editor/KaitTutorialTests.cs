@@ -30,9 +30,9 @@ public sealed class KaitTutorialTests
     }
 
     [Test]
-    public void EightChaptersHaveUniqueIllustrationsAndShortNativeText()
+    public void TenChaptersHaveUniqueIllustrationsAndShortNativeText()
     {
-        Assert.AreEqual(8,KaitTutorialPages.All.Length);
+        Assert.AreEqual(10,KaitTutorialPages.All.Length);
         var ids=new HashSet<string>();
         foreach(var p in KaitTutorialPages.All)
         {
@@ -54,10 +54,10 @@ public sealed class KaitTutorialTests
             Assert.IsFalse(book.gameObject.activeSelf);
             book.gameObject.SetActive(true); book.Previous(); Assert.AreEqual(0,book.PageIndex);
             book.Next(); Assert.AreEqual(1,book.PageIndex);
-            book.ShowPage(999); Assert.AreEqual(7,book.PageIndex);
+            book.ShowPage(999); Assert.AreEqual(book.PageCount-1,book.PageIndex);
             Assert.IsTrue(book.IllustrationLoaded);
             book.Next(); Assert.IsFalse(book.gameObject.activeSelf);
-            book.gameObject.SetActive(true); Assert.AreEqual(7,book.PageIndex);
+            book.gameObject.SetActive(true); Assert.AreEqual(book.PageCount-1,book.PageIndex);
             book.ShowPage(-10); Assert.AreEqual(0,book.PageIndex);
             foreach(var button in book.GetComponentsInChildren<Button>())
                 Assert.AreEqual(Navigation.Mode.None,button.navigation.mode);

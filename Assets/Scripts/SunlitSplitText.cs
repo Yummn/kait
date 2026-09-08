@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 // One Text and one click target across both styles. Only the glyph mesh color
 // changes at the global cut: brown on ivory, original color on dark panels.
-[RequireComponent(typeof(Text))]
+// Also supports code-drawn toolbar glyphs, using the same cut and ink color.
 public sealed class SunlitSplitText : BaseMeshEffect
 {
     private GlobalStyleSplit context;

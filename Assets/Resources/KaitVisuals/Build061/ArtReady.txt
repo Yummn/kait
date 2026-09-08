@@ -1,0 +1,1 @@
+v0.6.1: locally extracted transparent RGBA atlases. Sources and processing script preserved.

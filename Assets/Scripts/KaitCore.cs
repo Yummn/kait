@@ -8,12 +8,12 @@ public enum KaitEnemyLife { Preparing, Active, Dead }
 public enum KaitRangedState { Ready, Aim }
 public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
-public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep }
+public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor }
 public enum KaitSpeedModifier { AddOne, Double }
 
 [Serializable] public sealed class KaitBalanceConfig
 {
-    public int threatSize = 5, initialThreatTiles = 3, newThreatTilesPerTurn = 1, winValue = 128;
+    public int threatSize = 5, initialThreatTiles = 3, newThreatTilesPerTurn = 1, winValue = 256;
     public int baseMomentum = 0, momentumPerEmptyCell = 1, momentumLossOnKill = 0;
     public int kateMaxHp = 3, wallCollisionDamage = 1, unitCollisionDamage = 1, riftBlockDamage = 1;
     public int archerRange = 3;
@@ -21,7 +21,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public bool playerInvincible, enableRiftDamage = true, enableCollisionDamage = true;
 }
 
-[Serializable] public sealed class KaitMergeEvent { public int resultValue; public Vector2Int threatCell; public bool spawnSuppressed; }
+[Serializable] public sealed class KaitMergeEvent { public int sourceValue, resultValue, sequence; public Vector2Int threatCell; public KaitDirection actualThreatDirection; public bool spawnSuppressed, systemMerge; }
 [Serializable] public sealed class KaitIntent
 {
     public KaitIntentType type;
@@ -37,6 +37,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public KaitEnemyLife life;
     public KaitRangedState rangedState;
     public int frozenActions;
+    public bool cursed, hexArmorSpent;
     public Vector2Int facing;
     public KaitIntent intent = new KaitIntent();
 }
@@ -45,6 +46,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public int tier, turnsUntilSpawn, createdTurn = -1;
     public Vector2Int sourceThreatCell, targetCell;
     public KaitSpawnState state;
+    public bool lockDelayed, redirected, mergedByConsolidation;
 }
 [Serializable] public sealed class KaitEnemyAction
 {
@@ -88,7 +90,7 @@ public sealed class KaitTurnResult
     public string message;
 }
 
-public sealed class KaitRun
+public sealed partial class KaitRun
 {
     public const int BattleSize = 7, DefaultThreatSize = 5;
     public readonly KaitBalanceConfig config;
@@ -188,6 +190,7 @@ public sealed class KaitRun
     public void Reset(int seed)
     {
         random = new System.Random(seed); Array.Clear(threat, 0, threat.Length); Array.Clear(walls, 0, walls.Length);
+        ResetBuildState();
         Array.Clear(threatPillars, 0, threatPillars.Length); Array.Clear(mergeHeatmap, 0, mergeHeatmap.Length); Array.Clear(spawnHeatmap, 0, spawnHeatmap.Length); Array.Clear(threatTwoBirth, 0, threatTwoBirth.Length);
         enemies.Clear(); spawns.Clear(); skills.Clear(); passives.Clear(); activeSpeedModifiers.Clear(); pendingSkillMilestones.Clear(); pendingPassiveOffers.Clear(); triggeredMilestones.Clear(); skillCooldowns.Clear(); skillsUsedBeforeInput.Clear(); passiveTriggerCounts.Clear();
         nextEnemyId = 1; turn = kills = threatLocks = pushCount = friendlyFireDamage = riftBlocks = 0;
@@ -247,7 +250,7 @@ public sealed class KaitRun
         return true;
     }
 
-    public bool HasPassive(KaitPassive passive) => passives.Contains(passive);
+    public bool HasPassive(KaitPassive passive) => PassiveCopies(passive)>0;
     public int PassiveTriggerCount(KaitPassive passive) => passiveTriggerCounts.TryGetValue(passive, out int count) ? count : 0;
 
     public int SkillCooldown(KaitSkill skill) => skillCooldowns.TryGetValue(skill, out int value) ? value : 0;
@@ -255,20 +258,30 @@ public sealed class KaitRun
     public bool TryUseSkill(KaitSkill skill, int targetEnemyId, out string message)
     {
         message = string.Empty;
+        lastSkillResult=null;
         if (ended) { message = "当前不能使用技能"; return false; }
-        if (!skills.Contains(skill) || skill == KaitSkill.ShadowStep) { message = "尚未获得该主动技能"; return false; }
+        if (!IsSkillActive(skill) || skill == KaitSkill.ShadowStep) { message = "技能尚未生效（新牌于下次全局输入生效）"; return false; }
         if (SkillCooldown(skill) > 0) { message = $"技能冷却中：{SkillCooldown(skill)}"; return false; }
         KaitEnemy target = targetEnemyId < 0 ? null : enemies.Find(e => e.id == targetEnemyId && e.life != KaitEnemyLife.Dead);
-        if ((skill == KaitSkill.IceTomb || skill == KaitSkill.LesserPhantom) && target == null) { message = "请选择一个存活敌人"; return false; }
-        if (skill == KaitSkill.LesserPhantom && !HasLegalPhantomAttack(target)) { message = "当前没有敌人能合法攻击该目标"; return false; }
+        if (NeedsEnemyTarget(skill) && target == null) { message = "请选择一个存活敌人"; return false; }
+        if (NeedsCellTarget(skill)) { message = "请选择合法目标格"; return false; }
+        if (skill == KaitSkill.Command && (target.intent.type==KaitIntentType.None || target.intent.affectedCells.Count==0)) { message="目标没有锁定攻击";return false; }
+        if (skill == KaitSkill.GraspHadar && !CanPull(target)) { message="目标须与Kait同行列，路径和落点须为空";return false; }
 
         if (skill == KaitSkill.SwiftBoots) ApplySpeedSkill(KaitSpeedModifier.AddOne);
         else if (skill == KaitSkill.CatAgility) ApplySpeedSkill(KaitSpeedModifier.Double);
         else if (skill == KaitSkill.DreadSlash) dreadSlashArmed = true;
         else if (skill == KaitSkill.IceTomb) target.frozenActions = 1;
         else if (skill == KaitSkill.LesserPhantom) forcedTargetEnemyId = target.id;
+        else if (skill == KaitSkill.HexCurse) { target.cursed=true;target.hexArmorSpent=false; }
+        else if (skill == KaitSkill.Command) RotateIntent(target);
+        else if (skill == KaitSkill.GraspHadar) PullEnemy(target);
+        else if (skill == KaitSkill.EldritchSmite) smiteArmed=true;
+        else if (skill == KaitSkill.LevistusTomb) tombArmed=true;
+        else if (skill == KaitSkill.DimensionDoor) mirrorNextRift=true;
         skillCooldowns[skill] = BaseCooldown(skill); skillsUsedBeforeInput.Add(skill);
-        ResolveDevil(skill, null);
+        if(lastSkillResult==null)lastSkillResult=new KaitTurnResult{valid=true};
+        ResolveDevil(skill, lastSkillResult);
         message = $"已使用：{SkillName(skill)}"; return true;
     }
 
@@ -282,6 +295,7 @@ public sealed class KaitRun
 
     public static string SkillName(KaitSkill skill)
     {
+        var def=KaitAbilityCatalog.Get(skill); if(def!=null) return def.nameZh;
         switch (skill)
         {
             case KaitSkill.SwiftBoots: return "疾步之靴";
@@ -299,12 +313,19 @@ public sealed class KaitRun
         var result = new KaitTurnResult();
         if (ended) { result.message = "本局已结束"; return result; }
         if (chainActive) { result.message = "请选择击杀后的转向"; return result; }
+        // Keep staged rules if an invalid input is rejected.
+        var inactiveBefore=new HashSet<string>(inactiveAbilities); var retiredBefore=new HashSet<string>(retiredAbilities);
+        var previousCopyBefore=previousCopiedPassive;var directionBefore=actualThreatDirection;
+        ActivateBuildForInput();
+        actualThreatDirection=HasPassive(KaitPassive.ReverseGravity)?Opposite(direction):direction;
         bool useDreadSlash = dreadSlashArmed;
-        bool kaitCanRespond = useDreadSlash || CanEnterFrom(katePos, direction);
-        int[,] before = CopyThreat(); result.merges.AddRange(MoveThreat(direction, result.threatMotions)); int[,] after = CopyThreat();
+        bool kaitCanRespond = !tombArmed && (useDreadSlash || CanEnterFrom(katePos, direction));
+        int[,] before = CopyThreat(); result.merges.AddRange(MoveThreat(actualThreatDirection, result.threatMotions)); int[,] after = CopyThreat();
         bool threatChanged = !ThreatEquals(before, after);
         if (!kaitCanRespond && !threatChanged)
         {
+            inactiveAbilities.UnionWith(inactiveBefore);retiredAbilities.UnionWith(retiredBefore);
+            previousCopiedPassive=previousCopyBefore;actualThreatDirection=directionBefore;
             result.merges.Clear(); result.threatMotions.Clear(); result.message = "两盘均无法响应，未消耗回合"; return result;
         }
 
@@ -314,7 +335,7 @@ public sealed class KaitRun
         currentGlobalDirection = direction; threatChangedThisTurn = threatChanged; kaitWaitedThisTurn = !kaitCanRespond;
         currentDirection = direction; momentum = 0; chainPower = 0; powerLocked = false;
         currentChainKills = 0; currentChainMoves = 0; chainStepCount = 0; chainActive = kaitCanRespond && !useDreadSlash; shadowStepAvailable = false; momentumResonanceTriggeredThisTurn = false;
-        TickSkillCooldowns();
+        chainTriggers.Clear(); transferCurse=false;
         if (!kaitCanRespond && threatChanged) threatOrientedWaitCount++;
         foreach (KaitMergeEvent merge in result.merges)
         {
@@ -322,8 +343,9 @@ public sealed class KaitRun
             if (merge.resultValue < config.winValue) QueueSpawn(merge, result);
         }
         ResolveSimplify(result);
+        ResolveBag(result.merges,result);
         result.spawnSuppressed += result.merges.FindAll(m => m.spawnSuppressed).Count;
-        if (useDreadSlash)
+        if (useDreadSlash && !tombArmed)
         {
             dreadSlashArmed = false; result.dreadSlash = true; ResolveDreadSlash(direction, result);
             result.message = "惊惧斩：凯特原地，敌人已沿输入方向重排"; FinishTurn(result); ApplyTurnContext(result); return result;
@@ -340,6 +362,7 @@ public sealed class KaitRun
         var result = new KaitTurnResult();
         if (!chainActive) { result.message = "当前没有可继续的连斩"; return result; }
         result.valid = true; shadowStepAvailable = false; currentDirection = direction; chainStepCount++;
+        if(tombArmed) { FinishTurn(result);ApplyTurnContext(result);return result; }
         if (dreadSlashArmed)
         {
             dreadSlashArmed = false; result.dreadSlash = true; result.globalDirection = direction;
@@ -389,22 +412,28 @@ public sealed class KaitRun
 
             if (!powerLocked)
             {
-                foreach (KaitSpeedModifier modifier in activeSpeedModifiers)
-                    momentum = modifier == KaitSpeedModifier.AddOne ? momentum + 1 : momentum * 2;
-                activeSpeedModifiers.Clear(); highestMomentum = Mathf.Max(highestMomentum, momentum);
+                lockedBaseMomentum=momentum;
+                momentum=CalculateSpeed(lockedBaseMomentum,activeSpeedModifiers);
+                highestMomentum = Mathf.Max(highestMomentum, momentum);
                 chainPower = momentum; powerLocked = true;
                 lockedPowerCounts[Mathf.Clamp(chainPower, 0, lockedPowerCounts.Length - 1)]++;
             }
             bool frontImmune = enemy.type == KaitEnemyType.ShieldKnight && enemy.facing != Vector2Int.zero && -delta == enemy.facing;
             result.playerAttackBlocked = frontImmune;
+            bool smiteThisHit=smiteArmed&&!frontImmune;
+            if(smiteThisHit) smiteArmed=false;
+            if(transferCurse && HasPassive(KaitPassive.MasterHex)) { enemy.cursed=true;enemy.hexArmorSpent=false;transferCurse=false; }
+            int hpBefore=enemy.hp;
             int damage = frontImmune ? 0 : chainPower; DamageEnemy(enemy, damage, true, result);
+            damage=hpBefore-enemy.hp;
             result.damagedEnemyId = enemy.id; result.damageDealt = damage; result.enemyHpAfter = enemy.hp; result.blockedEnemyCell = enemy.pos;
             if (enemy.life == KaitEnemyLife.Dead)
             {
                 directKills++; ContinueAfterPrimaryKill(next, result); return;
             }
 
-            ResolvePush(enemy, delta, result, frontImmune);
+            if(smiteThisHit) PushToEnd(enemy,delta,result);
+            else ResolvePush(enemy, delta, result, frontImmune);
             if (enemy.life == KaitEnemyLife.Dead)
             {
                 ContinueAfterPrimaryKill(enemy.pos, result); return;
@@ -456,6 +485,19 @@ public sealed class KaitRun
         }
         else if (blocker != null)
         {
+            if(HasPassive(KaitPassive.RepellingBlast))
+            {
+                Vector2Int beyond=blocker.pos+delta;
+                if(!IsHardBlocked(beyond) && beyond!=katePos && EnemyAt(beyond)==null)
+                {
+                    Vector2Int old=blocker.pos;blocker.pos=beyond;enemy.pos=target;katePos=origin;result.pushed=true;
+                    result.enemyActions.Add(new KaitEnemyAction { enemyId=blocker.id,type=KaitIntentType.Move,from=old,to=beyond });
+                    ResolveMomentumResonance(origin,delta,result);
+                    TriggerPassive(KaitPassive.RepellingBlast,result,origin-Vector2Int.one,origin,"推动额外传递一人");
+                    if(katePos!=kateBeforeImpact) { result.katePath.Add(katePos);result.pathMomentum.Add(momentum); }
+                    return;
+                }
+            }
             int damage = config.enableCollisionDamage ? config.unitCollisionDamage : 0;
             result.pushBlockedByUnit = true; result.collisionDamage += damage * 2;
             if (!primaryDamageImmune) DamageEnemy(enemy, damage, true, result);
@@ -469,6 +511,7 @@ public sealed class KaitRun
             ResolveMomentumResonance(origin, delta, result);
         }
         if (katePos != kateBeforeImpact) { result.katePath.Add(katePos); result.pathMomentum.Add(momentum); }
+        if(result.pushBlockedByWall) ApplyPillarStagger(enemy,target,result);
         result.enemyHpAfter = enemy.hp;
     }
 
@@ -493,13 +536,14 @@ public sealed class KaitRun
                 if (p.x >= 0)
                 {
                     result.newThreatCells.Add(p);
-                    ResolveOldNewsArchive(result);
                 }
             }
+            ResolveOldNewsArchive(result);
             if (ThreatLocked()) ResetLockedThreat();
             if (bossPending) SpawnShieldKnight(result);
             if (kateHp <= 0) End("Kate Defeated", false);
         }
+        TickSkillCooldowns(); turnTriggers.Clear(); transferCurse=false;tombArmed=smiteArmed=false;
         turn++; momentum = 0; chainPower = 0; powerLocked = false; currentChainMoves = 0; activeSpeedModifiers.Clear(); LockEnemyIntents();
         PrepareThreatTwoPreview();
         result.threatAfter = CopyThreat();
@@ -536,9 +580,14 @@ public sealed class KaitRun
             if (attacker.life == KaitEnemyLife.Dead) continue;
             if (attacker.frozenActions > 0) { attacker.frozenActions--; continue; }
             KaitIntent intent = attacker.type == KaitEnemyType.Archer
-                ? BuildArcherFireIntent(attacker)
+                ? forcedTarget!=null ? BuildLineIntent(attacker.pos,DirectionToward(attacker.pos,forcedTarget.pos),config.archerRange,true) : BuildArcherFireIntent(attacker)
                 : forcedTarget != null ? BuildIntentToward(attacker, forcedTarget.pos) : attacker.intent;
             if (intent.type == KaitIntentType.None) continue;
+            if(CancelEnemyAttack(attacker,intent,result))
+            {
+                if(IsTwoPhaseRanged(attacker)) { attacker.rangedState=KaitRangedState.Ready;attacker.intent=new KaitIntent { origin=attacker.pos }; }
+                continue;
+            }
             Vector2Int actionOrigin = attacker.type == KaitEnemyType.Archer ? attacker.pos : intent.origin;
             var action = new KaitEnemyAction { enemyId = attacker.id, type = intent.type, from = actionOrigin, to = intent.target, damage = intent.damage };
             action.affectedCells.AddRange(intent.affectedCells);
@@ -641,25 +690,37 @@ public sealed class KaitRun
     private void DamageEnemy(KaitEnemy enemy, int amount, bool creditKate, KaitTurnResult result, bool enemyFriendlyFire = false)
     {
         if (enemy == null || enemy.life == KaitEnemyLife.Dead || amount <= 0) return;
+        bool cursed=enemy.cursed;
+        if(cursed) amount++;
         if (enemyFriendlyFire && HasPassive(KaitPassive.CheshireCat) && amount >= enemy.hp)
         {
             int applied = Mathf.Max(0, enemy.hp - 1);
             enemy.hp = 1;
-            if (applied > 0) TriggerPassive(KaitPassive.CheshireCat, result, enemy.pos - Vector2Int.one, enemy.pos, "敌军友伤被限制为最低 1 点生命");
+            if (applied > 0)
+            {
+                enemy.cursed=false;OnCursedDamage(enemy,cursed,result);
+                if(HasPassive(KaitPassive.Enfeeblement)) enemy.frozenActions=1;
+                TriggerPassive(KaitPassive.CheshireCat, result, enemy.pos - Vector2Int.one, enemy.pos, "敌军友伤被限制为最低 1 点生命");
+            }
             return;
         }
         enemy.hp = Mathf.Max(0, enemy.hp - amount);
+        enemy.cursed=false;
+        if(enemyFriendlyFire && enemy.hp>0 && HasPassive(KaitPassive.Enfeeblement))
+        { enemy.frozenActions=1;TriggerPassive(KaitPassive.Enfeeblement,result,enemy.pos-Vector2Int.one,enemy.pos,"友伤：跳过下一次行动"); }
+        OnCursedDamage(enemy,cursed,result);
         if (enemy.hp > 0) return;
         enemy.life = KaitEnemyLife.Dead;
         enemy.intent = new KaitIntent { origin = enemy.pos };
         if (creditKate) { kills++; if (!result.playerKilledEnemyIds.Contains(enemy.id)) result.playerKilledEnemyIds.Add(enemy.id); }
         if (!result.killedEnemyIds.Contains(enemy.id)) { result.killedEnemyIds.Add(enemy.id); result.killedEnemyCells.Add(enemy.pos); }
-        if (enemy.type == KaitEnemyType.ShieldKnight) End("Victory: Shield Knight", true);
+        OnAbilityKill(enemy,cursed,creditKate,result);
+        if (enemy.id==bossEnemyId) End("Victory: Shield Knight", true);
     }
 
     private int DamageKate(int amount, KaitTurnResult result)
     {
-        if (config.playerInvincible || amount <= 0) return 0;
+        if (config.playerInvincible || tombArmed || amount <= 0) return 0;
         int appliedDamage = Mathf.Min(kateHp, amount);
         kateHp -= appliedDamage;
         result.playerDamage += appliedDamage;
@@ -680,6 +741,7 @@ public sealed class KaitRun
                 Vector2Int cell = new Vector2Int(x, y);
                 if (IsThreatPillar(cell))
                 {
+                    if(HasPassive(KaitPassive.Passwall)) continue;
                     ProcessThreatSegment(segment, motions, merges); segment.Clear();
                 }
                 else segment.Add(cell);
@@ -715,7 +777,7 @@ public sealed class KaitRun
             threatTwoBirth[destination.x, destination.y] = token.value == 2 && !token.merged ? token.birthOrder : 0;
             foreach (Vector2Int source in token.sources) motions.Add(new KaitThreatMotion { value = token.merged ? token.value / 2 : token.value, from = source, to = destination, merged = token.merged });
             if (!token.merged) continue;
-            merges.Add(new KaitMergeEvent { resultValue = token.value, threatCell = destination });
+            merges.Add(new KaitMergeEvent { sourceValue=token.value/2,resultValue = token.value, threatCell = destination, sequence=merges.Count,actualThreatDirection=actualThreatDirection });
             mergeHeatmap[destination.x, destination.y]++; if (IsInternalThreatCell(destination)) internalMergeCount++;
             highestThreat = Mathf.Max(highestThreat, token.value);
         }
@@ -734,10 +796,9 @@ public sealed class KaitRun
             var opposite = empty.FindAll(IsOppositeThreatSide);
             if (opposite.Count > 0) candidates = opposite;
         }
+        if(endTurn) RefreshThreatPreview();
         bool usedPreview = endTurn && HasPassive(KaitPassive.BirdEye) && candidates.Contains(nextThreatTwoPreview);
-        Vector2Int p = usedPreview
-            ? nextThreatTwoPreview
-            : candidates[random.Next(candidates.Count)];
+        Vector2Int p = endTurn && nextTwoPriority.Count>0 ? nextTwoPriority.Find(cell=>candidates.Contains(cell)) : candidates[random.Next(candidates.Count)];
         threat[p.x, p.y] = 2;
         threatTwoBirth[p.x, p.y] = ++nextThreatTwoBirth;
         if (endTurn) nextThreatTwoPreview = new Vector2Int(-1, -1);
@@ -748,7 +809,8 @@ public sealed class KaitRun
     private void QueueSpawn(KaitMergeEvent merge, KaitTurnResult result)
     {
         Vector2Int target = MapThreatToBattle(merge.threatCell);
-        if (IsHardBlocked(target))
+        if(mirrorNextRift) { target=new Vector2Int(BattleSize-1-target.x,BattleSize-1-target.y);mirrorNextRift=false; }
+        if (IsHardBlocked(target) && !HasPassive(KaitPassive.ArcaneLock))
         {
             TryRedirectSpawnToBookmark(ref target, result);
             if (IsHardBlocked(target)) { merge.spawnSuppressed = true; wallSuppressedSpawns++; spawnSuppressedCount++; return; }
@@ -776,8 +838,17 @@ public sealed class KaitRun
             }
 
             KaitEnemy occupant = EnemyAt(request.targetCell);
+            bool occupied=katePos==request.targetCell || occupant!=null || IsHardBlocked(request.targetCell);
+            if(occupied && HasPassive(KaitPassive.ArcaneLock) && !request.lockDelayed)
+            {
+                request.lockDelayed=true;request.turnsUntilSpawn=1;request.state=KaitSpawnState.Preview;
+                TriggerPassive(KaitPassive.ArcaneLock,result,request.sourceThreatCell,request.targetCell,"秘法锁延迟一回合");i++;continue;
+            }
             if ((katePos == request.targetCell || occupant != null || IsHardBlocked(request.targetCell)) && TryRedirectSpawnToBookmark(ref request.targetCell, result))
-                occupant = EnemyAt(request.targetCell);
+            {
+                // A changed destination is previewed for a complete input before it can resolve.
+                request.redirected=true;request.createdTurn=turn;request.turnsUntilSpawn=1;request.state=KaitSpawnState.Preview;i++;continue;
+            }
 
             if (IsHardBlocked(request.targetCell))
             {
@@ -812,6 +883,11 @@ public sealed class KaitRun
         {
             if (threatPillars[x, y]) continue;
             if (threat[x, y] == 0) return false;
+            if(HasPassive(KaitPassive.Passwall))
+            {
+                for(int xx=x+1;xx<ThreatSize;xx++) {if(threatPillars[xx,y])continue;if(threat[x,y]==threat[xx,y])return false;break;}
+                for(int yy=y+1;yy<ThreatSize;yy++) {if(threatPillars[x,yy])continue;if(threat[x,y]==threat[x,yy])return false;break;}
+            }
             if (x + 1 < ThreatSize && !threatPillars[x + 1, y] && threat[x, y] == threat[x + 1, y]) return false;
             if (y + 1 < ThreatSize && !threatPillars[x, y + 1] && threat[x, y] == threat[x, y + 1]) return false;
         }
@@ -911,6 +987,7 @@ public sealed class KaitRun
 
     private static int BaseCooldown(KaitSkill skill)
     {
+        var def=KaitAbilityCatalog.Get(skill);if(def!=null) return def.cooldown;
         switch (skill)
         {
             case KaitSkill.SwiftBoots: return 2;
@@ -930,7 +1007,8 @@ public sealed class KaitRun
             return;
         }
 
-        momentum = modifier == KaitSpeedModifier.AddOne ? momentum + 1 : momentum * 2;
+        activeSpeedModifiers.Add(modifier);
+        momentum = CalculateSpeed(lockedBaseMomentum,activeSpeedModifiers);
         chainPower = momentum;
         highestMomentum = Mathf.Max(highestMomentum, momentum);
     }
@@ -1013,20 +1091,14 @@ public sealed class KaitRun
 
     private void PrepareThreatTwoPreview()
     {
-        nextThreatTwoPreview = new Vector2Int(-1, -1);
-        if (!HasPassive(KaitPassive.BirdEye)) return;
-        var empty = new List<Vector2Int>();
-        for (int y = 0; y < ThreatSize; y++)
-            for (int x = 0; x < ThreatSize; x++)
-                if (!threatPillars[x, y] && threat[x, y] == 0) empty.Add(new Vector2Int(x, y));
-        if (empty.Count > 0) nextThreatTwoPreview = empty[random.Next(empty.Count)];
+        GenerateTwoPriority();RefreshThreatPreview();
     }
 
     private bool IsOppositeThreatSide(Vector2Int cell)
     {
         int lowerHalf = ThreatSize / 2;
         int upperHalf = (ThreatSize + 1) / 2;
-        switch (currentGlobalDirection)
+        switch (actualThreatDirection)
         {
             case KaitDirection.Right: return cell.x < lowerHalf;
             case KaitDirection.Left: return cell.x >= upperHalf;
@@ -1038,6 +1110,7 @@ public sealed class KaitRun
     private void ResolveOldNewsArchive(KaitTurnResult result)
     {
         if (!HasPassive(KaitPassive.OldNewsArchive)) return;
+        if(!turnTriggers.Add("Archive")) return;
         var twos = new List<Vector2Int>();
         for (int y = 0; y < ThreatSize; y++)
             for (int x = 0; x < ThreatSize; x++)
@@ -1050,47 +1123,32 @@ public sealed class KaitRun
         threatTwoBirth[older.x, older.y] = 0;
         threatTwoBirth[newer.x, newer.y] = 0;
         result.threatMotions.Add(new KaitThreatMotion { value = 2, from = newer, to = older, merged = true });
-        var merge = new KaitMergeEvent { resultValue = 4, threatCell = older };
+        var merge = new KaitMergeEvent { sourceValue=2,resultValue = 4, threatCell = older,systemMerge=true,sequence=result.merges.Count,actualThreatDirection=actualThreatDirection };
         result.merges.Add(merge);
         mergeHeatmap[older.x, older.y]++;
         if (IsInternalThreatCell(older)) internalMergeCount++;
         QueueSpawn(merge, result);
         TriggerPassive(KaitPassive.OldNewsArchive, result, older, MapThreatToBattle(older), "最早的两枚 2 已归档为 4");
+        HandleMilestoneMerge(merge);ResolveBag(new[]{merge},result);
     }
 
     private void ResolveSimplify(KaitTurnResult result)
     {
         if (!HasPassive(KaitPassive.Simplify)) return;
+        if(!turnTriggers.Add("Consolidation")) return;
         var original = spawns.FindAll(s => s.createdTurn == turn);
-        var removed = new HashSet<KaitSpawnRequest>();
-        var combined = new List<KaitSpawnRequest>();
-        for (int tier = 1; tier <= 6; tier++)
+        for(int i=0;i<original.Count;i++) for(int j=i+1;j<original.Count;j++)
         {
-            List<KaitSpawnRequest> sameTier = original.FindAll(s => s.tier == tier);
-            for (int i = 0; i + 1 < sameTier.Count; i += 2)
-            {
-                KaitSpawnRequest earlier = sameTier[i], later = sameTier[i + 1];
-                removed.Add(earlier); removed.Add(later);
-                combined.Add(new KaitSpawnRequest
-                {
-                    tier = tier + 1,
-                    sourceThreatCell = later.sourceThreatCell,
-                    targetCell = later.targetCell,
-                    turnsUntilSpawn = 1,
-                    createdTurn = turn,
-                    state = KaitSpawnState.Preview
-                });
-            }
+            if(original[i].tier!=original[j].tier) continue;
+            original[i].tier=Mathf.Min(6,original[i].tier+1);original[i].mergedByConsolidation=true;spawns.Remove(original[j]);
+            TriggerPassive(KaitPassive.Simplify,result,original[i].sourceThreatCell,original[i].targetCell,"两道裂隙合为一道，保留首次位置");return;
         }
-        if (removed.Count == 0) return;
-        spawns.RemoveAll(removed.Contains);
-        spawns.AddRange(combined);
-        TriggerPassive(KaitPassive.Simplify, result, combined[combined.Count - 1].sourceThreatCell, combined[combined.Count - 1].targetCell, $"{removed.Count} 个出怪事件被压缩为 {combined.Count} 个");
     }
 
     private bool TryRedirectSpawnToBookmark(ref Vector2Int target, KaitTurnResult result)
     {
         if (!HasPassive(KaitPassive.BloodBookmark) || !hasBookmark) return false;
+        if(IsHardBlocked(bookmarkCell) || bookmarkCell==katePos || EnemyAt(bookmarkCell)!=null) return false;
         target = bookmarkCell;
         hasBookmark = false;
         TriggerPassive(KaitPassive.BloodBookmark, result, target - Vector2Int.one, target, "被阻挡的出怪转移到了血色书签");
@@ -1131,7 +1189,7 @@ public sealed class KaitRun
         Vector2Int destination = source + delta;
         if (destination.x < 0 || destination.y < 0 || destination.x >= ThreatSize || destination.y >= ThreatSize || IsThreatPillar(destination)) return;
         int destinationValue = threat[destination.x, destination.y];
-        if (destinationValue != 0 && destinationValue != value) return;
+        if (destinationValue != 0) return;
 
         int birth = threatTwoBirth[source.x, source.y];
         threat[source.x, source.y] = 0;
@@ -1162,19 +1220,21 @@ public sealed class KaitRun
     private void ResolveDevil(KaitSkill usedSkill, KaitTurnResult result)
     {
         if (!HasPassive(KaitPassive.Devil)) return;
-        var candidates = skills.FindAll(skill => skill != KaitSkill.ShadowStep && skill != usedSkill && SkillCooldown(skill) > 0);
+        if(!turnTriggers.Add("Rod")) return;
+        var candidates = skills.FindAll(skill => skill != KaitSkill.ShadowStep && skill != usedSkill && IsSkillActive(skill));
         if (candidates.Count == 0) return;
         KaitSkill target = candidates[random.Next(candidates.Count)];
-        skillCooldowns[target] = Mathf.Max(0, SkillCooldown(target) - 1);
+        skillCooldowns[target] = Mathf.Max(0, SkillCooldown(target) - PassiveCopies(KaitPassive.Devil));
         TriggerPassive(KaitPassive.Devil, result, new Vector2Int(-1, -1), katePos, $"{SkillName(target)} 冷却 -1");
     }
 
     private void ResolveBladeCovenant(KaitTurnResult result)
     {
-        if (!HasPassive(KaitPassive.BladeCovenant) || currentChainKills == 0 || currentChainKills % 3 != 0) return;
-        foreach (KaitSkill skill in new List<KaitSkill>(skillCooldowns.Keys))
-            if (skill != KaitSkill.ShadowStep) skillCooldowns[skill] = Mathf.Max(0, skillCooldowns[skill] - 1);
-        TriggerPassive(KaitPassive.BladeCovenant, result, katePos - Vector2Int.one, katePos, $"连杀 {currentChainKills}：所有主动技能冷却 -1");
+        if (!HasPassive(KaitPassive.BladeCovenant) || currentChainKills != 3 || !chainTriggers.Add("Blade")) return;
+        KaitSkill longest=KaitSkill.None;int remaining=0;
+        foreach(KaitSkill skill in skills) if(SkillCooldown(skill)>remaining) { longest=skill;remaining=SkillCooldown(skill); }
+        if(longest!=KaitSkill.None) skillCooldowns[longest]=Mathf.Max(0,remaining-PassiveCopies(KaitPassive.BladeCovenant));
+        TriggerPassive(KaitPassive.BladeCovenant,result,katePos-Vector2Int.one,katePos,"首次3杀：最长冷却-1");
     }
 
     private void ResolveSweepTail(KaitTurnResult result)
@@ -1191,12 +1251,8 @@ public sealed class KaitRun
     private void HandleMilestoneMerge(KaitMergeEvent merge)
     {
         int value = merge.resultValue;
-        if ((value == 16 || value == 32 || value == 64) && triggeredMilestones.Add(value))
-        {
-            pendingSkillMilestones.Enqueue(value);
-            QueuePassiveOffer(value);
-        }
-        if (value == 128 && !bossSpawned && !bossPending)
+        if(value==32) EnqueueMergeReward(merge);
+        if (value == 256 && !bossSpawned && !bossPending)
         {
             bossPending = true;
             bossPendingCell = MapThreatToBattle(merge.threatCell);
@@ -1234,7 +1290,7 @@ public sealed class KaitRun
     private void ResolveDreadSlash(KaitDirection direction, KaitTurnResult result)
     {
         Vector2Int delta = Delta(direction);
-        var movers = enemies.FindAll(e => e.life != KaitEnemyLife.Dead && e.type != KaitEnemyType.ShieldKnight);
+        var movers = enemies.FindAll(e => e.life != KaitEnemyLife.Dead);
         movers.Sort((a, b) => (b.pos.x * delta.x + b.pos.y * delta.y).CompareTo(a.pos.x * delta.x + a.pos.y * delta.y));
         foreach (KaitEnemy enemy in movers)
         {
@@ -1247,10 +1303,12 @@ public sealed class KaitRun
                 {
                     int damage = config.enableCollisionDamage ? config.wallCollisionDamage : 0;
                     DamageEnemy(enemy, damage, true, result);
+                    ApplyPillarStagger(enemy,next,result);
                     result.collisionDamage += damage;
                     break;
                 }
                 KaitEnemy blocker = EnemyAt(next);
+                if(next==katePos) break;
                 if (blocker != null)
                 {
                     int damage = config.enableCollisionDamage ? config.unitCollisionDamage : 0;
@@ -1266,6 +1324,7 @@ public sealed class KaitRun
             {
                 var action = new KaitEnemyAction { enemyId = enemy.id, type = KaitIntentType.Move, from = origin, to = current };
                 result.enemyActions.Add(action);
+                ResolveMomentumResonance(origin,delta,result);
             }
         }
     }

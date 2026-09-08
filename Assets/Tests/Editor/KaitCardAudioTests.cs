@@ -29,7 +29,7 @@ public sealed class KaitCardAudioTests
         .GetField("pendingDockSound", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(card);
 
     private static void Tick(object card) => card.GetType()
-        .GetMethod("Update", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(card, null);
+        .GetMethod("Advance", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(card, new object[]{1f/60f});
 
     [TestCase(false, false, true)]
     [TestCase(false, true, false)]

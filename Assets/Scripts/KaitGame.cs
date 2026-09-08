@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Spine.Unity;
 
-public sealed class KaitGame : MonoBehaviour
+public sealed partial class KaitGame : MonoBehaviour
 {
     private const int TargetFrameRate = 60;
     private const float SwipeThresholdScreenFraction = 0.06f;
@@ -67,6 +67,8 @@ public sealed class KaitGame : MonoBehaviour
     private HealthBarView runHealthBar;
     private Text statusText;
     private KaitSkillDeck skillDeck;
+    private KaitRewardDeck rewardDeck;
+    private Text buildDirectionText;
     private KaitPassiveDeck passiveDeck;
     private GlobalStyleSplit styleSplit;
     private GameObject controlsPanel;
@@ -349,6 +351,8 @@ public sealed class KaitGame : MonoBehaviour
         }
         string logoPreview = CommandLineValue("-kaitLogoPreview");
         if (!string.IsNullOrEmpty(logoPreview)) PrepareCardLogoPreview(logoPreview);
+        string buildPreview=CommandLineValue("-kaitBuild061Preview");
+        if(!string.IsNullOrEmpty(buildPreview))PrepareBuild061Preview(buildPreview);
         string screenshotPath = CommandLineValue("-kaitScreenshot");
         if (Application.platform == RuntimePlatform.WindowsPlayer && string.IsNullOrEmpty(screenshotPath))
             StartCoroutine(EnforceWindowsFullscreen());
@@ -373,6 +377,8 @@ public sealed class KaitGame : MonoBehaviour
             var qa = new GameObject("Main Menu QA", typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
             qa.StartCoroutine(VerifyMainMenu(CommandLineValue("-kaitMenuPreview"), screenshotPath));
         }
+        else if (CommandLineValue("-kaitRewardDragQA") == "1") StartCoroutine(VerifyRewardDragRuntime(screenshotPath));
+        else if (buildPreview == "mechanics") StartCoroutine(VerifyBuild061Runtime(screenshotPath));
         else if (skillPreview == "preview") StartCoroutine(PreviewSkillCardReveal(screenshotPath));
         else if (skillPreview == "cast") StartCoroutine(PreviewSkillCardCast(screenshotPath));
         else if (!string.IsNullOrEmpty(vfxPreview)) StartCoroutine(PreviewCombatVfx(vfxPreview, screenshotPath));
@@ -623,6 +629,8 @@ public sealed class KaitGame : MonoBehaviour
 
         BuildBattleBoard(content);
         BuildThreatBoard(content);
+        buildDirectionText=MakeText("",content,new Vector2(465,344),new Vector2(480,30),16,Cream,TextAnchor.MiddleCenter);
+        buildDirectionText.font=threatBoardFont;
         BuildSidebar(content);
         if (layeredGarden != null)
         {
@@ -646,6 +654,9 @@ public sealed class KaitGame : MonoBehaviour
         skillDeck = skillsObject.GetComponent<KaitSkillDeck>();
         skillDeck.Initialize(skillArea, styleSplit, threatBoardFont, ChoosePendingSkill, HandleSkillCardCast,
             () => { targetingSkill = KaitSkill.None; RefreshAll(); });
+        var rewardObject=new GameObject("Mixed Reward Cards",typeof(RectTransform),typeof(KaitRewardDeck));
+        rewardObject.transform.SetParent(bg.transform,false);var rewardArea=rewardObject.GetComponent<RectTransform>();Stretch(rewardArea,0);
+        rewardDeck=rewardObject.GetComponent<KaitRewardDeck>();rewardDeck.Initialize(rewardArea,styleSplit,threatBoardFont,()=>!busy&&!TutorialBlocksInput(),RefreshAll);
         BuildEndOverlay(bg.transform);
         BuildTutorialOverlay(canvas.transform);
         BuildSettingsOverlay(canvas.transform);
@@ -1377,12 +1388,15 @@ public sealed class KaitGame : MonoBehaviour
         }
     }
 
+    private static string DirectionGlyph(KaitDirection d)=>d==KaitDirection.Right?">":d==KaitDirection.Left?"<":d==KaitDirection.Up?"∧":"∨";
     private void RefreshAll()
     {
+        run.RefreshThreatPreview();
         RefreshBattle();
         RefreshThreat();
         RefreshSkillUI();
         turnText.text = $"回合 {run.turn}　速度 {run.momentum}";
+        if(buildDirectionText!=null) buildDirectionText.text=run.HasPassive(KaitPassive.ReverseGravity)?$"重力反转   主 {DirectionGlyph(run.currentGlobalDirection)} / 右盘 {DirectionGlyph(run.actualThreatDirection)}":"";
         SetHealthBar(runHealthBar, run.kateHp);
         ShowPendingSkillChoice();
         if (run.ended) ShowEnd();
@@ -1396,6 +1410,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void ShowPendingSkillChoice()
     {
+        rewardDeck?.Sync(run);
         passiveDeck?.Sync(run);
         skillDeck?.Sync(run, targetingSkill);
         int active = run.pendingSkillMilestone, passive = run.pendingPassiveMilestone;
@@ -1453,10 +1468,10 @@ public sealed class KaitGame : MonoBehaviour
             GameAudio.PlayInvalid(); statusText.text = "踏影当前不可用"; RefreshAll();
             return false;
         }
-        if (skill == KaitSkill.IceTomb || skill == KaitSkill.LesserPhantom)
+        if (KaitRun.NeedsEnemyTarget(skill) || KaitRun.NeedsCellTarget(skill))
         {
             targetingSkill = skill;
-            statusText.text = $"{KaitRun.SkillName(skill)}：请点选一个敌人";
+            statusText.text = KaitRun.SkillName(skill)+(KaitRun.NeedsCellTarget(skill)?"：请点选高亮目标格":"：请点选一个敌人");
             RefreshAll();
             return true;
         }
@@ -1465,6 +1480,7 @@ public sealed class KaitGame : MonoBehaviour
         if (applied)
         {
             GameAudio.PlaySkillUse(skill);
+            PlayBuildSkillEffect(skill,run.katePos);
             if (skill == KaitSkill.DreadSlash) GameAudio.PlayKaitLargeAttackSkillVoice();
             else if (skill == KaitSkill.CatAgility) GameAudio.PlayKaitUltimateVoice();
             statusText.text = message;
@@ -1485,26 +1501,51 @@ public sealed class KaitGame : MonoBehaviour
         if (run.ended || targetingSkill == KaitSkill.None) return;
         if (busy) InterruptActivePresentationForMovement();
         KaitEnemy target = run.EnemyAt(cell);
-        if (target == null) { GameAudio.PlayInvalid(); statusText.text = "这里没有可选敌人"; return; }
         KaitSkill skill = targetingSkill;
-        if (run.TryUseSkill(skill, target.id, out string message))
+        if (target == null && !KaitRun.NeedsCellTarget(skill)) { GameAudio.PlayInvalid(); statusText.text = "这里没有可选敌人"; return; }
+        Vector2Int start=run.katePos;string message;
+        bool applied=KaitRun.NeedsCellTarget(skill)?run.TryUseSkillAt(skill,cell,out message):run.TryUseSkill(skill,target.id,out message);
+        if (applied)
         {
             GameAudio.PlaySkillUse(skill);
             GameAudio.PlayKaitSmallAttackSkillVoice();
             targetingSkill = KaitSkill.None;
+            PlayBuildSkillEffect(skill,cell);
             kaitSpine?.PlayOnce(KaitSpineView.OtherSkill,
                 run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
             StartCoroutine(PulseBattleUnit(cell, skill == KaitSkill.IceTomb ? Cyan : Coral, 0.2f));
+            if(run.katePos!=start) StartCoroutine(AnimateShadowStep(start));
+            if(run.lastSkillResult!=null && run.lastSkillResult.enemyActions.Count>0) StartCoroutine(AnimateAllEnemyActions(run.lastSkillResult.enemyActions));
         }
         else GameAudio.PlayInvalid();
         statusText.text = message;
         RefreshAll();
     }
 
+    private void PlayBuildSkillEffect(KaitSkill skill,Vector2Int cell)
+    {
+        int motif=KaitBuildEffect.Motif(skill);
+        if(motif>=0 && InsideBattle(cell))
+            KaitBuildEffect.Play(KaitRun.NeedsEnemyTarget(skill)?battleEnemyHitLayer:battleUnderEffectLayer,battleCells[cell.x+cell.y*KaitRun.BattleSize].transform.position,motif,86);
+        if(run.lastSkillResult!=null)PlayPassiveTriggerFeedback(run.lastSkillResult);
+    }
+
     private void PlayPassiveTriggerFeedback(KaitTurnResult result)
     {
         foreach (KaitPassiveTrigger trigger in result.passiveTriggers)
         {
+            int motif=KaitBuildEffect.Motif(trigger.passive);
+            if(motif>=0)
+            {
+                bool threat=trigger.passive==KaitPassive.BagHolding || trigger.passive==KaitPassive.OldNewsArchive;
+                if(threat && trigger.threatCell.x>=0 && trigger.threatCell.y>=0 && trigger.threatCell.x<run.ThreatSize && trigger.threatCell.y<run.ThreatSize)
+                {
+                    var tile=threatCells[trigger.threatCell.x+trigger.threatCell.y*run.ThreatSize].rectTransform;
+                    KaitBuildEffect.Play(tile.parent,tile.position,motif,74);
+                }
+                else if(InsideBattle(trigger.battleCell))
+                    KaitBuildEffect.Play(battleUnderEffectLayer,battleCells[trigger.battleCell.x+trigger.battleCell.y*KaitRun.BattleSize].transform.position,motif,78);
+            }
             if (trigger.threatCell.x >= 0 && trigger.threatCell.y >= 0 && trigger.threatCell.x < run.ThreatSize && trigger.threatCell.y < run.ThreatSize)
             {
                 int threatIndex = trigger.threatCell.x + trigger.threatCell.y * run.ThreatSize;
@@ -1542,7 +1583,7 @@ public sealed class KaitGame : MonoBehaviour
             "Shadow Step A Arrival", battleUnderEffectLayer);
         hideKate = false; busy = false;
         kaitSpine?.PlayLoop(run.chainActive ? KaitSpineView.ChainDirectionChoice : KaitSpineView.Idle);
-        statusText.text = "踏影：额外前进 1 格，可继续选择转向";
+        statusText.text = "位移完成，可继续选择方向";
         RefreshAll();
     }
 
@@ -1640,7 +1681,8 @@ public sealed class KaitGame : MonoBehaviour
                             label.fontSize = run.shadowStepAvailable ? 30 : 38;
                             label.color = run.shadowStepAvailable ? Gold : Cyan;
                         }
-                if (targetingSkill != KaitSkill.None && run.EnemyAt(p) != null) image.color = Color.Lerp(image.color, Cyan, 0.35f);
+                if (targetingSkill != KaitSkill.None && (KaitRun.NeedsCellTarget(targetingSkill)?run.IsLegalSkillCell(targetingSkill,p):run.EnemyAt(p)!=null)) image.color = new Color(Cyan.r,Cyan.g,Cyan.b,.32f);
+                if(run.hasBookmark && run.bookmarkCell==p) { label.text="◇";label.color=Cyan; }
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
@@ -1688,6 +1730,7 @@ public sealed class KaitGame : MonoBehaviour
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(facing));
                     battleFacingLabels[index].color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
                     if (enemy.frozenActions > 0) { battleStatusLabels[index].text = "❄"; battleStatusLabels[index].color = Cyan; }
+                    if (enemy.cursed) { battleStatusLabels[index].text += "咒";battleStatusLabels[index].color=new Color(.8f,.47f,1f); }
                 }
                 if (!hideKate && kate == p)
                 {
@@ -1761,7 +1804,7 @@ public sealed class KaitGame : MonoBehaviour
         foreach (var spawn in (animatedSpawns ?? run.spawns))
         {
             Vector2Int cell = spawn.targetCell;
-            if (!InsideBattle(cell) || run.walls[cell.x,cell.y]) continue;
+            if (!InsideBattle(cell)) continue;
             if (riftEdgeSignals.TryGetValue(cell,out var current) && current != null) continue;
             var signal = CreateCellSignal(battleCells[cell.x+cell.y*KaitRun.BattleSize].rectTransform,battleDangerLayer,true,Time.unscaledTime);
             signal.Exists = () => SpawnAtVisual(cell) != null && !run.walls[cell.x,cell.y];
@@ -1870,6 +1913,7 @@ public sealed class KaitGame : MonoBehaviour
 
     private void RefreshThreat()
     {
+        var archive=run.ArchiveTargets();
         for (int y = 0; y < run.ThreatSize; y++)
             for (int x = 0; x < run.ThreatSize; x++)
             {
@@ -1878,7 +1922,7 @@ public sealed class KaitGame : MonoBehaviour
                 if (run.IsThreatPillar(cell))
                 {
                     threatLabels[index].text = "";
-                    threatCells[index].color = Void;
+                    threatCells[index].color = run.HasPassive(KaitPassive.Passwall)?Color.Lerp(Void,Cyan,.38f):Void;
                     continue;
                 }
                 int value = displayedThreat == null ? run.threat[x, y] : displayedThreat[x, y];
@@ -1892,6 +1936,7 @@ public sealed class KaitGame : MonoBehaviour
                 }
                 threatLabels[index].text = value == 0 || hideThreatValues ? "" : value.ToString();
                 threatCells[index].color = ThreatColor(value);
+                if(archive.Contains(cell))threatCells[index].color=Color.Lerp(threatCells[index].color,Gold,.35f);
                 threatLabels[index].color = value >= 16 ? Cream : Void;
             }
     }
@@ -1921,6 +1966,7 @@ public sealed class KaitGame : MonoBehaviour
                 life = enemy.life,
                 rangedState = enemy.rangedState,
                 frozenActions = enemy.frozenActions,
+                cursed=enemy.cursed,hexArmorSpent=enemy.hexArmorSpent,
                 facing = enemy.facing,
                 intent = intent
             });
@@ -3174,11 +3220,16 @@ public sealed class KaitGame : MonoBehaviour
         yield return new WaitForEndOfFrame();
         if (CommandLineValue("-kaitGardenPreview") == "motion" && layeredGarden != null)
         {
+            var crown=layeredGarden.transform.Find("Garden Decorations/Tree Crown") as RectTransform;
+            Vector2 before=crown!=null?crown.anchoredPosition:Vector2.zero;
+            CaptureCanvasToPng(path+".before.png");
             layeredGarden.RenderShadows();
             SaveGardenShadowPreview(path + ".shadow-before.png");
             yield return new WaitForSecondsRealtime(1.5f);
             layeredGarden.RenderShadows();
             SaveGardenShadowPreview(path + ".shadow-after.png");
+            if(crown==null||Vector2.Distance(before,crown.anchoredPosition)<.001f)Debug.LogError("Garden QA: crown float did not advance");
+            else Debug.Log("Garden QA: crown float advanced, delta="+Vector2.Distance(before,crown.anchoredPosition));
             Debug.Log($"Garden QA: live decoration count={layeredGarden.DecorationCount}, artReady={KaitLayeredGarden.ArtReady}");
         }
         CaptureCanvasToPng(path);

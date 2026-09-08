@@ -4,6 +4,21 @@ using UnityEngine.UI;
 
 public sealed class KaitLayeredGardenTests
 {
+    [Test] public void AmbientMotionStaysSubtleAndDoesNotAccumulate()
+    {
+        for(int i=0;i<2000;i++)
+        {
+            var p=KaitLayeredGarden.AmbientMotion(i*13.17f,1.47f,.65f,true);
+            Assert.LessOrEqual(Mathf.Abs(p.x),1.561f);Assert.LessOrEqual(Mathf.Abs(p.y),1.171f);Assert.LessOrEqual(Mathf.Abs(p.z),.813f);
+        }
+        Assert.AreNotEqual(KaitLayeredGarden.AmbientMotion(1,0,.65f,true),KaitLayeredGarden.AmbientMotion(1,1.47f,.65f,true));
+    }
+    [Test] public void TrunkAndFlowerRootsStayAnchored()
+    {
+        Assert.AreEqual(Vector3.zero,KaitLayeredGarden.AmbientMotion(20,0,0,false));
+        var p=KaitLayeredGarden.AmbientMotion(20,1,1.1f,false);
+        Assert.AreEqual(0,p.x);Assert.AreEqual(0,p.y);Assert.AreNotEqual(0,p.z);
+    }
     [TestCase("TreeTrunk")]
     [TestCase("TreeCanopy")]
     [TestCase("FlowerClump")]

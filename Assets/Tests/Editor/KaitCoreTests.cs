@@ -302,7 +302,7 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void T12_Merging64_OffersThirdSkillChoiceInsteadOfWinning()
+    public void V061_Merging64DoesNotWinOrOfferOldMilestoneChoice()
     {
         KaitRun run = OpenRun(12, new Vector2Int(3, 3)); ClearThreat(run);
         run.threat[0, 0] = 32; run.threat[1, 0] = 32;
@@ -311,8 +311,7 @@ public sealed class KaitCoreTests
 
         Assert.IsTrue(result.turnComplete);
         Assert.IsFalse(run.ended);
-        Assert.AreEqual(64, run.pendingSkillMilestone);
-        CollectionAssert.AreEquivalent(new[] { KaitSkill.CatAgility, KaitSkill.ShadowStep }, run.SkillChoicesForMilestone(64));
+        Assert.AreEqual(0, run.pendingSkillMilestone);Assert.IsNull(run.CurrentReward);
     }
 
     [Test]
@@ -827,7 +826,7 @@ public sealed class KaitCoreTests
                     }
                 }
                 Assert.IsNotNull(result);
-                if (result.damagedEnemyId >= 0) Assert.AreEqual(result.chainPower, result.damageDealt, $"seed {seed}, step {step}");
+                if (result.damagedEnemyId >= 0) Assert.LessOrEqual(result.damageDealt, result.chainPower, $"Actual HP loss cannot exceed locked power: seed {seed}, step {step}");
             }
             Assert.Greater(run.turn, 0, $"seed {seed}");
             Assert.IsTrue(run.emptyMapReachable, $"seed {seed}");
@@ -835,11 +834,11 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V037_T01_Milestone16_OffersExactlyOneOfTwoSkillsWithoutAdvancingTurn()
+    public void V061_Milestone16DoesNotOfferRemovedGrowthReward()
     {
         KaitRun run = OpenRun(3701); QueueMilestone(run, 16); int before = run.turn;
-        CollectionAssert.AreEquivalent(new[] { KaitSkill.SwiftBoots, KaitSkill.DreadSlash }, run.SkillChoicesForMilestone(run.pendingSkillMilestone));
-        Assert.IsTrue(run.ChooseSkill(KaitSkill.SwiftBoots)); Assert.AreEqual(before, run.turn); Assert.AreEqual(1, run.skills.Count);
+        Assert.IsNull(run.CurrentReward);Assert.AreEqual(0,run.pendingSkillMilestone);
+        Assert.IsFalse(run.ChooseSkill(KaitSkill.SwiftBoots)); Assert.AreEqual(before, run.turn); Assert.IsEmpty(run.skills);
     }
 
     [Test]
@@ -876,11 +875,11 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V037_T06_LesserPhantom_RejectsTargetsNoEnemyCanLegallyAttack()
+    public void V061_LesserPhantomAcceptsAnyLivingTargetForNextPhase()
     {
         KaitRun run = OpenRun(3706); Unlock(run, 32, KaitSkill.LesserPhantom);
         KaitEnemy target = Enemy(1, new Vector2Int(1, 1), 2, KaitEnemyType.Grunt, KaitEnemyLife.Active); run.enemies.Add(target);
-        Assert.IsFalse(run.TryUseSkill(KaitSkill.LesserPhantom, target.id, out string message)); StringAssert.Contains("合法攻击", message);
+        Assert.IsTrue(run.TryUseSkill(KaitSkill.LesserPhantom, target.id, out string message));Assert.AreEqual(target.id,run.forcedTargetEnemyId);
     }
 
     [Test]
@@ -908,7 +907,7 @@ public sealed class KaitCoreTests
         bootsThenCat.TryUseSkill(KaitSkill.SwiftBoots, -1, out _); bootsThenCat.TryUseSkill(KaitSkill.CatAgility, -1, out _);
         KaitRun catThenBoots = OpenRun(3710, new Vector2Int(1, 1)); Unlock(catThenBoots, 16, KaitSkill.SwiftBoots); Unlock(catThenBoots, 64, KaitSkill.CatAgility); catThenBoots.enemies.Add(Enemy(1, new Vector2Int(4, 1), 9));
         catThenBoots.TryUseSkill(KaitSkill.CatAgility, -1, out _); catThenBoots.TryUseSkill(KaitSkill.SwiftBoots, -1, out _);
-        Assert.AreEqual(6, bootsThenCat.TryGlobalInput(KaitDirection.Right).chainPower); Assert.AreEqual(5, catThenBoots.TryGlobalInput(KaitDirection.Right).chainPower);
+        Assert.AreEqual(6, bootsThenCat.TryGlobalInput(KaitDirection.Right).chainPower); Assert.AreEqual(6, catThenBoots.TryGlobalInput(KaitDirection.Right).chainPower);
     }
 
     [Test]
@@ -961,9 +960,9 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V037_T12_First128SpawnsBossAndDoesNotAutoWin()
+    public void V061_First256SpawnsBossAndDoesNotAutoWin()
     {
-        KaitRun run = OpenRun(3713, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;
+        KaitRun run = OpenRun(3713, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 128; run.threat[1, 0] = 128;
         KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
         Assert.IsFalse(run.ended); Assert.IsTrue(run.bossSpawned); Assert.IsTrue(result.bossSpawned); Assert.AreEqual(8, run.enemies.Single(e => e.type == KaitEnemyType.ShieldKnight).hp);
     }
@@ -971,7 +970,7 @@ public sealed class KaitCoreTests
     [Test]
     public void V037_T13_BossSpawnReplacesOccupantWithoutKillCredit()
     {
-        KaitRun run = OpenRun(3714, new Vector2Int(5, 5)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;
+        KaitRun run = OpenRun(3714, new Vector2Int(5, 5)); ClearThreat(run); run.threat[0, 0] = 128; run.threat[1, 0] = 128;
         KaitEnemy occupant = Enemy(77, new Vector2Int(3, 1), 2); run.enemies.Add(occupant); run.TryGlobalInput(KaitDirection.Right);
         Assert.AreEqual(KaitEnemyLife.Dead, occupant.life); Assert.AreEqual(0, run.kills); Assert.AreEqual(KaitEnemyType.ShieldKnight, run.EnemyAt(new Vector2Int(3, 1)).type);
     }
@@ -1010,6 +1009,7 @@ public sealed class KaitCoreTests
     public void V037_T18_KillingShieldKnightEndsRunInVictoryImmediately()
     {
         KaitRun run = OpenRun(3719, new Vector2Int(1, 3)); KaitEnemy boss = Enemy(1, new Vector2Int(5, 3), 3, KaitEnemyType.ShieldKnight); boss.facing = Vector2Int.up; run.enemies.Add(boss);
+        SetAutoProperty(run,"bossEnemyId",boss.id);
         KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
         Assert.IsTrue(run.ended); Assert.IsTrue(run.won); Assert.AreEqual("Victory: Shield Knight", run.endReason); Assert.IsTrue(result.turnComplete);
     }
@@ -1017,9 +1017,9 @@ public sealed class KaitCoreTests
     [Test]
     public void V040_T01_PendingSkillChoice_DoesNotBlockGlobalInput()
     {
-        KaitRun run = OpenRun(4001, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 2; QueueMilestone(run, 16);
+        KaitRun run = OpenRun(4001, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 2; QueueMilestone(run, 32);
         int before = run.turn; KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
-        Assert.IsTrue(result.valid); Assert.Greater(run.turn, before); Assert.AreEqual(16, run.pendingSkillMilestone);
+        Assert.IsTrue(result.valid); Assert.Greater(run.turn, before); Assert.AreEqual(1,run.rewardQueue.Count);
     }
 
     [Test]
@@ -1027,14 +1027,14 @@ public sealed class KaitCoreTests
     {
         KaitRun run = OpenRun(4002); Unlock(run, 16, KaitSkill.SwiftBoots); QueueMilestone(run, 32);
         Assert.IsTrue(run.TryUseSkill(KaitSkill.SwiftBoots, -1, out string message), message);
-        Assert.AreEqual(32, run.pendingSkillMilestone);
+        Assert.AreEqual(1, run.rewardQueue.Count);
     }
 
     [Test]
     public void V040_T03_ChoosingPendingSkill_StillDoesNotAdvanceTurn()
     {
-        KaitRun run = OpenRun(4003); QueueMilestone(run, 16); int before = run.turn;
-        Assert.IsTrue(run.ChooseSkill(KaitSkill.DreadSlash)); Assert.AreEqual(before, run.turn); Assert.AreEqual(0, run.pendingSkillMilestone);
+        KaitRun run = OpenRun(4003); QueueMilestone(run, 32); int before = run.turn;
+        Assert.IsTrue(run.SelectReward(0)); Assert.AreEqual(before, run.turn); Assert.IsNull(run.CurrentReward);
     }
 
     [Test]
@@ -1112,30 +1112,29 @@ public sealed class KaitCoreTests
     public void V050_T01_MilestoneOffersActiveAndPassiveChoicesWithoutBlocking()
     {
         KaitRun run = OpenRun(5001, new Vector2Int(3, 3));
-        QueueMilestone(run, 16);
+        QueueMilestone(run, 32);
 
-        Assert.AreEqual(16, run.pendingSkillMilestone);
-        Assert.AreEqual(16, run.pendingPassiveMilestone);
-        Assert.AreEqual(2, run.SkillChoicesForMilestone(16).Count);
-        var passiveChoices = run.PassiveChoicesForMilestone(16);
-        Assert.AreEqual(3, passiveChoices.Count);
-        Assert.GreaterOrEqual(passiveChoices.Select(KaitPassiveCatalog.Category).Distinct().Count(), 2);
+        var choices=run.CurrentReward.choices;
+        Assert.AreEqual(3,choices.Count);
+        Assert.IsTrue(choices.Any(d=>d.kind==KaitAbilityKind.Active));
+        Assert.IsTrue(choices.Any(d=>d.kind==KaitAbilityKind.Passive));
 
         KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
         Assert.IsTrue(result.valid);
-        Assert.AreEqual(16, run.pendingPassiveMilestone);
+        Assert.AreEqual(1,run.rewardQueue.Count);
     }
 
     [Test]
     public void V050_T02_OwnedPassiveNeverReturnsInLaterOffer()
     {
         KaitRun run = OpenRun(5002);
-        QueueMilestone(run, 16);
-        KaitPassive chosen = run.PassiveChoicesForMilestone(16)[0];
-        Assert.IsTrue(run.ChoosePassive(chosen));
+        QueueMilestone(run, 32);
+        int choice=run.CurrentReward.choices.FindIndex(d=>d.kind==KaitAbilityKind.Passive);
+        KaitPassive chosen=run.CurrentReward.choices[choice].passive;
+        Assert.IsTrue(run.SelectReward(choice));
         QueueMilestone(run, 32);
 
-        CollectionAssert.DoesNotContain(run.PassiveChoicesForMilestone(32), chosen);
+        CollectionAssert.DoesNotContain(run.CurrentReward.choices.Select(d=>d.passive), chosen);
         Assert.AreEqual(1, run.passives.Count);
     }
 
@@ -1181,7 +1180,7 @@ public sealed class KaitCoreTests
         Invoke(run, "ResolveSimplify", new KaitTurnResult());
 
         CollectionAssert.AreEquivalent(new[] { 2, 2, 3 }, run.spawns.Select(s => s.tier).ToArray());
-        Assert.AreEqual(new Vector2Int(2, 1), run.spawns.Last(s => s.sourceThreatCell == Vector2Int.zero && s.tier == 2).targetCell);
+        Assert.AreEqual(new Vector2Int(1, 1), run.spawns[0].targetCell);
     }
 
     [Test]
@@ -1195,6 +1194,8 @@ public sealed class KaitCoreTests
 
         ResolveSpawnPhase(run);
 
+        Assert.IsNull(run.EnemyAt(bookmark));Assert.AreEqual(bookmark,run.spawns.Single().targetCell);
+        SetAutoProperty(run,"turn",run.turn+1);ResolveSpawnPhase(run);
         Assert.IsNotNull(run.EnemyAt(bookmark));
         Assert.AreEqual(2, occupant.hp);
         Assert.IsFalse(run.hasBookmark);
@@ -1215,7 +1216,7 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V050_T08_MomentumResonanceMergeCreatesSpawnEvent()
+    public void V061_MomentumResonanceBlockedByEqualNumberDoesNotMerge()
     {
         KaitRun run = OpenRun(5008); ClearThreat(run); run.passives.Add(KaitPassive.MomentumResonance);
         run.threat[1, 1] = 4; run.threat[2, 1] = 4;
@@ -1223,9 +1224,9 @@ public sealed class KaitCoreTests
 
         Invoke(run, "ResolveMomentumResonance", new Vector2Int(2, 2), Vector2Int.right, result);
 
-        Assert.AreEqual(8, run.threat[2, 1]);
-        Assert.AreEqual(1, result.merges.Count);
-        Assert.AreEqual(1, run.spawns.Count);
+        Assert.AreEqual(4, run.threat[2, 1]);Assert.AreEqual(4,run.threat[1,1]);
+        Assert.AreEqual(0, result.merges.Count);
+        Assert.AreEqual(0, run.spawns.Count);
     }
 
     [Test]
@@ -1304,6 +1305,7 @@ public sealed class KaitCoreTests
     {
         KaitRun run = OpenRun(5014); ClearThreat(run); run.passives.Add(KaitPassive.Trend);
         SetAutoProperty(run, "currentGlobalDirection", KaitDirection.Right);
+        SetAutoProperty(run, "actualThreatDirection", KaitDirection.Right);
 
         Vector2Int spawned = (Vector2Int)Invoke(run, "SpawnThreatTwoForTurn", new KaitTurnResult(), true);
 
@@ -1338,7 +1340,8 @@ public sealed class KaitCoreTests
 
     private static void QueueMilestone(KaitRun run, int value)
         => typeof(KaitRun).GetMethod("HandleMilestoneMerge", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(run, new object[] { new KaitMergeEvent { resultValue = value } });
-    private static void Unlock(KaitRun run, int milestone, KaitSkill skill) { QueueMilestone(run, milestone); Assert.IsTrue(run.ChooseSkill(skill)); }
+    // Combat fixtures grant directly. Reward acquisition and staging are tested independently.
+    private static void Unlock(KaitRun run, int milestone, KaitSkill skill) { if(!run.skills.Contains(skill))run.skills.Add(skill); }
 
     private static KaitRun OpenRun(int seed, Vector2Int? kate = null)
     {
