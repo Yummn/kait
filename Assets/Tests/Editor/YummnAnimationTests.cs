@@ -6,6 +6,19 @@ public sealed class YummnAnimationTests
 {
     private GameObject canvas;
     private KaitSpineView view;
+    [Test] public void KiSelectsAllRestAndDoesNotInterruptAttack()
+    {
+        Create();view.SetYummnKiState(true);view.PlayLoop(KaitSpineView.Idle);
+        Assert.AreEqual(KaitSpineView.YummnFollowUpReady,view.CurrentAnimation.Animation.Name);
+        view.PlayOnce(KaitSpineView.Attack);var attack=view.CurrentAnimation;
+        view.SetYummnKiState(false);Assert.AreSame(attack,view.CurrentAnimation);
+        view.Root.GetComponentInChildren<SkeletonGraphic>().Update(10);
+        view.Root.GetComponentInChildren<SkeletonGraphic>().Update(.1f);
+        Assert.AreEqual("01_idle",view.CurrentAnimation.Animation.Name);
+        view.SetYummnKiState(true);Assert.AreEqual(KaitSpineView.YummnFollowUpReady,view.CurrentAnimation.Animation.Name);
+        view.SetYummnKiState(false);view.RestAnimation=KaitSpineView.YummnFollowUpReady;view.PlayLoop(KaitSpineView.Idle);
+        Assert.AreEqual("01_idle",view.CurrentAnimation.Animation.Name);
+    }
 
     [TearDown] public void Cleanup()
     {

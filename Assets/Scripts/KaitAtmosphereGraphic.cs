@@ -48,7 +48,7 @@ public sealed class KaitAtmosphereGraphic : MaskableGraphic
         dangerArt.sprite = KaitWarningFrames.Frame("DangerC", t);
         FitDangerToViewport();
         clockArt.color = new Color(1,1,1,clockArt.sprite == null ? 0 : grey);
-        dangerArt.color = new Color(1,1,1,dangerArt.sprite == null ? 0 : danger*.68f);
+        dangerArt.color = new Color(1,1,1,dangerArt.sprite == null ? 0 : danger*.92f);
         minimalDanger.color = new Color(.84f, .22f, .24f, split == null ? 0 : danger * .48f);
     }
     // The approved sheet has transparent gutters around its four corners. Stretching

@@ -22,6 +22,8 @@ public sealed partial class KaitGame
     }
     private Vector2Int yummnVisualIce=YummnRun.NoCell,yummnVisualDarkness=YummnRun.NoCell;
     private Image yummnIce,yummnDarkness,yummnPalm;
+    private readonly System.Collections.Generic.List<Image> yummnPalmImages=new System.Collections.Generic.List<Image>();
+    public static float PalmMarkAngle(Vector2Int direction) => Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg+90f;
     private readonly YummnV08Effect[] yummnShadows=new YummnV08Effect[49];
     private void OnApplicationFocus(bool focused){if(!focused){yummnBufferedDirection=null;yummnAcceptBuffer=false;}}
     private Vector3 YummnCellPosition(Vector2Int p)=>battleCells[p.x+p.y*KaitRun.BattleSize].rectTransform.position;
@@ -54,18 +56,22 @@ public sealed partial class KaitGame
         {
             if(yummnIce==null)yummnIce=YummnTerrainImage("Ice Pillar",2,110);
             if(yummnDarkness==null)yummnDarkness=YummnTerrainImage("Hollow Darkness",7,130);
-            if(yummnPalm==null)yummnPalm=YummnTerrainImage("Quivering Palm Direction",8,48);
+            if(yummnPalm==null){yummnPalm=YummnTerrainImage("Quivering Palm Direction",8,48);yummnPalmImages.Add(yummnPalm);}
         }
         var ice=busy?yummnVisualIce:run.Yummn.icePillar;
         var dark=busy?yummnVisualDarkness:run.Yummn.darkness;
         if(yummnIce!=null){yummnIce.gameObject.SetActive(run.IsYummn&&InsideBattle(ice));if(InsideBattle(ice))PlaceYummnTerrain(yummnIce,ice);}
         if(yummnDarkness!=null){yummnDarkness.gameObject.SetActive(run.IsYummn&&InsideBattle(dark));if(InsideBattle(dark))PlaceYummnTerrain(yummnDarkness,dark);}
-        var marked=(animatedEnemies??run.enemies).Find(e=>e.id==run.Yummn.palmEnemyId&&e.life!=KaitEnemyLife.Dead);
-        if(yummnPalm!=null)
+        int palmIndex=0;
+        if(run.IsYummn)foreach(var marked in animatedEnemies??run.enemies)
         {
-            yummnPalm.gameObject.SetActive(run.IsYummn&&marked!=null);
-            if(marked!=null){yummnPalm.rectTransform.position=YummnCellPosition(marked.pos);yummnPalm.rectTransform.localEulerAngles=new Vector3(0,0,HalfArrowAngle(run.Yummn.palmDirection));}
+            if(marked.life==KaitEnemyLife.Dead||!run.Yummn.TryPalm(marked.id,out var direction))continue;
+            if(palmIndex==yummnPalmImages.Count)yummnPalmImages.Add(YummnTerrainImage("Quivering Palm Direction "+palmIndex,8,48));
+            var image=yummnPalmImages[palmIndex++];image.gameObject.SetActive(true);
+            image.rectTransform.position=YummnCellPosition(marked.pos);
+            image.rectTransform.localEulerAngles=new Vector3(0,0,PalmMarkAngle(direction));
         }
+        for(int i=palmIndex;i<yummnPalmImages.Count;i++)yummnPalmImages[i].gameObject.SetActive(false);
         for(int y=1;y<=5;y++)for(int x=1;x<=5;x++)
         {
             int i=x+y*7;var p=new Vector2Int(x,y);

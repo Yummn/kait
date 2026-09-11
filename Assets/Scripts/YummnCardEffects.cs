@@ -56,7 +56,7 @@ public sealed partial class KaitRun
         a.isPunchAction=true;a.preHitTravelCells=r.katePath.Count;a.stationaryPunch=a.preHitTravelCells==0;
         a.didAttack=true;a.mainEnemyId=e.id;r.blockedEnemyCell=original;r.damagedEnemyId=e.id;
         bool oldFrozen=e.yummnFrozen,primaryKill=false,actualHit=false,marked=false;
-        bool oldPalm=Yummn.palmEnemyId==e.id;var oldDirection=Yummn.palmDirection;
+        bool oldPalm=Yummn.TryPalm(e.id,out var oldDirection);
         bool nearby=(e.pos-katePos).sqrMagnitude==1;
         r.yummnFlurry=Planned(r,"M01");int punches=r.yummnFlurry?3:1;
         for(int i=0;i<punches&&e.life!=KaitEnemyLife.Dead&&!ended;i++)
@@ -70,11 +70,11 @@ public sealed partial class KaitRun
                 marked=true;
                 if(oldPalm&&oldDirection!=d)
                 {
-                    Yummn.palmEnemyId=-1;YummnTrigger("O06",r);
+                    Yummn.RemovePalm(e.id);YummnTrigger("O06",r);
                     if(e.life!=KaitEnemyLife.Dead&&!ended)YummnHit(e,2,d,YummnDamageCause.Quivering,r);
                     YummnStatusEvent(r,e,"PalmDetonate");
                 }
-                else if(e.life!=KaitEnemyLife.Dead){Yummn.palmEnemyId=e.id;Yummn.palmDirection=d;YummnStatusEvent(r,e,"PalmMark");}
+                else if(e.life!=KaitEnemyLife.Dead){Yummn.MarkPalm(e.id,d);YummnStatusEvent(r,e,"PalmMark");}
             }
         }
         r.playerAttackBlocked=!actualHit;r.enemyHpAfter=e.hp;
@@ -118,7 +118,7 @@ public sealed partial class KaitRun
         }
         if(e.hp>0)return dealt;
         e.life=KaitEnemyLife.Dead;e.intent=new KaitIntent{origin=e.pos};
-        if(Yummn.palmEnemyId==e.id)Yummn.palmEnemyId=-1;
+        Yummn.RemovePalm(e.id);
         if(Yummn.rewardedDeaths.Add(e.id))
         {
             kills++;r.killedEnemyIds.Add(e.id);r.playerKilledEnemyIds.Add(e.id);r.killedEnemyCells.Add(e.pos);r.yummnAction.killIds.Add(e.id);

@@ -26,7 +26,7 @@ public sealed class KaitTutorialTests
             book.gameObject.SetActive(false);
             book.YummnMode=false;
             book.gameObject.SetActive(true);
-            Assert.AreEqual(10,book.PageCount);
+            Assert.AreEqual(3,book.PageCount);
             Assert.IsFalse(book.GetComponentInChildren<YummnTutorialDiagram>() != null);
             Assert.IsTrue(book.IllustrationLoaded);
         }

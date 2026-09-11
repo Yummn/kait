@@ -18,6 +18,16 @@ public sealed partial class KaitGame
         run.threat[1,1]=2;run.threat[2,2]=8;run.threat[3,3]=16;
         RefreshAll();yield return new WaitForSecondsRealtime(.25f);CaptureCanvasToPng(path+".six-ki.png");
         if(actionPips.Length!=6)Debug.LogError("YUMMN082_QA: default HUD not six pips");
+        if(yummnHud.GetComponentsInChildren<Text>().Length!=0)Debug.LogError("YUMMN082_QA: Ki explanation remains");
+        Vector2 pipCenter=Vector2.zero;
+        foreach(var pip in actionPips)
+        {
+            pipCenter+=pip.rectTransform.anchoredPosition;
+            var p=pip.rectTransform.anchoredPosition;var half=pip.rectTransform.sizeDelta*.5f;
+            if(Mathf.Abs(p.x)+half.x>yummnHud.rectTransform.rect.width*.5f-16||Mathf.Abs(p.y)+half.y>yummnHud.rectTransform.rect.height*.5f-12)
+                Debug.LogError("YUMMN082_QA: Ki touches panel edge");
+        }
+        if(pipCenter.sqrMagnitude>.01f)Debug.LogError("YUMMN082_QA: Ki not centered");
         HandleDirection(KaitDirection.Right);while(busy)yield return null;
         yield return new WaitForSecondsRealtime(.35f);CaptureCanvasToPng(path+".afterimage.png");
         if(run.Ki!=2||run.Yummn.afterimages.Count!=1||yummnLogicalGhosts.Count!=1)Debug.LogError("YUMMN082_QA: movement cost or marker missing");
@@ -45,7 +55,13 @@ public sealed partial class KaitGame
         CheckYummn082Text(settingsOverlay);
         settingsOverlay.SetActive(false);
         var book=tutorialOverlay.GetComponent<KaitTutorialBook>();tutorialOverlay.SetActive(true);
-        for(int i=0;i<4;i++){book.ShowPage(i);yield return null;CaptureCanvasToPng(path+".tutorial-"+i+".png");CheckYummn082Text(tutorialOverlay);}
+        for(int i=0;i<book.PageCount;i++){book.ShowPage(i);yield return null;CaptureCanvasToPng(path+".tutorial-"+i+".png");CheckYummn082Text(tutorialOverlay);}
+        if(CommandLineValue("-kaitComicQA")=="1")
+        {
+            book.ShowAppendix(true);yield return null;CaptureCanvasToPng(path+".appendix-top.png");CheckYummn082Text(tutorialOverlay);
+            book.GetComponentInChildren<ScrollRect>().verticalNormalizedPosition=0;yield return null;
+            CaptureCanvasToPng(path+".appendix-bottom.png");book.ShowAppendix(false);
+        }
         tutorialOverlay.SetActive(false);
         foreach(int max in new[]{5,4,3,6})
         {
@@ -55,6 +71,14 @@ public sealed partial class KaitGame
         run.SelectCharacter(KaitCharacter.Kait,707);ConfigureCharacterVisuals();run.StateCommitted=null;EnsureKaitSpine();RefreshAll();yield return null;
         CaptureCanvasToPng(path+".kait.png");settingsOverlay.SetActive(true);yield return null;CaptureCanvasToPng(path+".kait-settings.png");
         foreach(var control in yummnSettingsControls)if(control.activeSelf)Debug.LogError("YUMMN082_QA: Yummn setting leaked to Kait");
+        if(CommandLineValue("-kaitComicQA")=="1")
+        {
+            settingsOverlay.SetActive(false);tutorialOverlay.SetActive(true);
+            for(int i=0;i<book.PageCount;i++){book.ShowPage(i);yield return null;CaptureCanvasToPng(path+".kait-tutorial-"+i+".png");CheckYummn082Text(tutorialOverlay);}
+            book.ShowAppendix(true);yield return null;CaptureCanvasToPng(path+".kait-details-top.png");CheckYummn082Text(tutorialOverlay);
+            book.GetComponentInChildren<ScrollRect>().verticalNormalizedPosition=0;yield return null;
+            CaptureCanvasToPng(path+".kait-details-bottom.png");book.ShowAppendix(false);tutorialOverlay.SetActive(false);
+        }
         Debug.Log("YUMMN082_QA_COMPLETE six-Ki, exact ghost cell, attack consumes marker, partial exhaustion, seven frozen settings, tutorials, dynamic HUD, Kait restoration");
         Application.Quit();
     }

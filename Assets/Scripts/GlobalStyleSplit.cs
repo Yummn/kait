@@ -5,10 +5,12 @@ public sealed class GlobalStyleSplit : MonoBehaviour
     private RectTransform coordinateSpace;
     private Vector2 bottomNormalized;
     private Vector2 topNormalized;
+    private float horizontalOffset;
 
-    public void Configure(RectTransform space, float bottomX, float topX)
+    public void Configure(RectTransform space, float bottomX, float topX, float offset = 0f)
     {
         coordinateSpace = space;
+        horizontalOffset = offset;
         bottomNormalized = new Vector2(Mathf.Clamp01(bottomX), 0f);
         topNormalized = new Vector2(Mathf.Clamp01(topX), 1f);
     }
@@ -21,10 +23,10 @@ public sealed class GlobalStyleSplit : MonoBehaviour
 
         Rect sourceRect = coordinateSpace.rect;
         Vector3 bottomWorld = coordinateSpace.TransformPoint(new Vector3(
-            Mathf.Lerp(sourceRect.xMin, sourceRect.xMax, bottomNormalized.x),
+            Mathf.Lerp(sourceRect.xMin, sourceRect.xMax, bottomNormalized.x) + horizontalOffset,
             Mathf.Lerp(sourceRect.yMin, sourceRect.yMax, bottomNormalized.y), 0f));
         Vector3 topWorld = coordinateSpace.TransformPoint(new Vector3(
-            Mathf.Lerp(sourceRect.xMin, sourceRect.xMax, topNormalized.x),
+            Mathf.Lerp(sourceRect.xMin, sourceRect.xMax, topNormalized.x) + horizontalOffset,
             Mathf.Lerp(sourceRect.yMin, sourceRect.yMax, topNormalized.y), 0f));
 
         Vector3 localBottom = target.InverseTransformPoint(bottomWorld);

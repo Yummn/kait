@@ -26,7 +26,7 @@ public sealed partial class KaitGame
         RefreshAll();yield return new WaitForSecondsRealtime(.3f);CaptureCanvasToPng(path);
         VerifySnowCourtyardPresentation(true);
         for(int i=0;i<actionPips.Length;i++)
-            if(actionPips[i].sprite!=roundedSprite||actionPips[i].transform.parent!=yummnHud.transform)
+            if(actionPips[i].GetComponent<YummnKiWisp>()==null||actionPips[i].sprite==null||actionPips[i].transform.parent!=yummnHud.transform)
                 Debug.LogError("YUMMN_QA: missing five Ki pips");
         if(Mathf.Abs(yummnCourtyard.rectTransform.rect.width/yummnCourtyard.rectTransform.rect.height-yummnCourtyard.sprite.rect.width/yummnCourtyard.sprite.rect.height)>.01f)
             Debug.LogError("YUMMN_QA: stretched courtyard");
@@ -42,7 +42,7 @@ public sealed partial class KaitGame
         while(busy)yield return null;
         yield return new WaitForSecondsRealtime(.1f);
         if(run.turn!=2||run.KiPhase!=YummnPhase.Burst||run.Ki!=2)Debug.LogError("YUMMN_QA: buffered action/phase mismatch");
-        if(kaitSpine.CurrentAnimation?.Animation.Name!="01_idle")Debug.LogError("YUMMN_QA: pure movement did not settle into idle");
+        if(kaitSpine.CurrentAnimation?.Animation.Name!=(run.ExactKi>0?KaitSpineView.YummnFollowUpReady:"01_idle"))Debug.LogError("YUMMN_QA: movement rest does not match Ki");
         CaptureCanvasToPng(path+".after-two-actions.png");
         run.Yummn.phase=YummnPhase.Exhausted;run.Yummn.ki=0;
         for(int i=0;i<5;i++)

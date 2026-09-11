@@ -83,6 +83,16 @@ public sealed class YummnRun
     public Vector2Int icePillar=NoCell, darkness=NoCell;
     public int palmEnemyId=-1;
     public Vector2Int palmDirection;
+    public readonly Dictionary<int,Vector2Int> palmMarks=new Dictionary<int,Vector2Int>();
+    public bool TryPalm(int enemyId,out Vector2Int direction)
+    {
+        if(palmMarks.TryGetValue(enemyId,out direction))return true;
+        direction=palmDirection;return palmEnemyId==enemyId;
+    }
+    public void MarkPalm(int enemyId,Vector2Int direction)
+    {palmMarks[enemyId]=direction;palmEnemyId=enemyId;palmDirection=direction;}
+    public void RemovePalm(int enemyId)
+    {palmMarks.Remove(enemyId);if(palmEnemyId==enemyId)palmEnemyId=-1;}
     public readonly HashSet<string> prepared=new HashSet<string>();
     public readonly HashSet<int> rewardedDeaths=new HashSet<int>();
     public readonly List<YummnActionContext> history=new List<YummnActionContext>();
@@ -94,7 +104,7 @@ public sealed class YummnRun
         profile.maxKi=profile.startKi=rules.MaxKi;profile.killKi=rules.KillKi;
         ki=profile.startKi;kiTenths=attackSpentTenths=0;phase=YummnPhase.Burst;actionId=exhaustionCycleId=0;
         defense=tranquility=cloak=missileSpent=false;icePillar=darkness=NoCell;
-        palmEnemyId=-1;palmDirection=Vector2Int.zero;prepared.Clear();rewardedDeaths.Clear();history.Clear();metrics=new YummnMetrics();
+        palmEnemyId=-1;palmDirection=Vector2Int.zero;palmMarks.Clear();prepared.Clear();rewardedDeaths.Clear();history.Clear();metrics=new YummnMetrics();
         afterimages.Clear();nextAfterimageId=nextAttackEventId=0;
     }
 }

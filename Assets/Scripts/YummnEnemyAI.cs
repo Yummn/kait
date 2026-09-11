@@ -118,6 +118,9 @@ public sealed partial class KaitRun
         foreach(var request in new List<KaitSpawnRequest>(spawns))
         {
             if(ended)break;
+            // Merges precede the enemy phase in the same input. New rifts must
+            // survive that input so the player can see and react to the warning.
+            if(Yummn.rules.Is082&&request.createdTurn>=turn)continue;
             if(request.targetCell==PendingBossCell||!YummnEmpty(request.targetCell)){Yummn.metrics.riftBlockedChecks++;continue;}
             var type=EnemyTypeForSpawn(request);int hp=MaxHpFor(type);
             var e=new KaitEnemy{id=nextEnemyId++,type=type,pos=request.targetCell,hp=hp,maxHp=hp,life=KaitEnemyLife.Active,intent=new KaitIntent{origin=request.targetCell}};

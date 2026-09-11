@@ -121,13 +121,12 @@ public sealed partial class KaitRun
         foreach(var marker in Yummn.afterimages)
         {
             if(!marker.alive||!intent.affectedCells.Contains(marker.cell))continue;
-            marker.alive=false;hit=true;Yummn.metrics.afterimagesHit++;
+            hit=true;Yummn.metrics.afterimagesHit++;
             string key=enemy.type.ToString();var counts=Yummn.metrics.afterimageHitsByEnemy;
             counts[key]=counts.TryGetValue(key,out var n)?n+1:1;
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageHit,actionId=Yummn.actionId,sourceId=enemy.id,markerId=marker.id,attackEventId=attackId,to=marker.cell});
         }
         if(hit)Yummn.metrics.afterimageKi+=GainYummnKi(1,r,"Afterimage");
-        Yummn.afterimages.RemoveAll(m=>!m.alive);
     }
     private void ClearYummn082Afterimages(KaitTurnResult r)
     {

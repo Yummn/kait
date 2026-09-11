@@ -13,11 +13,11 @@
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | Windows 0.8.2；Yummn新局快照 yummn-0.8.2，旧存档保留v0.8/v0.8.1；Kait规则不变 |
 | Git 基线 | v0.8.2-20260911标签对应b3df338，已推送origin/master；Yummn/kait保持PUBLIC。历史包与APK已上传同名Release；AudioPreviews/VFXPreviews选稿目录保留本地未纳入当前源码提交 |
-| 最近 Windows 构建 | Build/kait.exe；Logs/danger-split-build.log Success、退出0，程序集09:58:11。受伤红边沿全局斜线左原图右极简；仍包含等待在制实现，等待完整手势验收未完成 |
-| 最近 EditMode 测试 | Logs/danger-split-tests.xml：888/888通过，含横竖屏左右裁剪、颜色保留、预警关闭；非运行画面验收 |
+| 最近 Windows 构建 | Build/kait.exe；Logs/home-a-final-build.log Success、退出0；A烟墨双境主界面、双角色、斜向逐行菜单，包含之前Kait/Yummn教程与UI修改 |
+| 最近 EditMode 测试 | Logs/ki-center-tests.xml：相关6/6通过（初版+12及气点，非全量）；最终+28经运行看图验证，测试期望同步。上次全量rift-delay-final-tests.xml 902/902通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | v082-runtime-final.log：YUMMN082_QA_COMPLETE；v082-regression.log：YUMMN_QA_COMPLETE及移动/首击/盾骑士/各逐帧子检查完成。已检查实机截图；24项玩家设置/存档按类型和值完整恢复。原ComputeBuffer退出提醒仍在；不是听感或Android验收 |
-| Android | Build/kait-v0.8.2.apk，2026-09-11 10:07:51，197939990字节；Logs/android-20260911.log Success退出0；版本802、ARM64、UnityPlayerActivity、与旧包同签名检查通过；SHA256 E86A382DCDA1416B9F794250403A0C09A1074CF2BA136BA01FB9B921A3F2B30A。adb无设备未真机启动验收 |
+| 最近视觉运行检查 | ki-center-runtime.log：YUMMN082_QA_COMPLETE；无文字、居中和边距检查通过，最终满气截图六点完整，初版恢复中截图已看。37项玩家设置/存档按类型和值还原；非Android验收 |
+| Android | Build/kait-v0.8.2.apk，2026-09-11 10:46:17，197939382字节；Logs/android-ghost-idle-20260911.log Success退出0；版本802、ARM64、UnityPlayerActivity、与旧包同签名检查通过；SHA256 18A644F2DC6DA9DAE19FC81F38456B6DDB9846BF71EC41459A5230B3CA3EFAA1。adb无设备未真机启动验收；本包未上传 |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
@@ -26,6 +26,22 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 
 | 任务编号 | 负责人 / 会话 | 范围 | 状态 / 占用 |
 | --- | --- | --- | --- |
+| RELEASE-20260911-HOME-A | 本会话 | 当前源码上传GitHub、烟墨首页Android包 | 进行中；保持现有公开性，保留旧APK；核验构建、签名与设备，不改规则 |
+| UI-20260911-HOME-A | 本会话 | A烟墨双境主界面、双角色选择、斜向逐行菜单、教程路由、Windows | 完成源码/Windows/运行看图；每行取平行斜线中点，选人不启动、单一继续按角色存档、教程/设置随所选人物；CG轻浮动及悬停放大。首页专项7/7；扩展28/29唯一失败为旧气槽位置断言，未改。home-a-final-build.log Success退出0；HOME_QA_COMPLETE，标题行高修正后最终截图已看，37项偏好还原。无游戏/Unity占用，未Android/GitHub；见首页A烟墨双境接入-20260911.md |
+| UI-20260911-KAIT-COMIC | 本会话 | Kait三页新漫画、详细说明、教程路由/测试与Windows | 完成源码/Windows/运行看图：内置image_gen三张2172×724，KaitComic/01-03；三页核心+滚动详细说明，Boss不写固定数值，旧十页素材保留。修复三页/四页切换导航容量，Kait和Yummn内容隔离。kait-comic-tests.xml相关11/11；kait-comic-build.log Success退出0；运行QA与Kait三页/说明首尾截图已看，37项偏好还原。未改战斗规则，未Android/GitHub，无Unity/游戏占用；提示词见Kait三页漫画教程-20260911.md |
+| UI-20260911-DETAIL-LABEL | 本会话 | 教程按钮和标题改名 | 完成源码/Windows：三处显示字符串统一详细说明，内容和交互不变；静态检查旧词零处、新词三处，detail-label-build.log Success退出0。未重复运行视觉验收，无Unity/游戏占用，未Android/GitHub |
+| UI-20260911-BOSS-COPY | 本会话 | Yummn当前教程Boss文案与漫画数字标注 | 完成源码/Windows：字幕和附录改为合成大数字，漫画256用可编辑UI标注覆盖；保留实际触发值。初版运行QA通过、37项偏好还原，截图后微调标注居中及颜色；boss-copy-final-build.log Success退出0，最终位置未重复看图。当前Build/kait.exe已同步，无游戏/Unity占用，未Android/上传 |
+| UI-20260911-TUTORIAL-COPY | 本会话 | 当前Yummn三页教程与附录文字、针对性测试 | 完成源码/Windows/运行看图：三页短字幕、附录删除整套旧页重复，按快照说明气费/补2/敌方触发，统一残影与裂隙时机。tutorial-copy-tests.xml 3/3（其后仅“至少1气”短字幕修订，经最终构建）；tutorial-copy-build.log Success退出0；yummn-comic-runtime.log QA通过，三页及附录首尾截图已看，37项偏好还原。未改战斗/Kait/旧存档教程，未Android/GitHub，无Unity/游戏占用 |
+| PREVIEW-20260911-HOME-TRIPTYCH | 本会话 | 双角色+中央极简主菜单ABC交互预览 | 完成待选：Tools/HomeTriptychPreview/index.html；A烟墨/B奶油/C冷光，双斜线、轻浮动、悬停/选中放大，选人不开始、单一继续在开始上方、教程随人切换。浏览器ABC看图及Yummn选择/教程验证；沿用获批CG，不改正式游戏/构建/上传。预览127.0.0.1:8880/HomeTriptychPreview/ |
+| UI-20260911-KI-CENTER | 本会话 | 悬浮裁线右移、气槽去字居中 | 完成源码/Windows/看图；统一+28，原+12最右气点擦线已修正；去状态与耗气文本、气槽(0,0)居中。相关6/6与最终运行QA通过，37项偏好还原。无Unity/游戏占用，不改规则/Android/GitHub；详见气槽居中与悬浮裁线右移-20260911.md |
+| UI-20260911-CHARACTER-CG | 本会话 | 获批原版CG斜切选人界面接入 | 完成源码/Windows/运行看图；真琴与万圣节宫子原CG、独立原生斜切、等比适配，保留开始/三版Yummn存档/返回。相关3/3测试、最终构建Success、CHARACTER_CG_QA_COMPLETE，37项偏好还原。未Android/上传，无Unity/游戏占用；详见原版CG斜切选人界面接入-20260911.md |
+| UI-20260911-YUMMN-COMIC | 本会话 | Yummn核心漫画教程及文字附录 | 完成源码/Windows/看图；内置image_gen三张原创Q版三格漫画，字幕随规则快照，附录滚动、返回同页，保留Kait与旧规则教程。相关9/9测试，最终构建Success；运行QA通过，37项设置存档还原。未找到用户所指确切卡拉彼丘漫画，已请求截图，不宣称复刻。未Android/上传，无进程占用；详见Yummn三页漫画教程-20260911.md |
+| UI-20260911-FLOAT-SPLIT | 本会话 | 极简气点圆形、悬浮UI裁线统一左移 | 完成源码/Windows/运行看图；卡通B不变、极简同色圆点和暗色空槽。原裁线错误使用缩放内容区，现统一背景坐标，悬浮UI偏移-12，屏幕气氛偏移0。相关9/9测试、构建Success、QA通过；37项设置/存档还原。未打Android/上传，无Unity/游戏占用，详见悬浮裁线与极简气点-20260911.md |
+| FIX-20260911-RIFT-DELAY | 本会话 | Yummn同操作新裂隙不能直接出怪 | 完成源码/Windows；v0.8.2 ResolveYummnRifts跳过createdTurn>=turn，之后操作正常检查；旧裂隙无额外延迟，占格继续等待。教程同步，旧v0.8/v0.8.1回放/Kait不变。902/902测试；rift-delay-build.log Success退出0；本轮未运行视觉验收，不打Android/上传，无Unity占用，见裂隙同操作出怪修复-20260911.md |
+| VFX-20260911-KI-B | 本会话 | B气流水滴接入、双风格与状态、Windows | 完成源码/Windows：内置生成透明四格B素材、卡通/极简共用值及斜切；满气青蓝、空槽轮廓、气竭灰蓝、小数按比例。898/898测试；ki-wisp-build.log Success退出0；ki-wisp-runtime.log YUMMN082_QA_COMPLETE，已看six-ki和partial-recovery截图，37项设置/存档按原类型值恢复。不改规则、不打Android、不上传，无Unity/游戏占用；详见气点B接入-20260911.md |
+| VFX-20260911-KI-PREVIEW | 本会话 | 左侧危险红边增强、气点ABC预览 | 完成源码/Windows（danger-opacity-build.log Success退出0）；左侧倍率0.68到0.92，右侧0.48不变。内置图像生成ABC已看图，仅样式待选，A修订图顶部左侧仍少一珠，不能直接作为计量HUD；实际六气规则未改。提示词/路径见气点样式ABC预览-20260911.md。未运行游戏视觉验收、不打Android/上传，无Unity占用 |
+| RULE-20260911-PALMS | 本会话 | 掌印方向与多目标标记 | 完成源码/Windows：每敌人独立记录一个命中方向、全场无数量上限；同向保留，异向引爆/死亡只清对应目标。保留旧单标记字段供旧QA读取；图像池按需要增长复用，掌印下缘朝命中方向，卡牌描述同步。895/895测试，palms-build.log Success退出0；未运行视觉验收，无Unity占用，不打Android、不上传 |
+| RULE-20260911-GHOST-IDLE | 本会话 | 幻影整回合多次受击、有气multiidle、Android | 完成源码/Android：逻辑残影受击不销毁，每个攻击事件最多回1气，敌方阶段末统一清理；画面只播命中特效不提前淡出，教程同步。有气（ExactKi>0，包括气竭恢复中）01_multi_idle_standBy，0气01_idle，排队待机开始时重验气量，不抢攻击。890/890测试；APK10:46构建及签名/入口检查通过；旧包before-ghost-idle-20260911.apk。Windows未重打、未上传、未真机视觉验收，无Unity占用 |
 | RELEASE-20260911 | 本会话 | 历史备份上传、当前源码留档、Android | 完成：源码b3df338及标签v0.8.2-20260911已推送；Release历史包4316文件/2071519202字节，7z测试通过，远端SHA256与本地68C5B5B7B85BFB46D8B0F6C047AC6A29F12CDD8339AF3731E75A82DB397DDAA4一致。APK构建/签名/架构/入口检查通过并上传，远端哈希一致。旧APK为Build/kait-v0.8.2-before-20260911.apk；仓库PUBLIC不变，无Unity占用，未真机验收 |
 | VFX-20260911-DANGER-SPLIT | 本会话 | 受伤屏幕预警沿全局斜线切换左右风格 | 已完成源码/Windows；左侧DangerC九宫格原图、右侧无纹理红色渐隐边缘，共用触发/淡出。SunlitSplitText增加保留原色用于裁剪，默认文字行为不变。888/888测试，danger-split-build.log Success退出0；未实机视觉验收、不做Android/GitHub，无Unity占用 |
 | VFX-20260911-POSE-LOOP | 本会话 | 去掉武器图标，锁定posing循环 | 已完成源码/Windows：不创建来源武器或外框，保留危险格范围。posing循环无排队idle，RefreshBattle同步锁定状态且不抢攻击/受击/死亡；885/885测试，pose-loop-build.log Success退出0。未运行视觉验收、不打Android/上传，无Unity占用 |

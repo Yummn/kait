@@ -13,7 +13,7 @@ public static class YummnCatalog
         P("O03",KaitPassive.FollowThrough,"追身步","散打",1,"近身成功推开敌人后，进入其原格。","跟进","push"),
         P("O04",KaitPassive.Tranquility,"宁静","散打",0,"气竭时未攻击的移动，抵挡本阶段第一次近战伤害。","静"),
         P("O05",KaitPassive.Wholeness,"混元体","散打",2,"从气竭恢复高速时，恢复1生命。","HP+1"),
-        P("O06",KaitPassive.QuiveringPalm,"震颤掌","散打",2,"拳击留印；下次异向命中，引爆额外2伤。","印+2"),
+        P("O06",KaitPassive.QuiveringPalm,"震颤掌","散打",2,"拳击留印，数量不限；掌印下方指向命中方向。下次异向命中额外2伤。","印+2"),
         A("E01",KaitSkill.WaterWhip,"水鞭","四象",0,0,"原地拉近前方最近敌人至多2格，造成1伤。","拉2","Water"),
         A("E02",KaitSkill.UnbrokenAir,"不坏气拳","四象",1,1,"拳击后，将存活目标沿攻击方向推到底。","推>"),
         A("E03",KaitSkill.ShapeIce,"塑流成冰","四象",1,1,"相邻空格升起冰柱，同时最多一根。","冰柱","Ice"),

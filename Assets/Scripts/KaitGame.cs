@@ -71,6 +71,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private Text buildDirectionText;
     private KaitPassiveDeck passiveDeck;
     private GlobalStyleSplit styleSplit;
+    private GlobalStyleSplit worldStyleSplit;
     private GameObject controlsPanel;
     private KaitSkill targetingSkill;
     private GameObject endOverlay;
@@ -378,6 +379,11 @@ public sealed partial class KaitGame : MonoBehaviour
             var qa = new GameObject("Main Menu QA", typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
             qa.StartCoroutine(VerifyMainMenu(CommandLineValue("-kaitMenuPreview"), screenshotPath));
         }
+        else if (CommandLineValue("-kaitCharacterCGQA") == "1")
+        {
+            var qa=new GameObject("Character CG QA",typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
+            qa.StartCoroutine(VerifyCharacterCGRuntime(screenshotPath));
+        }
         else if (CommandLineValue("-kaitWarningsQA") == "1") StartCoroutine(VerifyApprovedWarnings(screenshotPath));
         else if (CommandLineValue("-kaitYummn082QA") == "1") StartCoroutine(VerifyYummn082Runtime(screenshotPath));
         else if (CommandLineValue("-kaitYummnQA") == "1") StartCoroutine(VerifyYummnRuntime(screenshotPath));
@@ -638,7 +644,11 @@ public sealed partial class KaitGame : MonoBehaviour
         gameContent = content;
         gameContentBasePosition = content.anchoredPosition;
         styleSplit = contentGo.AddComponent<GlobalStyleSplit>();
-        styleSplit.Configure(content, WorldStyleBottomSplit, WorldStyleTopSplit);
+        // Background and floating UI share the same full-screen coordinate space.
+        // A fixed design-space offset creates depth without changing the slope.
+        styleSplit.Configure(bg.rectTransform, WorldStyleBottomSplit, WorldStyleTopSplit, 28f);
+        worldStyleSplit = contentGo.AddComponent<GlobalStyleSplit>();
+        worldStyleSplit.Configure(bg.rectTransform, WorldStyleBottomSplit, WorldStyleTopSplit);
 
         BuildBattleBoard(content);
         BuildThreatBoard(content);
@@ -673,8 +683,9 @@ public sealed partial class KaitGame : MonoBehaviour
         BuildEndOverlay(bg.transform);
         BuildTutorialOverlay(canvas.transform);
         BuildSettingsOverlay(canvas.transform);
-        mainMenu = KaitMainMenu.Create(canvas.transform, threatBoardFont, roundedSprite, ShowCharacterSelection,
+        mainMenu = KaitMainMenu.Create(canvas.transform, threatBoardFont, roundedSprite, () => StartSelectedCharacter(mainMenu.Selected),
             OpenMenuTutorial, OpenMenuSettings);
+        mainMenu.ContinueCharacter=ResumeCharacter;
     }
 
     private void ShowMainMenu()
@@ -685,7 +696,9 @@ public sealed partial class KaitGame : MonoBehaviour
         gameplayRoot.SetActive(false);
         tutorialOverlay.SetActive(false);
         settingsOverlay.SetActive(false);
+        if(characterSelection!=null)characterSelection.SetActive(false);
         mainMenu.gameObject.SetActive(true);
+        mainMenu.RefreshSaves();
         mainMenu.transform.SetAsLastSibling();
         mainMenu.Fit();
         if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
@@ -708,11 +721,15 @@ public sealed partial class KaitGame : MonoBehaviour
         settingsOverlay.SetActive(false);
         tutorialOverlay.SetActive(true);
         tutorialOverlay.transform.SetAsLastSibling();
-        tutorialOverlay.GetComponent<KaitTutorialBook>().ShowPage(0);
+        var book=tutorialOverlay.GetComponent<KaitTutorialBook>();
+        book.YummnMode=mainMenu.Selected==KaitCharacter.Yummn;
+        book.YummnRules=YummnPreset();
+        book.ShowPage(0);
     }
 
     private void OpenMenuSettings()
     {
+        RefreshCharacterSettings();
         tutorialOverlay.SetActive(false);
         settingsOverlay.SetActive(true);
         settingsOverlay.transform.SetAsLastSibling();
@@ -1043,7 +1060,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private void BuildTutorialOverlay(Transform parent)
     {
         tutorialOverlay = KaitTutorialBook.Create(parent, threatBoardFont, roundedSprite).gameObject;
-        tutorialOverlay.GetComponent<KaitTutorialBook>().Completed = () => { if (MainMenuVisible) ShowCharacterSelection(); };
+        tutorialOverlay.GetComponent<KaitTutorialBook>().Completed = () => { if (MainMenuVisible) ShowMainMenu(); };
     }
 
     private void BuildSettingsOverlay(Transform parent)
@@ -1092,7 +1109,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
         AddYummnSettings(card.transform);
         RefreshCharacterSettings();
-        MakeFlatButton(card.transform,new Vector2(-130,-315),new Vector2(220,48),"返回人物选择").onClick.AddListener(()=>{ShowMainMenu();ShowCharacterSelection();});
+        MakeFlatButton(card.transform,new Vector2(-130,-315),new Vector2(220,48),"返回首页").onClick.AddListener(ShowMainMenu);
         MakeFlatButton(card.transform, new Vector2(130, -315), new Vector2(180, 48), "关闭").onClick.AddListener(() =>
         {
             GameAudio.PlayClick();
@@ -1104,6 +1121,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void SetThreatPillarsDisabled(bool disabled)
     {
+        if(MainMenuVisible){SaveBooleanPreference(DisableThreatPillarsPreference,disabled);return;}
         bool enabled = !disabled;
         if (run.config.enableThreatPillars == enabled) return;
 
@@ -1121,6 +1139,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void SetPlayerInvincible(bool enabled)
     {
+        if(MainMenuVisible){SaveBooleanPreference(PlayerInvinciblePreference,enabled);return;}
         if (run.config.playerInvincible == enabled) return;
         GameAudio.PlayClick();
         run.config.playerInvincible = enabled;
@@ -1130,6 +1149,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void SetRiftDamageDisabled(bool disabled)
     {
+        if(MainMenuVisible){SaveBooleanPreference(DisableRiftDamagePreference,disabled);return;}
         bool enabled = !disabled;
         if (run.config.enableRiftDamage == enabled) return;
         GameAudio.PlayClick();
@@ -1140,6 +1160,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void SetFriendlyFireDisabled(bool disabled)
     {
+        if(MainMenuVisible){SaveBooleanPreference(DisableFriendlyFirePreference,disabled);return;}
         bool enabled = !disabled;
         if (run.config.enableFriendlyFire == enabled) return;
         GameAudio.PlayClick();
@@ -1150,6 +1171,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void SetCollisionDamageDisabled(bool disabled)
     {
+        if(MainMenuVisible){SaveBooleanPreference(DisableCollisionDamagePreference,disabled);return;}
         bool enabled = !disabled;
         if (run.config.enableCollisionDamage == enabled) return;
         GameAudio.PlayClick();
@@ -3287,6 +3309,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private IEnumerator VerifyMainMenu(string mode, string path)
     {
+        if(mode=="home"){yield return VerifyHomeTriptych(path);yield break;}
         yield return new WaitForSecondsRealtime(.5f);
         Canvas.ForceUpdateCanvases(); mainMenu.Fit();
         CaptureCanvasToPng(path);
@@ -3335,7 +3358,7 @@ public sealed partial class KaitGame : MonoBehaviour
         var book = tutorialOverlay.GetComponent<KaitTutorialBook>();
         book.ShowPage(book.PageCount - 1); book.Next();
         yield return new WaitForSecondsRealtime(.2f);
-        if (MainMenuVisible || !gameplayRoot.activeSelf || tutorialOverlay.activeSelf)
+        if (!MainMenuVisible || gameplayRoot.activeSelf || tutorialOverlay.activeSelf)
             Debug.LogError("Main menu QA: tutorial completion failed");
         Debug.Log("Main menu QA passed: startup, raycast, pressed, tutorial, settings, start, movement, tutorial completion");
         Application.Quit();

@@ -12,60 +12,36 @@ public sealed partial class KaitGame
     private int yummnBufferedTurn;
     private int yummnBufferedAction;
     private bool yummnAcceptBuffer;
-    private Text yummnKiState;
     private Sprite originalYummnFloor;
     private Sprite originalYummnWall;
     private readonly GameObject[] yummnSnowEdges = new GameObject[KaitRun.BattleSize * KaitRun.BattleSize];
     private HybridStyleGraphic yummnHud;
     private Image[] actionPips=new Image[0];
+    private YummnKiWisp[] kiWisps=new YummnKiWisp[0];
     private readonly Image[] buffPips=new Image[6];
-    private Text yummnMoveCostPreview;
     private readonly Dictionary<string,Sprite> yummnSprites=new Dictionary<string,Sprite>();
     private Image bossPendingMarker;
     private Image yummnCourtyard;
-    private readonly List<KaitSpineView> selectorActors=new List<KaitSpineView>();
     private void ShowCharacterSelection()
     {
         yummnBufferedDirection=null;
-        if(characterSelection!=null)Destroy(characterSelection);
-        foreach(var view in selectorActors)view.Destroy();selectorActors.Clear();
-        var panel=Rect("Character Selection",canvas.transform,Vector2.zero,new Vector2(1920,1080),new Color(.1f,.13f,.18f,.98f));Stretch(panel.rectTransform,0);characterSelection=panel.gameObject;
-        MakeText("选择人物",panel.transform,new Vector2(0,410),new Vector2(800,70),42,Cream,TextAnchor.MiddleCenter,FontStyle.Bold);
-        for(int i=0;i<2;i++)
-        {
-            var c=(KaitCharacter)i;float x=i==0?-310:310;
-            var card=Rect(c.ToString(),panel.transform,new Vector2(x,15),new Vector2(550,660),i==0?new Color(.27f,.23f,.3f):new Color(.19f,.31f,.4f));
-            card.sprite=roundedSprite;card.type=Image.Type.Sliced;
-            var data=Resources.Load<SkeletonDataAsset>(i==0?"Characters/Makoto/Makoto_SkeletonData":"Characters/Yummn/108231_SkeletonData");
-            var actor=KaitSpineView.Create(data,card.transform,new Vector2(220,220),"Character Preview");
-            if(actor!=null){actor.Root.anchoredPosition=new Vector2(0,100);selectorActors.Add(actor);}
-            MakeText(c.ToString(),card.transform,new Vector2(0,265),new Vector2(440,55),38,Cream,TextAnchor.MiddleCenter,FontStyle.Bold);
-            string desc=i==0?"蓄势连斩\n助跑决定斩击强度\n击杀后持续转向":"气爆发 / 回满恢复\n高速滑行耗气，气竭步行恢复\n三宗派自由混搭 · 拳力 1\n击杀或气竭推进一次敌方阶段";
-            MakeText(desc,card.transform,new Vector2(0,-105),new Vector2(470,150),24,Cream,TextAnchor.MiddleCenter);
-            MakeCharacterButton(card.transform,new Vector2(0,-238),new Vector2(330,64),"选择 "+c).onClick.AddListener(()=>
-            {
-                run.config.enableThreatPillars=c==KaitCharacter.Yummn||!PlayerPrefs.GetInt(DisableThreatPillarsPreference,0).Equals(1);
-                run.SelectCharacter(c,System.Environment.TickCount,YummnPreset());PlayerPrefs.SetInt("Kait.Character",(int)c);PlayerPrefs.Save();
-                characterSelection.SetActive(false);StartFromMainMenu();
-            });
-            string[] keys=c==KaitCharacter.Yummn?new[]{"Kait.Run.Yummn.0.8.2","Kait.Run.Yummn.0.8.1","Kait.Run.Yummn.0.8"}:new[]{"Kait.Run.Kait"};
-            var saves=new List<string>();foreach(var key in keys)if(PlayerPrefs.HasKey(key))saves.Add(key);
-            for(int j=0;j<saves.Count;j++)
-            {
-                string key=saves[j];string label=key.EndsWith("0.8.2")?"继续 v0.8.2":key.EndsWith("0.8.1")?"旧版 v0.8.1":key.EndsWith("0.8")?"旧版 v0.8":"继续上次";
-                MakeCharacterButton(card.transform,new Vector2((j-(saves.Count-1)*.5f)*166,-298),new Vector2(160,44),label).onClick.AddListener(()=>ResumeCharacter(key));
-            }
-        }
-        MakeCharacterButton(panel.transform,new Vector2(0,-425),new Vector2(250,58),"返回").onClick.AddListener(()=>characterSelection.SetActive(false));
+        if(characterSelection!=null){characterSelection.SetActive(false);Destroy(characterSelection);}
+        var selector=KaitCharacterSelection.Create(canvas.transform,threatBoardFont,PlayerPrefs.HasKey);
+        characterSelection=selector.gameObject;
+        selector.StartCharacter=StartSelectedCharacter;
+        selector.ContinueCharacter=ResumeCharacter;
+        selector.Back=()=>characterSelection.SetActive(false);
     }
-    private Button MakeCharacterButton(Transform parent,Vector2 position,Vector2 size,string label)
+    private void StartSelectedCharacter(KaitCharacter c)
     {
-        var button=MakeButton(parent,position,size,label);
-        var text=button.GetComponentInChildren<Text>();
-        Stretch(text.rectTransform,6);
-        text.fontSize=24;text.resizeTextMinSize=18;text.resizeTextMaxSize=24;
-        button.navigation=new Navigation{mode=Navigation.Mode.None};
-        return button;
+        run.config.playerInvincible=PlayerPrefs.GetInt(PlayerInvinciblePreference,0)!=0;
+        run.config.enableRiftDamage=PlayerPrefs.GetInt(DisableRiftDamagePreference,0)==0;
+        run.config.enableFriendlyFire=PlayerPrefs.GetInt(DisableFriendlyFirePreference,0)==0;
+        run.config.enableCollisionDamage=PlayerPrefs.GetInt(DisableCollisionDamagePreference,0)==0;
+        run.config.enableThreatPillars=c==KaitCharacter.Yummn||!PlayerPrefs.GetInt(DisableThreatPillarsPreference,0).Equals(1);
+        run.SelectCharacter(c,System.Environment.TickCount,YummnPreset());
+        PlayerPrefs.SetInt("Kait.Character",(int)c);PlayerPrefs.Save();
+        if(characterSelection!=null)characterSelection.SetActive(false);StartFromMainMenu();
     }
     private void ConfigureCharacterVisuals()
     {
@@ -129,7 +105,8 @@ public sealed partial class KaitGame
         string saved=PlayerPrefs.GetString(key,"");
         NewRun();
         if(!run.RestoreReplay(saved)){NewRun();statusText.text="存档与当前规则不匹配";ShowMainMenu();return;}
-        characterSelection.SetActive(false);mainMenu.gameObject.SetActive(false);gameplayRoot.SetActive(true);
+        if(characterSelection!=null)characterSelection.SetActive(false);mainMenu.gameObject.SetActive(false);gameplayRoot.SetActive(true);
+        mainMenu.Select(run.Character);
         ConfigureCharacterVisuals();EnsureKaitSpine();RefreshAll();menuClosedFrame=Time.frameCount;
     }
     private Sprite YummnSprite(string name)
@@ -141,35 +118,32 @@ public sealed partial class KaitGame
     }
     private void RefreshYummnKiDisplay()
     {
+        if(run.IsYummn)kaitSpine?.SetYummnKiState(run.ExactKi>0);
         if(yummnHud==null)
         {
             yummnHud=MakeHybridSurface("Yummn Ki",turnText.transform.parent,new Vector2(0,-80),new Vector2(250,90),dungeonPanelSprite,Panel,5f,10f);
             yummnHud.raycastTarget=false;
-            yummnKiState=MakeText("高速",yummnHud.transform,new Vector2(-72,14),new Vector2(78,36),20,Cream,TextAnchor.MiddleCenter);
-            yummnMoveCostPreview=MakeText("",yummnHud.transform,new Vector2(0,-23),new Vector2(228,25),16,Cream,TextAnchor.MiddleCenter);
         }
         if(actionPips.Length!=run.Yummn.profile.maxKi)
         {
             foreach(var pip in actionPips)if(pip!=null){pip.gameObject.SetActive(false);if(Application.isPlaying)Destroy(pip.gameObject);else DestroyImmediate(pip.gameObject);}
             actionPips=new Image[run.Yummn.profile.maxKi];
+            kiWisps=new YummnKiWisp[actionPips.Length];
             for(int i=0;i<actionPips.Length;i++)
             {
-                actionPips[i]=Rect("Ki "+(i+1),yummnHud.transform,Vector2.zero,new Vector2(21,21),Color.white);
-                actionPips[i].sprite=roundedSprite;actionPips[i].type=Image.Type.Sliced;actionPips[i].raycastTarget=false;
+                actionPips[i]=Rect("Ki "+(i+1),yummnHud.transform,Vector2.zero,new Vector2(22,36),Color.white);
+                kiWisps[i]=actionPips[i].gameObject.AddComponent<YummnKiWisp>();
+                kiWisps[i].Configure(styleSplit);
             }
         }
         yummnHud.gameObject.SetActive(run.IsYummn);
         bool exhausted=run.KiPhase==YummnPhase.Exhausted;
-        yummnKiState.text=run.Yummn.rules.AttackCostsTenth?(exhausted?"气竭":"高速")+"\n"+run.ExactKi.ToString("0.0")+"气":exhausted?(run.Ki>0?"气竭\n恢复中":"气竭"):"高速";
-        yummnKiState.fontSize=run.Yummn.rules.AttackCostsTenth||exhausted&&run.Ki>0?15:20;
-        yummnMoveCostPreview.gameObject.SetActive(run.IsYummn&&run.Yummn.rules.Is082);
-        if(run.IsYummn&&run.Yummn.rules.Is082)
-            yummnMoveCostPreview.text="耗气  ↑"+YummnCostLabel(KaitDirection.Up)+"  ←"+YummnCostLabel(KaitDirection.Left)+"  ↓"+YummnCostLabel(KaitDirection.Down)+"  →"+YummnCostLabel(KaitDirection.Right);
         for(int i=0;i<actionPips.Length;i++)
         {
             actionPips[i].gameObject.SetActive(i<run.Yummn.profile.maxKi);
-            actionPips[i].rectTransform.anchoredPosition=new Vector2(39+(i-(run.Yummn.profile.maxKi-1)*.5f)*23,14);
-            actionPips[i].color=i<run.Ki?(exhausted?new Color(.57f,.67f,.8f):new Color(.24f,.84f,.98f)):new Color(.22f,.26f,.33f,.6f);
+            float spacing=Mathf.Min(24,120f/Mathf.Max(1,actionPips.Length-1));
+            actionPips[i].rectTransform.anchoredPosition=new Vector2((i-(actionPips.Length-1)*.5f)*spacing,0);
+            kiWisps[i].SetState(run.ExactKi-i,exhausted);
         }
     }
     private void RefreshYummnHud()
@@ -252,7 +226,7 @@ public sealed partial class KaitGame
                 StrikeSelectedTelegraphs(ev.affectedCells);
                 bool ghostHit=false;
                 foreach(var hit in r.yummnEvents)if(hit.kind==YummnEventKind.AfterimageHit&&hit.attackEventId==ev.attackEventId)
-                {RemoveYummnLogicalGhost(hit.markerId,.16f);PlayV08Fx(hit.to,15,r.kaitDirection,90);ghostHit=true;}
+                {PlayV08Fx(hit.to,15,r.kaitDirection,90);ghostHit=true;}
                 if(ghostHit)YummnAudio.Play("GhostHit");
                 yield return AnimateAllEnemyActions(r.enemyActions.FindAll(a=>a.enemyId==ev.sourceId&&a.type!=KaitIntentType.Move));
             }

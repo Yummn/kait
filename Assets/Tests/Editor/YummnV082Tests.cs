@@ -75,7 +75,18 @@ public class YummnV082Tests
     [Test] public void T06_OneKiBrakesAfterOneCell()
     {var r=R();r.Yummn.ki=1;var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(new Vector2Int(2,3),r.katePos);Assert.AreEqual(0,r.Ki);Assert.AreEqual(YummnPhase.Exhausted,r.KiPhase);Assert.AreEqual(1,r.Yummn.afterimages.Count);Assert.AreEqual(new Vector2Int(1,3),r.Yummn.afterimages[0].cell);Assert.AreEqual(0,r.EnemyResolveCount);}
     [Test] public void T07_RealMovementMarkerCanBeHit()
-    {var r=R();var e=E(r,1,4);Aim(e,KaitIntentType.Melee,r.katePos);r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,r.Yummn.afterimages.Count);var a=Context(r);Call(r,"ResolveYummnEnemyPhase",a);Assert.AreEqual(3,r.Ki);Assert.AreEqual(1,r.Yummn.metrics.afterimageKi);Assert.AreEqual(0,r.Yummn.afterimages.Count);}
+    {var r=R();var e=E(r,1,4);Aim(e,KaitIntentType.Melee,r.katePos);r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,r.Yummn.afterimages.Count);var a=Context(r);Call(r,"ResolveYummnEnemyPhase",a);Assert.AreEqual(3,r.Ki);Assert.AreEqual(1,r.Yummn.metrics.afterimageKi);Assert.AreEqual(1,r.Yummn.afterimages.Count);Call(r,"ClearYummn082Afterimages",a);Assert.AreEqual(0,r.Yummn.afterimages.Count);}
+    [Test] public void SameMarkerSurvivesSeveralAttacksUntilPhaseCleanup()
+    {
+        var r=R();r.Yummn.ki=0;Marker(r,2,2);
+        Aim(E(r,2,1),KaitIntentType.Melee,new Vector2Int(2,2));
+        Aim(E(r,3,2),KaitIntentType.Melee,new Vector2Int(2,2));
+        var result=Context(r);Call(r,"ResolveYummnEnemyPhase",result);
+        Assert.AreEqual(2,r.Ki);Assert.AreEqual(2,r.Yummn.metrics.afterimagesHit);
+        Assert.AreEqual(1,r.Yummn.afterimages.Count);Assert.IsTrue(r.Yummn.afterimages[0].alive);
+        Call(r,"ClearYummn082Afterimages",result);Assert.AreEqual(0,r.Yummn.afterimages.Count);
+        Assert.AreEqual(1,result.yummnEvents.Count(e=>e.kind==YummnEventKind.AfterimageCleared));
+    }
     [Test] public void T08_CrossConsumesTwoMarkersButGainsOnlyOne()
     {var r=R();r.Yummn.ki=0;Marker(r,2,2);Marker(r,3,2);var e=E(r,4,4,2,KaitEnemyType.Warlock);Aim(e,KaitIntentType.CrossBlast,new Vector2Int(2,2),new Vector2Int(3,2));Call(r,"ResolveYummnEnemyPhase",Context(r));Assert.AreEqual(1,r.Ki);Assert.AreEqual(2,r.Yummn.metrics.afterimagesHit);}
     [Test] public void T09_DifferentAttackEventsEachRestoreOne()

@@ -33,6 +33,17 @@ public sealed class KaitSpineView
     public const string YummnVictory = "000000_smile";
 
     public string RestAnimation { get; set; } = Idle;
+    private bool? yummnHasKi;
+    public void SetYummnKiState(bool hasKi)
+    {
+        if(yummnHasKi==hasKi)return;
+        yummnHasKi=hasKi;
+        if(!IsReady)return;
+        var current=CurrentAnimation;
+        if(current==null)return;
+        if(current.Loop && IsYummnRest(current.Animation.Name))PlayLoop(Idle);
+    }
+    private static bool IsYummnRest(string name) => name==Idle || name=="01_idle" || name==YummnFollowUpReady;
 
     public static string YummnSkillAnimation(KaitSkill skill)
     {
@@ -125,6 +136,10 @@ public sealed class KaitSpineView
         this.skeletonRect = skeletonRect;
         this.rightFacingVisualX = rightFacingVisualX;
         this.flashMaterial = flashMaterial;
+        graphic.AnimationState.Start += entry => {
+            if(yummnHasKi.HasValue && entry.Loop && IsYummnRest(entry.Animation.Name))
+                PlayLoop(Idle);
+        };
     }
 
     public static KaitSpineView Create(SkeletonDataAsset data, Transform parent, Vector2 size, string name = "Kait Spine")
@@ -320,6 +335,8 @@ public sealed class KaitSpineView
     {
         if (graphic.Skeleton.Data.FindAnimation("108201_skill0") != null)
         {
+            if(yummnHasKi.HasValue && IsYummnRest(name))
+                return yummnHasKi.Value ? YummnFollowUpReady : "01_idle";
             if (name == Run) name = YummnRun;
             else if (name == Victory) name = YummnVictory;
             else if (name == Idle && RestAnimation != Idle) name = RestAnimation;

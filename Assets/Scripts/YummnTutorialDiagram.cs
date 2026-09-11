@@ -23,7 +23,7 @@ public sealed class YummnTutorialDiagram : MonoBehaviour
             Box(new Vector2(100,20),Vector2.one*69,new Color(blue.r,blue.g,blue.b,.3f));
             Unit(new Vector2(100,130),true);Unit(new Vector2(320,20),false);
             Label("<",new Vector2(210,20),42,orange);Label("+1 气",new Vector2(100,-90),30,blue);
-            Caption("移动起点留一个残影",new Vector2(-210,-210));Caption("攻击覆盖：消耗并回气",new Vector2(210,-210));
+            Caption("移动起点留一个残影",new Vector2(-210,-210));Caption("可多次受击，回合末消退",new Vector2(210,-210));
             return;
         }
         if(page==0)

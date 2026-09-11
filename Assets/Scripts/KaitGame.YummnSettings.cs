@@ -50,11 +50,21 @@ public sealed partial class KaitGame
     }
     private void RefreshCharacterSettings()
     {
-        bool yummn=run.IsYummn;
-        if(characterSettingsTitle!=null)characterSettingsTitle.text=run.Character+" · 设置";
+        var character=MainMenuVisible?mainMenu.Selected:run.Character;
+        bool yummn=character==KaitCharacter.Yummn;
+        if(characterSettingsTitle!=null)characterSettingsTitle.text=character+" · 设置";
         if(characterSettingsHint!=null)characterSettingsHint.text=yummn?"人物无敌即时生效；规则选项仅在下一局生效":"伤害选项即时生效；墙体选项会重新开始本局";
         foreach(var t in new[]{disableThreatPillarsToggle,disableRiftDamageToggle,disableFriendlyFireToggle,disableCollisionDamageToggle})if(t!=null)t.gameObject.SetActive(!yummn);
         foreach(var g in yummnSettingsControls)g.SetActive(yummn);
+        if(MainMenuVisible)
+        {
+            foreach(var t in new[]{disableThreatPillarsToggle,disableRiftDamageToggle,disableFriendlyFireToggle,disableCollisionDamageToggle})if(t!=null)t.interactable=true;
+            disableThreatPillarsToggle?.SetIsOnWithoutNotify(PlayerPrefs.GetInt(DisableThreatPillarsPreference,0)==1);
+            disableRiftDamageToggle?.SetIsOnWithoutNotify(PlayerPrefs.GetInt(DisableRiftDamagePreference,0)==1);
+            disableFriendlyFireToggle?.SetIsOnWithoutNotify(PlayerPrefs.GetInt(DisableFriendlyFirePreference,0)==1);
+            disableCollisionDamageToggle?.SetIsOnWithoutNotify(PlayerPrefs.GetInt(DisableCollisionDamagePreference,0)==1);
+            if(characterSettingsHint!=null)characterSettingsHint.text="首页修改选项，将应用于新的一局";
+        }
         if(yummnSettingsNote!=null)yummnSettingsNote.gameObject.SetActive(yummn);
         RefreshYummnSettingsNote();
     }
@@ -67,5 +77,6 @@ public sealed partial class KaitGame
         for(int i=0;i<yummnRuleButtons.Count;i++)yummnRuleButtons[i].GetComponentInChildren<Text>().text=labels[i];
         yummnSettingsNote.text=$"本局：{run.Yummn.rules.MaxKi}气上限 · 击杀+{run.Yummn.rules.KillKi}气"+(run.Yummn.rules.Is082?"":" · 旧版存档")+"\n"+
             "下局："+supplyLabel+"\n移动/击杀/气竭等条件重叠，敌方也只行动一次。";
+        if(MainMenuVisible)yummnSettingsNote.text="新局："+supplyLabel+"\n移动/击杀/气竭等条件重叠，敌方也只行动一次。";
     }
 }

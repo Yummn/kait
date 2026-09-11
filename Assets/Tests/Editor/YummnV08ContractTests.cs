@@ -7,6 +7,30 @@ using UnityEngine;
 public sealed class YummnV08ContractTests
 {
     private const BindingFlags Hidden=BindingFlags.Instance|BindingFlags.NonPublic;
+    [Test] public void PalmMarksCoexistAndDetonateIndependently()
+    {
+        var r=R();r.passives.Add(KaitPassive.QuiveringPalm);
+        var a=E(r,2,3,20);var b=E(r,4,3,20);
+        void Punch(KaitEnemy enemy,KaitDirection direction) {
+            var result=new KaitTurnResult{yummnAction=new YummnActionContext{direction=direction}};
+            typeof(KaitRun).GetMethod("ResolveYummnPunch",Hidden).Invoke(r,new object[]{enemy,result});
+        }
+        Punch(a,KaitDirection.Right);Punch(b,KaitDirection.Up);
+        Assert.AreEqual(2,r.Yummn.palmMarks.Count);
+        Assert.IsTrue(r.Yummn.TryPalm(a.id,out var first));Assert.AreEqual(Vector2Int.right,first);
+        Punch(a,KaitDirection.Down);Assert.AreEqual(16,a.hp);
+        Assert.IsFalse(r.Yummn.TryPalm(a.id,out _));Assert.IsTrue(r.Yummn.TryPalm(b.id,out var second));Assert.AreEqual(Vector2Int.up,second);
+        for(int i=0;i<100;i++)r.Yummn.MarkPalm(1000+i,Vector2Int.left);
+        Assert.AreEqual(101,r.Yummn.palmMarks.Count);
+        r.Yummn.Reset();Assert.AreEqual(0,r.Yummn.palmMarks.Count);
+    }
+    [TestCase(1,0)] [TestCase(-1,0)] [TestCase(0,1)] [TestCase(0,-1)]
+    public void PalmBottomPointsAlongHit(int x,int y)
+    {
+        var direction=new Vector2Int(x,y);
+        var bottom=Quaternion.Euler(0,0,KaitGame.PalmMarkAngle(direction))*Vector3.down;
+        Assert.That(Vector3.Distance(bottom,new Vector3(x,y,0)),Is.LessThan(.001f));
+    }
     private KaitRun R(int x=1,int y=3)
     {var r=new KaitRun();r.SelectCharacter(KaitCharacter.Yummn,801,YummnRulesSnapshot.OldV08());r.enemies.Clear();r.spawns.Clear();Array.Clear(r.threat,0,r.threat.Length);Pos(r,x,y);return r;}
     private void Pos(KaitRun r,int x,int y)=>typeof(KaitRun).GetProperty("katePos").SetValue(r,new Vector2Int(x,y));

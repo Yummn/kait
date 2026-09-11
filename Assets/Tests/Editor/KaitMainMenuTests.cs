@@ -37,11 +37,36 @@ public class KaitMainMenuTests
             Assert.AreEqual(0,start); Assert.AreEqual(1,tutorial); Assert.AreEqual(0,settings);
             menu.SettingsButton.onClick.Invoke(); menu.StartButton.onClick.Invoke();
             Assert.AreEqual(1,start); Assert.AreEqual(1,settings);
-            Assert.AreEqual(3,menu.GetComponentsInChildren<Button>().Length);
+            Assert.AreEqual(6,menu.GetComponentsInChildren<Button>(true).Length);
             foreach(var label in menu.GetComponentsInChildren<Text>()) Assert.False(label.raycastTarget);
-            Assert.False(menu.Layout.GetComponent<RawImage>().raycastTarget);
+            Assert.AreEqual(2,menu.GetComponentsInChildren<KaitHomeArt>().Length);
         }
         finally { Object.DestroyImmediate(root); }
+    }
+
+    [Test] public void TriptychSelectionDoesNotStartAndUsesOneContinueForSelectedSave()
+    {
+        var root=new GameObject("Home Test",typeof(RectTransform),typeof(Canvas));
+        try
+        {
+            int starts=0;string resumed=null;
+            var menu=KaitMainMenu.Create(root.transform,Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"),null,()=>starts++,()=>{},()=>{});
+            menu.SetSaveLookup(key=>key=="Kait.Run.Kait"||key=="Kait.Run.Yummn.0.8.1");menu.ContinueCharacter=key=>resumed=key;
+            menu.CharacterButtons[1].onClick.Invoke();
+            Assert.AreEqual(0,starts);Assert.AreEqual(KaitCharacter.Yummn,menu.Selected);
+            Assert.AreEqual("Kait.Run.Yummn.0.8.1",menu.ContinueKey);menu.ContinueButton.onClick.Invoke();Assert.AreEqual(menu.ContinueKey,resumed);
+            menu.Select(KaitCharacter.Kait);Assert.AreEqual("Kait.Run.Kait",menu.ContinueKey);
+            menu.SetSaveLookup(key=>false);Assert.False(menu.ContinueButton.gameObject.activeSelf);
+            foreach(var b in new[]{menu.ContinueButton,menu.StartButton,menu.TutorialButton,menu.SettingsButton})
+            {
+                var p=((RectTransform)b.transform).anchoredPosition;
+                float y=(p.y+540)/1080;
+                float midpoint=(KaitHomeArt.Boundary(false,y)+KaitHomeArt.Boundary(true,y))*.5f*1920-960;
+                Assert.That(p.x,Is.EqualTo(midpoint).Within(.001f));
+                Assert.AreEqual(TextAnchor.MiddleCenter,b.GetComponentInChildren<Text>().alignment);
+            }
+        }
+        finally{Object.DestroyImmediate(root);}
     }
 
     [Test] public void PressResetsOnReleaseAndExit()
