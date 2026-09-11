@@ -12,12 +12,12 @@
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | Windows 0.8.2；Yummn新局快照 yummn-0.8.2，旧存档保留v0.8/v0.8.1；Kait规则不变 |
-| Git 基线 | HEAD b7f89c4，提交说明为 v0.6.1；工作树有大量后续未提交修改。本次没有提交或上传，远端最新状态未重新核验 |
+| Git 基线 | v0.8.2-20260911标签对应b3df338，已推送origin/master；Yummn/kait保持PUBLIC。历史包与APK已上传同名Release；AudioPreviews/VFXPreviews选稿目录保留本地未纳入当前源码提交 |
 | 最近 Windows 构建 | Build/kait.exe；Logs/danger-split-build.log Success、退出0，程序集09:58:11。受伤红边沿全局斜线左原图右极简；仍包含等待在制实现，等待完整手势验收未完成 |
 | 最近 EditMode 测试 | Logs/danger-split-tests.xml：888/888通过，含横竖屏左右裁剪、颜色保留、预警关闭；非运行画面验收 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
 | 最近视觉运行检查 | v082-runtime-final.log：YUMMN082_QA_COMPLETE；v082-regression.log：YUMMN_QA_COMPLETE及移动/首击/盾骑士/各逐帧子检查完成。已检查实机截图；24项玩家设置/存档按类型和值完整恢复。原ComputeBuffer退出提醒仍在；不是听感或Android验收 |
-| Android | Build/kait-v0.8.2.apk，2026-09-10 23:24:38，197551132字节；已含六兵种选定预警、高速攻击0/1气和CCC残影。Logs/android-latest-20260910.log Success；版本802、ARM64、签名及UnityPlayerActivity检查通过；adb无设备，未做真机启动验收 |
+| Android | Build/kait-v0.8.2.apk，2026-09-11 10:07:51，197939990字节；Logs/android-20260911.log Success退出0；版本802、ARM64、UnityPlayerActivity、与旧包同签名检查通过；SHA256 E86A382DCDA1416B9F794250403A0C09A1074CF2BA136BA01FB9B921A3F2B30A。adb无设备未真机启动验收 |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
@@ -26,7 +26,7 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 
 | 任务编号 | 负责人 / 会话 | 范围 | 状态 / 占用 |
 | --- | --- | --- | --- |
-| RELEASE-20260911 | 本会话 | 历史备份上传、当前源码留档、Android | 进行中；核实远端PUBLIC保持不变，增量归档，不覆盖既有历史 |
+| RELEASE-20260911 | 本会话 | 历史备份上传、当前源码留档、Android | 完成：源码b3df338及标签v0.8.2-20260911已推送；Release历史包4316文件/2071519202字节，7z测试通过，远端SHA256与本地68C5B5B7B85BFB46D8B0F6C047AC6A29F12CDD8339AF3731E75A82DB397DDAA4一致。APK构建/签名/架构/入口检查通过并上传，远端哈希一致。旧APK为Build/kait-v0.8.2-before-20260911.apk；仓库PUBLIC不变，无Unity占用，未真机验收 |
 | VFX-20260911-DANGER-SPLIT | 本会话 | 受伤屏幕预警沿全局斜线切换左右风格 | 已完成源码/Windows；左侧DangerC九宫格原图、右侧无纹理红色渐隐边缘，共用触发/淡出。SunlitSplitText增加保留原色用于裁剪，默认文字行为不变。888/888测试，danger-split-build.log Success退出0；未实机视觉验收、不做Android/GitHub，无Unity占用 |
 | VFX-20260911-POSE-LOOP | 本会话 | 去掉武器图标，锁定posing循环 | 已完成源码/Windows：不创建来源武器或外框，保留危险格范围。posing循环无排队idle，RefreshBattle同步锁定状态且不抢攻击/受击/死亡；885/885测试，pose-loop-build.log Success退出0。未运行视觉验收、不打Android/上传，无Unity占用 |
 | VFX-20260911-FULL-CELL | 本会话 | 武器标识填满所在格 | 完成源码与Windows：按用户追加要求使用完整圆角矩形线框替代四角线；标识格中心，武器自身包围盒等比适配格子86%，仍在人物下层，无不透明底板。full-cell-tests.xml 879/879通过；full-cell-build.log Success退出0。未运行视觉验收，无Unity占用，未做Android/GitHub |
