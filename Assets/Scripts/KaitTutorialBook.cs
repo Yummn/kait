@@ -10,13 +10,26 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     static readonly Color Plum = new Color32(67, 56, 66, 255);
     Font font;
     Sprite rounded;
-    Text title, lead, body, leftCaption, rightCaption, tip, counter, nextLabel;
+    Text heading, title, lead, body, leftCaption, rightCaption, tip, counter, nextLabel;
     RawImage comic;
+    YummnTutorialDiagram yummnDiagram;
     Button previous, next;
     readonly Image[] tabs = new Image[KaitTutorialPages.All.Length];
     Vector2 dragStart;
     public int PageIndex { get; private set; }
-    public int PageCount => KaitTutorialPages.All.Length;
+    private bool yummnMode;
+    public YummnRulesSnapshot YummnRules { get; set; }=new YummnRulesSnapshot();
+    public bool YummnMode
+    {
+        get => yummnMode;
+        set
+        {
+            if (yummnMode == value) return;
+            yummnMode = value;
+            ShowPage(0);
+        }
+    }
+    public int PageCount => YummnMode ? YummnTutorial.Pages.Length : KaitTutorialPages.All.Length;
     public bool IllustrationLoaded => comic != null && comic.texture != null;
     public System.Action Completed;
     // Also guards against Escape closing the book before KaitGame.Update runs that frame.
@@ -38,7 +51,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     void Build()
     {
         var card=Box("Tutorial Book",transform,Vector2.zero,new Vector2(1460,920),Plum);
-        Label(card.transform,"Kait · 玩法图解",new Vector2(-470,407),new Vector2(430,36),22,Peach);
+        heading=Label(card.transform,"Kait · 玩法图解",new Vector2(-470,407),new Vector2(430,36),22,Peach);
         counter=Label(card.transform,"",new Vector2(556,406),new Vector2(116,36),22,Peach,TextAnchor.MiddleCenter);
         AddButton(card.transform,"关闭 ×",new Vector2(642,406),new Vector2(110,46),Close);
         title=Label(card.transform,"",new Vector2(-245,340),new Vector2(870,64),38,Cream);
@@ -49,7 +62,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         leftCaption=Label(card.transform,"",new Vector2(-475,-297),new Vector2(410,54),23,Cream,TextAnchor.MiddleCenter);
         rightCaption=Label(card.transform,"",new Vector2(-55,-297),new Vector2(410,54),23,Cream,TextAnchor.MiddleCenter);
         Box("Reading Divider",card.transform,new Vector2(185,10),new Vector2(2,570),new Color(1,1,1,.12f)).raycastTarget=false;
-        lead=Label(card.transform,"",new Vector2(453,268),new Vector2(452,80),29,Peach);
+        lead=Label(card.transform,"",new Vector2(453,268),new Vector2(452,92),29,Peach);
         body=Label(card.transform,"",new Vector2(453,15),new Vector2(452,392),25,Cream,TextAnchor.UpperLeft);
         body.lineSpacing=1f;
         var note=Box("Quick Tip",card.transform,new Vector2(453,-255),new Vector2(470,137),new Color32(84,71,81,255));
@@ -70,14 +83,21 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     {
         PageIndex=Mathf.Clamp(index,0,PageCount-1);
         if(comic==null)return;
-        var p=KaitTutorialPages.All[PageIndex];
-        title.text=p.Title; lead.text=p.Lead; SetReadableCopy(body,p.Body);
+        heading.text=YummnMode ? "Yummn · 玩法图解" : "Kait · 玩法图解";
+        var p=YummnMode ? YummnTutorial.ForRules(YummnRules)[PageIndex] : KaitTutorialPages.All[PageIndex];
+        title.text=p.Title; SetReadableCopy(lead,p.Lead); SetReadableCopy(body,p.Body);
         leftCaption.text=p.LeftCaption; rightCaption.text=p.RightCaption; SetReadableCopy(tip,p.Tip);
         counter.text=$"{PageIndex+1} / {PageCount}";
-        comic.texture=Resources.Load<Texture2D>(p.ResourcePath);
+        comic.texture=Resources.Load<Texture2D>(p.ResourcePath);comic.enabled=!YummnMode;
+        if(YummnMode&&yummnDiagram==null)
+        {
+            var go=new GameObject("Yummn Rule Diagram",typeof(RectTransform),typeof(YummnTutorialDiagram));go.transform.SetParent(comic.transform.parent,false);
+            var rt=go.GetComponent<RectTransform>();rt.sizeDelta=comic.rectTransform.sizeDelta;rt.anchoredPosition=comic.rectTransform.anchoredPosition;yummnDiagram=go.GetComponent<YummnTutorialDiagram>();
+        }
+        if(yummnDiagram!=null){yummnDiagram.gameObject.SetActive(YummnMode);if(YummnMode)yummnDiagram.Show(PageIndex,font,YummnRules!=null&&YummnRules.Legacy,YummnRules?.MaxKi??6,YummnRules);}
         previous.interactable=PageIndex>0;
         nextLabel.text=PageIndex==PageCount-1 ? "开始游戏" : "下一页";
-        for(int i=0;i<tabs.Length;i++)tabs[i].color=i==PageIndex ? new Color32(151,104,99,255) : new Color32(93,79,87,255);
+        for(int i=0;i<tabs.Length;i++){tabs[i].gameObject.SetActive(i<PageCount);tabs[i].rectTransform.anchoredPosition=new Vector2((i-(PageCount-1)*.5f)*63,-400);tabs[i].color=i==PageIndex ? new Color32(151,104,99,255) : new Color32(93,79,87,255);}
     }
     public void Next() { if(PageIndex==PageCount-1) { Close(); Completed?.Invoke(); } else ShowPage(PageIndex+1); }
 
@@ -113,6 +133,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
 
     public void Previous() => ShowPage(PageIndex-1);
     public void Close() { ClosedFrame=Time.frameCount; gameObject.SetActive(false); }
+    void OnEnable() { if (comic != null) ShowPage(PageIndex); }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))Close();

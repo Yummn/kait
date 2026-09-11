@@ -10,6 +10,7 @@ public sealed class KaitSelectedUiAudioTests
     [TestCase("Victory_B3", 4f)]
     [TestCase("Defeat_B3", 4f)]
     [TestCase("Merge_B", .82f)]
+    [TestCase("Cast_B", 1f)]
     public void SelectedUiSoundKeepsAuditionPcm(string name, float seconds)
     {
         string path = "Audio/UI/SelectedModel/" + name;

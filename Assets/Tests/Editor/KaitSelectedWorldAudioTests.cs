@@ -4,10 +4,18 @@ using UnityEngine;
 
 public sealed class KaitSelectedWorldAudioTests
 {
+    [Test] public void BossEntranceUsesWorldChannelEvenWithCharacterVoices()
+    {
+        var code = System.IO.File.ReadAllText(System.IO.Path.Combine(Application.dataPath, "Scripts/GameAudio.cs"));
+        StringAssert.Contains("bossRoarClip = Resources.Load<AudioClip>(SelectedWorldPath + \"Boss_A\");", code);
+        StringAssert.Contains("PlayOneShot(instance?.worldSource, instance?.bossRoarClip, 0.72f);", code);
+        StringAssert.DoesNotContain("instance.enemyCharacterVoiceBanks.ContainsKey(KaitEnemyType.ShieldKnight)) return", code);
+    }
     [TestCase("RiftOpen_B2", 1f)]
     [TestCase("SpawnLanding_A", .905f)]
     [TestCase("WallStop_A2", .48f)]
     [TestCase("SkillReady_A2", .93f)]
+    [TestCase("Boss_A", 1f)]
     public void SelectedWorldSoundPreservesAuditionImport(string name, float seconds)
     {
         string path = "Audio/World/SelectedModel/" + name;

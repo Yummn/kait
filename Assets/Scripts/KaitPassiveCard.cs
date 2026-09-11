@@ -8,6 +8,7 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static readonly Vector2 Size = new Vector2(184, 264);
+    public const float DockReveal = 64f;
     public RectTransform Rect { get; private set; }
     public KaitPassive Passive { get; private set; }
     public bool IsCandidate { get; private set; }
@@ -39,6 +40,7 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     public static KaitPassiveCard Create(RectTransform parent, GlobalStyleSplit split, Font font,
         Sprite hd, Sprite flat, Action<KaitPassiveCard> choose, Action<KaitPassiveCard, float> drop)
     {
+        hd=KaitSunlitTheme.Load("SkillCardHD")??hd;flat=KaitSunlitTheme.Load("SkillCardFlat")??flat;
         var go = new GameObject("Passive Card", typeof(RectTransform), typeof(CanvasRenderer),
             typeof(HybridStyleGraphic), typeof(CanvasGroup), typeof(KaitPassiveCard));
         go.transform.SetParent(parent, false);
@@ -53,9 +55,9 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         card.visibility = go.GetComponent<CanvasGroup>();
         card.surface = go.GetComponent<HybridStyleGraphic>();
         card.surface.Configure(split, hd, Color.white, Color.white, new Color(0.98f, 0.78f, 0.72f), 3f, 8f);
-        card.surface.SetRightSprite(KaitSunlitTheme.Load("PassiveCardFlatCompact") ?? flat);
+        card.surface.SetRightSprite(flat);
         card.surface.raycastTarget = true;
-        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,38), 68);
+        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,51), 68);
         card.title = card.Label("Name", font, split, new Vector2(0, 88), new Vector2(152, 24), 19, FontStyle.Bold);
         card.description = card.Label("Description", font, split, new Vector2(0, -64), new Vector2(140, 62), 15);
         card.footer = card.Label("Action", font, split, new Vector2(0, -112), new Vector2(156, 23), 13);
@@ -129,7 +131,6 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         triggerCount = count;
         triggerUntil = Time.unscaledTime + 1.25f;
-        revealUntil = Mathf.Max(revealUntil, triggerUntil);
     }
 
     private void Update()=>Advance(Time.unscaledDeltaTime);
@@ -143,8 +144,7 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
             Expanded = IsCandidate || (!covered && (hovered || Time.unscaledTime < revealUntil));
             if (!IsCandidate)
             {
-                float y = covered ? bounds.rect.yMax + Size.y * 0.5f + 8f :
-                    Expanded ? bounds.rect.yMax - Size.y * 0.5f : bounds.rect.yMax;
+                float y = DockY(bounds.rect,Expanded,covered);
                 target = new Vector2(DockX, y);
             }
             Vector2 destination = target;
@@ -164,13 +164,26 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         bool readable = IsCandidate || Expanded || IsDragging;
         // The top half is tucked off-screen while docked; keep the card's name visible.
-        title.rectTransform.anchoredPosition=new Vector2(0,readable?88:-48);
+        title.rectTransform.anchoredPosition=new Vector2(0,readable?101:-94);
+        footer.rectTransform.anchoredPosition=new Vector2(0,readable?-112:-117);
+        footer.rectTransform.sizeDelta=new Vector2(156,readable?23:18);
+        logo.gameObject.SetActive(readable);
+        GetComponent<KaitCardSkin>()?.SetDetailsVisible(readable);
         description.gameObject.SetActive(readable);
-        footer.text = pendingAbility ? "待生效" : Time.unscaledTime < triggerUntil ? $"触发 ×{triggerCount}" : "";
+        footer.text = Time.unscaledTime < triggerUntil ? $"触发 ×{triggerCount}" : "";
+        if(readable&&!string.IsNullOrEmpty(missingRequirement))footer.text=missingRequirement;
     }
 
     private bool pendingAbility;
+    public static float DockY(Rect area,bool expanded,bool covered)=>covered?area.yMax+Size.y*.5f+8:
+        expanded?area.yMax-Size.y*.5f:area.yMax+Size.y*.5f-DockReveal;
     public void SetPending(bool value) { pendingAbility=value; RefreshDetails(); }
+    private string missingRequirement;
+    public void SetRequirement(string missing)
+    {
+        missingRequirement=missing;var tint=string.IsNullOrEmpty(missing)?Color.white:new Color(.53f,.55f,.59f);
+        surface.SetVisualState(face,tint,tint);logo.SetTint(tint);RefreshDetails();
+    }
     public void SetCopiedPassive(KaitPassive copy)
     {
         if(Passive==KaitPassive.Simulacrum && !IsCandidate && copy!=KaitPassive.None)

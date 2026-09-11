@@ -22,7 +22,7 @@ public sealed partial class KaitRun
         if(skill==KaitSkill.DispelMagic) spawns.Remove(SpawnAt(cell));
         else { katePos=cell;lastSkillResult.katePath.Add(cell);lastSkillResult.pathMomentum.Add(momentum); }
         skillCooldowns[skill]=BaseCooldown(skill);skillsUsedBeforeInput.Add(skill);ResolveDevil(skill,lastSkillResult);
-        message="已使用："+SkillName(skill);return true;
+        message="已使用："+SkillName(skill);RecordReplay("cellskill",(int)skill,cell.x,cell.y);return true;
     }
     private bool CanPull(KaitEnemy target)
     {

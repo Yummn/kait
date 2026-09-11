@@ -19,7 +19,10 @@ public enum KaitPassive
     SweepTail,
     StaggeringSmite, ArcaneLock, Enfeeblement, HexArmor, MasterHex, MaddeningHex,
     LuckBlade, Lifedrinker, Simulacrum, AccursedSpecter, RepellingBlast,
-    DisplacementCloak, Passwall, BagHolding, ReverseGravity, WildMagic
+    DisplacementCloak, Passwall, BagHolding, ReverseGravity, WildMagic,
+    Unarmored, DeflectMissiles, ReturnMissile, FollowThrough, PerfectSelf, EmptyBody,
+    OpenHand, Tranquility, Wholeness, QuiveringPalm, FireSnake, ShatteringPalm,
+    ShadowCloak, PassWithoutTrace, ShadowAssault, Opportunist
 }
 
 public enum KaitPassiveCategory

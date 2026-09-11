@@ -62,9 +62,11 @@ public sealed class KaitCardLogo : MonoBehaviour
     public void Show(KaitPassive passive) { Set(passive.ToString(),PassiveSymbol(passive));SetGenerated(KaitAbilityCatalog.Get(passive)); }
     private void SetGenerated(KaitAbilityDef def)
     {
+        picture.SetBlackKeyLeft(YummnCatalog.IsMonk(def));
         var art=KaitCardSkin.Icon(def);
         if(art!=null) { current=art;picture.SetVisualState(current,Color.white,Color.clear); }
-        if(def!=null && string.IsNullOrEmpty(symbol.text)) symbol.text=def.nameZh.Substring(0,Mathf.Min(2,def.nameZh.Length));
+        if(YummnCatalog.IsMonk(def))symbol.text=def.sigil;
+        else if(def!=null && string.IsNullOrEmpty(symbol.text)) symbol.text=def.nameZh.Substring(0,Mathf.Min(2,def.nameZh.Length));
     }
     private void Set(string name, string text)
     {
@@ -81,7 +83,13 @@ public sealed class KaitCardLogo : MonoBehaviour
     }
     public static Sprite Load(string name)
     {
+        if(name=="WindStep")
+        {
+            var old=Resources.Load<Texture2D>("KaitVisuals/Yummn/CardIcons");
+            if(old!=null)return Sprite.Create(old,new Rect(old.width/4f,old.height*2f/3f,old.width/4f,old.height/3f),Vector2.one*.5f,100);
+        }
         var definition=KaitAbilityCatalog.All.Find(d=>d.kind==KaitAbilityKind.Active?d.skill.ToString()==name:d.passive.ToString()==name);
+        if(definition==null)definition=YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Active?d.skill.ToString()==name:d.passive.ToString()==name);
         var generated=KaitCardSkin.Icon(definition);if(generated!=null)return generated;
         if (sprites.TryGetValue(name, out var cached) && cached != null) return cached;
         var texture = Resources.Load<Texture2D>(ResourceRoot + "Transparent/" + name)
@@ -93,6 +101,7 @@ public sealed class KaitCardLogo : MonoBehaviour
     }
     public static string PassiveSymbol(KaitPassive passive)
     {
+        var monk=YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passive);if(monk!=null)return monk.sigil;
         switch(passive)
         {
             case KaitPassive.BirdEye: return "眼";

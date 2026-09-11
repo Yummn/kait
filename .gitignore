@@ -33,6 +33,7 @@ __pycache__/
 /Tools/VibeGame/workspace/
 /Tools/VibeGame/evidence/
 /Tools/VibeGame/.env
+/Tools/.pydeps/
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1

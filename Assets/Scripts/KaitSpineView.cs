@@ -22,6 +22,23 @@ public sealed class KaitSpineView
     public const string OtherSkill = "104301_skill2";
     public const string Victory = "000000_mana_jump";
     public const string ShadowStep = "000000_run_jump";
+    public const string YummnFollowUpReady = "01_multi_idle_standBy";
+    public const string YummnFollowUpAttack = "01_attack_skipQuest";
+    public const string YummnKill = "01_standBy";
+    public const string YummnRun = "01_run";
+    public const string YummnWalk = "01_walk";
+    public const string YummnBuff = "108201_skill1";
+    public const string YummnHeal = "108201_joyResult";
+    public const string YummnAttackSkill = "01_multi_standBy";
+    public const string YummnVictory = "000000_smile";
+
+    public string RestAnimation { get; set; } = Idle;
+
+    public static string YummnSkillAnimation(KaitSkill skill)
+    {
+        return skill == KaitSkill.WindStep || skill == KaitSkill.PatientDefense
+            ? YummnBuff : YummnAttackSkill;
+    }
 
     private static Material sharedGraphicMaterial;
     private readonly SkeletonGraphic graphic;
@@ -161,7 +178,7 @@ public sealed class KaitSpineView
         }
         Material flashMaterial = CreateFlashMaterial(name + " Hit Flash");
         if (flashMaterial != null) skeletonGraphic.material = flashMaterial;
-        skeletonGraphic.AnimationState.SetAnimation(0, Idle, true);
+        skeletonGraphic.AnimationState.SetAnimation(0, skeletonGraphic.Skeleton.Data.FindAnimation(Idle)!=null?Idle:"01_idle", true);
         skeletonGraphic.Update(0f);
         skeletonGraphic.MatchRectTransformWithBounds();
 
@@ -175,11 +192,17 @@ public sealed class KaitSpineView
         float width = Mathf.Max(0.01f, meshBounds.size.x);
         float height = Mathf.Max(0.01f, meshBounds.size.y);
         float scale = Mathf.Min(size.x * VisualFill / width, size.y * VisualFill / height);
+        // The unarmed body fills the whole mesh, unlike Kait's wide sword silhouette.
+        // Keep her body at the same visual scale in the selector, board and trails.
+        bool yummn = skeletonGraphic.Skeleton.Data.FindAnimation("108201_skill0") != null;
+        if (yummn) scale *= .82f;
         skeletonRect.localScale = Vector3.one * scale;
         Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
         if (!name.Contains("Trail"))
-            KaitContactShadow.Create(hostRect, skeletonGraphic, new Vector2(0, -size.y * .38f), new Vector2(size.x * .36f, size.y * .09f));
+            KaitContactShadow.Create(hostRect, skeletonGraphic,
+                new Vector2(0, yummn ? -height * scale * .5f + size.y * .03f : -size.y * .38f),
+                new Vector2(size.x * .36f, size.y * .09f));
 
         return new KaitSpineView(hostRect, skeletonGraphic, skeletonRect, centeredPosition.x, flashMaterial);
     }
@@ -260,27 +283,50 @@ public sealed class KaitSpineView
     public void PlayLoop(string animation)
     {
         if (!IsReady || string.IsNullOrEmpty(animation)) return;
+        animation = ResolveAnimation(animation);
         TrackEntry current = graphic.AnimationState.GetCurrent(0);
         if (current != null && current.Animation != null && current.Animation.Name == animation && current.Loop) return;
         graphic.timeScale = 1f;
         TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, true);
-        if (animation == Run) entry.MixDuration = 0.02f;
+        if (animation == Run || animation == "01_run_gamestart" || animation == YummnRun || animation == YummnWalk) entry.MixDuration = 0.02f;
     }
 
     public void PlayOnce(string animation, string followUp = Idle)
     {
         if (!IsReady || string.IsNullOrEmpty(animation)) return;
+        animation=ResolveAnimation(animation);if(!string.IsNullOrEmpty(followUp))followUp=ResolveAnimation(followUp);
         graphic.timeScale = 1f;
         TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, false);
         if (animation == WallStop) entry.TimeScale = WallStopTimeScale;
         if (!string.IsNullOrEmpty(followUp)) graphic.AnimationState.AddAnimation(0, followUp, true, 0f);
     }
 
+    // Change the resting pose without cutting off a one-shot or blocking input.
+    public void RefreshRestPose()
+    {
+        if(!IsReady)return;
+        var current=CurrentAnimation;
+        if(current==null||current.Loop){PlayLoop(Idle);return;}
+    }
+
     public float Duration(string animation)
     {
         if (!IsReady || string.IsNullOrEmpty(animation)) return 0f;
+        animation=ResolveAnimation(animation);
         Spine.Animation found = graphic.Skeleton.Data.FindAnimation(animation);
         return found == null ? 0f : found.Duration;
+    }
+    private string ResolveAnimation(string name)
+    {
+        if (graphic.Skeleton.Data.FindAnimation("108201_skill0") != null)
+        {
+            if (name == Run) name = YummnRun;
+            else if (name == Victory) name = YummnVictory;
+            else if (name == Idle && RestAnimation != Idle) name = RestAnimation;
+        }
+        if(graphic.Skeleton.Data.FindAnimation(name)!=null)return name;
+        string mapped=name.Replace("05_","01_").Replace("104301_","108201_");
+        return graphic.Skeleton.Data.FindAnimation(mapped)!=null?mapped:"01_idle";
     }
 
     public void Destroy()

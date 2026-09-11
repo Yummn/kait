@@ -15,12 +15,17 @@ public enum KaitAbilityOrigin { Dnd5e, KaitOriginal, ProjectOriginal }
     public KaitSkill skill;
     public KaitPassive passive;
     public int cooldown;
+    public int kiExtraCost;
+    public string traditionTag, actionOverride, sigil;
+    public string[] allowedCharacters, prerequisiteIds, effectTags;
     public bool copyable = true, experimental;
     public string[] tags;
 }
 [Serializable] public sealed class KaitRewardPack
 {
-    public int id, sourceTurn;
+    public int id, sourceTurn, generationSeed;
+    public KaitCharacter characterId;
+    public string rulesProfileId, cardPoolVersion;
     public Vector2Int sourceMergeCell;
     public bool rerolled;
     public readonly List<KaitAbilityDef> choices = new List<KaitAbilityDef>();
@@ -80,9 +85,8 @@ public static class KaitAbilityCatalog
             experimental=passive==KaitPassive.WildMagic,
             origin=passive==KaitPassive.Simplify||passive==KaitPassive.Trend?KaitAbilityOrigin.ProjectOriginal:KaitAbilityOrigin.Dnd5e,
             tags=new[]{ "Passive",rarity==2?"BuildCore":"Component" }};
-    public static KaitAbilityDef Get(KaitSkill skill) => All.Find(d=>d.kind==KaitAbilityKind.Active && d.skill==skill);
-    public static KaitAbilityDef Get(KaitPassive passive) => All.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive);
+    public static KaitAbilityDef Get(KaitSkill skill) => All.Find(d=>d.kind==KaitAbilityKind.Active && d.skill==skill) ?? YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Active && d.skill==skill);
+    public static KaitAbilityDef Get(KaitPassive passive) => All.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive) ?? YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive);
     public static string RarityName(KaitRarity rarity) => rarity==KaitRarity.Common?"普通":rarity==KaitRarity.Uncommon?"罕见":"稀有";
     public static Color RarityColor(KaitRarity rarity) => rarity==KaitRarity.Common?new Color(.82f,.87f,.92f):rarity==KaitRarity.Uncommon?new Color(.25f,.62f,1f):new Color(1f,.76f,.27f);
 }
-

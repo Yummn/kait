@@ -16,7 +16,7 @@ public static class KaitBuild
         Directory.CreateDirectory(Path.GetDirectoryName(output));
 
         PlayerSettings.defaultScreenWidth = 1920;
-        PlayerSettings.bundleVersion = "0.6.1";
+        PlayerSettings.bundleVersion = "0.8.2";
         PlayerSettings.defaultScreenHeight = 1080;
         PlayerSettings.defaultIsNativeResolution = true;
         PlayerSettings.fullScreenMode = FullScreenMode.FullScreenWindow;
@@ -43,12 +43,12 @@ public static class KaitBuild
         KaitAppIconSettings.Apply();
         KaitBuildArtSettings.Apply();
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
-        string output = Path.Combine(projectRoot, "Build", "kait-v0.6.1.apk");
+        string output = Path.Combine(projectRoot, "Build", "kait-v0.8.2.apk");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
 
         PlayerSettings.productName = "Kait";
-        PlayerSettings.bundleVersion = "0.6.1";
-        PlayerSettings.Android.bundleVersionCode = 601;
+        PlayerSettings.bundleVersion = "0.8.2";
+        PlayerSettings.Android.bundleVersionCode = 802;
         PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "com.kaitprototype.demo");
         PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
         PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9868c53d195e3c3d71198b18599de940
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 48000
+    compressionFormat: 0
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 1
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 0
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 0
+  userData: User approved ElevenLabs audition 20260910 unchanged PCM
+  assetBundleName:
+  assetBundleVariant:

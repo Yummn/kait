@@ -9,6 +9,7 @@ public sealed class KaitCardSkin : MonoBehaviour
     private KaitCardOutline outline;
     private KaitUiGlyph clockIcon;
     private Text cooldown;
+    private KaitAbilityDef definition;
     private static Sprite rounded;
     public static Sprite RoundRect()
     {
@@ -31,13 +32,22 @@ public sealed class KaitCardSkin : MonoBehaviour
         if(cache.TryGetValue(key,out var s))return s;
         var t=Resources.Load<Texture2D>(Root+"CardFrames");if(t==null)return null;
         float w=t.width/3f,h=t.height/2f;
-        s=Sprite.Create(t,new Rect((int)def.rarity*w,(def.kind==KaitAbilityKind.Active?1:0)*h,w,h),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);
+        s=Sprite.Create(t,new Rect((int)def.rarity*w,(def.kind==KaitAbilityKind.Active?0:1)*h,w,h),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);
         cache[key]=s;return s;
     }
     public static Sprite Icon(KaitAbilityDef def)
     {
         if(def==null)return null;
         string key=def.id;if(cache.TryGetValue(key,out var s))return s;
+        int yummnIndex=YummnCatalog.Cards.IndexOf(def);
+        if(yummnIndex>=0)
+        {
+            var current=YummnV08Art.Icon(yummnIndex);if(current!=null){cache[key]=current;return current;}
+            if(yummnIndex>=12)return null;
+            var atlas=Resources.Load<Texture2D>("KaitVisuals/Yummn/CardIcons");if(atlas==null)return null;
+            float width=atlas.width/4f,height=atlas.height/3f;
+            s=Sprite.Create(atlas,new Rect(yummnIndex%4*width,(2-yummnIndex/4)*height,width,height),UnityEngine.Vector2.one*.5f,100,0,SpriteMeshType.FullRect);cache[key]=s;return s;
+        }
         int index=KaitAbilityCatalog.All.IndexOf(def),sheet=index/16,cell=index%16;
         var t=Resources.Load<Texture2D>(Root+"Icons"+sheet);if(t==null)return null;
         int rows=sheet==2?2:4;float w=t.width/4f,h=t.height/(float)rows;
@@ -48,6 +58,7 @@ public sealed class KaitCardSkin : MonoBehaviour
     {
         if(def==null)return;
         var skin=card.GetComponent<KaitCardSkin>()??card.AddComponent<KaitCardSkin>();
+        skin.definition=def;
         if(skin.outline==null)
         {
             var border=new GameObject("Rarity Outline",typeof(RectTransform),typeof(CanvasRenderer),typeof(KaitCardOutline));border.transform.SetParent(card.transform,false);
@@ -65,5 +76,21 @@ public sealed class KaitCardSkin : MonoBehaviour
         skin.clockIcon.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
         skin.cooldown.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
         skin.cooldown.text=def.cooldown.ToString();
+        skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-94);
+        skin.cooldown.rectTransform.sizeDelta=new Vector2(26,20);
+        if(YummnCatalog.IsMonk(def))
+        {
+            skin.clockIcon.gameObject.SetActive(false);
+            skin.cooldown.rectTransform.anchoredPosition=new Vector2(0,-100);
+            skin.cooldown.rectTransform.sizeDelta=new Vector2(138,22);
+            skin.cooldown.text=def.kind==KaitAbilityKind.Active?"额外气 "+def.kiExtraCost:def.traditionTag;
+        }
+    }
+    public void SetDetailsVisible(bool visible)
+    {
+        bool monk=YummnCatalog.IsMonk(definition);
+        bool show=visible&&(GetComponent<KaitSkillCard>()!=null||monk);
+        if(clockIcon!=null)clockIcon.gameObject.SetActive(show&&!monk);
+        if(cooldown!=null)cooldown.gameObject.SetActive(show);
     }
 }

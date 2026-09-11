@@ -7,6 +7,55 @@ using UnityEngine.UI;
 public sealed class KaitTutorialTests
 {
     [Test]
+    public void CharacterSwitchRefreshesHiddenBookBeforeItsFirstOpen()
+    {
+        var root=new GameObject("Root",typeof(RectTransform),typeof(Canvas));
+        try
+        {
+            var book=KaitTutorialBook.Create(root.transform,Resources.Load<Font>("NotoSansCJKsc-Regular"),null);
+            book.ShowPage(8);
+            book.YummnMode=true;
+            book.gameObject.SetActive(true);
+            Assert.AreEqual(0,book.PageIndex);
+            Assert.AreEqual(4,book.PageCount);
+            var text=string.Join("\n",System.Array.ConvertAll(book.GetComponentsInChildren<Text>(),t=>t.text));
+            StringAssert.Contains("Yummn · 玩法图解",text);
+            StringAssert.Contains("耗气进攻，回满再爆发",text);
+            StringAssert.Contains("1 / 4",text);
+            StringAssert.DoesNotContain("一条指令，两盘行动",text);
+            book.gameObject.SetActive(false);
+            book.YummnMode=false;
+            book.gameObject.SetActive(true);
+            Assert.AreEqual(10,book.PageCount);
+            Assert.IsFalse(book.GetComponentInChildren<YummnTutorialDiagram>() != null);
+            Assert.IsTrue(book.IllustrationLoaded);
+        }
+        finally { Object.DestroyImmediate(root); }
+    }
+
+    [TestCase("NotoSansCJKsc-Regular")]
+    [TestCase("Fonts/FusionPixel12pxProportionalZhHans")]
+    public void YummnPagesFitWithoutShrinkingText(string fontPath)
+    {
+        var root=new GameObject("Root",typeof(RectTransform),typeof(Canvas));
+        try
+        {
+            var book=KaitTutorialBook.Create(root.transform,Resources.Load<Font>(fontPath),null);
+            book.YummnMode=true;book.gameObject.SetActive(true);
+            for(int page=0;page<book.PageCount;page++)
+            {
+                book.ShowPage(page);Canvas.ForceUpdateCanvases();
+                foreach(var text in book.GetComponentsInChildren<Text>())
+                {
+                    Assert.LessOrEqual(text.preferredHeight,text.rectTransform.rect.height+2,$"Yummn page {page+1}: {text.text}");
+                    Assert.LessOrEqual(text.preferredWidth,text.rectTransform.rect.width+2,$"Yummn page {page+1}: {text.text}");
+                }
+            }
+        }
+        finally { Object.DestroyImmediate(root); }
+    }
+
+    [Test]
     public void EveryPageFitsItsTextBoxesAtFullSize()
     {
         var root=new GameObject("Root",typeof(RectTransform),typeof(Canvas));

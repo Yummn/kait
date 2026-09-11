@@ -264,6 +264,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void OnDestroy()
     {
+        ClearYummnLogicalGhosts();
         ClearFloatingKaitAnimations();
         ClearAllTrailVisuals();
         ClearAllEffectViews();
@@ -377,6 +378,9 @@ public sealed partial class KaitGame : MonoBehaviour
             var qa = new GameObject("Main Menu QA", typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
             qa.StartCoroutine(VerifyMainMenu(CommandLineValue("-kaitMenuPreview"), screenshotPath));
         }
+        else if (CommandLineValue("-kaitWarningsQA") == "1") StartCoroutine(VerifyApprovedWarnings(screenshotPath));
+        else if (CommandLineValue("-kaitYummn082QA") == "1") StartCoroutine(VerifyYummn082Runtime(screenshotPath));
+        else if (CommandLineValue("-kaitYummnQA") == "1") StartCoroutine(VerifyYummnRuntime(screenshotPath));
         else if (CommandLineValue("-kaitRewardDragQA") == "1") StartCoroutine(VerifyRewardDragRuntime(screenshotPath));
         else if (buildPreview == "mechanics") StartCoroutine(VerifyBuild061Runtime(screenshotPath));
         else if (skillPreview == "preview") StartCoroutine(PreviewSkillCardReveal(screenshotPath));
@@ -451,11 +455,13 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void Update()
     {
+        if(run.IsYummn&&((skillDeck!=null&&System.Array.Exists(skillDeck.Owned,c=>c!=null&&c.IsDragging))||(passiveDeck!=null&&System.Array.Exists(passiveDeck.Owned,c=>c!=null&&c.IsDragging))||(rewardDeck!=null&&rewardDeck.IsDragging)))
+        {yummnBufferedDirection=null;yummnAcceptBuffer=false;return;}
         if (Input.GetKeyDown(KeyCode.Escape) && settingsOverlay != null && settingsOverlay.activeSelf)
         {
             settingsOverlay.SetActive(false); menuClosedFrame = Time.frameCount; return;
         }
-        if (TutorialBlocksInput()) { ResetSwipeTracking(); return; }
+        if (TutorialBlocksInput()) { ResetSwipeTracking();yummnBufferedDirection=null;yummnAcceptBuffer=false; return; }
         if (run.ended) return;
         HandleTouchSwipe();
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) HandleDirection(KaitDirection.Up);
@@ -491,6 +497,8 @@ public sealed partial class KaitGame : MonoBehaviour
                 swipeStartPosition = touch.position;
                 swipeTriggered = false;
                 swipeStartedOverButton = IsTouchOverButton(touch.position);
+                tapStartedOnYummn = !swipeStartedOverButton && IsYummnTapPosition(touch.position);
+                tapStartedAt=Time.unscaledTime;tapTravel=0;
             }
             if (touch.fingerId != swipeFingerId) continue;
             trackedTouch = touch;
@@ -499,6 +507,8 @@ public sealed partial class KaitGame : MonoBehaviour
         }
 
         if (!foundTrackedTouch) return;
+        tapTravel=Mathf.Max(tapTravel,Vector2.Distance(trackedTouch.position,swipeStartPosition));
+        if(Input.touchCount>1)tapStartedOnYummn=false;
 
         if (!swipeTriggered && !swipeStartedOverButton &&
             (trackedTouch.phase == TouchPhase.Moved || trackedTouch.phase == TouchPhase.Ended))
@@ -516,6 +526,8 @@ public sealed partial class KaitGame : MonoBehaviour
             }
         }
 
+        if(trackedTouch.phase==TouchPhase.Ended && tapStartedOnYummn && !swipeTriggered &&
+            tapTravel<20f && Time.unscaledTime-tapStartedAt<.4f && IsYummnTapPosition(trackedTouch.position))HandleWait();
         if (trackedTouch.phase == TouchPhase.Ended || trackedTouch.phase == TouchPhase.Canceled)
             ResetSwipeTracking();
     }
@@ -542,6 +554,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void LateUpdate()
     {
+        UpdateAtmosphere();
         UpdateRiftDangerIcons();
 
         // The actor layer is outside the individual grid cells so later-drawn
@@ -552,7 +565,7 @@ public sealed partial class KaitGame : MonoBehaviour
         int index = kate.x + kate.y * KaitRun.BattleSize;
         if (index < 0 || index >= battleCells.Length || battleCells[index] == null) return;
         if (kaitSpine.Root.parent == battleKaitLayer)
-            kaitSpine.Root.position = battleCells[index].rectTransform.position;
+            kaitSpine.Root.position = KaitVisualPosition(kate);
     }
 
     private void BuildUI()
@@ -660,7 +673,7 @@ public sealed partial class KaitGame : MonoBehaviour
         BuildEndOverlay(bg.transform);
         BuildTutorialOverlay(canvas.transform);
         BuildSettingsOverlay(canvas.transform);
-        mainMenu = KaitMainMenu.Create(canvas.transform, threatBoardFont, roundedSprite, StartFromMainMenu,
+        mainMenu = KaitMainMenu.Create(canvas.transform, threatBoardFont, roundedSprite, ShowCharacterSelection,
             OpenMenuTutorial, OpenMenuSettings);
     }
 
@@ -997,6 +1010,8 @@ public sealed partial class KaitGame : MonoBehaviour
         Button left = MakeHybridButton(controls.transform, leftPosition, keySize, "A");
         Button down = MakeHybridButton(controls.transform, downPosition, keySize, "S");
         Button right = MakeHybridButton(controls.transform, rightPosition, keySize, "D");
+        waitButton = MakeHybridButton(controls.transform, new Vector2(62,65), keySize, "等待");
+        waitButton.onClick.AddListener(HandleWait);
         Button restart = MakeHybridButton(controls.transform, restartPosition, restartSize, "重新开始  R");
         up.onClick.AddListener(() => HandleDirection(KaitDirection.Up));
         left.onClick.AddListener(() => HandleDirection(KaitDirection.Left));
@@ -1028,7 +1043,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private void BuildTutorialOverlay(Transform parent)
     {
         tutorialOverlay = KaitTutorialBook.Create(parent, threatBoardFont, roundedSprite).gameObject;
-        tutorialOverlay.GetComponent<KaitTutorialBook>().Completed = () => { if (MainMenuVisible) StartFromMainMenu(); };
+        tutorialOverlay.GetComponent<KaitTutorialBook>().Completed = () => { if (MainMenuVisible) ShowCharacterSelection(); };
     }
 
     private void BuildSettingsOverlay(Transform parent)
@@ -1038,42 +1053,47 @@ public sealed partial class KaitGame : MonoBehaviour
         Stretch(shade.rectTransform, 0);
         settingsOverlay = shade.gameObject;
 
-        Image card = Rect("Settings Card", shade.transform, Vector2.zero, new Vector2(640, 650), Panel);
+        Image card = Rect("Settings Card", shade.transform, Vector2.zero, new Vector2(780, 740), Panel);
         SkinFlatPanel(card);
-        Text title = MakeText("设置", card.transform, new Vector2(0, 270), new Vector2(520, 46), 28, Cream,
+        Text title = MakeText("设置", card.transform, new Vector2(0, 300), new Vector2(520, 46), 28, Cream,
             TextAnchor.MiddleCenter, FontStyle.Bold, false);
         title.font = threatBoardFont;
+        characterSettingsTitle=title;
 
-        disableThreatPillarsToggle = MakeFlatToggle(card.transform, new Vector2(0, 190), new Vector2(500, 62),
+        disableThreatPillarsToggle = MakeFlatToggle(card.transform, new Vector2(0, 95), new Vector2(500, 58),
             "取消2048墙体");
         disableThreatPillarsToggle.SetIsOnWithoutNotify(!run.config.enableThreatPillars);
         disableThreatPillarsToggle.onValueChanged.AddListener(SetThreatPillarsDisabled);
 
-        playerInvincibleToggle = MakeFlatToggle(card.transform, new Vector2(0, 118), new Vector2(500, 62),
+        playerInvincibleToggle = MakeFlatToggle(card.transform, new Vector2(0, 170), new Vector2(500, 58),
             "人物无敌");
         playerInvincibleToggle.SetIsOnWithoutNotify(run.config.playerInvincible);
         playerInvincibleToggle.onValueChanged.AddListener(SetPlayerInvincible);
 
-        disableRiftDamageToggle = MakeFlatToggle(card.transform, new Vector2(0, 46), new Vector2(500, 62),
+        disableRiftDamageToggle = MakeFlatToggle(card.transform, new Vector2(0, 20), new Vector2(500, 58),
             "去除裂隙伤害");
         disableRiftDamageToggle.SetIsOnWithoutNotify(!run.config.enableRiftDamage);
         disableRiftDamageToggle.onValueChanged.AddListener(SetRiftDamageDisabled);
 
-        disableFriendlyFireToggle = MakeFlatToggle(card.transform, new Vector2(0, -26), new Vector2(500, 62),
+        disableFriendlyFireToggle = MakeFlatToggle(card.transform, new Vector2(0, -55), new Vector2(500, 58),
             "去除敌人友伤");
         disableFriendlyFireToggle.SetIsOnWithoutNotify(!run.config.enableFriendlyFire);
         disableFriendlyFireToggle.onValueChanged.AddListener(SetFriendlyFireDisabled);
 
-        disableCollisionDamageToggle = MakeFlatToggle(card.transform, new Vector2(0, -98), new Vector2(500, 62),
+        disableCollisionDamageToggle = MakeFlatToggle(card.transform, new Vector2(0, -130), new Vector2(500, 58),
             "去除碰撞伤害");
         disableCollisionDamageToggle.SetIsOnWithoutNotify(!run.config.enableCollisionDamage);
         disableCollisionDamageToggle.onValueChanged.AddListener(SetCollisionDamageDisabled);
 
-        Text note = MakeText("伤害选项即时生效；墙体选项会重新开始本局", card.transform, new Vector2(0, -168), new Vector2(520, 30),
+        Text note = MakeText("", card.transform, new Vector2(0, 250), new Vector2(620, 30),
             14, Peach, TextAnchor.MiddleCenter, FontStyle.Normal, false);
         note.font = threatBoardFont;
+        characterSettingsHint=note;
 
-        MakeFlatButton(card.transform, new Vector2(0, -250), new Vector2(180, 48), "关闭").onClick.AddListener(() =>
+        AddYummnSettings(card.transform);
+        RefreshCharacterSettings();
+        MakeFlatButton(card.transform,new Vector2(-130,-315),new Vector2(220,48),"返回人物选择").onClick.AddListener(()=>{ShowMainMenu();ShowCharacterSelection();});
+        MakeFlatButton(card.transform, new Vector2(130, -315), new Vector2(180, 48), "关闭").onClick.AddListener(() =>
         {
             GameAudio.PlayClick();
             settingsOverlay.SetActive(false);
@@ -1104,6 +1124,7 @@ public sealed partial class KaitGame : MonoBehaviour
         if (run.config.playerInvincible == enabled) return;
         GameAudio.PlayClick();
         run.config.playerInvincible = enabled;
+        run.RecordSettingsChange();
         SaveBooleanPreference(PlayerInvinciblePreference, enabled);
     }
 
@@ -1113,6 +1134,7 @@ public sealed partial class KaitGame : MonoBehaviour
         if (run.config.enableRiftDamage == enabled) return;
         GameAudio.PlayClick();
         run.config.enableRiftDamage = enabled;
+        run.RecordSettingsChange();
         SaveBooleanPreference(DisableRiftDamagePreference, disabled);
     }
 
@@ -1122,6 +1144,7 @@ public sealed partial class KaitGame : MonoBehaviour
         if (run.config.enableFriendlyFire == enabled) return;
         GameAudio.PlayClick();
         run.config.enableFriendlyFire = enabled;
+        run.RecordSettingsChange();
         SaveBooleanPreference(DisableFriendlyFirePreference, disabled);
     }
 
@@ -1131,6 +1154,7 @@ public sealed partial class KaitGame : MonoBehaviour
         if (run.config.enableCollisionDamage == enabled) return;
         GameAudio.PlayClick();
         run.config.enableCollisionDamage = enabled;
+        run.RecordSettingsChange();
         SaveBooleanPreference(DisableCollisionDamagePreference, disabled);
     }
 
@@ -1169,7 +1193,8 @@ public sealed partial class KaitGame : MonoBehaviour
         endAudioPlayed = false;
         kaitDefeatingEnemyId = -1;
         int seed = Environment.TickCount;
-        run.Reset(seed);
+        run.SelectCharacter(run.Character,seed,YummnPreset());yummnRunStartedAt=Time.realtimeSinceStartup;
+        ConfigureCharacterVisuals();
         EnsureKaitSpine();
         kaitSpine?.PlayLoop(KaitSpineView.Idle);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
@@ -1185,7 +1210,9 @@ public sealed partial class KaitGame : MonoBehaviour
     {
         if (TutorialBlocksInput()) return;
         if (run.ended) return;
-        InterruptKaitAnimationForMovement();
+        if (busy && run.IsYummn) { if(yummnAcceptBuffer) { yummnBufferedDirection=direction;yummnBufferedTurn=run.turn;yummnBufferedAction=run.ActionIndex; } return; }
+        if(!run.IsYummn)InterruptKaitAnimationForMovement();
+        else {kaitSpine?.SetHitFlash(0f);kaitSpine?.SetTint(Color.white);}
         if (busy) InterruptActivePresentationForMovement();
         targetingSkill = KaitSkill.None;
         skillDeck?.Sync(run, targetingSkill);
@@ -1193,9 +1220,10 @@ public sealed partial class KaitGame : MonoBehaviour
         List<KaitEnemy> enemySnapshot = SnapshotEnemies();
         List<KaitSpawnRequest> spawnSnapshot = SnapshotSpawns();
         visualPhantomTargetId = run.forcedTargetEnemyId;
-        KaitTurnResult result = run.chainActive ? run.ContinueChain(direction) : run.TryGlobalInput(direction);
+        KaitTurnResult result = run.IsYummn ? run.TryYummnCommand(direction,run.turn,run.ActionIndex) : run.chainActive ? run.ContinueChain(direction) : run.TryGlobalInput(direction);
         if (!result.valid)
         {
+            if(run.IsYummn)kaitSpine?.PlayLoop(KaitSpineView.Idle);
             visualPhantomTargetId = -1;
             GameAudio.PlayInvalid();
             statusText.text = result.message;
@@ -1247,6 +1275,8 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void ResetInterruptedAnimationState()
     {
+        yummnMoving=false;
+        StopYummnThreatPulses();
         visualPhantomTargetId = -1;
         if (gameContent != null) gameContent.anchoredPosition = gameContentBasePosition;
         if (battleCells != null)
@@ -1278,6 +1308,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private IEnumerator PlayTurn(KaitTurnResult result, Vector2Int start, List<KaitEnemy> enemySnapshot, List<KaitSpawnRequest> spawnSnapshot)
     {
+        if(run.IsYummn){yield return PlayYummnTurn(result,start,enemySnapshot,spawnSnapshot);yield break;}
         busy = true;
         var healthBefore = new List<KaitEnemy>();
         foreach (KaitEnemy enemy in enemySnapshot)
@@ -1395,7 +1426,8 @@ public sealed partial class KaitGame : MonoBehaviour
         RefreshBattle();
         RefreshThreat();
         RefreshSkillUI();
-        turnText.text = $"回合 {run.turn}　速度 {run.momentum}";
+        turnText.text = run.IsYummn ? $"行动 {run.turn}　拳力 1" : $"回合 {run.turn}　速度 {run.momentum}";
+        RefreshYummnHud();
         if(buildDirectionText!=null) buildDirectionText.text=run.HasPassive(KaitPassive.ReverseGravity)?$"重力反转   主 {DirectionGlyph(run.currentGlobalDirection)} / 右盘 {DirectionGlyph(run.actualThreatDirection)}":"";
         SetHealthBar(runHealthBar, run.kateHp);
         ShowPendingSkillChoice();
@@ -1453,7 +1485,7 @@ public sealed partial class KaitGame : MonoBehaviour
         if (TutorialBlocksInput()) return false;
         if (run.ended || slot < 0 || slot >= run.skills.Count) return false;
         if (!KaitSkillDeck.IsReady(run, run.skills[slot])) return false;
-        if (busy) InterruptActivePresentationForMovement();
+        if (busy&&!run.IsYummn) InterruptActivePresentationForMovement();
         KaitSkill skill = run.skills[slot];
         if (skill == KaitSkill.ShadowStep)
         {
@@ -1479,6 +1511,7 @@ public sealed partial class KaitGame : MonoBehaviour
         bool applied = run.TryUseSkill(skill, -1, out string message);
         if (applied)
         {
+            if(run.IsYummn){PlayYummnSkillFeedback(skill);if(busy)RefreshSkillUI();else RefreshAll();return true;}
             GameAudio.PlaySkillUse(skill);
             PlayBuildSkillEffect(skill,run.katePos);
             if (skill == KaitSkill.DreadSlash) GameAudio.PlayKaitLargeAttackSkillVoice();
@@ -1615,7 +1648,9 @@ public sealed partial class KaitGame : MonoBehaviour
         kaitSpine?.SetVisible(false);
         foreach (EnemySpineView view in enemySpines.Values) view.SetVisible(false);
         Vector2Int kate = displayKate ?? run.katePos;
-        List<KaitDirection> allowed = run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
+        List<KaitDirection> allowed = run.IsYummn && run.YummnWindow && !busy
+            ? new List<KaitDirection>{KaitDirection.Up,KaitDirection.Down,KaitDirection.Left,KaitDirection.Right}
+            : run.chainActive ? run.AllowedTurnDirections() : new List<KaitDirection>();
         for (int y = 1; y < KaitRun.BattleSize - 1; y++)
         {
             for (int x = 1; x < KaitRun.BattleSize - 1; x++)
@@ -1635,11 +1670,13 @@ public sealed partial class KaitGame : MonoBehaviour
                 battlePortraits[index].color = Color.white;
                 battleUnitClips[index].gameObject.SetActive(false);
                 battleWarningLines[index].gameObject.SetActive(false);
+                battleWarningLines[index].GetComponent<KaitBossWarningFrames>()?.Clear();
                 battleMageWarnings[index].gameObject.SetActive(false);
                 battleRifts[index].gameObject.SetActive(false);
                 battleRiftDangerIcons[index].gameObject.SetActive(false);
                 tile.sprite = dungeonFloorSprite != null ? dungeonFloorSprite : roundedSprite;
                 tile.type = dungeonFloorSprite != null ? Image.Type.Simple : Image.Type.Sliced;
+                // Snow paving is authored in its final blue-gray palette.
                 tile.color = Color.white;
                 battleObstacles[index].gameObject.SetActive(run.walls[x, y]);
                 battleObstacleShadows[index].SetActive(run.walls[x, y]);
@@ -1649,32 +1686,11 @@ public sealed partial class KaitGame : MonoBehaviour
                     image.color = Color.clear;
                     label.text = "";
                 }
-                Color? intentTint = IntentTintAt(p);
-                KaitEnemy aimingWarlock = (animatedEnemies ?? run.enemies).Find(e =>
-                    e.life == KaitEnemyLife.Active && !firingWarlocks.Contains(e.id) &&
-                    e.intent.type == KaitIntentType.CrossBlast && e.intent.affectedCells.Contains(p));
-                if (!run.walls[x,y] && aimingWarlock != null)
-                {
-                    battleMageWarnings[index].ConfigureAim(aimingWarlock.intent.target == p);
-                    battleMageWarnings[index].gameObject.SetActive(true);
-                }
                 bool impact = impactCells.Contains(p);
-                if (!run.walls[x, y] && (intentTint.HasValue || impact))
-                {
-                    Image warning = battleWarningLines[index];
-                    warning.gameObject.SetActive(true);
-                    Color warningTint = impact ? Gold : Hex("#B64832");
-                    float warningAlpha = impact ? 0.9f : 0.52f;
-                    warning.color = warning.sprite != null
-                        ? new Color(warningTint.r, warningTint.g, warningTint.b, warningAlpha)
-                        : Color.clear;
-                    foreach (Image dash in warning.GetComponentsInChildren<Image>(true))
-                        if (dash != warning) dash.color = new Color(warningTint.r, warningTint.g, warningTint.b, impact ? 0.95f : 0.72f);
-                    warning.rectTransform.localRotation = Quaternion.identity;
-                }
-                if (run.chainActive)
+                RefreshSelectedTelegraph(index,p,impact);
+                if (run.chainActive || run.IsYummn && run.YummnWindow && !busy)
                     foreach (KaitDirection choice in allowed)
-                        if (run.katePos + KaitRun.Delta(choice) == p)
+                        if (!run.walls[x,y] && run.katePos + KaitRun.Delta(choice) == p)
                         {
                             label.text = ">";
                             label.rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(KaitRun.Delta(choice)));
@@ -1709,6 +1725,7 @@ public sealed partial class KaitGame : MonoBehaviour
                         enemySpine.SetParent(actorParent);
                         enemySpine.Root.position = battleCells[index].rectTransform.position;
                         enemySpine.SetTint(unitTint);
+                        enemySpine.SyncPreparation(KaitTelegraphPlan.Ready(enemy));
                         enemySpine.Face(enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction);
                         enemySpine.SetVisible(true);
                     }
@@ -1745,7 +1762,7 @@ public sealed partial class KaitGame : MonoBehaviour
                         // the part of her sword extending into that neighbour.
                         Transform actorParent = battleKaitLayer != null ? battleKaitLayer : battleCells[index].transform;
                         kaitSpine.SetParent(actorParent);
-                        kaitSpine.Root.position = battleCells[index].rectTransform.position;
+                        kaitSpine.Root.position = KaitVisualPosition(kate);
                         kaitSpine.SetVisible(true);
                     }
                     else
@@ -1764,7 +1781,7 @@ public sealed partial class KaitGame : MonoBehaviour
                 }
                 bool riftCanDamageOccupant = run.config.enableRiftDamage &&
                     (enemy != null || (!hideKate && kate == p && !run.config.playerInvincible));
-                bool unitStandingOnRift = spawn != null && riftCanDamageOccupant;
+                bool unitStandingOnRift = !run.IsYummn && spawn != null && riftCanDamageOccupant;
                 if (unitStandingOnRift)
                 {
                     Image danger = battleRiftDangerIcons[index];
@@ -1966,6 +1983,7 @@ public sealed partial class KaitGame : MonoBehaviour
                 life = enemy.life,
                 rangedState = enemy.rangedState,
                 frozenActions = enemy.frozenActions,
+                yummnFrozen=enemy.yummnFrozen,yummnStunned=enemy.yummnStunned,
                 cursed=enemy.cursed,hexArmorSpent=enemy.hexArmorSpent,
                 facing = enemy.facing,
                 intent = intent
@@ -2372,7 +2390,7 @@ public sealed partial class KaitGame : MonoBehaviour
                         PlayArrowImpact(victimEnemy.pos, action.from, false);
                 }
             }
-            if (action.hitKate)
+            if (action.hitKate && (!run.IsYummn || !action.guarded && action.damage > 0))
             {
                 kaitWasHit = true;
                 kaitAttacker = run.enemies.Find(e => e.id == action.enemyId) ??
@@ -2406,7 +2424,9 @@ public sealed partial class KaitGame : MonoBehaviour
         if (bodyHit) GameAudio.PlayBodyHurt();
         if (kaitWasHit)
         {
-            GameAudio.PlayKaitDamageVoice(run.kateHp, run.config.kateMaxHp);
+            // Yummn's ordered Hit event owns the voice and uses that event's HP,
+            // not the already-resolved end-of-action HP. Avoid playing it twice.
+            if(!run.IsYummn)GameAudio.PlayKaitDamageVoice(run.kateHp, run.config.kateMaxHp);
             if (run.kateHp <= 0 && kaitAttacker != null)
             {
                 kaitDefeatingEnemyId = kaitAttacker.id;
@@ -2495,7 +2515,7 @@ public sealed partial class KaitGame : MonoBehaviour
         foreach (KaitEnemy enemy in source)
         {
             if (enemy.life != KaitEnemyLife.Active) continue;
-            if (enemy.intent.type == KaitIntentType.Melee && enemy.intent.target == p)
+            if (enemy.intent.type == KaitIntentType.Melee && (run.IsYummn && run.Yummn.rules.BossLine && enemy.type == KaitEnemyType.ShieldKnight ? enemy.intent.affectedCells.Contains(p) : enemy.intent.target == p))
                 return Hex("#A64F5A");
             if (enemy.intent.type == KaitIntentType.LineShot && enemy.intent.affectedCells.Contains(p)) return Hex("#944A58");
         }
@@ -2525,6 +2545,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private IEnumerator AnimateThreat(KaitTurnResult result)
     {
+        if(run.IsYummn)StopYummnThreatPulses();
         displayedThreat = result.threatBefore;
         hideThreatValues = true;
         RefreshThreat();
@@ -2551,6 +2572,14 @@ public sealed partial class KaitGame : MonoBehaviour
         displayedThreat = result.threatAfter;
         hideThreatValues = false;
         RefreshThreat();
+        // Cosmetic merge/spawn pulses must not hold the next Yummn input.
+        // Cancel these shared-cell pulses before the next slide or a reset.
+        if(run.IsYummn)yummnThreatPulseRoutine=StartCoroutine(AnimateThreatPulses(result));
+        else yield return AnimateThreatPulses(result);
+    }
+
+    private IEnumerator AnimateThreatPulses(KaitTurnResult result)
+    {
         if (result.merges.Count > 0)
         {
             int strongest = 0;
@@ -2738,7 +2767,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private static bool ShouldPlayBodyHurt(KaitEnemyAction action, bool playerInvincible)
     {
-        return action != null && !playerInvincible && action.hitKate && action.damage > 0
+        return action != null && !playerInvincible && !action.guarded && action.hitKate && action.damage > 0
             && action.type == KaitIntentType.Melee;
     }
 
@@ -3118,12 +3147,22 @@ public sealed partial class KaitGame : MonoBehaviour
         if (run.won) kaitSpine?.PlayLoop(KaitSpineView.Victory);
         endOverlay.SetActive(true);
         endOverlay.transform.SetAsLastSibling();
-        string reason = run.won ? "击败盾骑士 · 本局胜利" : "凯特 HP 归零 · 本局失败";
+        string reason = run.won ? "击败盾骑士 · 本局胜利" : run.endReason == "Threat Locked"||run.endReason=="ThreatBoardLocked" ? "2048 无法移动 · 本局失败" : "凯特 HP 归零 · 本局失败";
         endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    主动刹车：{run.activeWallStops}\n刷怪抑制：{run.spawnSuppressedCount}    友伤：{run.friendlyFireDamage}";
+        if(run.IsYummn)
+        {
+            var m=run.Yummn.metrics;
+            endText.text=$"{(run.won?"击败盾骑士 · 本局胜利":run.endReason=="ThreatBoardLocked"?"2048无可用移动，本局失败":"Yummn 生命归零 · 本局失败")}\n\n行动：{run.turn}    击杀：{run.kills}\n敌人阶段：{m.enemyPhases}    气竭循环：{m.exhaustionCycles}\n最长高速：{m.longestBurst}    {(run.Yummn.rules.Legacy?"数字盘重置":"锁盘失败")}：{m.threatLocks}";
+        }
     }
 
     private void AppendLog(Vector2Int start, KaitTurnResult result)
     {
+        if(run.IsYummn)
+        {
+            File.AppendAllText(Path.ChangeExtension(logPath,run.Yummn.rules.Is082?"yummn-v082.jsonl":run.Yummn.rules.Legacy?"yummn-v08.jsonl":"yummn-v081.jsonl"),run.YummnActionJson(result,Time.realtimeSinceStartup-yummnRunStartedAt)+"\n",Encoding.UTF8);
+            return;
+        }
         int occupied = 0;
         foreach (int value in run.threat) if (value != 0) occupied++;
         float occupancy = occupied / (float)run.threat.Length;
@@ -3218,6 +3257,15 @@ public sealed partial class KaitGame : MonoBehaviour
         }
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
+        if (CommandLineValue("-kaitAtmospherePreview") == "1")
+        {
+            UpdateAtmosphere();
+            atmosphere.SetState(0,0,0); CaptureCanvasToPng(path + ".clear.png");
+            atmosphere.SetState(1,0,3); CaptureCanvasToPng(path + ".clock.png");
+            atmosphere.SetState(0,1,3); CaptureCanvasToPng(path + ".danger.png");
+            atmosphere.SetState(1,1,3); CaptureCanvasToPng(path + ".both.png");
+            Debug.Log("Atmosphere QA: clear, clock, danger and combined captures complete; raycast=" + atmosphere.raycastTarget);
+        }
         if (CommandLineValue("-kaitGardenPreview") == "motion" && layeredGarden != null)
         {
             var crown=layeredGarden.transform.Find("Garden Decorations/Tree Crown") as RectTransform;
@@ -4172,7 +4220,7 @@ public sealed partial class KaitGame : MonoBehaviour
             RefreshBattle();
             yield return new WaitForEndOfFrame();
             int warningCount=0;
-            foreach (var warning in battleMageWarnings) if (warning!=null && warning.gameObject.activeSelf) warningCount++;
+            foreach (var warning in selectedTelegraphs) if (warning!=null && warning.gameObject.activeSelf && warning.Plan.mage) warningCount++;
             Debug.Assert(warningCount==spell.affectedCells.Count,"Mage aim must match legal cells");
             if (normalized.Contains("aim"))
             {

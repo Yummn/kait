@@ -142,7 +142,7 @@ public sealed class KaitRewardDeckTests
     {
         var area=root.GetComponent<RectTransform>();
         var card=KaitPassiveCard.Create(area,null,Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"),null,null,null,null);
-        card.Show(KaitPassive.BirdEye,false,new Vector2(0,area.rect.yMax),0);
+        card.Show(KaitPassive.BirdEye,false,new Vector2(0,KaitPassiveCard.DockY(area.rect,false,false)),0);
         var text=card.transform.Find("Name").GetComponent<Text>();
         float top=card.Rect.anchoredPosition.y+text.rectTransform.anchoredPosition.y+text.rectTransform.rect.height*.5f;
         Assert.LessOrEqual(top,area.rect.yMax-12);

@@ -37,7 +37,7 @@ public sealed class KaitSelectedSkillAudioTests
     [TestCase(KaitSkill.ShadowStep, Root + "ShadowStep_B")]
     [TestCase(KaitSkill.DreadSlash, Root + "DreadCharge_B")]
     [TestCase(KaitSkill.LesserPhantom, Root + "Phantom_B")]
-    [TestCase(KaitSkill.None, "Audio/UI/SkillUse_01")]
+    [TestCase(KaitSkill.None, "Audio/UI/SelectedModel/Cast_B")]
     public void EachSkillSelectsOnlyItsAssignedClip(KaitSkill skill, string expected)
     {
         MethodInfo select = typeof(GameAudio).GetMethod("SelectedSkillClip", BindingFlags.Static | BindingFlags.NonPublic);

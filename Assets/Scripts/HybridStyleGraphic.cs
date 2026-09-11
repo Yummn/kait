@@ -27,6 +27,8 @@ public sealed class HybridStyleGraphic : MaskableGraphic
     [SerializeField] private Sprite leftSprite;
     [SerializeField] private Sprite rightSprite;
     private Material dualTextureMaterial;
+    private bool blackKeyLeft;
+    public void SetBlackKeyLeft(bool value){blackKeyLeft=value;EnsureMaterial();SetMaterialDirty();}
     [SerializeField] private Color leftTint = Color.white;
     [SerializeField] private Color rightColor = Color.gray;
     [SerializeField] private Color seamColor = Color.white;
@@ -285,11 +287,12 @@ public sealed class HybridStyleGraphic : MaskableGraphic
             }
         }
         if (sharedHybridMaterial == null) return;
-        if (rightSprite != null)
+        if (rightSprite != null || blackKeyLeft)
         {
             if (dualTextureMaterial == null)
                 dualTextureMaterial = new Material(sharedHybridMaterial) { hideFlags = HideFlags.HideAndDontSave };
-            dualTextureMaterial.SetTexture("_RightTex", rightSprite.texture);
+            dualTextureMaterial.SetTexture("_RightTex", rightSprite!=null?rightSprite.texture:null);
+            dualTextureMaterial.SetFloat("_BlackKeyLeft",blackKeyLeft?1f:0f);
             material = dualTextureMaterial;
         }
         else material = sharedHybridMaterial;

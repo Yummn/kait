@@ -44,9 +44,9 @@ public sealed class KaitSkillCardTests
     public void BottomDockShowsCompleteCooldownAndExpandsInsideScreen()
     {
         var area = new Rect(-960,-540,1920,1080);
-        Assert.AreEqual(-516, KaitSkillCard.DockY(area, false, false));
-        // Availability is centred at y=2 and 22 pixels high on the card.
-        Assert.GreaterOrEqual(KaitSkillCard.DockY(area, false, false) + 2 - 11, area.yMin + 12);
+        Assert.AreEqual(-592, KaitSkillCard.DockY(area, false, false));
+        // Compact availability is centred at y=73 and remains fully visible.
+        Assert.GreaterOrEqual(KaitSkillCard.DockY(area, false, false) + 73 - 9, area.yMin + 12);
         Assert.Greater(KaitSkillCard.DockY(area, true, false) - KaitSkillCard.Size.y / 2, area.yMin);
         Assert.Less(KaitSkillCard.DockY(area, false, true) + KaitSkillCard.Size.y / 2, area.yMin);
         var x = KaitSkillDeck.ResolveDockPositions(new[] { 800f, 810f, 820f }, area);

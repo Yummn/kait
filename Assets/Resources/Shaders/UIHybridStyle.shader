@@ -5,6 +5,7 @@ Shader "UI/Hybrid Style"
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _RightTex ("Right Card Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        _BlackKeyLeft ("Remove black from left artwork only", Float) = 0
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
         _StencilOp ("Stencil Operation", Float) = 0
@@ -78,6 +79,7 @@ Shader "UI/Hybrid Style"
             sampler2D _MainTex;
             sampler2D _RightTex;
             fixed4 _Color;
+            float _BlackKeyLeft;
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
 
@@ -101,6 +103,15 @@ Shader "UI/Hybrid Style"
                     ? tex2D(_MainTex, input.texcoord) + _TextureSampleAdd
                     : (input.style.z > 1.5 ? tex2D(_RightTex, input.texcoord) : fixed4(1, 1, 1, 1));
                 fixed4 color = sampled * input.color;
+                if (_BlackKeyLeft > .5 && input.style.z < .5)
+                {
+                    float brightness=max(sampled.r,max(sampled.g,sampled.b));
+                    #ifdef UNITY_COLORSPACE_GAMMA
+                    color.a*=smoothstep(.012,.045,brightness);
+                    #else
+                    color.a*=smoothstep(.00093,.0035,brightness);
+                    #endif
+                }
 
                 float2 size = max(input.geometry.xy, float2(1, 1));
                 float radius = clamp(input.geometry.z, 0, min(size.x, size.y) * 0.5);

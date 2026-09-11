@@ -5,6 +5,7 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public sealed class GameAudio : MonoBehaviour
 {
+    public static bool YummnMode;
     private const string MusicPath = "Audio/BackgroundMusic";
     private const string MergePath = "Audio/UI/SelectedModel/Merge_B";
     private const string CombatPath = "Audio/Combat/";
@@ -178,7 +179,7 @@ public sealed class GameAudio : MonoBehaviour
         enemyCharacterVoiceBanks[KaitEnemyType.Grunt] = LoadEnemyCharacterVoiceBank("April");
         enemyCharacterVoiceBanks[KaitEnemyType.Swordsman] = LoadEnemyCharacterVoiceBank("Olivia");
         enemyCharacterVoiceBanks[KaitEnemyType.Archer] = LoadEnemyCharacterVoiceBank("Monica");
-        enemyCharacterVoiceBanks[KaitEnemyType.Guard] = LoadEnemyCharacterVoiceBank("Bridget");
+        enemyCharacterVoiceBanks[KaitEnemyType.Guard] = LoadEnemyCharacterVoiceBank("Coonya");
         enemyCharacterVoiceBanks[KaitEnemyType.Warlock] = LoadEnemyCharacterVoiceBank("Aloe");
         enemyCharacterVoiceBanks[KaitEnemyType.ShieldKnight] = LoadEnemyCharacterVoiceBank("Ursula");
         enemyHurtClip = Resources.Load<AudioClip>("Audio/Combat/KaitHurt_03");
@@ -192,7 +193,7 @@ public sealed class GameAudio : MonoBehaviour
         arrowImpactClip = Resources.Load<AudioClip>(SelectedRangedPath + "ArrowImpact_A");
         magicChargeClip = Resources.Load<AudioClip>(SelectedSkillPath + "MagicCharge_A");
         magicCastClip = Resources.Load<AudioClip>(SelectedRangedPath + "MagicCast_B2");
-        bossRoarClip = Resources.Load<AudioClip>("Audio/World/BossRoar_01");
+        bossRoarClip = Resources.Load<AudioClip>(SelectedWorldPath + "Boss_A");
         clickClip = Resources.Load<AudioClip>(SelectedUiPath + "ButtonClick_A");
         invalidClip = Resources.Load<AudioClip>(SelectedUiPath + "InvalidAction_Defeat_A");
         skillReadyClip = Resources.Load<AudioClip>(SelectedWorldPath + "SkillReady_A2");
@@ -290,6 +291,21 @@ public sealed class GameAudio : MonoBehaviour
     {
         if (instance == null) return;
         instance.PlayKaitVoice(RandomClip(instance.kaitNormalAttackVoiceClips), false);
+    }
+
+    // Voice only: Yummn keeps her approved punch/kill effects, not Kait's sword effects.
+    public static void PlayYummnKillVoice(int kills)
+    {
+        if(instance==null||!YummnMode)return;
+        instance.PlayKaitVoice(kills==1?instance.kaitKillVoiceClip:
+            kills==2?instance.kaitChainVoiceClip:RandomClip(instance.kaitNormalAttackVoiceClips), kills<=2);
+    }
+
+    public static AudioClip ResolvePlayerVoice(AudioClip original, bool yummn)
+    {
+        if(!yummn||original==null)return original;
+        // Missing Yummn assets must stay silent, never fall back to Gloria.
+        return Resources.Load<AudioClip>("Audio/Voice/Yummn/Bridget/"+original.name.Replace("Gloria_","Bridget_"));
     }
 
     public static void PlayKaitSmallAttackSkillVoice() =>
@@ -452,8 +468,8 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayWallStop() => PlayOneShot(instance?.worldSource, instance?.wallStopClip, 0.62f, 0.88f, 0.96f);
     public static void PlayBossRoar()
     {
-        if (instance == null || instance.enemyCharacterVoiceBanks.ContainsKey(KaitEnemyType.ShieldKnight)) return;
-        instance.PlayEnemyVoiceOneShot(KaitEnemyType.ShieldKnight, instance.bossRoarClip, 0.86f, 0.92f, 0.98f);
+        // Armor arrival is a world effect, not a substitute for Ursula's voice.
+        PlayOneShot(instance?.worldSource, instance?.bossRoarClip, 0.72f);
     }
     public static void PlayClick() => PlayOneShot(instance?.uiSource, instance?.clickClip, 0.72f, 0.98f, 1.02f);
     public static void PlayCardPickUp() => PlayOneShot(instance?.cardSource, instance?.cardPickUpClip, 1f);
@@ -487,7 +503,7 @@ public sealed class GameAudio : MonoBehaviour
             case KaitSkill.DreadSlash:
                 return Resources.Load<AudioClip>(SelectedSkillPath + "DreadCharge_B");
             default:
-                return Resources.Load<AudioClip>("Audio/UI/SkillUse_01");
+                return Resources.Load<AudioClip>(SelectedUiPath + "Cast_B");
         }
     }
     public static void PlayWin() => PlayOneShot(instance?.uiSource, instance?.winClip, 0.82f);
@@ -625,6 +641,7 @@ public sealed class GameAudio : MonoBehaviour
 
     private void PlayKaitVoice(AudioClip clip, bool interruptCurrent)
     {
+        clip=ResolvePlayerVoice(clip,YummnMode);
         if (kaitVoiceSource == null || clip == null) return;
         if (!interruptCurrent && Time.realtimeSinceStartup < kaitVoiceEndsAt) return;
 

@@ -72,12 +72,13 @@ public sealed class KaitPassiveDeck : MonoBehaviour
             if (!card.gameObject.activeSelf || card.Passive != run.passives[i])
             {
                 float x = (i - 1) * 216f;
-                card.Show(run.passives[i], false, selectedOrigin ?? new Vector2(x, bounds.rect.yMax), x);
+                card.Show(run.passives[i], false, selectedOrigin ?? new Vector2(x, KaitPassiveCard.DockY(bounds.rect,false,false)), x);
                 selectedOrigin = null;
                 rearrange = true;
             }
             int triggers = run.PassiveTriggerCount(run.passives[i]);
             card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Passive)));
+            card.SetRequirement(run.IsYummn?run.YummnMissingRequirement(KaitAbilityCatalog.Get(card.Passive)):null);
             card.SetCopiedPassive(run.copiedPassive);
             if (triggers > shownTriggers[i]) card.Pulse(triggers);
             shownTriggers[i] = triggers;

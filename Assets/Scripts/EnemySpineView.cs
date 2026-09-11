@@ -11,7 +11,7 @@ public sealed class EnemySpineView
     public const string AttackSuffix = "attack";
     public const string DamageSuffix = "damage";
     public const string DeathSuffix = "die";
-    public const string PrepareAttackSuffix = "joy_short";
+    public const string PrepareAttackAnimation = "000000_rarityup_posing";
 
     private static Material sharedGraphicMaterial;
     private readonly SkeletonGraphic graphic;
@@ -194,13 +194,29 @@ public sealed class EnemySpineView
     public void PlayAttack() => PlayOnce(prefix + AttackSuffix);
     public void PlayDamage() => PlayOnce(prefix + DamageSuffix);
     public void PlayDeath() => PlayOnce(prefix + DeathSuffix, false);
-    public void PlayPrepareAttack() => PlayOnce(prefix + PrepareAttackSuffix);
+    public void PlayPrepareAttack()
+    {
+        if(!IsReady)return;
+        var current=CurrentAnimation;
+        if(current?.Animation?.Name==PrepareAttackAnimation&&current.Loop)return;
+        graphic.AnimationState.SetAnimation(0,PrepareAttackAnimation,true);
+    }
+    public void SyncPreparation(bool preparing)
+    {
+        if(!IsReady)return;
+        var current=CurrentAnimation;
+        if(current==null||current.Animation==null)return;
+        // Do not interrupt landing, damage, attack or death. Their queued idle
+        // is repaired below; repeated UI refreshes never restart the pose.
+        if(preparing&&current.Animation.Name==prefix+IdleSuffix)PlayPrepareAttack();
+        else if(!preparing&&current.Animation.Name==PrepareAttackAnimation)PlayIdle();
+    }
 
     public float LandingDuration => Duration(prefix + LandingSuffix);
     public float AttackDuration => Duration(prefix + AttackSuffix);
     public float DamageDuration => Duration(prefix + DamageSuffix);
     public float DeathDuration => Duration(prefix + DeathSuffix);
-    public float PrepareAttackDuration => Duration(prefix + PrepareAttackSuffix);
+    public float PrepareAttackDuration => Duration(PrepareAttackAnimation);
 
     private void PlayOnce(string animation, bool returnToIdle = true)
     {

@@ -91,13 +91,14 @@ public sealed class KaitSpineTests
         {
             EnemySpineView.LandingSuffix, EnemySpineView.IdleSuffix,
             EnemySpineView.AttackSuffix, EnemySpineView.DamageSuffix,
-            EnemySpineView.DeathSuffix, EnemySpineView.PrepareAttackSuffix
+            EnemySpineView.DeathSuffix
         })
         {
             Spine.Animation animation = data.FindAnimation(prefix + suffix);
             Assert.IsNotNull(animation, $"Required enemy animation is missing: {assetId}/{prefix + suffix}");
             Assert.Greater(animation.Duration, 0f);
         }
+        Assert.IsNotNull(data.FindAnimation(EnemySpineView.PrepareAttackAnimation));
     }
 
     [TestCase("100161", "01_")]

@@ -12,6 +12,10 @@ public sealed class SunlitSplitText : BaseMeshEffect
     private float lastBottom = float.NaN;
     private float lastTop = float.NaN;
     private bool showLeft = true, showRight = true;
+    private bool preserveColors;
+
+    // Images use the same global cut without the text-specific brown tint.
+    public void PreserveColors() { preserveColors = true; graphic.SetVerticesDirty(); }
 
     public void SetSides(bool left, bool right)
     {
@@ -91,7 +95,7 @@ public sealed class SunlitSplitText : BaseMeshEffect
         foreach (UIVertex original in polygon)
         {
             UIVertex vertex = original;
-            if (left)
+            if (left && !preserveColors)
             {
                 Color color = ink;
                 color.a = original.color.a / 255f;

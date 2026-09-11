@@ -75,7 +75,7 @@ public sealed class KaitCardAudioTests
                 Tick(card); Assert.IsFalse(Pending(card));
                 card.OnPointerDown(e); card.OnBeginDrag(e); card.OnEndDrag(e);
                 Assert.IsTrue(Pending(card)); Tick(card); Assert.IsTrue(Pending(card));
-                card.Rect.anchoredPosition=new Vector2(card.DockX,area.rect.yMax);
+                card.Rect.anchoredPosition=new Vector2(card.DockX,KaitPassiveCard.DockY(area.rect,false,false));
                 Tick(card); Assert.IsFalse(Pending(card)); Tick(card); Assert.IsFalse(Pending(card));
             }
             else

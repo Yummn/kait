@@ -27,11 +27,14 @@ public sealed class KaitRewardDeck : MonoBehaviour
     private bool collapsed;
     private string notice;
     private float noticeUntil;
+    private GameObject replacementPrompt;
+    private Font uiFont;
     public bool IsDragging=>dragging>=0;
+    public Action SelectionStarted;
 
     public void Initialize(RectTransform parent,GlobalStyleSplit split,Font font,Func<bool> allowed,Action refresh)
     {
-        area=parent;styleSplit=split;canInteract=allowed;changed=refresh;
+        area=parent;styleSplit=split;canInteract=allowed;changed=refresh;uiFont=font;
         bar=new GameObject("Reward Actions",typeof(RectTransform),typeof(HybridStyleGraphic)).GetComponent<RectTransform>();bar.SetParent(parent,false);
         bar.sizeDelta=new Vector2(800,76);
         bar.anchoredPosition=new Vector2(-60,area.rect.yMax-46);
@@ -75,7 +78,8 @@ public sealed class KaitRewardDeck : MonoBehaviour
         bar.gameObject.SetActive(false);guideBackdrop.gameObject.SetActive(false);
     }
     private bool Allowed()=>run!=null&&run.CanSelectReward&&(canInteract?.Invoke()??true);
-    private void ResetSelection(){selected=dragging=hoverSlot=-1;copy=KaitPassive.None;notice=null;}
+    private void ResetSelection()
+    {selected=dragging=hoverSlot=-1;copy=KaitPassive.None;notice=null;if(replacementPrompt!=null){if(Application.isPlaying)Destroy(replacementPrompt);else DestroyImmediate(replacementPrompt);}replacementPrompt=null;}
     private void Notify(string value){notice=value;noticeUntil=Time.unscaledTime+2.5f;}
     public void Sync(KaitRun current)
     {
@@ -95,6 +99,8 @@ public sealed class KaitRewardDeck : MonoBehaviour
         bool expanded=pack!=null&&!collapsed;guideBackdrop.gameObject.SetActive(expanded);
         if(pack==null){foreach(var c in active)c.Hide();foreach(var c in passive)c.Hide();foreach(var s in slots)s.gameObject.SetActive(false);return;}
         heading.text=$"×{run.rewardQueue.Count}";
+        for(int i=0;i<pack.choices.Count&&i<3;i++)
+        {string missing=run.IsYummn?run.YummnMissingRequirement(pack.choices[i]):null;active[i].SetRequirement(missing);passive[i].SetRequirement(missing);}
         skip.interactable=!IsDragging&&Allowed();reroll.interactable=!IsDragging&&Allowed()&&run.HasPassive(KaitPassive.LuckBlade)&&!pack.rerolled;
         cancel.interactable=!IsDragging&&selected>=0;fold.interactable=!IsDragging;
         fold.GetComponentInChildren<Text>().text=collapsed?"展开":"收起";
@@ -111,14 +117,16 @@ public sealed class KaitRewardDeck : MonoBehaviour
     private bool NeedsCopy=>Definition?.passive==KaitPassive.Simulacrum&&copy==KaitPassive.None;
     private void Select(int index)
     {
-        if(IsDragging||!Allowed()||index<0||index>=run.CurrentReward.choices.Count)return;
+        if(IsDragging||replacementPrompt!=null||!Allowed()||index<0||index>=run.CurrentReward.choices.Count)return;
+        if(!run.YummnPrerequisite(run.CurrentReward.choices[index])){Notify(run.YummnMissingRequirement(run.CurrentReward.choices[index]));return;}
+        SelectionStarted?.Invoke();
         if(selected!=index)copy=KaitPassive.None;
         selected=index;hoverSlot=-1;notice=null;Sync(run);
     }
     private bool BeginDrag(int index)
     {
-        if(IsDragging||!Allowed())return false;
-        Select(index);if(selected!=index)return false;
+        if(IsDragging||replacementPrompt!=null||!Allowed())return false;
+        Select(index);if(selected!=index||!run.YummnPrerequisite(Definition))return false;
         dragging=index;dragPackId=run.CurrentReward.id;hoverSlot=-1;ShowSlots();return true;
     }
     private void ShowSlots()
@@ -130,7 +138,7 @@ public sealed class KaitRewardDeck : MonoBehaviour
         {
             bool show=i<visible;slots[i].gameObject.SetActive(show);validSlots[i]=false;if(!show)continue;
             slots[i].rectTransform.anchoredPosition=new Vector2((i-(visible-1)*.5f)*258,isPassive?area.rect.yMax-192:area.rect.yMin+198);
-            bool filled=i<count;validSlots[i]=Allowed()&&(!copying||filled&&KaitAbilityCatalog.Get(run.passives[i])?.copyable==true);
+            bool filled=i<count;validSlots[i]=Allowed()&&run.YummnPrerequisite(def)&&(!copying||filled&&KaitAbilityCatalog.Get(run.passives[i])?.copyable==true);
             bool hovered=validSlots[i]&&hoverSlot==i;
             slots[i].color=hovered?new Color(.18f,.48f,.39f,.98f):validSlots[i]?new Color(.28f,.26f,.34f,.98f):new Color(.19f,.18f,.22f,.95f);
             slotOutlines[i].color=hovered?Color.white:validSlots[i]?new Color(.60f,1,.84f):new Color(.45f,.44f,.49f);
@@ -158,7 +166,20 @@ public sealed class KaitRewardDeck : MonoBehaviour
         if(slot<0){Notify("已归位");Sync(run);return;}
         if(NeedsCopy){copy=run.passives[slot];GameAudio.PlayCardSnap();Sync(run);return;}
         int count=Definition.kind==KaitAbilityKind.Active?run.skills.Count:run.passives.Count;
+        string consequence=run.YummnReplacementConsequences(selected,slot<count?slot:-1);
+        if(consequence!=null){ConfirmReplacement(slot,consequence);return;}
         if(run.SelectReward(selected,slot<count?slot:-1,copy))Complete();else{Notify("暂不可装备 · 已归位");Sync(run);}
+    }
+    private void ConfirmReplacement(int slot,string message)
+    {
+        replacementPrompt=new GameObject("Confirm Prerequisite Replacement",typeof(RectTransform),typeof(Image));replacementPrompt.transform.SetParent(area,false);
+        var plate=replacementPrompt.GetComponent<Image>();plate.sprite=KaitCardSkin.RoundRect();plate.type=Image.Type.Sliced;plate.color=new Color(.19f,.17f,.23f,.99f);
+        var r=plate.rectTransform;r.anchoredPosition=new Vector2(0,-170);r.sizeDelta=new Vector2(580,172);
+        var label=Label(r,uiFont,"Affected Cards",new Vector2(0,36),new Vector2(548,72),23);label.text=message+"\n被动保留，但暂停触发。";
+        int choice=selected,packId=run.CurrentReward.id;
+        ButtonAt(r,uiFont,"确认",new Vector2(-90,-43),()=>
+        {if(Allowed()&&run.CurrentReward.id==packId&&run.SelectReward(choice,slot,copy))Complete();else{ResetSelection();Sync(run);}});
+        ButtonAt(r,uiFont,"取消",new Vector2(90,-43),()=>{ResetSelection();Sync(run);});
     }
     private void Complete(){ResetSelection();shown=null;GameAudio.PlayPassiveConfirm();changed?.Invoke();Sync(run);}
     private void Update(){if(run!=null)Sync(run);}
@@ -180,7 +201,7 @@ public sealed class KaitRewardDeck : MonoBehaviour
         surface.Configure(styleSplit,sprite,Color.white,flat,new Color(.98f,.78f,.72f),2,10);surface.raycastTarget=true;b.Configure(surface,sprite,sprite,flat);
         // Both button skins are dark; keep their shared foreground cream for contrast.
         b.navigation=new Navigation{mode=Navigation.Mode.None};var labelText=Label(r,font,"Label",new Vector2(17,0),new Vector2(62,48),20);labelText.text=label;
-        KaitUiGlyph.Create(r,label=="跳过"?KaitUiGlyph.Symbol.Skip:label=="重抽"?KaitUiGlyph.Symbol.Reroll:label=="取消"?KaitUiGlyph.Symbol.Close:KaitUiGlyph.Symbol.Up,new Vector2(-32,0),22);
+        KaitUiGlyph.Create(r,label=="跳过"?KaitUiGlyph.Symbol.Skip:label=="重抽"?KaitUiGlyph.Symbol.Reroll:label=="取消"?KaitUiGlyph.Symbol.Close:label=="确认"?KaitUiGlyph.Symbol.Check:KaitUiGlyph.Symbol.Up,new Vector2(-32,0),22);
         b.onClick.AddListener(()=>{GameAudio.PlayClick();action();});return b;
     }
 }
