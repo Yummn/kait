@@ -14,4 +14,8 @@
 
 Windows 已构建并看过实际首页。首页专项测试 7/7 通过，开始、继续、角色切换、教程与设置的运行检查通过。扩大检查时有一条旧气槽位置断言失败，记录在共享清单，没有写成全量通过。
 
-Android 正在打包，完成后补充签名、架构和安装包信息。未接入的 AudioPreviews、VFXPreviews 不随本次源码提交。
+Android 已完成：`kait-v0.8.2.apk`，约222 MB，版本0.8.2/802，Android 8.0及以上、ARM64。签名与旧包一致，启动入口为 UnityPlayerActivity；构建日志 `Logs/android-home-a-20260911.log` 显示 Success、退出0。
+
+SHA-256：`B7748DB7E88527FDB9E6212E542460BB588A74DB938D1814C34FA7FAC2CD5E2B`。
+
+旧包保留为 `Build/kait-v0.8.2-before-home-a-20260911.apk`。当前 adb 没有连接设备，本次没有真机启动验收。未接入的 AudioPreviews、VFXPreviews 不随本次源码提交。

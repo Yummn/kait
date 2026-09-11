@@ -17,7 +17,7 @@
 | 最近 EditMode 测试 | Logs/ki-center-tests.xml：相关6/6通过（初版+12及气点，非全量）；最终+28经运行看图验证，测试期望同步。上次全量rift-delay-final-tests.xml 902/902通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
 | 最近视觉运行检查 | ki-center-runtime.log：YUMMN082_QA_COMPLETE；无文字、居中和边距检查通过，最终满气截图六点完整，初版恢复中截图已看。37项玩家设置/存档按类型和值还原；非Android验收 |
-| Android | Build/kait-v0.8.2.apk，2026-09-11 10:46:17，197939382字节；Logs/android-ghost-idle-20260911.log Success退出0；版本802、ARM64、UnityPlayerActivity、与旧包同签名检查通过；SHA256 18A644F2DC6DA9DAE19FC81F38456B6DDB9846BF71EC41459A5230B3CA3EFAA1。adb无设备未真机启动验收；本包未上传 |
+| Android | Build/kait-v0.8.2.apk，2026-09-11 16:27:01，221711324字节；Logs/android-home-a-20260911.log Success退出0；版本802、ARM64、UnityPlayerActivity、与旧包同签名。SHA256 B7748DB7E88527FDB9E6212E542460BB588A74DB938D1814C34FA7FAC2CD5E2B；adb无设备未真机启动验收 |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
@@ -26,7 +26,7 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 
 | 任务编号 | 负责人 / 会话 | 范围 | 状态 / 占用 |
 | --- | --- | --- | --- |
-| RELEASE-20260911-HOME-A | 本会话 | 当前源码上传GitHub、烟墨首页Android包 | 进行中；保持现有公开性，保留旧APK；核验构建、签名与设备，不改规则 |
+| RELEASE-20260911-HOME-A | 本会话 | 当前源码上传GitHub、烟墨首页Android包 | 源码1f11fa6已推送，Android构建/签名/入口/ARM64通过，正在发布带APK的版本页；PUBLIC保持不变，旧包before-home-a-20260911.apk。adb无设备未真机验收；无Unity占用，不改规则 |
 | UI-20260911-HOME-A | 本会话 | A烟墨双境主界面、双角色选择、斜向逐行菜单、教程路由、Windows | 完成源码/Windows/运行看图；每行取平行斜线中点，选人不启动、单一继续按角色存档、教程/设置随所选人物；CG轻浮动及悬停放大。首页专项7/7；扩展28/29唯一失败为旧气槽位置断言，未改。home-a-final-build.log Success退出0；HOME_QA_COMPLETE，标题行高修正后最终截图已看，37项偏好还原。无游戏/Unity占用，未Android/GitHub；见首页A烟墨双境接入-20260911.md |
 | UI-20260911-KAIT-COMIC | 本会话 | Kait三页新漫画、详细说明、教程路由/测试与Windows | 完成源码/Windows/运行看图：内置image_gen三张2172×724，KaitComic/01-03；三页核心+滚动详细说明，Boss不写固定数值，旧十页素材保留。修复三页/四页切换导航容量，Kait和Yummn内容隔离。kait-comic-tests.xml相关11/11；kait-comic-build.log Success退出0；运行QA与Kait三页/说明首尾截图已看，37项偏好还原。未改战斗规则，未Android/GitHub，无Unity/游戏占用；提示词见Kait三页漫画教程-20260911.md |
 | UI-20260911-DETAIL-LABEL | 本会话 | 教程按钮和标题改名 | 完成源码/Windows：三处显示字符串统一详细说明，内容和交互不变；静态检查旧词零处、新词三处，detail-label-build.log Success退出0。未重复运行视觉验收，无Unity/游戏占用，未Android/GitHub |
