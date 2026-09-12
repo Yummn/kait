@@ -42,7 +42,7 @@ public sealed class KaitCardSkin : MonoBehaviour
         int yummnIndex=YummnCatalog.Cards.IndexOf(def);
         if(yummnIndex>=0)
         {
-            var current=YummnV08Art.Icon(yummnIndex);if(current!=null){cache[key]=current;return current;}
+            var current=YummnRepoolArt.Icon(def);if(current!=null){cache[key]=current;return current;}
             if(yummnIndex>=12)return null;
             var atlas=Resources.Load<Texture2D>("KaitVisuals/Yummn/CardIcons");if(atlas==null)return null;
             float width=atlas.width/4f,height=atlas.height/3f;
@@ -83,7 +83,7 @@ public sealed class KaitCardSkin : MonoBehaviour
             skin.clockIcon.gameObject.SetActive(false);
             skin.cooldown.rectTransform.anchoredPosition=new Vector2(0,-100);
             skin.cooldown.rectTransform.sizeDelta=new Vector2(138,22);
-            skin.cooldown.text=def.kind==KaitAbilityKind.Active?"额外气 "+def.kiExtraCost:def.traditionTag;
+            skin.cooldown.text=def.kind==KaitAbilityKind.Active?"耗气 "+def.kiExtraCost:def.traditionTag;
         }
     }
     public void SetDetailsVisible(bool visible)

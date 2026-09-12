@@ -6,16 +6,25 @@ public sealed partial class KaitRun
     {
         var r=new KaitTurnResult();
         if(!IsYummn||ended){r.message="当前不能等待";return r;}
+        ActivateBuildForInput();SyncYummnCapacity();
         var a=new YummnActionContext { actionId=++Yummn.actionId,phaseAtStart=KiPhase,
             kiBefore=Ki,startCell=katePos,finalCell=katePos,targetCell=YummnRun.NoCell,
-            iceAtStart=Yummn.icePillar,darknessAtStart=Yummn.darkness,
+            iceAtStart=Yummn.icePillar,darknessAtStart=Yummn.darkness,decoyAtStart=Yummn.decoy,
             enemyPhase=true,spawnChecked=true,isWait=true };
         r.yummnAction=a;r.valid=r.turnComplete=true;r.threatBefore=CopyThreat();
         r.yummnThreatAfterMerge=CopyThreat();r.yummnThreatAfterSupply=CopyThreat();r.yummnThreatAfterArchive=CopyThreat();
         Yummn.metrics.actions++;turnTriggers.Clear();
-        // No player action, tile movement/supply, skill commitment or Ki payment.
+        BeginYummnRangeTracking();
+        Yummn.prepared.Clear();
+        PrepareYummnWaitDefenses(a);
+        SupplyYummn082Twos(r);
+        r.yummnThreatAfterSupply=CopyThreat();
+        ResolveOldNewsArchive(r);r.yummnThreatAfterArchive=CopyThreat();
+        r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="SupplyReady",actionId=a.actionId,amount=r.newThreatCells.Count});
+        // Waiting never slides either board.
         ResolveYummnRifts(r);
         if(!ended&&bossPending)SpawnShieldKnight(r);
+        ResolveYummnRangeEntries(r);
         if(!ended)ResolveYummnEnemyPhase(r);
         if(Yummn.rules.Is082)
         {
@@ -29,6 +38,6 @@ public sealed partial class KaitRun
         if(!ended&&IsYummnThreatLocked()){End("ThreatBoardLocked",false);r.message="2048无可用移动，本局失败";}
         a.kiAfter=Ki;a.phaseAtEnd=KiPhase;a.finalCell=katePos;
         r.threatAfter=CopyThreat();Yummn.history.Add(a);turn++;PrepareThreatTwoPreview();
-        return r;
+        RecordReplay("wait",0,0,0);return r;
     }
 }

@@ -41,9 +41,9 @@ public sealed partial class KaitRun
     {
         if(d==null)return "卡牌不存在";
         active=active??skills;passive=passive??passives;
-        if(d.passive==KaitPassive.OpenHand&&!active.Contains(KaitSkill.Flurry))return "需要疾风连击";
-        if(d.passive==KaitPassive.ShatteringPalm&&!active.Contains(KaitSkill.FrostBreath))return "需要冬之吐息";
-        if(d.passive==KaitPassive.FollowThrough&&!active.Contains(KaitSkill.Palm)&&!active.Contains(KaitSkill.UnbrokenAir)&&!(passive.Contains(KaitPassive.OpenHand)&&active.Contains(KaitSkill.Flurry)))return "需要推掌、不坏气拳或生效的散打技巧";
+        // Approved variants are independent cards; no legacy prerequisite chains.
+
+
         return null;
     }
     public bool CanUseYummnSkill(KaitSkill s)=>!ended&&skills.Contains(s)&&YummnCatalog.IsActive(s);
@@ -72,7 +72,7 @@ public sealed partial class KaitRun
         foreach(var d in YummnDirections)
         {
             var p=cell+d;
-            if(p==Yummn.icePillar)return true;
+            if(p==Yummn.icePillar||EnemyAt(p)?.yummnFrozen==true)return true;
             if(p.x>=1&&p.x<=5&&p.y>=1&&p.y<=5&&walls[p.x,p.y])return true;
         }
         return false;
@@ -109,7 +109,7 @@ public sealed partial class KaitRun
     private bool ValidateYummnAction(KaitDirection dir,out YummnActionContext ctx,out string error)
     {
         ctx=new YummnActionContext{actionId=Yummn.actionId+1,phaseAtStart=KiPhase,kiBefore=Ki,direction=dir,
-            startCell=katePos,startedInShadow=IsYummnShadow(katePos),targetCell=YummnRun.NoCell,iceAtStart=Yummn.icePillar,darknessAtStart=Yummn.darkness};
+            startCell=katePos,startedInShadow=IsYummnShadow(katePos),targetCell=YummnRun.NoCell,iceAtStart=Yummn.icePillar,darknessAtStart=Yummn.darkness,decoyAtStart=Yummn.decoy};
         error=null;
         foreach(var def in YummnCatalog.Cards)if(Yummn.prepared.Contains(def.id))
         {
@@ -121,10 +121,16 @@ public sealed partial class KaitRun
         if(!Yummn.rules.Is082)ctx.totalKiCost+=KiPhase==YummnPhase.Burst?1:0;
         if(ctx.totalKiCost>Ki){error="气不足：本次需要 "+ctx.totalKiCost+" 气";return false;}
         ctx.threatDirection=HasPassive(KaitPassive.ReverseGravity)?Opposite(dir):dir;
-        var next=katePos+Delta(dir);
+        var next=repoolCellTarget??(katePos+Delta(dir));
         switch(ctx.actionOverride)
         {
+            case "AirRay":
             case "Water":if(FirstYummnRayEnemy(dir)==null)error="前方没有可见敌人";break;
+            case "Echo":ctx.targetCell=EchoDestination(dir);if(ctx.targetCell.x<0)error="该方向没有可用残影";break;
+            case "Precise":if(!YummnEmpty(next))error="前方无法停留";else ctx.targetCell=next;break;
+            case "Heal":ctx.isWait=true;break;
+            case "Phantom":ctx.targetCell=PhantomDestination(dir);if(ctx.targetCell==katePos)error="没有可停留空格";break;
+            case "Decoy":if(!YummnEmpty(next))error="诱饵需要空格";else ctx.targetCell=next;break;
             case "Winter":if(FirstYummnRayEnemy(dir,2)==null)error="前方两格没有目标";break;
             case "Ice":if(!YummnEmpty(next)||PendingBossCell==next)error="不能在此处升起冰柱";else ctx.targetCell=next;break;
             case "Darkness":if(!YummnEmpty(next))error="暗幕需要相邻空格";else ctx.targetCell=next;break;
@@ -139,7 +145,7 @@ public sealed partial class KaitRun
         var r=new KaitTurnResult();if(ended){r.message="本局已结束";return r;}
         // Candidate equipment is used only for validation, then committed exactly once.
         var inactive=new HashSet<string>(inactiveAbilities);var retired=new HashSet<string>(retiredAbilities);var copy=previousCopiedPassive;
-        ActivateBuildForInput();YummnActionContext a;string error;
+        ActivateBuildForInput();SyncYummnCapacity();YummnActionContext a;string error;
         bool valid=ValidateYummnAction(dir,out a,out error);
         if(!valid){inactiveAbilities.UnionWith(inactive);retiredAbilities.UnionWith(retired);previousCopiedPassive=copy;r.message=error;return r;}
         Yummn.actionId=a.actionId;Yummn.metrics.actions++;r.yummnAction=a;r.valid=r.turnComplete=true;
@@ -148,13 +154,16 @@ public sealed partial class KaitRun
         if(!Yummn.rules.Is082){Yummn.ki-=a.totalKiCost;Yummn.metrics.kiSpent+=a.totalKiCost;}
         foreach(var id in a.plannedSkills)YummnTrigger(id,r);
         if(a.plannedSkills.Contains("yummn.M02"))Yummn.defense=true;
-        r.merges.AddRange(MoveThreat(actualThreatDirection,r.threatMotions));
+        if(!a.isWait&&!repoolCellTarget.HasValue)r.merges.AddRange(MoveThreat(actualThreatDirection,r.threatMotions));
         r.threatChanged=!ThreatEquals(r.threatBefore,threat);threatChangedThisTurn=r.threatChanged;
         foreach(var m in r.merges){HandleMilestoneMerge(m);if(m.resultValue<config.winValue)QueueYummnRift(m,r);}
         ResolveBag(r.merges,r);
         if(Yummn081){r.yummnThreatAfterMerge=CopyThreat();r.yummnInitialMotionCount=r.threatMotions.Count;}
         if(Yummn.rules.Is082)CommitYummn082Cost(r);
+        BeginYummnRangeTracking();
+        PrepareYummnWaitDefenses(a);
         ResolveYummnPlayerAction(r);
+        ResolveYummnRangeEntries(r);
         a.finalCell=katePos;r.slideDistance=r.katePath.Count;
         Yummn.prepared.Clear();
         if(Yummn.rules.Is082)ResolveYummn082Tail(r);
@@ -199,10 +208,10 @@ public sealed partial class KaitRun
             if(HasPassive(KaitPassive.PerfectSelf)){Yummn.metrics.perfectKi+=GainYummnKi(1,r,"PerfectSelf");YummnTrigger("M05",r);}
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="Exhausted",actionId=Yummn.actionId});
         }
-        else if(KiPhase==YummnPhase.Exhausted&&Ki>=(Yummn.rules.ExhaustionNeedsFullKi?Yummn.profile.maxKi:1))
+        else if(KiPhase==YummnPhase.Exhausted&&!r.yummnAction.kiGuardTriggered&&Ki>=(Yummn.rules.ExhaustionNeedsFullKi?Yummn.profile.maxKi:1))
         {
             Yummn.phase=YummnPhase.Burst;
-            if(HasPassive(KaitPassive.Wholeness)){int heal=Mathf.Min(1,config.kateMaxHp-kateHp);kateHp+=heal;Yummn.metrics.heals+=heal;YummnTrigger("O05",r);}
+            if(HasPassive(KaitPassive.Wholeness)){int heal=Mathf.Min(1,config.kateMaxHp-kateHp);kateHp+=heal;Yummn.metrics.heals+=heal;YummnTrigger("O05",r);RepoolStatus(r,"Heal",katePos,heal);}
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="Burst",actionId=Yummn.actionId});
         }
     }

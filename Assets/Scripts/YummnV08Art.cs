@@ -39,7 +39,7 @@ public sealed class YummnV08Effect : Image
     private Sprite[] frames;
     private bool selected,persistent,loop;
     public int FrameIndex {get;private set;}
-    public static string SelectedClip(int index)=>index==0?"WaterC":index==1?"AirA":index==2?"PillarC":index==3?"WinterA":index==4?"FireA":index==5?"ShatterA":index==6?"TeleportB":index==7?"DarknessB":index==8?"PalmBurstA":index==9?"KiA":index==10?"ExhaustC":index==11?"RecoverB":index==12?"PalmMarkB":index==13?"AimDeniedC":index==14?"ShadowA":index==15?"GhostHitC":null;
+    public static string SelectedClip(int index)=>index==0?"WaterC":index==1?"AirA":index==2?"PillarC":index==3?"WinterA":index==4?"FireA":index==5?"ShatterA":index==6?"TeleportB":index==7?"DarknessB":index==8?"PalmBurstA":index==9?"KiA":index==10?"ExhaustC":index==11?"RecoverB":index==12?"PalmMarkB":index==13?"AimDeniedC":index==14?"ShadowA":index==15?"GhostHitC":index==16?"RepoolStun_A":index==17?"RepoolIceGuard_B":index==18?"RepoolHeal_A":index==19?"RepoolDecoy_B":index==20?"RepoolReflect_A":index==21?"RepoolDeflect_A":null;
     public static float ClipDuration(int index)=>index==2||index==7||index==12||index==14?.8f:index==0||index==3||index==6||index==9||index==10||index==11||index==13?.48f:.4f;
     protected override void OnEnable(){base.OnEnable();age=0;}
     public void InitializePersistent(int index,bool looping)

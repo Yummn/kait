@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum YummnPhase { Burst, Exhausted }
 public enum YummnMoveCause { Player, AI, Forced, Teleport, KillFollow, PushFollow }
-public enum YummnDamageCause { Punch, WaterWhip, WinterBreath, FireSnake, Shatter, Quivering, Counter, Arrow, Melee, Area }
+public enum YummnDamageCause { Punch, WaterWhip, WinterBreath, FireSnake, Shatter, Quivering, Counter, Arrow, Melee, Area, EchoReflect }
 public enum YummnEventKind { Hit, Kill, Move, Status, Resource, Terrain, Aim, Spawn, EnemyAttack, AfterimageCreated, AfterimageHit, AfterimageCleared }
 
 [Serializable] public sealed class YummnAfterimageMarker
@@ -28,12 +28,13 @@ public enum YummnEventKind { Hit, Kill, Move, Status, Resource, Terrain, Aim, Sp
     public YummnPhase phaseAtStart, phaseAtEnd;
     public KaitDirection direction, threatDirection;
     public Vector2Int startCell, finalCell, targetCell;
-    public Vector2Int iceAtStart, darknessAtStart;
+    public Vector2Int iceAtStart, darknessAtStart, decoyAtStart=YummnRun.NoCell;
     public bool didAttack, startedInShadow, enemyPhase, spawnChecked, suppressedTwo;
     public bool isPunchAction,stationaryPunch,isWait;
     public int preHitTravelCells,requestedTwos,insertedTwos,droppedTwos;
     public int voluntaryCells,movementKiCost,skillKiCost,rewardedKills,suppliedKills;
     public bool reachedZeroKi;
+    public bool kiGuardTriggered;
     public int attackCostTenths;
     public bool playerMoved;
     public YummnEnemyPhaseReason enemyPhaseReason;
@@ -98,6 +99,8 @@ public sealed class YummnRun
     public readonly List<YummnActionContext> history=new List<YummnActionContext>();
     public readonly List<YummnAfterimageMarker> afterimages=new List<YummnAfterimageMarker>();
     public int nextAfterimageId,nextAttackEventId;
+    public int protectedEchoId=-1;
+    public Vector2Int decoy=NoCell;
     public YummnMetrics metrics=new YummnMetrics();
     public void Reset()
     {
@@ -105,6 +108,6 @@ public sealed class YummnRun
         ki=profile.startKi;kiTenths=attackSpentTenths=0;phase=YummnPhase.Burst;actionId=exhaustionCycleId=0;
         defense=tranquility=cloak=missileSpent=false;icePillar=darkness=NoCell;
         palmEnemyId=-1;palmDirection=Vector2Int.zero;palmMarks.Clear();prepared.Clear();rewardedDeaths.Clear();history.Clear();metrics=new YummnMetrics();
-        afterimages.Clear();nextAfterimageId=nextAttackEventId=0;
+        afterimages.Clear();nextAfterimageId=nextAttackEventId=0;protectedEchoId=-1;decoy=NoCell;
     }
 }

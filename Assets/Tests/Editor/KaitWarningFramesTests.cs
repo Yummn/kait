@@ -17,7 +17,7 @@ public class KaitWarningFramesTests
         var go=new GameObject("fx",typeof(RectTransform),typeof(KaitAtmosphereGraphic));
         try {
             var fx=go.GetComponent<KaitAtmosphereGraphic>(); fx.SetState(1,1,.16f);
-            var images=go.GetComponentsInChildren<Image>(); Assert.AreEqual(2,images.Length);
+            var images=go.GetComponentsInChildren<Image>(); Assert.AreEqual(KaitAtmosphereGraphic.EdgeClockCount+1,images.Length);
             foreach(var im in images){Assert.IsFalse(im.raycastTarget);Assert.NotNull(im.sprite);}
             fx.SetState(0,0,.16f); foreach(var im in images)Assert.AreEqual(0,im.color.a);
         } finally {Object.DestroyImmediate(go);}

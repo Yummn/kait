@@ -4,6 +4,33 @@ using UnityEngine.UI;
 
 public class KaitAtmosphereTests
 {
+    [TestCase(1920,1080)] [TestCase(2400,1080)] [TestCase(1600,1200)]
+    public void ClockFieldStaysLeftAndHasVariedAngles(int width,int height)
+    {
+        var sizes=new System.Collections.Generic.HashSet<float>();
+        for(int i=0;i<KaitAtmosphereGraphic.EdgeClockCount;i++)
+        {
+            KaitAtmosphereGraphic.ClockLayout(i,new Vector2(width,height),out var p,out float size,out float angle);
+            Assert.Less(p.x+size*.71f,width*.5f);Assert.GreaterOrEqual(p.y,0);Assert.LessOrEqual(p.y,height);sizes.Add(size);
+        }
+        Assert.Greater(sizes.Count,6);
+    }
+    [Test] public void ClocksAppearGraduallyAndClearOnExit()
+    {
+        var go=new GameObject("fx",typeof(RectTransform),typeof(KaitAtmosphereGraphic));
+        try
+        {
+            var fx=go.GetComponent<KaitAtmosphereGraphic>();int previous=0;
+            foreach(float seconds in new[]{1f,3f,6f,10f})
+            {
+                fx.SetState(1,0,seconds,seconds);int count=0;
+                foreach(var im in go.GetComponentsInChildren<Image>())if(im.color.a>0)count++;
+                Assert.GreaterOrEqual(count,previous);previous=count;
+            }
+            Assert.AreEqual(KaitAtmosphereGraphic.EdgeClockCount,previous);
+            fx.SetState(0,0,11,0);foreach(var im in go.GetComponentsInChildren<Image>())Assert.AreEqual(0,im.color.a);
+        }finally{Object.DestroyImmediate(go);}
+    }
     private KaitRun Fresh() { var r=new KaitRun();r.Reset(42);r.enemies.Clear();r.spawns.Clear();return r; }
     private KaitEnemy Aiming(KaitRun r)
     {

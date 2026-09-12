@@ -21,15 +21,18 @@ public sealed partial class KaitGame
         if(threatCells!=null)foreach(var cell in threatCells)if(cell!=null)cell.rectTransform.localScale=Vector3.one;
     }
     private Vector2Int yummnVisualIce=YummnRun.NoCell,yummnVisualDarkness=YummnRun.NoCell;
-    private Image yummnIce,yummnDarkness,yummnPalm;
+    private Image yummnIce,yummnDarkness,yummnPalm,yummnDecoy;
+    private KaitIceBinding repoolPillar;
+    private Vector2Int repoolPillarCell=YummnRun.NoCell;
+    private Vector2Int yummnVisualDecoy=YummnRun.NoCell;
     private readonly System.Collections.Generic.List<Image> yummnPalmImages=new System.Collections.Generic.List<Image>();
     public static float PalmMarkAngle(Vector2Int direction) => Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg+90f;
     private readonly YummnV08Effect[] yummnShadows=new YummnV08Effect[49];
-    private void OnApplicationFocus(bool focused){if(!focused){yummnBufferedDirection=null;yummnAcceptBuffer=false;}}
+    private void OnApplicationFocus(bool focused){if(!focused){ClearHeldInput();ResetSwipeTracking();yummnBufferedDirection=null;yummnAcceptBuffer=false;}}
     private Vector3 YummnCellPosition(Vector2Int p)=>battleCells[p.x+p.y*KaitRun.BattleSize].rectTransform.position;
     private Image YummnTerrainImage(string name,int effect,float size)
     {
-        if(effect==2||effect==7||effect==8)
+        if(effect==2||effect==7||effect==8||effect==19)
         {
             var go=new GameObject(name,typeof(RectTransform),typeof(YummnV08Effect));
             go.transform.SetParent(effect==8?battleEnemyHitLayer:battleUnderEffectLayer,false);
@@ -54,13 +57,28 @@ public sealed partial class KaitGame
         if(battleUnderEffectLayer==null)return;
         if(run.IsYummn)
         {
-            if(yummnIce==null)yummnIce=YummnTerrainImage("Ice Pillar",2,110);
+            // Reuse the approved frozen-enemy ice art for the standalone pillar.
             if(yummnDarkness==null)yummnDarkness=YummnTerrainImage("Hollow Darkness",7,130);
+            if(yummnDecoy==null)yummnDecoy=YummnTerrainImage("Unique Decoy",19,105);
             if(yummnPalm==null){yummnPalm=YummnTerrainImage("Quivering Palm Direction",8,48);yummnPalmImages.Add(yummnPalm);}
         }
         var ice=busy?yummnVisualIce:run.Yummn.icePillar;
         var dark=busy?yummnVisualDarkness:run.Yummn.darkness;
-        if(yummnIce!=null){yummnIce.gameObject.SetActive(run.IsYummn&&InsideBattle(ice));if(InsideBattle(ice))PlaceYummnTerrain(yummnIce,ice);}
+        var decoy=busy?yummnVisualDecoy:run.Yummn.decoy;
+        if(yummnDecoy!=null){yummnDecoy.gameObject.SetActive(run.IsYummn&&InsideBattle(decoy));if(InsideBattle(decoy))PlaceYummnTerrain(yummnDecoy,decoy);}
+        if(yummnIce!=null)yummnIce.gameObject.SetActive(false);
+        if(run.IsYummn&&InsideBattle(ice)&&(repoolPillar==null||repoolPillar.Releasing||repoolPillarCell!=ice))
+        {
+            var p=ice;repoolPillarCell=p;
+            var graphic=PlayCombatEffectAtCell(KaitCombatEffectKind.Ice,p,Vector2.one*120,.3f,.65f,0,Vector2.zero,"Repool Ice Pillar",battleUnderEffectLayer);
+            if(graphic!=null)
+            {
+                repoolPillar=graphic.gameObject.AddComponent<KaitIceBinding>();
+                repoolPillar.IsFrozen=()=>run.IsYummn&&(busy?yummnVisualIce:run.Yummn.icePillar)==p;
+                repoolPillar.GroundPosition=()=>battleCells[p.x+p.y*7].rectTransform.TransformPoint(new Vector3(0,-41.4f,0));
+                repoolPillar.Initialize(graphic);repoolPillar.Advance(0);
+            }
+        }
         if(yummnDarkness!=null){yummnDarkness.gameObject.SetActive(run.IsYummn&&InsideBattle(dark));if(InsideBattle(dark))PlaceYummnTerrain(yummnDarkness,dark);}
         int palmIndex=0;
         if(run.IsYummn)foreach(var marked in animatedEnemies??run.enemies)

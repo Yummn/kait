@@ -108,6 +108,6 @@ public class KaitV061Tests
     {var r=Run();Set(r,"katePos",new Vector2Int(5,3));r.EnqueueMergeReward(Merge());r.CurrentReward.choices.Clear();r.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitSkill.HexCurse));Assert.IsTrue(r.SelectReward(0));Assert.IsFalse(r.TryGlobalInput(KaitDirection.Right).valid);Assert.IsTrue(r.IsAbilityPending(KaitAbilityCatalog.Get(KaitSkill.HexCurse)));Assert.IsFalse(r.IsSkillActive(KaitSkill.HexCurse));}
     [Test] public void NonBossShieldKnightDoesNotWinRun()
     {var r=Run();var e=Enemy(r,1,1,hp:1,type:KaitEnemyType.ShieldKnight);Call(r,"DamageEnemy",e,1,true,new KaitTurnResult(),false);Assert.IsFalse(r.ended);}
-    [Test] public void BossOnlyTriggeredBy256()
-    {var r=Run();Call(r,"HandleMilestoneMerge",Merge(128));Assert.IsFalse((bool)typeof(KaitRun).GetField("bossPending",BindingFlags.NonPublic|BindingFlags.Instance).GetValue(r));Call(r,"HandleMilestoneMerge",Merge(256));Call(r,"SpawnShieldKnight",new KaitTurnResult());Assert.IsTrue(r.bossSpawned);var boss=r.enemies.Single();Call(r,"DamageEnemy",boss,100,true,new KaitTurnResult(),false);Assert.IsTrue(r.won);}
+    [Test] public void BossOnlyTriggeredBy128()
+    {var r=Run();Call(r,"HandleMilestoneMerge",Merge(64));Assert.IsFalse((bool)typeof(KaitRun).GetField("bossPending",BindingFlags.NonPublic|BindingFlags.Instance).GetValue(r));Call(r,"HandleMilestoneMerge",Merge(128));Call(r,"SpawnShieldKnight",new KaitTurnResult());Assert.IsTrue(r.bossSpawned);var boss=r.enemies.Single();Call(r,"DamageEnemy",boss,100,true,new KaitTurnResult(),false);Assert.IsTrue(r.won);}
 }

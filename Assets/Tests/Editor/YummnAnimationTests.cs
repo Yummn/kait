@@ -6,6 +6,23 @@ public sealed class YummnAnimationTests
 {
     private GameObject canvas;
     private KaitSpineView view;
+    [TestCase("Characters/Yummn/108231_SkeletonData",KaitSpineView.Die)]
+    [TestCase("Characters/Yummn/108231_SkeletonData",KaitSpineView.Victory)]
+    [TestCase("Characters/Makoto/Makoto_SkeletonData",KaitSpineView.Die)]
+    [TestCase("Characters/Makoto/Makoto_SkeletonData",KaitSpineView.Victory)]
+    public void TerminalAnimationHoldsLastFrameUntilNewRun(string resource,string clip)
+    {
+        Create(resource);view.PlayOnce(clip);var ending=view.CurrentAnimation;
+        Assert.IsFalse(ending.Loop);Assert.IsNull(ending.Next);
+        var graphic=view.Root.GetComponentInChildren<SkeletonGraphic>();
+        graphic.Update(ending.Animation.Duration+2f);graphic.Update(.1f);
+        view.PlayLoop(KaitSpineView.Idle);view.RefreshRestPose();view.SetYummnKiState(false);
+        view.PlayOnce(KaitSpineView.Attack);view.PlayOnce(clip);
+        Assert.AreSame(ending,view.CurrentAnimation);Assert.IsNull(ending.Next);
+        Assert.AreEqual(ending.AnimationEnd,ending.AnimationTime,.001f);
+        view.ResetTerminalPose();view.PlayLoop(KaitSpineView.Idle);
+        Assert.IsTrue(view.CurrentAnimation.Loop);
+    }
     [Test] public void KiSelectsAllRestAndDoesNotInterruptAttack()
     {
         Create();view.SetYummnKiState(true);view.PlayLoop(KaitSpineView.Idle);
@@ -24,6 +41,33 @@ public sealed class YummnAnimationTests
     {
         view?.Destroy();
         if(canvas!=null)Object.DestroyImmediate(canvas);
+    }
+
+    [Test] public void KiGuardPlaysOnlyFirstFiftyFramesAtDoubleSpeed()
+    {
+        Create();view.PlayOnce(KaitSpineView.YummnKiGuard);
+        var g=view.Root.GetComponentInChildren<SkeletonGraphic>();var e=view.CurrentAnimation;
+        float fps=g.Skeleton.Data.Fps>0?g.Skeleton.Data.Fps:30f;
+        Assert.AreEqual(2f,e.TimeScale);Assert.AreEqual(Mathf.Min(e.Animation.Duration,50f/fps),e.AnimationEnd,.001f);
+        g.Update(e.AnimationEnd/2f+.02f);g.Update(.02f);
+        Assert.IsTrue(view.CurrentAnimation.Loop);Assert.AreEqual(1f,view.CurrentAnimation.TimeScale);
+    }
+
+    [TestCase(KaitSpineView.Attack)]
+    [TestCase(KaitSpineView.YummnFollowUpAttack)]
+    [TestCase(KaitSpineView.YummnKill)]
+    public void PunchesPlayTwiceAsFastAndReturnToNormalRest(string clip)
+    {
+        Create();view.PlayOnce(clip);
+        var punch=view.CurrentAnimation;
+        Assert.AreEqual(2f,punch.TimeScale);
+        Assert.AreEqual(1f,punch.Next.TimeScale);
+        var graphic=view.Root.GetComponentInChildren<SkeletonGraphic>();
+        graphic.Update(punch.Animation.Duration/2f+.02f);graphic.Update(.02f);
+        Assert.IsTrue(view.CurrentAnimation.Loop,"rest should follow the accelerated punch without a pause");
+        Assert.AreEqual(1f,view.CurrentAnimation.TimeScale);
+        view.PlayOnce(KaitSpineView.YummnAttackSkill);
+        Assert.AreEqual(1f,view.CurrentAnimation.TimeScale);
     }
 
     private void Create(string resource="Characters/Yummn/108231_SkeletonData")
@@ -93,7 +137,7 @@ public sealed class YummnAnimationTests
     static YummnCombatEvent Hit(int hp=2,int damage=1,int target=7)=>new YummnCombatEvent{kind=YummnEventKind.Hit,damageCause=YummnDamageCause.Punch,targetId=target,hpAfter=hp,amount=damage,blocked=damage==0};
     [Test] public void LandedFirstPunchArmsWaitingAndNextSameTargetPunchUsesFollowUp()
     {
-        var p=new YummnPunchPresentation();p.Begin(Punch());Assert.AreEqual(KaitSpineView.Attack,p.Hit(Hit(),false));
+        var p=new YummnPunchPresentation();p.Begin(Punch());Assert.AreEqual(KaitSpineView.YummnFollowUpAttack,p.Hit(Hit(),false));
         Assert.AreEqual(KaitSpineView.YummnFollowUpReady,p.RestAnimation);
         p.Begin(Punch());Assert.AreEqual(KaitSpineView.YummnFollowUpAttack,p.Hit(Hit(),false));
     }
@@ -110,7 +154,7 @@ public sealed class YummnAnimationTests
         Assert.AreEqual(KaitSpineView.Idle,p.RestAnimation);Assert.IsNull(p.Hit(Hit(1),true));Assert.AreEqual(KaitSpineView.YummnKill,p.Hit(Hit(0),true));
     }
     [TestCase(1,7)] [TestCase(0,8)] public void TravelOrDifferentTargetStartsFirstAttack(int travel,int target)
-    {var p=new YummnPunchPresentation();p.Begin(Punch());p.Hit(Hit(),false);p.Begin(Punch(travel:travel,target:target));Assert.AreEqual(KaitSpineView.Attack,p.Hit(Hit(target:target),false));}
+    {var p=new YummnPunchPresentation();p.Begin(Punch());p.Hit(Hit(),false);p.Begin(Punch(travel:travel,target:target));Assert.AreEqual(KaitSpineView.YummnFollowUpAttack,p.Hit(Hit(target:target),false));}
     [Test] public void BlockResetAndSecondaryKillClearWaiting()
     {var p=new YummnPunchPresentation();p.Begin(Punch());p.Hit(Hit(),false);p.Begin(Punch());p.Hit(Hit(damage:0),false);Assert.AreEqual(KaitSpineView.Idle,p.RestAnimation);p.Hit(Hit(),false);p.Kill();Assert.AreEqual(KaitSpineView.Idle,p.RestAnimation);p.Reset();Assert.AreEqual(-1,p.ReadyEnemyId);}
 

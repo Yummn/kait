@@ -31,7 +31,7 @@ public sealed partial class KaitRun
     }
     public bool IsAbilityPending(KaitAbilityDef def) => def!=null && inactiveAbilities.Contains(def.id);
     private static string SkillAbilityId(KaitSkill skill)=>KaitAbilityCatalog.Get(skill)?.id??"active."+skill;
-    private static string PassiveAbilityId(KaitPassive passive)=>KaitAbilityCatalog.Get(passive)?.id??"passive."+passive;
+    private string PassiveAbilityId(KaitPassive passive)=>(IsYummn?YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passive):null)?.id??KaitAbilityCatalog.Get(passive)?.id??"passive."+passive;
     public bool IsSkillActive(KaitSkill skill) => (skills.Contains(skill) && !inactiveAbilities.Contains(SkillAbilityId(skill))) || retiredAbilities.Contains(SkillAbilityId(skill));
     private bool RawPassiveActive(KaitPassive passive) =>
         (passives.Contains(passive) && !inactiveAbilities.Contains(PassiveAbilityId(passive))) || retiredAbilities.Contains(PassiveAbilityId(passive));
@@ -39,9 +39,9 @@ public sealed partial class KaitRun
     {
         if(!RawPassiveActive(passive))return false;
         if(!IsYummn)return true;
-        if(passive==KaitPassive.OpenHand)return IsSkillActive(KaitSkill.Flurry);
-        if(passive==KaitPassive.ShatteringPalm)return IsSkillActive(KaitSkill.FrostBreath);
-        if(passive==KaitPassive.FollowThrough)return IsSkillActive(KaitSkill.Palm)||IsSkillActive(KaitSkill.UnbrokenAir)||RawPassiveActive(KaitPassive.OpenHand)&&IsSkillActive(KaitSkill.Flurry);
+        if(passive==KaitPassive.OpenHand)return true;
+        if(passive==KaitPassive.ShatteringPalm)return true;
+        if(passive==KaitPassive.FollowThrough)return true;
         return YummnCatalog.Pool().Exists(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passive);
     }
     public int PassiveCopies(KaitPassive passive)
@@ -62,7 +62,7 @@ public sealed partial class KaitRun
     {
         bool curse=skills.Contains(KaitSkill.HexCurse)||(pack!=null && pack.Exists(d=>d.skill==KaitSkill.HexCurse));
         return (IsYummn ? YummnCatalog.Pool() : KaitAbilityCatalog.All).FindAll(d=> !d.experimental && YummnPrerequisite(d) &&
-            !(Yummn081&&Yummn.rules.Supply!=YummnTileSupplyMode.SkipStationaryPunch&&d.passive==KaitPassive.PassWithoutTrace) &&
+            true &&
             !(d.kind==KaitAbilityKind.Active?skills.Contains(d.skill):passives.Contains(d.passive)) &&
             (pack==null || !pack.Contains(d)) &&
             (!(d.skill==KaitSkill.RelentlessHex || d.passive==KaitPassive.HexArmor || d.passive==KaitPassive.MasterHex ||
@@ -108,7 +108,8 @@ public sealed partial class KaitRun
     }
     public void EnqueueMergeReward(KaitMergeEvent merge)
     {
-        if(merge.resultValue!=32 || (merge.sourceValue!=0 && merge.sourceValue!=16)) return;
+        int rewardValue=IsYummn?Yummn.rules.RewardMergeValue:32;
+        if(merge.resultValue!=rewardValue || (merge.sourceValue!=0 && merge.sourceValue!=rewardValue/2)) return;
         var pack=new KaitRewardPack { id=++nextRewardId,sourceTurn=turn,sourceMergeCell=merge.threatCell,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsYummn?YummnCatalog.Version:"0.6.1" };
         pack.generationSeed=replaySeed;
         FillReward(pack); rewardQueue.Enqueue(pack);
@@ -121,6 +122,7 @@ public sealed partial class KaitRun
         if(!YummnPrerequisite(def))return false;
         if(def.kind==KaitAbilityKind.Active ? skills.Contains(def.skill) : passives.Contains(def.passive)) return false;
         if(def.passive==KaitPassive.Simulacrum && (!passives.Contains(copy) || KaitAbilityCatalog.Get(copy)?.copyable!=true)) return false;
+        if(IsYummn)return ResolveYummnSharedReward(def,replaceSlot);
         int count=def.kind==KaitAbilityKind.Active?skills.Count:passives.Count;
         if(replaceSlot < -1 || replaceSlot>=count || count>=3 && replaceSlot<0) return false;
         if(IsYummn)
@@ -146,6 +148,7 @@ public sealed partial class KaitRun
     }
     public string YummnReplacementConsequences(int index,int slot)
     {
+        if(IsYummn)return null;
         if(!IsYummn||CurrentReward==null||index<0||index>=CurrentReward.choices.Count||slot<0)return null;
         var d=CurrentReward.choices[index];var aa=new List<KaitSkill>(skills);var pp=new List<KaitPassive>(passives);
         if(d.kind==KaitAbilityKind.Active){if(slot>=aa.Count)return null;aa[slot]=d.skill;}

@@ -8,17 +8,18 @@ public enum KaitEnemyLife { Preparing, Active, Dead }
 public enum KaitRangedState { Ready, Aim }
 public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
-public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor, Flurry, WindStep, Palm, StunningFist, PatientDefense, FrostBreath, WaterWhip, UnbrokenAir, ShapeIce, YummnShadowStep, Darkness }
+public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor, Flurry, WindStep, Palm, StunningFist, PatientDefense, FrostBreath, WaterWhip, UnbrokenAir, ShapeIce, YummnShadowStep, Darkness, PreciseStep, EchoStep, MendWait, AirPalm, PhantomSlide, UniqueDecoy }
 public enum KaitSpeedModifier { AddOne, Double }
 
 [Serializable] public sealed class KaitBalanceConfig
 {
-    public int threatSize = 5, initialThreatTiles = 3, newThreatTilesPerTurn = 1, winValue = 256;
+    public int threatSize = 5, initialThreatTiles = 3, newThreatTilesPerTurn = 1, winValue = 128;
     public int baseMomentum = 0, momentumPerEmptyCell = 1, momentumLossOnKill = 0;
     public int kateMaxHp = 3, wallCollisionDamage = 1, unitCollisionDamage = 1, riftBlockDamage = 1;
     public int archerRange = 3;
     public bool enablePush = true, enableFriendlyFire = true, enableInternalObstacle = true, enableThreatPillars = true;
     public bool playerInvincible, enableRiftDamage = true, enableCollisionDamage = true;
+    public bool kaitEffectiveMoveSupply;
 }
 
 [Serializable] public sealed class KaitMergeEvent { public int sourceValue, resultValue, sequence; public Vector2Int threatCell; public KaitDirection actualThreatDirection; public bool spawnSuppressed, systemMerge; }
@@ -38,6 +39,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public KaitRangedState rangedState;
     public int frozenActions;
     public bool yummnFrozen, yummnStunned;
+    public int yummnStunThroughPhase;
     public bool cursed, hexArmorSpent;
     public Vector2Int facing;
     public KaitIntent intent = new KaitIntent();
@@ -127,6 +129,7 @@ public sealed partial class KaitRun
     public int longestChainKills { get; private set; }
     public int chainPower { get; private set; }
     public int currentChainMoves { get; private set; }
+    private bool kaitMovedThisTurn;
     public bool powerLocked { get; private set; }
     public int pushCount { get; private set; }
     public int friendlyFireDamage { get; private set; }
@@ -198,6 +201,7 @@ public sealed partial class KaitRun
 
     public void Reset(int seed)
     {
+        kaitMovedThisTurn=false;
         ResetReplay(seed);
         random = new System.Random(seed); Array.Clear(threat, 0, threat.Length); Array.Clear(walls, 0, walls.Length);
         ResetBuildState();
@@ -302,7 +306,7 @@ public sealed partial class KaitRun
         if (!chainActive || !shadowStepAvailable || !skills.Contains(KaitSkill.ShadowStep)) return false;
         Vector2Int target = katePos + Delta(currentDirection);
         if (IsHardBlocked(target) || EnemyAt(target) != null) { shadowStepAvailable = false; return false; }
-        katePos = target; currentChainMoves++; shadowStepAvailable = false; RecordReplay("shadow",0,0,0); return true;
+        katePos = target; kaitMovedThisTurn=true; currentChainMoves++; shadowStepAvailable = false; RecordReplay("shadow",0,0,0); return true;
     }
 
     public static string SkillName(KaitSkill skill)
@@ -348,6 +352,7 @@ public sealed partial class KaitRun
         currentGlobalDirection = direction; threatChangedThisTurn = threatChanged; kaitWaitedThisTurn = !kaitCanRespond;
         currentDirection = direction; momentum = 0; chainPower = 0; powerLocked = false;
         currentChainKills = 0; currentChainMoves = 0; chainStepCount = 0; chainActive = kaitCanRespond && !useDreadSlash; shadowStepAvailable = false; momentumResonanceTriggeredThisTurn = false;
+        kaitMovedThisTurn=false;
         chainTriggers.Clear(); transferCurse=false;
         if (!kaitCanRespond && threatChanged) threatOrientedWaitCount++;
         foreach (KaitMergeEvent merge in result.merges)
@@ -414,7 +419,7 @@ public sealed partial class KaitRun
             KaitEnemy enemy = EnemyAt(next);
             if (enemy == null)
             {
-                katePos = next;
+                katePos = next; kaitMovedThisTurn=true;
                 if (!powerLocked)
                 {
                     momentum += config.momentumPerEmptyCell;
@@ -460,6 +465,7 @@ public sealed partial class KaitRun
 
     private void ContinueAfterPrimaryKill(Vector2Int enemyCell, KaitTurnResult result)
     {
+        kaitMovedThisTurn |= katePos != enemyCell || result.katePath.Count>0;
         katePos = enemyCell;
         if (result.katePath.Count == 0 || result.katePath[result.katePath.Count - 1] != katePos)
         {
@@ -544,7 +550,9 @@ public sealed partial class KaitRun
         {
             ResolveEnemyIntents(result);
             AgePreparingEnemies(); ResolveSpawnRequests(result);
-            for (int i = 0; i < config.newThreatTilesPerTurn; i++)
+            // Supply once after the entire chain, never during its time-stop inputs.
+            int supplyCount=!config.kaitEffectiveMoveSupply||kaitMovedThisTurn||result.katePath.Count>0?config.newThreatTilesPerTurn:0;
+            for (int i = 0; i < supplyCount; i++)
             {
                 Vector2Int p = SpawnThreatTwoForTurn(result);
                 if (p.x >= 0)
@@ -1269,8 +1277,8 @@ public sealed partial class KaitRun
     private void HandleMilestoneMerge(KaitMergeEvent merge)
     {
         int value = merge.resultValue;
-        if(value==32) EnqueueMergeReward(merge);
-        if (value == 256 && !bossSpawned && !bossPending)
+        EnqueueMergeReward(merge);
+        if (value == config.winValue && !bossSpawned && !bossPending)
         {
             bossPending = true;
             bossPendingCell = MapThreatToBattle(merge.threatCell);

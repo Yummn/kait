@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public sealed class KaitPassiveDeck : MonoBehaviour
 {
-    private readonly KaitPassiveCard[] owned = new KaitPassiveCard[3];
+    private readonly KaitPassiveCard[] owned = new KaitPassiveCard[6];
     private readonly KaitPassiveCard[] candidates = new KaitPassiveCard[3];
-    private readonly int[] shownTriggers = new int[3];
+    private readonly int[] shownTriggers = new int[6];
     private RectTransform bounds;
     private Text choiceTitle;
     private RectTransform choiceBanner;
@@ -25,10 +25,10 @@ public sealed class KaitPassiveDeck : MonoBehaviour
         choose = onChoose;
         Sprite hd = KaitSunlitTheme.Load("PassiveCardBlankHD") ?? KaitSunlitTheme.Load("PassiveCardHD");
         Sprite flat = KaitSunlitTheme.Load("PassiveCardBlankFlat") ?? KaitSunlitTheme.Load("PassiveCardFlat");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < owned.Length; i++)
         {
             owned[i] = KaitPassiveCard.Create(area, split, font, hd, flat, null, Dock);
-            candidates[i] = KaitPassiveCard.Create(area, split, font, hd, flat, Select, null);
+            if(i<candidates.Length)candidates[i] = KaitPassiveCard.Create(area, split, font, hd, flat, Select, null);
         }
         var banner = new GameObject("Passive Choice Banner", typeof(RectTransform), typeof(CanvasRenderer), typeof(HybridStyleGraphic));
         banner.transform.SetParent(area, false);
@@ -76,6 +76,7 @@ public sealed class KaitPassiveDeck : MonoBehaviour
                 selectedOrigin = null;
                 rearrange = true;
             }
+            if(run.IsYummn)card.ApplyDefinition(YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==card.Passive));
             int triggers = run.PassiveTriggerCount(run.passives[i]);
             card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Passive)));
             card.SetRequirement(run.IsYummn?run.YummnMissingRequirement(KaitAbilityCatalog.Get(card.Passive)):null);

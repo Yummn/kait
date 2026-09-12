@@ -60,6 +60,7 @@ public sealed partial class KaitRun
                     case "reward":ok=SelectReward(s.a,s.b,(KaitPassive)s.c);break;
                     case "skip":ok=SkipReward();break;
                     case "cellskill":ok=TryUseSkillAt((KaitSkill)s.a,new Vector2Int(s.b,s.c),out _);break;
+                    case "wait":ok=TryYummnWait().valid;break;
                     case "shadow":ok=TryShadowStep();break;
                     case "reroll":ok=RerollReward();break;
                     case "settings":JsonUtility.FromJsonOverwrite(s.data,config);ok=true;break;

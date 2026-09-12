@@ -6,6 +6,8 @@ public sealed class KaitAtmosphereGraphic : MaskableGraphic
 {
     private float grey, danger, time;
     private Image clockArt, dangerArt;
+    public const int EdgeClockCount=48;
+    private readonly Image[] edgeClocks=new Image[EdgeClockCount];
     private MinimalDangerGraphic minimalDanger;
     private GlobalStyleSplit split;
     private SunlitSplitText dangerClip, minimalClip;
@@ -15,8 +17,9 @@ public sealed class KaitAtmosphereGraphic : MaskableGraphic
         split = value;
         if (dangerClip != null) dangerClip.Configure(split);
         if (minimalClip != null) minimalClip.Configure(split);
+        foreach(var clock in edgeClocks)if(clock!=null)clock.GetComponent<SunlitSplitText>().Configure(split);
     }
-    public void SetState(float g, float d, float t)
+    public void SetState(float g, float d, float t, float idleSeconds=-1)
     {
         grey = Mathf.Clamp01(g); danger = Mathf.Clamp01(d); time = t;
         raycastTarget = false; SetVerticesDirty();
@@ -43,13 +46,56 @@ public sealed class KaitAtmosphereGraphic : MaskableGraphic
             clockArt.rectTransform.anchoredPosition = new Vector2(64, 68);
             clockArt.rectTransform.sizeDelta = new Vector2(96, 96);
             clockArt.preserveAspect = true;
+            edgeClocks[0]=clockArt;
+            for(int i=0;i<EdgeClockCount;i++)
+            {
+                var clock=i==0?clockArt:KaitWarningFrames.Image("Edge Clock "+i,transform);
+                edgeClocks[i]=clock;
+                clock.rectTransform.anchorMin=clock.rectTransform.anchorMax=Vector2.zero;
+                clock.preserveAspect=true;
+                var clip=clock.gameObject.AddComponent<SunlitSplitText>();
+                clip.PreserveColors();clip.SetSides(true,false);clip.Configure(split);
+            }
         }
         clockArt.sprite = KaitWarningFrames.Frame("ClockA", t);
         dangerArt.sprite = KaitWarningFrames.Frame("DangerC", t);
         FitDangerToViewport();
-        clockArt.color = new Color(1,1,1,clockArt.sprite == null ? 0 : grey);
+        for(int i=0;i<EdgeClockCount;i++)
+        {
+            var clock=edgeClocks[i];
+            ClockLayout(i,rectTransform.rect.size,out Vector2 position,out float size,out float angle);
+            clock.rectTransform.anchoredPosition=position;
+            clock.rectTransform.sizeDelta=Vector2.one*size;
+            clock.rectTransform.localRotation=Quaternion.Euler(0,0,angle+Mathf.Sin(t*.32f+i)*3);
+            clock.sprite=KaitWarningFrames.Frame("ClockA",t+i*.173f);
+            // Permuted reveal order spreads each new wave around the perimeter.
+            float delay=1.2f+((i*17)%EdgeClockCount)*.16f;
+            float reveal=Mathf.SmoothStep(0,1,Mathf.Clamp01(((idleSeconds<0?12:idleSeconds)-delay)/.7f));
+            clock.color=new Color(1,1,1,clock.sprite==null?0:grey*reveal*(.52f+.36f*((i*7)%11)/10f));
+        }
         dangerArt.color = new Color(1,1,1,dangerArt.sprite == null ? 0 : danger*.92f);
         minimalDanger.color = new Color(.84f, .22f, .24f, split == null ? 0 : danger * .48f);
+    }
+    public static void ClockLayout(int i,Vector2 viewport,out Vector2 position,out float size,out float angle)
+    {
+        float unit=Mathf.Min(viewport.x,viewport.y);
+        size=unit*Mathf.Lerp(.055f,.105f,((i*7)%13)/12f);
+        angle=-65+(i*47)%130;
+        float inset=unit*.035f;
+        if(i<24)
+        {
+            int edge=i%3;float p=(i/3+.5f)/8f;
+            position=edge==0?new Vector2(inset,viewport.y*Mathf.Lerp(.16f,.84f,p)):
+                new Vector2(Mathf.Lerp(unit*.16f,viewport.x*.39f,p),edge==1?viewport.y-inset:inset);
+        }
+        else
+        {
+            // Two dense quarter-circle fans join the top/bottom rows to the left edge.
+            int j=(i-24)%12;bool top=i>=36;float a=(j+.5f)/12f*Mathf.PI*.5f;
+            float radius=unit*(j%2==0?.105f:.165f);
+            position=new Vector2(inset+radius*(1-Mathf.Cos(a)),inset+radius*(1-Mathf.Sin(a)));
+            if(top)position.y=viewport.y-position.y;
+        }
     }
     // The approved sheet has transparent gutters around its four corners. Stretching
     // its RectTransform alone aligns the gutter, not the visible warning, to the screen.

@@ -18,12 +18,20 @@ public class YummnComicTutorialTests
         StringAssert.Contains("人物实际移动至少一格才补一枚2",alternative);
     }
     [TestCase(false)] [TestCase(true)]
+    public void GuardExplanationMatchesActualRun(bool alternate)
+    {
+        var text=YummnComicTutorial.Appendix(YummnRulesSnapshot.Current(kiGuard:alternate));
+        StringAssert.Contains(alternate?"本局已开启，无需装备卡牌":"本局未开启气格挡",text);
+        StringAssert.Contains("每次长按只等待一次",text);
+        StringAssert.DoesNotContain("见附录",text);
+    }
+    [TestCase(false)] [TestCase(true)]
     public void ThreeComicPagesAndAppendixFit(bool alternate)
     {
         var root=new GameObject("Root",typeof(RectTransform),typeof(Canvas));
         try
         {
-            var rules=alternate?YummnRulesSnapshot.Current(3,YummnMovementCostMode.FixedOne,1,true,false,YummnTileSupplyMode.EffectiveMove,true,false,true,true):YummnRulesSnapshot.Current();
+            var rules=alternate?YummnRulesSnapshot.Current(3,YummnMovementCostMode.FixedOne,1,true,false,YummnTileSupplyMode.EffectiveMove,true,false,true,true):YummnRulesSnapshot.Current(kiGuard:true);
             var book=KaitTutorialBook.Create(root.transform,Resources.Load<Font>("NotoSansCJKsc-Regular"),null);
             book.YummnRules=rules;book.YummnMode=true;book.gameObject.SetActive(true);
             Assert.AreEqual(3,book.PageCount);

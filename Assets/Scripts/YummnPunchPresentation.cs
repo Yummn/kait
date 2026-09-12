@@ -19,9 +19,9 @@ public sealed class YummnPunchPresentation
         if(ev.damageCause==YummnDamageCause.Punch)
         {
             ReadyEnemyId=!attackSkill&&ev.amount>0&&!ev.blocked?ev.targetId:-1;
-            return started?null:attackSkill?KaitSpineView.YummnAttackSkill:followUp?KaitSpineView.YummnFollowUpAttack:KaitSpineView.Attack;
+            return started?null:attackSkill?KaitSpineView.YummnAttackSkill:KaitSpineView.YummnFollowUpAttack;
         }
-        if(ev.damageCause==YummnDamageCause.Counter){ClearReady();return KaitSpineView.Attack;}
+        if(ev.damageCause==YummnDamageCause.Counter){ClearReady();return KaitSpineView.YummnFollowUpAttack;}
         if(ev.damageCause==YummnDamageCause.WaterWhip||ev.damageCause==YummnDamageCause.WinterBreath)
         {ClearReady();return started?null:KaitSpineView.YummnAttackSkill;}
         return null;

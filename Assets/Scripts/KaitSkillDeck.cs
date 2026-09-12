@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public sealed class KaitSkillDeck : MonoBehaviour
 {
-    public readonly KaitSkillCard[] Owned = new KaitSkillCard[3];
+    public readonly KaitSkillCard[] Owned = new KaitSkillCard[6];
     public readonly KaitSkillCard[] Candidates = new KaitSkillCard[2];
     public static readonly Rect CastZone = new Rect(-140, -15, 280, 190);
     private RectTransform bounds, banner, releaseZone;
@@ -37,7 +37,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
         cancelLabel.text = "取消选目标";
         cancel.onClick.AddListener(() => onCancel?.Invoke());
         Sprite hd = KaitSunlitTheme.Load("SkillCardHD"), flat = KaitSunlitTheme.Load("SkillCardFlat");
-        for (int i = 0; i < 3; i++) Owned[i] = KaitSkillCard.Create(area, split, font, hd, flat, null, Dock, Cast);
+        for (int i = 0; i < Owned.Length; i++) Owned[i] = KaitSkillCard.Create(area, split, font, hd, flat, null, Dock, Cast);
         for (int i = 0; i < 2; i++) Candidates[i] = KaitSkillCard.Create(area, split, font, hd, flat, Select, null, null);
         banner = Panel(area, split, "Skill Choice Banner", new Vector2(0, -96), new Vector2(296, 34));
         heading = Label(banner, split, font, "Heading", Vector2.zero, new Vector2(282, 32), 17);
@@ -135,7 +135,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
         cancel.gameObject.SetActive(targeting != KaitSkill.None && dragging == null);
         releaseText.text = dragging != null ? !dragging.Ready ? "技能尚不可用\n松手返回卡槽" : dragging.InCastZone ? "松手打出技能" : "拖到这里打出技能" :
             targeting != KaitSkill.None ? KaitRun.SkillName(targeting) + (KaitRun.NeedsCellTarget(targeting)?"\n请点选高亮目标格":"\n请点选一个敌人") : "雷鸣波已准备\n输入方向发动";
-        if(run.IsYummn&&dragging!=null)releaseText.text=dragging.InCastZone?"松手准备 · 再输入方向":"拖到这里准备";
+        if(run.IsYummn)releaseText.text=dragging!=null?(dragging.InCastZone?"松手后选择目标":"拖到这里准备施放"):YummnCatalog.TargetHint(targeting);
     }
 
     private void CheckOutsidePreviewPress()

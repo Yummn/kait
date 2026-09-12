@@ -23,6 +23,8 @@
 /[Uu]ser[Ss]ettings/
 /Backups/
 /VFXScreenshots/
+/VFXPreviews/
+/AudioPreviews/
 __pycache__/
 *.pyc
 *.log

@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-11（北京时间）。维护者：手机危险红边适配会话。
+最后更新：2026-09-12（北京时间）。维护者：Yummn新版牌池接入会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -13,19 +13,50 @@
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | Windows 0.8.2；Yummn新局快照 yummn-0.8.2，旧存档保留v0.8/v0.8.1；Kait规则不变 |
 | Git 基线 | v0.8.2-home-a-20260911标签对应e3292b0，当前源码与说明已推送origin/master；Yummn/kait保持PUBLIC，新APK已上传同名Release且远端SHA256与本地一致。旧历史归档保留；AudioPreviews/VFXPreviews选稿仍仅在本地 |
-| 最近 Windows 构建 | Build/kait.exe；Logs/home-a-final-build.log Success、退出0；A烟墨双境主界面、双角色、斜向逐行菜单，包含之前Kait/Yummn教程与UI修改 |
-| 最近 EditMode 测试 | Logs/ki-center-tests.xml：相关6/6通过（初版+12及气点，非全量）；最终+28经运行看图验证，测试期望同步。上次全量rift-delay-final-tests.xml 902/902通过 |
+| 最近 Windows 构建 | Build/kait.exe；Logs/exit-stun-build.log成功退出0，Assembly-CSharp.dll 2026-09-12 23:46:24；38牌含借机攻击、整回合震慑及此前拖放分类施放。Android已同步 |
+| 最近 EditMode 测试 | Logs/punch-unified-final-tests.xml：59/59专项通过，37牌目录/图标、拳击联动/耗气、等待补2、各位移残影、点选失败事务、混合槽/16与32发牌；非全量。此前旧Flurry断言失败记录保留 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | ki-center-runtime.log：YUMMN082_QA_COMPLETE；无文字、居中和边距检查通过，最终满气截图六点完整，初版恢复中截图已看。37项玩家设置/存档按类型和值还原；非Android验收 |
-| Android | Build/kait-v0.8.2.apk，2026-09-11 16:27:01，221711324字节；Logs/android-home-a-20260911.log Success退出0；版本802、ARM64、UnityPlayerActivity、与旧包同签名。SHA256 B7748DB7E88527FDB9E6212E542460BB588A74DB938D1814C34FA7FAC2CD5E2B；adb无设备未真机启动验收 |
+| 最近视觉运行检查 | punch-unified-runtime.log：REPOOL_QA_COMPLETE；人物四向按钮、阻止方向误移动、冬之吐息成功与失败退出已运行验证；punch-targets/cast-failure/card-fonts.png已看，提示条已优化。40项玩家设置/存档按原类型值恢复；非Android验收 |
+| Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
 
+DOC-20260912-CURRENT-DESIGN-GITHUB：已完成；已生成 `Kait_当前版本游戏设计文档_v0.8.2.docx`，覆盖双盘规则、Kait/Yummn角色系统、六类敌人、设置、存档、构建与完整技能牌池（Kait 39张，Yummn 38张，共77张，其中Kait实验牌1张默认关闭）。DOCX共12页，已逐页渲染检查，无表格截断、溢出或缺字；技能关键项文本复核无遗漏。当前源码、资源、测试、专题说明、文档及文档生成脚本一并提交到现有 `origin/master`；本地试听/特效预览缓存继续忽略。无Unity占用。
+
+BUILD-20260912-EXIT-STUN-ANDROID：完成；当前源码已生成Build/kait-v0.8.2.apk，日志android-exit-stun-20260912.log Result Success退出0。包体234614258字节，SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；版本802、最低API26、目标API35、ARM64、UnityPlayerActivity，v2签名有效且证书与旧包一致。旧包保留为Build/kait-v0.8.2-before-exit-stun-20260912.apk。ADB无设备，未真机启动/触摸验收；不上传GitHub，无Unity占用。
+
+RULE-20260912-EXIT-STUN：完成源码/Windows/Android；R40借机攻击独立罕见被动，敌人离开四邻前统一拳击，含推动、不含人物自己离开；每敌人每操作限一次防递归，保留伺机而动。复用获批反击图标，38牌。震慑覆盖一个敌方阶段，阶段末解除，重复命中不刷新/扣气并立即清预警；表现快照同步状态，解除震慑不误清冰冻。exit-stun-tests.xml 67/67专项通过；Windows及Android构建成功。未本轮运行视觉/真机验收，无Unity占用，不上传。新牌池0.8.2-exit-stun需新开Yummn局；详见借机攻击与整回合震慑-20260912.md。此前INPUT-DRAG-TARGET借机攻击待确认已由此次用户明确离开触发解决。
+
+INPUT-20260912-DRAG-TARGET：交互部分完成源码/Windows；点击卡牌仅预览，拖放后方向技能四向选、疗伤点自身、冰柱/暗幕/诱饵点任意合法空格，教程同步。drag-target-tests.xml 59/59专项通过；drag-target-build.log成功退出0；repool-runtime.log REPOOL_QA_COMPLETE，真实卡牌拖放及自身/目标格/方向按钮回调通过，三张drag-target截图已看，40项偏好按类型和值还原。借机攻击与现有伺机而动重复，改名或独立双卡待用户确认，尚未改牌池。无Unity占用，不Android/上传。详见主动技能拖放与目标分类-20260912.md。
+
+RULE-20260912-PUNCH-UNIFY：完成源码/Windows/Android；原O04退出牌池、R06改名无甲防御，共37牌；等待基础补2；新入四邻反击走统一拳击，每敌人每操作限一次；二连拳总2气、不足默认普通拳；有效位移起点残影含气竭/击杀跟进/追身/传送。Yummn所有主动四向点选，阻止移动/长按/等待误输入，失败提示并退出，不扣气回合；卡牌与教程字号放大。59/59专项，Windows运行看图通过，修复首轮引用隐藏边界定位异常，40项偏好还原。APK签名/入口/ARM64通过，旧包before-punch-unified-20260912.apk保留；ADB无设备，未真机验收。新池0.8.2-punch-unified需新开Yummn局；不上传GitHub，无Unity占用。详见Yummn拳击与点选施放-20260912.md。
+
+BUILD-20260912-CARDS-ANDROID：完成；当前38牌正式名称/图标及此前规则已打包，日志Logs/android-formal-cards-20260912.log成功退出0；签名与旧包一致、UnityPlayerActivity/ARM64/版本802检查通过。旧包Build/kait-v0.8.2-before-formal-cards-20260912.apk保留。ADB无设备，未真机启动/触摸验收。不修改游戏规则，不上传GitHub，无Unity占用。
+
+CARD-20260912-NAMES：完成源码/Windows/运行看图；正式38牌名称，移除R18留影不散及其耐受效果，R19万影长存改为唯一暗影斗篷；稳定ID绑定纠正旧图错位，内置图像生成13张透明卡图，原件保留1254、导入512。40/40专项通过，formal-cards-build.log成功，formal-cards-runtime.log完成，38图标总览与长标题截图已看；40项偏好还原。牌池版本0.8.2-repool-names需新开Yummn局，旧存档未删除；其余效果/稀有度及Kait不变。不Android/上传，无Unity占用。详见Yummn正式名称与图标复核-20260912.md。
+
+ANIM-20260912-ENDPOSE：完成源码/Windows；KaitSpineView终局动画一次播放不排队待机，终局锁阻止迟到的待机/攻击和重复胜利覆盖，重新开局重置。胜利由循环改为一次；敌人原死亡后淡出不变。endpose-tests.xml 32/33，新4项末帧/无后续轨道/刷新不覆盖/重开恢复通过；旧Flurry技能测试失败如上。endpose-build.log成功退出；未实机视觉验收，不Android/上传，无Unity占用。
+
+本轮登记 RULE-20260912-REWARD16：已完成源码/Windows；默认8+8得牌，Yummn独立设置开启后16+16得牌，下局生效；Kait和旧存档32不变。教程/规则快照/成绩键同步。reward16-final-tests.xml 6/6，reward16-build.log成功退出；未运行实机视觉验收，不Android、不上传，无Unity占用。详见Yummn选牌阈值-20260912.md。
+
 | 任务编号 | 负责人 / 会话 | 范围 | 状态 / 占用 |
 | --- | --- | --- | --- |
+| RULE-20260912-REPOOL | 本会话 | Yummn获批39变体/六混合槽/冻结残影规则、ABABAA特效与卡图 | 完成源码/Windows；39张独立命名及稀有度，保留Kait池与3+3；残影基础一击、被动回合无限，冻结永久下一击免伤解冻，冰柱/暗幕2气。六获批图集与六新透明卡图接入，其余复用获批图标。58/58专项，repool-build3.log成功，repool-runtime.log完成并看图；37项偏好恢复。脚本/测试备份Backups/Repool-before-20260912；新池0.8.2-repool需Yummn新局，旧存档不删除。不Android、不上传，无Unity占用。详见Yummn新版牌池与选稿接入-20260912.md |
+| PREVIEW-20260912-REPOOL | 本会话 | 六组特效ABC与配套卡图选稿 | 完成待选：VFXPreviews/Repool-20260912，18张八帧图集/六张ABC GIF/六张透明卡图。内置image_gen，透明通道与GIF循环检查、七张预览峰值图已看；非游戏实录。规则确认写入README但尚未实施：基础残影一击、技能后本敌方回合无限、冰柱/暗幕2气，冰柱复用冰冻。六槽/新牌池与完整变体卡图待后续；未改正式素材/源码/Windows/Android/上传，无Unity占用 |
+| BUILD-20260912-CLOCK-ANDROID | 本会话 | 当前版本Android打包 | 完成；android-clock-edge-20260912.log Success退出0，签名/入口/ARM64验证通过。旧包Build/kait-v0.8.2-before-clock-edge-20260912.apk保留；新包见上方。adb无设备未真机验收，不上传，无Unity占用 |
+| VFX-20260912-CLOCK-EDGE | 本会话 | Kait时停左屏边缘时钟渐增弧线 | 完成源码/Windows；复用获批ClockA，48对象池、1.2秒后错序渐增约10秒满，上下左边+左侧两角双层弧线，大小倾角与动画相位错开，左侧裁切；Yummn及灰边不变。clock-edge-tests.xml 14/14，clock-edge-build.log Success正常退出。未运行视觉验收，不Android/上传，无Unity占用 |
+| RULE-20260912-BOSS128 | 本会话 | 双角色128 Boss、Kait有效移动补2开关 | 完成源码/Windows：新局winValue128、触发与普通裂隙共用门槛，旧回放保留配置256；Kait独立默认关闭、即时记录开关，整回合移动后结束补一次、时停不补。教程映射与说明同步。boss128-tests.xml 8/8；final-tests 38/39，本次规则/设置/教程通过，唯一失败是旧FivePipsFitHudAndOldSaveOnlyShowsThree居中前坐标断言，未改。boss128-build.log Success退出0。未运行视觉验收、不Android/上传，无Unity占用 |
+| UI-20260912-KI789 | 本会话 | 气上限追加7/8/9，设置/快照/气槽与验证 | 完成源码/Windows：3～9循环，默认6不变、下局生效；快照校验接受9，气点按间距等比缩小避免重叠。ki789-tests.xml 7/7存档往返与HUD数量/边界/间距通过；ki789-build.log Success正常退出。未运行视觉验收，不打Android不上传，无Unity占用 |
+| ANIM-20260912-RESTORE-KILL | 本会话 | Yummn击杀还原standBy两倍速 | 完成源码/Windows；击杀还原01_standBy并沿用2倍速，普通拳skipQuest与气格挡不变。restore-kill-tests.xml 29/29通过；restore-kill-build.log Success退出0。未运行视觉验收，不打Android、不上传 |
+| UI-20260912-TUTORIAL-ANDROID | 本会话 | 教程简化与当前气格挡规则、Android | 完成源码/Android：三页漫画不加页，第二页气格挡提示；详细说明拆操作/连按/等待，说明气格挡条件与后续攻击，残影非护盾，旧本局关闭提示。Kait连按提示同步、Boss不写固定值。tutorial-0912-tests.xml 6/6文本与布局通过；android-tutorial-20260912.log Success退出0，签名/入口/ARM64通过。旧包before-tutorial-20260912.apk；Windows本轮教程未重打，adb无设备未真机验收，未上传，无Unity占用 |
+| RULE-20260912-KI-GUARD | 本会话 | 取消击杀额外停顿、拳击映射、气格挡设置/规则/表现 | 完成源码/Windows：普通拳/反击skipQuest，击杀attack（沿用2倍）；删除0.35秒。气格挡默认下一新局开，高速有气抵消一次并清气气竭，已有防御优先，旧存档保留。skill0截前50帧2倍，正常接待机。41/41专项；ki-guard-final-build.log Success退出0；hold-input-runtime.log HOLD_QA_COMPLETE，气格挡/连按与设置最终截图已看，37项偏好还原。未Android/上传，无Unity占用；见气格挡与拳击映射-20260912.md |
+| INPUT-20260911-KILL-PAUSE | 本会话 | 击杀后自动连按缓冲停顿 | 完成源码/Windows：方向操作有玩家击杀时标记，AutoInputReady后开始0.35秒，继续保持恢复一次自动输入；新按键/换向/松手清旧停顿，普通未击杀连按不变。KaitHoldInputTests 8/8（kill-pause-tests.xml），kill-pause-build.log Success退出0。未本轮运行手感/真机验收，未Android/上传，无Unity占用 |
+| ANIM-20260911-PUNCH2X | 本会话 | Yummn出拳两倍速、专项测试和Windows | 完成：KaitSpineView对Yummn的01_attack、01_attack_skipQuest、01_standBy单次轨道设2倍；待机/移动/技能/Kait不变。YummnAnimationTests 28/28（punch2x-tests.xml），半时长后接正常待机通过；punch2x-build.log Success退出0；hold-input-runtime.log HOLD_QA_COMPLETE，连续三拳/松手/等待通过，37项偏好还原。源码/Windows同步，Android未同步、未上传，无Unity占用 |
+| BUILD-20260911-HOLD-ANDROID | 本会话 | 长按输入与等待手势Android包 | 完成：android-hold-20260911.log Success退出0，签名/入口/ARM64检查通过，APK见上方快照。旧包保留Build/kait-v0.8.2-before-hold-20260911.apk；adb无设备未真机启动/触摸验收。未上传GitHub，无Unity占用 |
+| INPUT-20260911-HOLD | 本会话 | 长按方向连发设置、滑动保持、长按等待、测试及Windows | 完成源码/Windows；默认关、0.4秒保持后连发、等待回合及非循环动作结束、松手停止；手机滑后保持，原地0.55秒一次等待。修正棋盘Button被UI过滤排除，技能选目标除外。专项9/9，final构建Success退出0、HOLD_QA_COMPLETE，连续三拳/松手/等待通过，37项偏好还原；未Android打包/真机/上传，无Unity占用；见长按连续输入与等待手势-20260911.md |
 | RELEASE-20260911-HOME-A | 本会话 | 当前源码上传GitHub、烟墨首页Android包 | 完成：源码及标签v0.8.2-home-a-20260911已推送，APK和说明已发布同名Release，远端大小221711324与SHA256均匹配本地。Android构建/签名/入口/ARM64通过；PUBLIC不变，旧包before-home-a-20260911.apk。adb无设备未真机验收；无Unity占用，不改规则 |
 | UI-20260911-HOME-A | 本会话 | A烟墨双境主界面、双角色选择、斜向逐行菜单、教程路由、Windows | 完成源码/Windows/运行看图；每行取平行斜线中点，选人不启动、单一继续按角色存档、教程/设置随所选人物；CG轻浮动及悬停放大。首页专项7/7；扩展28/29唯一失败为旧气槽位置断言，未改。home-a-final-build.log Success退出0；HOME_QA_COMPLETE，标题行高修正后最终截图已看，37项偏好还原。无游戏/Unity占用，未Android/GitHub；见首页A烟墨双境接入-20260911.md |
 | UI-20260911-KAIT-COMIC | 本会话 | Kait三页新漫画、详细说明、教程路由/测试与Windows | 完成源码/Windows/运行看图：内置image_gen三张2172×724，KaitComic/01-03；三页核心+滚动详细说明，Boss不写固定数值，旧十页素材保留。修复三页/四页切换导航容量，Kait和Yummn内容隔离。kait-comic-tests.xml相关11/11；kait-comic-build.log Success退出0；运行QA与Kait三页/说明首尾截图已看，37项偏好还原。未改战斗规则，未Android/GitHub，无Unity/游戏占用；提示词见Kait三页漫画教程-20260911.md |

@@ -21,10 +21,12 @@ public sealed partial class KaitRun
     }
     private void PlanYummn082Movement(YummnActionContext a)
     {
+        if(a.actionOverride=="Precise"){a.voluntaryCells=1;return;}
         if(a.actionOverride!=null)return;
+        if(HasPassive(KaitPassive.DistantPull)&&FirstYummnRayEnemy(a.direction)!=null)return;
         int available=Ki-a.skillKiCost;
         int limit=a.phaseAtStart==YummnPhase.Exhausted?1:
-            Yummn.rules.MovementCostMode==YummnMovementCostMode.PerCell?available:available>0?BattleSize:0;
+            !HasPassive(KaitPassive.FrugalStride)&&Yummn.rules.MovementCostMode==YummnMovementCostMode.PerCell?available:available>0?BattleSize:0;
         for(int i=1;i<=limit;i++)
         {
             var p=a.startCell+Delta(a.direction)*i;
@@ -32,7 +34,7 @@ public sealed partial class KaitRun
             a.voluntaryCells++;
         }
         a.movementKiCost=a.phaseAtStart==YummnPhase.Exhausted?0:
-            Yummn.rules.MovementCostMode==YummnMovementCostMode.PerCell?a.voluntaryCells:a.voluntaryCells>0?1:0;
+            !HasPassive(KaitPassive.FrugalStride)&&Yummn.rules.MovementCostMode==YummnMovementCostMode.PerCell?a.voluntaryCells:a.voluntaryCells>0?1:0;
         a.totalKiCost=a.skillKiCost+a.movementKiCost;
     }
     private void CommitYummn082Cost(KaitTurnResult r)
@@ -43,14 +45,11 @@ public sealed partial class KaitRun
         Yummn.metrics.kiSpent+=a.totalKiCost;
         Yummn.metrics.movementKiSpent+=a.movementKiCost;
         Yummn.metrics.skillKiSpent+=a.skillKiCost;
-        if(a.phaseAtStart!=YummnPhase.Burst||a.voluntaryCells==0)return;
-        var marker=new YummnAfterimageMarker{id=++Yummn.nextAfterimageId,sourceActionId=a.actionId,cell=a.startCell,direction=a.direction};
-        Yummn.afterimages.Add(marker);Yummn.metrics.afterimagesCreated++;
-        r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageCreated,actionId=a.actionId,markerId=marker.id,to=marker.cell,direction=Delta(a.direction)});
     }
     public bool ShouldRunYummnEnemyPhase(YummnActionContext a)
     {
         a.enemyPhaseReason=YummnEnemyPhaseReason.None;
+        if(a.isWait)a.enemyPhaseReason|=YummnEnemyPhaseReason.Exhaustion;
         if(a.phaseAtStart==YummnPhase.Exhausted)a.enemyPhaseReason|=YummnEnemyPhaseReason.Exhaustion;
         if(a.killIds.Count>0)a.enemyPhaseReason|=YummnEnemyPhaseReason.Kill;
         if(Yummn.rules.AttackAdvancesEnemyPhase&&a.didAttack)a.enemyPhaseReason|=YummnEnemyPhaseReason.Attack;
@@ -61,7 +60,7 @@ public sealed partial class KaitRun
     {
         var a=r.yummnAction;
         while(a.rewardedKills<a.killIds.Count)
-        {a.rewardedKills++;Yummn.metrics.killKi+=GainYummnKi(Yummn.rules.KillKi,r,"Kill");}
+        {a.rewardedKills++;Yummn.metrics.killKi+=GainYummnKi(YummnKillGain,r,"Kill");}
     }
     private void SupplyYummn082Twos(KaitTurnResult r,bool countersOnly=false)
     {
@@ -71,6 +70,15 @@ public sealed partial class KaitRun
             Yummn.rules.Supply==YummnTileSupplyMode.EffectiveMove?(countersOnly?0:a.playerMoved?1:0):
             Yummn.rules.Supply==YummnTileSupplyMode.KillOnly?a.killIds.Count-a.suppliedKills:
             countersOnly||a.stationaryPunch?0:a.voluntaryCells>0||a.actionOverride!=null?1:0;
+        int newKills=a.killIds.Count-a.suppliedKills;
+        if(a.isWait&&!countersOnly)requested=Yummn.rules.Supply==YummnTileSupplyMode.KillOnly?newKills:0;
+
+        bool noMove=HasPassive(KaitPassive.KillSupply)||HasPassive(KaitPassive.WaitSupply);
+        if(HasPassive(KaitPassive.KillSupply)&&newKills>0)requested=newKills*2;
+        else if(!countersOnly&&a.voluntaryCells>0&&newKills==0&&noMove)requested=0;
+        else if(!countersOnly&&a.voluntaryCells>0&&!noMove&&HasPassive(KaitPassive.FrugalStride))requested=2;
+        if(!countersOnly&&(a.actionOverride=="Echo"||a.actionOverride=="Phantom"||a.actionOverride=="Shadow"))requested=0;
+        if(!countersOnly&&a.isWait)requested++;
         a.suppliedKills=a.killIds.Count;
         if(Yummn.rules.Supply==YummnTileSupplyMode.SkipStationaryPunch&&requested>0&&!a.didAttack&&katePos!=a.startCell&&HasPassive(KaitPassive.PassWithoutTrace))
         {a.suppressedTwo=true;Yummn.metrics.suppressedTwos++;YummnTrigger("S04",r);requested=0;}
@@ -90,7 +98,7 @@ public sealed partial class KaitRun
         if(ended)return; // A boss kill wins before any subsequent board or enemy check.
         if(a.didAttack||!IsYummnShadow(katePos))Yummn.cloak=false;
         else if(HasPassive(KaitPassive.ShadowCloak)){Yummn.cloak=true;YummnTrigger("S03",r);}
-        Yummn.tranquility=a.phaseAtStart==YummnPhase.Exhausted&&!a.didAttack&&katePos!=a.startCell&&HasPassive(KaitPassive.Tranquility);
+        Yummn.tranquility=false;
         SupplyYummn082Twos(r);
         r.yummnThreatAfterSupply=CopyThreat();
         ResolveOldNewsArchive(r);
@@ -101,6 +109,7 @@ public sealed partial class KaitRun
         {
             a.spawnChecked=true;ResolveYummnRifts(r);
             if(bossPending){SpawnShieldKnight(r);if(r.bossSpawned)Yummn.metrics.bossCreatedAction=a.actionId;}
+            ResolveYummnRangeEntries(r);
             ResolveYummnEnemyPhase(r);
             // Counter kills join the same transaction; never recurse into AI.
             RewardYummn082Kills(r);
@@ -122,11 +131,18 @@ public sealed partial class KaitRun
         {
             if(!marker.alive||!intent.affectedCells.Contains(marker.cell))continue;
             hit=true;Yummn.metrics.afterimagesHit++;
+            bool survives=HasPassive(KaitPassive.AllEchoWard);
+            if(!survives)marker.alive=false;
             string key=enemy.type.ToString();var counts=Yummn.metrics.afterimageHitsByEnemy;
             counts[key]=counts.TryGetValue(key,out var n)?n+1:1;
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageHit,actionId=Yummn.actionId,sourceId=enemy.id,markerId=marker.id,attackEventId=attackId,to=marker.cell});
         }
-        if(hit)Yummn.metrics.afterimageKi+=GainYummnKi(1,r,"Afterimage");
+        if(hit)
+        {
+            Yummn.metrics.afterimageKi+=GainYummnKi(1,r,"Afterimage");
+            if(HasPassive(KaitPassive.EchoReprisal)){YummnHit(enemy,1,Vector2Int.zero,YummnDamageCause.EchoReflect,r);RepoolStatus(r,"Reflect",enemy.pos);}
+        }
+        foreach(var marker in Yummn.afterimages)if(!marker.alive)r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageCleared,markerId=marker.id,to=marker.cell});
     }
     private void ClearYummn082Afterimages(KaitTurnResult r)
     {
@@ -135,7 +151,7 @@ public sealed partial class KaitRun
             marker.alive=false;Yummn.metrics.afterimagesCleared++;
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageCleared,actionId=Yummn.actionId,markerId=marker.id,to=marker.cell});
         }
-        Yummn.afterimages.Clear();
+        Yummn.afterimages.Clear();Yummn.protectedEchoId=-1;
     }
     private void TranslateYummn082Intent(KaitEnemy e,Vector2Int oldOrigin)
     {

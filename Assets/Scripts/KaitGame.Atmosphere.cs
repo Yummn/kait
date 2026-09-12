@@ -35,6 +35,6 @@ public sealed partial class KaitGame
         bool enemyClockActive=!run.IsYummn||!run.Yummn.rules.Legacy||run.KiPhase==YummnPhase.Exhausted;
         dangerStrength = Mathf.MoveTowards(dangerStrength, visible && !busy && enemyClockActive && atmosphereDanger ? 1 : 0, Time.unscaledDeltaTime * 5);
         atmosphere.ConfigureSplit(worldStyleSplit);
-        atmosphere.SetState(greyStrength, dangerStrength, Time.unscaledTime);
+        atmosphere.SetState(greyStrength, dangerStrength, Time.unscaledTime, chainIdleSeconds);
     }
 }

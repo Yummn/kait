@@ -53,7 +53,7 @@ public sealed class KaitRewardDeckTests
     {
         run.skills.AddRange(new[]{KaitSkill.SwiftBoots,KaitSkill.CatAgility,KaitSkill.Command});
         Select(0);Assert.AreEqual(3,run.skills.Count);
-        foreach(var slot in Slots)Assert.IsTrue(slot.gameObject.activeSelf);
+        for(int i=0;i<Slots.Length;i++)Assert.AreEqual(i<3,Slots[i].gameObject.activeSelf,"Kait retains only three visible replacement targets");
         ((Button)Field(deck,"cancel")).onClick.Invoke();Assert.IsNotNull(run.CurrentReward);
         CollectionAssert.DoesNotContain(run.skills,KaitSkill.HexCurse);
     }

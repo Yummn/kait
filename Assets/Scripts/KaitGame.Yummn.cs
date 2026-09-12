@@ -39,6 +39,8 @@ public sealed partial class KaitGame
         run.config.enableFriendlyFire=PlayerPrefs.GetInt(DisableFriendlyFirePreference,0)==0;
         run.config.enableCollisionDamage=PlayerPrefs.GetInt(DisableCollisionDamagePreference,0)==0;
         run.config.enableThreatPillars=c==KaitCharacter.Yummn||!PlayerPrefs.GetInt(DisableThreatPillarsPreference,0).Equals(1);
+        run.config.winValue=128;
+        run.config.kaitEffectiveMoveSupply=PlayerPrefs.GetInt(KaitEffectiveMoveSupplyPreference,0)==1;
         run.SelectCharacter(c,System.Environment.TickCount,YummnPreset());
         PlayerPrefs.SetInt("Kait.Character",(int)c);PlayerPrefs.Save();
         if(characterSelection!=null)characterSelection.SetActive(false);StartFromMainMenu();
@@ -142,6 +144,7 @@ public sealed partial class KaitGame
         {
             actionPips[i].gameObject.SetActive(i<run.Yummn.profile.maxKi);
             float spacing=Mathf.Min(24,120f/Mathf.Max(1,actionPips.Length-1));
+            actionPips[i].rectTransform.localScale=Vector3.one*Mathf.Min(1,(spacing-2)/22f);
             actionPips[i].rectTransform.anchoredPosition=new Vector2((i-(actionPips.Length-1)*.5f)*spacing,0);
             kiWisps[i].SetState(run.ExactKi-i,exhausted);
         }
@@ -184,7 +187,7 @@ public sealed partial class KaitGame
             if(merge.resultValue>=run.config.winValue||merge.resultValue<(1<<(offset+1))||merge.spawnSuppressed||animatedSpawns.Exists(s=>s.targetCell==p))continue;
             animatedSpawns.Add(new KaitSpawnRequest{targetCell=p,sourceThreatCell=merge.threatCell,tier=Mathf.Clamp((int)Mathf.Log(merge.resultValue,2)-offset,1,5),createdTurn=run.turn-1,state=KaitSpawnState.Preview});
         }
-        yummnVisualIce=r.yummnAction.iceAtStart;yummnVisualDarkness=r.yummnAction.darknessAtStart;
+        yummnVisualIce=r.yummnAction.iceAtStart;yummnVisualDarkness=r.yummnAction.darknessAtStart;yummnVisualDecoy=r.yummnAction.decoyAtStart;
         var opening=r;
         if(r.yummnThreatAfterMerge!=null)
         {
@@ -230,7 +233,7 @@ public sealed partial class KaitGame
                 if(ghostHit)YummnAudio.Play("GhostHit");
                 yield return AnimateAllEnemyActions(r.enemyActions.FindAll(a=>a.enemyId==ev.sourceId&&a.type!=KaitIntentType.Move));
             }
-            else if(ev.kind==YummnEventKind.AfterimageCreated)CreateYummnLogicalGhost(ev.markerId,ev.to,r.kaitDirection);
+            else if(ev.kind==YummnEventKind.AfterimageCreated)CreateYummnLogicalGhost(ev.markerId,ev.to,ev.direction.x>0?KaitDirection.Right:ev.direction.x<0?KaitDirection.Left:ev.direction.y>0?KaitDirection.Up:KaitDirection.Down);
             else if(ev.kind==YummnEventKind.AfterimageCleared)RemoveYummnLogicalGhost(ev.markerId,.3f);
             else if(ev.kind==YummnEventKind.Spawn&&run.Yummn.rules.Is082)
             {
@@ -244,6 +247,8 @@ public sealed partial class KaitGame
             }
             else if(ev.kind==YummnEventKind.Hit&&ev.targetId>=0)
             {
+                if(ev.direction!=Vector2Int.zero&&(ev.damageCause==YummnDamageCause.Punch||ev.damageCause==YummnDamageCause.Counter))
+                    kaitSpine?.Face(ev.direction.x>0?KaitDirection.Right:ev.direction.x<0?KaitDirection.Left:ev.direction.y>0?KaitDirection.Up:KaitDirection.Down);
                 string attackClip=yummnPunchPose.Hit(ev,attackStarted);
                 if(attackClip!=null&&!attackVoicePlayed&&ev.hpAfter>0)
                 {GameAudio.PlayKaitNormalAttackVoice();attackVoicePlayed=true;}
@@ -295,19 +300,32 @@ public sealed partial class KaitGame
                     YummnAudio.Play("Ice");
                 }
                 if(ev.status=="Darkness"){kaitSpine?.PlayOnce(KaitSpineView.YummnAttackSkill);yummnVisualDarkness=ev.to;YummnAudio.Play("Shadow");}
+                if(ev.status=="Decoy"){yummnVisualDecoy=ev.to;kaitSpine?.PlayOnce(KaitSpineView.YummnBuff);}
+                if(ev.status=="DecoyExpired")yummnVisualDecoy=YummnRun.NoCell;
                 if(ev.status=="DarknessExpired")yummnVisualDarkness=YummnRun.NoCell;
                 RefreshYummnTerrain();
             }
             else if(ev.kind==YummnEventKind.Status)
             {
+                if(ev.status=="KiGuard"){yummnPunchPose.ClearReady();if(kaitSpine!=null){kaitSpine.RestAnimation=KaitSpineView.Idle;kaitSpine.PlayOnce(KaitSpineView.YummnKiGuard);}}
                 if(ev.status=="SupplyReady"||ev.status=="CounterSupplyReady")
                 {while(!threatDone)yield return null;yield return AnimateYummn082Supply(r,ev);}
                 if(ev.status=="Exhausted"||ev.status=="Burst"){PlayV08Fx(displayKate??run.katePos,ev.status=="Burst"?11:10,r.kaitDirection,110);YummnAudio.Play(ev.status=="Burst"?"Recover":"Exhaust");if(ev.status=="Burst"&&run.HasPassive(KaitPassive.Wholeness))kaitSpine?.PlayOnce(KaitSpineView.YummnHeal);}
-                if(ev.status=="Stunned")PlayYummnFx(ev.to,3);
+                if(ev.status=="Stunned")PlayV08Fx(ev.to,16,r.kaitDirection,90);
+                if(ev.status=="IceGuard")PlayV08Fx(ev.to,17,r.kaitDirection,104);
+                if(ev.status=="Heal"){PlayV08Fx(ev.to,18,r.kaitDirection,104);kaitSpine?.PlayOnce(KaitSpineView.YummnHeal);}
+                if(ev.status=="Reflect")PlayV08Fx(ev.to,20,r.kaitDirection,90);
+                if(ev.status=="Deflect")PlayV08Fx(ev.to,21,r.kaitDirection,94);
                 if(ev.status=="Frozen")PlayV08Fx(ev.to,5,r.kaitDirection,76);
                 if(ev.status=="PalmDetonate")PlayV08Fx(ev.to,8,r.kaitDirection,85);
                 if(ev.status=="AimDenied")PlayV08Fx(displayKate??run.katePos,13,r.kaitDirection,46);
-                var actor=before.Find(e=>e.id==ev.targetId);if(actor!=null){actor.yummnFrozen=ev.status=="Frozen"||actor.yummnFrozen&&ev.status!="Shatter"&&ev.status!="ControlConsumed";actor.frozenActions=ev.status=="Stunned"||actor.yummnFrozen?1:0;}
+                var actor=before.Find(e=>e.id==ev.targetId);
+                if(actor!=null)
+                {
+                    actor.yummnFrozen=ev.status=="Frozen"||actor.yummnFrozen&&ev.status!="IceGuard"&&ev.status!="Shatter";
+                    actor.yummnStunned=ev.status=="Stunned"||actor.yummnStunned&&ev.status!="ControlConsumed";
+                    actor.frozenActions=actor.yummnStunned||actor.yummnFrozen?1:0;
+                }
             }
         }
         while(!threatDone)yield return null;

@@ -60,9 +60,10 @@ public sealed class KaitCardLogo : MonoBehaviour
 
     public void Show(KaitSkill skill) { Set(skill.ToString(),KaitSkillCard.Sigil(skill));SetGenerated(KaitAbilityCatalog.Get(skill)); }
     public void Show(KaitPassive passive) { Set(passive.ToString(),PassiveSymbol(passive));SetGenerated(KaitAbilityCatalog.Get(passive)); }
+    public void ShowDefinition(KaitAbilityDef def){SetGenerated(def);}
     private void SetGenerated(KaitAbilityDef def)
     {
-        picture.SetBlackKeyLeft(YummnCatalog.IsMonk(def));
+        picture.SetBlackKeyLeft(YummnCatalog.IsMonk(def)&&YummnRepoolArt.NewIcon(def)==null);
         var art=KaitCardSkin.Icon(def);
         if(art!=null) { current=art;picture.SetVisualState(current,Color.white,Color.clear); }
         if(YummnCatalog.IsMonk(def))symbol.text=def.sigil;

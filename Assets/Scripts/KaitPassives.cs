@@ -22,7 +22,10 @@ public enum KaitPassive
     DisplacementCloak, Passwall, BagHolding, ReverseGravity, WildMagic,
     Unarmored, DeflectMissiles, ReturnMissile, FollowThrough, PerfectSelf, EmptyBody,
     OpenHand, Tranquility, Wholeness, QuiveringPalm, FireSnake, ShatteringPalm,
-    ShadowCloak, PassWithoutTrace, ShadowAssault, Opportunist
+    ShadowCloak, PassWithoutTrace, ShadowAssault, Opportunist,
+    TwinPunch, FrugalStride, StunStrike, WaitingGuard, DistantPull, EndlessPush,
+    FreezePush, FreezePunch, FirstEchoWard, AllEchoWard, EchoReprisal,
+    KillSupply, WaitSupply, DeepReservoir, KiAegis, OpportunityAttack
 }
 
 public enum KaitPassiveCategory

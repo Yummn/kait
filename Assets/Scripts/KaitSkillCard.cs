@@ -61,12 +61,12 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         card.surface = go.GetComponent<HybridStyleGraphic>();
         card.surface.Configure(split, hd, Color.white, Color.white, new Color(.68f, .82f, .9f), 3, 8);
         card.surface.SetRightSprite(flat); card.surface.raycastTarget = true;
-        card.title = card.Label("Name", font, split, 101, 26, 19, FontStyle.Bold);
+        card.title = card.Label("Name", font, split, 101, 30, 21, FontStyle.Bold);
         card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,38), 68);
-        card.state = card.Label("Availability", font, split, 2, 18, 13, FontStyle.Bold);
-        card.description = card.Label("Effect", font, split, -68, 60, 15);
-        card.description.rectTransform.sizeDelta=new Vector2(140,60);
-        card.footer = card.Label("Gesture", font, split, -110, 24, 13);
+        card.state = card.Label("Availability", font, split, 2, 22, 16, FontStyle.Bold);
+        card.description = card.Label("Effect", font, split, -61, 78, 18);
+        card.description.rectTransform.sizeDelta=new Vector2(148,78);
+        card.footer = card.Label("Gesture", font, split, -110, 24, 15);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
         return card;
@@ -157,7 +157,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
             targeting ? (KaitRun.NeedsCellTarget(Skill)?"选择目标格":"选择敌人") : "";
         var def=KaitAbilityCatalog.Get(Skill);
         if(readable&&YummnCatalog.IsMonk(def))state.rectTransform.anchoredPosition=new Vector2(0,-10);
-        if(YummnCatalog.IsMonk(def))state.text=IsCandidate?def.traditionTag:readable?(monkPrepared?(monkMovementSeparate?"已准备 · 技能气 ":"已准备 · 本次总气 ")+monkTotal:def.traditionTag):"气 "+def.kiExtraCost+(monkPrepared?" · 已准备":"");
+        if(YummnCatalog.IsMonk(def))state.text=IsCandidate?def.traditionTag:readable?(targeting?"点选释放":def.traditionTag):"气 "+def.kiExtraCost;
         footer.text = Time.unscaledTime < feedbackUntil ? feedback : IsCandidate ? "" :
             IsDragging && InCastZone && Ready && !YummnCatalog.IsMonk(def) ? "松手施放" : "";
         if(!string.IsNullOrEmpty(missingRequirement)&&readable)footer.text=missingRequirement;
@@ -200,7 +200,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (e.button != PointerEventData.InputButton.Left || covered || SuppressedClick || IsDragging) return;
         if (pointer != int.MinValue && pointer != e.pointerId) return;
-        if (IsCandidate) choose?.Invoke(this); else {RevealPreview();if(YummnCatalog.IsMonk(KaitAbilityCatalog.Get(Skill))&&Ready)cast?.Invoke(this);}
+        if (IsCandidate) choose?.Invoke(this); else RevealPreview();
     }
     public void OnBeginDrag(PointerEventData e)
     {

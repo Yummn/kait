@@ -98,7 +98,7 @@ public class YummnFiveKiTests
             foreach(var c in new[]{KaitCharacter.Yummn,KaitCharacter.Kait,KaitCharacter.Yummn})
             {
                 r.SelectCharacter(c,912);typeof(KaitGame).GetMethod("RefreshCharacterSettings",Hidden).Invoke(g,null);
-                var visible=root.GetComponentsInChildren<Toggle>(true).Where(t=>t.gameObject.activeSelf).ToArray();Assert.AreEqual(c==KaitCharacter.Yummn?6:5,visible.Length);
+                var visible=root.GetComponentsInChildren<Toggle>(true).Where(t=>t.gameObject.activeSelf).ToArray();Assert.AreEqual(c==KaitCharacter.Yummn?8:7,visible.Length);
                 Assert.AreEqual(c==KaitCharacter.Yummn,button.gameObject.activeSelf);
                 Assert.AreEqual(c==KaitCharacter.Kait,((Toggle)typeof(KaitGame).GetField("disableThreatPillarsToggle",Hidden).GetValue(g)).gameObject.activeSelf);
                 var rects=visible.Select(t=>(RectTransform)t.transform).OrderByDescending(t=>t.anchoredPosition.y).ToArray();

@@ -58,9 +58,9 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         card.surface.SetRightSprite(flat);
         card.surface.raycastTarget = true;
         card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,51), 68);
-        card.title = card.Label("Name", font, split, new Vector2(0, 88), new Vector2(152, 24), 19, FontStyle.Bold);
-        card.description = card.Label("Description", font, split, new Vector2(0, -64), new Vector2(140, 62), 15);
-        card.footer = card.Label("Action", font, split, new Vector2(0, -112), new Vector2(156, 23), 13);
+        card.title = card.Label("Name", font, split, new Vector2(0, 88), new Vector2(156, 28), 21, FontStyle.Bold);
+        card.description = card.Label("Description", font, split, new Vector2(0, -57), new Vector2(148, 82), 18);
+        card.footer = card.Label("Action", font, split, new Vector2(0, -112), new Vector2(156, 23), 15);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
         return card;
@@ -116,6 +116,13 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         RefreshDetails();
     }
 
+    public void ApplyDefinition(KaitAbilityDef def)
+    {
+        if(def==null)return;
+        title.text=def.nameZh;description.text=def.cardText.TrimEnd('。');
+        face=KaitCardSkin.Face(def)??face;KaitCardSkin.Apply(gameObject,def,title.font,styleSplit);
+        logo.ShowDefinition(def);surface.SetVisualState(face,Color.white,Color.white);
+    }
     public void Hide()
     {
         IsDragging = false;

@@ -28,6 +28,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private const string DisableRiftDamagePreference = "Kait.DisableRiftDamage";
     private const string DisableFriendlyFirePreference = "Kait.DisableFriendlyFire";
     private const string DisableCollisionDamagePreference = "Kait.DisableCollisionDamage";
+    private const string KaitEffectiveMoveSupplyPreference = "Kait.EffectiveMoveSupply";
 
     private static KaitGame instance;
     private readonly KaitRun run = new KaitRun();
@@ -98,6 +99,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private Toggle disableRiftDamageToggle;
     private Toggle disableFriendlyFireToggle;
     private Toggle disableCollisionDamageToggle;
+    private Toggle kaitEffectiveMoveSupplyToggle;
     private Sprite kaitPortrait;
     private SkeletonDataAsset makotoSkeletonData;
     private KaitSpineView kaitSpine;
@@ -220,6 +222,7 @@ public sealed partial class KaitGame : MonoBehaviour
         run.config.enableRiftDamage = PlayerPrefs.GetInt(DisableRiftDamagePreference, 0) == 0;
         run.config.enableFriendlyFire = PlayerPrefs.GetInt(DisableFriendlyFirePreference, 0) == 0;
         run.config.enableCollisionDamage = PlayerPrefs.GetInt(DisableCollisionDamagePreference, 0) == 0;
+        run.config.kaitEffectiveMoveSupply=PlayerPrefs.GetInt(KaitEffectiveMoveSupplyPreference,0)==1;
         SceneManager.sceneLoaded += OnSceneLoaded;
         threatBoardFont = Resources.Load<Font>("NotoSansCJKsc-Regular");
         if (threatBoardFont == null) threatBoardFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
@@ -384,6 +387,7 @@ public sealed partial class KaitGame : MonoBehaviour
             var qa=new GameObject("Character CG QA",typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
             qa.StartCoroutine(VerifyCharacterCGRuntime(screenshotPath));
         }
+        else if (CommandLineValue("-repoolQA") == "1") StartCoroutine(VerifyRepool());
         else if (CommandLineValue("-kaitWarningsQA") == "1") StartCoroutine(VerifyApprovedWarnings(screenshotPath));
         else if (CommandLineValue("-kaitYummn082QA") == "1") StartCoroutine(VerifyYummn082Runtime(screenshotPath));
         else if (CommandLineValue("-kaitYummnQA") == "1") StartCoroutine(VerifyYummnRuntime(screenshotPath));
@@ -462,19 +466,20 @@ public sealed partial class KaitGame : MonoBehaviour
     private void Update()
     {
         if(run.IsYummn&&((skillDeck!=null&&System.Array.Exists(skillDeck.Owned,c=>c!=null&&c.IsDragging))||(passiveDeck!=null&&System.Array.Exists(passiveDeck.Owned,c=>c!=null&&c.IsDragging))||(rewardDeck!=null&&rewardDeck.IsDragging)))
-        {yummnBufferedDirection=null;yummnAcceptBuffer=false;return;}
+        {ResetSwipeTracking();ClearHeldInput();yummnBufferedDirection=null;yummnAcceptBuffer=false;return;}
         if (Input.GetKeyDown(KeyCode.Escape) && settingsOverlay != null && settingsOverlay.activeSelf)
         {
             settingsOverlay.SetActive(false); menuClosedFrame = Time.frameCount; return;
         }
-        if (TutorialBlocksInput()) { ResetSwipeTracking();yummnBufferedDirection=null;yummnAcceptBuffer=false; return; }
-        if (run.ended) return;
+        if (TutorialBlocksInput()) { ResetSwipeTracking();ClearHeldInput();yummnBufferedDirection=null;yummnAcceptBuffer=false; return; }
+        if (run.ended) {ClearHeldInput();ResetSwipeTracking();return;}
         HandleTouchSwipe();
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) HandleDirection(KaitDirection.Up);
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) HandleDirection(KaitDirection.Down);
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) HandleDirection(KaitDirection.Left);
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) HandleDirection(KaitDirection.Right);
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) BeginHeldDirection(KaitDirection.Up,1);
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) BeginHeldDirection(KaitDirection.Down,1);
+        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) BeginHeldDirection(KaitDirection.Left,1);
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) BeginHeldDirection(KaitDirection.Right,1);
         else if (Input.GetKeyDown(KeyCode.R)) NewRun();
+        PollHeldInput();
     }
 
     private bool TutorialBlocksInput()
@@ -486,7 +491,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void HandleTouchSwipe()
     {
-        if (Input.touchCount == 0)
+        if (Input.touchCount != 1)
         {
             ResetSwipeTracking();
             return;
@@ -503,8 +508,9 @@ public sealed partial class KaitGame : MonoBehaviour
                 swipeStartPosition = touch.position;
                 swipeTriggered = false;
                 swipeStartedOverButton = IsTouchOverButton(touch.position);
-                tapStartedOnYummn = !swipeStartedOverButton && IsYummnTapPosition(touch.position);
-                tapStartedAt=Time.unscaledTime;tapTravel=0;
+                holdWaitTriggered=false;
+                stationaryHold.Begin(touch.position,Time.unscaledTime);
+                if(swipeStartedOverButton)stationaryHold.Cancel();
             }
             if (touch.fingerId != swipeFingerId) continue;
             trackedTouch = touch;
@@ -512,11 +518,10 @@ public sealed partial class KaitGame : MonoBehaviour
             break;
         }
 
-        if (!foundTrackedTouch) return;
-        tapTravel=Mathf.Max(tapTravel,Vector2.Distance(trackedTouch.position,swipeStartPosition));
-        if(Input.touchCount>1)tapStartedOnYummn=false;
+        if (!foundTrackedTouch) {ResetSwipeTracking();return;}
+        if(trackedTouch.phase==TouchPhase.Canceled){ResetSwipeTracking();return;}
 
-        if (!swipeTriggered && !swipeStartedOverButton &&
+        if (!holdWaitTriggered && !swipeTriggered && !swipeStartedOverButton &&
             (trackedTouch.phase == TouchPhase.Moved || trackedTouch.phase == TouchPhase.Ended))
         {
             Vector2 delta = trackedTouch.position - swipeStartPosition;
@@ -528,26 +533,29 @@ public sealed partial class KaitGame : MonoBehaviour
                 KaitDirection direction = Mathf.Abs(delta.x) >= Mathf.Abs(delta.y)
                     ? (delta.x >= 0f ? KaitDirection.Right : KaitDirection.Left)
                     : (delta.y >= 0f ? KaitDirection.Up : KaitDirection.Down);
-                HandleDirection(direction);
+                BeginHeldDirection(direction,2);
             }
         }
 
-        if(trackedTouch.phase==TouchPhase.Ended && tapStartedOnYummn && !swipeTriggered &&
-            tapTravel<20f && Time.unscaledTime-tapStartedAt<.4f && IsYummnTapPosition(trackedTouch.position))HandleWait();
+        if(!swipeTriggered&&!swipeStartedOverButton&&!holdWaitTriggered&&trackedTouch.phase!=TouchPhase.Ended&&
+            stationaryHold.Poll(trackedTouch.position,Time.unscaledTime,Mathf.Max(20,Mathf.Min(Screen.width,Screen.height)*.025f),run.IsYummn&&AutoInputReady))
+        {holdWaitTriggered=true;HandleWait();}
         if (trackedTouch.phase == TouchPhase.Ended || trackedTouch.phase == TouchPhase.Canceled)
             ResetSwipeTracking();
     }
 
-    private static bool IsTouchOverButton(Vector2 screenPosition)
+    private bool IsTouchOverButton(Vector2 screenPosition)
     {
         if (EventSystem.current == null) return false;
         var eventData = new PointerEventData(EventSystem.current) { position = screenPosition };
         var hits = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, hits);
         foreach (RaycastResult hit in hits)
-            if (hit.gameObject.GetComponentInParent<Button>() != null ||
-                hit.gameObject.GetComponentInParent<KaitPassiveCard>() != null ||
-                hit.gameObject.GetComponentInParent<KaitSkillCard>() != null) return true;
+        {
+            if(hit.gameObject.GetComponentInParent<KaitPassiveCard>()!=null||hit.gameObject.GetComponentInParent<KaitSkillCard>()!=null)return true;
+            var button=hit.gameObject.GetComponentInParent<Button>();
+            if(button!=null&&(button.GetComponent<KaitBattleGestureSurface>()==null||targetingSkill!=KaitSkill.None))return true;
+        }
         return false;
     }
 
@@ -556,6 +564,7 @@ public sealed partial class KaitGame : MonoBehaviour
         swipeFingerId = -1;
         swipeTriggered = false;
         swipeStartedOverButton = false;
+        heldInput.End(2);stationaryHold.Cancel();holdWaitTriggered=false;
     }
 
     private void LateUpdate()
@@ -789,6 +798,7 @@ public sealed partial class KaitGame : MonoBehaviour
                 cell.type = Image.Type.Simple;
                 Vector2Int targetCell = new Vector2Int(x, visualY);
                 cell.gameObject.AddComponent<Button>().onClick.AddListener(() => HandleBattleCellClick(targetCell));
+                cell.gameObject.AddComponent<KaitBattleGestureSurface>();
                 battleCells[index] = cell;
                 Image tile = Rect("Dungeon Tile", cell.transform, Vector2.zero, Vector2.zero, Color.white);
                 tile.sprite = dungeonFloorSprite;
@@ -1030,10 +1040,10 @@ public sealed partial class KaitGame : MonoBehaviour
         waitButton = MakeHybridButton(controls.transform, new Vector2(62,65), keySize, "等待");
         waitButton.onClick.AddListener(HandleWait);
         Button restart = MakeHybridButton(controls.transform, restartPosition, restartSize, "重新开始  R");
-        up.onClick.AddListener(() => HandleDirection(KaitDirection.Up));
-        left.onClick.AddListener(() => HandleDirection(KaitDirection.Left));
-        down.onClick.AddListener(() => HandleDirection(KaitDirection.Down));
-        right.onClick.AddListener(() => HandleDirection(KaitDirection.Right));
+        BindHeldButton(up,KaitDirection.Up);
+        BindHeldButton(left,KaitDirection.Left);
+        BindHeldButton(down,KaitDirection.Down);
+        BindHeldButton(right,KaitDirection.Right);
         restart.onClick.AddListener(() => { GameAudio.PlayClick(); NewRun(); });
 
     }
@@ -1101,6 +1111,13 @@ public sealed partial class KaitGame : MonoBehaviour
             "去除碰撞伤害");
         disableCollisionDamageToggle.SetIsOnWithoutNotify(!run.config.enableCollisionDamage);
         disableCollisionDamageToggle.onValueChanged.AddListener(SetCollisionDamageDisabled);
+        kaitEffectiveMoveSupplyToggle=MakeFlatToggle(card.transform,new Vector2(0,-205),new Vector2(580,58),"有效移动至少一格才生成2（时停不生成）");
+        kaitEffectiveMoveSupplyToggle.SetIsOnWithoutNotify(run.config.kaitEffectiveMoveSupply);
+        kaitEffectiveMoveSupplyToggle.onValueChanged.AddListener(value=>
+        {
+            SaveBooleanPreference(KaitEffectiveMoveSupplyPreference,value);
+            if(!MainMenuVisible){run.config.kaitEffectiveMoveSupply=value;run.RecordSettingsChange();}
+        });
 
         Text note = MakeText("", card.transform, new Vector2(0, 250), new Vector2(620, 30),
             14, Peach, TextAnchor.MiddleCenter, FontStyle.Normal, false);
@@ -1108,6 +1125,7 @@ public sealed partial class KaitGame : MonoBehaviour
         characterSettingsHint=note;
 
         AddYummnSettings(card.transform);
+        AddHoldInputSetting(card.transform);
         RefreshCharacterSettings();
         MakeFlatButton(card.transform,new Vector2(-130,-315),new Vector2(220,48),"返回首页").onClick.AddListener(ShowMainMenu);
         MakeFlatButton(card.transform, new Vector2(130, -315), new Vector2(180, 48), "关闭").onClick.AddListener(() =>
@@ -1188,6 +1206,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void NewRun()
     {
+        ClearHeldInput();ResetSwipeTracking();
         foreach (var signal in cellSignals) if (signal != null) Destroy(signal.gameObject);
         cellSignals.Clear(); riftEdgeSignals.Clear();
         foreach (var shield in shieldFacings.Values) if (shield != null) Destroy(shield.gameObject);
@@ -1215,9 +1234,12 @@ public sealed partial class KaitGame : MonoBehaviour
         endAudioPlayed = false;
         kaitDefeatingEnemyId = -1;
         int seed = Environment.TickCount;
+        run.config.winValue=128;
+        run.config.kaitEffectiveMoveSupply=PlayerPrefs.GetInt(KaitEffectiveMoveSupplyPreference,0)==1;
         run.SelectCharacter(run.Character,seed,YummnPreset());yummnRunStartedAt=Time.realtimeSinceStartup;
         ConfigureCharacterVisuals();
         EnsureKaitSpine();
+        kaitSpine?.ResetTerminalPose();
         kaitSpine?.PlayLoop(KaitSpineView.Idle);
         logPath = Path.Combine(Application.persistentDataPath, $"kait_run_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
         File.WriteAllText(logPath, "turn,globalDir,kaitWaited,threatChanged,chainSteps,chainKills,lockedPower,chainMoves,chainEndByStrongEnemy,chainEndByWall,kateStart,kateEnd,kateHp,slideDistance,damage,kills,directKills,nonLethalHits,chainActive,momentum,highestMomentum,longestChain,pushes,friendlyFire,activeWallStops,spawnSuppressed,riftBlocks,wallSuppressedSpawns,internalMerges,internalSpawns,clusterClearCount,threatOrientedWaitCount,emptyMapReachable,emptyMapMaxInputs,activeEnemies,pendingSpawns,highestThreat,threatOccupancy,threatLocks,passives,passiveTriggers,endReason\n", Encoding.UTF8);
@@ -1231,6 +1253,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private void HandleDirection(KaitDirection direction)
     {
         if (TutorialBlocksInput()) return;
+        if(run.IsYummn&&targetingSkill!=KaitSkill.None){ClearHeldInput();statusText.text=YummnCatalog.TargetHint(targetingSkill)+"，或取消施放";return;}
         if (run.ended) return;
         if (busy && run.IsYummn) { if(yummnAcceptBuffer) { yummnBufferedDirection=direction;yummnBufferedTurn=run.turn;yummnBufferedAction=run.ActionIndex; } return; }
         if(!run.IsYummn)InterruptKaitAnimationForMovement();
@@ -1245,6 +1268,7 @@ public sealed partial class KaitGame : MonoBehaviour
         KaitTurnResult result = run.IsYummn ? run.TryYummnCommand(direction,run.turn,run.ActionIndex) : run.chainActive ? run.ContinueChain(direction) : run.TryGlobalInput(direction);
         if (!result.valid)
         {
+            heldInput.Clear();
             if(run.IsYummn)kaitSpine?.PlayLoop(KaitSpineView.Idle);
             visualPhantomTargetId = -1;
             GameAudio.PlayInvalid();
@@ -1450,6 +1474,7 @@ public sealed partial class KaitGame : MonoBehaviour
         RefreshSkillUI();
         turnText.text = run.IsYummn ? $"行动 {run.turn}　拳力 1" : $"回合 {run.turn}　速度 {run.momentum}";
         RefreshYummnHud();
+        RefreshYummnSkillTargets();
         if(buildDirectionText!=null) buildDirectionText.text=run.HasPassive(KaitPassive.ReverseGravity)?$"重力反转   主 {DirectionGlyph(run.currentGlobalDirection)} / 右盘 {DirectionGlyph(run.actualThreatDirection)}":"";
         SetHealthBar(runHealthBar, run.kateHp);
         ShowPendingSkillChoice();
@@ -1509,6 +1534,13 @@ public sealed partial class KaitGame : MonoBehaviour
         if (!KaitSkillDeck.IsReady(run, run.skills[slot])) return false;
         if (busy&&!run.IsYummn) InterruptActivePresentationForMovement();
         KaitSkill skill = run.skills[slot];
+        if(run.IsYummn)
+        {
+            ClearHeldInput();ResetSwipeTracking();yummnBufferedDirection=null;yummnAcceptBuffer=false;run.Yummn.prepared.Clear();
+            targetingSkill=skill;
+            RefreshAll();statusText.text=KaitRun.SkillName(skill)+"："+YummnCatalog.TargetHint(skill);
+            return true;
+        }
         if (skill == KaitSkill.ShadowStep)
         {
             Vector2Int start = run.katePos;
@@ -1557,6 +1589,16 @@ public sealed partial class KaitGame : MonoBehaviour
         if (busy) InterruptActivePresentationForMovement();
         KaitEnemy target = run.EnemyAt(cell);
         KaitSkill skill = targetingSkill;
+        if(run.IsYummn)
+        {
+            targetingSkill=KaitSkill.None;ClearHeldInput();run.Yummn.prepared.Clear();
+            var previous=SnapshotEnemies();var pending=SnapshotSpawns();var origin=run.katePos;
+            if(run.TryUseSkillAt(skill,cell,out var feedback))
+            {targetingSkill=KaitSkill.None;AppendLog(origin,run.lastSkillResult);StartCoroutine(PlayTurn(run.lastSkillResult,origin,previous,pending));}
+            else {GameAudio.PlayInvalid();RefreshAll();ShowYummnCastFailure(feedback);}
+            RefreshYummnSkillTargets();
+            return;
+        }
         if (target == null && !KaitRun.NeedsCellTarget(skill)) { GameAudio.PlayInvalid(); statusText.text = "这里没有可选敌人"; return; }
         Vector2Int start=run.katePos;string message;
         bool applied=KaitRun.NeedsCellTarget(skill)?run.TryUseSkillAt(skill,cell,out message):run.TryUseSkill(skill,target.id,out message);
@@ -1735,7 +1777,7 @@ public sealed partial class KaitGame : MonoBehaviour
                     unitClip.color = Color.clear;
                     unitClip.gameObject.SetActive(true);
                     image.color = Color.clear;
-                    Color unitTint = enemy.frozenActions > 0 ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
+                    Color unitTint = YummnRepoolArt.IsFrozenVisual(enemy,run.IsYummn) ? new Color(0.62f, 0.9f, 1f, 1f) : enemy.life == KaitEnemyLife.Preparing ? new Color(1f, 1f, 1f, 0.68f) : Color.white;
                     EnemySpineView enemySpine = EnemySpine(enemy);
                     if (enemySpine != null)
                     {
@@ -1768,7 +1810,7 @@ public sealed partial class KaitGame : MonoBehaviour
                     if (facing != Vector2Int.zero) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(facing));
                     battleFacingLabels[index].color = enemy.life == KaitEnemyLife.Preparing ? Peach : Cream;
-                    if (enemy.frozenActions > 0) { battleStatusLabels[index].text = "❄"; battleStatusLabels[index].color = Cyan; }
+                    if (YummnRepoolArt.IsFrozenVisual(enemy,run.IsYummn)) { battleStatusLabels[index].text = "❄"; battleStatusLabels[index].color = Cyan; }
                     if (enemy.cursed) { battleStatusLabels[index].text += "咒";battleStatusLabels[index].color=new Color(.8f,.47f,1f); }
                 }
                 if (!hideKate && kate == p)
@@ -1920,7 +1962,7 @@ public sealed partial class KaitGame : MonoBehaviour
     {
         KaitEnemy live = run.enemies.Find(e => e.id == id && e.life != KaitEnemyLife.Dead && e.hp > 0);
         if (live == null) return false;
-        return (animatedEnemies?.Find(e => e.id == id) ?? live).frozenActions > 0;
+        return YummnRepoolArt.IsFrozenVisual(animatedEnemies?.Find(e => e.id == id) ?? live,run.IsYummn);
     }
 
     private void SyncIceBindings()
@@ -3058,7 +3100,7 @@ public sealed partial class KaitGame : MonoBehaviour
         EnemySpineView flashedEnemyView = null;
         if (enemy != null)
         {
-            original = enemy.frozenActions > 0
+            original = YummnRepoolArt.IsFrozenVisual(enemy,run.IsYummn)
                 ? new Color(0.62f, 0.9f, 1f, 1f)
                 : enemy.life == KaitEnemyLife.Preparing
                     ? new Color(1f, 1f, 1f, 0.68f)
@@ -3166,7 +3208,7 @@ public sealed partial class KaitGame : MonoBehaviour
                     GameAudio.PlayEnemyDefeatedKaitVoice(kaitDefeatingEnemyType, kaitDefeatingEnemyId);
             }
         }
-        if (run.won) kaitSpine?.PlayLoop(KaitSpineView.Victory);
+        if (run.won) kaitSpine?.PlayOnce(KaitSpineView.Victory,null);
         endOverlay.SetActive(true);
         endOverlay.transform.SetAsLastSibling();
         string reason = run.won ? "击败盾骑士 · 本局胜利" : run.endReason == "Threat Locked"||run.endReason=="ThreatBoardLocked" ? "2048 无法移动 · 本局失败" : "凯特 HP 归零 · 本局失败";
@@ -3309,6 +3351,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private IEnumerator VerifyMainMenu(string mode, string path)
     {
+        if(mode=="hold"){yield return VerifyHoldInputRuntime(path);yield break;}
         if(mode=="home"){yield return VerifyHomeTriptych(path);yield break;}
         yield return new WaitForSecondsRealtime(.5f);
         Canvas.ForceUpdateCanvases(); mainMenu.Fit();

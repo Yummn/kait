@@ -25,6 +25,7 @@ public sealed class KaitSpineView
     public const string YummnFollowUpReady = "01_multi_idle_standBy";
     public const string YummnFollowUpAttack = "01_attack_skipQuest";
     public const string YummnKill = "01_standBy";
+    public const string YummnKiGuard = "108201_skill0";
     public const string YummnRun = "01_run";
     public const string YummnWalk = "01_walk";
     public const string YummnBuff = "108201_skill1";
@@ -34,6 +35,9 @@ public sealed class KaitSpineView
 
     public string RestAnimation { get; set; } = Idle;
     private bool? yummnHasKi;
+    private bool terminalPose;
+    public void ResetTerminalPose() => terminalPose=false;
+    private static bool IsTerminalAnimation(string animation) => animation==Die || animation=="01_die" || animation==Victory || animation==YummnVictory;
     public void SetYummnKiState(bool hasKi)
     {
         if(yummnHasKi==hasKi)return;
@@ -297,7 +301,8 @@ public sealed class KaitSpineView
 
     public void PlayLoop(string animation)
     {
-        if (!IsReady || string.IsNullOrEmpty(animation)) return;
+        if (!IsReady || string.IsNullOrEmpty(animation) || terminalPose) return;
+        if(IsTerminalAnimation(animation)){PlayOnce(animation,null);return;}
         animation = ResolveAnimation(animation);
         TrackEntry current = graphic.AnimationState.GetCurrent(0);
         if (current != null && current.Animation != null && current.Animation.Name == animation && current.Loop) return;
@@ -308,11 +313,21 @@ public sealed class KaitSpineView
 
     public void PlayOnce(string animation, string followUp = Idle)
     {
-        if (!IsReady || string.IsNullOrEmpty(animation)) return;
+        if (!IsReady || string.IsNullOrEmpty(animation) || terminalPose) return;
+        if(IsTerminalAnimation(animation)){terminalPose=true;followUp=null;}
         animation=ResolveAnimation(animation);if(!string.IsNullOrEmpty(followUp))followUp=ResolveAnimation(followUp);
         graphic.timeScale = 1f;
         TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, false);
         if (animation == WallStop) entry.TimeScale = WallStopTimeScale;
+        if (graphic.Skeleton.Data.FindAnimation("108201_skill0") != null &&
+            (animation == "01_attack" || animation == YummnFollowUpAttack || animation == YummnKill))
+            entry.TimeScale = 2f;
+        if (animation == YummnKiGuard)
+        {
+            entry.TimeScale = 2f;
+            float fps=graphic.Skeleton.Data.Fps;
+            entry.AnimationEnd=Mathf.Min(entry.Animation.Duration,50f/(fps>0?fps:30f));
+        }
         if (!string.IsNullOrEmpty(followUp)) graphic.AnimationState.AddAnimation(0, followUp, true, 0f);
     }
 

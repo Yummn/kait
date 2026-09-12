@@ -960,9 +960,9 @@ public sealed class KaitCoreTests
     }
 
     [Test]
-    public void V061_First256SpawnsBossAndDoesNotAutoWin()
+    public void V061_First128SpawnsBossAndDoesNotAutoWin()
     {
-        KaitRun run = OpenRun(3713, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 128; run.threat[1, 0] = 128;
+        KaitRun run = OpenRun(3713, new Vector2Int(3, 3)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;
         KaitTurnResult result = run.TryGlobalInput(KaitDirection.Right);
         Assert.IsFalse(run.ended); Assert.IsTrue(run.bossSpawned); Assert.IsTrue(result.bossSpawned); Assert.AreEqual(8, run.enemies.Single(e => e.type == KaitEnemyType.ShieldKnight).hp);
     }
@@ -970,7 +970,7 @@ public sealed class KaitCoreTests
     [Test]
     public void V037_T13_BossSpawnReplacesOccupantWithoutKillCredit()
     {
-        KaitRun run = OpenRun(3714, new Vector2Int(5, 5)); ClearThreat(run); run.threat[0, 0] = 128; run.threat[1, 0] = 128;
+        KaitRun run = OpenRun(3714, new Vector2Int(5, 5)); ClearThreat(run); run.threat[0, 0] = 64; run.threat[1, 0] = 64;
         KaitEnemy occupant = Enemy(77, new Vector2Int(3, 1), 2); run.enemies.Add(occupant); run.TryGlobalInput(KaitDirection.Right);
         Assert.AreEqual(KaitEnemyLife.Dead, occupant.life); Assert.AreEqual(0, run.kills); Assert.AreEqual(KaitEnemyType.ShieldKnight, run.EnemyAt(new Vector2Int(3, 1)).type);
     }

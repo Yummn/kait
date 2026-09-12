@@ -4,10 +4,18 @@ using UnityEngine;
 public sealed partial class KaitRun
 {
     public static bool NeedsEnemyTarget(KaitSkill s) => s==KaitSkill.HexCurse || s==KaitSkill.IceTomb || s==KaitSkill.LesserPhantom || s==KaitSkill.Command || s==KaitSkill.GraspHadar;
-    public static bool NeedsCellTarget(KaitSkill s) => s==KaitSkill.DispelMagic || s==KaitSkill.MistyStep || s==KaitSkill.RelentlessHex;
+    public static bool NeedsCellTarget(KaitSkill s) => YummnCatalog.IsActive(s) || s==KaitSkill.DispelMagic || s==KaitSkill.MistyStep || s==KaitSkill.RelentlessHex;
     public KaitTurnResult lastSkillResult { get; private set; }
     public bool IsLegalSkillCell(KaitSkill skill,Vector2Int cell)
     {
+        if(IsYummn&&YummnCatalog.IsActive(skill))
+        {
+            if(YummnCatalog.TargetsSelf(skill))return cell==katePos;
+            if(YummnCatalog.TargetsGround(skill))return YummnEmpty(cell)&&cell!=PendingBossCell;
+            if((cell-katePos).sqrMagnitude!=1)return false;
+            if(skill==KaitSkill.ShapeIce||skill==KaitSkill.Darkness||skill==KaitSkill.UniqueDecoy||skill==KaitSkill.PreciseStep)return YummnEmpty(cell)&&cell!=PendingBossCell;
+            return true; // Direction selectors remain clickable even at the map edge.
+        }
         if(skill==KaitSkill.DispelMagic) return SpawnAt(cell)!=null;
         if(IsHardBlocked(cell) || cell==katePos || EnemyAt(cell)!=null) return false;
         if(skill==KaitSkill.MistyStep) return Mathf.Abs(cell.x-katePos.x)+Mathf.Abs(cell.y-katePos.y)==1;
@@ -17,6 +25,7 @@ public sealed partial class KaitRun
     public bool TryUseSkillAt(KaitSkill skill,Vector2Int cell,out string message)
     {
         message="目标格不合法";
+        if(IsYummn)return CastYummnCell(skill,cell,out message);
         if(ended || !IsSkillActive(skill) || SkillCooldown(skill)>0 || !IsLegalSkillCell(skill,cell)) return false;
         lastSkillResult=new KaitTurnResult { valid=true };
         if(skill==KaitSkill.DispelMagic) spawns.Remove(SpawnAt(cell));

@@ -153,7 +153,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         appendix=view.gameObject.AddComponent<ScrollRect>();appendix.horizontal=false;appendix.movementType=ScrollRect.MovementType.Clamped;
         var viewport=Box("Viewport",view.transform,Vector2.zero,new Vector2(1280,620),Color.clear);
         viewport.gameObject.AddComponent<RectMask2D>();appendix.viewport=viewport.rectTransform;
-        appendixText=Label(viewport.transform,"",Vector2.zero,new Vector2(1250,620),25,Cream,TextAnchor.UpperLeft);
+        appendixText=Label(viewport.transform,"",Vector2.zero,new Vector2(1250,620),28,Cream,TextAnchor.UpperLeft);
         var content=appendixText.rectTransform;content.anchorMin=content.anchorMax=new Vector2(.5f,1);content.pivot=new Vector2(.5f,1);
         appendix.content=content;appendix.scrollSensitivity=45;
         var track=Box("Scroll Track",view.transform,new Vector2(653,0),new Vector2(12,620),new Color(1,1,1,.08f));

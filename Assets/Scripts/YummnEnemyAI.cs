@@ -6,15 +6,20 @@ public sealed partial class KaitRun
     private void ResolveYummnEnemyPhase(KaitTurnResult r)
     {
         Yummn.metrics.enemyPhases++;Yummn.missileSpent=false;
+        yummnInEnemyPhase=true;
         var actors=enemies.FindAll(e=>e.life!=KaitEnemyLife.Dead);actors.Sort((a,b)=>a.id.CompareTo(b.id));
         Yummn.metrics.enemyActors+=actors.Count;
         foreach(var e in actors)
         {
             if(ended)break;if(e.life==KaitEnemyLife.Dead)continue;
             if(e.life==KaitEnemyLife.Preparing){e.life=KaitEnemyLife.Active;continue;}
-            if(e.yummnFrozen||e.yummnStunned||e.frozenActions>0)
+            if(e.yummnFrozen){e.intent=new KaitIntent{origin=e.pos};e.rangedState=KaitRangedState.Ready;continue;}
+            bool silenced=e.pos==Yummn.darkness;
+            if(silenced&&e.intent.type!=KaitIntentType.None){e.intent=new KaitIntent{origin=e.pos};e.rangedState=KaitRangedState.Ready;continue;}
+            if(e.yummnStunned||e.frozenActions>0)
             {
-                e.yummnFrozen=e.yummnStunned=false;e.frozenActions=0;e.intent=new KaitIntent{origin=e.pos};e.rangedState=KaitRangedState.Ready;YummnStatusEvent(r,e,"ControlConsumed");continue;
+                if(!e.yummnStunned)e.frozenActions=0;
+                e.intent=new KaitIntent{origin=e.pos};e.rangedState=KaitRangedState.Ready;continue;
             }
             if(e.intent.type!=KaitIntentType.None)
             {
@@ -23,6 +28,9 @@ public sealed partial class KaitRun
                 int attackId=++Yummn.nextAttackEventId;
                 r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.EnemyAttack,actionId=Yummn.actionId,sourceId=e.id,from=e.pos,to=intent.target,attackEventId=attackId,affectedCells=new List<Vector2Int>(intent.affectedCells)});
                 if(Yummn.rules.Is082)HitYummn082Afterimages(e,intent,attackId,r);
+                foreach(var frozen in enemies.FindAll(x=>x.life!=KaitEnemyLife.Dead&&x.yummnFrozen&&intent.affectedCells.Contains(x.pos)))YummnHit(frozen,1,Vector2Int.zero,YummnDamageCause.Area,r);
+                if(Yummn.decoy.x>=0&&intent.affectedCells.Contains(Yummn.decoy))
+                {YummnTerrainEvent(r,"DecoyExpired",Yummn.decoy);Yummn.decoy=YummnRun.NoCell;}
                 if(intent.affectedCells.Contains(katePos))
                 {
                     action.hitKate=true;action.guarded=PreventYummnDamage(e,intent,r);
@@ -33,26 +41,32 @@ public sealed partial class KaitRun
                 }
                 r.enemyActions.Add(action);e.intent=new KaitIntent{origin=e.pos};e.rangedState=KaitRangedState.Ready;continue;
             }
-            bool ranged=IsTwoPhaseRanged(e)||IsYummnLineBoss(e),adjacent=(e.pos-katePos).sqrMagnitude==1;
+            var target=Yummn.decoy.x>=0?Yummn.decoy:katePos;
+            bool ranged=IsTwoPhaseRanged(e)||IsYummnLineBoss(e),adjacent=(e.pos-target).sqrMagnitude==1;
             if(ranged||adjacent)
             {
+                if(silenced)continue;
                 // A cloak consumes this legal prepare action, including a Boss turn.
                 if(Yummn.cloak){Yummn.cloak=false;YummnStatusEvent(r,e,"AimDenied");YummnTrigger("S03",r);continue;}
-                if(e.type==KaitEnemyType.ShieldKnight)e.facing=DirectionToward(e.pos,katePos);
-                e.intent=IsYummnLineBoss(e)?BuildYummnBossLine(e.pos,e.facing):e.type==KaitEnemyType.Archer?BuildYummnArrow(e.pos,DirectionToward(e.pos,katePos)):e.type==KaitEnemyType.Warlock?BuildCrossIntent(e.pos,katePos):BuildIntentToward(e,katePos);
+                if(e.type==KaitEnemyType.ShieldKnight)e.facing=DirectionToward(e.pos,target);
+                e.intent=IsYummnLineBoss(e)?BuildYummnBossLine(e.pos,e.facing):e.type==KaitEnemyType.Archer?BuildYummnArrow(e.pos,DirectionToward(e.pos,target)):e.type==KaitEnemyType.Warlock?BuildCrossIntent(e.pos,target):BuildIntentToward(e,target);
                 if(ranged)e.rangedState=KaitRangedState.Aim;
                 r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Aim,actionId=Yummn.actionId,sourceId=e.id,from=e.pos,to=katePos});continue;
             }
             if(e.type!=KaitEnemyType.Swordsman)continue;
             var to=YummnSwordsmanStep(e);if(to==e.pos)continue;
-            var from=e.pos;e.pos=to;
+            var from=e.pos;ResolveYummnRangeExit(e,to,r);
+            if(ended||e.life==KaitEnemyLife.Dead||e.yummnStunned||e.yummnFrozen||e.pos!=from)continue;
+            e.pos=to;
             r.enemyActions.Add(new KaitEnemyAction{enemyId=e.id,type=KaitIntentType.Move,from=from,to=to});
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Move,actionId=Yummn.actionId,targetId=e.id,from=from,to=to,moveCause=YummnMoveCause.AI});
-            if((from-katePos).sqrMagnitude!=1&&(to-katePos).sqrMagnitude==1&&HasPassive(KaitPassive.Opportunist))
-            {YummnHit(e,1,to-katePos,YummnDamageCause.Counter,r);YummnTrigger("S06",r);}
+            ResolveYummnRangeEntries(r);
         }
+        foreach(var e in enemies)if(e.yummnStunned&&e.yummnStunThroughPhase<=Yummn.metrics.enemyPhases)
+        {e.yummnStunned=false;SyncYummnControl(e);YummnStatusEvent(r,e,"ControlConsumed");}
+        yummnInEnemyPhase=false;
         Yummn.defense=Yummn.tranquility=false;
-        if(Yummn.darkness.x>=0){YummnTerrainEvent(r,"DarknessExpired",Yummn.darkness);Yummn.darkness=YummnRun.NoCell;}
+        // Permanent darkness lasts until replaced.
     }
     private bool IsYummnLineBoss(KaitEnemy e)=>IsYummn&&Yummn.rules.BossLine&&e.type==KaitEnemyType.ShieldKnight;
     private KaitIntent BuildYummnBossLine(Vector2Int origin,Vector2Int direction)
@@ -64,7 +78,7 @@ public sealed partial class KaitRun
         for(int i=1;i<BattleSize;i++)
         {
             var p=origin+direction*i;if(IsHardBlocked(p)||p==Yummn.darkness)break;
-            intent.affectedCells.Add(p);intent.target=p;
+            intent.affectedCells.Add(p);intent.target=p;if(EnemyAt(p)?.yummnFrozen==true)break;
         }
         return intent;
     }
@@ -74,7 +88,7 @@ public sealed partial class KaitRun
         for(int i=1;i<=config.archerRange;i++)
         {
             var p=origin+direction*i;if(IsHardBlocked(p)||p==Yummn.darkness)break;
-            intent.affectedCells.Add(p);intent.target=p;if(p==katePos)break;
+            intent.affectedCells.Add(p);intent.target=p;if(p==katePos||p==Yummn.decoy||EnemyAt(p)?.yummnFrozen==true)break;
         }
         return intent;
     }
@@ -86,8 +100,8 @@ public sealed partial class KaitRun
             var p=queue.Dequeue();
             foreach(var d in YummnDirections)
             {
-                var next=p+d;if(IsHardBlocked(next)||first.ContainsKey(next)||EnemyAt(next)!=null)continue;
-                var step=p==e.pos?next:first[p];if(next==katePos)return step;
+                var next=p+d;if(IsHardBlocked(next)||first.ContainsKey(next)||EnemyAt(next)!=null||Yummn.decoy.x>=0&&next==katePos)continue;
+                var step=p==e.pos?next:first[p];if(next==(Yummn.decoy.x>=0?Yummn.decoy:katePos))return step;
                 first[next]=step;queue.Enqueue(next);
             }
         }
@@ -96,11 +110,21 @@ public sealed partial class KaitRun
     private bool PreventYummnDamage(KaitEnemy e,KaitIntent intent,KaitTurnResult r)
     {
         if(config.playerInvincible||intent.damage<=0)return true;
-        if(intent.type==KaitIntentType.LineShot&&!Yummn.missileSpent&&HasPassive(KaitPassive.DeflectMissiles))
-        {Yummn.missileSpent=true;r.yummnDeflect=true;YummnTrigger("M04",r);return true;}
+        if(intent.type==KaitIntentType.LineShot&&HasPassive(KaitPassive.DeflectMissiles)&&SpendRepoolKi(1,r))
+        {r.yummnDeflect=true;YummnTrigger("M04",r);RepoolStatus(r,"Deflect",katePos);return true;}
         if(intent.type==KaitIntentType.Melee&&Yummn.tranquility)
         {Yummn.tranquility=false;r.yummnGuard=true;YummnTrigger("O04",r);return true;}
-        if(Yummn.defense){Yummn.defense=false;r.yummnGuard=true;return true;}return false;
+        if(Yummn.defense){Yummn.defense=false;r.yummnGuard=true;return true;}
+        if(KiPhase==YummnPhase.Burst&&HasPassive(KaitPassive.KiAegis)&&SpendRepoolKi(3,r)){r.yummnGuard=true;return true;}
+        if(Yummn.rules.KiGuard&&KiPhase==YummnPhase.Burst&&ExactKi>0&&!r.yummnAction.reachedZeroKi&&!r.yummnAction.kiGuardTriggered)
+        {
+            r.yummnAction.kiGuardTriggered=true;r.yummnAction.reachedZeroKi=true;
+            Yummn.ki=0;Yummn.kiTenths=0;r.yummnGuard=true;
+            FinishYummnPhase(r);
+            r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="KiGuard",actionId=Yummn.actionId,to=katePos});
+            return true;
+        }
+        return false;
     }
     private void QueueYummnRift(KaitMergeEvent merge,KaitTurnResult r)
     {
@@ -128,6 +152,7 @@ public sealed partial class KaitRun
             spawnHeatmap[request.sourceThreatCell.x,request.sourceThreatCell.y]++;
             if(IsInternalThreatCell(request.sourceThreatCell))internalSpawnCount++;
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Spawn,actionId=Yummn.actionId,targetId=e.id,to=e.pos});
+            ResolveYummnRangeEntries(r);
         }
     }
 }
