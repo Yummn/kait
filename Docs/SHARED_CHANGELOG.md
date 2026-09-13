@@ -12,7 +12,7 @@
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | 应用0.9.0，Yummn牌池0.9.0-root-action，共56牌（15主动/41被动，11普通/33非凡/12稀有）；规则快照yummn-0.9.0-root-action，独立存档Kait.Run.Yummn.0.9.0。旧存档保留，Kait规则不变 |
-| Git 基线 | 本轮本地HEAD为510611a；0.9.0源码/卡图/说明尚未上传。本轮未核对远端公开性。历史上传记录仍见各任务；AudioPreviews/VFXPreviews选稿仅本地 |
+| Git 基线 | 0.9.0源码/卡图/说明提交b381b01已推送origin/master，标签v0.9.0指向同一提交；Release含APK且远端大小与SHA256匹配本地。Yummn/kait保持PUBLIC。后续提交仅补记发布状态；AudioPreviews/VFXPreviews选稿仅本地 |
 | 最近 Windows 构建 | Build/kait.exe；Logs/root090-art-final-build.log包含Kait build created并成功退出；0.9.0时序和56张审批A卡图。resources.assets为2026-09-13 17:16:30，程序集17:11:11；Android现已同步0.9.0 |
 | 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
@@ -25,7 +25,7 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 
 ## 2. 进行中与占用登记
 
-RELEASE-20260913-ROOT090：进行中，本会话。用户授权上传GitHub并说明；已核对origin/master与本地HEAD均510611a、Yummn/kait为PUBLIC，保持公开性。上传当前源码、正式资源、相关说明与APK；缓存、玩家存档、未审批预览不上传，无Unity占用。
+RELEASE-20260913-ROOT090：完成，本会话。源码/正式资源/说明172个文件提交b381b01已推送，v0.9.0标签核对一致；56个LFS卡图对象上传完成。https://github.com/Yummn/kait/releases/tag/v0.9.0 为开发预览版，包含APK、安装/存档说明、检查范围与已知问题；APK远端state=uploaded、253232326字节，SHA256 A21EAF07007A3D16FF6B472796BE98FB76135FF83D33C3A37E3DCD94094A7482与本地相同。README及版本记录增加新版入口。保持PUBLIC，无Unity占用；缓存、玩家存档和未审批预览不上传。Docs/v0.8.1-四组对照实测.md的历史数据变化来源未核定，保留本地未提交，不覆盖远端旧报告。
 
 BUILD-20260913-ROOT090-ANDROID：完成，无Unity占用。当前0.9.0时序与56张审批A卡图已打包；Logs/root090-android-build.log包含Kait Android build created并退出0。版本/架构/启动入口/v2签名核验通过，签名与旧0.8.3一致；包与SHA256见最新Android快照。旧包保留，不改规则、不上传GitHub；ADB无设备，未真机启动/触摸验收。上轮135项专项通过、全量仍85失败及偶发运行QA超时记录仍保留，不因打包成功视为已解决。
 
