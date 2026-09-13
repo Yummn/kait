@@ -13,6 +13,24 @@ public static class YummnRepoolArt
         if(def==null)return null;
         switch(def.id)
         {
+            case "yummn.N01":return "TwinFists";
+            case "yummn.N02":return "Reflect";
+            case "yummn.N03":return "SpiritGuard";
+            case "yummn.N04":return "Stun";
+            case "yummn.N05":return "Decoy";
+            case "yummn.N06":return "Deflect";
+            case "yummn.N08":return "KiSea";
+            case "yummn.N09":return "SpiritGuard";
+            case "yummn.N10":return "Decoy";
+            case "yummn.N11":return "Reflect";
+            case "yummn.N12":return "EmptyBody";
+            case "yummn.N13":return "EmptyBody";
+            case "yummn.N14":return "Deflect";
+            case "yummn.N15":return "Gravity";
+            case "yummn.N16":return "IceFist";
+            case "yummn.N17":return "Book";
+            case "yummn.N18":return "Bag";
+            case "yummn.N19":return "Passwall";
             case "yummn.R05":return "Stun";
 
             case "yummn.R26":return "Heal";
@@ -39,6 +57,11 @@ public static class YummnRepoolArt
     {
         if(def==null)return null;
         if(cache.TryGetValue(def.id,out var cached))return cached;
+        if(def.id.StartsWith("yummn."))
+        {
+            var approved=Resources.Load<Texture2D>("KaitVisuals/Yummn/ApprovedA/"+def.id.Substring(6));
+            if(approved!=null)return cache[def.id]=Sprite.Create(approved,new Rect(0,0,approved.width,approved.height),Vector2.one*.5f,100,0,SpriteMeshType.FullRect);
+        }
         string name=NewIcon(def);
         if(name!=null)
         {

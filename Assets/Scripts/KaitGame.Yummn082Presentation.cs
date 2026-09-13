@@ -45,6 +45,7 @@ public sealed partial class KaitGame
     {
         if(yummnHud==null)return;
         var label=MakeText("+"+amount,yummnHud.transform,new Vector2(110,25),new Vector2(45,30),22,new Color(.45f,.9f,1),TextAnchor.MiddleCenter);
+        label.gameObject.name="Floating Damage";
         label.raycastTarget=false;StartCoroutine(FadeAndDestroy(label.rectTransform,.65f));
     }
     private IEnumerator AnimateYummn082Supply(KaitTurnResult r,YummnCombatEvent ev)

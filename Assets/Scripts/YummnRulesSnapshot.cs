@@ -19,7 +19,7 @@ public enum YummnMovementCostMode { PerCell, FixedOne }
     [SerializeField] private bool bossLine;
     // Absent in old replays: preserve their pre-hit/stationary-punch rule.
     [SerializeField] private bool actualMoveSupply;
-    public const string CurrentVersion="yummn-0.8.2";
+    public const string CurrentVersion="yummn-0.9.0-root-action";
     [SerializeField] private int maxKi082,killKi082;
     [SerializeField] private YummnMovementCostMode movementCostMode;
     [SerializeField] private bool attackAdvancesEnemyPhase,exhaustionNeedsFullKi;

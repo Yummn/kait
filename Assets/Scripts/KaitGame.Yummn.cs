@@ -97,7 +97,7 @@ public sealed partial class KaitGame
     }
     private void SaveCharacterRun()
     {
-        string key=run.IsYummn?(run.Yummn.rules.Is082?"Kait.Run.Yummn.0.8.2":run.Yummn.rules.Legacy?"Kait.Run.Yummn.0.8":"Kait.Run.Yummn.0.8.1"):"Kait.Run.Kait";
+        string key=run.IsYummn?(run.Yummn.rules.Is082?"Kait.Run.Yummn.0.9.0":run.Yummn.rules.Legacy?"Kait.Run.Yummn.0.8":"Kait.Run.Yummn.0.8.1"):"Kait.Run.Kait";
         if(run.ended){PlayerPrefs.DeleteKey(key);RecordCharacterScore();}
         else PlayerPrefs.SetString(key,run.SaveReplay());
         PlayerPrefs.Save();
@@ -179,9 +179,8 @@ public sealed partial class KaitGame
         if(yummnVisualIce==YummnRun.NoCell)yummnVisualIce=run.Yummn.icePillar;
         if(!yummnAcceptBuffer)yummnBufferedDirection=null;
         animatedEnemies=before;animatedSpawns=new List<KaitSpawnRequest>(spawnBefore);displayKate=start;displayedThreat=r.threatBefore;
-        foreach(var merge in r.merges)
+        foreach(var merge in r.yummnEvents.Exists(e=>e.status=="ThreatBegin")?new List<KaitMergeEvent>():r.merges)
         {
-            if(!run.Yummn.rules.Legacy&&merge.systemMerge)continue;
             var p=run.MapThreatToBattle(merge.threatCell);
             int offset=!run.Yummn.rules.Legacy&&run.Yummn.rules.SpawnFromEight?2:1;
             if(merge.resultValue>=run.config.winValue||merge.resultValue<(1<<(offset+1))||merge.spawnSuppressed||animatedSpawns.Exists(s=>s.targetCell==p))continue;
@@ -195,15 +194,25 @@ public sealed partial class KaitGame
             opening.threatMotions.AddRange(r.threatMotions.GetRange(0,r.yummnInitialMotionCount));
             opening.merges.AddRange(r.merges.FindAll(m=>!m.systemMerge));
         }
-        RefreshAll();bool threatDone=false;StartCoroutine(RunPhase(AnimateThreat(opening),()=>threatDone=true));
+        RefreshAll();bool threatDone=false;
+        if(!r.yummnEvents.Exists(e=>e.status=="ThreatBegin"))StartCoroutine(RunPhase(AnimateThreat(opening),()=>threatDone=true));
         kaitSpine?.Face(r.kaitDirection);
         if(r.yummnAction.plannedSkills.Contains("yummn.M02")){kaitSpine?.PlayOnce(KaitSpineView.YummnBuff);PlayYummnFx(start,4,r.kaitDirection);}
         bool attackStarted=false,flurryFxPlayed=false,attackVoicePlayed=false;
         int voicedKills=0;
         if(r.yummnAction.plannedSkills.Count>0)GameAudio.PlayKaitSmallAttackSkillVoice();
+        if(r.yummnAction.plannedSkills.Exists(id=>id=="yummn.N02"||id=="yummn.N04"||id=="yummn.N05"||id=="yummn.N06"||id=="yummn.N19"))
+            kaitSpine?.PlayOnce(KaitSpineView.YummnAttackSkill);
         for(int i=0;i<r.yummnEvents.Count;i++)
         {
             var ev=r.yummnEvents[i];
+            if(ev.status=="ThreatBegin")
+            {yield return AnimateThreat(opening);threatDone=true;continue;}
+            if(ev.status=="RiftQueued")
+            {
+                if(!animatedSpawns.Exists(s=>s.targetCell==ev.to))animatedSpawns.Add(new KaitSpawnRequest{targetCell=ev.to,sourceThreatCell=ev.from,tier=ev.amount,createdTurn=run.turn-1,state=KaitSpawnState.Preview});
+                RefreshBattle();continue;
+            }
             if(ev.kind==YummnEventKind.Move&&ev.targetId<0)
             {
                 var from=ev.from;var to=ev.to;
@@ -247,7 +256,7 @@ public sealed partial class KaitGame
             }
             else if(ev.kind==YummnEventKind.Hit&&ev.targetId>=0)
             {
-                if(ev.direction!=Vector2Int.zero&&(ev.damageCause==YummnDamageCause.Punch||ev.damageCause==YummnDamageCause.Counter))
+                if(ev.direction!=Vector2Int.zero&&(ev.damageCause==YummnDamageCause.Punch||ev.damageCause==YummnDamageCause.Counter||ev.damageCause==YummnDamageCause.Kick))
                     kaitSpine?.Face(ev.direction.x>0?KaitDirection.Right:ev.direction.x<0?KaitDirection.Left:ev.direction.y>0?KaitDirection.Up:KaitDirection.Down);
                 string attackClip=yummnPunchPose.Hit(ev,attackStarted);
                 if(attackClip!=null&&!attackVoicePlayed&&ev.hpAfter>0)
@@ -257,7 +266,7 @@ public sealed partial class KaitGame
                 var actor=before.Find(e=>e.id==ev.targetId);
                 if(actor!=null){actor.hp=ev.hpAfter;EnemySpine(actor)?.PlayDamage();if(ev.amount>0)StartCoroutine(FlashEnemyWhite(actor.id));}
                 if(actor!=null&&ev.amount>0&&ev.hpAfter>0)GameAudio.PlayEnemyHurt(actor.type,actor.id,ev.hpAfter,false);
-                int effect=ev.damageCause==YummnDamageCause.WaterWhip?0:ev.damageCause==YummnDamageCause.WinterBreath?3:ev.damageCause==YummnDamageCause.FireSnake?4:ev.damageCause==YummnDamageCause.Shatter?5:ev.damageCause==YummnDamageCause.Quivering?8:-1;
+                int effect=ev.damageCause==YummnDamageCause.WaterWhip?0:ev.damageCause==YummnDamageCause.WinterBreath?3:ev.damageCause==YummnDamageCause.FireSnake?4:ev.damageCause==YummnDamageCause.Shatter?5:ev.damageCause==YummnDamageCause.Quivering?8:ev.damageCause==YummnDamageCause.MergeGlyph||ev.damageCause==YummnDamageCause.Sonic?1:ev.damageCause==YummnDamageCause.MergeMissile?21:ev.damageCause==YummnDamageCause.ShadowBlade?20:-1;
                 if(effect>=0){PlayV08Fx(ev.to,effect,r.kaitDirection,90);YummnAudio.Play(effect==0?"Water":effect==3?"Frost":effect==4?"Fire":effect==5?"Shatter":"PalmSeal");}
                 else
                 {
@@ -302,11 +311,13 @@ public sealed partial class KaitGame
                 if(ev.status=="Darkness"){kaitSpine?.PlayOnce(KaitSpineView.YummnAttackSkill);yummnVisualDarkness=ev.to;YummnAudio.Play("Shadow");}
                 if(ev.status=="Decoy"){yummnVisualDecoy=ev.to;kaitSpine?.PlayOnce(KaitSpineView.YummnBuff);}
                 if(ev.status=="DecoyExpired")yummnVisualDecoy=YummnRun.NoCell;
+                if(ev.status=="IceExpired")yummnVisualIce=YummnRun.NoCell;
                 if(ev.status=="DarknessExpired")yummnVisualDarkness=YummnRun.NoCell;
                 RefreshYummnTerrain();
             }
             else if(ev.kind==YummnEventKind.Status)
             {
+                if(ev.status=="MergeMissileLaunch")yield return PlayPool083Missile(ev.from,ev.to);
                 if(ev.status=="KiGuard"){yummnPunchPose.ClearReady();if(kaitSpine!=null){kaitSpine.RestAnimation=KaitSpineView.Idle;kaitSpine.PlayOnce(KaitSpineView.YummnKiGuard);}}
                 if(ev.status=="SupplyReady"||ev.status=="CounterSupplyReady")
                 {while(!threatDone)yield return null;yield return AnimateYummn082Supply(r,ev);}
@@ -346,6 +357,8 @@ public sealed partial class KaitGame
             }
         }
         animatedEnemies=null;animatedSpawns=null;displayKate=null;displayedThreat=null;busy=false;
+        if(run.ended||r.yummnAction.phaseAtStart!=r.yummnAction.phaseAtEnd||run.CurrentReward!=null||targetingSkill!=KaitSkill.None)
+        {ClearHeldInput();yummnBufferedDirection=null;yummnAcceptBuffer=false;}
         bool continueBuffered=!run.ended&&yummnAcceptBuffer&&yummnBufferedDirection.HasValue&&yummnBufferedTurn==run.turn&&yummnBufferedAction==run.ActionIndex;
         if(!run.ended&&!continueBuffered&&kaitSpine?.CurrentAnimation?.Loop==true)kaitSpine.PlayLoop(KaitSpineView.Idle);RefreshAll();PlayCrossBoardResonance(r);
         if(run.spawns.Exists(s=>!spawnBefore.Exists(old=>old.targetCell==s.targetCell)))GameAudio.PlayRiftWarning();

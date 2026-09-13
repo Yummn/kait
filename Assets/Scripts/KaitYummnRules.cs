@@ -121,9 +121,16 @@ public sealed partial class KaitRun
         if(!Yummn.rules.Is082)ctx.totalKiCost+=KiPhase==YummnPhase.Burst?1:0;
         if(ctx.totalKiCost>Ki){error="气不足：本次需要 "+ctx.totalKiCost+" 气";return false;}
         ctx.threatDirection=HasPassive(KaitPassive.ReverseGravity)?Opposite(dir):dir;
+        foreach(var card in YummnCatalog.Cards)
+            if(card.kind==KaitAbilityKind.Active?skills.Contains(card.skill):HasPassive(card.passive))ctx.equipmentSnapshot.Add(card.id);
         var next=repoolCellTarget??(katePos+Delta(dir));
         switch(ctx.actionOverride)
         {
+            case "Thunder":ctx.targetCell=katePos;break;
+            case "Mirror":if(!YummnEmpty(next))error="残影需要空格";else ctx.targetCell=next;break;
+            case "Sonic":if(!Inside(next))error="目标不在战场";else ctx.targetCell=next;break;
+            case "CommandAct":if(EnemyAt(next)==null)error="请选择敌人";else ctx.targetCell=next;break;
+            case "MageHand":if(next.x<0||next.y<0||next.x>=ThreatSize||next.y>=ThreatSize||IsThreatPillar(next)||threat[next.x,next.y]==0)error="请选择副盘数字";else ctx.targetCell=next;break;
             case "AirRay":
             case "Water":if(FirstYummnRayEnemy(dir)==null)error="前方没有可见敌人";break;
             case "Echo":ctx.targetCell=EchoDestination(dir);if(ctx.targetCell.x<0)error="该方向没有可用残影";break;
@@ -151,19 +158,20 @@ public sealed partial class KaitRun
         Yummn.actionId=a.actionId;Yummn.metrics.actions++;r.yummnAction=a;r.valid=r.turnComplete=true;
         r.globalDirection=r.kaitDirection=dir;currentGlobalDirection=currentDirection=dir;actualThreatDirection=a.threatDirection;
         r.threatBefore=CopyThreat();turnTriggers.Clear();momentumResonanceTriggeredThisTurn=false;
+        BeginYummnRoot();BeginYummnRangeTracking();
         if(!Yummn.rules.Is082){Yummn.ki-=a.totalKiCost;Yummn.metrics.kiSpent+=a.totalKiCost;}
         foreach(var id in a.plannedSkills)YummnTrigger(id,r);
         if(a.plannedSkills.Contains("yummn.M02"))Yummn.defense=true;
-        if(!a.isWait&&!repoolCellTarget.HasValue)r.merges.AddRange(MoveThreat(actualThreatDirection,r.threatMotions));
-        r.threatChanged=!ThreatEquals(r.threatBefore,threat);threatChangedThisTurn=r.threatChanged;
-        foreach(var m in r.merges){HandleMilestoneMerge(m);if(m.resultValue<config.winValue)QueueYummnRift(m,r);}
-        ResolveBag(r.merges,r);
-        if(Yummn081){r.yummnThreatAfterMerge=CopyThreat();r.yummnInitialMotionCount=r.threatMotions.Count;}
         if(Yummn.rules.Is082)CommitYummn082Cost(r);
-        BeginYummnRangeTracking();
         PrepareYummnWaitDefenses(a);
         ResolveYummnPlayerAction(r);
         ResolveYummnRangeEntries(r);
+        r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="ThreatBegin",actionId=a.actionId});
+        if(!ended&&!a.isWait&&!repoolCellTarget.HasValue)r.merges.AddRange(MoveThreat(actualThreatDirection,r.threatMotions));
+        r.threatChanged=!ThreatEquals(r.threatBefore,threat);threatChangedThisTurn=r.threatChanged;
+        bool baseMerged=r.merges.Count>0;
+        if(!ended&&a.actionOverride!="MageHand"){ResolveYummnMergeBatch(r,false);if(baseMerged)ResolveYummnPendulum(r);}
+        if(Yummn081){r.yummnThreatAfterMerge=CopyThreat();r.yummnInitialMotionCount=r.threatMotions.Count;}
         a.finalCell=katePos;r.slideDistance=r.katePath.Count;
         Yummn.prepared.Clear();
         if(Yummn.rules.Is082)ResolveYummn082Tail(r);
@@ -198,7 +206,7 @@ public sealed partial class KaitRun
         }
         if(a.phaseAtStart==YummnPhase.Burst){Yummn.metrics.burstLength++;Yummn.metrics.longestBurst=Mathf.Max(Yummn.metrics.longestBurst,Yummn.metrics.burstLength);Yummn.metrics.exhaustedLength=0;}
         else {Yummn.metrics.exhaustedLength++;Yummn.metrics.longestExhausted=Mathf.Max(Yummn.metrics.longestExhausted,Yummn.metrics.exhaustedLength);Yummn.metrics.burstLength=0;}
-        Yummn.history.Add(a);turn++;PrepareThreatTwoPreview();return r;
+        StampYummnRoot(r);Yummn.history.Add(a);turn++;PrepareThreatTwoPreview();return r;
     }
     private void FinishYummnPhase(KaitTurnResult r)
     {
@@ -227,6 +235,7 @@ public sealed partial class KaitRun
     {
         var def=YummnCatalog.Get(id);id=def?.id??id;
         var counts=Yummn.metrics.cardTriggers;counts[id]=counts.TryGetValue(id,out var n)?n+1:1;
+        r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="CardTriggered",cardId=id,displayName=def?.nameZh,actionId=Yummn.actionId});
         if(def!=null&&def.kind==KaitAbilityKind.Passive)TriggerPassive(def.passive,r,YummnRun.NoCell,katePos,def.nameZh);
     }
     private bool PreventYummnHit(KaitEnemy e,KaitIntent i,KaitTurnResult r)=>PreventYummnDamage(e,i,r);

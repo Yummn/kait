@@ -14,9 +14,16 @@ public sealed partial class KaitRun
         r.yummnAction=a;r.valid=r.turnComplete=true;r.threatBefore=CopyThreat();
         r.yummnThreatAfterMerge=CopyThreat();r.yummnThreatAfterSupply=CopyThreat();r.yummnThreatAfterArchive=CopyThreat();
         Yummn.metrics.actions++;turnTriggers.Clear();
-        BeginYummnRangeTracking();
+        BeginYummnRangeTracking();BeginYummnRoot();
         Yummn.prepared.Clear();
         PrepareYummnWaitDefenses(a);
+        if(Yummn.rules.Is082)
+        {
+            ResolveYummn082Tail(r);
+            a.kiAfter=Ki;a.phaseAtEnd=KiPhase;a.finalCell=katePos;r.threatAfter=CopyThreat();
+            StampYummnRoot(r);Yummn.history.Add(a);turn++;PrepareThreatTwoPreview();
+            RecordReplay("wait",0,0,0);return r;
+        }
         SupplyYummn082Twos(r);
         r.yummnThreatAfterSupply=CopyThreat();
         ResolveOldNewsArchive(r);r.yummnThreatAfterArchive=CopyThreat();
@@ -32,6 +39,7 @@ public sealed partial class KaitRun
             if(!ended)SupplyYummn082Twos(r,true);
             ClearYummn082Afterimages(r);
         }
+        FinishYummnRoot(r);
         if(!ended&&a.phaseAtStart==YummnPhase.Exhausted)
             Yummn.metrics.recoveryKi+=GainYummnKi(1,r,"Recovery");
         if(!ended)FinishYummnPhase(r);

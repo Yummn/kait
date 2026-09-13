@@ -10,6 +10,9 @@ public sealed partial class KaitRun
     {
         if(IsYummn&&YummnCatalog.IsActive(skill))
         {
+            if(skill==KaitSkill.MageHand)return cell.x>=0&&cell.y>=0&&cell.x<ThreatSize&&cell.y<ThreatSize&&!IsThreatPillar(cell)&&threat[cell.x,cell.y]>0;
+            if(skill==KaitSkill.CommandAct)return EnemyAt(cell)!=null;
+            if(skill==KaitSkill.ShatterWave)return Inside(cell)&&cell.x>0&&cell.y>0&&cell.x<6&&cell.y<6;
             if(YummnCatalog.TargetsSelf(skill))return cell==katePos;
             if(YummnCatalog.TargetsGround(skill))return YummnEmpty(cell)&&cell!=PendingBossCell;
             if((cell-katePos).sqrMagnitude!=1)return false;

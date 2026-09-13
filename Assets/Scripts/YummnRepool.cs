@@ -72,6 +72,8 @@ public sealed partial class KaitRun
     private void FreezeYummnEnemy(KaitEnemy e,KaitTurnResult r)
     {
         if(e.life==KaitEnemyLife.Dead)return;
+        if(e.yummnFrozen)return;
+        yummnFreezeInstances[e.id]=yummnFreezeInstances.TryGetValue(e.id,out int instance)?instance+1:1;
         e.yummnFrozen=true;e.intent=new KaitIntent{origin=e.pos};e.rangedState=KaitRangedState.Ready;
         SyncYummnControl(e);YummnStatusEvent(r,e,"Frozen");
     }

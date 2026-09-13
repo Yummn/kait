@@ -22,6 +22,7 @@ public sealed class YummnPunchPresentation
             return started?null:attackSkill?KaitSpineView.YummnAttackSkill:KaitSpineView.YummnFollowUpAttack;
         }
         if(ev.damageCause==YummnDamageCause.Counter){ClearReady();return KaitSpineView.YummnFollowUpAttack;}
+        if(ev.damageCause==YummnDamageCause.Kick){ClearReady();return "01_attack";}
         if(ev.damageCause==YummnDamageCause.WaterWhip||ev.damageCause==YummnDamageCause.WinterBreath)
         {ClearReady();return started?null:KaitSpineView.YummnAttackSkill;}
         return null;

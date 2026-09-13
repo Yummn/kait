@@ -25,7 +25,10 @@ public enum KaitPassive
     ShadowCloak, PassWithoutTrace, ShadowAssault, Opportunist,
     TwinPunch, FrugalStride, StunStrike, WaitingGuard, DistantPull, EndlessPush,
     FreezePush, FreezePunch, FirstEchoWard, AllEchoWard, EchoReprisal,
-    KillSupply, WaitSupply, DeepReservoir, KiAegis, OpportunityAttack
+    KillSupply, WaitSupply, DeepReservoir, KiAegis, OpportunityAttack,
+    SweepingPursuit, StoneBracers, ManaPearl, WardingGlyph, MirrorResonance,
+    ShadowBladeEcho, Misdirection, LastingImage, MagicMissile, GravityPendulum,
+    ResonanceCrystal, SpellEcho, BountyJar
 }
 
 public enum KaitPassiveCategory

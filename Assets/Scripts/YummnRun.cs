@@ -4,12 +4,15 @@ using UnityEngine;
 
 public enum YummnPhase { Burst, Exhausted }
 public enum YummnMoveCause { Player, AI, Forced, Teleport, KillFollow, PushFollow }
-public enum YummnDamageCause { Punch, WaterWhip, WinterBreath, FireSnake, Shatter, Quivering, Counter, Arrow, Melee, Area, EchoReflect }
-public enum YummnEventKind { Hit, Kill, Move, Status, Resource, Terrain, Aim, Spawn, EnemyAttack, AfterimageCreated, AfterimageHit, AfterimageCleared }
+public enum YummnDamageCause { Punch, WaterWhip, WinterBreath, FireSnake, Shatter, Quivering, Counter, Arrow, Melee, Area, EchoReflect, MergeMissile, MergeGlyph, Sonic, Collision, ShadowBlade, Kick }
+public enum YummnAttackFamily { Martial, Kick, Spell, Environment }
+public enum YummnAttackOrigin { Voluntary, Opportunist, Opportunity, Sweep, FlurryChild, Skill }
+public enum YummnEventKind { Hit, Kill, Move, Status, Resource, Terrain, Aim, Spawn, EnemyAttack, AfterimageCreated, AfterimageHit, AfterimageCleared, AttackBegin }
 
 [Serializable] public sealed class YummnAfterimageMarker
 {
     public int id,sourceActionId;
+    public int remainingPhases=1;
     public Vector2Int cell;
     public KaitDirection direction;
     public string source="Movement";
@@ -37,6 +40,8 @@ public enum YummnEventKind { Hit, Kill, Move, Status, Resource, Terrain, Aim, Sp
     public bool kiGuardTriggered;
     public int attackCostTenths;
     public bool playerMoved;
+    public bool voluntaryMoved, voluntaryAttack, enemyPhaseExecuted, spawnWindowOpened;
+    public List<string> equipmentSnapshot=new List<string>();
     public YummnEnemyPhaseReason enemyPhaseReason;
     public List<string> plannedSkills=new List<string>();
     public List<int> killIds=new List<int>();
@@ -49,9 +54,12 @@ public enum YummnEventKind { Hit, Kill, Move, Status, Resource, Terrain, Aim, Sp
     public Vector2Int from, to, direction;
     public YummnDamageCause damageCause;
     public YummnMoveCause moveCause;
-    public string status, cardId;
+    public string status, cardId, displayName;
     public bool blocked;
     public int attackEventId,markerId;
+    public int eventId,parentEventId;
+    public YummnAttackFamily attackFamily;
+    public YummnAttackOrigin attackOrigin;
     public List<Vector2Int> affectedCells=new List<Vector2Int>();
 }
 [Serializable] public sealed class YummnMetrics

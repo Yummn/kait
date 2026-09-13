@@ -5,7 +5,7 @@ public sealed class YummnRepoolIconSettings : AssetPostprocessor
 {
     private void OnPreprocessTexture()
     {
-        if(!assetPath.StartsWith("Assets/Resources/KaitVisuals/Yummn/Repool/Card_"))return;
+        if(!assetPath.StartsWith("Assets/Resources/KaitVisuals/Yummn/Repool/Card_")&&!assetPath.StartsWith("Assets/Resources/KaitVisuals/Yummn/ApprovedA/"))return;
         var t=(TextureImporter)assetImporter;
         t.textureType=TextureImporterType.Default;t.spriteImportMode=SpriteImportMode.None;
         t.mipmapEnabled=false;t.alphaIsTransparency=true;t.npotScale=TextureImporterNPOTScale.None;

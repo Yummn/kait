@@ -8,7 +8,7 @@ public enum KaitEnemyLife { Preparing, Active, Dead }
 public enum KaitRangedState { Ready, Aim }
 public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
-public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor, Flurry, WindStep, Palm, StunningFist, PatientDefense, FrostBreath, WaterWhip, UnbrokenAir, ShapeIce, YummnShadowStep, Darkness, PreciseStep, EchoStep, MendWait, AirPalm, PhantomSlide, UniqueDecoy }
+public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor, Flurry, WindStep, Palm, StunningFist, PatientDefense, FrostBreath, WaterWhip, UnbrokenAir, ShapeIce, YummnShadowStep, Darkness, PreciseStep, EchoStep, MendWait, AirPalm, PhantomSlide, UniqueDecoy, ThunderWave, ShatterWave, MirrorImage, CommandAct, MageHand }
 public enum KaitSpeedModifier { AddOne, Double }
 
 [Serializable] public sealed class KaitBalanceConfig
@@ -22,7 +22,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public bool kaitEffectiveMoveSupply;
 }
 
-[Serializable] public sealed class KaitMergeEvent { public int sourceValue, resultValue, sequence; public Vector2Int threatCell; public KaitDirection actualThreatDirection; public bool spawnSuppressed, systemMerge; }
+[Serializable] public sealed class KaitMergeEvent { public int sourceValue, resultValue, sequence; public Vector2Int threatCell; public KaitDirection actualThreatDirection; public bool spawnSuppressed, systemMerge; public int rootActionId,mergeId; public string mergeSource; }
 [Serializable] public sealed class KaitIntent
 {
     public KaitIntentType type;
@@ -799,7 +799,7 @@ public sealed partial class KaitRun
         for (int i = 0; i < packed.Count; i++)
         {
             ThreatToken token = packed[i]; Vector2Int destination = segment[i]; threat[destination.x, destination.y] = token.value;
-            threatTwoBirth[destination.x, destination.y] = token.value == 2 && !token.merged ? token.birthOrder : 0;
+            threatTwoBirth[destination.x, destination.y] = IsYummn ? (token.merged ? ++nextThreatTwoBirth : token.birthOrder) : token.value == 2 && !token.merged ? token.birthOrder : 0;
             foreach (Vector2Int source in token.sources) motions.Add(new KaitThreatMotion { value = token.merged ? token.value / 2 : token.value, from = source, to = destination, merged = token.merged });
             if (!token.merged) continue;
             merges.Add(new KaitMergeEvent { sourceValue=token.value/2,resultValue = token.value, threatCell = destination, sequence=merges.Count,actualThreatDirection=actualThreatDirection });
@@ -1135,6 +1135,7 @@ public sealed partial class KaitRun
 
     private void ResolveOldNewsArchive(KaitTurnResult result)
     {
+        if(IsYummn){ResolveYummnMergeChains(result);return;}
         if (!HasPassive(KaitPassive.OldNewsArchive)) return;
         if(!turnTriggers.Add("Archive")) return;
         var twos = new List<Vector2Int>();

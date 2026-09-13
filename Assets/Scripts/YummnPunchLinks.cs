@@ -9,13 +9,12 @@ public sealed partial class KaitRun
     private int yummnPunchDepth;
     private readonly HashSet<int> yummnExitReacted=new HashSet<int>();
     private bool yummnInEnemyPhase;
-    private void ResolveYummnRangeExit(KaitEnemy e,Vector2Int to,KaitTurnResult r)
+    private void ResolveYummnRangeExit(KaitEnemy e,Vector2Int from,KaitTurnResult r,Vector2Int? playerBefore=null)
     {
         if(!HasPassive(KaitPassive.OpportunityAttack)||ended||e.life==KaitEnemyLife.Dead||
-           (e.pos-katePos).sqrMagnitude!=1||(to-katePos).sqrMagnitude==1||!yummnExitReacted.Add(e.id))return;
-        bool previous=yummnResolvingReaction;yummnResolvingReaction=true;
-        try {YummnTrigger("R40",r);ResolveYummnPunch(e,r,true);}
-        finally {yummnResolvingReaction=previous;}
+           (from-(playerBefore??katePos)).sqrMagnitude!=1||(e.pos-katePos).sqrMagnitude==1||!yummnExitReacted.Add(e.id))return;
+        YummnTrigger("R40",r);
+        ResolveYummnKick(e,from-(playerBefore??katePos),r,true);
     }
     private void BeginYummnRangeTracking()
     {
@@ -24,14 +23,14 @@ public sealed partial class KaitRun
     }
     private void ResolveYummnRangeEntries(KaitTurnResult r)
     {
-        if(yummnPunchDepth>0||yummnResolvingReaction||!HasPassive(KaitPassive.Opportunist)||ended)return;
+        if(r.yummnAction.phaseAtStart==YummnPhase.Exhausted||!HasPassive(KaitPassive.Opportunist)||ended)return;
         yummnResolvingReaction=true;
         try
         {
             var pending=new Queue<KaitEnemy>();
             // Refresh after every reaction: push/follow/kill can change both positions.
             // One reaction per enemy per input bounds chained push/follow combinations.
-            for(int guard=0;guard<enemies.Count+1&&!ended;guard++)
+            while(!ended)
             {
                 var inReach=enemies.FindAll(e=>e.life!=KaitEnemyLife.Dead&&(e.pos-katePos).sqrMagnitude==1);
                 inReach.Sort((a,b)=>a.id.CompareTo(b.id));
@@ -46,6 +45,20 @@ public sealed partial class KaitRun
         }
         finally {yummnResolvingReaction=false;}
     }
+    private void ResolveYummnKick(KaitEnemy enemy,Vector2Int direction,KaitTurnResult r,bool reaction=false)
+    {
+        if(enemy==null||enemy.life==KaitEnemyLife.Dead||ended)return;
+        using(var scope=new YummnEventScope(this,r,YummnAttackFamily.Kick,reaction?YummnAttackOrigin.Opportunity:YummnAttackOrigin.Voluntary,enemy.id)) {
+        r.yummnAction.didAttack=true;
+        if(!reaction){r.yummnAction.voluntaryAttack=true;r.yummnAction.isPunchAction=true;}
+        ChargeYummnAttackTenth(r);
+        int start=r.yummnEvents.Count;
+        int damage=YummnHit(enemy,1,direction,YummnDamageCause.Kick,r);
+        r.yummnPunches++;r.damageDealt+=damage;
+        for(int i=start;i<r.yummnEvents.Count;i++)if(r.yummnEvents[i].damageCause==YummnDamageCause.Kick)
+        {r.yummnEvents[i].attackFamily=YummnAttackFamily.Kick;r.yummnEvents[i].attackOrigin=reaction?YummnAttackOrigin.Opportunity:YummnAttackOrigin.Voluntary;}
+        }
+    }
     private void LeaveYummnMovementEcho(Vector2Int from,Vector2Int to,KaitTurnResult r)
     {
         if(!Yummn.rules.Is082||from==to)return;
@@ -53,7 +66,7 @@ public sealed partial class KaitRun
         // marker; never stack identical markers on the same departure cell/input.
         if(Yummn.afterimages.Exists(m=>m.alive&&m.sourceActionId==Yummn.actionId&&m.cell==from))return;
         var d=to-from;var direction=Mathf.Abs(d.x)>=Mathf.Abs(d.y)?(d.x>0?KaitDirection.Right:KaitDirection.Left):(d.y>0?KaitDirection.Up:KaitDirection.Down);
-        var marker=new YummnAfterimageMarker{id=++Yummn.nextAfterimageId,sourceActionId=Yummn.actionId,cell=from,direction=direction};
+        var marker=new YummnAfterimageMarker{id=++Yummn.nextAfterimageId,sourceActionId=Yummn.actionId,cell=from,direction=direction,remainingPhases=HasPassive(KaitPassive.LastingImage)?2:1};
         Yummn.afterimages.Add(marker);Yummn.metrics.afterimagesCreated++;
         r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageCreated,actionId=Yummn.actionId,markerId=marker.id,to=from,direction=Delta(direction)});
     }

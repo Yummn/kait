@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-12（北京时间）。维护者：Yummn新版牌池接入会话。
+最后更新：2026-09-13（北京时间）。维护者：Yummn全局时序v0.9.0与审批A卡图接入会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -11,18 +11,29 @@
 | 工程 | C:/Users/yummn/Downloads/kait |
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
-| 本地规则版本 | Windows 0.8.2；Yummn新局快照 yummn-0.8.2，旧存档保留v0.8/v0.8.1；Kait规则不变 |
-| Git 基线 | v0.8.2-home-a-20260911标签对应e3292b0，当前源码与说明已推送origin/master；Yummn/kait保持PUBLIC，新APK已上传同名Release且远端SHA256与本地一致。旧历史归档保留；AudioPreviews/VFXPreviews选稿仍仅在本地 |
-| 最近 Windows 构建 | Build/kait.exe；Logs/exit-stun-build.log成功退出0，Assembly-CSharp.dll 2026-09-12 23:46:24；38牌含借机攻击、整回合震慑及此前拖放分类施放。Android已同步 |
-| 最近 EditMode 测试 | Logs/punch-unified-final-tests.xml：59/59专项通过，37牌目录/图标、拳击联动/耗气、等待补2、各位移残影、点选失败事务、混合槽/16与32发牌；非全量。此前旧Flurry断言失败记录保留 |
+| 本地规则版本 | 应用0.9.0，Yummn牌池0.9.0-root-action，共56牌（15主动/41被动，11普通/33非凡/12稀有）；规则快照yummn-0.9.0-root-action，独立存档Kait.Run.Yummn.0.9.0。旧存档保留，Kait规则不变 |
+| Git 基线 | 本轮本地HEAD为510611a；0.9.0源码/卡图/说明尚未上传。本轮未核对远端公开性。历史上传记录仍见各任务；AudioPreviews/VFXPreviews选稿仅本地 |
+| 最近 Windows 构建 | Build/kait.exe；Logs/root090-art-final-build.log包含Kait build created并成功退出；0.9.0时序和56张审批A卡图。resources.assets为2026-09-13 17:16:30，程序集17:11:11；Android现已同步0.9.0 |
+| 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | punch-unified-runtime.log：REPOOL_QA_COMPLETE；人物四向按钮、阻止方向误移动、冬之吐息成功与失败退出已运行验证；punch-targets/cast-failure/card-fonts.png已看，提示条已优化。40项玩家设置/存档按原类型值恢复；非Android验收 |
+| 最近视觉运行检查 | root090-runtime.log：ROOT090_QA_COMPLETE；实际Windows主先副后、推动/追身/反击链、56张新卡图加载通过，root090-cards.png已看；40项偏好/存档原类型原值还原。R28内部假透明棋盘已本地清理并看图；非Android验收 |
+| 最新 Android | Build/kait-v0.9.0.apk，2026-09-13 17:25:35，253232326字节；root090-android-build.log成功退出0。版本900、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效且与0.8.3相同。SHA256 A21EAF07007A3D16FF6B472796BE98FB76135FF83D33C3A37E3DCD94094A7482。旧0.8.3包保留；ADB无设备，未真机验收，未上传GitHub |
 | Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
+
+RELEASE-20260913-ROOT090：进行中，本会话。用户授权上传GitHub并说明；已核对origin/master与本地HEAD均510611a、Yummn/kait为PUBLIC，保持公开性。上传当前源码、正式资源、相关说明与APK；缓存、玩家存档、未审批预览不上传，无Unity占用。
+
+BUILD-20260913-ROOT090-ANDROID：完成，无Unity占用。当前0.9.0时序与56张审批A卡图已打包；Logs/root090-android-build.log包含Kait Android build created并退出0。版本/架构/启动入口/v2签名核验通过，签名与旧0.8.3一致；包与SHA256见最新Android快照。旧包保留，不改规则、不上传GitHub；ADB无设备，未真机启动/触摸验收。上轮135项专项通过、全量仍85失败及偶发运行QA超时记录仍保留，不因打包成功视为已解决。
+
+RULE-20260913-ROOT090-ART：完成本轮源码/卡图/Windows接入，无Unity/游戏占用。本地0.8.3基础上实施0.9.0 RootAction；人物先行、合成攻击/补给批次、唯一出生窗口/敌方阶段、末尾回气与阶段固定；拳掌与踢击分离、进入反击/提交后离开踢击、最终落点追身、伤害包及碎冰反伤、命令/误导时序。收尾修正摆锤反向共鸣及实际移动扣气/连锁后继续原方向。接入56张获批A图（透明、无固定卡框），简约图保持；R28假透明棋盘已清理看图；R40踢击仍用获批出拳图，待重画审批。备份Backups/Root090-before-20260913；保留全部原脏工作。root090-handoff-tests.xml 135/135专项和Kait回归通过；此前全量1064项979通过85失败，含历史规则/UI断言，未全部核定原因，未删除/屏蔽。root090-art-final-build.log最终成功；root090-runtime.log最新ROOT090_QA_COMPLETE，56图加载、主先副后、推动追身反击链通过，root090-cards.png已看，40项偏好恢复。最终素材构建后首次QA在PlayTurn等待超过45秒，脚本结束自己的进程并恢复偏好；未改源码重试约8秒通过，原因未复现，保留为偶发现象记录。不Android/不上传。详见Yummn-v0.9.0-RootAction与56卡图.md。
+
+RULE-20260913-POOL083：完成源码/Windows/Android，无Unity占用。56牌含15主动/41被动，普通10/非凡34/稀有12；合成/残影/反击链、特定目标交互、共享版本0.8.3。35/35专项通过（pool083-final-tests.xml）；pool083-verified-build.log Windows成功退出0，pool083-runtime.log POOL083_QA_COMPLETE，两张最终截图已看，40项偏好恢复。初轮QA脚本缺日志路径已修正。旧存档保留并用InspectYummnReplay.ps1实际读取验证，新池单独键需新开局；备份Backups/Pool083-before-20260913。右盘点击目标保留普通滑动。复用获批图标/特效，保留前轮重开修复及Kait规则。Android最终日志pool083-final-android.log成功，包与签名见最新Android快照。ADB无设备，未真机验收，不上传GitHub。详见Yummn目标技能池-v0.8.3-20260913.md。
+
+FIX-20260913-RESTART：完成源码/Windows；根因是NewRun停止协程后未清animatedEnemies/animatedSpawns/displayedThreat，RefreshBattle重新按旧快照创建敌人；同时漏清常驻战斗特效与Yummn独立Update特效。新增ResetRunPresentation统一丢弃旧快照、显示标记、输入缓冲、持续特效、地形/掌印池及气氛状态，销毁前同步隐藏；回气浮字纳入瞬态清理。restart-tests.xml 1/1专项通过（循环3次）；restart-runtime.log RESTART_QA_COMPLETE，实际Windows交替Kait/Yummn强制失败并NewRun共6轮，验证无旧敌人重建、无旧快照或特效；restart-final.png已看。40项玩家偏好/存档原类型原值恢复。restart-build.log构建成功退出0。Android未更新、未上传GitHub，无Unity/游戏占用。
 
 DOC-20260912-CURRENT-DESIGN-GITHUB：已完成；已生成 `Kait_当前版本游戏设计文档_v0.8.2.docx`，覆盖双盘规则、Kait/Yummn角色系统、六类敌人、设置、存档、构建与完整技能牌池（Kait 39张，Yummn 38张，共77张，其中Kait实验牌1张默认关闭）。DOCX共12页，已逐页渲染检查，无表格截断、溢出或缺字；技能关键项文本复核无遗漏。当前源码、资源、测试、专题说明、文档及文档生成脚本一并提交到现有 `origin/master`；本地试听/特效预览缓存继续忽略。无Unity占用。
 

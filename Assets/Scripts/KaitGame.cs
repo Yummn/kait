@@ -387,6 +387,13 @@ public sealed partial class KaitGame : MonoBehaviour
             var qa=new GameObject("Character CG QA",typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
             qa.StartCoroutine(VerifyCharacterCGRuntime(screenshotPath));
         }
+        else if (CommandLineValue("-restartQA") == "1")
+        {
+            var qa = new GameObject("Restart QA", typeof(KaitMenuRuntimeQA)).GetComponent<KaitMenuRuntimeQA>();
+            qa.StartCoroutine(VerifyRestartRuntime());
+        }
+        else if (CommandLineValue("-pool083QA") == "1") StartCoroutine(VerifyPool083Runtime());
+        else if (CommandLineValue("-root090QA") == "1") StartCoroutine(VerifyRoot090Runtime());
         else if (CommandLineValue("-repoolQA") == "1") StartCoroutine(VerifyRepool());
         else if (CommandLineValue("-kaitWarningsQA") == "1") StartCoroutine(VerifyApprovedWarnings(screenshotPath));
         else if (CommandLineValue("-kaitYummn082QA") == "1") StartCoroutine(VerifyYummn082Runtime(screenshotPath));
@@ -1002,6 +1009,9 @@ public sealed partial class KaitGame : MonoBehaviour
             {
                 int index = x + visualY * run.ThreatSize;
                 threatCells[index] = Rect($"Threat {x},{visualY}", gridGo.transform, Vector2.zero, Vector2.zero, Void);
+                var targetNumber=new Vector2Int(x,visualY);
+                threatCells[index].gameObject.AddComponent<Button>().onClick.AddListener(()=>{if(run.IsYummn&&targetingSkill==KaitSkill.MageHand)HandleBattleCellClick(targetNumber,true);});
+                threatCells[index].gameObject.AddComponent<KaitBattleGestureSurface>();
                 // Keep the original 2048-board number treatment unchanged.
                 threatLabels[index] = MakeText("", threatCells[index].transform, Vector2.zero, Vector2.zero, 36, Cream, TextAnchor.MiddleCenter, FontStyle.Bold, false);
                 threatLabels[index].font = threatBoardFont;
@@ -1223,6 +1233,7 @@ public sealed partial class KaitGame : MonoBehaviour
         ClearAllEffectViews();
         ClearTransientAnimationObjects();
         ClearEnemySpines();
+        ResetRunPresentation();
         ResetInterruptedAnimationState();
         busy = false;
         displayKate = null;
@@ -1583,9 +1594,10 @@ public sealed partial class KaitGame : MonoBehaviour
         return applied;
     }
 
-    private void HandleBattleCellClick(Vector2Int cell)
+    private void HandleBattleCellClick(Vector2Int cell,bool threatTarget=false)
     {
         if (run.ended || targetingSkill == KaitSkill.None) return;
+        if(run.IsYummn&&targetingSkill==KaitSkill.MageHand&&!threatTarget){ShowYummnCastFailure("请选择右侧副盘数字");return;}
         if (busy) InterruptActivePresentationForMovement();
         KaitEnemy target = run.EnemyAt(cell);
         KaitSkill skill = targetingSkill;
@@ -3716,14 +3728,14 @@ public sealed partial class KaitGame : MonoBehaviour
         phantomMark = null;
         phantomMarkEnemyId = visualPhantomTargetId = -1;
         iceBindings.Clear();
-        foreach (KaitMageEffectGraphic effect in mageImpacts) if (effect != null) Destroy(effect.gameObject);
+        foreach (KaitMageEffectGraphic effect in mageImpacts) if (effect != null) RemoveRunVisual(effect.gameObject);
         mageImpacts.Clear();
         firingWarlocks.Clear();
         foreach (KaitCombatEffectGraphic graphic in activeCombatEffects)
-            if (graphic != null) Destroy(graphic.gameObject);
+            if (graphic != null) RemoveRunVisual(graphic.gameObject);
         activeCombatEffects.Clear();
         foreach (RawImage slash in activeSwordSlashEffects)
-            if (slash != null) Destroy(slash.gameObject);
+            if (slash != null) RemoveRunVisual(slash.gameObject);
         activeSwordSlashEffects.Clear();
     }
 
