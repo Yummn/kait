@@ -1,0 +1,1456 @@
+fileFormatVersion: 2
+guid: 240bfdfaff94dd14b92e3ada62758eca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6508150914905566809
+    second: WardingGlyph_0
+  - first:
+      213: -431480411026531044
+    second: WardingGlyph_1
+  - first:
+      213: 2581514578451500221
+    second: WardingGlyph_2
+  - first:
+      213: -3042675021443959613
+    second: WardingGlyph_3
+  - first:
+      213: 4654132188716935094
+    second: WardingGlyph_4
+  - first:
+      213: -5681164432144422722
+    second: WardingGlyph_5
+  - first:
+      213: -1390882662250420300
+    second: WardingGlyph_6
+  - first:
+      213: -4866468699151239723
+    second: WardingGlyph_7
+  - first:
+      213: 1104856762867704003
+    second: WardingGlyph_8
+  - first:
+      213: -7367499528179431480
+    second: WardingGlyph_9
+  - first:
+      213: 4986987469318807070
+    second: WardingGlyph_10
+  - first:
+      213: -8197270276766788458
+    second: WardingGlyph_11
+  - first:
+      213: -7838675266185218642
+    second: WardingGlyph_12
+  - first:
+      213: 2861247049093995808
+    second: WardingGlyph_13
+  - first:
+      213: 7934618129084673919
+    second: WardingGlyph_14
+  - first:
+      213: -8351725447091704156
+    second: WardingGlyph_15
+  - first:
+      213: 3950172094280653894
+    second: WardingGlyph_16
+  - first:
+      213: -8751480191984553559
+    second: WardingGlyph_17
+  - first:
+      213: 3035612851351056769
+    second: WardingGlyph_18
+  - first:
+      213: -4641063589232399127
+    second: WardingGlyph_19
+  - first:
+      213: 1041698214424621451
+    second: WardingGlyph_20
+  - first:
+      213: -154038179086540123
+    second: WardingGlyph_21
+  - first:
+      213: 3245311130586646380
+    second: WardingGlyph_22
+  - first:
+      213: 1250932091626173629
+    second: WardingGlyph_23
+  - first:
+      213: 8923183098754304362
+    second: WardingGlyph_24
+  - first:
+      213: -9072813316336034896
+    second: WardingGlyph_25
+  - first:
+      213: 1173147179273352277
+    second: WardingGlyph_26
+  - first:
+      213: -9051121874235893062
+    second: WardingGlyph_27
+  - first:
+      213: -7264666855720188184
+    second: WardingGlyph_28
+  - first:
+      213: -8823009155100928738
+    second: WardingGlyph_29
+  - first:
+      213: -4601856911613430253
+    second: WardingGlyph_30
+  - first:
+      213: 2252048879397511023
+    second: WardingGlyph_31
+  - first:
+      213: 4613955426497564707
+    second: WardingGlyph_32
+  - first:
+      213: -4291915796048389919
+    second: WardingGlyph_33
+  - first:
+      213: -8025789063891631940
+    second: WardingGlyph_34
+  - first:
+      213: 5145039339894950120
+    second: WardingGlyph_35
+  - first:
+      213: 9082459589716520332
+    second: WardingGlyph_36
+  - first:
+      213: 980167917082646137
+    second: WardingGlyph_37
+  - first:
+      213: 2621302989979598820
+    second: WardingGlyph_38
+  - first:
+      213: -1156845724963453564
+    second: WardingGlyph_39
+  - first:
+      213: 3744559072865166629
+    second: WardingGlyph_40
+  - first:
+      213: 6848213161630958218
+    second: WardingGlyph_41
+  - first:
+      213: 5696051482111215838
+    second: WardingGlyph_42
+  - first:
+      213: 6011084171912060958
+    second: WardingGlyph_43
+  - first:
+      213: 5133298491070512023
+    second: WardingGlyph_44
+  - first:
+      213: -501688633738236256
+    second: WardingGlyph_45
+  - first:
+      213: 3736084726921163793
+    second: WardingGlyph_46
+  - first:
+      213: -2178359403458026299
+    second: WardingGlyph_47
+  - first:
+      213: -7352990109226984390
+    second: WardingGlyph_48
+  - first:
+      213: -4637572001379649261
+    second: WardingGlyph_49
+  - first:
+      213: 3937829414925742295
+    second: WardingGlyph_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WardingGlyph_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 482
+        width: 404
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95e649386c8915a50800000000000000
+      internalID: 6508150914905566809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_1
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 453
+        width: 465
+        height: 416
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1d593d2ad2130af0800000000000000
+      internalID: -431480411026531044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_2
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 789
+        width: 46
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc0817e4d163d320800000000000000
+      internalID: 2581514578451500221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_3
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 829
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c4f0e3503f36c5d0800000000000000
+      internalID: -3042675021443959613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_4
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 838
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b72f26219cc69040800000000000000
+      internalID: 4654132188716935094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_5
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 342
+        width: 383
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb8a27f8c037821b0800000000000000
+      internalID: -5681164432144422722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_6
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 844
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b76050869792bce0800000000000000
+      internalID: -1390882662250420300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_7
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 341
+        width: 518
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d578847084d67cb0800000000000000
+      internalID: -4866468699151239723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_8
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 816
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c0ea6e3f5d355f00800000000000000
+      internalID: 1104856762867704003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_9
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 787
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c7c10cb63261c990800000000000000
+      internalID: -7367499528179431480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_10
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 731
+        width: 49
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e52106ea6553540800000000000000
+      internalID: 4986987469318807070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_11
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 787
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69492714d127d3e80800000000000000
+      internalID: -8197270276766788458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_12
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 749
+        width: 17
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5b361606e673390800000000000000
+      internalID: -7838675266185218642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_13
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 745
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02dd1e7180135b720800000000000000
+      internalID: 2861247049093995808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_14
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 715
+        width: 21
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7f6774262d6d1e60800000000000000
+      internalID: 7934618129084673919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 715
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae228884f5b81c80800000000000000
+      internalID: -8351725447091704156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_16
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 727
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64c52414794d1d630800000000000000
+      internalID: 3950172094280653894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_17
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 680
+        width: 25
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1b4e9f12f7c8680800000000000000
+      internalID: -8751480191984553559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_18
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 571
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181f3601ec9a02a20800000000000000
+      internalID: 3035612851351056769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_19
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 558
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ecadc74141a79fb0800000000000000
+      internalID: -4641063589232399127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_20
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 517
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8130f1c10bd47e00800000000000000
+      internalID: 1041698214424621451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_21
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 499
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a2e2bd971fbcddf0800000000000000
+      internalID: -154038179086540123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_22
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 481
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c670d346749a90d20800000000000000
+      internalID: 3245311130586646380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_23
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 471
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db4b38f0c143c5110800000000000000
+      internalID: 1250932091626173629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_24
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 450
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a69050350c385db70800000000000000
+      internalID: 8923183098754304362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_25
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 450
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bb5b5ecb54e61280800000000000000
+      internalID: -9072813316336034896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_26
+      rect:
+        serializedVersion: 2
+        x: 1270
+        y: 455
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 554f6d9d42bd74010800000000000000
+      internalID: 1173147179273352277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 924
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abad66b3c94f36280800000000000000
+      internalID: -9051121874235893062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_28
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 370
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e68e3d0cf7be2b90800000000000000
+      internalID: -7264666855720188184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_29
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 372
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1590347bef5e8580800000000000000
+      internalID: -8823009155100928738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_30
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 0
+        width: 417
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316fa14458be220c0800000000000000
+      internalID: -4601856911613430253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_31
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 344
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6f1e412682e04f10800000000000000
+      internalID: 2252048879397511023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_32
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 336
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3209fddb300180040800000000000000
+      internalID: 4613955426497564707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_33
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 287
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8d5a2b25d0074c0800000000000000
+      internalID: -4291915796048389919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_34
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 286
+        width: 36
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb0468c6e5bae9090800000000000000
+      internalID: -8025789063891631940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_35
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 104
+        width: 344
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e849d1250ad66740800000000000000
+      internalID: 5145039339894950120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_36
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 289
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8da4eb30e06b0e70800000000000000
+      internalID: 9082459589716520332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_37
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 209
+        width: 52
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97612f507814a9d00800000000000000
+      internalID: 980167917082646137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_38
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 221
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ef376e5e2db06420800000000000000
+      internalID: 2621302989979598820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_39
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 180
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 485cf9f31fe02ffe0800000000000000
+      internalID: -1156845724963453564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_40
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 146
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525289223a857f330800000000000000
+      internalID: 3744559072865166629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_41
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 104
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a820b2d469db90f50800000000000000
+      internalID: 6848213161630958218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_42
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 102
+        width: 38
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed8839dd4a07c0f40800000000000000
+      internalID: 5696051482111215838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_43
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 31
+        width: 86
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e10aacdc439ab6350800000000000000
+      internalID: 6011084171912060958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_44
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 100
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79b7e4eb7c32d3740800000000000000
+      internalID: 5133298491070512023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_45
+      rect:
+        serializedVersion: 2
+        x: 1488
+        y: 98
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae6e2e78d4a909f0800000000000000
+      internalID: -501688633738236256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_46
+      rect:
+        serializedVersion: 2
+        x: 1544
+        y: 86
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 114f5e6b34d39d330800000000000000
+      internalID: 3736084726921163793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_47
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 23
+        width: 100
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4a0cbf9a9e4c1e0800000000000000
+      internalID: -2178359403458026299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_48
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 23
+        width: 26
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c9096147ee4f990800000000000000
+      internalID: -7352990109226984390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_49
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 17
+        width: 72
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 319f77de5d804afb0800000000000000
+      internalID: -4637572001379649261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WardingGlyph_50
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 49
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d0bbb64dfaf5a630800000000000000
+      internalID: 3937829414925742295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WardingGlyph_0: 6508150914905566809
+      WardingGlyph_1: -431480411026531044
+      WardingGlyph_10: 4986987469318807070
+      WardingGlyph_11: -8197270276766788458
+      WardingGlyph_12: -7838675266185218642
+      WardingGlyph_13: 2861247049093995808
+      WardingGlyph_14: 7934618129084673919
+      WardingGlyph_15: -8351725447091704156
+      WardingGlyph_16: 3950172094280653894
+      WardingGlyph_17: -8751480191984553559
+      WardingGlyph_18: 3035612851351056769
+      WardingGlyph_19: -4641063589232399127
+      WardingGlyph_2: 2581514578451500221
+      WardingGlyph_20: 1041698214424621451
+      WardingGlyph_21: -154038179086540123
+      WardingGlyph_22: 3245311130586646380
+      WardingGlyph_23: 1250932091626173629
+      WardingGlyph_24: 8923183098754304362
+      WardingGlyph_25: -9072813316336034896
+      WardingGlyph_26: 1173147179273352277
+      WardingGlyph_27: -9051121874235893062
+      WardingGlyph_28: -7264666855720188184
+      WardingGlyph_29: -8823009155100928738
+      WardingGlyph_3: -3042675021443959613
+      WardingGlyph_30: -4601856911613430253
+      WardingGlyph_31: 2252048879397511023
+      WardingGlyph_32: 4613955426497564707
+      WardingGlyph_33: -4291915796048389919
+      WardingGlyph_34: -8025789063891631940
+      WardingGlyph_35: 5145039339894950120
+      WardingGlyph_36: 9082459589716520332
+      WardingGlyph_37: 980167917082646137
+      WardingGlyph_38: 2621302989979598820
+      WardingGlyph_39: -1156845724963453564
+      WardingGlyph_4: 4654132188716935094
+      WardingGlyph_40: 3744559072865166629
+      WardingGlyph_41: 6848213161630958218
+      WardingGlyph_42: 5696051482111215838
+      WardingGlyph_43: 6011084171912060958
+      WardingGlyph_44: 5133298491070512023
+      WardingGlyph_45: -501688633738236256
+      WardingGlyph_46: 3736084726921163793
+      WardingGlyph_47: -2178359403458026299
+      WardingGlyph_48: -7352990109226984390
+      WardingGlyph_49: -4637572001379649261
+      WardingGlyph_5: -5681164432144422722
+      WardingGlyph_50: 3937829414925742295
+      WardingGlyph_6: -1390882662250420300
+      WardingGlyph_7: -4866468699151239723
+      WardingGlyph_8: 1104856762867704003
+      WardingGlyph_9: -7367499528179431480
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

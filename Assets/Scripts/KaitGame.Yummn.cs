@@ -97,7 +97,7 @@ public sealed partial class KaitGame
     }
     private void SaveCharacterRun()
     {
-        string key=run.IsYummn?(run.Yummn.rules.Is082?"Kait.Run.Yummn.0.9.0":run.Yummn.rules.Legacy?"Kait.Run.Yummn.0.8":"Kait.Run.Yummn.0.8.1"):"Kait.Run.Kait";
+        string key=run.IsYummn?(run.Yummn.rules.Is082?KaitVersion.YummnSaveKey:run.Yummn.rules.Legacy?"Kait.Run.Yummn.0.8":"Kait.Run.Yummn.0.8.1"):"Kait.Run.Kait";
         if(run.ended){PlayerPrefs.DeleteKey(key);RecordCharacterScore();}
         else PlayerPrefs.SetString(key,run.SaveReplay());
         PlayerPrefs.Save();
@@ -236,13 +236,19 @@ public sealed partial class KaitGame
             else if(ev.kind==YummnEventKind.EnemyAttack)
             {
                 StrikeSelectedTelegraphs(ev.affectedCells);
-                bool ghostHit=false;
+                bool ghostHit=false;var resonantHits=new List<YummnCombatEvent>();
                 foreach(var hit in r.yummnEvents)if(hit.kind==YummnEventKind.AfterimageHit&&hit.attackEventId==ev.attackEventId)
-                {PlayV08Fx(hit.to,15,r.kaitDirection,90);ghostHit=true;}
+                {PlayV08Fx(hit.to,15,r.kaitDirection,90);ghostHit=true;resonantHits.Add(hit);}
+                if(resonantHits.Count>1&&run.HasPassive(KaitPassive.MirrorResonance))
+                    foreach(var hit in resonantHits)PlayPriorityBattleFx(hit.to,"MirrorResonance",KaitDirection.Right,104,.62f);
                 if(ghostHit)YummnAudio.Play("GhostHit");
                 yield return AnimateAllEnemyActions(r.enemyActions.FindAll(a=>a.enemyId==ev.sourceId&&a.type!=KaitIntentType.Move));
             }
-            else if(ev.kind==YummnEventKind.AfterimageCreated)CreateYummnLogicalGhost(ev.markerId,ev.to,ev.direction.x>0?KaitDirection.Right:ev.direction.x<0?KaitDirection.Left:ev.direction.y>0?KaitDirection.Up:KaitDirection.Down);
+            else if(ev.kind==YummnEventKind.AfterimageCreated)
+            {
+                CreateYummnLogicalGhost(ev.markerId,ev.to,ev.direction.x>0?KaitDirection.Right:ev.direction.x<0?KaitDirection.Left:ev.direction.y>0?KaitDirection.Up:KaitDirection.Down);
+                if(run.HasPassive(KaitPassive.LastingImage))PlayPriorityBattleFx(ev.to,"LastingIllusion",KaitDirection.Right,104,.64f);
+            }
             else if(ev.kind==YummnEventKind.AfterimageCleared)RemoveYummnLogicalGhost(ev.markerId,.3f);
             else if(ev.kind==YummnEventKind.Spawn&&run.Yummn.rules.Is082)
             {
@@ -266,9 +272,15 @@ public sealed partial class KaitGame
                 var actor=before.Find(e=>e.id==ev.targetId);
                 if(actor!=null){actor.hp=ev.hpAfter;EnemySpine(actor)?.PlayDamage();if(ev.amount>0)StartCoroutine(FlashEnemyWhite(actor.id));}
                 if(actor!=null&&ev.amount>0&&ev.hpAfter>0)GameAudio.PlayEnemyHurt(actor.type,actor.id,ev.hpAfter,false);
-                int effect=ev.damageCause==YummnDamageCause.WaterWhip?0:ev.damageCause==YummnDamageCause.WinterBreath?3:ev.damageCause==YummnDamageCause.FireSnake?4:ev.damageCause==YummnDamageCause.Shatter?5:ev.damageCause==YummnDamageCause.Quivering?8:ev.damageCause==YummnDamageCause.MergeGlyph||ev.damageCause==YummnDamageCause.Sonic?1:ev.damageCause==YummnDamageCause.MergeMissile?21:ev.damageCause==YummnDamageCause.ShadowBlade?20:-1;
-                if(effect>=0){PlayV08Fx(ev.to,effect,r.kaitDirection,90);YummnAudio.Play(effect==0?"Water":effect==3?"Frost":effect==4?"Fire":effect==5?"Shatter":"PalmSeal");}
-                else
+                int effect=ev.damageCause==YummnDamageCause.WaterWhip?0:ev.damageCause==YummnDamageCause.WinterBreath?3:ev.damageCause==YummnDamageCause.FireSnake?4:ev.damageCause==YummnDamageCause.Shatter?5:ev.damageCause==YummnDamageCause.Quivering?8:-1;
+                if(ev.damageCause==YummnDamageCause.Collision)
+                {PlayPriorityBattleFx(ev.to,"StoneCollision",DirectionFromVector(ev.direction),122,.68f);YummnAudio.Play("StoneCollision");}
+                else if(ev.damageCause==YummnDamageCause.ShadowBlade)
+                    PlayPriorityBattleFx(ev.to,"ShadowBladeEcho",r.kaitDirection,108,.58f);
+                else if(ev.damageCause==YummnDamageCause.MergeMissile)
+                    PlayPriorityBattleFx(ev.to,"MagicMissile",r.kaitDirection,100,.52f);
+                else if(effect>=0){PlayV08Fx(ev.to,effect,r.kaitDirection,90);YummnAudio.Play(effect==0?"Water":effect==3?"Frost":effect==4?"Fire":effect==5?"Shatter":"PalmSeal");}
+                else if(ev.damageCause!=YummnDamageCause.Sonic&&ev.damageCause!=YummnDamageCause.MergeGlyph)
                 {
                     if(ev.blocked)PlayYummnFx(ev.to,4,KaitRun.Opposite(r.kaitDirection));
                     else if(!r.yummnFlurry||!flurryFxPlayed)
@@ -279,7 +291,7 @@ public sealed partial class KaitGame
             }
             else if(ev.kind==YummnEventKind.Hit&&ev.targetId<0)
             {
-                if(ev.amount>0)GameAudio.PlayKaitDamageVoice(ev.hpAfter,run.config.kateMaxHp);
+                if(ev.amount>0)GameAudio.PlayKaitDamageVoice(ev.hpAfter,run.KateMaxHp);
                 if(ev.amount>0){yummnPunchPose.ClearReady();if(kaitSpine!=null)kaitSpine.RestAnimation=KaitSpineView.Idle;StartCoroutine(FlashKaitWhite());kaitSpine?.PlayOnce(ev.hpAfter<=0?KaitSpineView.Die:KaitSpineView.Damage);}
                 else if(ev.blocked)
                 {
@@ -299,7 +311,7 @@ public sealed partial class KaitGame
                 YummnAudio.Play("Kill");
                 if(r.playerKilledEnemyIds.Contains(ev.targetId))GameAudio.PlayYummnKillVoice(++voicedKills);
             }
-            else if(ev.kind==YummnEventKind.Resource){PlayV08Fx(displayKate??run.katePos,9,r.kaitDirection,65);YummnAudio.Play("Ki");if(ev.status=="Afterimage")ShowYummnAfterimageKi(ev.amount);}
+            else if(ev.kind==YummnEventKind.Resource){PlayV08Fx(displayKate??run.katePos,9,r.kaitDirection,65);if(ev.status=="MergePearl")PlayPriorityBattleFx(displayKate??run.katePos,"ManaPearl",KaitDirection.Right,94,.56f);YummnAudio.Play("Ki");if(ev.status=="Afterimage")ShowYummnAfterimageKi(ev.amount);}
             else if(ev.kind==YummnEventKind.Terrain)
             {
                 if(ev.status=="Ice")
@@ -313,11 +325,23 @@ public sealed partial class KaitGame
                 if(ev.status=="DecoyExpired")yummnVisualDecoy=YummnRun.NoCell;
                 if(ev.status=="IceExpired")yummnVisualIce=YummnRun.NoCell;
                 if(ev.status=="DarknessExpired")yummnVisualDarkness=YummnRun.NoCell;
+                if(ev.status=="ThunderWave"){PlayPriorityBattleFx(ev.to,"ThunderWave",KaitDirection.Right,150,.64f);YummnAudio.Play("Air");}
+                if(ev.status=="SonicBurst"){PlayPriorityBattleFx(ev.to,"SonicBurst",KaitDirection.Right,154,.72f);YummnAudio.Play("SonicBurst");}
+                if(ev.status=="MirrorCreate"){PlayPriorityBattleFx(ev.to,"MirrorCreate",KaitDirection.Right,110,.62f);YummnAudio.Play("MirrorCreate");}
+                if(ev.status=="CommandAct"){PlayPriorityBattleFx(ev.to,"CommandAct",KaitDirection.Right,116,.56f);YummnAudio.Play("CommandAct");}
                 RefreshYummnTerrain();
             }
             else if(ev.kind==YummnEventKind.Status)
             {
-                if(ev.status=="MergeMissileLaunch")yield return PlayPool083Missile(ev.from,ev.to);
+                if(ev.status=="MergeMissileLaunch"){YummnAudio.Play("MagicMissile");yield return PlayPool083Missile(ev.from,ev.to);}
+                if(ev.status=="MergeGlyphCast"){PlayPriorityBattleFx(ev.to,"WardingGlyph",KaitDirection.Right,148,.66f);YummnAudio.Play("WardingGlyph");}
+                if(ev.status=="SweepPursuit")PlayPriorityBattleFx(ev.to,"SweepPursuit",r.kaitDirection,120,.54f);
+                if(ev.status=="Misdirection")PlayPriorityBattleFx(ev.to,"Misdirection",KaitDirection.Right,108,.58f);
+                if(ev.status=="SpellEchoCast")PlayPriorityBattleFx(ev.to,"SpellEcho",r.kaitDirection,116,.64f);
+                if(ev.status=="MageHandCast"){PlayPriorityThreatFx(ev.to,"MageHand",110,.62f);YummnAudio.Play("MageHand");}
+                if(ev.status=="GravityPendulum")PlayPriorityThreatCenter("GravityPendulum",180,.68f);
+                if(ev.status=="ResonanceCrystal"){PlayPriorityThreatFx(ev.from,"ResonanceCrystal",108,.62f);PlayPriorityThreatFx(ev.to,"ResonanceCrystal",108,.62f);}
+                if(ev.status=="BountyJarDeposit")PlayPriorityThreatFx(ev.to,"BountyJar",108,.64f);
                 if(ev.status=="KiGuard"){yummnPunchPose.ClearReady();if(kaitSpine!=null){kaitSpine.RestAnimation=KaitSpineView.Idle;kaitSpine.PlayOnce(KaitSpineView.YummnKiGuard);}}
                 if(ev.status=="SupplyReady"||ev.status=="CounterSupplyReady")
                 {while(!threatDone)yield return null;yield return AnimateYummn082Supply(r,ev);}
@@ -390,6 +414,23 @@ public sealed partial class KaitGame
         fx.Initialize(kind);
         if(kind!=3)fx.rectTransform.localEulerAngles=new Vector3(0,0,HalfArrowAngle(delta));
     }
+    private static KaitDirection DirectionFromVector(Vector2Int delta)=>Mathf.Abs(delta.x)>=Mathf.Abs(delta.y)?(delta.x>=0?KaitDirection.Right:KaitDirection.Left):(delta.y>=0?KaitDirection.Up:KaitDirection.Down);
+    private void PlayPriorityBattleFx(Vector2Int cell,string clip,KaitDirection direction,float size,float duration)
+    {
+        if(cell.x<0||cell.y<0||cell.x>=KaitRun.BattleSize||cell.y>=KaitRun.BattleSize)return;
+        var go=new GameObject("Priority "+clip,typeof(RectTransform),typeof(YummnPriorityEffect));go.transform.SetParent(battleEnemyHitLayer,false);
+        var fx=go.GetComponent<YummnPriorityEffect>();fx.rectTransform.sizeDelta=Vector2.one*size;
+        fx.rectTransform.position=battleCells[cell.x+cell.y*KaitRun.BattleSize].rectTransform.position;
+        fx.rectTransform.localEulerAngles=new Vector3(0,0,HalfArrowAngle(KaitRun.Delta(direction)));fx.Initialize(clip,duration);
+    }
+    private void PlayPriorityThreatFx(Vector2Int cell,string clip,float size,float duration)
+    {
+        if(cell.x<0||cell.y<0||cell.x>=run.ThreatSize||cell.y>=run.ThreatSize)return;
+        var parent=threatCells[cell.x+cell.y*run.ThreatSize].rectTransform;
+        var go=new GameObject("Priority "+clip,typeof(RectTransform),typeof(YummnPriorityEffect));go.transform.SetParent(parent,false);
+        var fx=go.GetComponent<YummnPriorityEffect>();fx.rectTransform.anchoredPosition=Vector2.zero;fx.rectTransform.sizeDelta=Vector2.one*size;fx.Initialize(clip,duration);go.transform.SetAsLastSibling();
+    }
+    private void PlayPriorityThreatCenter(string clip,float size,float duration)=>PlayPriorityThreatFx(new Vector2Int(run.ThreatSize/2,run.ThreatSize/2),clip,size,duration);
     private void RecordCharacterScore()
     {
         string key="Kait.Best."+run.ScoreRulesKey;int score=run.kills*100+(run.won?1000:0);

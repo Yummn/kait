@@ -12,6 +12,7 @@ public sealed partial class KaitRun
         {
             if(skill==KaitSkill.MageHand)return cell.x>=0&&cell.y>=0&&cell.x<ThreatSize&&cell.y<ThreatSize&&!IsThreatPillar(cell)&&threat[cell.x,cell.y]>0;
             if(skill==KaitSkill.CommandAct)return EnemyAt(cell)!=null;
+            if(skill==KaitSkill.Darkness)return cell.x>=1&&cell.y>=1&&cell.x<BattleSize-1&&cell.y<BattleSize-1;
             if(skill==KaitSkill.ShatterWave)return Inside(cell)&&cell.x>0&&cell.y>0&&cell.x<6&&cell.y<6;
             if(YummnCatalog.TargetsSelf(skill))return cell==katePos;
             if(YummnCatalog.TargetsGround(skill))return YummnEmpty(cell)&&cell!=PendingBossCell;
@@ -124,7 +125,7 @@ public sealed partial class KaitRun
         if(cursed && chainActive && HasPassive(KaitPassive.MasterHex))
         { transferCurse=true;TriggerPassive(KaitPassive.MasterHex,result,enemy.pos-Vector2Int.one,enemy.pos,"诅咒等待传递给下一命中目标"); }
         if(cursed && creditKate && HasPassive(KaitPassive.Lifedrinker) && chainTriggers.Add("Lifedrinker"))
-        { kateHp=Mathf.Min(config.kateMaxHp,kateHp+PassiveCopies(KaitPassive.Lifedrinker));TriggerPassive(KaitPassive.Lifedrinker,result,enemy.pos-Vector2Int.one,katePos,"饮命者恢复生命"); }
+        { kateHp=Mathf.Min(KateMaxHp,kateHp+PassiveCopies(KaitPassive.Lifedrinker));TriggerPassive(KaitPassive.Lifedrinker,result,enemy.pos-Vector2Int.one,katePos,"饮命者恢复生命"); }
         if(creditKate && HasPassive(KaitPassive.AccursedSpecter) && chainTriggers.Add("Specter"))
         { specterReady=true;TriggerPassive(KaitPassive.AccursedSpecter,result,enemy.pos-Vector2Int.one,katePos,"幽魂已准备抵消攻击"); }
     }

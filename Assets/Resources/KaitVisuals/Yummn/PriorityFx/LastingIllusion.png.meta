@@ -1,0 +1,1274 @@
+fileFormatVersion: 2
+guid: 8af0f596089399c47b28f776120790db
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5523645188372960058
+    second: LastingIllusion_0
+  - first:
+      213: 4131648178898347409
+    second: LastingIllusion_1
+  - first:
+      213: -8465094635612390760
+    second: LastingIllusion_2
+  - first:
+      213: 5474619510407990148
+    second: LastingIllusion_3
+  - first:
+      213: 5350784803500412504
+    second: LastingIllusion_4
+  - first:
+      213: 667156376702841257
+    second: LastingIllusion_5
+  - first:
+      213: -2400776950457773351
+    second: LastingIllusion_6
+  - first:
+      213: -5617983376572357462
+    second: LastingIllusion_7
+  - first:
+      213: 907890726122952875
+    second: LastingIllusion_8
+  - first:
+      213: -250626231032067020
+    second: LastingIllusion_9
+  - first:
+      213: -1857636885087965144
+    second: LastingIllusion_10
+  - first:
+      213: -8331117322784456818
+    second: LastingIllusion_11
+  - first:
+      213: 1791640861290505251
+    second: LastingIllusion_12
+  - first:
+      213: 4353772483424921492
+    second: LastingIllusion_13
+  - first:
+      213: 5750570162152466267
+    second: LastingIllusion_14
+  - first:
+      213: 2447434835477818638
+    second: LastingIllusion_15
+  - first:
+      213: 4030798534270997372
+    second: LastingIllusion_16
+  - first:
+      213: -8803239183938389498
+    second: LastingIllusion_17
+  - first:
+      213: -9000550959834575774
+    second: LastingIllusion_18
+  - first:
+      213: 803363137637128094
+    second: LastingIllusion_19
+  - first:
+      213: -6319345580046051126
+    second: LastingIllusion_20
+  - first:
+      213: -7723353049763983050
+    second: LastingIllusion_21
+  - first:
+      213: 2687495336512267493
+    second: LastingIllusion_22
+  - first:
+      213: -3056448933672689778
+    second: LastingIllusion_23
+  - first:
+      213: 3651012663347312308
+    second: LastingIllusion_24
+  - first:
+      213: -8367810256707625501
+    second: LastingIllusion_25
+  - first:
+      213: 8602081679173233286
+    second: LastingIllusion_26
+  - first:
+      213: -8552558498316159311
+    second: LastingIllusion_27
+  - first:
+      213: 8862001900447763626
+    second: LastingIllusion_28
+  - first:
+      213: 8160552581054211334
+    second: LastingIllusion_29
+  - first:
+      213: 6886861931070842668
+    second: LastingIllusion_30
+  - first:
+      213: -2874448856263691690
+    second: LastingIllusion_31
+  - first:
+      213: 2086608315724069320
+    second: LastingIllusion_32
+  - first:
+      213: -4697021470776558385
+    second: LastingIllusion_33
+  - first:
+      213: -8361110678122056351
+    second: LastingIllusion_34
+  - first:
+      213: -4988736697869199782
+    second: LastingIllusion_35
+  - first:
+      213: 2738198266059623492
+    second: LastingIllusion_36
+  - first:
+      213: -6475343438180595641
+    second: LastingIllusion_37
+  - first:
+      213: 5043970973759158623
+    second: LastingIllusion_38
+  - first:
+      213: -6460700074471654839
+    second: LastingIllusion_39
+  - first:
+      213: -724853184365567533
+    second: LastingIllusion_40
+  - first:
+      213: 5854659725940866401
+    second: LastingIllusion_41
+  - first:
+      213: 1318169701043538642
+    second: LastingIllusion_42
+  - first:
+      213: 8101492715429297940
+    second: LastingIllusion_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LastingIllusion_0
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 740
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ccebb977f11853b0800000000000000
+      internalID: -5523645188372960058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_1
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 767
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1952028d020965930800000000000000
+      internalID: 4131648178898347409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_2
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 771
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a32466741f58a80800000000000000
+      internalID: -8465094635612390760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_3
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 755
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48b8a4e5071c9fb40800000000000000
+      internalID: 5474619510407990148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_4
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 773
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85e433add6ec14a40800000000000000
+      internalID: 5350784803500412504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_5
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 481
+        width: 375
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1720b9037324900800000000000000
+      internalID: 667156376702841257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_6
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 471
+        width: 340
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d2d40b551abeaed0800000000000000
+      internalID: -2400776950457773351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 537
+        width: 181
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa4ea5562e9e802b0800000000000000
+      internalID: -5617983376572357462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_8
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 719
+        width: 52
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba81e612ec9799c00800000000000000
+      internalID: 907890726122952875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_9
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 734
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c40ff45c8958cf0800000000000000
+      internalID: -250626231032067020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_10
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 723
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8203bae58195836e0800000000000000
+      internalID: -1857636885087965144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_11
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 491
+        width: 342
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f34516fece16c80800000000000000
+      internalID: -8331117322784456818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_12
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 658
+        width: 40
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324ab4eeedf2dd810800000000000000
+      internalID: 1791640861290505251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_13
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 677
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 497a963a105bb6c30800000000000000
+      internalID: 4353772483424921492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_14
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 636
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57ee0b38112ecf40800000000000000
+      internalID: 5750570162152466267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_15
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 645
+        width: 39
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d629b040907f120800000000000000
+      internalID: 2447434835477818638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_16
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 607
+        width: 28
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c73536c29e540f730800000000000000
+      internalID: 4030798534270997372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_17
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 606
+        width: 72
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a7d809a9c94d580800000000000000
+      internalID: -8803239183938389498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_18
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 587
+        width: 54
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c4248c69e971380800000000000000
+      internalID: -9000550959834575774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_19
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 516
+        width: 48
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e97118c648e162b00800000000000000
+      internalID: 803363137637128094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_20
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 576
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac89b602dac2d48a0800000000000000
+      internalID: -6319345580046051126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 556
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63153e1425321d490800000000000000
+      internalID: -7723353049763983050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_22
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 547
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e4255405c6eb4520800000000000000
+      internalID: 2687495336512267493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_23
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 534
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f515a73ef4595d0800000000000000
+      internalID: -3056448933672689778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_24
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 53
+        width: 355
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6f4456ca00ba230800000000000000
+      internalID: 3651012663347312308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_25
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 342
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ed5215f7e09fdb80800000000000000
+      internalID: -8367810256707625501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_26
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 354
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68a240026bbb06770800000000000000
+      internalID: 8602081679173233286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_27
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 52
+        width: 359
+        height: 309
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b6fd13fb553f4980800000000000000
+      internalID: -8552558498316159311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_28
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 342
+        width: 69
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac860b86c72cfa70800000000000000
+      internalID: 8862001900447763626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_29
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 333
+        width: 88
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60522a4065b104170800000000000000
+      internalID: 8160552581054211334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_30
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 352
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2763aa207c039f50800000000000000
+      internalID: 6886861931070842668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_31
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 360
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 652ff55aef7eb18d0800000000000000
+      internalID: -2874448856263691690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_32
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 337
+        width: 47
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c9fb14353f15fc10800000000000000
+      internalID: 2086608315724069320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_33
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 348
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fccfaf3bbd3d0deb0800000000000000
+      internalID: -4697021470776558385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_34
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 352
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1653fc6232e57fb80800000000000000
+      internalID: -8361110678122056351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_35
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 359
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a561d8d976274cab0800000000000000
+      internalID: -4988736697869199782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_36
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 338
+        width: 47
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c031db0d8000620800000000000000
+      internalID: 2738198266059623492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_37
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 53
+        width: 349
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 748c6986375f226a0800000000000000
+      internalID: -6475343438180595641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_38
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 213
+        width: 38
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59bb4460e8cff540800000000000000
+      internalID: 5043970973759158623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_39
+      rect:
+        serializedVersion: 2
+        x: 1388
+        y: 273
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94af6c4338bf656a0800000000000000
+      internalID: -6460700074471654839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_40
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 53
+        width: 343
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d164978eddc0f5f0800000000000000
+      internalID: -724853184365567533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_41
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 219
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16dbd7d500eef3150800000000000000
+      internalID: 5854659725940866401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_42
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 215
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da0260fb541b4210800000000000000
+      internalID: 1318169701043538642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LastingIllusion_43
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 214
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41ff39d73b84e6070800000000000000
+      internalID: 8101492715429297940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LastingIllusion_0: -5523645188372960058
+      LastingIllusion_1: 4131648178898347409
+      LastingIllusion_10: -1857636885087965144
+      LastingIllusion_11: -8331117322784456818
+      LastingIllusion_12: 1791640861290505251
+      LastingIllusion_13: 4353772483424921492
+      LastingIllusion_14: 5750570162152466267
+      LastingIllusion_15: 2447434835477818638
+      LastingIllusion_16: 4030798534270997372
+      LastingIllusion_17: -8803239183938389498
+      LastingIllusion_18: -9000550959834575774
+      LastingIllusion_19: 803363137637128094
+      LastingIllusion_2: -8465094635612390760
+      LastingIllusion_20: -6319345580046051126
+      LastingIllusion_21: -7723353049763983050
+      LastingIllusion_22: 2687495336512267493
+      LastingIllusion_23: -3056448933672689778
+      LastingIllusion_24: 3651012663347312308
+      LastingIllusion_25: -8367810256707625501
+      LastingIllusion_26: 8602081679173233286
+      LastingIllusion_27: -8552558498316159311
+      LastingIllusion_28: 8862001900447763626
+      LastingIllusion_29: 8160552581054211334
+      LastingIllusion_3: 5474619510407990148
+      LastingIllusion_30: 6886861931070842668
+      LastingIllusion_31: -2874448856263691690
+      LastingIllusion_32: 2086608315724069320
+      LastingIllusion_33: -4697021470776558385
+      LastingIllusion_34: -8361110678122056351
+      LastingIllusion_35: -4988736697869199782
+      LastingIllusion_36: 2738198266059623492
+      LastingIllusion_37: -6475343438180595641
+      LastingIllusion_38: 5043970973759158623
+      LastingIllusion_39: -6460700074471654839
+      LastingIllusion_4: 5350784803500412504
+      LastingIllusion_40: -724853184365567533
+      LastingIllusion_41: 5854659725940866401
+      LastingIllusion_42: 1318169701043538642
+      LastingIllusion_43: 8101492715429297940
+      LastingIllusion_5: 667156376702841257
+      LastingIllusion_6: -2400776950457773351
+      LastingIllusion_7: -5617983376572357462
+      LastingIllusion_8: 907890726122952875
+      LastingIllusion_9: -250626231032067020
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

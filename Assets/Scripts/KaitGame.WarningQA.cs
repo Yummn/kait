@@ -7,6 +7,36 @@ public sealed partial class KaitGame
     private IEnumerator VerifyApprovedWarnings(string path)
     {
         yield return new WaitForSecondsRealtime(.4f);
+        mainMenu.gameObject.SetActive(false);gameplayRoot.SetActive(true);
+        foreach(var character in new[]{KaitCharacter.Kait,KaitCharacter.Yummn})
+        {
+            run.SelectCharacter(character,8201);ConfigureCharacterVisuals();run.StateCommitted=null;EnsureKaitSpine();
+            run.enemies.Clear();run.spawns.Clear();
+            typeof(KaitRun).GetProperty("katePos").SetValue(run,new Vector2Int(2,3));
+            var archer=new KaitEnemy{id=9880,type=KaitEnemyType.Archer,hp=2,maxHp=2,life=KaitEnemyLife.Active,pos=new Vector2Int(1,3)};
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            run.config.archerRange=3;
+            archer.intent=run.IsYummn
+                ?(KaitIntent)typeof(KaitRun).GetMethod("BuildYummnArrow",flags).Invoke(run,new object[]{archer.pos,Vector2Int.right,false})
+                :(KaitIntent)typeof(KaitRun).GetMethod("BuildLineIntent",flags).Invoke(run,new object[]{archer.pos,Vector2Int.right,3,false});
+            var shot=run.IsYummn
+                ?(KaitIntent)typeof(KaitRun).GetMethod("BuildYummnArrow",flags).Invoke(run,new object[]{archer.pos,Vector2Int.right,true})
+                :(KaitIntent)typeof(KaitRun).GetMethod("BuildLineIntent",flags).Invoke(run,new object[]{archer.pos,Vector2Int.right,3,true});
+            if(archer.intent.affectedCells.Count!=3||shot.affectedCells.Count!=1)
+                Debug.LogError("WARNINGS_QA: adjacent target truncated aim or firing passed through "+character);
+            run.enemies.Add(archer);
+            run.enemies.Add(new KaitEnemy{id=9881,type=KaitEnemyType.Guard,hp=4,maxHp=4,life=KaitEnemyLife.Active,pos=new Vector2Int(4,3)});
+            RefreshAll();yield return new WaitForSecondsRealtime(.2f);Canvas.ForceUpdateCanvases();
+            foreach(int x in new[]{3,4})
+            {
+                var warning=selectedTelegraphs[x+3*7];
+                if(!warning.gameObject.activeInHierarchy||warning.Plan.count!=1||warning.transform.parent!=battleWarningLines[x+3*7].transform||
+                   Vector3.Distance(warning.transform.position,battleCells[x+3*7].transform.position)>.1f)
+                    Debug.LogError("WARNINGS_QA: occupied cell hidden or misplaced "+character);
+            }
+            CaptureCanvasToPng(path+".adjacent-"+character+".png");
+            Debug.Log("WARNING_RANGE: "+character+" aim="+archer.intent.affectedCells.Count+" fire="+shot.affectedCells.Count);
+        }
         run.SelectCharacter(KaitCharacter.Yummn,8201);ConfigureCharacterVisuals();run.StateCommitted=null;EnsureKaitSpine();
         run.enemies.Clear();run.spawns.Clear();
         typeof(KaitRun).GetProperty("katePos").SetValue(run,new Vector2Int(1,3));

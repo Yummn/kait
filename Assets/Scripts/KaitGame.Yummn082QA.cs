@@ -49,9 +49,9 @@ public sealed partial class KaitGame
         if(run.Yummn.metrics.afterimageKi!=1||run.Yummn.afterimages.Count!=0||yummnLogicalGhosts.Count!=0||run.Ki!=2||run.KiPhase!=YummnPhase.Exhausted)Debug.LogError($"YUMMN082_QA: hit/expire/recovery mismatch: ghostKi={run.Yummn.metrics.afterimageKi}, markers={run.Yummn.afterimages.Count}, visuals={yummnLogicalGhosts.Count}, ki={run.Ki}, phase={run.KiPhase}");
         var activeRules=run.SaveReplay();settingsOverlay.SetActive(true);RefreshCharacterSettings();yield return null;
         CaptureCanvasToPng(path+".settings.png");
-        if(yummnSettingsControls.Count!=9)Debug.LogError("YUMMN082_QA: settings count");
-        bool wasAttack=yummnAttackPhaseToggle.isOn;yummnAttackPhaseToggle.isOn=!wasAttack;
-        if(run.SaveReplay()!=activeRules)Debug.LogError("YUMMN082_QA: preset mutated run");yummnAttackPhaseToggle.isOn=wasAttack;
+        if(yummnSettingsControls.Count!=8)Debug.LogError("YUMMN082_QA: settings count");
+        bool wasAttackCost=yummnAttackCostToggle.isOn;yummnAttackCostToggle.isOn=!wasAttackCost;
+        if(run.SaveReplay()!=activeRules)Debug.LogError("YUMMN082_QA: preset mutated run");yummnAttackCostToggle.isOn=wasAttackCost;
         CheckYummn082Text(settingsOverlay);
         settingsOverlay.SetActive(false);
         var book=tutorialOverlay.GetComponent<KaitTutorialBook>();tutorialOverlay.SetActive(true);

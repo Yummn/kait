@@ -23,12 +23,31 @@ public class YummnRoot090Tests
         var r=run.TryGlobalInput(KaitDirection.Right);
         Assert.Less(r.yummnEvents.FindIndex(x=>x.damageCause==YummnDamageCause.Punch&&x.kind==YummnEventKind.Hit),r.yummnEvents.FindIndex(x=>x.damageCause==YummnDamageCause.MergeMissile));
     }
-    [Test] public void ExhaustedKickNeverFlurriesPushesOrStuns()
+    [Test] public void ExhaustedAttackUsesPunchAndItsEquippedLinks()
     {
-        var run=New(KaitPassive.TwinPunch,KaitPassive.StunStrike,KaitPassive.OpenHand,KaitPassive.FireSnake);
+        var run=New(KaitPassive.TwinPunch,KaitPassive.StunStrike,KaitPassive.FireSnake);
         run.Yummn.phase=YummnPhase.Exhausted;run.Yummn.ki=4;var e=Enemy(run,new Vector2Int(3,2));var rear=Enemy(run,new Vector2Int(4,2));
-        var r=run.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(19,e.hp);Assert.AreEqual(20,rear.hp);Assert.IsFalse(e.yummnStunned);Assert.AreEqual(new Vector2Int(3,2),e.pos);Assert.AreEqual(0,r.yummnAction.attackCostTenths);
-        Assert.IsTrue(r.yummnEvents.Any(x=>x.damageCause==YummnDamageCause.Kick));Assert.AreEqual(1,run.EnemyResolveCount);
+        var r=run.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(18,e.hp);Assert.AreEqual(18,rear.hp);Assert.IsTrue(r.yummnEvents.Any(x=>x.status=="Stunned"&&x.targetId==e.id));Assert.AreEqual(new Vector2Int(3,2),e.pos);Assert.AreEqual(20,r.yummnAction.attackCostTenths);
+        Assert.AreEqual(2,r.yummnEvents.Count(x=>x.damageCause==YummnDamageCause.Punch));Assert.IsFalse(r.yummnEvents.Any(x=>x.damageCause==YummnDamageCause.Kick));Assert.AreEqual(1,run.EnemyResolveCount);
+    }
+    [Test] public void ExhaustedPunchKillAutomaticallyFollowsIntoDefeatedCell()
+    {
+        var run=New();run.Yummn.phase=YummnPhase.Exhausted;run.Yummn.ki=0;
+        var defeated=Enemy(run,new Vector2Int(3,2),1);
+        var r=run.TryGlobalInput(KaitDirection.Right);
+        Assert.AreEqual(KaitEnemyLife.Dead,defeated.life);
+        Assert.AreEqual(new Vector2Int(3,2),run.katePos);
+        Assert.IsTrue(r.yummnEvents.Any(x=>x.kind==YummnEventKind.Hit&&x.damageCause==YummnDamageCause.Punch));
+        Assert.IsTrue(r.yummnEvents.Any(x=>x.kind==YummnEventKind.Move&&x.moveCause==YummnMoveCause.KillFollow&&x.to==new Vector2Int(3,2)));
+        Assert.AreEqual(1,run.directKills);
+    }
+    [Test] public void ReactionKickKillDoesNotPullPlayerIntoDefeatedCell()
+    {
+        var run=New();var start=run.katePos;var defeated=Enemy(run,new Vector2Int(3,2),1);var r=Result();
+        Call(run,"ResolveYummnKick",defeated,Vector2Int.right,r,true);
+        Assert.AreEqual(KaitEnemyLife.Dead,defeated.life);
+        Assert.AreEqual(start,run.katePos);
+        Assert.IsFalse(r.yummnEvents.Any(x=>x.kind==YummnEventKind.Move&&x.moveCause==YummnMoveCause.KillFollow));
     }
     [Test] public void ForcedExitCommitsThenKicksWithoutMartialEffects()
     {
@@ -38,12 +57,12 @@ public class YummnRoot090Tests
     }
     [Test] public void PlayerLeavingRangeAlsoKicks()
     {var run=New(KaitPassive.OpportunityAttack);var e=Enemy(run,new Vector2Int(3,2));Call(run,"MoveYummnPlayer",new Vector2Int(1,2),YummnMoveCause.Teleport,Result());Assert.AreEqual(19,e.hp);}
-    [Test] public void ExhaustedEntryDoesNotReact()
-    {var run=New(KaitPassive.Opportunist,KaitPassive.TwinPunch);var e=Enemy(run,new Vector2Int(4,2));Call(run,"MoveYummnPlayer",new Vector2Int(3,2),YummnMoveCause.Teleport,Result(YummnPhase.Exhausted));Assert.AreEqual(20,e.hp);}
+    [Test] public void ExhaustedEntryPaysForOneKick()
+    {var run=New(KaitPassive.Opportunist,KaitPassive.TwinPunch);run.Yummn.phase=YummnPhase.Exhausted;run.Yummn.ki=2;var e=Enemy(run,new Vector2Int(4,2));Call(run,"MoveYummnPlayer",new Vector2Int(3,2),YummnMoveCause.Teleport,Result(YummnPhase.Exhausted));Assert.AreEqual(19,e.hp);Assert.AreEqual(1,run.Ki);}
     [Test] public void LongPushFollowsFinalLandingNotOldCell()
     {var run=New(KaitPassive.EndlessPush,KaitPassive.FollowThrough);var e=Enemy(run,new Vector2Int(3,2));run.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(new Vector2Int(5,2),e.pos);Assert.AreEqual(new Vector2Int(4,2),run.katePos);}
-    [Test] public void FollowEntryCanStartItsOwnFlurry()
-    {var run=New(KaitPassive.TwinPunch,KaitPassive.OpenHand,KaitPassive.FollowThrough,KaitPassive.Opportunist);var e=Enemy(run,new Vector2Int(3,2));var r=run.TryGlobalInput(KaitDirection.Right);Assert.GreaterOrEqual(r.yummnPunches,3);Assert.LessOrEqual(run.Ki,2);}
+    [Test] public void FollowEntryAddsKickNotAnotherFlurry()
+    {var run=New(KaitPassive.TwinPunch,KaitPassive.OpenHand,KaitPassive.FollowThrough,KaitPassive.Opportunist);var e=Enemy(run,new Vector2Int(3,2));var r=run.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,r.yummnEvents.Count(x=>x.kind==YummnEventKind.Hit&&x.damageCause==YummnDamageCause.Kick));Assert.LessOrEqual(r.yummnEvents.Count(x=>x.kind==YummnEventKind.Hit&&x.damageCause==YummnDamageCause.Punch),2);}
     [Test] public void KillGainIsImmediateButRootPhaseStaysExhausted()
     {var run=New();run.Yummn.phase=YummnPhase.Exhausted;run.Yummn.ki=0;var e=Enemy(run,new Vector2Int(3,2),1);var r=Result(YummnPhase.Exhausted);Call(run,"YummnHit",e,1,Vector2Int.right,YummnDamageCause.Kick,r);Assert.AreEqual(3,run.Ki);Assert.AreEqual(YummnPhase.Exhausted,run.KiPhase);}
     [Test] public void SameRootRiftSpawnsInOnlyWindow()

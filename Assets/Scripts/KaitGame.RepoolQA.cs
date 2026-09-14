@@ -26,6 +26,96 @@ public sealed partial class KaitGame
         run.config.playerInvincible=true;
         var enemy=new KaitEnemy{id=9876,type=KaitEnemyType.Grunt,pos=new Vector2Int(4,3),hp=4,maxHp=4,life=KaitEnemyLife.Active};
         run.enemies.Add(enemy);RefreshAll();
+        if(CommandLineValue("-cards096QA")=="1")
+        {
+            mainMenu.gameObject.SetActive(true);gameplayRoot.SetActive(false);
+            yield return null;CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/cards096-home.png");
+            mainMenu.LibraryButton.onClick.Invoke();yield return null;
+            var library=canvas.GetComponentInChildren<KaitCardLibrary>();
+            foreach(var character in new[]{KaitCharacter.Kait,KaitCharacter.Yummn})
+            {
+                library.Select(character,-1);yield return null;
+                CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/cards096-"+character+".png");
+                for(int rarity=0;rarity<3;rarity++)
+                {
+                    library.Select(character,rarity);int pages=(library.Total+5)/6;
+                    for(int page=0;page<pages;page++)
+                    {
+                        yield return null;Canvas.ForceUpdateCanvases();
+                        foreach(var label in library.GetComponentsInChildren<Text>())
+                            if(!string.IsNullOrWhiteSpace(label.text)&&label.cachedTextGenerator.vertexCount==0)Debug.LogError("CARDS096_QA: missing text "+label.text);
+                        library.ChangePage(1);
+                    }
+                }
+            }
+            library.Select(KaitCharacter.Yummn,2);yield return null;CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/cards096-rare.png");
+            Destroy(library.gameObject);mainMenu.gameObject.SetActive(false);gameplayRoot.SetActive(true);
+            yield return null;
+            var active=KaitSkillCard.Create(gameContent as RectTransform,styleSplit,threatBoardFont,null,null,null,null,null);
+            active.Show(KaitSkill.ShapeIce,true,new Vector2(-330,0),0);active.PreviewAt(new Vector2(-330,0));
+            var passive=KaitPassiveCard.Create(gameContent as RectTransform,styleSplit,threatBoardFont,null,null,null,null);
+            passive.Show(KaitPassive.Opportunist,true,new Vector2(-100,0),0);passive.ApplyDefinition(YummnCatalog.Cards.Find(d=>d.passive==KaitPassive.Opportunist));
+            yield return new WaitForSecondsRealtime(.5f);CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/cards096-in-game.png");
+            Debug.Log("CARDS096_QA_COMPLETE");Application.Quit();yield break;
+        }
+        if(CommandLineValue("-merge091QA")=="1")
+        {
+            run.enemies.Clear();run.skills.Clear();run.passives.Clear();
+            run.passives.AddRange(new[]{KaitPassive.SpellEcho,KaitPassive.ResonanceCrystal});
+            run.threat[0,2]=run.threat[1,2]=2;run.threat[0,1]=run.threat[0,3]=4;
+            RefreshAll();HandleDirection(KaitDirection.Right);
+            while(busy)yield return null;
+            yield return new WaitForSecondsRealtime(.5f);
+            // Normal movement supply may put a new 2 into the vacated source.
+            if(run.threat[4,2]!=4||run.threat[4,1]!=8||(run.threat[4,3]!=0&&run.threat[4,3]!=2))
+                Debug.LogError("MERGE091_QA: wrong result or new result consumed");
+            CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/merge091-result.png");
+            Debug.Log("MERGE091_QA_COMPLETE");Application.Quit();yield break;
+        }
+        if(CommandLineValue("-victorySmileQA")=="1")
+        {
+            typeof(KaitRun).GetProperty("ended").SetValue(run,true);
+            typeof(KaitRun).GetProperty("won").SetValue(run,true);
+            ShowEnd();var victory=kaitSpine.CurrentAnimation;
+            if(victory.Animation.Name!=KaitSpineView.YummnVictory||endOverlay.activeSelf)
+                Debug.LogError("VICTORY_QA: smile missing or covered at start");
+            ShowEnd();
+            if(kaitSpine.CurrentAnimation!=victory)Debug.LogError("VICTORY_QA: duplicate result restarted smile");
+            yield return new WaitForSecondsRealtime(victory.Animation.Duration*.45f);
+            if(endOverlay.activeSelf||victory.TrackTime<=0)Debug.LogError("VICTORY_QA: animation hidden or not advancing");
+            CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/victory-smile-playing.png");
+            while(!victoryPresentationComplete)yield return null;
+            if(!endOverlay.activeSelf||!victory.IsComplete||victory.Next!=null||!victory.Loop)
+                Debug.LogError("VICTORY_QA: results appeared before completed terminal pose");
+            CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/victory-smile-results.png");
+            kaitSpine.RefreshRestPose();
+            yield return new WaitForSecondsRealtime(victory.Animation.Duration*1.1f);
+            ShowEnd();
+            if(kaitSpine.CurrentAnimation!=victory||victory.TrackTime<victory.Animation.Duration*2f||!victory.Loop)
+                Debug.LogError("VICTORY_QA: smile did not repeat or was replaced after results");
+            Debug.Log("VICTORY_LOOP: cycles="+(victory.TrackTime/victory.Animation.Duration));
+            ResetRunPresentation();
+            if(victoryPresentationStarted||victoryPresentationComplete)Debug.LogError("VICTORY_QA: ending state survives reset");
+            Debug.Log("VICTORY_SMILE_QA_COMPLETE");Application.Quit();yield break;
+        }
+        if(CommandLineValue("-darknessQA")=="1")
+        {
+            run.skills.Clear();run.skills.Add(KaitSkill.Darkness);RefreshAll();
+            HandleSkillCardCast(0);yield return null;
+            CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/darkness-targets.png");
+            HandleBattleCellClick(enemy.pos);
+            while(busy)yield return null;
+            yield return new WaitForSecondsRealtime(.25f);RefreshAll();
+            if(run.Yummn.darkness!=enemy.pos||yummnDarkness==null||yummnDarkness.transform.parent!=battleEffectLayer||battleEffectLayer.GetSiblingIndex()<=battleKaitLayer.GetSiblingIndex())
+                Debug.LogError("DARKNESS_QA: occupied target or upper layer failed");
+            CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/darkness-enemy.png");
+            HandleSkillCardCast(0);HandleBattleCellClick(run.katePos);
+            while(busy)yield return null;
+            yield return new WaitForSecondsRealtime(.25f);RefreshAll();
+            if(run.Yummn.darkness!=run.katePos)Debug.LogError("DARKNESS_QA: self target failed");
+            CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/darkness-self.png");
+            Debug.Log("DARKNESS_QA_COMPLETE");Application.Quit();yield break;
+        }
         if(CommandLineValue("-dragTargetQA")=="1")
         {
             run.skills.Clear();run.skills.AddRange(new[]{KaitSkill.MendWait,KaitSkill.ShapeIce,KaitSkill.FrostBreath});RefreshAll();

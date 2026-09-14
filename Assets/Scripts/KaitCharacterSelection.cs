@@ -81,7 +81,7 @@ public sealed class KaitCharacterSelection : MonoBehaviour
         Label("两种战斗节奏 · 同一个双盘战场",layout,64,1042,610,25,15,new Color(.7f,.69f,.77f));
         Select(KaitCharacter.Kait);
     }
-    public static string[] SaveKeys(KaitCharacter c)=>c==KaitCharacter.Yummn?new[]{"Kait.Run.Yummn.0.9.0"}:new[]{"Kait.Run.Kait"};
+    public static string[] SaveKeys(KaitCharacter c)=>c==KaitCharacter.Yummn?new[]{KaitVersion.YummnSaveKey}:new[]{"Kait.Run.Kait"};
     public void Select(KaitCharacter c)
     {
         Selected=c;

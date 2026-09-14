@@ -4,10 +4,9 @@ using UnityEngine;
 public sealed partial class KaitRun
 {
     private readonly HashSet<KaitMergeEvent> processedYummnMerges=new HashSet<KaitMergeEvent>();
-    private readonly Dictionary<Vector2Int,int> freshYummnNumbers=new Dictionary<Vector2Int,int>();
-    private readonly Dictionary<Vector2Int,int> freshYummnBirths=new Dictionary<Vector2Int,int>();
+    private readonly Queue<KaitMergeEvent> pendingYummnResonance=new Queue<KaitMergeEvent>();
+    private readonly List<KaitMergeEvent> pendingYummnBag=new List<KaitMergeEvent>();
     private readonly List<int> deferredYummnNumbers=new List<int>();
-    private readonly List<YummnMergeAttack> originalYummnSpells=new List<YummnMergeAttack>();
     private readonly HashSet<int> yummnSweepTargets=new HashSet<int>();
     private bool yummnPendulumUsed;
     private void CreateYummnSpellEcho(Vector2Int cell,KaitTurnResult r)
@@ -19,10 +18,10 @@ public sealed partial class KaitRun
     private sealed class YummnMergeAttack { public Vector2Int cell;public int targetId=-1;public bool missile; }
     private void BeginYummnRoot()
     {
-        processedYummnMerges.Clear();freshYummnNumbers.Clear();freshYummnBirths.Clear();deferredYummnNumbers.Clear();
-        originalYummnSpells.Clear();yummnSweepTargets.Clear();yummnPendulumUsed=false;
+        processedYummnMerges.Clear();pendingYummnResonance.Clear();pendingYummnBag.Clear();deferredYummnNumbers.Clear();
+        yummnSweepTargets.Clear();yummnPendulumUsed=false;
         yummnPacketDepth=0;yummnPacketReactions.Clear();yummnBrokenIceThisRoot.Clear();
-        yummnAfterimageKiAttacks.Clear();
+        yummnAfterimageKiHits.Clear();
         yummnFreezeInstances.Clear();
         yummnEventSequence=yummnParentEvent=0;
     }
@@ -37,7 +36,11 @@ public sealed partial class KaitRun
                 YummnHit(enemy,1,Vector2Int.zero,YummnDamageCause.MergeMissile,r);
             }
         }
-        else YummnDamagePacket(enemies.FindAll(enemy=>enemy.life!=KaitEnemyLife.Dead&&(enemy.pos-spell.cell).sqrMagnitude<=1),1,Vector2Int.zero,YummnDamageCause.MergeGlyph,r);
+        else
+        {
+            r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="MergeGlyphCast",to=spell.cell,actionId=Yummn.actionId});
+            YummnDamagePacket(enemies.FindAll(enemy=>enemy.life!=KaitEnemyLife.Dead&&(enemy.pos-spell.cell).sqrMagnitude<=1),1,Vector2Int.zero,YummnDamageCause.MergeGlyph,r);
+        }
     }
     private void ProcessYummnMerge(KaitMergeEvent merge,KaitTurnResult r)
     {
@@ -51,12 +54,12 @@ public sealed partial class KaitRun
             var request=spawns.Find(s=>s.targetCell==MapThreatToBattle(merge.threatCell));
             if(request!=null)r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="RiftQueued",to=request.targetCell,from=merge.threatCell,amount=request.tier});
         }
-        freshYummnNumbers[merge.threatCell]=merge.resultValue;
-        freshYummnBirths[merge.threatCell]=threatTwoBirth[merge.threatCell.x,merge.threatCell.y];
+        pendingYummnBag.Add(merge);
+        if(HasPassive(KaitPassive.ResonanceCrystal))pendingYummnResonance.Enqueue(merge);
         if(HasPassive(KaitPassive.BountyJar)){deferredYummnNumbers.Add(merge.sourceValue>0?merge.sourceValue:merge.resultValue/2);YummnTrigger("N18",r);}
         if(HasPassive(KaitPassive.ManaPearl)&&merge.resultValue>=8){GainYummnKi(1,r,"MergePearl");YummnTrigger("N08",r);}
         var direct=new List<YummnMergeAttack>();var cell=MapThreatToBattle(merge.threatCell);
-        // Lock missile targets before any glyph or copied spell can kill them.
+        // Each merge occurrence locks its own target before its glyph resolves.
         if(HasPassive(KaitPassive.WardingGlyph))direct.Add(new YummnMergeAttack{cell=cell});
         if(HasPassive(KaitPassive.MagicMissile))
         {
@@ -65,37 +68,52 @@ public sealed partial class KaitRun
             direct.Add(new YummnMergeAttack{cell=cell,missile=true,targetId=targets.Count>0?targets[0].id:-1});
         }
         foreach(var spell in direct){YummnTrigger(spell.missile?"N14":"N09",r);ExecuteYummnMergeAttack(spell,r);}
-        if(HasPassive(KaitPassive.SpellEcho))foreach(var spell in originalYummnSpells)ExecuteYummnMergeAttack(spell,r);
-        originalYummnSpells.AddRange(direct);
+        if(HasPassive(KaitPassive.SpellEcho)&&merge.mergeSource!="SpellEcho")
+        {
+            var echo=new KaitMergeEvent{sourceValue=merge.sourceValue,resultValue=merge.resultValue,threatCell=merge.threatCell,
+                actualThreatDirection=merge.actualThreatDirection,systemMerge=true,sequence=r.merges.Count,mergeSource="SpellEcho"};
+            r.merges.Add(echo);YummnTrigger("N17",r);
+            r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="SpellEchoCast",to=cell,actionId=Yummn.actionId});
+            ProcessYummnMerge(echo,r); // Full triggers, but no tile mutation or recursive echo.
+        }
     }
     private void MergeYummnPair(Vector2Int a,Vector2Int b,KaitTurnResult r,string card)
     {
         int value=threat[a.x,a.y];threat[a.x,a.y]=value*2;threat[b.x,b.y]=0;highestThreat=Mathf.Max(highestThreat,value*2);
         threatTwoBirth[a.x,a.y]=++nextThreatTwoBirth;threatTwoBirth[b.x,b.y]=0;
-        freshYummnNumbers.Remove(a);freshYummnNumbers.Remove(b);
         var merge=new KaitMergeEvent{sourceValue=value,resultValue=value*2,threatCell=a,systemMerge=true,sequence=r.merges.Count,actualThreatDirection=actualThreatDirection,mergeSource=card=="N16"?"Resonance":"Archive"};
         r.merges.Add(merge);r.threatMotions.Add(new KaitThreatMotion{value=value,from=b,to=a,merged=true});
         mergeHeatmap[a.x,a.y]++;if(IsInternalThreatCell(a))internalMergeCount++;
-        YummnTrigger(card,r);ProcessYummnMerge(merge,r);
+        YummnTrigger(card,r);
+        if(card=="N16")r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="ResonanceCrystal",from=b,to=a,actionId=Yummn.actionId});
+        ProcessYummnMerge(merge,r);
     }
     private void ResolveYummnMergeChains(KaitTurnResult r)=>ResolveYummnMergeBatch(r,true);
+    private void FlushYummnMergeBag(KaitTurnResult r)
+    {
+        ResolveBag(pendingYummnBag,r);pendingYummnBag.Clear();
+    }
     private void ResolveYummnMergeBatch(KaitTurnResult r,bool archive)
     {
         var batch=r.merges.FindAll(m=>!processedYummnMerges.Contains(m));
         foreach(var merge in batch)ProcessYummnMerge(merge,r);
-        if(batch.Count>0)ResolveBag(batch,r);
+        FlushYummnMergeBag(r);
         // Each iteration consumes a tile. This is finite without an arbitrary cap.
         while(!ended)
         {
-            foreach(var p in new List<Vector2Int>(freshYummnNumbers.Keys))
-                if(threat[p.x,p.y]!=freshYummnNumbers[p]||!freshYummnBirths.TryGetValue(p,out int birth)||threatTwoBirth[p.x,p.y]!=birth)freshYummnNumbers.Remove(p);
             Vector2Int first=YummnRun.NoCell,second=first;string card=null;
-            if(HasPassive(KaitPassive.ResonanceCrystal))
+            while(pendingYummnResonance.Count>0&&card==null)
             {
-                var positions=new List<Vector2Int>(freshYummnNumbers.Keys);var axis=Delta(actualThreatDirection);
+                var trigger=pendingYummnResonance.Dequeue();
+                if(!HasPassive(KaitPassive.ResonanceCrystal))continue;
+                var positions=new List<Vector2Int>();var axis=Delta(trigger.actualThreatDirection);
+                for(int y=0;y<ThreatSize;y++)for(int x=0;x<ThreatSize;x++)
+                {
+                    var p=new Vector2Int(x,y);
+                    if(p!=trigger.threatCell&&!IsThreatPillar(p)&&threat[x,y]==trigger.resultValue)positions.Add(p);
+                }
                 positions.Sort((a,b)=>{int c=(b.x*axis.x+b.y*axis.y).CompareTo(a.x*axis.x+a.y*axis.y);return c!=0?c:(a.y*ThreatSize+a.x).CompareTo(b.y*ThreatSize+b.x);});
-                for(int i=0;i<positions.Count&&card==null;i++)for(int j=i+1;j<positions.Count;j++)
-                    if(freshYummnNumbers[positions[i]]==freshYummnNumbers[positions[j]]){first=positions[i];second=positions[j];card="N16";break;}
+                if(positions.Count>=2){first=positions[0];second=positions[1];card="N16";}
             }
             if(archive&&card==null&&HasPassive(KaitPassive.OldNewsArchive))
             {
@@ -110,23 +128,18 @@ public sealed partial class KaitRun
             }
             if(card==null)break;
             MergeYummnPair(first,second,r,card);
-            ResolveBag(new[]{r.merges[r.merges.Count-1]},r);
+            FlushYummnMergeBag(r);
         }
     }
     private void ResolveYummnPendulum(KaitTurnResult r)
     {
         if(yummnPendulumUsed||!HasPassive(KaitPassive.GravityPendulum)||r.merges.Count==0)return;
-        yummnPendulumUsed=true;YummnTrigger("N15",r);
+        yummnPendulumUsed=true;YummnTrigger("N15",r);r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="GravityPendulum",actionId=Yummn.actionId});
         var baseDirection=actualThreatDirection;
         actualThreatDirection=Opposite(baseDirection);
         try {
         var motions=new List<KaitThreatMotion>();var merges=MoveThreat(actualThreatDirection,motions);
         foreach(var merge in merges){merge.actualThreatDirection=actualThreatDirection;merge.mergeSource="PendulumReturn";}
-        var moved=new Dictionary<Vector2Int,int>();
-        var movedBirths=new Dictionary<Vector2Int,int>();
-        foreach(var m in motions)if(!m.merged&&freshYummnNumbers.TryGetValue(m.from,out int v)&&freshYummnBirths.TryGetValue(m.from,out int birth)&&threatTwoBirth[m.to.x,m.to.y]==birth){moved[m.to]=v;movedBirths[m.to]=birth;}
-        freshYummnNumbers.Clear();foreach(var p in moved)freshYummnNumbers[p.Key]=p.Value;
-        freshYummnBirths.Clear();foreach(var p in movedBirths)freshYummnBirths[p.Key]=p.Value;
         r.threatMotions.AddRange(motions);r.merges.AddRange(merges);ResolveYummnMergeBatch(r,false);
         } finally {actualThreatDirection=baseDirection;}
     }
@@ -145,7 +158,7 @@ public sealed partial class KaitRun
                 if(!IsThreatPillar(new Vector2Int(x,y))&&threat[x,y]==0){empty=new Vector2Int(x,y);break;}
             if(empty.x<0)continue;
             threat[empty.x,empty.y]=value;threatTwoBirth[empty.x,empty.y]=++nextThreatTwoBirth;
-            r.newThreatCells.Add(empty);
+            r.newThreatCells.Add(empty);r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="BountyJarDeposit",to=empty,amount=value,actionId=Yummn.actionId});
         }
         deferredYummnNumbers.Clear();
     }
@@ -154,6 +167,8 @@ public sealed partial class KaitRun
         if(!HasPassive(KaitPassive.SweepingPursuit)||ended)return;
         var targets=enemies.FindAll(e=>e.life!=KaitEnemyLife.Dead&&(e.pos-katePos).sqrMagnitude==1&&!yummnSweepTargets.Contains(e.id));
         targets.Sort((a,b)=>a.id.CompareTo(b.id));if(targets.Count==0)return;
-        var target=targets[0];yummnSweepTargets.Add(target.id);YummnTrigger("N01",r);ResolveYummnMartialAttack(target,r,true,YummnAttackOrigin.Sweep);
+        var target=targets[0];yummnSweepTargets.Add(target.id);YummnTrigger("N01",r);
+        r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="SweepPursuit",to=target.pos,targetId=target.id,actionId=Yummn.actionId});
+        ResolveYummnMartialAttack(target,r,true,YummnAttackOrigin.Sweep);
     }
 }

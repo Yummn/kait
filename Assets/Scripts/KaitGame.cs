@@ -75,6 +75,8 @@ public sealed partial class KaitGame : MonoBehaviour
     private GlobalStyleSplit worldStyleSplit;
     private GameObject controlsPanel;
     private KaitSkill targetingSkill;
+    private YummnSkillTargetMarker[] battleSkillTargetMarkers;
+    private YummnSkillTargetMarker[] threatSkillTargetMarkers;
     private GameObject endOverlay;
     private Text endText;
     private bool busy;
@@ -394,6 +396,7 @@ public sealed partial class KaitGame : MonoBehaviour
         }
         else if (CommandLineValue("-pool083QA") == "1") StartCoroutine(VerifyPool083Runtime());
         else if (CommandLineValue("-root090QA") == "1") StartCoroutine(VerifyRoot090Runtime());
+        else if (CommandLineValue("-yummnDefaultsQA") == "1") StartCoroutine(VerifyYummnDefaultsRuntime(screenshotPath));
         else if (CommandLineValue("-repoolQA") == "1") StartCoroutine(VerifyRepool());
         else if (CommandLineValue("-kaitWarningsQA") == "1") StartCoroutine(VerifyApprovedWarnings(screenshotPath));
         else if (CommandLineValue("-kaitYummn082QA") == "1") StartCoroutine(VerifyYummn082Runtime(screenshotPath));
@@ -691,8 +694,7 @@ public sealed partial class KaitGame : MonoBehaviour
         var skillArea = skillsObject.GetComponent<RectTransform>();
         Stretch(skillArea, 0);
         skillDeck = skillsObject.GetComponent<KaitSkillDeck>();
-        skillDeck.Initialize(skillArea, styleSplit, threatBoardFont, ChoosePendingSkill, HandleSkillCardCast,
-            () => { targetingSkill = KaitSkill.None; RefreshAll(); });
+        skillDeck.Initialize(skillArea, styleSplit, threatBoardFont, ChoosePendingSkill, HandleSkillCardCast,CancelSkillTargeting);
         var rewardObject=new GameObject("Mixed Reward Cards",typeof(RectTransform),typeof(KaitRewardDeck));
         rewardObject.transform.SetParent(bg.transform,false);var rewardArea=rewardObject.GetComponent<RectTransform>();Stretch(rewardArea,0);
         rewardDeck=rewardObject.GetComponent<KaitRewardDeck>();rewardDeck.Initialize(rewardArea,styleSplit,threatBoardFont,()=>!busy&&!TutorialBlocksInput(),RefreshAll);
@@ -702,6 +704,7 @@ public sealed partial class KaitGame : MonoBehaviour
         mainMenu = KaitMainMenu.Create(canvas.transform, threatBoardFont, roundedSprite, () => StartSelectedCharacter(mainMenu.Selected),
             OpenMenuTutorial, OpenMenuSettings);
         mainMenu.ContinueCharacter=ResumeCharacter;
+        mainMenu.OpenLibrary=()=>KaitCardLibrary.Open(canvas.transform,threatBoardFont,mainMenu.Selected);
     }
 
     private void ShowMainMenu()
@@ -1135,7 +1138,6 @@ public sealed partial class KaitGame : MonoBehaviour
         characterSettingsHint=note;
 
         AddYummnSettings(card.transform);
-        AddHoldInputSetting(card.transform);
         RefreshCharacterSettings();
         MakeFlatButton(card.transform,new Vector2(-130,-315),new Vector2(220,48),"返回首页").onClick.AddListener(ShowMainMenu);
         MakeFlatButton(card.transform, new Vector2(130, -315), new Vector2(180, 48), "关闭").onClick.AddListener(() =>
@@ -1594,6 +1596,16 @@ public sealed partial class KaitGame : MonoBehaviour
         return applied;
     }
 
+    private void CancelSkillTargeting()
+    {
+        if(targetingSkill==KaitSkill.None)return;
+        targetingSkill=KaitSkill.None;
+        ClearHeldInput();
+        yummnBufferedDirection=null;yummnAcceptBuffer=false;
+        if(run.IsYummn)run.Yummn.prepared.Clear();
+        RefreshAll();
+    }
+
     private void HandleBattleCellClick(Vector2Int cell,bool threatTarget=false)
     {
         if (run.ended || targetingSkill == KaitSkill.None) return;
@@ -1773,7 +1785,8 @@ public sealed partial class KaitGame : MonoBehaviour
                             label.fontSize = run.shadowStepAvailable ? 30 : 38;
                             label.color = run.shadowStepAvailable ? Gold : Cyan;
                         }
-                if (targetingSkill != KaitSkill.None && (KaitRun.NeedsCellTarget(targetingSkill)?run.IsLegalSkillCell(targetingSkill,p):run.EnemyAt(p)!=null)) image.color = new Color(Cyan.r,Cyan.g,Cyan.b,.32f);
+                // Skill targets use an animated edge marker on the top overlay;
+                // never wash the tile or the actor with an opaque blue square.
                 if(run.hasBookmark && run.bookmarkCell==p) { label.text="◇";label.color=Cyan; }
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
@@ -2502,7 +2515,7 @@ public sealed partial class KaitGame : MonoBehaviour
         {
             // Yummn's ordered Hit event owns the voice and uses that event's HP,
             // not the already-resolved end-of-action HP. Avoid playing it twice.
-            if(!run.IsYummn)GameAudio.PlayKaitDamageVoice(run.kateHp, run.config.kateMaxHp);
+            if(!run.IsYummn)GameAudio.PlayKaitDamageVoice(run.kateHp, run.KateMaxHp);
             if (run.kateHp <= 0 && kaitAttacker != null)
             {
                 kaitDefeatingEnemyId = kaitAttacker.id;
@@ -2878,7 +2891,7 @@ public sealed partial class KaitGame : MonoBehaviour
             if (!result.enemyActions.Exists(action => action.hitKate))
             {
                 GameAudio.PlayBodyHurt();
-                GameAudio.PlayKaitDamageVoice(run.kateHp, run.config.kateMaxHp);
+                GameAudio.PlayKaitDamageVoice(run.kateHp, run.KateMaxHp);
             }
             kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
             StartCoroutine(FlashKaitWhite());
@@ -3202,6 +3215,27 @@ public sealed partial class KaitGame : MonoBehaviour
         foreach (RectTransform rect in rects) rect.localScale = Vector3.one;
     }
 
+    private bool victoryPresentationStarted, victoryPresentationComplete;
+    private IEnumerator PlayVictoryBeforeResults()
+    {
+        endOverlay.SetActive(false);
+        kaitSpine?.ResetTerminalPose();
+        kaitSpine?.PlayOnce(run.IsYummn ? KaitSpineView.YummnVictory : KaitSpineView.Victory, null);
+        var entry = kaitSpine?.CurrentAnimation;
+        if (entry != null)
+        {
+            // Keep the terminal-pose guard, but repeat Yummn's celebration.
+            // IsComplete becomes true after its first cycle, so results still open.
+            if (run.IsYummn) entry.Loop = true;
+            // Track completion follows the real Spine playback, including its speed.
+            while (!entry.IsComplete && run.ended && run.won) yield return null;
+            yield return null;
+        }
+        if (!run.ended || !run.won) yield break;
+        victoryPresentationComplete = true;
+        ShowEnd();
+    }
+
     private void ShowEnd()
     {
         if (!endAudioPlayed)
@@ -3220,7 +3254,15 @@ public sealed partial class KaitGame : MonoBehaviour
                     GameAudio.PlayEnemyDefeatedKaitVoice(kaitDefeatingEnemyType, kaitDefeatingEnemyId);
             }
         }
-        if (run.won) kaitSpine?.PlayOnce(KaitSpineView.Victory,null);
+        if (run.won && !victoryPresentationComplete)
+        {
+            if (!victoryPresentationStarted)
+            {
+                victoryPresentationStarted = true;
+                StartCoroutine(PlayVictoryBeforeResults());
+            }
+            return;
+        }
         endOverlay.SetActive(true);
         endOverlay.transform.SetAsLastSibling();
         string reason = run.won ? "击败盾骑士 · 本局胜利" : run.endReason == "Threat Locked"||run.endReason=="ThreatBoardLocked" ? "2048 无法移动 · 本局失败" : "凯特 HP 归零 · 本局失败";

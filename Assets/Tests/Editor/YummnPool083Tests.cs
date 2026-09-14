@@ -30,7 +30,7 @@ public class YummnPool083Tests
     public void AnyDamageBreaksIceAndChainsOnce(YummnDamageCause cause)
     {var r=New(KaitPassive.ShatteringPalm);var e=Enemy(r,new Vector2Int(2,2));var b=Enemy(r,new Vector2Int(3,2));e.yummnFrozen=b.yummnFrozen=true;Call(r,"YummnHit",e,1,Vector2Int.zero,cause,Result());Assert.IsFalse(e.yummnFrozen||b.yummnFrozen);Assert.AreEqual(19,e.hp);Assert.AreEqual(20,b.hp);}
     [Test] public void ResonanceHitsEachEchoOnceAndLaterAttackCanHitAgain()
-    {var r=New(KaitPassive.MirrorResonance,KaitPassive.AllEchoWard,KaitPassive.EchoReprisal);var e=Enemy(r,new Vector2Int(4,4));r.Yummn.afterimages.Add(new YummnAfterimageMarker{id=1,cell=new Vector2Int(2,2)});r.Yummn.afterimages.Add(new YummnAfterimageMarker{id=2,cell=new Vector2Int(3,2)});var intent=new KaitIntent();intent.affectedCells.Add(new Vector2Int(2,2));var a=Result();Call(r,"HitYummn082Afterimages",e,intent,1,a);Call(r,"HitYummn082Afterimages",e,intent,1,a);Assert.AreEqual(18,e.hp);Call(r,"HitYummn082Afterimages",e,intent,2,a);Assert.AreEqual(16,e.hp);}
+    {var r=New(KaitPassive.MirrorResonance,KaitPassive.AllEchoWard,KaitPassive.EchoReprisal);r.Yummn.ki=0;var e=Enemy(r,new Vector2Int(4,4));r.Yummn.afterimages.Add(new YummnAfterimageMarker{id=1,cell=new Vector2Int(2,2)});r.Yummn.afterimages.Add(new YummnAfterimageMarker{id=2,cell=new Vector2Int(3,2)});var intent=new KaitIntent();intent.affectedCells.Add(new Vector2Int(2,2));var a=Result();Call(r,"HitYummn082Afterimages",e,intent,1,a);Assert.AreEqual(2,r.Ki);Call(r,"HitYummn082Afterimages",e,intent,1,a);Assert.AreEqual(2,r.Ki);Assert.AreEqual(18,e.hp);Call(r,"HitYummn082Afterimages",e,intent,2,a);Assert.AreEqual(4,r.Ki);Assert.AreEqual(16,e.hp);}
     [Test] public void LastingEchoLivesTwoPhasesButCanBeConsumed()
     {var r=New(KaitPassive.LastingImage);var a=Result();Call(r,"CreateYummnSpellEcho",new Vector2Int(2,2),a);Call(r,"ClearYummn082Afterimages",a);Assert.AreEqual(1,r.Yummn.afterimages.Count);Call(r,"ClearYummn082Afterimages",a);Assert.IsEmpty(r.Yummn.afterimages);Call(r,"CreateYummnSpellEcho",new Vector2Int(2,2),a);var e=Enemy(r,new Vector2Int(4,4));var i=new KaitIntent();i.affectedCells.Add(new Vector2Int(2,2));Call(r,"HitYummn082Afterimages",e,i,1,a);Assert.IsFalse(r.Yummn.afterimages[0].alive);}
     [Test] public void MisdirectionPreservesExistingLock()
@@ -41,14 +41,47 @@ public class YummnPool083Tests
     {var r=New(KaitPassive.OldNewsArchive);for(int x=0;x<5;x++){r.threat[x,2]=8;r.threatTwoBirth[x,2]=x+1;}var a=Result();Call(r,"ResolveYummnMergeChains",a);Assert.AreEqual(16,r.threat[0,2]);Assert.AreEqual(1,a.merges.Count);Assert.IsNotNull(r.CurrentReward);Assert.IsNotEmpty(r.spawns);}
     [Test] public void PendulumOnlyReturnsOnce()
     {var r=New(KaitPassive.GravityPendulum);r.threat[0,2]=2;r.threat[1,2]=2;var a=r.TryGlobalInput(KaitDirection.Up);Assert.IsTrue(a.valid);var b=Result();Merge(r,b,new Vector2Int(2,2),4);Call(r,"ResolveYummnPendulum",b);int count=b.threatMotions.Count;Call(r,"ResolveYummnPendulum",b);Assert.AreEqual(count,b.threatMotions.Count);}
-    [Test] public void CrystalIgnoresOldNumbersAndConsumesNewResults()
-    {var r=New(KaitPassive.ResonanceCrystal);var a=Result();r.threat[4,2]=8;Merge(r,a,new Vector2Int(0,2),8);Assert.AreEqual(8,r.threat[4,2]);Merge(r,a,new Vector2Int(2,2),8);Assert.AreEqual(16,r.threat[0,2]);Assert.AreEqual(8,r.threat[4,2]);Assert.AreEqual(3,a.merges.Count);}
+    [Test] public void CrystalCombinesAnotherPairMatchingTheProducedValue()
+    {
+        var r=New(KaitPassive.ResonanceCrystal);var a=Result();
+        r.threat[2,2]=r.threat[4,2]=4;
+        Merge(r,a,new Vector2Int(0,2),4);
+        Assert.AreEqual(4,r.threat[0,2]);Assert.AreEqual(8,r.threat[2,2]+r.threat[4,2]);
+        Assert.AreEqual(2,a.merges.Count);Assert.AreEqual("Resonance",a.merges[1].mergeSource);
+        Call(r,"ResolveYummnMergeChains",a);Assert.AreEqual(2,a.merges.Count);
+    }
+    [Test] public void CrystalNeedsTwoOtherNumbersAndCanChainToExistingEights()
+    {
+        var r=New(KaitPassive.ResonanceCrystal);var a=Result();r.threat[4,2]=4;
+        Merge(r,a,new Vector2Int(0,2),4);Assert.AreEqual(1,a.merges.Count);Assert.AreEqual(4,r.threat[4,2]);
+        r.threat[1,3]=r.threat[3,3]=8;
+        Merge(r,a,new Vector2Int(2,2),4);
+        Assert.AreEqual(4,r.threat[2,2]);Assert.AreEqual(4,a.merges.Count);
+        Assert.AreEqual(16,r.threat[1,3]+r.threat[3,3]);
+    }
     [Test] public void GlyphIsCrossDamageNotPunch()
     {var r=New(KaitPassive.WardingGlyph,KaitPassive.TwinPunch);var cell=r.MapThreatToBattle(new Vector2Int(2,2));var e=Enemy(r,cell);var b=Enemy(r,cell+Vector2Int.up);var a=Result();Merge(r,a,new Vector2Int(2,2),4);Assert.AreEqual(19,e.hp);Assert.AreEqual(19,b.hp);Assert.AreEqual(0,a.yummnPunches);}
     [Test] public void MissileTargetDoesNotChangeAfterGlyphKill()
     {var r=New(KaitPassive.MagicMissile,KaitPassive.WardingGlyph);var cell=r.MapThreatToBattle(new Vector2Int(2,2));var e=Enemy(r,cell,1);var b=Enemy(r,new Vector2Int(1,2));var a=Result();Merge(r,a,new Vector2Int(2,2),4);Assert.AreEqual(KaitEnemyLife.Dead,e.life);Assert.AreEqual(20,b.hp);Assert.IsFalse(a.yummnEvents.Any(x=>x.damageCause==YummnDamageCause.MergeMissile));}
-    [Test] public void SpellEchoCopiesOnlyOriginalEarlierSpells()
-    {var r=New(KaitPassive.MagicMissile,KaitPassive.SpellEcho);var e=Enemy(r,new Vector2Int(3,3));var a=Result();Merge(r,a,new Vector2Int(0,2),4);Merge(r,a,new Vector2Int(1,2),4);Merge(r,a,new Vector2Int(2,2),4);Assert.AreEqual(14,e.hp);Assert.AreEqual(6,a.yummnEvents.Count(x=>x.damageCause==YummnDamageCause.MergeMissile));}
+    [Test] public void SpellEchoRepeatsEachMergeIncludingFirstWithoutChangingNumber()
+    {
+        var r=New(KaitPassive.MagicMissile,KaitPassive.SpellEcho,KaitPassive.ManaPearl,KaitPassive.BountyJar);
+        r.Yummn.ki=1;var e=Enemy(r,new Vector2Int(3,3));var a=Result();
+        Merge(r,a,new Vector2Int(0,2),8);
+        Assert.AreEqual(18,e.hp);Assert.AreEqual(3,r.Ki);Assert.AreEqual(8,r.threat[0,2]);
+        Assert.AreEqual(2,a.merges.Count);Assert.AreEqual("SpellEcho",a.merges[1].mergeSource);
+        Call(r,"FinishYummnRoot",a);Assert.AreEqual(2,r.threat.Cast<int>().Count(v=>v==4));
+        Assert.AreEqual(2,a.merges.Count);Assert.AreEqual(18,e.hp);
+    }
+    [Test] public void SpellEchoTriggersCrystalTwiceButDoesNotReechoItsOwnEvents()
+    {
+        var r=New(KaitPassive.SpellEcho,KaitPassive.ResonanceCrystal);var a=Result();
+        for(int x=1;x<=4;x++)r.threat[x,2]=4;
+        Merge(r,a,new Vector2Int(0,2),4);
+        Assert.AreEqual(4,r.threat[0,2]);Assert.AreEqual(2,r.threat.Cast<int>().Count(v=>v==8));
+        Assert.AreEqual(6,a.merges.Count);Assert.AreEqual(3,a.merges.Count(m=>m.mergeSource=="SpellEcho"));
+        Assert.AreEqual(2,a.threatMotions.Count);
+    }
     [Test] public void JarReturnsAfterChainsWithoutRetriggerAndNoDebt()
     {var r=New(KaitPassive.BountyJar,KaitPassive.OldNewsArchive);var a=Result();for(int x=0;x<4;x++)r.threat[x,2]=2;Merge(r,a,new Vector2Int(4,2),4);Assert.AreEqual(1,a.merges.Count);Call(r,"FinishYummnRoot",a);Assert.AreEqual(1,a.merges.Count);Assert.AreEqual(5,r.threat.Cast<int>().Count(x=>x==2));r.passives.Remove(KaitPassive.OldNewsArchive);Call(r,"BeginYummnRoot");Call(r,"FinishYummnRoot",Result());Assert.AreEqual(5,r.threat.Cast<int>().Count(x=>x==2));}
     [Test] public void MageHandOnlyDeletesAndCostsOne()

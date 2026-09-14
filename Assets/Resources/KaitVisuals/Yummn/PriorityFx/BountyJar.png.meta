@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: e2818b51d01f1e14f9d4af0a2289c5c9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8100839270828425431
+    second: BountyJar_0
+  - first:
+      213: 5165653847897761546
+    second: BountyJar_1
+  - first:
+      213: 8721843556557556462
+    second: BountyJar_2
+  - first:
+      213: -4090986434239796847
+    second: BountyJar_3
+  - first:
+      213: -4482357155306939653
+    second: BountyJar_4
+  - first:
+      213: 6938803038699906916
+    second: BountyJar_5
+  - first:
+      213: 1896321147270647390
+    second: BountyJar_6
+  - first:
+      213: 3092421591483311245
+    second: BountyJar_7
+  - first:
+      213: -1299828539352348540
+    second: BountyJar_8
+  - first:
+      213: -6433319074945388742
+    second: BountyJar_9
+  - first:
+      213: 1575219770755068807
+    second: BountyJar_10
+  - first:
+      213: 8400550098184710580
+    second: BountyJar_11
+  - first:
+      213: -7147206869696244797
+    second: BountyJar_12
+  - first:
+      213: -5403307760260362842
+    second: BountyJar_13
+  - first:
+      213: -7379276024834875888
+    second: BountyJar_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BountyJar_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 498
+        width: 246
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d043409566fb6070800000000000000
+      internalID: 8100839270828425431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_1
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 607
+        width: 157
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07639c4ec610b740800000000000000
+      internalID: 5165653847897761546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_2
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 483
+        width: 385
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea842f11863a0970800000000000000
+      internalID: 8721843556557556462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_3
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 483
+        width: 354
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 199e1365385e937c0800000000000000
+      internalID: -4090986434239796847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_4
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 482
+        width: 308
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfadf717ae77bc1c0800000000000000
+      internalID: -4482357155306939653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_5
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 619
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 467eb10b9949b4060800000000000000
+      internalID: 6938803038699906916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_6
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 637
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ec02b4906115a10800000000000000
+      internalID: 1896321147270647390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_7
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 588
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d846c189d0d7aea20800000000000000
+      internalID: 3092421591483311245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_8
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 86
+        width: 365
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4880dfa84d416fde0800000000000000
+      internalID: -1299828539352348540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_9
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 96
+        width: 389
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3fa223f26248b6a0800000000000000
+      internalID: -6433319074945388742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_10
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 123
+        width: 388
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 783370f190e4cd510800000000000000
+      internalID: 1575219770755068807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_11
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 286
+        width: 42
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b92c286ecfb49470800000000000000
+      internalID: 8400550098184710580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_12
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 243
+        width: 37
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c31683383500dc90800000000000000
+      internalID: -7147206869696244797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_13
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 102
+        width: 377
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adc19158389305b0800000000000000
+      internalID: -5403307760260362842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BountyJar_14
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 177
+        width: 29
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e19207d8b879990800000000000000
+      internalID: -7379276024834875888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BountyJar_0: 8100839270828425431
+      BountyJar_1: 5165653847897761546
+      BountyJar_10: 1575219770755068807
+      BountyJar_11: 8400550098184710580
+      BountyJar_12: -7147206869696244797
+      BountyJar_13: -5403307760260362842
+      BountyJar_14: -7379276024834875888
+      BountyJar_2: 8721843556557556462
+      BountyJar_3: -4090986434239796847
+      BountyJar_4: -4482357155306939653
+      BountyJar_5: 6938803038699906916
+      BountyJar_6: 1896321147270647390
+      BountyJar_7: 3092421591483311245
+      BountyJar_8: -1299828539352348540
+      BountyJar_9: -6433319074945388742
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

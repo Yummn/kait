@@ -6,6 +6,7 @@ public sealed partial class KaitGame
     // Destroying actors alone is insufficient: RefreshBattle prefers animation snapshots.
     private void ResetRunPresentation()
     {
+        victoryPresentationStarted = victoryPresentationComplete = false;
         animatedEnemies = null;
         animatedSpawns = null;
         displayedThreat = null;

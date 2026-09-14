@@ -28,28 +28,24 @@ public class YummnEveryActionSupplyTests
     {var r=R();for(int x=0;x<5;x++)for(int y=0;y<5;y++)if(!r.threatPillars[x,y])r.threat[x,y]=(x+y)%2==0?2:4;var before=(int[,])r.threat.Clone();var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,a.yummnAction.droppedTwos);Assert.AreEqual("ThreatBoardLocked",r.endReason);CollectionAssert.AreEqual(before,r.threat);}
     [Test] public void NewModeHasIndependentReplayAndScoreKey()
     {var r=new KaitRun();r.SelectCharacter(KaitCharacter.Yummn,911,new YummnRulesSnapshot(YummnTileSupplyMode.EveryAction));for(int i=0;i<8&&!r.ended;i++)r.TryGlobalInput((KaitDirection)(i%4));var copy=new KaitRun();Assert.IsTrue(copy.RestoreReplay(r.SaveReplay()));Assert.AreEqual(YummnTileSupplyMode.EveryAction,copy.Yummn.rules.Supply);CollectionAssert.AreEqual(r.threat,copy.threat);Assert.AreEqual(r.SaveReplay(),copy.SaveReplay());Assert.AreEqual(3,Enum.GetValues(typeof(YummnTileSupplyMode)).Cast<YummnTileSupplyMode>().Where(m=>m!=YummnTileSupplyMode.EffectiveMove).Select(m=>new YummnRulesSnapshot(m).ScoreKey).Distinct().Count());}
-    [Test] public void CurrentSettingsReplaceLegacyEveryActionAndFitPanel()
+    [Test] public void CurrentSettingsKeepOneConsistentlyWordedSupplySelectorAndFitPanel()
     {
         string key="Kait.Yummn082.SupplyMode";bool existed=PlayerPrefs.HasKey(key);int value=PlayerPrefs.GetInt(key);
         var root=new GameObject("Settings test",typeof(RectTransform),typeof(Canvas));root.SetActive(false);
         try
         {
-            PlayerPrefs.SetInt(key,0);
+            PlayerPrefs.SetInt(key,(int)YummnTileSupplyMode.EveryAction);
             var g=root.AddComponent<KaitGame>();var font=Resources.Load<Font>("NotoSansCJKsc-Regular");
             typeof(KaitGame).GetField("uiFont",Hidden).SetValue(g,font);typeof(KaitGame).GetField("threatBoardFont",Hidden).SetValue(g,font);
             var r=(KaitRun)typeof(KaitGame).GetField("run",Hidden).GetValue(g);r.SelectCharacter(KaitCharacter.Yummn,911);var current=r.SaveReplay();
             typeof(KaitGame).GetMethod("BuildSettingsOverlay",Hidden).Invoke(g,new object[]{root.transform});
-            var skip=root.GetComponentsInChildren<Button>(true).Single(b=>b.name=="Yummn Rule SupplyMode");
             var preset=typeof(KaitGame).GetMethod("YummnPreset",BindingFlags.Static|BindingFlags.NonPublic);
-            skip.onClick.Invoke();Assert.AreEqual(YummnTileSupplyMode.SkipStationaryPunch,((YummnRulesSnapshot)preset.Invoke(null,null)).Supply);
+            Assert.AreEqual(YummnTileSupplyMode.EveryAction,((YummnRulesSnapshot)preset.Invoke(null,null)).Supply);
             Assert.AreEqual(current,r.SaveReplay());Assert.IsFalse(((YummnRulesSnapshot)preset.Invoke(null,null)).ActualMoveSupply);
-            Assert.IsTrue(skip.GetComponentsInChildren<Text>(true).Any(t=>t.text.Contains("原地拳不补")));
-            skip.onClick.Invoke();Assert.AreEqual(YummnTileSupplyMode.EveryAction,((YummnRulesSnapshot)preset.Invoke(null,null)).Supply);
-            skip.onClick.Invoke();Assert.AreEqual(YummnTileSupplyMode.EffectiveMove,((YummnRulesSnapshot)preset.Invoke(null,null)).Supply);
-            skip.onClick.Invoke();Assert.AreEqual(YummnTileSupplyMode.KillOnly,((YummnRulesSnapshot)preset.Invoke(null,null)).Supply);
-            Assert.IsFalse(root.GetComponentsInChildren<Text>(true).Any(t=>t.text.Contains("每次有效行动补")));
-            var toggles=root.GetComponentsInChildren<Toggle>(true).Where(t=>t.gameObject.activeSelf).Select(t=>(RectTransform)t.transform).OrderByDescending(t=>t.anchoredPosition.y).ToArray();Assert.AreEqual(6,toggles.Length);
-            for(int i=1;i<toggles.Length;i++)Assert.Greater(toggles[i-1].anchoredPosition.y-toggles[i-1].rect.height/2,toggles[i].anchoredPosition.y+toggles[i].rect.height/2);
+            Assert.IsTrue(root.GetComponentsInChildren<Button>(true).Any(b=>b.name=="Yummn Rule SupplyMode"));
+            Assert.IsTrue(root.GetComponentsInChildren<Text>(true).Any(t=>t.text.Contains("每次方向操作补一个2")));
+            var toggles=root.GetComponentsInChildren<Toggle>(true).Where(t=>t.gameObject.activeSelf).Select(t=>(RectTransform)t.transform).OrderByDescending(t=>t.anchoredPosition.y).ToArray();Assert.AreEqual(5,toggles.Length);
+            for(int i=1;i<toggles.Length;i++)Assert.GreaterOrEqual(toggles[i-1].anchoredPosition.y-toggles[i-1].rect.height/2,toggles[i].anchoredPosition.y+toggles[i].rect.height/2);
         }
         finally{UnityEngine.Object.DestroyImmediate(root);if(existed)PlayerPrefs.SetInt(key,value);else PlayerPrefs.DeleteKey(key);PlayerPrefs.Save();}
     }

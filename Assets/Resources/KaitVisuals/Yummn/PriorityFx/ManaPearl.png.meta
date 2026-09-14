@@ -1,0 +1,650 @@
+fileFormatVersion: 2
+guid: 1d5829a2418255d41be738562df68e94
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5423141458935576508
+    second: ManaPearl_0
+  - first:
+      213: 866581550588403578
+    second: ManaPearl_1
+  - first:
+      213: -7665698261653475452
+    second: ManaPearl_2
+  - first:
+      213: -1690658427658953207
+    second: ManaPearl_3
+  - first:
+      213: -5414671762548622601
+    second: ManaPearl_4
+  - first:
+      213: -1131921545663734660
+    second: ManaPearl_5
+  - first:
+      213: 4067349568336891751
+    second: ManaPearl_6
+  - first:
+      213: -6796289050657967734
+    second: ManaPearl_7
+  - first:
+      213: -6639951514744383717
+    second: ManaPearl_8
+  - first:
+      213: 7434635568038296193
+    second: ManaPearl_9
+  - first:
+      213: 8037608845590788951
+    second: ManaPearl_10
+  - first:
+      213: -1716033175806315569
+    second: ManaPearl_11
+  - first:
+      213: -3205230822221753557
+    second: ManaPearl_12
+  - first:
+      213: -4149330439029121138
+    second: ManaPearl_13
+  - first:
+      213: -7203877193406549990
+    second: ManaPearl_14
+  - first:
+      213: 1007038008685263749
+    second: ManaPearl_15
+  - first:
+      213: 1629958222461605558
+    second: ManaPearl_16
+  - first:
+      213: 3129879084872780608
+    second: ManaPearl_17
+  - first:
+      213: 3609368318134943191
+    second: ManaPearl_18
+  - first:
+      213: -1586950268411720070
+    second: ManaPearl_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ManaPearl_0
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 735
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 448837d73912db4b0800000000000000
+      internalID: -5423141458935576508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_1
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 759
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f9ab33457b60c00800000000000000
+      internalID: 866581550588403578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_2
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 725
+        width: 39
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48fa0deab08fd9590800000000000000
+      internalID: -7665698261653475452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_3
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 502
+        width: 359
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e1ed61e139988e0800000000000000
+      internalID: -1690658427658953207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_4
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 753
+        width: 33
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa73f958b83bd4b0800000000000000
+      internalID: -5414671762548622601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_5
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 500
+        width: 370
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7c1a15f95b9a40f0800000000000000
+      internalID: -1131921545663734660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_6
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 518
+        width: 274
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f0f06f1e0227830800000000000000
+      internalID: 4067349568336891751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_7
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 669
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81b7a0ed1bbea1a0800000000000000
+      internalID: -6796289050657967734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_8
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 512
+        width: 302
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1718ddf6472ad3a0800000000000000
+      internalID: -6639951514744383717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_9
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 576
+        width: 37
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a3863a8a12d2760800000000000000
+      internalID: 7434635568038296193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_10
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 578
+        width: 40
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75bf9f4f8a25b8f60800000000000000
+      internalID: 8037608845590788951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_11
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 81
+        width: 366
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc377452bec6f28e0800000000000000
+      internalID: -1716033175806315569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_12
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 77
+        width: 378
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23d65a9c8bb483d0800000000000000
+      internalID: -3205230822221753557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_13
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 87
+        width: 277
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f14f523fd9a66c0800000000000000
+      internalID: -4149330439029121138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_14
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 287
+        width: 185
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10f6714cdfa60c90800000000000000
+      internalID: -7203877193406549990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_15
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 85
+        width: 266
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58b700fbbb7b9fd00800000000000000
+      internalID: 1007038008685263749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_16
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 137
+        width: 32
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b61d801e56ce9610800000000000000
+      internalID: 1629958222461605558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_17
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 144
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b44c3e1709f6b20800000000000000
+      internalID: 3129879084872780608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_18
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 138
+        width: 33
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dd7bf1bc5d071230800000000000000
+      internalID: 3609368318134943191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ManaPearl_19
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 58
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7ecb1f83250af9e0800000000000000
+      internalID: -1586950268411720070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ManaPearl_0: -5423141458935576508
+      ManaPearl_1: 866581550588403578
+      ManaPearl_10: 8037608845590788951
+      ManaPearl_11: -1716033175806315569
+      ManaPearl_12: -3205230822221753557
+      ManaPearl_13: -4149330439029121138
+      ManaPearl_14: -7203877193406549990
+      ManaPearl_15: 1007038008685263749
+      ManaPearl_16: 1629958222461605558
+      ManaPearl_17: 3129879084872780608
+      ManaPearl_18: 3609368318134943191
+      ManaPearl_19: -1586950268411720070
+      ManaPearl_2: -7665698261653475452
+      ManaPearl_3: -1690658427658953207
+      ManaPearl_4: -5414671762548622601
+      ManaPearl_5: -1131921545663734660
+      ManaPearl_6: 4067349568336891751
+      ManaPearl_7: -6796289050657967734
+      ManaPearl_8: -6639951514744383717
+      ManaPearl_9: 7434635568038296193
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

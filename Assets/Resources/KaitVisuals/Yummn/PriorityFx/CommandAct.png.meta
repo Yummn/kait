@@ -1,0 +1,1274 @@
+fileFormatVersion: 2
+guid: 6fd6db80685d9324b9ad1ef6d3c6d22d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3065260115576768874
+    second: CommandAct_0
+  - first:
+      213: 429177939442281887
+    second: CommandAct_1
+  - first:
+      213: 7341214900353812129
+    second: CommandAct_2
+  - first:
+      213: 7702737923183809162
+    second: CommandAct_3
+  - first:
+      213: -1745330449864858485
+    second: CommandAct_4
+  - first:
+      213: -4783361307351425892
+    second: CommandAct_5
+  - first:
+      213: -3866910077072548441
+    second: CommandAct_6
+  - first:
+      213: -1021066840763256149
+    second: CommandAct_7
+  - first:
+      213: -3567284921708239434
+    second: CommandAct_8
+  - first:
+      213: -1526138452419509732
+    second: CommandAct_9
+  - first:
+      213: -1413263960475399726
+    second: CommandAct_10
+  - first:
+      213: -4178105966331003884
+    second: CommandAct_11
+  - first:
+      213: -4686500831170829944
+    second: CommandAct_12
+  - first:
+      213: -2003404493128112479
+    second: CommandAct_13
+  - first:
+      213: -4418402072991284567
+    second: CommandAct_14
+  - first:
+      213: 2046727575751901319
+    second: CommandAct_15
+  - first:
+      213: 7593472459593174659
+    second: CommandAct_16
+  - first:
+      213: -7371935569536824958
+    second: CommandAct_17
+  - first:
+      213: -4943277315500437218
+    second: CommandAct_18
+  - first:
+      213: -4946892487894896210
+    second: CommandAct_19
+  - first:
+      213: -706413826405464096
+    second: CommandAct_20
+  - first:
+      213: 8146533286811181257
+    second: CommandAct_21
+  - first:
+      213: -7588768968129934521
+    second: CommandAct_22
+  - first:
+      213: 6982407098136412977
+    second: CommandAct_23
+  - first:
+      213: 6448482286757170861
+    second: CommandAct_24
+  - first:
+      213: 8286220379711856569
+    second: CommandAct_25
+  - first:
+      213: -8171131462043569467
+    second: CommandAct_26
+  - first:
+      213: -170268116602477014
+    second: CommandAct_27
+  - first:
+      213: -4351985214339288089
+    second: CommandAct_28
+  - first:
+      213: -1500079153986435638
+    second: CommandAct_29
+  - first:
+      213: -7124052791125292295
+    second: CommandAct_30
+  - first:
+      213: 6479866560471087359
+    second: CommandAct_31
+  - first:
+      213: -2353361189827286952
+    second: CommandAct_32
+  - first:
+      213: 160867946681524177
+    second: CommandAct_33
+  - first:
+      213: 7459609099404923612
+    second: CommandAct_34
+  - first:
+      213: -7910027439499982521
+    second: CommandAct_35
+  - first:
+      213: 1167607618340251689
+    second: CommandAct_36
+  - first:
+      213: 3205950079336870191
+    second: CommandAct_37
+  - first:
+      213: 6355238775685060204
+    second: CommandAct_38
+  - first:
+      213: 1753338730818687062
+    second: CommandAct_39
+  - first:
+      213: -5587449103194080547
+    second: CommandAct_40
+  - first:
+      213: 3918888849748340496
+    second: CommandAct_41
+  - first:
+      213: 5663593931697187648
+    second: CommandAct_42
+  - first:
+      213: -5940022817438937532
+    second: CommandAct_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CommandAct_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 571
+        width: 179
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696bfd25a220675d0800000000000000
+      internalID: -3065260115576768874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_1
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 457
+        width: 218
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9d24e1ef0fb4f500800000000000000
+      internalID: 429177939442281887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_2
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 442
+        width: 407
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a6c4637e0c31e560800000000000000
+      internalID: 7341214900353812129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_3
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 273
+        width: 497
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a821d4d845f95ea60800000000000000
+      internalID: 7702737923183809162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_4
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 305
+        width: 416
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b84e128f33757c7e0800000000000000
+      internalID: -1745330449864858485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_5
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 741
+        width: 39
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c58fafb361e9db0800000000000000
+      internalID: -4783361307351425892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_6
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 634
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad56bdc5c9f55ac0800000000000000
+      internalID: -3866910077072548441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 465
+        width: 145
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba230604e1174d1f0800000000000000
+      internalID: -1021066840763256149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_8
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 488
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b529f493457e7ec0800000000000000
+      internalID: -3567284921708239434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_9
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 469
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c128871d92112dae0800000000000000
+      internalID: -1526138452419509732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_10
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 467
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d9800e6ae3136ce0800000000000000
+      internalID: -1413263960475399726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_11
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 18
+        width: 409
+        height: 428
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41c76ea92c26406c0800000000000000
+      internalID: -4178105966331003884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_12
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 442
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8816d7ef25436feb0800000000000000
+      internalID: -4686500831170829944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_13
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 440
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a66dad5a3a7234e0800000000000000
+      internalID: -2003404493128112479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_14
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 436
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a2418c69beaea2c0800000000000000
+      internalID: -4418402072991284567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_15
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 23
+        width: 457
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78040b8d2ef676c10800000000000000
+      internalID: 2046727575751901319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_16
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 412
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e43c558fe616960800000000000000
+      internalID: 7593472459593174659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_17
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 408
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 289c0be58af91b990800000000000000
+      internalID: -7371935569536824958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_18
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 381
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e11995fd873f56bb0800000000000000
+      internalID: -4943277315500437218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_19
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 340
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea1f9f4fd7b195bb0800000000000000
+      internalID: -4946892487894896210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_20
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 323
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e78dac1e505236f0800000000000000
+      internalID: -706413826405464096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_21
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 21
+        width: 225
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c0a647bcdc4e0170800000000000000
+      internalID: 8146533286811181257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_22
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 301
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74b8b1c94d64fa690800000000000000
+      internalID: -7588768968129934521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_23
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 303
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1334699e24e76e060800000000000000
+      internalID: 6982407098136412977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_24
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 251
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dae4f8a697c9d7950800000000000000
+      internalID: 6448482286757170861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_25
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 47
+        width: 158
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bfd35778819ef270800000000000000
+      internalID: 8286220379711856569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_26
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 176
+        width: 40
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2ffdf4a3f4a9e80800000000000000
+      internalID: -8171131462043569467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_27
+      rect:
+        serializedVersion: 2
+        x: 1544
+        y: 212
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26a551dc0613adf0800000000000000
+      internalID: -170268116602477014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_28
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 164
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3fd8f5184aa93c0800000000000000
+      internalID: -4351985214339288089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_29
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 88
+        width: 84
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac58bab05f5ae2be0800000000000000
+      internalID: -1500079153986435638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_30
+      rect:
+        serializedVersion: 2
+        x: 1627
+        y: 171
+        width: 37
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fac8d73bb7422d90800000000000000
+      internalID: -7124052791125292295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_31
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 37
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8bfc01e4c1de950800000000000000
+      internalID: 6479866560471087359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_32
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 29
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 858672c677e275fd0800000000000000
+      internalID: -2353361189827286952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_33
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 31
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dfd2b19b848b3200800000000000000
+      internalID: 160867946681524177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_34
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 29
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd25d4504fad58760800000000000000
+      internalID: 7459609099404923612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_35
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 102
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 749c201f3ffe93290800000000000000
+      internalID: -7910027439499982521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_36
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 47
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 928e53051fc243010800000000000000
+      internalID: 1167607618340251689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_37
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 99
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f21728e7c92dd7c20800000000000000
+      internalID: 3205950079336870191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_38
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 104
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c661f77bef7523850800000000000000
+      internalID: 6355238775685060204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_39
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 84
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 650d16d394c155810800000000000000
+      internalID: 1753338730818687062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_40
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 0
+        width: 53
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddaba8be4a46572b0800000000000000
+      internalID: -5587449103194080547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_41
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 90
+        width: 37
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01f2d7b45a0b26630800000000000000
+      internalID: 3918888849748340496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_42
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 39
+        width: 96
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b6ed28ca0299e40800000000000000
+      internalID: 5663593931697187648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CommandAct_43
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 31
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e46d818bcc09da0800000000000000
+      internalID: -5940022817438937532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CommandAct_0: -3065260115576768874
+      CommandAct_1: 429177939442281887
+      CommandAct_10: -1413263960475399726
+      CommandAct_11: -4178105966331003884
+      CommandAct_12: -4686500831170829944
+      CommandAct_13: -2003404493128112479
+      CommandAct_14: -4418402072991284567
+      CommandAct_15: 2046727575751901319
+      CommandAct_16: 7593472459593174659
+      CommandAct_17: -7371935569536824958
+      CommandAct_18: -4943277315500437218
+      CommandAct_19: -4946892487894896210
+      CommandAct_2: 7341214900353812129
+      CommandAct_20: -706413826405464096
+      CommandAct_21: 8146533286811181257
+      CommandAct_22: -7588768968129934521
+      CommandAct_23: 6982407098136412977
+      CommandAct_24: 6448482286757170861
+      CommandAct_25: 8286220379711856569
+      CommandAct_26: -8171131462043569467
+      CommandAct_27: -170268116602477014
+      CommandAct_28: -4351985214339288089
+      CommandAct_29: -1500079153986435638
+      CommandAct_3: 7702737923183809162
+      CommandAct_30: -7124052791125292295
+      CommandAct_31: 6479866560471087359
+      CommandAct_32: -2353361189827286952
+      CommandAct_33: 160867946681524177
+      CommandAct_34: 7459609099404923612
+      CommandAct_35: -7910027439499982521
+      CommandAct_36: 1167607618340251689
+      CommandAct_37: 3205950079336870191
+      CommandAct_38: 6355238775685060204
+      CommandAct_39: 1753338730818687062
+      CommandAct_4: -1745330449864858485
+      CommandAct_40: -5587449103194080547
+      CommandAct_41: 3918888849748340496
+      CommandAct_42: 5663593931697187648
+      CommandAct_43: -5940022817438937532
+      CommandAct_5: -4783361307351425892
+      CommandAct_6: -3866910077072548441
+      CommandAct_7: -1021066840763256149
+      CommandAct_8: -3567284921708239434
+      CommandAct_9: -1526138452419509732
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

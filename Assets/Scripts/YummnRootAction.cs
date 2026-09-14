@@ -21,10 +21,11 @@ public sealed partial class KaitRun
     private readonly Queue<Action> yummnPacketReactions=new Queue<Action>();
     private readonly HashSet<string> yummnBrokenIceThisRoot=new HashSet<string>();
     private readonly Dictionary<int,int> yummnFreezeInstances=new Dictionary<int,int>();
-    private readonly HashSet<int> yummnAfterimageKiAttacks=new HashSet<int>();
-    private void GainYummnAfterimageKi(int attackId,KaitTurnResult r)
+    private readonly HashSet<long> yummnAfterimageKiHits=new HashSet<long>();
+    private void GainYummnAfterimageKi(int attackId,KaitTurnResult r,int markerId=-1)
     {
-        if(yummnAfterimageKiAttacks.Add(attackId))Yummn.metrics.afterimageKi+=GainYummnKi(1,r,"Afterimage");
+        long hitKey=((long)attackId<<32)^(uint)markerId;
+        if(yummnAfterimageKiHits.Add(hitKey))Yummn.metrics.afterimageKi+=GainYummnKi(1,r,"Afterimage");
     }
     private void FinishYummnPacket()
     {

@@ -144,27 +144,23 @@ public sealed partial class KaitRun
     }
     private void HitYummn082Afterimages(KaitEnemy enemy,KaitIntent intent,int attackId,KaitTurnResult r)
     {
-        bool hit=false;
         bool resonance=HasPassive(KaitPassive.MirrorResonance)&&Yummn.afterimages.Exists(m=>m.alive&&intent.affectedCells.Contains(m.cell));
         foreach(var marker in new List<YummnAfterimageMarker>(Yummn.afterimages))
         {
             if(!marker.alive||!resonance&&!intent.affectedCells.Contains(marker.cell)||r.yummnEvents.Exists(e=>e.kind==YummnEventKind.AfterimageHit&&e.attackEventId==attackId&&e.markerId==marker.id))continue;
-            hit=true;Yummn.metrics.afterimagesHit++;
+            Yummn.metrics.afterimagesHit++;
             bool survives=HasPassive(KaitPassive.AllEchoWard);
             if(!survives)marker.alive=false;
             string key=enemy.type.ToString();var counts=Yummn.metrics.afterimageHitsByEnemy;
             counts[key]=counts.TryGetValue(key,out var n)?n+1:1;
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageHit,actionId=Yummn.actionId,sourceId=enemy.id,markerId=marker.id,attackEventId=attackId,to=marker.cell});
+            GainYummnAfterimageKi(attackId,r,marker.id);
             if(HasPassive(KaitPassive.EchoReprisal))YummnAfterPacket(()=>{YummnHit(enemy,1,Vector2Int.zero,YummnDamageCause.EchoReflect,r);RepoolStatus(r,"Reflect",enemy.pos);});
             if(HasPassive(KaitPassive.ShadowBladeEcho))
             {
                 var victims=enemies.FindAll(v=>v.life!=KaitEnemyLife.Dead&&(v.pos-marker.cell).sqrMagnitude==1);
                 YummnAfterPacket(()=>YummnDamagePacket(victims,1,Vector2Int.zero,YummnDamageCause.ShadowBlade,r));
             }
-        }
-        if(hit)
-        {
-            GainYummnAfterimageKi(attackId,r);
         }
         foreach(var marker in Yummn.afterimages)if(!marker.alive)r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageCleared,markerId=marker.id,to=marker.cell});
     }

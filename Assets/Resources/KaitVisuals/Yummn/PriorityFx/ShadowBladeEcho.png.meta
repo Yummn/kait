@@ -1,0 +1,1976 @@
+fileFormatVersion: 2
+guid: 63e17fc9d5a9cd243bd6c7c00053b39f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6577786757627783318
+    second: ShadowBladeEcho_0
+  - first:
+      213: -1720144528266056943
+    second: ShadowBladeEcho_1
+  - first:
+      213: -6327542684184633303
+    second: ShadowBladeEcho_2
+  - first:
+      213: 1780235060865322528
+    second: ShadowBladeEcho_3
+  - first:
+      213: 671432671747928337
+    second: ShadowBladeEcho_4
+  - first:
+      213: 1213693641638153087
+    second: ShadowBladeEcho_5
+  - first:
+      213: 393038261586857850
+    second: ShadowBladeEcho_6
+  - first:
+      213: 1102823279365521968
+    second: ShadowBladeEcho_7
+  - first:
+      213: -6602687997942600543
+    second: ShadowBladeEcho_8
+  - first:
+      213: -6179086573402831415
+    second: ShadowBladeEcho_9
+  - first:
+      213: -9005777426642064386
+    second: ShadowBladeEcho_10
+  - first:
+      213: -1072063305485520016
+    second: ShadowBladeEcho_11
+  - first:
+      213: -4983255159346313694
+    second: ShadowBladeEcho_12
+  - first:
+      213: -4498168340226458678
+    second: ShadowBladeEcho_13
+  - first:
+      213: -3293322762155749565
+    second: ShadowBladeEcho_14
+  - first:
+      213: -3684801420024260593
+    second: ShadowBladeEcho_15
+  - first:
+      213: -5209846853563966230
+    second: ShadowBladeEcho_16
+  - first:
+      213: -7300015273575721237
+    second: ShadowBladeEcho_17
+  - first:
+      213: -6753436942722858764
+    second: ShadowBladeEcho_18
+  - first:
+      213: -4916482080068730158
+    second: ShadowBladeEcho_19
+  - first:
+      213: 5163615529726542261
+    second: ShadowBladeEcho_20
+  - first:
+      213: 3763822647603656556
+    second: ShadowBladeEcho_21
+  - first:
+      213: -1119945576115912116
+    second: ShadowBladeEcho_22
+  - first:
+      213: 5782512751575461344
+    second: ShadowBladeEcho_23
+  - first:
+      213: -1524014869749680558
+    second: ShadowBladeEcho_24
+  - first:
+      213: -7405463167372920282
+    second: ShadowBladeEcho_25
+  - first:
+      213: -7697905399213255090
+    second: ShadowBladeEcho_26
+  - first:
+      213: -4424552994016305882
+    second: ShadowBladeEcho_27
+  - first:
+      213: -96000526391834682
+    second: ShadowBladeEcho_28
+  - first:
+      213: 8488600146500582736
+    second: ShadowBladeEcho_29
+  - first:
+      213: -2887949110357612644
+    second: ShadowBladeEcho_30
+  - first:
+      213: 2361018366671779038
+    second: ShadowBladeEcho_31
+  - first:
+      213: 1729349936900838084
+    second: ShadowBladeEcho_32
+  - first:
+      213: 58654414041316688
+    second: ShadowBladeEcho_33
+  - first:
+      213: -7287656350539700844
+    second: ShadowBladeEcho_34
+  - first:
+      213: -7173390806025194357
+    second: ShadowBladeEcho_35
+  - first:
+      213: 5185056796665742221
+    second: ShadowBladeEcho_36
+  - first:
+      213: -5122286038290002948
+    second: ShadowBladeEcho_37
+  - first:
+      213: 301822697087055567
+    second: ShadowBladeEcho_38
+  - first:
+      213: -5253141679325033175
+    second: ShadowBladeEcho_39
+  - first:
+      213: -324297305500211893
+    second: ShadowBladeEcho_40
+  - first:
+      213: -6347702575250717365
+    second: ShadowBladeEcho_41
+  - first:
+      213: -6701744664431848800
+    second: ShadowBladeEcho_42
+  - first:
+      213: -2516403575163193270
+    second: ShadowBladeEcho_43
+  - first:
+      213: -9058813016922924
+    second: ShadowBladeEcho_44
+  - first:
+      213: -4536245997147957770
+    second: ShadowBladeEcho_45
+  - first:
+      213: -4515821185924066632
+    second: ShadowBladeEcho_46
+  - first:
+      213: -6022925601292634137
+    second: ShadowBladeEcho_47
+  - first:
+      213: 6921066541962810947
+    second: ShadowBladeEcho_48
+  - first:
+      213: 8423100651536370419
+    second: ShadowBladeEcho_49
+  - first:
+      213: -6074063758160616935
+    second: ShadowBladeEcho_50
+  - first:
+      213: -2515588576482922332
+    second: ShadowBladeEcho_51
+  - first:
+      213: -7323634458756771476
+    second: ShadowBladeEcho_52
+  - first:
+      213: 2466693867264028222
+    second: ShadowBladeEcho_53
+  - first:
+      213: -6210318744515004051
+    second: ShadowBladeEcho_54
+  - first:
+      213: -7084510725933949438
+    second: ShadowBladeEcho_55
+  - first:
+      213: -4309434091365307937
+    second: ShadowBladeEcho_56
+  - first:
+      213: 6935404493399515467
+    second: ShadowBladeEcho_57
+  - first:
+      213: -4991461117592766685
+    second: ShadowBladeEcho_58
+  - first:
+      213: -6162507243763993892
+    second: ShadowBladeEcho_59
+  - first:
+      213: -7624255532543922766
+    second: ShadowBladeEcho_60
+  - first:
+      213: -2919584449660652171
+    second: ShadowBladeEcho_61
+  - first:
+      213: 5539803304663177320
+    second: ShadowBladeEcho_62
+  - first:
+      213: 8884376440183880228
+    second: ShadowBladeEcho_63
+  - first:
+      213: -6022308436353566446
+    second: ShadowBladeEcho_64
+  - first:
+      213: -7165891145816045941
+    second: ShadowBladeEcho_65
+  - first:
+      213: 1710449263637716024
+    second: ShadowBladeEcho_66
+  - first:
+      213: 54615235739603604
+    second: ShadowBladeEcho_67
+  - first:
+      213: -824707987801311922
+    second: ShadowBladeEcho_68
+  - first:
+      213: -421726237616161409
+    second: ShadowBladeEcho_69
+  - first:
+      213: -1931138302900656630
+    second: ShadowBladeEcho_70
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ShadowBladeEcho_0
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 590
+        width: 158
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6982ca8943ef84b50800000000000000
+      internalID: 6577786757627783318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_1
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 729
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11bae5e4aa1d028e0800000000000000
+      internalID: -1720144528266056943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_2
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 512
+        width: 272
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920ad08147d0038a0800000000000000
+      internalID: -6327542684184633303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_3
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 614
+        width: 373
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ec2931b5aa4b810800000000000000
+      internalID: 1780235060865322528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_4
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 707
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11170222578615900800000000000000
+      internalID: 671432671747928337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_5
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 701
+        width: 92
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b0ef7cfe7e7d010800000000000000
+      internalID: 1213693641638153087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_6
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 705
+        width: 29
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f850d673a547500800000000000000
+      internalID: 393038261586857850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_7
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 694
+        width: 31
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0320d98fde30e4f00800000000000000
+      internalID: 1102823279365521968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_8
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 626
+        width: 163
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ac65e79f3a8e54a0800000000000000
+      internalID: -6602687997942600543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_9
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 606
+        width: 123
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c540fbef797f3aa0800000000000000
+      internalID: -6179086573402831415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_10
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 624
+        width: 166
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efba4c6252d050380800000000000000
+      internalID: -9005777426642064386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_11
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 655
+        width: 42
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 073fdcb8a144f11f0800000000000000
+      internalID: -1072063305485520016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_12
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 653
+        width: 65
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 226c702c5dbe7dab0800000000000000
+      internalID: -4983255159346313694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_13
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 591
+        width: 56
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acbb4e41abb4391c0800000000000000
+      internalID: -4498168340226458678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_14
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 582
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34f8ff68564cb42d0800000000000000
+      internalID: -3293322762155749565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_15
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 574
+        width: 47
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f085993a1a4fcdcc0800000000000000
+      internalID: -3684801420024260593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_16
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 588
+        width: 47
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aec122fb3e7e2b7b0800000000000000
+      internalID: -5209846853563966230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_17
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 485
+        width: 87
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be6d79b29c221ba90800000000000000
+      internalID: -7300015273575721237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_18
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 582
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f00100c1e8f642a0800000000000000
+      internalID: -6753436942722858764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_19
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 590
+        width: 39
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d20ee8c89525cbb0800000000000000
+      internalID: -4916482080068730158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_20
+      rect:
+        serializedVersion: 2
+        x: 1509
+        y: 473
+        width: 89
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b18a0e57f8d8a740800000000000000
+      internalID: 5163615529726542261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_21
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 585
+        width: 40
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c677cf3a1c8cb3430800000000000000
+      internalID: 3763822647603656556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_22
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 540
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4247d7ae672570f0800000000000000
+      internalID: -1119945576115912116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_23
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 347
+        width: 146
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed62d2e5bc9f3050800000000000000
+      internalID: 5782512751575461344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_24
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 274
+        width: 62
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2563820fc8c99dae0800000000000000
+      internalID: -1524014869749680558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_25
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 352
+        width: 165
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62a7f7f2c728a3990800000000000000
+      internalID: -7405463167372920282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_26
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 295
+        width: 60
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e46155d13db8b2590800000000000000
+      internalID: -7697905399213255090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_27
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 207
+        width: 96
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62d54c58e74d892c0800000000000000
+      internalID: -4424552994016305882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_28
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 336
+        width: 11
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c70a26a700faaef0800000000000000
+      internalID: -96000526391834682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_29
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 311
+        width: 41
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05dfe74dbd09dc570800000000000000
+      internalID: 8488600146500582736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_30
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 173
+        width: 88
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c97aabbc591fbe7d0800000000000000
+      internalID: -2887949110357612644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_31
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 48
+        width: 160
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed4f4adf1b504c020800000000000000
+      internalID: 2361018366671779038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_32
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 283
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c29159ea92eff710800000000000000
+      internalID: 1729349936900838084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_33
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 259
+        width: 45
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05df079f0e160d000800000000000000
+      internalID: 58654414041316688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_34
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 171
+        width: 90
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49526fc292b0dda90800000000000000
+      internalID: -7287656350539700844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_35
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 173
+        width: 89
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b84b0d3711ff27c90800000000000000
+      internalID: -7173390806025194357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_36
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 108
+        width: 138
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d838c795fa505f740800000000000000
+      internalID: 5185056796665742221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_37
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 277
+        width: 30
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb08c9bcfbf9e8b0800000000000000
+      internalID: -5122286038290002948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_38
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 178
+        width: 96
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc63605d42a403400800000000000000
+      internalID: 301822697087055567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_39
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 221
+        width: 125
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92d480999771917b0800000000000000
+      internalID: -5253141679325033175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_40
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 268
+        width: 56
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b452b00a15ddf7bf0800000000000000
+      internalID: -324297305500211893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_41
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 291
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b45495ea32e68e7a0800000000000000
+      internalID: -6347702575250717365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_42
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 282
+        width: 37
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a29b2d2cbe9ef2a0800000000000000
+      internalID: -6701744664431848800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_43
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 230
+        width: 114
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a48ffd6e740f31dd0800000000000000
+      internalID: -2516403575163193270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_44
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 183
+        width: 99
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d42a0cbe01dfdff0800000000000000
+      internalID: -9058813016922924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_45
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 214
+        width: 106
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f55536bc440c01c0800000000000000
+      internalID: -4536245997147957770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_46
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 216
+        width: 95
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b210d7ae849451c0800000000000000
+      internalID: -4515821185924066632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_47
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 222
+        width: 81
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e7b85293154a6ca0800000000000000
+      internalID: -6022925601292634137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_48
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 227
+        width: 75
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 346d88cb9519c0060800000000000000
+      internalID: 6921066541962810947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_49
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 261
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3facf224a6dd4e470800000000000000
+      internalID: 8423100651536370419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_50
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 218
+        width: 83
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91223c7913794bba0800000000000000
+      internalID: -6074063758160616935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_51
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 261
+        width: 40
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a074b19485d61dd0800000000000000
+      internalID: -2515588576482922332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_52
+      rect:
+        serializedVersion: 2
+        x: 1608
+        y: 261
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c611ef413493d5a90800000000000000
+      internalID: -7323634458756771476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_53
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 251
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3e28efc0057b3220800000000000000
+      internalID: 2466693867264028222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_54
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 220
+        width: 38
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d69bb3b610480d9a0800000000000000
+      internalID: -6210318744515004051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_55
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 205
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e1345b703cead90800000000000000
+      internalID: -7084510725933949438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_56
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 238
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd96639b680d134c0800000000000000
+      internalID: -4309434091365307937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_57
+      rect:
+        serializedVersion: 2
+        x: 1627
+        y: 221
+        width: 85
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b41e9b234a18f3060800000000000000
+      internalID: 6935404493399515467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_58
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 159
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32775b73f84cabab0800000000000000
+      internalID: -4991461117592766685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_59
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 166
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd2fca9ef406a7aa0800000000000000
+      internalID: -6162507243763993892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_60
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 188
+        width: 36
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bda9e9fcf3313690800000000000000
+      internalID: -7624255532543922766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_61
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 181
+        width: 32
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 575f832696d8b77d0800000000000000
+      internalID: -2919584449660652171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_62
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 155
+        width: 22
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 868dbf321c551ec40800000000000000
+      internalID: 5539803304663177320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_63
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 173
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a72080d45ab4b70800000000000000
+      internalID: 8884376440183880228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_64
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 184
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 219be4b72667c6ca0800000000000000
+      internalID: -6022308436353566446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_65
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 181
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86848a28f3ad8c90800000000000000
+      internalID: -7165891145816045941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_66
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 186
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83c547dfa8cbcb710800000000000000
+      internalID: 1710449263637716024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_67
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 43
+        width: 170
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 492559d744802c000800000000000000
+      internalID: 54615235739603604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_68
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 58
+        width: 68
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e45fcaf547c0e84f0800000000000000
+      internalID: -824707987801311922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_69
+      rect:
+        serializedVersion: 2
+        x: 1526
+        y: 107
+        width: 11
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d3d66a83ab52af0800000000000000
+      internalID: -421726237616161409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowBladeEcho_70
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 86
+        width: 47
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06a473f1f73335e0800000000000000
+      internalID: -1931138302900656630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ShadowBladeEcho_0: 6577786757627783318
+      ShadowBladeEcho_1: -1720144528266056943
+      ShadowBladeEcho_10: -9005777426642064386
+      ShadowBladeEcho_11: -1072063305485520016
+      ShadowBladeEcho_12: -4983255159346313694
+      ShadowBladeEcho_13: -4498168340226458678
+      ShadowBladeEcho_14: -3293322762155749565
+      ShadowBladeEcho_15: -3684801420024260593
+      ShadowBladeEcho_16: -5209846853563966230
+      ShadowBladeEcho_17: -7300015273575721237
+      ShadowBladeEcho_18: -6753436942722858764
+      ShadowBladeEcho_19: -4916482080068730158
+      ShadowBladeEcho_2: -6327542684184633303
+      ShadowBladeEcho_20: 5163615529726542261
+      ShadowBladeEcho_21: 3763822647603656556
+      ShadowBladeEcho_22: -1119945576115912116
+      ShadowBladeEcho_23: 5782512751575461344
+      ShadowBladeEcho_24: -1524014869749680558
+      ShadowBladeEcho_25: -7405463167372920282
+      ShadowBladeEcho_26: -7697905399213255090
+      ShadowBladeEcho_27: -4424552994016305882
+      ShadowBladeEcho_28: -96000526391834682
+      ShadowBladeEcho_29: 8488600146500582736
+      ShadowBladeEcho_3: 1780235060865322528
+      ShadowBladeEcho_30: -2887949110357612644
+      ShadowBladeEcho_31: 2361018366671779038
+      ShadowBladeEcho_32: 1729349936900838084
+      ShadowBladeEcho_33: 58654414041316688
+      ShadowBladeEcho_34: -7287656350539700844
+      ShadowBladeEcho_35: -7173390806025194357
+      ShadowBladeEcho_36: 5185056796665742221
+      ShadowBladeEcho_37: -5122286038290002948
+      ShadowBladeEcho_38: 301822697087055567
+      ShadowBladeEcho_39: -5253141679325033175
+      ShadowBladeEcho_4: 671432671747928337
+      ShadowBladeEcho_40: -324297305500211893
+      ShadowBladeEcho_41: -6347702575250717365
+      ShadowBladeEcho_42: -6701744664431848800
+      ShadowBladeEcho_43: -2516403575163193270
+      ShadowBladeEcho_44: -9058813016922924
+      ShadowBladeEcho_45: -4536245997147957770
+      ShadowBladeEcho_46: -4515821185924066632
+      ShadowBladeEcho_47: -6022925601292634137
+      ShadowBladeEcho_48: 6921066541962810947
+      ShadowBladeEcho_49: 8423100651536370419
+      ShadowBladeEcho_5: 1213693641638153087
+      ShadowBladeEcho_50: -6074063758160616935
+      ShadowBladeEcho_51: -2515588576482922332
+      ShadowBladeEcho_52: -7323634458756771476
+      ShadowBladeEcho_53: 2466693867264028222
+      ShadowBladeEcho_54: -6210318744515004051
+      ShadowBladeEcho_55: -7084510725933949438
+      ShadowBladeEcho_56: -4309434091365307937
+      ShadowBladeEcho_57: 6935404493399515467
+      ShadowBladeEcho_58: -4991461117592766685
+      ShadowBladeEcho_59: -6162507243763993892
+      ShadowBladeEcho_6: 393038261586857850
+      ShadowBladeEcho_60: -7624255532543922766
+      ShadowBladeEcho_61: -2919584449660652171
+      ShadowBladeEcho_62: 5539803304663177320
+      ShadowBladeEcho_63: 8884376440183880228
+      ShadowBladeEcho_64: -6022308436353566446
+      ShadowBladeEcho_65: -7165891145816045941
+      ShadowBladeEcho_66: 1710449263637716024
+      ShadowBladeEcho_67: 54615235739603604
+      ShadowBladeEcho_68: -824707987801311922
+      ShadowBladeEcho_69: -421726237616161409
+      ShadowBladeEcho_7: 1102823279365521968
+      ShadowBladeEcho_70: -1931138302900656630
+      ShadowBladeEcho_8: -6602687997942600543
+      ShadowBladeEcho_9: -6179086573402831415
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

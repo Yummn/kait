@@ -13,6 +13,7 @@ public sealed partial class KaitRun
     {
         if(!HasPassive(KaitPassive.OpportunityAttack)||ended||e.life==KaitEnemyLife.Dead||
            (from-(playerBefore??katePos)).sqrMagnitude!=1||(e.pos-katePos).sqrMagnitude==1||!yummnExitReacted.Add(e.id))return;
+        if(!SpendRepoolKi(1,r))return;
         YummnTrigger("R40",r);
         ResolveYummnKick(e,from-(playerBefore??katePos),r,true);
     }
@@ -23,7 +24,7 @@ public sealed partial class KaitRun
     }
     private void ResolveYummnRangeEntries(KaitTurnResult r)
     {
-        if(r.yummnAction.phaseAtStart==YummnPhase.Exhausted||!HasPassive(KaitPassive.Opportunist)||ended)return;
+        if(!HasPassive(KaitPassive.Opportunist)||ended)return;
         yummnResolvingReaction=true;
         try
         {
@@ -39,8 +40,10 @@ public sealed partial class KaitRun
                 if(pending.Count==0)break;
                 var entrant=pending.Dequeue();
                 if(entrant.life==KaitEnemyLife.Dead||!yummnInReach.Contains(entrant.id)||yummnReacted.Contains(entrant.id))continue;
-                yummnReacted.Add(entrant.id);YummnTrigger("S06",r);
-                ResolveYummnPunch(entrant,r,true);
+                yummnReacted.Add(entrant.id);
+                if(!SpendRepoolKi(1,r))continue;
+                YummnTrigger("S06",r);
+                ResolveYummnKick(entrant,entrant.pos-katePos,r,true);
             }
         }
         finally {yummnResolvingReaction=false;}
@@ -49,14 +52,21 @@ public sealed partial class KaitRun
     {
         if(enemy==null||enemy.life==KaitEnemyLife.Dead||ended)return;
         using(var scope=new YummnEventScope(this,r,YummnAttackFamily.Kick,reaction?YummnAttackOrigin.Opportunity:YummnAttackOrigin.Voluntary,enemy.id)) {
+        var defeatedCell=enemy.pos;
         r.yummnAction.didAttack=true;
         if(!reaction){r.yummnAction.voluntaryAttack=true;r.yummnAction.isPunchAction=true;}
-        ChargeYummnAttackTenth(r);
+        if(!reaction)ChargeYummnAttackTenth(r);
         int start=r.yummnEvents.Count;
         int damage=YummnHit(enemy,1,direction,YummnDamageCause.Kick,r);
         r.yummnPunches++;r.damageDealt+=damage;
+        if(damage>0)ResolveYummnPalmHit(enemy,direction,r);
         for(int i=start;i<r.yummnEvents.Count;i++)if(r.yummnEvents[i].damageCause==YummnDamageCause.Kick)
         {r.yummnEvents[i].attackFamily=YummnAttackFamily.Kick;r.yummnEvents[i].attackOrigin=reaction?YummnAttackOrigin.Opportunity:YummnAttackOrigin.Voluntary;}
+        if(!reaction&&enemy.life==KaitEnemyLife.Dead&&!ended&&!IsHardBlocked(defeatedCell)&&EnemyAt(defeatedCell)==null)
+        {
+            directKills++;
+            MoveYummnPlayer(defeatedCell,YummnMoveCause.KillFollow,r);
+        }
         }
     }
     private void LeaveYummnMovementEcho(Vector2Int from,Vector2Int to,KaitTurnResult r)

@@ -1,0 +1,1560 @@
+fileFormatVersion: 2
+guid: e913833a1701ac449bb765fa4c76b933
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6765878049100634931
+    second: ResonanceCrystal_0
+  - first:
+      213: 2992455451512360685
+    second: ResonanceCrystal_1
+  - first:
+      213: 7044121499168602627
+    second: ResonanceCrystal_2
+  - first:
+      213: 8849554191493504137
+    second: ResonanceCrystal_3
+  - first:
+      213: -8627076803640747927
+    second: ResonanceCrystal_4
+  - first:
+      213: 3945417099671121716
+    second: ResonanceCrystal_5
+  - first:
+      213: 5495038270648938437
+    second: ResonanceCrystal_6
+  - first:
+      213: 7619315722176504284
+    second: ResonanceCrystal_7
+  - first:
+      213: -8736795287956663518
+    second: ResonanceCrystal_8
+  - first:
+      213: -1095926526520807512
+    second: ResonanceCrystal_9
+  - first:
+      213: -4608080777379765247
+    second: ResonanceCrystal_10
+  - first:
+      213: 480875965291783268
+    second: ResonanceCrystal_11
+  - first:
+      213: 6554018623048623024
+    second: ResonanceCrystal_12
+  - first:
+      213: 8109007724165765421
+    second: ResonanceCrystal_13
+  - first:
+      213: -2291032729094591539
+    second: ResonanceCrystal_14
+  - first:
+      213: 3661149890720912060
+    second: ResonanceCrystal_15
+  - first:
+      213: 6049371361986423513
+    second: ResonanceCrystal_16
+  - first:
+      213: -2007836605830652148
+    second: ResonanceCrystal_17
+  - first:
+      213: 946534852049032490
+    second: ResonanceCrystal_18
+  - first:
+      213: -2010407326650233978
+    second: ResonanceCrystal_19
+  - first:
+      213: -7681655012908364340
+    second: ResonanceCrystal_20
+  - first:
+      213: -902549806401594904
+    second: ResonanceCrystal_21
+  - first:
+      213: -1503005744158462075
+    second: ResonanceCrystal_22
+  - first:
+      213: 2320343591964430130
+    second: ResonanceCrystal_23
+  - first:
+      213: -3677382788809896217
+    second: ResonanceCrystal_24
+  - first:
+      213: 1661419479075363004
+    second: ResonanceCrystal_25
+  - first:
+      213: -6117728576855149138
+    second: ResonanceCrystal_26
+  - first:
+      213: -1789278642723488336
+    second: ResonanceCrystal_27
+  - first:
+      213: -7380380635161455216
+    second: ResonanceCrystal_28
+  - first:
+      213: -3739176679863302125
+    second: ResonanceCrystal_29
+  - first:
+      213: 6937552593662943429
+    second: ResonanceCrystal_30
+  - first:
+      213: 3771264703569097993
+    second: ResonanceCrystal_31
+  - first:
+      213: 3921686363182619728
+    second: ResonanceCrystal_32
+  - first:
+      213: -4827078916310218179
+    second: ResonanceCrystal_33
+  - first:
+      213: -6645648007102234439
+    second: ResonanceCrystal_34
+  - first:
+      213: 4620395630999890693
+    second: ResonanceCrystal_35
+  - first:
+      213: 436853043873176827
+    second: ResonanceCrystal_36
+  - first:
+      213: 3821218555579770170
+    second: ResonanceCrystal_37
+  - first:
+      213: -171624278685424439
+    second: ResonanceCrystal_38
+  - first:
+      213: -115431490648024161
+    second: ResonanceCrystal_39
+  - first:
+      213: -8751335183848783319
+    second: ResonanceCrystal_40
+  - first:
+      213: -5595638950366124250
+    second: ResonanceCrystal_41
+  - first:
+      213: 5934142821758814621
+    second: ResonanceCrystal_42
+  - first:
+      213: 1703609113324246125
+    second: ResonanceCrystal_43
+  - first:
+      213: 8301543733970375653
+    second: ResonanceCrystal_44
+  - first:
+      213: -7476776843994007899
+    second: ResonanceCrystal_45
+  - first:
+      213: -8284048415115412425
+    second: ResonanceCrystal_46
+  - first:
+      213: 8623907553451520299
+    second: ResonanceCrystal_47
+  - first:
+      213: 3998781486121216644
+    second: ResonanceCrystal_48
+  - first:
+      213: -1337968949848006727
+    second: ResonanceCrystal_49
+  - first:
+      213: -7872444006962803461
+    second: ResonanceCrystal_50
+  - first:
+      213: 5394188220098423223
+    second: ResonanceCrystal_51
+  - first:
+      213: 2595762303359376952
+    second: ResonanceCrystal_52
+  - first:
+      213: 8193590386665390270
+    second: ResonanceCrystal_53
+  - first:
+      213: 5523085610203742389
+    second: ResonanceCrystal_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ResonanceCrystal_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 445
+        width: 294
+        height: 434
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b914e0d3a35ed50800000000000000
+      internalID: 6765878049100634931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_1
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 745
+        width: 376
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dee4391e066578920800000000000000
+      internalID: 2992455451512360685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_2
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 422
+        width: 460
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30af2a0ae2fb1c160800000000000000
+      internalID: 7044121499168602627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_3
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 404
+        width: 469
+        height: 459
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98c1a8476aeefca70800000000000000
+      internalID: 8849554191493504137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_4
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 759
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9681bf4fa57764880800000000000000
+      internalID: -8627076803640747927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_5
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 449
+        width: 416
+        height: 402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f26acc2ffe0c630800000000000000
+      internalID: 3945417099671121716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_6
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 523
+        width: 166
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cfe435713c424c40800000000000000
+      internalID: 5495038270648938437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_7
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 725
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd121ebc74f3db960800000000000000
+      internalID: 7619315722176504284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_8
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 636
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2235902a9faa0c680800000000000000
+      internalID: -8736795287956663518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_9
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 636
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8afacce61ac7ac0f0800000000000000
+      internalID: -1095926526520807512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_10
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 515
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10429f792fecc00c0800000000000000
+      internalID: -4608080777379765247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_11
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 505
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4646d34842a6ca600800000000000000
+      internalID: 480875965291783268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_12
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 485
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b3ab16863d84fa50800000000000000
+      internalID: 6554018623048623024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_13
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 504
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d299ccfcf8bf88070800000000000000
+      internalID: 8109007724165765421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_14
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 501
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcbe58d0fdd9430e0800000000000000
+      internalID: -2291032729094591539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_15
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 485
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb251e19d640fc230800000000000000
+      internalID: 3661149890720912060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_16
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 483
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da2f99e33fa3f350800000000000000
+      internalID: 6049371361986423513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_17
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 487
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f1076be3bb224e0800000000000000
+      internalID: -2007836605830652148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_18
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 485
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25d8e7de64c22d00800000000000000
+      internalID: 946534852049032490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_19
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 473
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68b8b2120399914e0800000000000000
+      internalID: -2010407326650233978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_20
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 475
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccd8f740777456590800000000000000
+      internalID: -7681655012908364340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_21
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 466
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e9d555abbf7973f0800000000000000
+      internalID: -902549806401594904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_22
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 473
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f201c2d30442be0800000000000000
+      internalID: -1503005744158462075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_23
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 464
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23fc4e30434833020800000000000000
+      internalID: 2320343591964430130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_24
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 466
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eec9d156df47fcc0800000000000000
+      internalID: -3677382788809896217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_25
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 440
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb89331b63c8e0710800000000000000
+      internalID: 1661419479075363004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_26
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 442
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5fa40c546791ba0800000000000000
+      internalID: -6117728576855149138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_27
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 392
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bdf540fd843b27e0800000000000000
+      internalID: -1789278642723488336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_28
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 25
+        width: 481
+        height: 399
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 095970e4aee939990800000000000000
+      internalID: -7380380635161455216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_29
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 420
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318c254ee96cb1cc0800000000000000
+      internalID: -3739176679863302125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_30
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 13
+        width: 364
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c0aed3c353274060800000000000000
+      internalID: 6937552593662943429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_31
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 17
+        width: 467
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90574325449365430800000000000000
+      internalID: 3771264703569097993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_32
+      rect:
+        serializedVersion: 2
+        x: 1696
+        y: 414
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c5ef528f0ac6630800000000000000
+      internalID: 3921686363182619728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_33
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 424
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3a4d82fc45c20db0800000000000000
+      internalID: -4827078916310218179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_34
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 364
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b08362095ae5c3a0800000000000000
+      internalID: -6645648007102234439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_35
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 358
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50be383b851fe1040800000000000000
+      internalID: 4620395630999890693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_36
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 378
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfcdb136783001600800000000000000
+      internalID: 436853043873176827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_37
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 380
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35a676d702b70530800000000000000
+      internalID: 3821218555579770170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_38
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 323
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c46f1ab0a44e9df0800000000000000
+      internalID: -171624278685424439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_39
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 358
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9bd70cbba7e56ef0800000000000000
+      internalID: -115431490648024161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_40
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 338
+        width: 29
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 922c05054030d8680800000000000000
+      internalID: -8751335183848783319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_41
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 330
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6276618850c4852b0800000000000000
+      internalID: -5595638950366124250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_42
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 306
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d994e59b47f4a5250800000000000000
+      internalID: 5934142821758814621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_43
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 313
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d645fc3667f64a710800000000000000
+      internalID: 1703609113324246125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_44
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 176
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e39ca6ea02053370800000000000000
+      internalID: 8301543733970375653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_45
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 142
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6fed4f2172d3890800000000000000
+      internalID: -7476776843994007899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_46
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 106
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c78e27bd5290d80800000000000000
+      internalID: -8284048415115412425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_47
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 106
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21394b7a364ea770800000000000000
+      internalID: 8623907553451520299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_48
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 104
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ae9ae33968e7730800000000000000
+      internalID: 3998781486121216644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_49
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 72
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf9ec734549e6de0800000000000000
+      internalID: -1337968949848006727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_50
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 47
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc44dab2e57fb290800000000000000
+      internalID: -7872444006962803461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_51
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 55
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b920964b910cda40800000000000000
+      internalID: 5394188220098423223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_52
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 41
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83ed51ddf00060420800000000000000
+      internalID: 2595762303359376952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_53
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 31
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb00f309b0b75b170800000000000000
+      internalID: 8193590386665390270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResonanceCrystal_54
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 31
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b004449911f5ac40800000000000000
+      internalID: 5523085610203742389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ResonanceCrystal_0: 6765878049100634931
+      ResonanceCrystal_1: 2992455451512360685
+      ResonanceCrystal_10: -4608080777379765247
+      ResonanceCrystal_11: 480875965291783268
+      ResonanceCrystal_12: 6554018623048623024
+      ResonanceCrystal_13: 8109007724165765421
+      ResonanceCrystal_14: -2291032729094591539
+      ResonanceCrystal_15: 3661149890720912060
+      ResonanceCrystal_16: 6049371361986423513
+      ResonanceCrystal_17: -2007836605830652148
+      ResonanceCrystal_18: 946534852049032490
+      ResonanceCrystal_19: -2010407326650233978
+      ResonanceCrystal_2: 7044121499168602627
+      ResonanceCrystal_20: -7681655012908364340
+      ResonanceCrystal_21: -902549806401594904
+      ResonanceCrystal_22: -1503005744158462075
+      ResonanceCrystal_23: 2320343591964430130
+      ResonanceCrystal_24: -3677382788809896217
+      ResonanceCrystal_25: 1661419479075363004
+      ResonanceCrystal_26: -6117728576855149138
+      ResonanceCrystal_27: -1789278642723488336
+      ResonanceCrystal_28: -7380380635161455216
+      ResonanceCrystal_29: -3739176679863302125
+      ResonanceCrystal_3: 8849554191493504137
+      ResonanceCrystal_30: 6937552593662943429
+      ResonanceCrystal_31: 3771264703569097993
+      ResonanceCrystal_32: 3921686363182619728
+      ResonanceCrystal_33: -4827078916310218179
+      ResonanceCrystal_34: -6645648007102234439
+      ResonanceCrystal_35: 4620395630999890693
+      ResonanceCrystal_36: 436853043873176827
+      ResonanceCrystal_37: 3821218555579770170
+      ResonanceCrystal_38: -171624278685424439
+      ResonanceCrystal_39: -115431490648024161
+      ResonanceCrystal_4: -8627076803640747927
+      ResonanceCrystal_40: -8751335183848783319
+      ResonanceCrystal_41: -5595638950366124250
+      ResonanceCrystal_42: 5934142821758814621
+      ResonanceCrystal_43: 1703609113324246125
+      ResonanceCrystal_44: 8301543733970375653
+      ResonanceCrystal_45: -7476776843994007899
+      ResonanceCrystal_46: -8284048415115412425
+      ResonanceCrystal_47: 8623907553451520299
+      ResonanceCrystal_48: 3998781486121216644
+      ResonanceCrystal_49: -1337968949848006727
+      ResonanceCrystal_5: 3945417099671121716
+      ResonanceCrystal_50: -7872444006962803461
+      ResonanceCrystal_51: 5394188220098423223
+      ResonanceCrystal_52: 2595762303359376952
+      ResonanceCrystal_53: 8193590386665390270
+      ResonanceCrystal_54: 5523085610203742389
+      ResonanceCrystal_6: 5495038270648938437
+      ResonanceCrystal_7: 7619315722176504284
+      ResonanceCrystal_8: -8736795287956663518
+      ResonanceCrystal_9: -1095926526520807512
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

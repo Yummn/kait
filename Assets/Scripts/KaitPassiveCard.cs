@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public static readonly Vector2 Size = new Vector2(184, 264);
+    public static readonly Vector2 Size = new Vector2(200, 296);
     public const float DockReveal = 64f;
     public RectTransform Rect { get; private set; }
     public KaitPassive Passive { get; private set; }
@@ -57,9 +57,10 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
         card.surface.Configure(split, hd, Color.white, Color.white, new Color(0.98f, 0.78f, 0.72f), 3f, 8f);
         card.surface.SetRightSprite(flat);
         card.surface.raycastTarget = true;
-        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,51), 68);
-        card.title = card.Label("Name", font, split, new Vector2(0, 88), new Vector2(156, 28), 21, FontStyle.Bold);
-        card.description = card.Label("Description", font, split, new Vector2(0, -57), new Vector2(148, 82), 18);
+        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,30), 68);
+        card.logo.SetIllustrationSize(104);
+        card.title = card.Label("Name", font, split, new Vector2(0, 94), new Vector2(146, 34), 24, FontStyle.Bold);
+        card.description = card.Label("Description", font, split, new Vector2(0, -65), new Vector2(136, 80), 22);
         card.footer = card.Label("Action", font, split, new Vector2(0, -112), new Vector2(156, 23), 15);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
@@ -171,14 +172,16 @@ public sealed class KaitPassiveCard : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         bool readable = IsCandidate || Expanded || IsDragging;
         // The top half is tucked off-screen while docked; keep the card's name visible.
-        title.rectTransform.anchoredPosition=new Vector2(0,readable?101:-94);
-        footer.rectTransform.anchoredPosition=new Vector2(0,readable?-112:-117);
+        title.rectTransform.anchoredPosition=new Vector2(0,readable?114:-94);
+        title.rectTransform.sizeDelta=new Vector2(156,readable?34:28);
+        footer.rectTransform.anchoredPosition=new Vector2(0,readable?-126:-117);
         footer.rectTransform.sizeDelta=new Vector2(156,readable?23:18);
         logo.gameObject.SetActive(readable);
         GetComponent<KaitCardSkin>()?.SetDetailsVisible(readable);
         description.gameObject.SetActive(readable);
         footer.text = Time.unscaledTime < triggerUntil ? $"触发 ×{triggerCount}" : "";
         if(readable&&!string.IsNullOrEmpty(missingRequirement))footer.text=missingRequirement;
+        if(readable&&!string.IsNullOrEmpty(footer.text))GetComponent<KaitCardSkin>()?.SetDetailsVisible(false);
     }
 
     private bool pendingAbility;

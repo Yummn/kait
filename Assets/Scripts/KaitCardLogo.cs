@@ -11,9 +11,21 @@ public sealed class KaitCardLogo : MonoBehaviour
     private HybridStyleGraphic frame, frameFill;
     private Text symbol;
     private Sprite current;
+    private float illustrationSize=104;
     public string AssetName { get; private set; }
     public string FlatSymbol => symbol.text;
     public Vector2 FlatFrameSize => frame.rectTransform.sizeDelta;
+    public void SetIllustrationSize(float size)
+    {
+        // Only enlarge the illustration; keep the minimal-side badge compact.
+        illustrationSize=size;FitIllustration();
+    }
+    private void FitIllustration()
+    {
+        if(picture==null)return;
+        var size=current==null?Vector2.one:current.rect.size;
+        picture.rectTransform.sizeDelta=size*(illustrationSize/Mathf.Max(size.x,size.y));
+    }
 
     public static KaitCardLogo Create(Transform parent, GlobalStyleSplit split, Font font, Vector2 position, float size)
     {
@@ -64,8 +76,8 @@ public sealed class KaitCardLogo : MonoBehaviour
     private void SetGenerated(KaitAbilityDef def)
     {
         picture.SetBlackKeyLeft(YummnCatalog.IsMonk(def)&&YummnRepoolArt.NewIcon(def)==null);
-        var art=KaitCardSkin.Icon(def);
-        if(art!=null) { current=art;picture.SetVisualState(current,Color.white,Color.clear); }
+        var art=KaitCardArt.Fit(KaitCardSkin.Icon(def));
+        if(art!=null) { current=art;picture.SetVisualState(current,Color.white,Color.clear);FitIllustration(); }
         if(YummnCatalog.IsMonk(def))symbol.text=def.sigil;
         else if(def!=null && string.IsNullOrEmpty(symbol.text)) symbol.text=def.nameZh.Substring(0,Mathf.Min(2,def.nameZh.Length));
     }

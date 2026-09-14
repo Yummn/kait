@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: b2f271d233558204db089015f446a1e4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5919611891556858081
+    second: MirrorResonance_0
+  - first:
+      213: 6239222470331145214
+    second: MirrorResonance_1
+  - first:
+      213: -5899667479486274597
+    second: MirrorResonance_2
+  - first:
+      213: -7752869325748058755
+    second: MirrorResonance_3
+  - first:
+      213: -4174368391261698819
+    second: MirrorResonance_4
+  - first:
+      213: -24113665781900311
+    second: MirrorResonance_5
+  - first:
+      213: 6693726891992311945
+    second: MirrorResonance_6
+  - first:
+      213: -101285025002037626
+    second: MirrorResonance_7
+  - first:
+      213: -1015903302239102864
+    second: MirrorResonance_8
+  - first:
+      213: -5503635105731509442
+    second: MirrorResonance_9
+  - first:
+      213: -4707741825147044212
+    second: MirrorResonance_10
+  - first:
+      213: 3857575349906143509
+    second: MirrorResonance_11
+  - first:
+      213: 8765575249524201842
+    second: MirrorResonance_12
+  - first:
+      213: -2430994996672938900
+    second: MirrorResonance_13
+  - first:
+      213: 8908802311101646362
+    second: MirrorResonance_14
+  - first:
+      213: -8999435194855333935
+    second: MirrorResonance_15
+  - first:
+      213: 2060053835806581379
+    second: MirrorResonance_16
+  - first:
+      213: -151291147576398298
+    second: MirrorResonance_17
+  - first:
+      213: -6060972869914488425
+    second: MirrorResonance_18
+  - first:
+      213: 2638996227702617740
+    second: MirrorResonance_19
+  - first:
+      213: 1127455730281996123
+    second: MirrorResonance_20
+  - first:
+      213: 4336110792646123617
+    second: MirrorResonance_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MirrorResonance_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 493
+        width: 271
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8bc64e6afa62250800000000000000
+      internalID: 5919611891556858081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_1
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 493
+        width: 376
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb19baa7cb269650800000000000000
+      internalID: 6239222470331145214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_2
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 486
+        width: 393
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd3eb486fab202ea0800000000000000
+      internalID: -5899667479486274597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_3
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 455
+        width: 207
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d75c3c8bc66486490800000000000000
+      internalID: -7752869325748058755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_4
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 765
+        width: 37
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df44a3d901aa116c0800000000000000
+      internalID: -4174368391261698819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_5
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 475
+        width: 291
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eb56dcafb45aaff0800000000000000
+      internalID: -24113665781900311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 547
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9886ea4b425e4ec50800000000000000
+      internalID: 6693726891992311945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_7
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 493
+        width: 142
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68edfaf6ec9289ef0800000000000000
+      internalID: -101285025002037626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_8
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 548
+        width: 26
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07854ef3459c6e1f0800000000000000
+      internalID: -1015903302239102864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_9
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 549
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e330185e7092f93b0800000000000000
+      internalID: -5503635105731509442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_10
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 455
+        width: 158
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8e7cd1b0cdbaaeb0800000000000000
+      internalID: -4707741825147044212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_11
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 39
+        width: 398
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5197579a75cd88530800000000000000
+      internalID: 3857575349906143509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_12
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 40
+        width: 398
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27998d75f3495a970800000000000000
+      internalID: 8765575249524201842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_13
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 366
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6cbe843eee534ed0800000000000000
+      internalID: -2430994996672938900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_14
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 42
+        width: 398
+        height: 353
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a168467408c62ab70800000000000000
+      internalID: 8908802311101646362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_15
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 365
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dfdf7f0f559b1380800000000000000
+      internalID: -8999435194855333935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_16
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 54
+        width: 357
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 382ae6d8c08c69c10800000000000000
+      internalID: 2060053835806581379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_17
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 168
+        width: 45
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e2c0bb08186edf0800000000000000
+      internalID: -151291147576398298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_18
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 108
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7919777894913eba0800000000000000
+      internalID: -6060972869914488425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_19
+      rect:
+        serializedVersion: 2
+        x: 1719
+        y: 110
+        width: 26
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c867fcb46199f9420800000000000000
+      internalID: 2638996227702617740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_20
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 150
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5fdf6f530785af00800000000000000
+      internalID: 1127455730281996123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorResonance_21
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 30
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160e86ecac5fc2c30800000000000000
+      internalID: 4336110792646123617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MirrorResonance_0: 5919611891556858081
+      MirrorResonance_1: 6239222470331145214
+      MirrorResonance_10: -4707741825147044212
+      MirrorResonance_11: 3857575349906143509
+      MirrorResonance_12: 8765575249524201842
+      MirrorResonance_13: -2430994996672938900
+      MirrorResonance_14: 8908802311101646362
+      MirrorResonance_15: -8999435194855333935
+      MirrorResonance_16: 2060053835806581379
+      MirrorResonance_17: -151291147576398298
+      MirrorResonance_18: -6060972869914488425
+      MirrorResonance_19: 2638996227702617740
+      MirrorResonance_2: -5899667479486274597
+      MirrorResonance_20: 1127455730281996123
+      MirrorResonance_21: 4336110792646123617
+      MirrorResonance_3: -7752869325748058755
+      MirrorResonance_4: -4174368391261698819
+      MirrorResonance_5: -24113665781900311
+      MirrorResonance_6: 6693726891992311945
+      MirrorResonance_7: -101285025002037626
+      MirrorResonance_8: -1015903302239102864
+      MirrorResonance_9: -5503635105731509442
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

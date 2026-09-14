@@ -83,8 +83,7 @@ public sealed partial class KaitGame
         yield return new WaitForSecondsRealtime(.06f);CaptureCanvasToPng(path+".effects.png");
         run.Yummn.icePillar=new Vector2Int(3,3);run.Yummn.darkness=new Vector2Int(4,4);
         run.Yummn.palmEnemyId=902;run.Yummn.palmDirection=Vector2Int.right;RefreshAll();
-        int darkIndex=4+4*7;
-        if(yummnDarkness.transform.parent!=battleCells[darkIndex].transform||yummnDarkness.transform.GetSiblingIndex()>=battleWarningLines[darkIndex].transform.parent.GetSiblingIndex())Debug.LogError("YUMMN_QA: darkness covers attack warnings");
+        if(yummnDarkness.transform.parent!=battleEffectLayer||battleEffectLayer.GetSiblingIndex()<=battleKaitLayer.GetSiblingIndex())Debug.LogError("YUMMN_QA: darkness is not above actors");
         CaptureCanvasToPng(path+".terrain.png");
         for(int kind=0;kind<12;kind++)PlayV08Fx(new Vector2Int(2+kind%4,1+kind/4),kind,KaitDirection.Right,82);
         foreach(var effect in battleEnemyHitLayer.GetComponentsInChildren<YummnV08Effect>())if(effect.sprite==null)Debug.LogError("YUMMN_QA: V08 empty first frame");

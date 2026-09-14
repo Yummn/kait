@@ -11,17 +11,18 @@ public sealed partial class KaitRun
         switch(a.actionOverride)
         {
             case "Thunder":
+                YummnTerrainEvent(r,"ThunderWave",katePos);
                 var pushes=new List<KeyValuePair<KaitEnemy,Vector2Int>>();
                 foreach(var offset in YummnDirections){var enemy=EnemyAt(katePos+offset);if(enemy!=null)pushes.Add(new KeyValuePair<KaitEnemy,Vector2Int>(enemy,offset));}
                 foreach(var push in pushes)ForceYummnEnemy(push.Key,push.Value,1,r);return;
             case "Sonic":
-                a.didAttack=true;
+                a.didAttack=true;YummnTerrainEvent(r,"SonicBurst",a.targetCell);
                 if((Yummn.icePillar-a.targetCell).sqrMagnitude<=1){YummnTerrainEvent(r,"IceExpired",Yummn.icePillar);Yummn.icePillar=YummnRun.NoCell;}
                 YummnDamagePacket(enemies.FindAll(enemy=>enemy.life!=KaitEnemyLife.Dead&&(enemy.pos-a.targetCell).sqrMagnitude<=1),1,Vector2Int.zero,YummnDamageCause.Sonic,r);
                 return;
-            case "Mirror":CreateYummnSpellEcho(a.targetCell,r);return;
-            case "CommandAct":ResolveYummnCommandActor(EnemyAt(a.targetCell),r);return;
-            case "MageHand":threat[a.targetCell.x,a.targetCell.y]=threatTwoBirth[a.targetCell.x,a.targetCell.y]=0;return;
+            case "Mirror":YummnTerrainEvent(r,"MirrorCreate",a.targetCell);CreateYummnSpellEcho(a.targetCell,r);return;
+            case "CommandAct":YummnTerrainEvent(r,"CommandAct",a.targetCell);ResolveYummnCommandActor(EnemyAt(a.targetCell),r);return;
+            case "MageHand":r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="MageHandCast",to=a.targetCell,actionId=Yummn.actionId});threat[a.targetCell.x,a.targetCell.y]=threatTwoBirth[a.targetCell.x,a.targetCell.y]=0;return;
             case "Precise":MoveYummnPlayer(a.targetCell,YummnMoveCause.Player,r);return;
             case "Phantom":MoveYummnPlayer(a.targetCell,YummnMoveCause.Teleport,r);return;
             case "Echo":
@@ -29,7 +30,7 @@ public sealed partial class KaitRun
                 if(echo!=null){echo.alive=false;r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.AfterimageCleared,markerId=echo.id,to=echo.cell});}
                 MoveYummnPlayer(a.targetCell,YummnMoveCause.Teleport,r);YummnTerrainEvent(r,"ShadowStep",a.targetCell);return;
             case "Heal":
-                int heal=Mathf.Min(1,config.kateMaxHp-kateHp);kateHp+=heal;Yummn.metrics.heals+=heal;RepoolStatus(r,"Heal",katePos,heal);return;
+                int heal=Mathf.Min(1,KateMaxHp-kateHp);kateHp+=heal;Yummn.metrics.heals+=heal;RepoolStatus(r,"Heal",katePos,heal);return;
             case "Decoy":Yummn.decoy=a.targetCell;YummnTerrainEvent(r,"Decoy",a.targetCell);return;
             case "AirRay":
                 a.didAttack=true;var air=FirstYummnRayEnemy(a.direction);
@@ -93,7 +94,6 @@ public sealed partial class KaitRun
     private void ResolveYummnMartialAttack(KaitEnemy e,KaitTurnResult r,bool reaction,YummnAttackOrigin origin)
     {
         if(e==null||e.life==KaitEnemyLife.Dead||ended)return;
-        if(r.yummnAction.phaseAtStart==YummnPhase.Exhausted){if(!reaction)ResolveYummnKick(e,Delta(r.yummnAction.direction),r);return;}
         using(var scope=new YummnEventScope(this,r,YummnAttackFamily.Martial,origin,e.id)) {
         yummnPunchDepth++;
         try {
@@ -102,7 +102,6 @@ public sealed partial class KaitRun
         a.didAttack=true;a.mainEnemyId=e.id;r.blockedEnemyCell=e.pos;r.damagedEnemyId=e.id;
         if(!reaction)a.voluntaryAttack=true;
         bool marked=false,actualHit=false;
-        bool oldPalm=Yummn.TryPalm(e.id,out var oldDirection);
         bool frozenAtStart=e.yummnFrozen;
         bool doublePunch=HasPassive(KaitPassive.TwinPunch)&&SpendRepoolKi(2,r);
         if(doublePunch){a.attackCostTenths+=20;Yummn.attackSpentTenths+=20;}
@@ -120,13 +119,7 @@ public sealed partial class KaitRun
             if(!marked&&HasPassive(KaitPassive.QuiveringPalm))
             {
                 marked=true;
-                if(oldPalm&&oldDirection!=d)
-                {
-                    Yummn.RemovePalm(e.id);YummnTrigger("O06",r);
-                    if(e.life!=KaitEnemyLife.Dead&&!ended)YummnHit(e,2,d,YummnDamageCause.Quivering,r);
-                    YummnStatusEvent(r,e,"PalmDetonate");
-                }
-                else if(e.life!=KaitEnemyLife.Dead){Yummn.MarkPalm(e.id,d);YummnStatusEvent(r,e,"PalmMark");}
+                ResolveYummnPalmHit(e,d,r);
             }
             if(e.life==KaitEnemyLife.Dead)
             {directKills++;if(!IsHardBlocked(original)&&EnemyAt(original)==null)MoveYummnPlayer(original,YummnMoveCause.KillFollow,r);ResolveYummnSweep(r);break;}
@@ -141,6 +134,17 @@ public sealed partial class KaitRun
         } finally {yummnPunchDepth--;}
         ResolveYummnRangeEntries(r);
         }
+    }
+    private void ResolveYummnPalmHit(KaitEnemy e,Vector2Int direction,KaitTurnResult r)
+    {
+        if(!HasPassive(KaitPassive.QuiveringPalm))return;
+        if(Yummn.TryPalm(e.id,out var previous)&&previous!=direction)
+        {
+            Yummn.RemovePalm(e.id);YummnTrigger("O06",r);
+            if(e.life!=KaitEnemyLife.Dead&&!ended)YummnHit(e,2,direction,YummnDamageCause.Quivering,r);
+            YummnStatusEvent(r,e,"PalmDetonate");
+        }
+        else if(e.life!=KaitEnemyLife.Dead){Yummn.MarkPalm(e.id,direction);YummnStatusEvent(r,e,"PalmMark");}
     }
     private int YummnHit(KaitEnemy e,int damage,Vector2Int direction,YummnDamageCause cause,KaitTurnResult r)
     {

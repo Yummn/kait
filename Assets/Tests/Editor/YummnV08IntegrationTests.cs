@@ -39,7 +39,7 @@ public sealed class YummnV08IntegrationTests
     {
         var r=new KaitRun();r.SelectCharacter(KaitCharacter.Yummn,87,new YummnRulesSnapshot());
         var origin=new Vector2Int(3,3);r.Yummn.icePillar=origin+Vector2Int.right;
-        var intent=(KaitIntent)typeof(KaitRun).GetMethod("BuildYummnArrow",Hidden).Invoke(r,new object[]{origin,Vector2Int.right});
+        var intent=(KaitIntent)typeof(KaitRun).GetMethod("BuildYummnArrow",Hidden).Invoke(r,new object[]{origin,Vector2Int.right,false});
         Assert.IsEmpty(intent.affectedCells);Assert.AreEqual(origin,intent.target);
     }
     [Test] public void AllMonkAssetsAndCuesArePresent()

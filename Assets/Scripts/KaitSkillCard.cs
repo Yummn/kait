@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public static readonly Vector2 Size = new Vector2(184, 264);
+    public static readonly Vector2 Size = new Vector2(200, 296);
     public const float DockReveal = 80f;
     public const float PreviewHoldSeconds = 3f;
     public RectTransform Rect { get; private set; }
@@ -61,12 +61,13 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         card.surface = go.GetComponent<HybridStyleGraphic>();
         card.surface.Configure(split, hd, Color.white, Color.white, new Color(.68f, .82f, .9f), 3, 8);
         card.surface.SetRightSprite(flat); card.surface.raycastTarget = true;
-        card.title = card.Label("Name", font, split, 101, 30, 21, FontStyle.Bold);
-        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,38), 68);
+        card.title = card.Label("Name", font, split, 85, 34, 24, FontStyle.Bold);
+        card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,30), 68);
+        card.logo.SetIllustrationSize(104);
         card.state = card.Label("Availability", font, split, 2, 22, 16, FontStyle.Bold);
-        card.description = card.Label("Effect", font, split, -61, 78, 18);
-        card.description.rectTransform.sizeDelta=new Vector2(148,78);
-        card.footer = card.Label("Gesture", font, split, -110, 24, 15);
+        card.description = card.Label("Effect", font, split, -65, 80, 22);
+        card.description.rectTransform.sizeDelta=new Vector2(156,80);
+        card.footer = card.Label("Gesture", font, split, -127, 24, 15);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
         return card;
@@ -148,9 +149,10 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     private void RefreshText()
     {
         bool readable=ShouldPreviewAt(Time.unscaledTime);
-        title.rectTransform.anchoredPosition=new Vector2(0,readable?88:94);
-        title.rectTransform.sizeDelta=new Vector2(156,readable?26:22);
+        title.rectTransform.anchoredPosition=new Vector2(0,readable?106:94);
+        title.rectTransform.sizeDelta=new Vector2(156,readable?34:22);
         state.rectTransform.anchoredPosition=new Vector2(0,readable?2:73);
+        state.rectTransform.sizeDelta=new Vector2(156,readable?22:18);
         logo.gameObject.SetActive(readable);description.gameObject.SetActive(readable);
         GetComponent<KaitCardSkin>()?.SetDetailsVisible(readable);
         state.text = IsCandidate ? "" : !readable || cooldown > 0 ? $"冷却 {cooldown} 回合" :
@@ -161,8 +163,16 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         footer.text = Time.unscaledTime < feedbackUntil ? feedback : IsCandidate ? "" :
             IsDragging && InCastZone && Ready && !YummnCatalog.IsMonk(def) ? "松手施放" : "";
         if(!string.IsNullOrEmpty(missingRequirement)&&readable)footer.text=missingRequirement;
+        // Expanded cards already show cost/cooldown below. Put temporary prompts
+        // in the footer rather than over the enlarged illustration.
+        if(readable)
+        {
+            if(string.IsNullOrEmpty(footer.text)&&(targeting||cooldown>0))footer.text=state.text;
+            state.text="";
+            GetComponent<KaitCardSkin>()?.SetDetailsVisible(string.IsNullOrEmpty(footer.text));
+        }
     }
-    public bool ShouldPreviewAt(float now) => IsCandidate || IsDragging || (!covered &&
+    public bool ShouldPreviewAt(float now) => IsCandidate || IsDragging || targeting || (!covered &&
         (hovered || pointer != int.MinValue || now < revealUntil));
 
     private void RevealPreview()
@@ -200,7 +210,19 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (e.button != PointerEventData.InputButton.Left || covered || SuppressedClick || IsDragging) return;
         if (pointer != int.MinValue && pointer != e.pointerId) return;
-        if (IsCandidate) choose?.Invoke(this); else RevealPreview();
+        if (IsCandidate) choose?.Invoke(this);
+        else if(cast!=null)
+        {
+            if(cast(this))
+            {
+                // Sync runs inside the callback: targeting=true means this
+                // click armed the card; false means it cancelled preparation.
+                if(targeting){GameAudio.PlayCardPickUp();RevealPreview();}
+                else DismissPreview();
+            }
+            else {Feedback(cooldown>0?$"冷却 {cooldown} 回合":"当前无法施放");GameAudio.PlayInvalid();}
+        }
+        else RevealPreview();
     }
     public void OnBeginDrag(PointerEventData e)
     {

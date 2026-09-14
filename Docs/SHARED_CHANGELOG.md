@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-13（北京时间）。维护者：Yummn全局时序v0.9.0与审批A卡图接入会话。
+最后更新：2026-09-14（北京时间）。维护者：Yummn优先特效音效接入与Android构建会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -11,19 +11,65 @@
 | 工程 | C:/Users/yummn/Downloads/kait |
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
-| 本地规则版本 | 应用0.9.0，Yummn牌池0.9.0-root-action，共56牌（15主动/41被动，11普通/33非凡/12稀有）；规则快照yummn-0.9.0-root-action，独立存档Kait.Run.Yummn.0.9.0。旧存档保留，Kait规则不变 |
+| 本地规则版本 | 应用0.9.7，Android版本码907（APK尚未重打），Yummn牌池0.9.7-palm-kick，共56牌（15主动/41被动，11普通/33非凡/12稀有）；规则快照yummn-0.9.7-palm-kick，独立存档Kait.Run.Yummn.0.9.7。旧存档保留，新规则需新开Yummn局，Kait规则不变 |
 | Git 基线 | 0.9.0源码/卡图/说明提交b381b01已推送origin/master，标签v0.9.0指向同一提交；Release含APK且远端大小与SHA256匹配本地。Yummn/kait保持PUBLIC。后续提交仅补记发布状态；AudioPreviews/VFXPreviews选稿仅本地 |
-| 最近 Windows 构建 | Build/kait.exe；Logs/root090-art-final-build.log包含Kait build created并成功退出；0.9.0时序和56张审批A卡图。resources.assets为2026-09-13 17:16:30，程序集17:11:11；Android现已同步0.9.0 |
+| 最近 Windows 构建 | Build/kait.exe v0.9.7；Logs/palm097-windows.log构建成功退出0；resources.assets与Assembly-CSharp.dll更新于2026-09-14 15:08。震颤掌拳踢共享印记已同步；Android仍为0.9.3 |
 | 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | root090-runtime.log：ROOT090_QA_COMPLETE；实际Windows主先副后、推动/追身/反击链、56张新卡图加载通过，root090-cards.png已看；40项偏好/存档原类型原值还原。R28内部假透明棋盘已本地清理并看图；非Android验收 |
-| 最新 Android | Build/kait-v0.9.0.apk，2026-09-13 17:25:35，253232326字节；root090-android-build.log成功退出0。版本900、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效且与0.8.3相同。SHA256 A21EAF07007A3D16FF6B472796BE98FB76135FF83D33C3A37E3DCD94094A7482。旧0.8.3包保留；ADB无设备，未真机验收，未上传GitHub |
+| 最近视觉运行检查 | yummn-defaults-runtime.log：YUMMN_DEFAULTS_QA_COMPLETE；实际Windows设置页已看，默认7气、按格耗1、击杀回3、有效移动补一个2、气竭回满、高速攻击耗1、移动不额外推进、4开始出怪、气格挡、16得牌；补给选择保留并统一文案，删除项无残留且无文字溢出。40项偏好/存档原类型原值还原；非Android验收 |
+| 最新 Android | Build/kait-v0.9.3.apk，2026-09-14 12:47:46，282111683字节；Logs/android093-build.log构建成功退出0。同步合成联动、设置文字修复、胜利smile循环与前序修改。版本903、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效且与0.9.0证书一致。SHA256 B4B35CCFBB16EA079D9217CA4E432D886872BDD7DDCE69B4E094BC3E1F6648EE。旧0.9.0包保留；ADB无设备，未真机验收，未上传GitHub |
 | Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
+
+UI-20260914-STORYBOOK098：进行中，绘本棋匣界面会话。先将当前0.9.7源码/正式资源与Windows包备份到GitHub，保持PUBLIC；随后实施获批C风格：战斗HUD/控制区/紧凑卡牌、卡框与卡牌大全，保留规则/人物/5x5双盘/双色裁切。拟更新应用0.9.8但不变更0.9.7规则存档。涉及KaitGame布局、Sunlit/GUI皮肤、卡牌组件/卡牌大全、版本与新增绘本主题。已确认Android097构建日志结束、无Unity进程；不新增Android构建，不覆盖其他会话文件。
+
+BUILD-20260914-097-ANDROID：进行中，本会话。当前0.9.7源码打包Android，保留旧APK，验证版本/签名/架构，不改玩法、不上传GitHub。构建入口KaitBuild.BuildAndroidDemo，日志Logs/android097-build.log；启动前无Unity占用。
+
+RULE-20260914-PALM097：完成源码/Windows，本会话。震颤掌共用ResolveYummnPalmHit，拳击和踢击可互相留印/异向引爆，额外2伤、同向保留、免伤不触发，沿用特效音效；卡面/大全/详细说明同步。应用/规则/存档0.9.7，旧存档保留。palm097-tests.xml 12/12专项通过（含四种拳踢组合、冰冻免伤和上轮反应回归），未做本轮视觉验收；palm097-windows.log构建成功退出0。不Android/上传，无Unity占用，收尾发现游戏kait PID22256运行中，未操作该进程。详见v0.9.7-拳踢共享震颤掌.md。
+
+CARDS-20260914-096：完成源码/Windows，本会话。两种反应各耗1气踢击、气竭可用且不足1气不触发；95张双角色卡面文案统一简化，字号和图案放大、按透明边界统一图案尺寸、边框内留白。首页新增角色/稀有度卡牌大全，6张一页。应用/规则/存档更新0.9.6并保留旧存档。cards096-verified-tests.xml针对性9/9通过（不是全量）；cards096-windows-final.log构建成功退出0；repool-runtime.log的CARDS096_QA_COMPLETE验证首页入口、双角色全部稀有度翻页及文本生成，代表截图与游戏内主动/被动卡已看，40项偏好按原类型原值还原。没有Android/上传，无Unity占用。说明见Docs/v0.9.6-卡牌文本与大全.md。
+
+FIX-20260914-RANGE095：完成源码/Windows，本会话。上轮误解为图层遮挡，已撤回0.9.4预警上层及跟随代码，恢复地面图层。Yummn BuildYummnArrow新增瞄准/开火区分：准备和推动重算不被人物/诱饵截短，开火及受伤危险预测仍按当前目标截断，保留墙/冰柱/黑暗阻挡；Kait原已区分，未改。range095-runtime.log双角色均aim=3/fire=1、WARNINGS_QA_COMPLETE，两张贴脸截图已看；旧六兵种/重叠/死亡检查通过，40项偏好还原。range095-windows-final.log构建成功退出0；应用0.9.5/905，伤害规则/存档不变，无Unity占用，未Android/上传。
+
+FIX-20260914-WARNINGS094：完成源码/Windows，本会话。攻击预警原在地砖子层被独立人物层遮住；改为人物上方的独立Battle Attack Warning Overlay，逐帧同步原格位置/大小/缩放，保留圆角细线、透明度、不拦截输入，不改攻击范围。warnings094-runtime.log WARNINGS_QA_COMPLETE，Kait/Yummn站在射线格及重甲占格两张截图已看，线条连续穿过人物；六兵种、重叠、出手及死亡清理既有运行检查通过。40项偏好原类型原值恢复。warnings094-windows.log构建成功退出0；应用0.9.4/904，规则存档不变。无Unity/游戏占用，未Android/上传。
+
+BUILD-20260914-093-ANDROID：完成，本会话。当前0.9.3已打包，日志android093-build.log成功退出0；签名/版本903/ARM64/UnityPlayerActivity核验通过，与旧包证书一致，包体及哈希见快照。旧APK保留，不改玩法、不上传GitHub，无Unity占用。ADB无设备，未真机启动/触摸验收。
+
+ANIM-20260914-SMILE093：完成源码/Windows，本会话。Yummn胜利smile循环，保留终局锁与首次播放后结算，不改失败/Kait动画；应用0.9.3/903，规则存档不变。Logs/smile093-windows.log构建成功退出0；repool-runtime.log VICTORY_SMILE_QA_COMPLETE，实测原轨道连续2.197轮，结算/待机刷新不覆盖不重启，重新开局清锁；40项偏好恢复。未Android/上传，无Unity/游戏占用。
+
+FIX-20260914-SETTINGS092：完成源码/Windows，本会话。五个数值按钮32高扣除上下5边距只剩22，字体行高与Truncate导致整行无网格；改为完整32高、保留水平边距并取消单行纵向截断。实际Windows运行五行及点击刷新均有文字网格，旧22高布局对照均0顶点；Logs/yummn-defaults-runtime.log为YUMMN_DEFAULTS_QA_COMPLETE，yummn-defaults.settings.png已看，无文字超框。40项偏好按原值恢复。首次QA编译使用了不适用的GetMesh重载，已改为当前API后构建成功；Logs/settings092-windows.log退出0。应用0.9.2/版本码902，规则与存档保留0.9.1；无Unity占用，不Android/上传。
+
+RULE-20260914-MERGE091：完成源码/Windows，本会话。法术回响每次真实合成原位额外触发一次完整合成事件，数值不再翻倍、回响不能复制自身；回气/攻击/奖励/裂隙/异次元袋/丰饶之壶/共鸣均走合成流程。共鸣按结果值合成另外两个同值数字，排除本次结果格，不限新旧或相邻，一次触发一对，后续真实合成可继续联动。应用/规则/牌池/新存档递增0.9.1，AGENTS记录以后自动递增；卡面/教程/版本说明同步。merge091-tests.xml 10/10通过；Windows最终构建成功；repool-runtime.log MERGE091_QA_COMPLETE、merge091-result.png实际盘面已看，2+2保留4且另两4变8，正常补2。首次运行断言漏考虑补2占用空格，已修正验证脚本并重跑通过，未改游戏规则。40项偏好原值还原，无Unity/游戏占用；未Android、未上传。详见v0.9.1-合成回响与共鸣水晶.md。
+
+FIX-20260914-VICTORY-SMILE：完成源码/Windows/Android，本会话。胜利smile映射原本存在，但ShowEnd同帧显示92%不透明遮罩；现显式播放Yummn的000000_smile（Kait保留mana_jump），等待Spine实际完成并保留末帧后显示结算。重复ShowEnd不重启，ResetRunPresentation清理终局等待状态。victory-smile-tests.xml 5/5通过；repool-runtime.log为VICTORY_SMILE_QA_COMPLETE，实际Windows的播放中/结算两张截图已看，轨道前进、无待机排队、延迟结算及状态清理通过；40项玩家偏好原类型原值恢复。Windows/Android构建成功，包与签名信息见快照。无Unity/游戏占用，ADB无设备未真机验收，不上传GitHub。
+
+RULE-VFX-20260914-DARKNESS：完成源码/Windows，本会话。黑暗术改为主棋盘25格任选，含人物/敌人/障碍；保留2气、永久单处、阻箭及禁攻击。内置图像生成重绘透明八帧大色块厚边黑雾，显示在人物上层、目标选择标记下方，不拦截输入；卡面与教程同步。原图备份Backups/Darkness-before-20260914。darkness-tests.xml 24/24通过；darkness-build.log构建成功（首次增量编译短暂报目标标记类型缺失，构建系统刷新后自动重编成功，无需改该脚本）。repool-runtime.log为DARKNESS_QA_COMPLETE，darkness-enemy/self两张真实Windows截图已看，覆盖敌人与自身且旧雾清除；40项玩家偏好按原类型原值恢复。无Unity/游戏占用；未Android、未上传。素材路径及完整提示词见黑暗术任意格与卡通黑雾-20260914.md。
+
+UI-20260914-TARGET-VFX-SETTINGS：完成，本会话。按最后要求恢复上一版青金弧光SkillTargetSelector，本轮大色块重绘稿未接入正式资源。修复Yummn设置页文字可见性，统一字体、不透明度与深色描边；规则开关默认全不勾选，勾选表示偏离默认规则，并校正存档读取、UI同步与运行映射。Logs/settings-default-vfx-tests.xml 3/3通过；恢复原特效后Logs/settings-original-target-tests.xml 2/2通过，Unity编译成功。未构建Windows/Android，未上传GitHub。
+
+INPUT-20260914-SKILL-CLICK-TARGET：完成源码与资源，本会话。主动技能卡现在单击即展开并进入准备状态，再点击主棋盘合法目标释放；点击空白、准备时再次点击任一卡牌或等待5秒会取消并立即折叠。保留拖动兼容，但不再要求拖到释放区。移除原来整格蓝色覆盖，新增SkillTargetSelector透明4×2八帧弧光指示，战场标记统一绘制在人物上层且中心透明；方向技能使用完整格隐形点击面，修复有人格子提示/点击被遮挡。法师之手在副盘同样显示目标标记。图像由内置图像生成工具生成并保存至正式Resources，透明采样0–253。Logs/skill-click-target-tests.xml 3/3通过，Logs/skill-click-cancel-test.xml 1/1通过；Unity编译成功。未做运行截图/真机验收，未构建Windows/Android，未上传GitHub。
+
+BUILD-20260914-PRIORITY-FX-ANDROID：完成，本会话。正式接入18组审批特效与7组审批音效，覆盖碎岩撞击、粉碎音波、守卫刻文、法师之手/魔法飞弹、镜影术、命令术，以及雷鸣波、法力珍珠、镜影共鸣、影刃回响、误导术、持久幻影、横扫追击、重力摆锤、共鸣水晶、法术回响和丰饶之壶等事件；碎岩撞击使用本轮重新生成的厚重石材版。新增YummnPriorityEffect统一播放4×2八帧图，事件层按战场/威胁盘定位。Logs/priority-feedback-tests.xml资源导入专项2/2通过；Logs/priorityfx-android-build.log成功退出0，APK、版本、架构、签名及SHA256见最新Android快照。ADB无设备，未真机验收；未清理其他改动，未上传GitHub。
+
+PREVIEW-20260913-PRIORITY-FEEDBACK-GROUP3：完成第三组待选视觉特效，本会话。按反馈重做碎岩撞击与横扫追击：碎岩改为横向挤压撞墙、墙侧开裂及石片反弹，横扫改用现有近战米白/青灰实体拳风，不再使用暗影魔法轨迹；另生成剩余重力摆锤、共鸣水晶、法术回响、丰饶之壶四套。共6张4×2八帧图及6个320×320 GIF保存在VFXPreviews/PriorityFeedback-20260913-Group3。碎岩与壶的烘入棋盘格按此前授权仅做本地背景清理，其余保留原始透明通道；六张均验证RGBA透明范围0–255。只供选稿，未覆盖正式素材、未接入游戏、未构建、未上传GitHub。
+
+RULE-20260913-MIRROR-KI：完成源码、说明与Windows，本会话。镜影共鸣及范围攻击的残影回气去重粒度由“每次攻击一次”改为“攻击编号×残影编号”；每个实际受击残影恢复1气，同一攻击重复结算同一残影不重复回气，诱饵继续使用独立标识。卡面说明、教程、当前设计文档及旧T08测试同步。Logs/mirror-ki-tests.xml与mirror-ki-cross-tests.xml两项专项各1/1通过，分别验证共鸣两影逐个回气/重复攻击去重/新攻击再次回气，以及术士一次覆盖两影恢复2气。宽范围旧YummnV082Tests运行47/66，其中本次导致的旧T08预期已更新并专项通过，其余18项为当前默认规则相对旧0.8.2断言的既有差异，未据此宣称全量通过。Logs/mirror-ki-build.log构建成功退出0，Windows资源与程序集时间见工程快照；Android未更新、未上传。
+
+PREVIEW-20260913-PRIORITY-FEEDBACK-GROUP2：完成第二组待选视觉特效，本会话。生成横扫追击、雷鸣波、法力珍珠、镜影共鸣、影刃回响、误导术、持久幻影七套4×2八帧图；按机制分别突出折返追击、四向推出、合成回气、同步承伤、四邻反刺、目标偏转和持续延长。生成器把棋盘格烘入RGB后，按用户此前授权仅在本地清理背景，七张均验证RGBA透明范围0–255；另生成七个320×320八帧GIF，保存在VFXPreviews/PriorityFeedback-20260913-Group2。只供选稿，未覆盖正式素材、未接入游戏、未构建、未上传GitHub。
+
+PREVIEW-20260913-PRIORITY-SFX-V2：完成第二版待选音效，本会话。碎岩撞击重做为硬裂、坠击与石屑散落；粉碎音波重做为蓄压、爆发与空气回卷；守卫刻文和命令术拆成独立声音，分别强调四向符文封印与短促命令锁定。按用户选择交换现有候选映射：法师之手使用上一版MagicMissile，魔法飞弹使用上一版MageHand。共6条48kHz双声道WAV保存在AudioPreviews/PriorityFeedback-20260913-v2，仅供试听，未覆盖正式素材、未接入游戏、未构建、未上传GitHub。
+
+PREVIEW-20260913-PRIORITY-FEEDBACK：完成待选稿，本会话。内置图像生成8项优先素材：R40借机攻击踢击卡图，以及碎岩护腕、粉碎音波、守卫刻文、魔法飞弹、法师之手、镜影术、命令术·出手七套透明4×2八帧图；原图与小GIF保存在VFXPreviews/PriorityFeedback-20260913。另用本地原创脚本生成6条48kHz双声道试听WAV至AudioPreviews/PriorityFeedback-20260913。只生成预览，未覆盖正式素材、未接入、未构建Windows/Android、未上传GitHub，无Unity占用。
+
+RULE-20260913-YUMMN-DEFAULTS：完成源码/Windows，本会话。把截图组合固化为Yummn新局默认：7气、按格耗1、击杀回3、有效移动至少一格补一个2、气竭回满、高速攻击耗1、移动不额外推进、4开始出怪、气格挡、16得牌；长按连续输入固定开启但不再显示开关。设置移除长按、攻击推进、8出怪、技能阈值选项；补给选择保留，默认有效移动补2，四档文案统一为“每次/有效移动…补一个2”。旧回放继续使用自身序列化规则。最终专项Logs/yummn-defaults-final-tests.xml为12/12通过；前轮相关范围Logs/yummn-defaults-regression.xml共111项、89通过、22失败，包含既有牌池与旧规则/旧教程断言，未宣称全量通过。Logs/yummn-defaults-build.log构建成功；运行日志YUMMN_DEFAULTS_QA_COMPLETE，最终设置截图已看，删除项无残留、布局无溢出，40项玩家偏好/存档按原类型和值恢复。未Android、未上传，无Unity/游戏占用；保留其他未提交改动。
+
+RULE-20260913-EXHAUST-KILL-FOLLOW：完成源码/Windows，本会话。气竭状态主动踢击击杀后自动进入被击杀敌人格，并记为KillFollow及实际移动；不改变借机攻击等反应踢击，防止反应击杀把人物拉走。详细教程同步说明。Logs/exhaust-kill-follow-final-tests.xml为2/2通过；前一轮宽范围旧回归136项116通过20失败，失败均为当前牌池/旧规则断言，另行保留记录，未宣称全量通过。Logs/exhaust-kill-follow-build.log包含Kait build created并退出0，Windows资源22:11:14、程序集22:11:18。未Android、未上传，无Unity/游戏占用；保留其他未提交改动。
+
+UI-20260913-CARD-CENTER：完成，本会话。展开主动卡图68→92、被动68→100，在标题与说明之间的留白中心放置；主动标题避让圆点装饰。标题21→23、正文18→20、耗气/冷却14→16，长文本保留自动适配；简约小标识框维持76×58。底部费用与反馈互斥，避免重叠，修正折叠文字边距。最终布局专项Logs/card-center-layout-tests.xml为5/5通过；前轮34项中32通过，两项旧断言失败为按旧Flurry资源路径查图、所有技能简约符号强制唯一，与本次布局无关，未宣称全量通过。Logs/card-center-final-build.log包含Kait build created并退出0，Windows资源17:57:43、程序集17:57:47；root090-runtime.log为ROOT090_QA_COMPLETE，最终root090-cards.png已看，主动/被动/跨线、标题与底部耗气显示正常，40项玩家偏好及存档按原类型原值恢复。未更新Android、未上传GitHub，无Unity/游戏占用；保留原有历史报告未提交改动。
 
 RELEASE-20260913-ROOT090：完成，本会话。源码/正式资源/说明172个文件提交b381b01已推送，v0.9.0标签核对一致；56个LFS卡图对象上传完成。https://github.com/Yummn/kait/releases/tag/v0.9.0 为开发预览版，包含APK、安装/存档说明、检查范围与已知问题；APK远端state=uploaded、253232326字节，SHA256 A21EAF07007A3D16FF6B472796BE98FB76135FF83D33C3A37E3DCD94094A7482与本地相同。README及版本记录增加新版入口。保持PUBLIC，无Unity占用；缓存、玩家存档和未审批预览不上传。Docs/v0.8.1-四组对照实测.md的历史数据变化来源未核定，保留本地未提交，不覆盖远端旧报告。
 

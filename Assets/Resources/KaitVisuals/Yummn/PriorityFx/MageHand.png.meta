@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: a1fd1243bd4c4db47ab72e6db03c843f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2635784264582093520
+    second: MageHand_0
+  - first:
+      213: -1058234963317316069
+    second: MageHand_1
+  - first:
+      213: -7812973866660603720
+    second: MageHand_2
+  - first:
+      213: 5861619161591725950
+    second: MageHand_3
+  - first:
+      213: 6832461248035361718
+    second: MageHand_4
+  - first:
+      213: -8553425922475722126
+    second: MageHand_5
+  - first:
+      213: -8014509153709627666
+    second: MageHand_6
+  - first:
+      213: -7662442357466588644
+    second: MageHand_7
+  - first:
+      213: 1697141283963494832
+    second: MageHand_8
+  - first:
+      213: 1174114929669420329
+    second: MageHand_9
+  - first:
+      213: 1854548517655441234
+    second: MageHand_10
+  - first:
+      213: -1538519368152347007
+    second: MageHand_11
+  - first:
+      213: -7139152998150379610
+    second: MageHand_12
+  - first:
+      213: 5154633838119946231
+    second: MageHand_13
+  - first:
+      213: -8899788462084221174
+    second: MageHand_14
+  - first:
+      213: 1883245196015593897
+    second: MageHand_15
+  - first:
+      213: -7071574731164331124
+    second: MageHand_16
+  - first:
+      213: -3524801088438854661
+    second: MageHand_17
+  - first:
+      213: 2725564277048873502
+    second: MageHand_18
+  - first:
+      213: 763232855358917024
+    second: MageHand_19
+  - first:
+      213: 3114333025077218662
+    second: MageHand_20
+  - first:
+      213: -3891210503510702798
+    second: MageHand_21
+  - first:
+      213: 4597412582291940654
+    second: MageHand_22
+  - first:
+      213: 9002315245941837247
+    second: MageHand_23
+  - first:
+      213: -8874858921331700940
+    second: MageHand_24
+  - first:
+      213: 6800662035577633577
+    second: MageHand_25
+  - first:
+      213: -5528314130498430177
+    second: MageHand_26
+  - first:
+      213: 217128879290750613
+    second: MageHand_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MageHand_0
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 424
+        width: 350
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03525052d20db6bd0800000000000000
+      internalID: -2635784264582093520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_1
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 773
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b16a29a58e46051f0800000000000000
+      internalID: -1058234963317316069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_2
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 372
+        width: 531
+        height: 497
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b8d846c9adb29390800000000000000
+      internalID: -7812973866660603720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_3
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 378
+        width: 481
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7f3c4f3297a85150800000000000000
+      internalID: 5861619161591725950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_4
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 219
+        width: 378
+        height: 621
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b315ce1e47c1de50800000000000000
+      internalID: 6832461248035361718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_5
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 725
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27a773601702c4980800000000000000
+      internalID: -8553425922475722126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_6
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 638
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee6650c236eb6c090800000000000000
+      internalID: -8014509153709627666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_7
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 463
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a1c43f54989a590800000000000000
+      internalID: -7662442357466588644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_8
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 473
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b16b4481057d8710800000000000000
+      internalID: 1697141283963494832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_9
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 473
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 925bd6cce4b4b4010800000000000000
+      internalID: 1174114929669420329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_10
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 434
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f649d0d0eacb910800000000000000
+      internalID: 1854548517655441234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_11
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 438
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e883d39c416aae0800000000000000
+      internalID: -1538519368152347007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_12
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 424
+        width: 14
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a7e41c4c22acec90800000000000000
+      internalID: -7139152998150379610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_13
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 429
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f709545a20f88740800000000000000
+      internalID: 5154633838119946231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_14
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 33
+        width: 340
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07995dfb899d7480800000000000000
+      internalID: -8899788462084221174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_15
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 0
+        width: 477
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a968752781a22a10800000000000000
+      internalID: 1883245196015593897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_16
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 360
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c835252bf38bcdd90800000000000000
+      internalID: -7071574731164331124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_17
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 13
+        width: 476
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb11b3d514651fc0800000000000000
+      internalID: -3524801088438854661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_18
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 353
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e121ef1f44623d520800000000000000
+      internalID: 2725564277048873502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_19
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 336
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a94398fc3c879a00800000000000000
+      internalID: 763232855358917024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_20
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 295
+        width: 83
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66dcef7c265583b20800000000000000
+      internalID: 3114333025077218662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_21
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 287
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 235c9ffd9a4aff9c0800000000000000
+      internalID: -3891210503510702798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_22
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 35
+        width: 273
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e252c6da26a4dcf30800000000000000
+      internalID: 4597412582291940654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_23
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 211
+        width: 41
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbd42761506aeec70800000000000000
+      internalID: 9002315245941837247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_24
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 166
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43b415205da26d480800000000000000
+      internalID: -8874858921331700940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_25
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 104
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92bf614071ec06e50800000000000000
+      internalID: 6800662035577633577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_26
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 64
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b5edca69b7743b0800000000000000
+      internalID: -5528314130498430177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MageHand_27
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 71
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5969a98b095630300800000000000000
+      internalID: 217128879290750613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MageHand_0: -2635784264582093520
+      MageHand_1: -1058234963317316069
+      MageHand_10: 1854548517655441234
+      MageHand_11: -1538519368152347007
+      MageHand_12: -7139152998150379610
+      MageHand_13: 5154633838119946231
+      MageHand_14: -8899788462084221174
+      MageHand_15: 1883245196015593897
+      MageHand_16: -7071574731164331124
+      MageHand_17: -3524801088438854661
+      MageHand_18: 2725564277048873502
+      MageHand_19: 763232855358917024
+      MageHand_2: -7812973866660603720
+      MageHand_20: 3114333025077218662
+      MageHand_21: -3891210503510702798
+      MageHand_22: 4597412582291940654
+      MageHand_23: 9002315245941837247
+      MageHand_24: -8874858921331700940
+      MageHand_25: 6800662035577633577
+      MageHand_26: -5528314130498430177
+      MageHand_27: 217128879290750613
+      MageHand_3: 5861619161591725950
+      MageHand_4: 6832461248035361718
+      MageHand_5: -8553425922475722126
+      MageHand_6: -8014509153709627666
+      MageHand_7: -7662442357466588644
+      MageHand_8: 1697141283963494832
+      MageHand_9: 1174114929669420329
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

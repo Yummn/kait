@@ -11,6 +11,8 @@ public sealed class KaitMainMenu : MonoBehaviour
     public Button TutorialButton { get; private set; }
     public Button SettingsButton { get; private set; }
     public Button ContinueButton { get; private set; }
+    public Button LibraryButton { get; private set; }
+    public Action OpenLibrary;
     public Button[] CharacterButtons { get; private set; }
     public KaitCharacter Selected { get; private set; }
     public Action<string> ContinueCharacter;
@@ -60,7 +62,8 @@ public sealed class KaitMainMenu : MonoBehaviour
         menu.StartButton = menu.MakeButton(font, rounded, "开始游戏", new Vector2(RowCenter(-56), -56), new Vector2(366,84), true, start);
         menu.TutorialButton = menu.MakeButton(font, rounded, "玩法教程", new Vector2(RowCenter(-157), -157), new Vector2(366,70), false, tutorial);
         menu.SettingsButton = menu.MakeButton(font, rounded, "设置", new Vector2(RowCenter(-250), -250), new Vector2(366,70), false, settings);
-        menu.Label(font,"选择人物后，点击开始或继续",new Vector2(RowCenter(-343),-343),new Vector2(400,36),18,new Color32(181,164,181,255));
+        menu.LibraryButton=menu.MakeButton(font,rounded,"卡牌大全",new Vector2(RowCenter(-343),-343),new Vector2(366,70),false,()=>menu.OpenLibrary?.Invoke());
+        menu.Label(font,"选择人物后，点击开始或继续",new Vector2(RowCenter(-434),-434),new Vector2(400,36),18,new Color32(181,164,181,255));
         menu.Select(PlayerPrefs.GetInt("Kait.Character",0)==1?KaitCharacter.Yummn:KaitCharacter.Kait);
         menu.Fit();
         return menu;

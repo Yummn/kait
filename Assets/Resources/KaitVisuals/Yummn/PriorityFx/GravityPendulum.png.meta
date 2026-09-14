@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: d34527c4092acd74fa1122398720f82c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5941229784710443452
+    second: GravityPendulum_0
+  - first:
+      213: -3841726268372727018
+    second: GravityPendulum_1
+  - first:
+      213: 2262329239502855767
+    second: GravityPendulum_2
+  - first:
+      213: -1635984509882782966
+    second: GravityPendulum_3
+  - first:
+      213: 7085877767883341520
+    second: GravityPendulum_4
+  - first:
+      213: -7663495023476767749
+    second: GravityPendulum_5
+  - first:
+      213: 5061258836371944942
+    second: GravityPendulum_6
+  - first:
+      213: 4267087332155074176
+    second: GravityPendulum_7
+  - first:
+      213: -4604965856380175220
+    second: GravityPendulum_8
+  - first:
+      213: 2514806145432931985
+    second: GravityPendulum_9
+  - first:
+      213: 6695547261767322573
+    second: GravityPendulum_10
+  - first:
+      213: -4579914238395012538
+    second: GravityPendulum_11
+  - first:
+      213: 7901622188899219256
+    second: GravityPendulum_12
+  - first:
+      213: -2169144713250986088
+    second: GravityPendulum_13
+  - first:
+      213: 1354789892846176666
+    second: GravityPendulum_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GravityPendulum_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 459
+        width: 453
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e0d512df28c8da0800000000000000
+      internalID: -5941229784710443452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 34
+        width: 433
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b4b5130527faac0800000000000000
+      internalID: -3841726268372727018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_2
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 424
+        width: 439
+        height: 455
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e1c8df478656f10800000000000000
+      internalID: 2262329239502855767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_3
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 0
+        width: 435
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0b256e81c0db49e0800000000000000
+      internalID: -1635984509882782966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_4
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 448
+        width: 362
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de368c8948165260800000000000000
+      internalID: 7085877767883341520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_5
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 424
+        width: 36
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf381bb01ebc5a590800000000000000
+      internalID: -7663495023476767749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_6
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 416
+        width: 465
+        height: 459
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee5b14298143d3640800000000000000
+      internalID: 5061258836371944942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_7
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 0
+        width: 432
+        height: 413
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0862ca2125db73b30800000000000000
+      internalID: 4267087332155074176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_8
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 354
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8c38a7a3ffd710c0800000000000000
+      internalID: -4604965856380175220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_9
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 31
+        width: 423
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19ecf718dd266e220800000000000000
+      internalID: 2514806145432931985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_10
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 280
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcb0b7292cc5bec50800000000000000
+      internalID: 6695547261767322573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_11
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 279
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a26bef340e070c0800000000000000
+      internalID: -4579914238395012538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_12
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 186
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837bea6248338ad60800000000000000
+      internalID: 7901622188899219256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_13
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 47
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 897224c3066a5e1e0800000000000000
+      internalID: -2169144713250986088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravityPendulum_14
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 37
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99c264ca3e2dc210800000000000000
+      internalID: 1354789892846176666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GravityPendulum_0: -5941229784710443452
+      GravityPendulum_1: -3841726268372727018
+      GravityPendulum_10: 6695547261767322573
+      GravityPendulum_11: -4579914238395012538
+      GravityPendulum_12: 7901622188899219256
+      GravityPendulum_13: -2169144713250986088
+      GravityPendulum_14: 1354789892846176666
+      GravityPendulum_2: 2262329239502855767
+      GravityPendulum_3: -1635984509882782966
+      GravityPendulum_4: 7085877767883341520
+      GravityPendulum_5: -7663495023476767749
+      GravityPendulum_6: 5061258836371944942
+      GravityPendulum_7: 4267087332155074176
+      GravityPendulum_8: -4604965856380175220
+      GravityPendulum_9: 2514806145432931985
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,7 +35,7 @@ public sealed partial class KaitGame
         if(effect==2||effect==7||effect==8||effect==19)
         {
             var go=new GameObject(name,typeof(RectTransform),typeof(YummnV08Effect));
-            go.transform.SetParent(effect==8?battleEnemyHitLayer:battleUnderEffectLayer,false);
+            go.transform.SetParent(effect==7?battleEffectLayer:effect==8?battleEnemyHitLayer:battleUnderEffectLayer,false);
             var animated=go.GetComponent<YummnV08Effect>();animated.rectTransform.sizeDelta=Vector2.one*size;
             animated.InitializePersistent(effect==8?12:effect,effect!=2);return animated;
         }
@@ -47,6 +47,13 @@ public sealed partial class KaitGame
     }
     private void PlaceYummnTerrain(Image image,Vector2Int p)
     {
+        if(image==yummnDarkness)
+        {
+            image.rectTransform.SetParent(battleEffectLayer,false);
+            image.rectTransform.position=YummnCellPosition(p);
+            image.transform.SetAsFirstSibling(); // Above actors; target selectors remain readable on top.
+            return;
+        }
         int index=p.x+p.y*7;var cell=battleCells[index].transform;
         image.rectTransform.SetParent(cell,false);image.rectTransform.anchoredPosition=Vector2.zero;
         int warningIndex=battleWarningLines[index].transform.parent.GetSiblingIndex();

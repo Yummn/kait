@@ -64,10 +64,10 @@ public sealed class KaitCardSkin : MonoBehaviour
             var border=new GameObject("Rarity Outline",typeof(RectTransform),typeof(CanvasRenderer),typeof(KaitCardOutline));border.transform.SetParent(card.transform,false);
             skin.outline=border.GetComponent<KaitCardOutline>();skin.outline.raycastTarget=false;
             var rect=skin.outline.rectTransform;rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.sizeDelta=Vector2.zero;
-            skin.clockIcon=KaitUiGlyph.Create(card.transform,KaitUiGlyph.Symbol.Clock,new Vector2(-12,-94),15);
+            skin.clockIcon=KaitUiGlyph.Create(card.transform,KaitUiGlyph.Symbol.Clock,new Vector2(-12,-125),15);
             var cd=new GameObject("Cooldown Number",typeof(RectTransform),typeof(Text));cd.transform.SetParent(card.transform,false);
-            skin.cooldown=cd.GetComponent<Text>();skin.cooldown.font=font;skin.cooldown.fontSize=14;skin.cooldown.alignment=TextAnchor.MiddleCenter;skin.cooldown.raycastTarget=false;
-            skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-94);skin.cooldown.rectTransform.sizeDelta=new Vector2(26,20);
+            skin.cooldown=cd.GetComponent<Text>();skin.cooldown.font=font;skin.cooldown.fontSize=16;skin.cooldown.alignment=TextAnchor.MiddleCenter;skin.cooldown.raycastTarget=false;
+            skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-107);skin.cooldown.rectTransform.sizeDelta=new Vector2(26,28);
             cd.AddComponent<SunlitSplitText>().Configure(split);
             skin.clockIcon.color=new Color(.66f,.52f,.36f);
         }
@@ -76,13 +76,13 @@ public sealed class KaitCardSkin : MonoBehaviour
         skin.clockIcon.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
         skin.cooldown.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
         skin.cooldown.text=def.cooldown.ToString();
-        skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-94);
-        skin.cooldown.rectTransform.sizeDelta=new Vector2(26,20);
+        skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-125);
+        skin.cooldown.rectTransform.sizeDelta=new Vector2(26,28);
         if(YummnCatalog.IsMonk(def))
         {
             skin.clockIcon.gameObject.SetActive(false);
-            skin.cooldown.rectTransform.anchoredPosition=new Vector2(0,-100);
-            skin.cooldown.rectTransform.sizeDelta=new Vector2(138,22);
+            skin.cooldown.rectTransform.anchoredPosition=new Vector2(0,-125);
+            skin.cooldown.rectTransform.sizeDelta=new Vector2(138,28);
             skin.cooldown.text=def.kind==KaitAbilityKind.Active?"耗气 "+def.kiExtraCost:def.traditionTag;
         }
     }

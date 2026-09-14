@@ -1,4 +1,4 @@
-param([switch]$CardNames,[switch]$PunchUnified,[switch]$DragTarget)
+param([switch]$CardNames,[switch]$PunchUnified,[switch]$DragTarget,[switch]$Darkness,[switch]$VictorySmile,[switch]$Merge091,[switch]$Cards096)
 $ErrorActionPreference = 'Stop'
 $project = Split-Path -Parent $PSScriptRoot
 $key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Software\KaitPrototype\Kait', $true)
@@ -11,6 +11,10 @@ try {
     if($CardNames){$qaArgs+=' -cardNamesQA 1'}
     if($PunchUnified){$qaArgs+=' -punchUnifiedQA 1'}
     if($DragTarget){$qaArgs+=' -dragTargetQA 1'}
+    if($Darkness){$qaArgs+=' -darknessQA 1'}
+    if($VictorySmile){$qaArgs+=' -victorySmileQA 1'}
+    if($Merge091){$qaArgs+=' -merge091QA 1'}
+    if($Cards096){$qaArgs+=' -cards096QA 1'}
     $proc = Start-Process -FilePath (Join-Path $project 'Build/kait.exe') -ArgumentList $qaArgs -WindowStyle Hidden -PassThru
     if (!$proc.WaitForExit(45000)) { Stop-Process -Id $proc.Id; $proc.WaitForExit(); throw "QA timed out: PID $($proc.Id)" }
     if ($proc.ExitCode -ne 0) { throw "Player exit $($proc.ExitCode)" }
@@ -26,5 +30,6 @@ try {
     $key.Close()
 }
 $log = Get-Content -LiteralPath (Join-Path $project 'Logs/repool-runtime.log')
-if (!($log -match 'REPOOL_QA_COMPLETE') -or ($log -match 'REPOOL_QA:|NullReferenceException|MissingReferenceException|Shader error')) { throw 'Runtime QA failed; inspect log.' }
-Write-Output 'REPOOL_QA_COMPLETE'
+$completion = if($Cards096){'CARDS096_QA_COMPLETE'}elseif($Merge091){'MERGE091_QA_COMPLETE'}elseif($VictorySmile){'VICTORY_SMILE_QA_COMPLETE'}elseif($Darkness){'DARKNESS_QA_COMPLETE'}else{'REPOOL_QA_COMPLETE'}
+if (!($log -match $completion) -or ($log -match 'CARDS096_QA:|REPOOL_QA:|DARKNESS_QA:|VICTORY_QA:|MERGE091_QA:|NullReferenceException|MissingReferenceException|Shader error')) { throw 'Runtime QA failed; inspect log.' }
+Write-Output $completion

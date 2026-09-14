@@ -7,6 +7,7 @@ public sealed partial class KaitRun
 {
     public KaitCharacter Character { get; private set; }
     public bool IsYummn => Character==KaitCharacter.Yummn;
+    public int KateMaxHp=>IsYummn?Yummn.rules.MaxHp:config.kateMaxHp;
     public string RulesProfileId => IsYummn?Yummn.rules.Version:"Kait.0.6.1";
     public readonly YummnRun Yummn=new YummnRun();
     public int Ki=>Yummn.ki;
@@ -140,7 +141,7 @@ public sealed partial class KaitRun
             case "Decoy":if(!YummnEmpty(next))error="诱饵需要空格";else ctx.targetCell=next;break;
             case "Winter":if(FirstYummnRayEnemy(dir,2)==null)error="前方两格没有目标";break;
             case "Ice":if(!YummnEmpty(next)||PendingBossCell==next)error="不能在此处升起冰柱";else ctx.targetCell=next;break;
-            case "Darkness":if(!YummnEmpty(next))error="暗幕需要相邻空格";else ctx.targetCell=next;break;
+            case "Darkness":if(!IsLegalSkillCell(KaitSkill.Darkness,next))error="请选择主棋盘内的格子";else ctx.targetCell=next;break;
             case "Shadow":ctx.targetCell=ShadowDestination(dir);if(ctx.targetCell.x<0)error="该方向没有空阴影格";break;
             default:if(IsHardBlocked(next)&&!YummnThreatCanChange(ctx.threatDirection)&&!(Yummn.rules.Is082&&Yummn.rules.Supply==YummnTileSupplyMode.EveryAction))error="两盘均无法响应";break;
         }
@@ -219,7 +220,7 @@ public sealed partial class KaitRun
         else if(KiPhase==YummnPhase.Exhausted&&!r.yummnAction.kiGuardTriggered&&Ki>=(Yummn.rules.ExhaustionNeedsFullKi?Yummn.profile.maxKi:1))
         {
             Yummn.phase=YummnPhase.Burst;
-            if(HasPassive(KaitPassive.Wholeness)){int heal=Mathf.Min(1,config.kateMaxHp-kateHp);kateHp+=heal;Yummn.metrics.heals+=heal;YummnTrigger("O05",r);RepoolStatus(r,"Heal",katePos,heal);}
+            if(HasPassive(KaitPassive.Wholeness)){int heal=Mathf.Min(1,KateMaxHp-kateHp);kateHp+=heal;Yummn.metrics.heals+=heal;YummnTrigger("O05",r);RepoolStatus(r,"Heal",katePos,heal);}
             r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="Burst",actionId=Yummn.actionId});
         }
     }

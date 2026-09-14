@@ -225,7 +225,7 @@ public sealed partial class KaitRun
         }
         ResetYummnTurn();
         EvaluateEmptyMapReachability();
-        katePos = FindOpenNearCenter(); kateHp = config.kateMaxHp;
+        katePos = FindOpenNearCenter(); kateHp = KateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
         LockEnemyIntents();
     }

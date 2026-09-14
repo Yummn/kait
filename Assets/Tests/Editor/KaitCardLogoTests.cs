@@ -5,6 +5,43 @@ using UnityEngine.UI;
 
 public sealed class KaitCardLogoTests
 {
+    [TestCase(false)]
+    [TestCase(true)]
+    public void ExpandedIllustrationFillsTheCenteredWhitespace(bool passive)
+    {
+        var root=new GameObject("Root",typeof(RectTransform));
+        try
+        {
+            var area=root.GetComponent<RectTransform>();area.sizeDelta=new Vector2(1920,1080);
+            var font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            Transform card;
+            if(passive)
+            {
+                var c=KaitPassiveCard.Create(area,null,font,null,null,null,null);
+                c.Show(KaitPassive.BirdEye,true,Vector2.zero,0);card=c.transform;
+            }
+            else
+            {
+                var c=KaitSkillCard.Create(area,null,font,null,null,null,null,null);
+                c.Show(KaitSkill.SwiftBoots,true,Vector2.zero,0);card=c.transform;
+            }
+            var title=card.Find("Name").GetComponent<Text>();
+            var body=card.Find(passive?"Description":"Effect").GetComponent<Text>();
+            var logo=card.Find("Card Logo").GetComponent<RectTransform>();
+            var art=logo.Find("Cartoon Logo").GetComponent<RectTransform>();
+            float titleBottom=title.rectTransform.anchoredPosition.y-title.rectTransform.rect.height/2;
+            float bodyTop=body.rectTransform.anchoredPosition.y+body.rectTransform.rect.height/2;
+            Assert.AreEqual((titleBottom+bodyTop)/2,logo.anchoredPosition.y,.01f);
+            float artSize=passive?100:92;
+            Assert.AreEqual(Vector2.one*artSize,art.sizeDelta);
+            Assert.Less(logo.anchoredPosition.y+artSize/2,titleBottom);
+            Assert.Greater(logo.anchoredPosition.y-artSize/2,bodyTop);
+            Assert.AreEqual(23,title.resizeTextMaxSize);Assert.AreEqual(20,body.resizeTextMaxSize);
+            Assert.AreEqual(new Vector2(76,58),logo.GetComponent<KaitCardLogo>().FlatFrameSize);
+        }
+        finally { UnityEngine.Object.DestroyImmediate(root); }
+    }
+
     [Test]
     public void EveryCardHasAnIndependentIllustration()
     {
@@ -37,6 +74,8 @@ public sealed class KaitCardLogoTests
             logo.Show(KaitSkill.SwiftBoots);
             Assert.AreEqual("SwiftBoots",logo.AssetName); Assert.AreEqual("+1",logo.FlatSymbol);
             Assert.AreEqual(new Vector2(76,58),logo.FlatFrameSize);
+            logo.SetIllustrationSize(100);
+            Assert.AreEqual(new Vector2(76,58),logo.FlatFrameSize,"Enlarging the illustration must not enlarge the simple badge");
             foreach(var graphic in logo.GetComponentsInChildren<Graphic>()) Assert.IsFalse(graphic.raycastTarget);
             Assert.AreEqual(0,logo.GetComponentsInChildren<Button>().Length);
             Assert.AreEqual(0,logo.GetComponentsInChildren<Mask>().Length);

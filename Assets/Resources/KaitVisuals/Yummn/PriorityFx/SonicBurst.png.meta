@@ -1,0 +1,2314 @@
+fileFormatVersion: 2
+guid: 23ab5c574cacbb547a3544558c21473e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8853224966866556654
+    second: SonicBurst_0
+  - first:
+      213: 2396265383278269618
+    second: SonicBurst_1
+  - first:
+      213: -617710771072995795
+    second: SonicBurst_2
+  - first:
+      213: -472923355516118329
+    second: SonicBurst_3
+  - first:
+      213: 6911947474168077929
+    second: SonicBurst_4
+  - first:
+      213: -5381910254116021608
+    second: SonicBurst_5
+  - first:
+      213: 1597471544458388118
+    second: SonicBurst_6
+  - first:
+      213: -3121768718022362438
+    second: SonicBurst_7
+  - first:
+      213: 4354161274086662180
+    second: SonicBurst_8
+  - first:
+      213: 2518001646188223407
+    second: SonicBurst_9
+  - first:
+      213: -1505263244673060936
+    second: SonicBurst_10
+  - first:
+      213: -3750772677002432125
+    second: SonicBurst_11
+  - first:
+      213: 8239108245452578925
+    second: SonicBurst_12
+  - first:
+      213: 4657807922069204505
+    second: SonicBurst_13
+  - first:
+      213: -4726742796949409730
+    second: SonicBurst_14
+  - first:
+      213: 6478663382338766630
+    second: SonicBurst_15
+  - first:
+      213: 1162621479156502372
+    second: SonicBurst_16
+  - first:
+      213: 5095030602126382678
+    second: SonicBurst_17
+  - first:
+      213: 8510970587395128624
+    second: SonicBurst_18
+  - first:
+      213: -6912247873954336064
+    second: SonicBurst_19
+  - first:
+      213: 11165908918105921
+    second: SonicBurst_20
+  - first:
+      213: -1409638486552046701
+    second: SonicBurst_21
+  - first:
+      213: -2871843356573488885
+    second: SonicBurst_22
+  - first:
+      213: 1650166530821055964
+    second: SonicBurst_23
+  - first:
+      213: 7996763554550951345
+    second: SonicBurst_24
+  - first:
+      213: 5332057013319672413
+    second: SonicBurst_25
+  - first:
+      213: -4754816517540532508
+    second: SonicBurst_26
+  - first:
+      213: -3496255557950490803
+    second: SonicBurst_27
+  - first:
+      213: 7425556331523577135
+    second: SonicBurst_28
+  - first:
+      213: -44775196422737905
+    second: SonicBurst_29
+  - first:
+      213: 1251902599876367853
+    second: SonicBurst_30
+  - first:
+      213: 7198351409959068921
+    second: SonicBurst_31
+  - first:
+      213: 3712258517557932447
+    second: SonicBurst_32
+  - first:
+      213: 5758273665584051614
+    second: SonicBurst_33
+  - first:
+      213: 2687127146857963221
+    second: SonicBurst_34
+  - first:
+      213: -5832089347004175822
+    second: SonicBurst_35
+  - first:
+      213: -919475375213030651
+    second: SonicBurst_36
+  - first:
+      213: -452307584372293314
+    second: SonicBurst_37
+  - first:
+      213: 2674851569602603938
+    second: SonicBurst_38
+  - first:
+      213: -8879151169015777428
+    second: SonicBurst_39
+  - first:
+      213: 5492116385830072729
+    second: SonicBurst_40
+  - first:
+      213: -5600828221514652264
+    second: SonicBurst_41
+  - first:
+      213: -5999263937344558207
+    second: SonicBurst_42
+  - first:
+      213: 6815331888140654654
+    second: SonicBurst_43
+  - first:
+      213: -8871274071059235175
+    second: SonicBurst_44
+  - first:
+      213: 2719878838870894370
+    second: SonicBurst_45
+  - first:
+      213: -2926520236223924845
+    second: SonicBurst_46
+  - first:
+      213: 8620590532405128205
+    second: SonicBurst_47
+  - first:
+      213: -5710900177056238174
+    second: SonicBurst_48
+  - first:
+      213: -4375953001802339745
+    second: SonicBurst_49
+  - first:
+      213: 6695082706652240557
+    second: SonicBurst_50
+  - first:
+      213: -7691671727459343367
+    second: SonicBurst_51
+  - first:
+      213: -3330380961766477279
+    second: SonicBurst_52
+  - first:
+      213: 6065513678827663291
+    second: SonicBurst_53
+  - first:
+      213: 4463602783078050323
+    second: SonicBurst_54
+  - first:
+      213: -2038093601905367551
+    second: SonicBurst_55
+  - first:
+      213: -7979238957058286922
+    second: SonicBurst_56
+  - first:
+      213: 5802202045668521793
+    second: SonicBurst_57
+  - first:
+      213: 4369502561382818909
+    second: SonicBurst_58
+  - first:
+      213: -176302364274433644
+    second: SonicBurst_59
+  - first:
+      213: -8813483533313281970
+    second: SonicBurst_60
+  - first:
+      213: -1401879145215028742
+    second: SonicBurst_61
+  - first:
+      213: -8891486227692038579
+    second: SonicBurst_62
+  - first:
+      213: 995535767205821626
+    second: SonicBurst_63
+  - first:
+      213: 2986986057438635732
+    second: SonicBurst_64
+  - first:
+      213: 7429811229648907993
+    second: SonicBurst_65
+  - first:
+      213: 6552904385924949738
+    second: SonicBurst_66
+  - first:
+      213: 4124896269035126472
+    second: SonicBurst_67
+  - first:
+      213: 8896357565651468025
+    second: SonicBurst_68
+  - first:
+      213: -4269077427464038828
+    second: SonicBurst_69
+  - first:
+      213: -567965560021243687
+    second: SonicBurst_70
+  - first:
+      213: -6557692162922630346
+    second: SonicBurst_71
+  - first:
+      213: -8549755839283008629
+    second: SonicBurst_72
+  - first:
+      213: 4808099637690096992
+    second: SonicBurst_73
+  - first:
+      213: 3840737460701328719
+    second: SonicBurst_74
+  - first:
+      213: 5372346583348414516
+    second: SonicBurst_75
+  - first:
+      213: -9043859248086018154
+    second: SonicBurst_76
+  - first:
+      213: -9003893015930869167
+    second: SonicBurst_77
+  - first:
+      213: -1224157850537942322
+    second: SonicBurst_78
+  - first:
+      213: -5553319302581988360
+    second: SonicBurst_79
+  - first:
+      213: -3282210689630697159
+    second: SonicBurst_80
+  - first:
+      213: 1077071382567491022
+    second: SonicBurst_81
+  - first:
+      213: -8545964973775569678
+    second: SonicBurst_82
+  - first:
+      213: -5819285752026788769
+    second: SonicBurst_83
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SonicBurst_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 391
+        width: 394
+        height: 467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee653b27339fcda70800000000000000
+      internalID: 8853224966866556654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_1
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 777
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4dddd8bae314120800000000000000
+      internalID: 2396265383278269618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_2
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 362
+        width: 429
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2ee24493537d67f0800000000000000
+      internalID: -617710771072995795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_3
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 809
+        width: 14
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cad97cb6b6df69f0800000000000000
+      internalID: -472923355516118329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_4
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 824
+        width: 138
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96e52ff4b9b2cef50800000000000000
+      internalID: 6911947474168077929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_5
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 334
+        width: 456
+        height: 531
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ad162732d9f45b0800000000000000
+      internalID: -5381910254116021608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_6
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 0
+        width: 522
+        height: 875
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 692ac3ae7eb5b2610800000000000000
+      internalID: 1597471544458388118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 807
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abab95b04ef3da4d0800000000000000
+      internalID: -3121768718022362438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_8
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 805
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 420a2b40c961d6c30800000000000000
+      internalID: 4354161274086662180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_9
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 741
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fabd5e0082db1f220800000000000000
+      internalID: 2518001646188223407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_10
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 725
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf6fcfdd0b3c1be0800000000000000
+      internalID: -1505263244673060936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_11
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 741
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381770a6f1492fbc0800000000000000
+      internalID: -3750772677002432125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_12
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 741
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60613ceb41375270800000000000000
+      internalID: 8239108245452578925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_13
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 684
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e6fe280abd3a040800000000000000
+      internalID: 4657807922069204505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_14
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 703
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30b133387c376eb0800000000000000
+      internalID: -4726742796949409730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_15
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 692
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62702a35506d8e950800000000000000
+      internalID: 6478663382338766630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_16
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 694
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46fcc515316722010800000000000000
+      internalID: 1162621479156502372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_17
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 699
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656dc77865f25b640800000000000000
+      internalID: 5095030602126382678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_18
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 690
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03dfb7bf7aa0d1670800000000000000
+      internalID: 8510970587395128624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_19
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 676
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c2b0896e23c210a0800000000000000
+      internalID: -6912247873954336064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_20
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 550
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14778a2c55ba72000800000000000000
+      internalID: 11165908918105921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_21
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 549
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 393985bd345ff6ce0800000000000000
+      internalID: -1409638486552046701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_22
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 513
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b092fd0dea92528d0800000000000000
+      internalID: -2871843356573488885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_23
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 525
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd5e3d187b196e610800000000000000
+      internalID: 1650166530821055964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_24
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 521
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bdaccd85163afe60800000000000000
+      internalID: 7996763554550951345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_25
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 514
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d52ac096a954ff940800000000000000
+      internalID: 5332057013319672413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_26
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 515
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee26d3c19f730eb0800000000000000
+      internalID: -4754816517540532508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_27
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 499
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d473060181eca7fc0800000000000000
+      internalID: -3496255557950490803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_28
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 505
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f259d182420ec0760800000000000000
+      internalID: 7425556331523577135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_29
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 485
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f007972323de06ff0800000000000000
+      internalID: -44775196422737905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_30
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 459
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5d40f18c6af5110800000000000000
+      internalID: 1251902599876367853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_31
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 442
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f4ea07087ea5e360800000000000000
+      internalID: 7198351409959068921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_32
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 441
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91757d0477948330800000000000000
+      internalID: 3712258517557932447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_33
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 418
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e95bf94e36f79ef40800000000000000
+      internalID: 5758273665584051614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_34
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 418
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5de17ce27e79a4520800000000000000
+      internalID: 2687127146857963221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_35
+      rect:
+        serializedVersion: 2
+        x: 1627
+        y: 368
+        width: 35
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23ae97d73a1401fa0800000000000000
+      internalID: -5832089347004175822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_36
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 21
+        width: 473
+        height: 366
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50355b0940e5d33f0800000000000000
+      internalID: -919475375213030651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_37
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 378
+        width: 13
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e31464006a419b9f0800000000000000
+      internalID: -452307584372293314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_38
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 369
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ab2f01a45bfe1520800000000000000
+      internalID: 2674851569602603938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_39
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 356
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c67f1d73e0be6c480800000000000000
+      internalID: -8879151169015777428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_40
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 372
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 991f08221cae73c40800000000000000
+      internalID: 5492116385830072729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_41
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 380
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 895e2a0386cd542b0800000000000000
+      internalID: -5600828221514652264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_42
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 370
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b24c40c355ebca0800000000000000
+      internalID: -5999263937344558207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_43
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 374
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e38140b3e3ce49e50800000000000000
+      internalID: 6815331888140654654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_44
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 372
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e71610c37e2e480800000000000000
+      internalID: -8871274071059235175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_45
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 386
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2276007b463feb520800000000000000
+      internalID: 2719878838870894370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_46
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 368
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39571ebb959e267d0800000000000000
+      internalID: -2926520236223924845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_47
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 15
+        width: 424
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0c6a165a6d72a770800000000000000
+      internalID: 8620590532405128205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_48
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 352
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5f8deeb8eceb0b0800000000000000
+      internalID: -5710900177056238174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_49
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 338
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5a64cdfded7543c0800000000000000
+      internalID: -4375953001802339745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_50
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 353
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa1ed7ef36b9ec50800000000000000
+      internalID: 6695082706652240557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_51
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 348
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f3eedbe051b14590800000000000000
+      internalID: -7691671727459343367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_52
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 321
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1227f2f092c18c1d0800000000000000
+      internalID: -3330380961766477279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_53
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 357
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbfabceed880d2450800000000000000
+      internalID: 6065513678827663291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_54
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 344
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31aefcff417e1fd30800000000000000
+      internalID: 4463602783078050323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_55
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 357
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1062f67daac37b3e0800000000000000
+      internalID: -2038093601905367551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_56
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 362
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba1592c17c044190800000000000000
+      internalID: -7979238957058286922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_57
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 356
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 147fd17e400958050800000000000000
+      internalID: 5802202045668521793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_58
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 305
+        width: 29
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54e160dd6793ac30800000000000000
+      internalID: 4369502561382818909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_59
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 348
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4916c5c0fe5ad8df0800000000000000
+      internalID: -176302364274433644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_60
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 348
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e407b1b1c6730b580800000000000000
+      internalID: -8813483533313281970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_61
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 0
+        width: 324
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af11e6b48568b8ce0800000000000000
+      internalID: -1401879145215028742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_62
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 337
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46532192681b9480800000000000000
+      internalID: -8891486227692038579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_63
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 305
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abcbf75718ad0dd00800000000000000
+      internalID: 995535767205821626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_64
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 311
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d6aca65ef7e37920800000000000000
+      internalID: 2986986057438635732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_65
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 317
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de6e63d2fdfb1760800000000000000
+      internalID: 7429811229648907993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_66
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 293
+        width: 45
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae6e72af1d790fa50800000000000000
+      internalID: 6552904385924949738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_67
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 318
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce3c235d439e3930800000000000000
+      internalID: 4124896269035126472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_68
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 311
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9feb38f2216367b70800000000000000
+      internalID: 8896357565651468025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_69
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 279
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4561e51c2b031c4c0800000000000000
+      internalID: -4269077427464038828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_70
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 281
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d82746155e2e18f0800000000000000
+      internalID: -567965560021243687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_71
+      rect:
+        serializedVersion: 2
+        x: 1576
+        y: 305
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63332a2d8b56ef4a0800000000000000
+      internalID: -6557692162922630346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_72
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 271
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8be63bdc5a295980800000000000000
+      internalID: -8549755839283008629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_73
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 281
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06dd335652dc9b240800000000000000
+      internalID: 4808099637690096992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_74
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 123
+        width: 185
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4573a41f5a0d4530800000000000000
+      internalID: 3840737460701328719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_75
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 271
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43804cee0c86e8a40800000000000000
+      internalID: 5372346583348414516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_76
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 274
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69793372ee1cd7280800000000000000
+      internalID: -9043859248086018154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_77
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 104
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15ae1d5b10fbb0380800000000000000
+      internalID: -9003893015930869167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_78
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 100
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec22ea9bbeae20fe0800000000000000
+      internalID: -1224157850537942322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_79
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 69
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3d74d5485aee2b0800000000000000
+      internalID: -5553319302581988360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_80
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 53
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 939829684ce3372d0800000000000000
+      internalID: -3282210689630697159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_81
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 37
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec59ca347b682fe00800000000000000
+      internalID: 1077071382567491022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_82
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 19
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc3d238222a66980800000000000000
+      internalID: -8545964973775569678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SonicBurst_83
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 19
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5c83ffb07ebd3fa0800000000000000
+      internalID: -5819285752026788769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SonicBurst_0: 8853224966866556654
+      SonicBurst_1: 2396265383278269618
+      SonicBurst_10: -1505263244673060936
+      SonicBurst_11: -3750772677002432125
+      SonicBurst_12: 8239108245452578925
+      SonicBurst_13: 4657807922069204505
+      SonicBurst_14: -4726742796949409730
+      SonicBurst_15: 6478663382338766630
+      SonicBurst_16: 1162621479156502372
+      SonicBurst_17: 5095030602126382678
+      SonicBurst_18: 8510970587395128624
+      SonicBurst_19: -6912247873954336064
+      SonicBurst_2: -617710771072995795
+      SonicBurst_20: 11165908918105921
+      SonicBurst_21: -1409638486552046701
+      SonicBurst_22: -2871843356573488885
+      SonicBurst_23: 1650166530821055964
+      SonicBurst_24: 7996763554550951345
+      SonicBurst_25: 5332057013319672413
+      SonicBurst_26: -4754816517540532508
+      SonicBurst_27: -3496255557950490803
+      SonicBurst_28: 7425556331523577135
+      SonicBurst_29: -44775196422737905
+      SonicBurst_3: -472923355516118329
+      SonicBurst_30: 1251902599876367853
+      SonicBurst_31: 7198351409959068921
+      SonicBurst_32: 3712258517557932447
+      SonicBurst_33: 5758273665584051614
+      SonicBurst_34: 2687127146857963221
+      SonicBurst_35: -5832089347004175822
+      SonicBurst_36: -919475375213030651
+      SonicBurst_37: -452307584372293314
+      SonicBurst_38: 2674851569602603938
+      SonicBurst_39: -8879151169015777428
+      SonicBurst_4: 6911947474168077929
+      SonicBurst_40: 5492116385830072729
+      SonicBurst_41: -5600828221514652264
+      SonicBurst_42: -5999263937344558207
+      SonicBurst_43: 6815331888140654654
+      SonicBurst_44: -8871274071059235175
+      SonicBurst_45: 2719878838870894370
+      SonicBurst_46: -2926520236223924845
+      SonicBurst_47: 8620590532405128205
+      SonicBurst_48: -5710900177056238174
+      SonicBurst_49: -4375953001802339745
+      SonicBurst_5: -5381910254116021608
+      SonicBurst_50: 6695082706652240557
+      SonicBurst_51: -7691671727459343367
+      SonicBurst_52: -3330380961766477279
+      SonicBurst_53: 6065513678827663291
+      SonicBurst_54: 4463602783078050323
+      SonicBurst_55: -2038093601905367551
+      SonicBurst_56: -7979238957058286922
+      SonicBurst_57: 5802202045668521793
+      SonicBurst_58: 4369502561382818909
+      SonicBurst_59: -176302364274433644
+      SonicBurst_6: 1597471544458388118
+      SonicBurst_60: -8813483533313281970
+      SonicBurst_61: -1401879145215028742
+      SonicBurst_62: -8891486227692038579
+      SonicBurst_63: 995535767205821626
+      SonicBurst_64: 2986986057438635732
+      SonicBurst_65: 7429811229648907993
+      SonicBurst_66: 6552904385924949738
+      SonicBurst_67: 4124896269035126472
+      SonicBurst_68: 8896357565651468025
+      SonicBurst_69: -4269077427464038828
+      SonicBurst_7: -3121768718022362438
+      SonicBurst_70: -567965560021243687
+      SonicBurst_71: -6557692162922630346
+      SonicBurst_72: -8549755839283008629
+      SonicBurst_73: 4808099637690096992
+      SonicBurst_74: 3840737460701328719
+      SonicBurst_75: 5372346583348414516
+      SonicBurst_76: -9043859248086018154
+      SonicBurst_77: -9003893015930869167
+      SonicBurst_78: -1224157850537942322
+      SonicBurst_79: -5553319302581988360
+      SonicBurst_8: 4354161274086662180
+      SonicBurst_80: -3282210689630697159
+      SonicBurst_81: 1077071382567491022
+      SonicBurst_82: -8545964973775569678
+      SonicBurst_83: -5819285752026788769
+      SonicBurst_9: 2518001646188223407
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

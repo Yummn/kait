@@ -1,0 +1,2938 @@
+fileFormatVersion: 2
+guid: e20378b95f55e5a4d9bff2fc52761edf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5750372500905478000
+    second: ThunderWave_0
+  - first:
+      213: -6569744127057896543
+    second: ThunderWave_1
+  - first:
+      213: 8488766709922684285
+    second: ThunderWave_2
+  - first:
+      213: -2424217255662093071
+    second: ThunderWave_3
+  - first:
+      213: 8539866348299992377
+    second: ThunderWave_4
+  - first:
+      213: 2755846434871529136
+    second: ThunderWave_5
+  - first:
+      213: 7969570730842538238
+    second: ThunderWave_6
+  - first:
+      213: -7975818400325821665
+    second: ThunderWave_7
+  - first:
+      213: 2239418578921503154
+    second: ThunderWave_8
+  - first:
+      213: -7156322017775973086
+    second: ThunderWave_9
+  - first:
+      213: -1147242145740301622
+    second: ThunderWave_10
+  - first:
+      213: -5442951634128430531
+    second: ThunderWave_11
+  - first:
+      213: 3811029368790852808
+    second: ThunderWave_12
+  - first:
+      213: 4328333892045126086
+    second: ThunderWave_13
+  - first:
+      213: 1152172027713738601
+    second: ThunderWave_14
+  - first:
+      213: -9016775083984712760
+    second: ThunderWave_15
+  - first:
+      213: 8012224005221515881
+    second: ThunderWave_16
+  - first:
+      213: 4176524945700241893
+    second: ThunderWave_17
+  - first:
+      213: -4833780528133180420
+    second: ThunderWave_18
+  - first:
+      213: -1166847264872856546
+    second: ThunderWave_19
+  - first:
+      213: -6557172710226422605
+    second: ThunderWave_20
+  - first:
+      213: -7549575770013875523
+    second: ThunderWave_21
+  - first:
+      213: 4636691377772394638
+    second: ThunderWave_22
+  - first:
+      213: 6921110423611894272
+    second: ThunderWave_23
+  - first:
+      213: -8048053544981147960
+    second: ThunderWave_24
+  - first:
+      213: 5032681276145628711
+    second: ThunderWave_25
+  - first:
+      213: -4737924055755708280
+    second: ThunderWave_26
+  - first:
+      213: -2509780498065683306
+    second: ThunderWave_27
+  - first:
+      213: 6151427523623563435
+    second: ThunderWave_28
+  - first:
+      213: -2940867599589402863
+    second: ThunderWave_29
+  - first:
+      213: 258333827952786458
+    second: ThunderWave_30
+  - first:
+      213: 6538019735748454787
+    second: ThunderWave_31
+  - first:
+      213: -342813069886104798
+    second: ThunderWave_32
+  - first:
+      213: -6797192012958023471
+    second: ThunderWave_33
+  - first:
+      213: 5810596606244385573
+    second: ThunderWave_34
+  - first:
+      213: 5262624761307158809
+    second: ThunderWave_35
+  - first:
+      213: -9074320776292334322
+    second: ThunderWave_36
+  - first:
+      213: -2949136270204199735
+    second: ThunderWave_37
+  - first:
+      213: 3538010619040254803
+    second: ThunderWave_38
+  - first:
+      213: -6616855205380094102
+    second: ThunderWave_39
+  - first:
+      213: 3983204104195258759
+    second: ThunderWave_40
+  - first:
+      213: 5755782161509506986
+    second: ThunderWave_41
+  - first:
+      213: -9111988924480785307
+    second: ThunderWave_42
+  - first:
+      213: 7825347852215528808
+    second: ThunderWave_43
+  - first:
+      213: 1467263365188067433
+    second: ThunderWave_44
+  - first:
+      213: -7817063610959431019
+    second: ThunderWave_45
+  - first:
+      213: -5100104619595031992
+    second: ThunderWave_46
+  - first:
+      213: 3331912574342271434
+    second: ThunderWave_47
+  - first:
+      213: -961593014723639680
+    second: ThunderWave_48
+  - first:
+      213: -2803385976934894926
+    second: ThunderWave_49
+  - first:
+      213: -4748706358257321599
+    second: ThunderWave_50
+  - first:
+      213: 8538508037065197801
+    second: ThunderWave_51
+  - first:
+      213: 4565206713011511783
+    second: ThunderWave_52
+  - first:
+      213: 1081004353824108967
+    second: ThunderWave_53
+  - first:
+      213: 9039804249816314142
+    second: ThunderWave_54
+  - first:
+      213: 3993748182526145528
+    second: ThunderWave_55
+  - first:
+      213: -4690822690361070399
+    second: ThunderWave_56
+  - first:
+      213: 7188658406516888866
+    second: ThunderWave_57
+  - first:
+      213: -3043801707171548247
+    second: ThunderWave_58
+  - first:
+      213: 7087244530345627926
+    second: ThunderWave_59
+  - first:
+      213: -1978210810339573883
+    second: ThunderWave_60
+  - first:
+      213: -8631652161743679056
+    second: ThunderWave_61
+  - first:
+      213: 9015075143417063915
+    second: ThunderWave_62
+  - first:
+      213: -8030581628990305657
+    second: ThunderWave_63
+  - first:
+      213: 6809731669043637171
+    second: ThunderWave_64
+  - first:
+      213: 2664723744132707899
+    second: ThunderWave_65
+  - first:
+      213: -497886846452362220
+    second: ThunderWave_66
+  - first:
+      213: 8679209292718106497
+    second: ThunderWave_67
+  - first:
+      213: -2901642972338508326
+    second: ThunderWave_68
+  - first:
+      213: -7463478157001411214
+    second: ThunderWave_69
+  - first:
+      213: 7422679607078603037
+    second: ThunderWave_70
+  - first:
+      213: 5587720440822659099
+    second: ThunderWave_71
+  - first:
+      213: 6197232872728738093
+    second: ThunderWave_72
+  - first:
+      213: -6361169453288854094
+    second: ThunderWave_73
+  - first:
+      213: 3035606534743003355
+    second: ThunderWave_74
+  - first:
+      213: -1387639756425615005
+    second: ThunderWave_75
+  - first:
+      213: 6868622830174254257
+    second: ThunderWave_76
+  - first:
+      213: 1380813751067666412
+    second: ThunderWave_77
+  - first:
+      213: -4405093783452262080
+    second: ThunderWave_78
+  - first:
+      213: -1076672340951939857
+    second: ThunderWave_79
+  - first:
+      213: 8294769246827818475
+    second: ThunderWave_80
+  - first:
+      213: -4223236997920437964
+    second: ThunderWave_81
+  - first:
+      213: 2571814602136940547
+    second: ThunderWave_82
+  - first:
+      213: -7245931230601786542
+    second: ThunderWave_83
+  - first:
+      213: 4552186589946699182
+    second: ThunderWave_84
+  - first:
+      213: -2873422322968686156
+    second: ThunderWave_85
+  - first:
+      213: -4110250891880105392
+    second: ThunderWave_86
+  - first:
+      213: -1394611823297190394
+    second: ThunderWave_87
+  - first:
+      213: 6734537001797062398
+    second: ThunderWave_88
+  - first:
+      213: 5913996020652710698
+    second: ThunderWave_89
+  - first:
+      213: -265419972740993505
+    second: ThunderWave_90
+  - first:
+      213: -8514959404553053092
+    second: ThunderWave_91
+  - first:
+      213: -8880161202205614852
+    second: ThunderWave_92
+  - first:
+      213: 5978024539714630949
+    second: ThunderWave_93
+  - first:
+      213: -7889216174668061955
+    second: ThunderWave_94
+  - first:
+      213: 7579485098290073503
+    second: ThunderWave_95
+  - first:
+      213: 9216169678081613764
+    second: ThunderWave_96
+  - first:
+      213: -2489915000223448663
+    second: ThunderWave_97
+  - first:
+      213: -7213323243430354925
+    second: ThunderWave_98
+  - first:
+      213: 4582763824904347918
+    second: ThunderWave_99
+  - first:
+      213: -4429738591355289844
+    second: ThunderWave_100
+  - first:
+      213: 1034518378670864948
+    second: ThunderWave_101
+  - first:
+      213: -8024971572265286755
+    second: ThunderWave_102
+  - first:
+      213: -4497138530069114247
+    second: ThunderWave_103
+  - first:
+      213: 5706457849955430758
+    second: ThunderWave_104
+  - first:
+      213: 8346566221574634272
+    second: ThunderWave_105
+  - first:
+      213: 7022200263639571485
+    second: ThunderWave_106
+  - first:
+      213: 389712533530245979
+    second: ThunderWave_107
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ThunderWave_0
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 536
+        width: 187
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 098ba5d5da29230b0800000000000000
+      internalID: -5750372500905478000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_1
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 477
+        width: 373
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ab5181468493d4a0800000000000000
+      internalID: -6569744127057896543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_2
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 443
+        width: 448
+        height: 413
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d5a16e8582ec570800000000000000
+      internalID: 8488766709922684285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_3
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 731
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc73e100437b5ed0800000000000000
+      internalID: -2424217255662093071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_4
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 647
+        width: 84
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93dbbb79233b38670800000000000000
+      internalID: 8539866348299992377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_5
+      rect:
+        serializedVersion: 2
+        x: 1591
+        y: 706
+        width: 23
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0be4b0e3bbbbe3620800000000000000
+      internalID: 2755846434871529136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_6
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 750
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef04838ea5a999e60800000000000000
+      internalID: 7969570730842538238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_7
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 735
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b1e8f2c63305190800000000000000
+      internalID: -7975818400325821665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_8
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 608
+        width: 193
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9b6042553041f10800000000000000
+      internalID: 2239418578921503154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_9
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 705
+        width: 36
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d08286a03afac90800000000000000
+      internalID: -7156322017775973086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_10
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 628
+        width: 54
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acadac7c85d2410f0800000000000000
+      internalID: -1147242145740301622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_11
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 628
+        width: 57
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3a9426a350c674b0800000000000000
+      internalID: -5442951634128430531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_12
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 457
+        width: 91
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c42c5be40f73e430800000000000000
+      internalID: 3811029368790852808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_13
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 621
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c932a80eb4511c30800000000000000
+      internalID: 4328333892045126086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_14
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 590
+        width: 191
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 967d400da565dff00800000000000000
+      internalID: 1152172027713738601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_15
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 568
+        width: 43
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb8f7385dafdd280800000000000000
+      internalID: -9016775083984712760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_16
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 527
+        width: 83
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 962061c3843213f60800000000000000
+      internalID: 8012224005221515881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_17
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 533
+        width: 75
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e145085f4ff5f930800000000000000
+      internalID: 4176524945700241893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_18
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 513
+        width: 29
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf3fb6a5836faecb0800000000000000
+      internalID: -4833780528133180420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_19
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 246
+        width: 158
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e140e1648968ecfe0800000000000000
+      internalID: -1166847264872856546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_20
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 253
+        width: 76
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b49114592e3005a0800000000000000
+      internalID: -6557172710226422605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_21
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 266
+        width: 78
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db24d6726d48a3790800000000000000
+      internalID: -7549575770013875523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_22
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 393
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e887d39ed36d85040800000000000000
+      internalID: 4636691377772394638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_23
+      rect:
+        serializedVersion: 2
+        x: 1526
+        y: 277
+        width: 53
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ae3aab249bc0060800000000000000
+      internalID: 6921110423611894272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_24
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 275
+        width: 50
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce4316f0f19f4090800000000000000
+      internalID: -8048053544981147960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_25
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 342
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7267b64d4fca7d540800000000000000
+      internalID: 5032681276145628711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_26
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 280
+        width: 58
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88827e38c238f3eb0800000000000000
+      internalID: -4737924055755708280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_27
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 348
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69c87943fe77b2dd0800000000000000
+      internalID: -2509780498065683306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_28
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 295
+        width: 29
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba0b427bdb24e5550800000000000000
+      internalID: 6151427523623563435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_29
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 331
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1179403ef70ff27d0800000000000000
+      internalID: -2940867599589402863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_30
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 316
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1cb7907f39c59300800000000000000
+      internalID: 258333827952786458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_31
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 312
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 389a7cb4f46bbba50800000000000000
+      internalID: 6538019735748454787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_32
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 287
+        width: 49
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22bd31944551e3bf0800000000000000
+      internalID: -342813069886104798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_33
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 282
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d0c38590e58ba1a0800000000000000
+      internalID: -6797192012958023471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_34
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 311
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5237948d3d263a050800000000000000
+      internalID: 5810596606244385573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_35
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 296
+        width: 36
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91953eb7659980940800000000000000
+      internalID: 5262624761307158809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_36
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 324
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05062fe459811280800000000000000
+      internalID: -9074320776292334322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_37
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 293
+        width: 41
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc124cff209217d0800000000000000
+      internalID: -2949136270204199735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_38
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 306
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35b447fa9e9891130800000000000000
+      internalID: 3538010619040254803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_39
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 286
+        width: 47
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6700219f353c24a0800000000000000
+      internalID: -6616855205380094102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_40
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 292
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 789bf62670f274730800000000000000
+      internalID: 3983204104195258759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_41
+      rect:
+        serializedVersion: 2
+        x: 1466
+        y: 266
+        width: 66
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aafdd456165a0ef40800000000000000
+      internalID: 5755782161509506986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_42
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 297
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564770fb956bb8180800000000000000
+      internalID: -9111988924480785307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_43
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 292
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86d2c2f3968399c60800000000000000
+      internalID: 7825347852215528808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_44
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 261
+        width: 102
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 960aaf9b144cc5410800000000000000
+      internalID: 1467263365188067433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_45
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 180
+        width: 177
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59a712aff06348390800000000000000
+      internalID: -7817063610959431019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_46
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 188
+        width: 171
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84a95b7bed9c839b0800000000000000
+      internalID: -5100104619595031992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_47
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 202
+        width: 170
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac1145845d45d3e20800000000000000
+      internalID: 3331912574342271434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_48
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 272
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08686e27f3cb7a2f0800000000000000
+      internalID: -961593014723639680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_49
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 264
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2fb749e4f5819d0800000000000000
+      internalID: -2803385976934894926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_50
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 270
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 189fe651ab4391eb0800000000000000
+      internalID: -4748706358257321599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_51
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 280
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e8c61d12dfde7670800000000000000
+      internalID: 8538508037065197801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_52
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 272
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1a747615fda5f30800000000000000
+      internalID: 4565206713011511783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_53
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 272
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a1365e7bbf700f00800000000000000
+      internalID: 1081004353824108967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_54
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 248
+        width: 64
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e113e5df116d37d70800000000000000
+      internalID: 9039804249816314142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_55
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 267
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f335ddefc4ac6730800000000000000
+      internalID: 3993748182526145528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_56
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 262
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ccafacbd99d6eeb0800000000000000
+      internalID: -4690822690361070399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_57
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 269
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 225901ccbbe33c360800000000000000
+      internalID: 7188658406516888866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_58
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 261
+        width: 24
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a3ff4d597e32c5d0800000000000000
+      internalID: -3043801707171548247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_59
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 187
+        width: 135
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611d49bb953fa5260800000000000000
+      internalID: 7087244530345627926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_60
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 267
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f3fdebfbbfb84e0800000000000000
+      internalID: -1978210810339573883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_61
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 168
+        width: 177
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b119826716363880800000000000000
+      internalID: -8631652161743679056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_62
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 190
+        width: 137
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be9e3da341bfb1d70800000000000000
+      internalID: 9015075143417063915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_63
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 257
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78a41486e84ad8090800000000000000
+      internalID: -8030581628990305657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_64
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 34
+        width: 106
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bbe21d9fd6018e50800000000000000
+      internalID: 6809731669043637171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_65
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 208
+        width: 112
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b36349180200bf420800000000000000
+      internalID: 2664723744132707899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_66
+      rect:
+        serializedVersion: 2
+        x: 1618
+        y: 198
+        width: 109
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4141ed21d862719f0800000000000000
+      internalID: -497886846452362220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_67
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 118
+        width: 95
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1876bb70edeb27870800000000000000
+      internalID: 8679209292718106497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_68
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 36
+        width: 87
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add21c8171b4bb7d0800000000000000
+      internalID: -2901642972338508326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_69
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 184
+        width: 77
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2753b0fc8266c6890800000000000000
+      internalID: -7463478157001411214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_70
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 159
+        width: 39
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d19c47d86c7a20760800000000000000
+      internalID: 7422679607078603037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_71
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 191
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b187c6bc2229b8d40800000000000000
+      internalID: 5587720440822659099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_72
+      rect:
+        serializedVersion: 2
+        x: 1423
+        y: 166
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29be51a67ef00650800000000000000
+      internalID: 6197232872728738093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_73
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 197
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bde6acc51698b7a0800000000000000
+      internalID: -6361169453288854094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_74
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 193
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd0163d5f04a02a20800000000000000
+      internalID: 3035606534743003355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_75
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 153
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369aa0a5efc1ebce0800000000000000
+      internalID: -1387639756425615005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_76
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 79
+        width: 52
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4bca09210425f50800000000000000
+      internalID: 6868622830174254257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_77
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 160
+        width: 45
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce7ec5d6ac2a92310800000000000000
+      internalID: 1380813751067666412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_78
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 99
+        width: 62
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 041eb0b0b86fdd2c0800000000000000
+      internalID: -4405093783452262080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_79
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 165
+        width: 11
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4421ad534ee01f0800000000000000
+      internalID: -1076672340951939857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_80
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 113
+        width: 77
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beda103bea0fc1370800000000000000
+      internalID: 8294769246827818475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_81
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 183
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4394aa8735c0465c0800000000000000
+      internalID: -4223236997920437964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_82
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 181
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300f88c21cbe0b320800000000000000
+      internalID: 2571814602136940547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_83
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 44
+        width: 79
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25b4215bfe7417b90800000000000000
+      internalID: -7245931230601786542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_84
+      rect:
+        serializedVersion: 2
+        x: 1645
+        y: 158
+        width: 35
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eadd115c59d9c2f30800000000000000
+      internalID: 4552186589946699182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_85
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 152
+        width: 27
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b116cd0f9d8f18d0800000000000000
+      internalID: -2873422322968686156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_86
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 168
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05af0c3479475f6c0800000000000000
+      internalID: -4110250891880105392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_87
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 152
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606afc88fe755ace0800000000000000
+      internalID: -1394611823297190394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_88
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 113
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe86d6d8b1e57d50800000000000000
+      internalID: 6734537001797062398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_89
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 167
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2b141e0c0cb21250800000000000000
+      internalID: 5913996020652710698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_90
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 150
+        width: 40
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1eaa78e0f9015cf0800000000000000
+      internalID: -265419972740993505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_91
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 130
+        width: 73
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c5eb62989c4d980800000000000000
+      internalID: -8514959404553053092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_92
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 57
+        width: 45
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc145a8f6453c480800000000000000
+      internalID: -8880161202205614852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_93
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 135
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525324c55a536f250800000000000000
+      internalID: 5978024539714630949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_94
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 157
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2e4a020bfd38290800000000000000
+      internalID: -7889216174668061955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_95
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 97
+        width: 29
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9f42fff98dbf2960800000000000000
+      internalID: 7579485098290073503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_96
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 122
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cfd7cb2e7966ef70800000000000000
+      internalID: 9216169678081613764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_97
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 85
+        width: 29
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1c3cadf7b027dd0800000000000000
+      internalID: -2489915000223448663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_98
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 102
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 310e3495ab025eb90800000000000000
+      internalID: -7213323243430354925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_99
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 109
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e012fe01b6f399f30800000000000000
+      internalID: 4582763824904347918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_100
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 115
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0fbd6e88386682c0800000000000000
+      internalID: -4429738591355289844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_101
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 115
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43a3a4afbf85b5e00800000000000000
+      internalID: 1034518378670864948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_102
+      rect:
+        serializedVersion: 2
+        x: 1586
+        y: 96
+        width: 28
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9305868fd291a090800000000000000
+      internalID: -8024971572265286755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_103
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 82
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97212817554f691c0800000000000000
+      internalID: -4497138530069114247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_104
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 96
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66135503e29613f40800000000000000
+      internalID: 5706457849955430758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_105
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 77
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02bfa3ba1c5f4d370800000000000000
+      internalID: 8346566221574634272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_106
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 51
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c14ef3fedd37160800000000000000
+      internalID: 7022200263639571485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThunderWave_107
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 55
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5b76950c79886500800000000000000
+      internalID: 389712533530245979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ThunderWave_0: -5750372500905478000
+      ThunderWave_1: -6569744127057896543
+      ThunderWave_10: -1147242145740301622
+      ThunderWave_100: -4429738591355289844
+      ThunderWave_101: 1034518378670864948
+      ThunderWave_102: -8024971572265286755
+      ThunderWave_103: -4497138530069114247
+      ThunderWave_104: 5706457849955430758
+      ThunderWave_105: 8346566221574634272
+      ThunderWave_106: 7022200263639571485
+      ThunderWave_107: 389712533530245979
+      ThunderWave_11: -5442951634128430531
+      ThunderWave_12: 3811029368790852808
+      ThunderWave_13: 4328333892045126086
+      ThunderWave_14: 1152172027713738601
+      ThunderWave_15: -9016775083984712760
+      ThunderWave_16: 8012224005221515881
+      ThunderWave_17: 4176524945700241893
+      ThunderWave_18: -4833780528133180420
+      ThunderWave_19: -1166847264872856546
+      ThunderWave_2: 8488766709922684285
+      ThunderWave_20: -6557172710226422605
+      ThunderWave_21: -7549575770013875523
+      ThunderWave_22: 4636691377772394638
+      ThunderWave_23: 6921110423611894272
+      ThunderWave_24: -8048053544981147960
+      ThunderWave_25: 5032681276145628711
+      ThunderWave_26: -4737924055755708280
+      ThunderWave_27: -2509780498065683306
+      ThunderWave_28: 6151427523623563435
+      ThunderWave_29: -2940867599589402863
+      ThunderWave_3: -2424217255662093071
+      ThunderWave_30: 258333827952786458
+      ThunderWave_31: 6538019735748454787
+      ThunderWave_32: -342813069886104798
+      ThunderWave_33: -6797192012958023471
+      ThunderWave_34: 5810596606244385573
+      ThunderWave_35: 5262624761307158809
+      ThunderWave_36: -9074320776292334322
+      ThunderWave_37: -2949136270204199735
+      ThunderWave_38: 3538010619040254803
+      ThunderWave_39: -6616855205380094102
+      ThunderWave_4: 8539866348299992377
+      ThunderWave_40: 3983204104195258759
+      ThunderWave_41: 5755782161509506986
+      ThunderWave_42: -9111988924480785307
+      ThunderWave_43: 7825347852215528808
+      ThunderWave_44: 1467263365188067433
+      ThunderWave_45: -7817063610959431019
+      ThunderWave_46: -5100104619595031992
+      ThunderWave_47: 3331912574342271434
+      ThunderWave_48: -961593014723639680
+      ThunderWave_49: -2803385976934894926
+      ThunderWave_5: 2755846434871529136
+      ThunderWave_50: -4748706358257321599
+      ThunderWave_51: 8538508037065197801
+      ThunderWave_52: 4565206713011511783
+      ThunderWave_53: 1081004353824108967
+      ThunderWave_54: 9039804249816314142
+      ThunderWave_55: 3993748182526145528
+      ThunderWave_56: -4690822690361070399
+      ThunderWave_57: 7188658406516888866
+      ThunderWave_58: -3043801707171548247
+      ThunderWave_59: 7087244530345627926
+      ThunderWave_6: 7969570730842538238
+      ThunderWave_60: -1978210810339573883
+      ThunderWave_61: -8631652161743679056
+      ThunderWave_62: 9015075143417063915
+      ThunderWave_63: -8030581628990305657
+      ThunderWave_64: 6809731669043637171
+      ThunderWave_65: 2664723744132707899
+      ThunderWave_66: -497886846452362220
+      ThunderWave_67: 8679209292718106497
+      ThunderWave_68: -2901642972338508326
+      ThunderWave_69: -7463478157001411214
+      ThunderWave_7: -7975818400325821665
+      ThunderWave_70: 7422679607078603037
+      ThunderWave_71: 5587720440822659099
+      ThunderWave_72: 6197232872728738093
+      ThunderWave_73: -6361169453288854094
+      ThunderWave_74: 3035606534743003355
+      ThunderWave_75: -1387639756425615005
+      ThunderWave_76: 6868622830174254257
+      ThunderWave_77: 1380813751067666412
+      ThunderWave_78: -4405093783452262080
+      ThunderWave_79: -1076672340951939857
+      ThunderWave_8: 2239418578921503154
+      ThunderWave_80: 8294769246827818475
+      ThunderWave_81: -4223236997920437964
+      ThunderWave_82: 2571814602136940547
+      ThunderWave_83: -7245931230601786542
+      ThunderWave_84: 4552186589946699182
+      ThunderWave_85: -2873422322968686156
+      ThunderWave_86: -4110250891880105392
+      ThunderWave_87: -1394611823297190394
+      ThunderWave_88: 6734537001797062398
+      ThunderWave_89: 5913996020652710698
+      ThunderWave_9: -7156322017775973086
+      ThunderWave_90: -265419972740993505
+      ThunderWave_91: -8514959404553053092
+      ThunderWave_92: -8880161202205614852
+      ThunderWave_93: 5978024539714630949
+      ThunderWave_94: -7889216174668061955
+      ThunderWave_95: 7579485098290073503
+      ThunderWave_96: 9216169678081613764
+      ThunderWave_97: -2489915000223448663
+      ThunderWave_98: -7213323243430354925
+      ThunderWave_99: 4582763824904347918
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

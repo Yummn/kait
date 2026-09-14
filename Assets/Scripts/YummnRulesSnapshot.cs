@@ -19,7 +19,7 @@ public enum YummnMovementCostMode { PerCell, FixedOne }
     [SerializeField] private bool bossLine;
     // Absent in old replays: preserve their pre-hit/stationary-punch rule.
     [SerializeField] private bool actualMoveSupply;
-    public const string CurrentVersion="yummn-0.9.0-root-action";
+    public const string CurrentVersion="yummn-0.9.7-palm-kick";
     [SerializeField] private int maxKi082,killKi082;
     [SerializeField] private YummnMovementCostMode movementCostMode;
     [SerializeField] private bool attackAdvancesEnemyPhase,exhaustionNeedsFullKi;
@@ -29,8 +29,11 @@ public enum YummnMovementCostMode { PerCell, FixedOne }
     public bool AttackCostsOne=>Is082&&attackCostsOne;
     [SerializeField] private bool kiGuard;
     [SerializeField] private int rewardMergeValue;
+    // Missing in existing v0.9 saves means the historical 3 HP rule.
+    [SerializeField] private int maxHp090;
     // Missing in old saves: retain their 32-point reward cadence.
     public int RewardMergeValue=>Is082&&rewardMergeValue==16?16:32;
+    public int MaxHp=>Is082&&maxHp090==6?6:3;
     public bool KiGuard=>Is082&&kiGuard;
     public int AttackCostTenths=>AttackCostsOne?10:AttackCostsTenth?1:0;
     public bool MovementAdvancesEnemyPhase=>Is082&&movementAdvancesEnemyPhase;
@@ -48,14 +51,15 @@ public enum YummnMovementCostMode { PerCell, FixedOne }
     public bool SpawnFromEight=>spawnFromEight;
     public bool Legacy=>version==YummnRulesProfile.LegacyVersion;
     public bool Valid=>Is082?(rewardMergeValue==0||rewardMergeValue==16||rewardMergeValue==32)&&maxKi082>=3&&maxKi082<=9&&killKi082>=1&&killKi082<=3&&Enum.IsDefined(typeof(YummnMovementCostMode),movementCostMode)&&Enum.IsDefined(typeof(YummnTileSupplyMode),supply):(version==YummnRulesProfile.Version||Legacy)&&supply!=YummnTileSupplyMode.EffectiveMove&&Enum.IsDefined(typeof(YummnTileSupplyMode),supply);
-    public string ScoreKey=>Is082?$"{version}.Ki{MaxKi}.{MovementCostMode}.Kill{KillKi}.Attack{attackAdvancesEnemyPhase}.Full{exhaustionNeedsFullKi}.{supply}.Spawn{(spawnFromEight?8:4)}"+(attackCostsOne?".AttackOne":"")+(attackCostsTenth?".AttackTenth":"")+(movementAdvancesEnemyPhase?".MovePhase":"")+(KiGuard?".KiGuard":"")+(RewardMergeValue==16?".Reward16":""):Legacy?version:version+"."+supply+"."+(spawnFromEight?8:4)+(ExhaustedMoveSupply?".ExhaustedMove":"")+(fiveKi?".Ki5":"")+(killKiOne?".KillKi1":"")+(bossLine?".BossLine":"")+(ActualMoveSupply?".ActualMove":"");
+    public string ScoreKey=>Is082?$"{version}.Hp{MaxHp}.Ki{MaxKi}.{MovementCostMode}.Kill{KillKi}.Attack{attackAdvancesEnemyPhase}.Full{exhaustionNeedsFullKi}.{supply}.Spawn{(spawnFromEight?8:4)}"+(attackCostsOne?".AttackOne":"")+(attackCostsTenth?".AttackTenth":"")+(movementAdvancesEnemyPhase?".MovePhase":"")+(KiGuard?".KiGuard":"")+(RewardMergeValue==16?".Reward16":""):Legacy?version:version+"."+supply+"."+(spawnFromEight?8:4)+(ExhaustedMoveSupply?".ExhaustedMove":"")+(fiveKi?".Ki5":"")+(killKiOne?".KillKi1":"")+(bossLine?".BossLine":"")+(ActualMoveSupply?".ActualMove":"");
     // Explicit compatibility constructor for v0.8.1 replays and comparison tests.
     public YummnRulesSnapshot(YummnTileSupplyMode mode=YummnTileSupplyMode.KillOnly,bool fromEight=false,bool moveSupply=true,bool fiveKi=true,bool killKiOne=false,bool bossLine=true,bool actualMoveSupply=true)
     {version=YummnRulesProfile.Version;supply=mode;spawnFromEight=fromEight;exhaustedMoveSupply=moveSupply;this.fiveKi=fiveKi;this.killKiOne=killKiOne;this.bossLine=bossLine;this.actualMoveSupply=actualMoveSupply;}
     public static YummnRulesSnapshot OldV08()=>new YummnRulesSnapshot{version=YummnRulesProfile.LegacyVersion};
-    public static YummnRulesSnapshot Current(int maxKi=6,YummnMovementCostMode movement=YummnMovementCostMode.PerCell,int killKi=3,bool attackPhase=false,bool fullRecovery=true,YummnTileSupplyMode supply=YummnTileSupplyMode.KillOnly,bool fromEight=false,bool attackTenth=false,bool movePhase=false,bool attackOne=false,bool kiGuard=false,int rewardValue=16)
+    public static YummnRulesSnapshot Current(int maxKi=7,YummnMovementCostMode movement=YummnMovementCostMode.PerCell,int killKi=3,bool attackPhase=false,bool fullRecovery=true,YummnTileSupplyMode supply=YummnTileSupplyMode.EffectiveMove,bool fromEight=false,bool attackTenth=false,bool movePhase=false,bool? attackOne=null,bool kiGuard=true,int rewardValue=16,int maxHp=6)
     {
-        var rules=new YummnRulesSnapshot{version=CurrentVersion,maxKi082=maxKi,killKi082=killKi,movementCostMode=movement,attackAdvancesEnemyPhase=attackPhase,exhaustionNeedsFullKi=fullRecovery,supply=supply,spawnFromEight=fromEight,attackCostsTenth=attackTenth,attackCostsOne=attackOne,movementAdvancesEnemyPhase=movePhase};
+        if(maxHp!=3&&maxHp!=6)throw new ArgumentOutOfRangeException(nameof(maxHp));
+        var rules=new YummnRulesSnapshot{version=CurrentVersion,maxKi082=maxKi,killKi082=killKi,movementCostMode=movement,attackAdvancesEnemyPhase=attackPhase,exhaustionNeedsFullKi=fullRecovery,supply=supply,spawnFromEight=fromEight,attackCostsTenth=attackTenth,attackCostsOne=attackOne??!attackTenth,movementAdvancesEnemyPhase=movePhase,maxHp090=maxHp};
         rules.kiGuard=kiGuard;
         if(rewardValue!=16&&rewardValue!=32)throw new ArgumentOutOfRangeException(nameof(rewardValue));
         rules.rewardMergeValue=rewardValue;

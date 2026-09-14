@@ -1,0 +1,1378 @@
+fileFormatVersion: 2
+guid: c4d4d13e43eb0174f93376c709582f18
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8596615109674671271
+    second: SweepPursuit_0
+  - first:
+      213: -4450965677246127791
+    second: SweepPursuit_1
+  - first:
+      213: -6041738178726113136
+    second: SweepPursuit_2
+  - first:
+      213: 4843946024691355661
+    second: SweepPursuit_3
+  - first:
+      213: 2262492944214960721
+    second: SweepPursuit_4
+  - first:
+      213: 647571741283559298
+    second: SweepPursuit_5
+  - first:
+      213: -395980960720851402
+    second: SweepPursuit_6
+  - first:
+      213: -4193422273292240838
+    second: SweepPursuit_7
+  - first:
+      213: 2834598317607041673
+    second: SweepPursuit_8
+  - first:
+      213: 4672873467807133674
+    second: SweepPursuit_9
+  - first:
+      213: 945049062912222028
+    second: SweepPursuit_10
+  - first:
+      213: 9093092500829758633
+    second: SweepPursuit_11
+  - first:
+      213: 489936837630300956
+    second: SweepPursuit_12
+  - first:
+      213: -8734416987841321444
+    second: SweepPursuit_13
+  - first:
+      213: 3156099305865156675
+    second: SweepPursuit_14
+  - first:
+      213: 2310963004452309426
+    second: SweepPursuit_15
+  - first:
+      213: -2137549548509331591
+    second: SweepPursuit_16
+  - first:
+      213: -3501415791200119386
+    second: SweepPursuit_17
+  - first:
+      213: 3036483730669675061
+    second: SweepPursuit_18
+  - first:
+      213: 3851414090591071968
+    second: SweepPursuit_19
+  - first:
+      213: -5577331867201786183
+    second: SweepPursuit_20
+  - first:
+      213: -2326500270824816601
+    second: SweepPursuit_21
+  - first:
+      213: 1920395143964936010
+    second: SweepPursuit_22
+  - first:
+      213: -6747362306417392643
+    second: SweepPursuit_23
+  - first:
+      213: -6590074247819779752
+    second: SweepPursuit_24
+  - first:
+      213: 1280200976827783551
+    second: SweepPursuit_25
+  - first:
+      213: 2253815775567029556
+    second: SweepPursuit_26
+  - first:
+      213: 7358590927036430218
+    second: SweepPursuit_27
+  - first:
+      213: -3166455820766929514
+    second: SweepPursuit_28
+  - first:
+      213: 1235313927067290935
+    second: SweepPursuit_29
+  - first:
+      213: 1670869547361011252
+    second: SweepPursuit_30
+  - first:
+      213: 5598291843226693784
+    second: SweepPursuit_31
+  - first:
+      213: 1685806240147269270
+    second: SweepPursuit_32
+  - first:
+      213: 3702461653219590642
+    second: SweepPursuit_33
+  - first:
+      213: -3201456987725305592
+    second: SweepPursuit_34
+  - first:
+      213: -1699752845889832299
+    second: SweepPursuit_35
+  - first:
+      213: 3769447908056093963
+    second: SweepPursuit_36
+  - first:
+      213: 6587728142278725915
+    second: SweepPursuit_37
+  - first:
+      213: -5350368386497256780
+    second: SweepPursuit_38
+  - first:
+      213: -289185634145555227
+    second: SweepPursuit_39
+  - first:
+      213: -8759389745428950189
+    second: SweepPursuit_40
+  - first:
+      213: -5782680831044010607
+    second: SweepPursuit_41
+  - first:
+      213: -6751674621619650695
+    second: SweepPursuit_42
+  - first:
+      213: -2666320026133620793
+    second: SweepPursuit_43
+  - first:
+      213: 3866958663891182088
+    second: SweepPursuit_44
+  - first:
+      213: -7263630816675622522
+    second: SweepPursuit_45
+  - first:
+      213: -2891303881961709843
+    second: SweepPursuit_46
+  - first:
+      213: -5856075344944507774
+    second: SweepPursuit_47
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SweepPursuit_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 452
+        width: 405
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ac1aea35ef4d4770800000000000000
+      internalID: 8596615109674671271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_1
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 709
+        width: 22
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 151e94c7c4efa32c0800000000000000
+      internalID: -4450965677246127791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_2
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 405
+        width: 481
+        height: 464
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0905d1f032f672ca0800000000000000
+      internalID: -6041738178726113136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_3
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 273
+        width: 401
+        height: 542
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d00d4e0ce37293340800000000000000
+      internalID: 4843946024691355661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_4
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 386
+        width: 443
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15aa2c6785df56f10800000000000000
+      internalID: 2262492944214960721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_5
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 749
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 287a9c55113acf800800000000000000
+      internalID: 647571741283559298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_6
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 715
+        width: 55
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e6a6a0a61318af0800000000000000
+      internalID: -395980960720851402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_7
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 626
+        width: 54
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38743ff8a8fdc5c0800000000000000
+      internalID: -4193422273292240838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_8
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 31
+        width: 399
+        height: 366
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98a33e9c624865720800000000000000
+      internalID: 2834598317607041673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_9
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 382
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aefedf839a169d040800000000000000
+      internalID: 4672873467807133674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_10
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 370
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c43e23a9d1d7d1d00800000000000000
+      internalID: 945049062912222028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_11
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 370
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a4e9b5c377213e70800000000000000
+      internalID: 9093092500829758633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_12
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 356
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c13155145fa9cc600800000000000000
+      internalID: 489936837630300956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_13
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 343
+        width: 10
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c16a497c60e19c680800000000000000
+      internalID: -8734416987841321444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_14
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 354
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34813f1d897bccb20800000000000000
+      internalID: 3156099305865156675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_15
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 23
+        width: 398
+        height: 344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b90379cb90321020800000000000000
+      internalID: 2310963004452309426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_16
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 340
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ffd47c206e552e0800000000000000
+      internalID: -2137549548509331591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_17
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 263
+        width: 75
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a5d292a3e8786fc0800000000000000
+      internalID: -3501415791200119386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_18
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 291
+        width: 50
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532a1d47dd1c32a20800000000000000
+      internalID: 3036483730669675061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_19
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 323
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ee6d90b5b8f27530800000000000000
+      internalID: 3851414090591071968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_20
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 317
+        width: 44
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bea8fc77365992b0800000000000000
+      internalID: -5577331867201786183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_21
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 112
+        width: 201
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72003ab745c96bfd0800000000000000
+      internalID: -2326500270824816601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_22
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 109
+        width: 159
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a474a60753d96aa10800000000000000
+      internalID: 1920395143964936010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_23
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 233
+        width: 130
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3812b3bbd8c52a0800000000000000
+      internalID: -6747362306417392643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_24
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 211
+        width: 60
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851a047236a5b84a0800000000000000
+      internalID: -6590074247819779752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_25
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 162
+        width: 26
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f799de0710034c110800000000000000
+      internalID: 1280200976827783551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_26
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 114
+        width: 58
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43528d3b189274f10800000000000000
+      internalID: 2253815775567029556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_27
+      rect:
+        serializedVersion: 2
+        x: 1397
+        y: 117
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a873b6de577fe1660800000000000000
+      internalID: 7358590927036430218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_28
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 140
+        width: 96
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d1836253d7e04d0800000000000000
+      internalID: -3166455820766929514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_29
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 146
+        width: 110
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d40f0c877b42110800000000000000
+      internalID: 1235313927067290935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_30
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 102
+        width: 35
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436887c200f103710800000000000000
+      internalID: 1670869547361011252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_31
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 9
+        width: 106
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8907e7835c021bd40800000000000000
+      internalID: 5598291843226693784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_32
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 0
+        width: 75
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6966d18f7df256710800000000000000
+      internalID: 1685806240147269270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_33
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 53
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f1c8a2d149c16330800000000000000
+      internalID: 3702461653219590642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_34
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 41
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809e0fae4d32293d0800000000000000
+      internalID: -3201456987725305592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_35
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 45
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59af6c6dac34968e0800000000000000
+      internalID: -1699752845889832299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_36
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 55
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b05d507a6e4cf4430800000000000000
+      internalID: 3769447908056093963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_37
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 94
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b111e5597df4c6b50800000000000000
+      internalID: 6587728142278725915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_38
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 71
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b2e959cc4cafb5b0800000000000000
+      internalID: -5350368386497256780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_39
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 62
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecab9aa23b9cfbf0800000000000000
+      internalID: -289185634145555227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_40
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 88
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353128e8f65607680800000000000000
+      internalID: -8759389745428950189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_41
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 78
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d39201c6acfbfa0800000000000000
+      internalID: -5782680831044010607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_42
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 80
+        width: 35
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97f375b14bb3d42a0800000000000000
+      internalID: -6751674621619650695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_43
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 50
+        width: 76
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c79bc020145ffad0800000000000000
+      internalID: -2666320026133620793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_44
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 21
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8026a52ba623aa530800000000000000
+      internalID: 3866958663891182088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_45
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 51
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6811870b146623b90800000000000000
+      internalID: -7263630816675622522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_46
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 23
+        width: 167
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deed6f9207600e7d0800000000000000
+      internalID: -2891303881961709843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SweepPursuit_47
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 31
+        width: 23
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284d8a6208a0bbea0800000000000000
+      internalID: -5856075344944507774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SweepPursuit_0: 8596615109674671271
+      SweepPursuit_1: -4450965677246127791
+      SweepPursuit_10: 945049062912222028
+      SweepPursuit_11: 9093092500829758633
+      SweepPursuit_12: 489936837630300956
+      SweepPursuit_13: -8734416987841321444
+      SweepPursuit_14: 3156099305865156675
+      SweepPursuit_15: 2310963004452309426
+      SweepPursuit_16: -2137549548509331591
+      SweepPursuit_17: -3501415791200119386
+      SweepPursuit_18: 3036483730669675061
+      SweepPursuit_19: 3851414090591071968
+      SweepPursuit_2: -6041738178726113136
+      SweepPursuit_20: -5577331867201786183
+      SweepPursuit_21: -2326500270824816601
+      SweepPursuit_22: 1920395143964936010
+      SweepPursuit_23: -6747362306417392643
+      SweepPursuit_24: -6590074247819779752
+      SweepPursuit_25: 1280200976827783551
+      SweepPursuit_26: 2253815775567029556
+      SweepPursuit_27: 7358590927036430218
+      SweepPursuit_28: -3166455820766929514
+      SweepPursuit_29: 1235313927067290935
+      SweepPursuit_3: 4843946024691355661
+      SweepPursuit_30: 1670869547361011252
+      SweepPursuit_31: 5598291843226693784
+      SweepPursuit_32: 1685806240147269270
+      SweepPursuit_33: 3702461653219590642
+      SweepPursuit_34: -3201456987725305592
+      SweepPursuit_35: -1699752845889832299
+      SweepPursuit_36: 3769447908056093963
+      SweepPursuit_37: 6587728142278725915
+      SweepPursuit_38: -5350368386497256780
+      SweepPursuit_39: -289185634145555227
+      SweepPursuit_4: 2262492944214960721
+      SweepPursuit_40: -8759389745428950189
+      SweepPursuit_41: -5782680831044010607
+      SweepPursuit_42: -6751674621619650695
+      SweepPursuit_43: -2666320026133620793
+      SweepPursuit_44: 3866958663891182088
+      SweepPursuit_45: -7263630816675622522
+      SweepPursuit_46: -2891303881961709843
+      SweepPursuit_47: -5856075344944507774
+      SweepPursuit_5: 647571741283559298
+      SweepPursuit_6: -395980960720851402
+      SweepPursuit_7: -4193422273292240838
+      SweepPursuit_8: 2834598317607041673
+      SweepPursuit_9: 4672873467807133674
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -19,7 +19,7 @@ public sealed partial class KaitRun
             if ((IsTwoPhaseRanged(e)||IsYummnLineBoss(e)) && e.rangedState != KaitRangedState.Aim) continue;
             KaitIntent intent = forced != null
                 ? (e.type == KaitEnemyType.Archer ? BuildLineIntent(e.pos, DirectionToward(e.pos, forced.pos), config.archerRange, true) : BuildIntentToward(e, forced.pos))
-                : (e.type == KaitEnemyType.Archer ? IsYummn?BuildYummnArrow(e.pos,e.intent.direction):BuildArcherFireIntent(e) : e.intent);
+                : (e.type == KaitEnemyType.Archer ? IsYummn?BuildYummnArrow(e.pos,e.intent.direction,true):BuildArcherFireIntent(e) : e.intent);
             if(IsYummnLineBoss(e)&&e.intent.type!=KaitIntentType.None)intent=BuildYummnBossLine(e.pos,e.intent.direction);
             if (intent == null || intent.type == KaitIntentType.None || intent.type == KaitIntentType.Move) continue;
             if (e.cursed && !e.hexArmorSpent && HasPassive(KaitPassive.HexArmor)) continue;

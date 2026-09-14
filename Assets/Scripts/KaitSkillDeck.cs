@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public sealed class KaitSkillDeck : MonoBehaviour
 {
+    public const float TargetSelectionSeconds=5f;
     public readonly KaitSkillCard[] Owned = new KaitSkillCard[6];
     public readonly KaitSkillCard[] Candidates = new KaitSkillCard[2];
     public static readonly Rect CastZone = new Rect(-140, -15, 280, 190);
@@ -14,17 +15,19 @@ public sealed class KaitSkillDeck : MonoBehaviour
     private Button cancel;
     private Action<int> choose;
     private Func<int, bool> cast;
+    private Action cancelTargeting;
     private int milestone;
     private KaitRun run;
     private KaitSkill targeting;
     private Vector2? selectedOrigin;
+    private float targetingStartedAt=-1;
     private Vector2 lastSize;
     private readonly List<RaycastResult> previewHits = new List<RaycastResult>();
 
     public void Initialize(RectTransform area, GlobalStyleSplit split, Font font, Action<int> onChoose,
         Func<int, bool> onCast, Action onCancel)
     {
-        bounds = area; choose = onChoose; cast = onCast;
+        bounds = area; choose = onChoose; cast = onCast; cancelTargeting=onCancel;
         releaseZone = Panel(area, split, "Skill Release Zone", CastZone.center, CastZone.size);
         releaseText = Label(releaseZone, split, font, "Release Hint", new Vector2(0, 22), new Vector2(252, 94), 19);
         var button = new GameObject("Cancel Skill Target", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
@@ -71,14 +74,16 @@ public sealed class KaitSkillDeck : MonoBehaviour
 
     public void ResetDeck()
     {
-        milestone = 0; run = null; targeting = KaitSkill.None; selectedOrigin = null;
+        milestone = 0; run = null; targeting = KaitSkill.None; selectedOrigin = null; targetingStartedAt=-1;
         foreach (var card in Owned) card.Hide(); foreach (var card in Candidates) card.Hide();
         banner.gameObject.SetActive(false); releaseZone.gameObject.SetActive(false);
     }
 
     public void Sync(KaitRun current, KaitSkill selected)
     {
-        run = current; targeting = selected;
+        run = current;
+        if(targeting!=selected)targetingStartedAt=selected==KaitSkill.None?-1:Time.unscaledTime;
+        targeting = selected;
         bool rearrange = false;
         for (int i = 0; i < Owned.Length; i++)
         {
@@ -118,6 +123,9 @@ public sealed class KaitSkillDeck : MonoBehaviour
     }
     private bool Cast(KaitSkillCard card)
     {
+        // While any skill is prepared, a card click is a cancel gesture. A
+        // second click can then deliberately prepare another skill.
+        if(targeting!=KaitSkill.None){cancelTargeting?.Invoke();return true;}
         // Recheck real game state at release, not just its last UI refresh.
         if (run == null || !IsReady(run, card.Skill)) return false;
         return cast != null && cast(Array.IndexOf(Owned, card));
@@ -127,6 +135,8 @@ public sealed class KaitSkillDeck : MonoBehaviour
     {
         if (bounds == null || run == null) return;
         CheckOutsidePreviewPress();
+        if(targeting!=KaitSkill.None&&HasTargetTimedOut(targetingStartedAt,Time.unscaledTime))
+        {cancelTargeting?.Invoke();return;}
         if (bounds.rect.size != lastSize) { lastSize = bounds.rect.size; Dock(null, 0); }
         KaitSkillCard dragging = Array.Find(Owned, c => c.IsDragging && c.gameObject.activeSelf);
         bool visible = !run.ended && (dragging != null || targeting != KaitSkill.None || run.dreadSlashArmed);
@@ -157,8 +167,14 @@ public sealed class KaitSkillDeck : MonoBehaviour
         var data = new PointerEventData(EventSystem.current) { position = screenPoint };
         previewHits.Clear();
         EventSystem.current.RaycastAll(data, previewHits);
-        DismissOtherPreviews(previewHits.Count > 0 ? previewHits[0].gameObject.transform : null);
+        Transform hit=previewHits.Count>0?previewHits[0].gameObject.transform:null;
+        bool cardHit=hit!=null&&hit.GetComponentInParent<KaitSkillCard>()!=null;
+        bool boardHit=hit!=null&&hit.GetComponentInParent<KaitBattleGestureSurface>()!=null;
+        if(targeting!=KaitSkill.None&&!cardHit&&!boardHit)cancelTargeting?.Invoke();
+        DismissOtherPreviews(hit);
     }
+
+    public static bool HasTargetTimedOut(float startedAt,float now)=>startedAt>=0&&now-startedAt>=TargetSelectionSeconds;
 
     public void DismissOtherPreviews(Transform hit)
     {

@@ -26,7 +26,7 @@ public sealed partial class KaitRun
             }
             if(e.intent.type!=KaitIntentType.None)
             {
-                var intent=IsYummnLineBoss(e)?BuildYummnBossLine(e.pos,e.intent.direction):e.type==KaitEnemyType.Archer?BuildYummnArrow(e.pos,e.intent.direction):e.intent;
+                var intent=IsYummnLineBoss(e)?BuildYummnBossLine(e.pos,e.intent.direction):e.type==KaitEnemyType.Archer?BuildYummnArrow(e.pos,e.intent.direction,true):e.intent;
                 var action=new KaitEnemyAction{enemyId=e.id,type=intent.type,from=e.pos,to=intent.target,damage=intent.damage};action.affectedCells.AddRange(intent.affectedCells);
                 int attackId=++Yummn.nextAttackEventId;
                 bool hitsPlayer=intent.affectedCells.Contains(katePos);
@@ -59,7 +59,7 @@ public sealed partial class KaitRun
             if(!silenced&&HasPassive(KaitPassive.Misdirection))
             {
                 var echo=Yummn.afterimages.Find(m=>m.alive&&(m.cell-e.pos).sqrMagnitude==1);
-                if(echo!=null){target=echo.cell;YummnTrigger("N12",r);}
+                if(echo!=null){target=echo.cell;YummnTrigger("N12",r);r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="Misdirection",sourceId=e.id,to=echo.cell,actionId=Yummn.actionId});}
             }
             bool ranged=IsTwoPhaseRanged(e)||IsYummnLineBoss(e),adjacent=(e.pos-target).sqrMagnitude==1;
             if(ranged||adjacent)
@@ -101,13 +101,16 @@ public sealed partial class KaitRun
         }
         return intent;
     }
-    private KaitIntent BuildYummnArrow(Vector2Int origin,Vector2Int direction)
+    private KaitIntent BuildYummnArrow(Vector2Int origin,Vector2Int direction,bool firing=false)
     {
         var intent=new KaitIntent{type=KaitIntentType.LineShot,origin=origin,target=origin,direction=direction,damage=1};
         for(int i=1;i<=config.archerRange;i++)
         {
             var p=origin+direction*i;if(IsHardBlocked(p)||p==Yummn.darkness)break;
-            intent.affectedCells.Add(p);intent.target=p;if(p==katePos||p==Yummn.decoy||EnemyAt(p)?.yummnFrozen==true)break;
+            // Aim shows the possible lane, not the current player's interception.
+            // Only the firing pass stops at movable targets; ice still blocks the lane.
+            intent.affectedCells.Add(p);intent.target=p;
+            if(EnemyAt(p)?.yummnFrozen==true||firing&&(p==katePos||p==Yummn.decoy))break;
         }
         return intent;
     }

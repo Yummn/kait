@@ -7,7 +7,7 @@ public sealed partial class KaitGame
     readonly KaitHoldInput heldInput=new KaitHoldInput();
     readonly KaitStationaryHold stationaryHold=new KaitStationaryHold();
     bool holdWaitTriggered;
-    bool HoldRepeatEnabled=>PlayerPrefs.GetInt(HoldInputPreference,0)==1;
+    bool HoldRepeatEnabled=>true;
     bool AutoInputReady
     {
         get {var a=kaitSpine?.CurrentAnimation;return !(run.IsYummn&&targetingSkill!=KaitSkill.None)&&!busy&&(a==null||a.Loop||a.IsComplete);}
@@ -38,13 +38,6 @@ public sealed partial class KaitGame
     {
         if(heldInput.Source==1&&heldInput.Direction.HasValue&&!DirectionHeld(heldInput.Direction.Value))heldInput.End(1);
         if(heldInput.Poll(Time.unscaledTime,HoldRepeatEnabled,AutoInputReady,out var d))HandleDirection(d);
-    }
-    void AddHoldInputSetting(Transform parent)
-    {
-        var toggle=MakeFlatToggle(parent,new Vector2(0,219),new Vector2(580,32),"长按连续输入（键盘 / 方向键 / 滑动保持）");
-        toggle.SetIsOnWithoutNotify(HoldRepeatEnabled);
-        toggle.onValueChanged.AddListener(value=>{SaveBooleanPreference(HoldInputPreference,value);ClearHeldInput();});
-        var label=toggle.GetComponentInChildren<Text>();label.font=threatBoardFont;label.fontSize=18;
     }
     void OnApplicationPause(bool paused){if(paused){ClearHeldInput();ResetSwipeTracking();}}
 }

@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: d85f7a32b6673e94d877e0cc339e1de1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 491335100320681627
+    second: SpellEcho_0
+  - first:
+      213: 7991641367169572775
+    second: SpellEcho_1
+  - first:
+      213: 2196721667890378669
+    second: SpellEcho_2
+  - first:
+      213: -7471869938377766208
+    second: SpellEcho_3
+  - first:
+      213: -8513297455832599130
+    second: SpellEcho_4
+  - first:
+      213: -7447640103699320953
+    second: SpellEcho_5
+  - first:
+      213: -8195256236145252249
+    second: SpellEcho_6
+  - first:
+      213: -7099006934074500016
+    second: SpellEcho_7
+  - first:
+      213: -3337294059841449348
+    second: SpellEcho_8
+  - first:
+      213: -2537611784190698113
+    second: SpellEcho_9
+  - first:
+      213: -2951693911835508282
+    second: SpellEcho_10
+  - first:
+      213: 3309093181095538488
+    second: SpellEcho_11
+  - first:
+      213: 3971400010956896699
+    second: SpellEcho_12
+  - first:
+      213: -2121344480320716047
+    second: SpellEcho_13
+  - first:
+      213: 1522730630594430527
+    second: SpellEcho_14
+  - first:
+      213: -7396314008220914276
+    second: SpellEcho_15
+  - first:
+      213: 609168207778725028
+    second: SpellEcho_16
+  - first:
+      213: 849064954888588447
+    second: SpellEcho_17
+  - first:
+      213: -920042333481990804
+    second: SpellEcho_18
+  - first:
+      213: 7486627568985398828
+    second: SpellEcho_19
+  - first:
+      213: 5356744021020370166
+    second: SpellEcho_20
+  - first:
+      213: 927430691753507012
+    second: SpellEcho_21
+  - first:
+      213: -3738454299176123938
+    second: SpellEcho_22
+  - first:
+      213: -6227750312742394720
+    second: SpellEcho_23
+  - first:
+      213: -2349191401920051990
+    second: SpellEcho_24
+  - first:
+      213: -9074710300545850208
+    second: SpellEcho_25
+  - first:
+      213: -4778443277438269468
+    second: SpellEcho_26
+  - first:
+      213: 1098494010259848783
+    second: SpellEcho_27
+  - first:
+      213: 3246579479776914124
+    second: SpellEcho_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpellEcho_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 392
+        width: 395
+        height: 479
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e8b48aba291d600800000000000000
+      internalID: 491335100320681627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_1
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 840
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af957e5b7308ee60800000000000000
+      internalID: 7991641367169572775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_2
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 840
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da7720dd7b25c7e10800000000000000
+      internalID: 2196721667890378669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_3
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 854
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cac213f0e59e4890800000000000000
+      internalID: -7471869938377766208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_4
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 836
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a57cddb111bad980800000000000000
+      internalID: -8513297455832599130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_5
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 313
+        width: 896
+        height: 566
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78f6c04f8caa4a890800000000000000
+      internalID: -7447640103699320953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_6
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 434
+        width: 465
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 768e141afd9944e80800000000000000
+      internalID: -8195256236145252249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_7
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 555
+        width: 11
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c547c3ec24b7d90800000000000000
+      internalID: -7099006934074500016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_8
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 485
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c72112cfbbc8fa1d0800000000000000
+      internalID: -3337294059841449348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_9
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 469
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7dd771f68798ccd0800000000000000
+      internalID: -2537611784190698113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_10
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 440
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c18c53a60a7907d0800000000000000
+      internalID: -2951693911835508282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_11
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 441
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83fedd347b24ced20800000000000000
+      internalID: 3309093181095538488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_12
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 426
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb97112c44f3d1730800000000000000
+      internalID: 3971400010956896699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_13
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 402
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f28f3c3f687f82e0800000000000000
+      internalID: -2121344480320716047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_14
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 400
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f360035d073d12510800000000000000
+      internalID: 1522730630594430527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_15
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 398
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9d2fbcc8930b5990800000000000000
+      internalID: -7396314008220914276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_16
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 402
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4acbc19e143347800800000000000000
+      internalID: 609168207778725028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_17
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 33
+        width: 410
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c0e53f31c78cb00800000000000000
+      internalID: 849064954888588447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_18
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 371
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c650c7e4f5a5b33f0800000000000000
+      internalID: -920042333481990804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_19
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 366
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2e550fab18d5e760800000000000000
+      internalID: 7486627568985398828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_20
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 0
+        width: 951
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4ed9d4e4af65a40800000000000000
+      internalID: 5356744021020370166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_21
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 376
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c833c7ec45eedc00800000000000000
+      internalID: 927430691753507012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_22
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 376
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed143904f975e1cc0800000000000000
+      internalID: -3738454299176123938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_23
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 372
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a4692b26169299a0800000000000000
+      internalID: -6227750312742394720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_24
+      rect:
+        serializedVersion: 2
+        x: 1679
+        y: 354
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae44723dddef56fd0800000000000000
+      internalID: -2349191401920051990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_25
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 37
+        width: 402
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a4e260cf07201280800000000000000
+      internalID: -9074710300545850208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_26
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 324
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e740fc082f8fadb0800000000000000
+      internalID: -4778443277438269468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_27
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 166
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4ebe657b72ae3f00800000000000000
+      internalID: 1098494010259848783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpellEcho_28
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 53
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccaec23f5da2e0d20800000000000000
+      internalID: 3246579479776914124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SpellEcho_0: 491335100320681627
+      SpellEcho_1: 7991641367169572775
+      SpellEcho_10: -2951693911835508282
+      SpellEcho_11: 3309093181095538488
+      SpellEcho_12: 3971400010956896699
+      SpellEcho_13: -2121344480320716047
+      SpellEcho_14: 1522730630594430527
+      SpellEcho_15: -7396314008220914276
+      SpellEcho_16: 609168207778725028
+      SpellEcho_17: 849064954888588447
+      SpellEcho_18: -920042333481990804
+      SpellEcho_19: 7486627568985398828
+      SpellEcho_2: 2196721667890378669
+      SpellEcho_20: 5356744021020370166
+      SpellEcho_21: 927430691753507012
+      SpellEcho_22: -3738454299176123938
+      SpellEcho_23: -6227750312742394720
+      SpellEcho_24: -2349191401920051990
+      SpellEcho_25: -9074710300545850208
+      SpellEcho_26: -4778443277438269468
+      SpellEcho_27: 1098494010259848783
+      SpellEcho_28: 3246579479776914124
+      SpellEcho_3: -7471869938377766208
+      SpellEcho_4: -8513297455832599130
+      SpellEcho_5: -7447640103699320953
+      SpellEcho_6: -8195256236145252249
+      SpellEcho_7: -7099006934074500016
+      SpellEcho_8: -3337294059841449348
+      SpellEcho_9: -2537611784190698113
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

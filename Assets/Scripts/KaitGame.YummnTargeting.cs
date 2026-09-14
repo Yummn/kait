@@ -16,12 +16,17 @@ public sealed partial class KaitGame
                 int index=i;
                 var b=MakeFlatButton(gameplayRoot.transform,Vector2.zero,new Vector2(84,72),new[]{"↑","→","↓","←"}[i]+"\n施放");
                 b.name="Yummn Cast "+CastDirections[i];
-                var label=b.GetComponentInChildren<Text>();label.text=new[]{"↑","→","↓","←"}[i];label.fontSize=30;label.resizeTextForBestFit=false;
+                // Keep a generous click surface for occupied cells, but let the
+                // shared selector effect provide all visuals.
+                b.transition=Selectable.Transition.None;
+                b.targetGraphic.color=Color.clear;
+                var label=b.GetComponentInChildren<Text>();label.gameObject.SetActive(false);
                 b.onClick.AddListener(()=>HandleBattleCellClick(run.katePos+KaitRun.Delta(CastDirections[index])));
                 yummnCastDirections[i]=b;
             }
             var button=yummnCastDirections[i];if(button==null)continue;
             button.gameObject.SetActive(visible);if(!visible)continue;
+            button.GetComponent<RectTransform>().sizeDelta=new Vector2(108,108);
             var d=KaitRun.Delta(CastDirections[i]);
             var origin=battleCells[run.katePos.x+run.katePos.y*KaitRun.BattleSize].rectTransform;
             // The hidden outer border has no UI cells; measure the playable grid.
@@ -31,6 +36,56 @@ public sealed partial class KaitGame
             button.transform.position=origin.position+xStep*d.x+yStep*d.y;
             button.transform.SetAsLastSibling();
         }
+        RefreshSkillTargetMarkers();
+    }
+
+    private void RefreshSkillTargetMarkers()
+    {
+        if(battleSkillTargetMarkers==null||battleSkillTargetMarkers.Length!=KaitRun.BattleSize*KaitRun.BattleSize)
+            battleSkillTargetMarkers=new YummnSkillTargetMarker[KaitRun.BattleSize*KaitRun.BattleSize];
+        for(int y=1;y<KaitRun.BattleSize-1;y++)for(int x=1;x<KaitRun.BattleSize-1;x++)
+        {
+            int index=x+y*KaitRun.BattleSize;
+            if(battleSkillTargetMarkers[index]==null)
+            {
+                var go=new GameObject("Skill Target "+x+","+y,typeof(RectTransform),typeof(YummnSkillTargetMarker));
+                go.transform.SetParent(battleEffectLayer,false);
+                var marker=go.GetComponent<YummnSkillTargetMarker>();marker.rectTransform.sizeDelta=new Vector2(108,108);
+                battleSkillTargetMarkers[index]=marker;
+            }
+            var target=battleSkillTargetMarkers[index];
+            Vector2Int cell=new Vector2Int(x,y);
+            bool active=IsPreparedBattleTarget(cell);
+            target.gameObject.SetActive(active);
+            if(active){target.rectTransform.position=battleCells[index].rectTransform.position;target.transform.SetAsLastSibling();}
+        }
+
+        if(threatSkillTargetMarkers==null||threatSkillTargetMarkers.Length!=run.ThreatSize*run.ThreatSize)
+            threatSkillTargetMarkers=new YummnSkillTargetMarker[run.ThreatSize*run.ThreatSize];
+        for(int y=0;y<run.ThreatSize;y++)for(int x=0;x<run.ThreatSize;x++)
+        {
+            int index=x+y*run.ThreatSize;
+            if(threatSkillTargetMarkers[index]==null)
+            {
+                var go=new GameObject("Threat Skill Target "+x+","+y,typeof(RectTransform),typeof(YummnSkillTargetMarker));
+                go.transform.SetParent(threatCells[index].transform,false);
+                var marker=go.GetComponent<YummnSkillTargetMarker>();marker.rectTransform.sizeDelta=new Vector2(100,100);
+                marker.color=new Color(.62f,.88f,1f,.78f);threatSkillTargetMarkers[index]=marker;
+            }
+            bool active=run.IsYummn&&targetingSkill==KaitSkill.MageHand&&run.IsLegalSkillCell(targetingSkill,new Vector2Int(x,y));
+            threatSkillTargetMarkers[index].gameObject.SetActive(active);
+            if(active)threatSkillTargetMarkers[index].transform.SetAsLastSibling();
+        }
+    }
+
+    private bool IsPreparedBattleTarget(Vector2Int cell)
+    {
+        if(targetingSkill==KaitSkill.None||run.ended)return false;
+        if(run.IsYummn)
+            return targetingSkill!=KaitSkill.MageHand&&run.IsLegalSkillCell(targetingSkill,cell);
+        if(KaitRun.NeedsCellTarget(targetingSkill))return run.IsLegalSkillCell(targetingSkill,cell);
+        if(KaitRun.NeedsEnemyTarget(targetingSkill))return run.EnemyAt(cell)!=null;
+        return cell==run.katePos;
     }
     private void ShowYummnCastFailure(string reason)
     {
