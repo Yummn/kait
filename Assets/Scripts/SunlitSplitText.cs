@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public sealed class SunlitSplitText : BaseMeshEffect
 {
     private GlobalStyleSplit context;
-    private readonly Color ink = new Color(0.34f, 0.25f, 0.18f, 1f);
+    private readonly Color ink = KaitStorybookTheme.Ink;
     private float lastBottom = float.NaN;
     private float lastTop = float.NaN;
     private bool showLeft = true, showRight = true;

@@ -19,6 +19,8 @@ public sealed class GlobalStyleSplit : MonoBehaviour
     {
         bottomSplit = bottomNormalized.x;
         topSplit = topNormalized.x;
+        if(target!=null&&target.GetComponentInParent<KaitUnifiedPaper>()!=null)
+        {bottomSplit=topSplit=2f;return;}
         if (coordinateSpace == null || target == null) return;
 
         Rect sourceRect = coordinateSpace.rect;

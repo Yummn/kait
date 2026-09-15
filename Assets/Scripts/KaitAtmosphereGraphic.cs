@@ -39,8 +39,7 @@ public sealed class KaitAtmosphereGraphic : MaskableGraphic
             minimalDanger.rectTransform.anchorMin = Vector2.zero;
             minimalDanger.rectTransform.anchorMax = Vector2.one;
             minimalDanger.rectTransform.offsetMin = minimalDanger.rectTransform.offsetMax = Vector2.zero;
-            minimalClip = minimalObject.AddComponent<SunlitSplitText>();
-            minimalClip.PreserveColors(); minimalClip.SetSides(false, true); minimalClip.Configure(split);
+            // The minimal warning now spans the entire viewport, with no style cut.
             clockArt = KaitWarningFrames.Image("Clock A", transform);
             clockArt.rectTransform.anchorMin = clockArt.rectTransform.anchorMax = Vector2.zero;
             clockArt.rectTransform.anchoredPosition = new Vector2(64, 68);
@@ -73,8 +72,8 @@ public sealed class KaitAtmosphereGraphic : MaskableGraphic
             float reveal=Mathf.SmoothStep(0,1,Mathf.Clamp01(((idleSeconds<0?12:idleSeconds)-delay)/.7f));
             clock.color=new Color(1,1,1,clock.sprite==null?0:grey*reveal*(.52f+.36f*((i*7)%11)/10f));
         }
-        dangerArt.color = new Color(1,1,1,dangerArt.sprite == null ? 0 : danger*.92f);
-        minimalDanger.color = new Color(.84f, .22f, .24f, split == null ? 0 : danger * .48f);
+        dangerArt.gameObject.SetActive(false);
+        minimalDanger.color = new Color(.84f, .22f, .24f, danger * .48f);
     }
     public static void ClockLayout(int i,Vector2 viewport,out Vector2 position,out float size,out float angle)
     {

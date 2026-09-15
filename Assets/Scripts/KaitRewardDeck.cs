@@ -13,6 +13,9 @@ public sealed class KaitRewardDeck : MonoBehaviour
     private readonly KaitCardLogo[] slotIcons=new KaitCardLogo[6];
     private readonly bool[] validSlots=new bool[6];
     private RectTransform area,bar;
+    private RectTransform tray;
+    private CanvasGroup trayFade;
+    private float trayReveal;
     private GlobalStyleSplit styleSplit;
     private Button skip,cancel,reroll,fold;
     private Text heading,guide;
@@ -31,15 +34,17 @@ public sealed class KaitRewardDeck : MonoBehaviour
     private Font uiFont;
     public bool IsDragging=>dragging>=0;
     public Action SelectionStarted;
+    public RectTransform[] OwnedAreas;
 
     public void Initialize(RectTransform parent,GlobalStyleSplit split,Font font,Func<bool> allowed,Action refresh)
     {
         area=parent;styleSplit=split;canInteract=allowed;changed=refresh;uiFont=font;
-        bar=new GameObject("Reward Actions",typeof(RectTransform),typeof(HybridStyleGraphic)).GetComponent<RectTransform>();bar.SetParent(parent,false);
+        bar=new GameObject("Reward Actions",typeof(RectTransform),typeof(HybridStyleGraphic),typeof(KaitUnifiedPaper)).GetComponent<RectTransform>();bar.SetParent(parent,false);
         bar.sizeDelta=new Vector2(800,76);
-        bar.anchoredPosition=new Vector2(-60,area.rect.yMax-46);
+        // Above the offer cards (their top is 221), below the two passive rows.
+        bar.anchoredPosition=new Vector2(0,268);
         var barPlate=bar.GetComponent<HybridStyleGraphic>();
-        barPlate.Configure(split,KaitSunlitTheme.Load("Panel",.10f,160),Color.white,new Color(.20f,.17f,.23f,1),new Color(.98f,.78f,.72f),2,10);barPlate.raycastTarget=false;
+        barPlate.Configure(split,KaitStorybookTheme.Panel,Color.white,new Color(.20f,.17f,.23f,1),new Color(.98f,.78f,.72f),2,10);barPlate.raycastTarget=false;
         var handle=new GameObject("Drag Handle",typeof(RectTransform),typeof(Image),typeof(KaitRewardBarDrag));handle.transform.SetParent(bar,false);
         var hit=handle.GetComponent<Image>();hit.color=Color.clear;hit.rectTransform.sizeDelta=new Vector2(172,64);hit.rectTransform.anchoredPosition=new Vector2(-304,0);hit.raycastTarget=true;
         handle.GetComponent<KaitRewardBarDrag>().Configure(bar,area);
@@ -56,19 +61,27 @@ public sealed class KaitRewardDeck : MonoBehaviour
         guideBackdrop.sprite=KaitCardSkin.RoundRect();guideBackdrop.type=Image.Type.Sliced;
         guideBackdrop.color=new Color(.20f,.17f,.23f,.96f);guideBackdrop.raycastTarget=false;
         guide=Label(guideBackdrop.rectTransform,font,"Reward Gesture Guide",Vector2.zero,new Vector2(306,48),22);
+        var trayImage=new GameObject("Equipment Card Tray",typeof(RectTransform),typeof(Image),typeof(CanvasGroup),typeof(KaitUnifiedPaper)).GetComponent<Image>();
+        trayImage.transform.SetParent(parent,false);tray=trayImage.rectTransform;
+        trayImage.sprite=KaitStorybookTheme.Surface("equipment-tray",KaitStorybookTheme.Paper,KaitStorybookTheme.Ink,4,18);
+        trayImage.type=Image.Type.Sliced;trayImage.raycastTarget=false;trayFade=tray.GetComponent<CanvasGroup>();
+        tray.gameObject.SetActive(false);
         for(int i=0;i<6;i++)
         {
             int index=i;
             var target=new GameObject("Reward Drop Slot "+(i+1),typeof(RectTransform),typeof(Image)).GetComponent<Image>();
-            target.transform.SetParent(parent,false);target.rectTransform.sizeDelta=new Vector2(236,164);
-            target.sprite=KaitCardSkin.RoundRect();target.type=Image.Type.Sliced;target.raycastTarget=false;
+            target.transform.SetParent(tray,false);target.rectTransform.sizeDelta=new Vector2(164,164);
+            target.sprite=KaitStorybookTheme.Button;target.type=Image.Type.Sliced;target.raycastTarget=false;
             slots[i]=target;
             var edge=new GameObject("Drop Outline",typeof(RectTransform),typeof(KaitCardOutline)).GetComponent<KaitCardOutline>();edge.transform.SetParent(target.transform,false);
             edge.rectTransform.anchorMin=Vector2.zero;edge.rectTransform.anchorMax=Vector2.one;edge.rectTransform.sizeDelta=Vector2.zero;edge.raycastTarget=false;slotOutlines[i]=edge;
-            slotNames[i]=Label(target.rectTransform,font,"Slot Name",new Vector2(0,10),new Vector2(214,44),22);
+            slotNames[i]=Label(target.rectTransform,font,"Slot Name",new Vector2(0,-27),new Vector2(144,38),20);
+            slotNames[i].color=KaitStorybookTheme.Ink;
             slotHints[i]=Label(target.rectTransform,font,"Drop Action",new Vector2(0,-48),new Vector2(216,58),20);
-            dropGlyphs[i]=KaitUiGlyph.Create(target.transform,KaitUiGlyph.Symbol.Plus,new Vector2(0,-48),30);
-            slotIcons[i]=KaitCardLogo.Create(target.transform,split,font,new Vector2(0,56),44);
+            dropGlyphs[i]=KaitUiGlyph.Create(target.transform,KaitUiGlyph.Symbol.Plus,new Vector2(0,-59),22);
+            dropGlyphs[i].color=KaitStorybookTheme.Muted;
+            slotIcons[i]=KaitCardLogo.Create(target.transform,split,font,new Vector2(0,28),72);
+            slotIcons[i].SetIllustrationSize(72);
             if(i<3){
             active[i]=KaitSkillCard.Create(parent,split,font,KaitSunlitTheme.Load("SkillCardHD"),KaitSunlitTheme.Load("SkillCardFlat"),c=>Select(index),null,null);
             passive[i]=KaitPassiveCard.Create(parent,split,font,KaitSunlitTheme.Load("PassiveCardBlankHD"),KaitSunlitTheme.Load("PassiveCardFlat"),c=>Select(index),null);
@@ -140,13 +153,14 @@ public sealed class KaitRewardDeck : MonoBehaviour
         {
             bool show=i<visible;slots[i].gameObject.SetActive(show);validSlots[i]=false;if(!show)continue;
             slots[i].transform.SetAsLastSibling();
-            slots[i].rectTransform.sizeDelta=new Vector2(run.IsYummn?176:236,164);
-            slots[i].rectTransform.anchoredPosition=new Vector2((i-(visible-1)*.5f)*(run.IsYummn?188:258),isPassive?area.rect.yMax-192:area.rect.yMin+198);
-            slotNames[i].rectTransform.sizeDelta=new Vector2(run.IsYummn?164:214,44);
+            slots[i].rectTransform.sizeDelta=new Vector2(164,164);
+            slots[i].rectTransform.anchoredPosition=new Vector2((i-(visible-1)*.5f)*176,0);
             bool filled=i<count;validSlots[i]=Allowed()&&run.YummnPrerequisite(def)&&(!copying||filled&&KaitAbilityCatalog.Get(run.passives[i])?.copyable==true);
             bool hovered=validSlots[i]&&hoverSlot==i;
-            slots[i].color=hovered?new Color(.18f,.48f,.39f,.98f):validSlots[i]?new Color(.28f,.26f,.34f,.98f):new Color(.19f,.18f,.22f,.95f);
-            slotOutlines[i].color=hovered?Color.white:validSlots[i]?new Color(.60f,1,.84f):new Color(.45f,.44f,.49f);
+            slots[i].sprite=hovered?KaitStorybookTheme.Pressed:KaitStorybookTheme.Button;
+            slots[i].color=validSlots[i]?Color.white:new Color(.75f,.75f,.75f,1);
+            slotOutlines[i].color=Color.clear;
+            slots[i].transform.localScale=Vector3.one*(hovered?1.035f:1f);
             slotNames[i].text=filled?(run.IsYummn?run.EquippedCard(i).nameZh:isPassive?KaitPassiveCatalog.Name(run.passives[i]):KaitRun.SkillName(run.skills[i])):"";
             slotHints[i].text="";
             dropGlyphs[i].SetSymbol(!validSlots[i]?KaitUiGlyph.Symbol.Close:hovered?KaitUiGlyph.Symbol.Check:filled?KaitUiGlyph.Symbol.Swap:KaitUiGlyph.Symbol.Plus);
@@ -154,11 +168,12 @@ public sealed class KaitRewardDeck : MonoBehaviour
             slotIcons[i].gameObject.SetActive(filled);
             if(filled){var equipped=run.IsYummn?run.EquippedCard(i):null;if(equipped!=null){if(equipped.kind==KaitAbilityKind.Active)slotIcons[i].Show(equipped.skill);else slotIcons[i].Show(equipped.passive);}else if(isPassive)slotIcons[i].Show(run.passives[i]);else slotIcons[i].Show(run.skills[i]);}
         }
+        tray.sizeDelta=new Vector2(visible*176+24,204);
     }
     private int HitSlot(Vector2 point)
     {
         for(int i=0;i<slots.Length;i++)if(validSlots[i]&&slots[i].gameObject.activeSelf&&
-            new Rect(slots[i].rectTransform.anchoredPosition-slots[i].rectTransform.sizeDelta*.5f,slots[i].rectTransform.sizeDelta).Contains(point))return i;
+            slots[i].rectTransform.rect.Contains((Vector2)slots[i].rectTransform.InverseTransformPoint(area.TransformPoint(point))))return i;
         return -1;
     }
     private void MoveDrag(int index,Vector2 point){if(dragging==index){hoverSlot=HitSlot(point);ShowSlots();}}
@@ -187,7 +202,22 @@ public sealed class KaitRewardDeck : MonoBehaviour
         ButtonAt(r,uiFont,"取消",new Vector2(90,-43),()=>{ResetSelection();Sync(run);});
     }
     private void Complete(){ResetSelection();shown=null;GameAudio.PlayPassiveConfirm();changed?.Invoke();Sync(run);}
-    private void Update(){if(run!=null)Sync(run);}
+    private void Update()
+    {
+        if(run!=null)Sync(run);
+        bool open=run?.CurrentReward!=null&&!collapsed&&selected>=0;
+        trayReveal=Mathf.MoveTowards(trayReveal,open?1:0,Time.unscaledDeltaTime/0.24f);
+        tray.gameObject.SetActive(trayReveal>0);
+        float eased=1-Mathf.Pow(1-trayReveal,3);
+        trayFade.alpha=eased;
+        tray.anchoredPosition=new Vector2(0,area.rect.yMin+136-36*(1-eased));
+        tray.localScale=Vector3.one*Mathf.Lerp(.94f,1,eased);
+        if(OwnedAreas!=null)foreach(var owned in OwnedAreas)
+        {
+            var group=owned.GetComponent<CanvasGroup>()??owned.gameObject.AddComponent<CanvasGroup>();
+            group.alpha=1-eased;group.blocksRaycasts=group.interactable=!open;
+        }
+    }
     private void OnDisable(){ResetSelection();shown=null;}
     private void OnApplicationFocus(bool focused)
     {if(!focused&&IsDragging){ResetSelection();shown=null;if(run!=null)Sync(run);}}
@@ -202,11 +232,13 @@ public sealed class KaitRewardDeck : MonoBehaviour
     {
         var b=new GameObject(label,typeof(RectTransform),typeof(CanvasRenderer),typeof(HybridStyleGraphic),typeof(HybridStyleButton)).GetComponent<HybridStyleButton>();
         b.transform.SetParent(parent,false);var r=(RectTransform)b.transform;r.anchoredPosition=pos;r.sizeDelta=new Vector2(144,60);
-        var sprite=KaitSunlitTheme.Load("Button",.15f,80);var surface=b.GetComponent<HybridStyleGraphic>();var flat=new Color(.32f,.28f,.37f,.98f);
-        surface.Configure(styleSplit,sprite,Color.white,flat,new Color(.98f,.78f,.72f),2,10);surface.raycastTarget=true;b.Configure(surface,sprite,sprite,flat);
-        // Both button skins are dark; keep their shared foreground cream for contrast.
+        var sprite=KaitStorybookTheme.Button;var surface=b.GetComponent<HybridStyleGraphic>();var flat=new Color(.32f,.28f,.37f,.98f);
+        surface.Configure(styleSplit,sprite,Color.white,flat,new Color(.98f,.78f,.72f),2,10);
+        surface.SetRightSprite(KaitStorybookTheme.Surface("reward-flat",Color.white,Color.white,0,10));
+        surface.raycastTarget=true;b.Configure(surface,sprite,KaitStorybookTheme.Pressed,flat);
         b.navigation=new Navigation{mode=Navigation.Mode.None};var labelText=Label(r,font,"Label",new Vector2(17,0),new Vector2(62,48),20);labelText.text=label;
-        KaitUiGlyph.Create(r,label=="跳过"?KaitUiGlyph.Symbol.Skip:label=="重抽"?KaitUiGlyph.Symbol.Reroll:label=="取消"?KaitUiGlyph.Symbol.Close:label=="确认"?KaitUiGlyph.Symbol.Check:KaitUiGlyph.Symbol.Up,new Vector2(-32,0),22);
+        labelText.gameObject.AddComponent<SunlitSplitText>().Configure(styleSplit);
+        KaitUiGlyph.Create(r,label=="跳过"?KaitUiGlyph.Symbol.Skip:label=="重抽"?KaitUiGlyph.Symbol.Reroll:label=="取消"?KaitUiGlyph.Symbol.Close:label=="确认"?KaitUiGlyph.Symbol.Check:KaitUiGlyph.Symbol.Up,new Vector2(-32,0),22).gameObject.AddComponent<SunlitSplitText>().Configure(styleSplit);
         b.onClick.AddListener(()=>{GameAudio.PlayClick();action();});return b;
     }
 }

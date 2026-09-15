@@ -11,6 +11,7 @@ public static class KaitBuild
     public static void BuildWindowsDemo()
     {
         KaitBuildArtSettings.Apply();
+        KaitStorybookDetailImport.Apply();
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
         string output = Path.Combine(projectRoot, "Build", "kait.exe");
         Directory.CreateDirectory(Path.GetDirectoryName(output));
@@ -42,6 +43,7 @@ public static class KaitBuild
     {
         KaitAppIconSettings.Apply();
         KaitBuildArtSettings.Apply();
+        KaitStorybookDetailImport.Apply();
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
         string output = Path.Combine(projectRoot, "Build", "kait-v"+KaitVersion.App+".apk");
         Directory.CreateDirectory(Path.GetDirectoryName(output));

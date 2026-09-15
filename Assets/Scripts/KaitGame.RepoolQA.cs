@@ -26,6 +26,16 @@ public sealed partial class KaitGame
         run.config.playerInvincible=true;
         var enemy=new KaitEnemy{id=9876,type=KaitEnemyType.Grunt,pos=new Vector2Int(4,3),hp=4,maxHp=4,life=KaitEnemyLife.Active};
         run.enemies.Add(enemy);RefreshAll();
+        if(CommandLineValue("-storybook0915QA")=="1")
+        {yield return VerifyStorybook0915();Application.Quit();yield break;}
+        if(CommandLineValue("-storybook0914QA")=="1")
+        {yield return VerifyStorybook0914();Application.Quit();yield break;}
+        if(CommandLineValue("-storybook0913QA")=="1")
+        {yield return VerifyStorybook0913();Application.Quit();yield break;}
+        if(CommandLineValue("-mobileLayoutQA")=="1")
+        {yield return VerifyMobileLayout0912();Application.Quit();yield break;}
+        if(CommandLineValue("-storybook098QA")=="1")
+        {yield return VerifyStorybook098();Application.Quit();yield break;}
         if(CommandLineValue("-cards096QA")=="1")
         {
             mainMenu.gameObject.SetActive(true);gameplayRoot.SetActive(false);

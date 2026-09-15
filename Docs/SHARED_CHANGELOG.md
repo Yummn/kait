@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-14（北京时间）。维护者：Yummn优先特效音效接入与Android构建会话。
+最后更新：2026-09-15（北京时间）。维护者：绘本棋匣界面会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -11,13 +11,13 @@
 | 工程 | C:/Users/yummn/Downloads/kait |
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
-| 本地规则版本 | 应用0.9.7，Android版本码907（APK尚未重打），Yummn牌池0.9.7-palm-kick，共56牌（15主动/41被动，11普通/33非凡/12稀有）；规则快照yummn-0.9.7-palm-kick，独立存档Kait.Run.Yummn.0.9.7。旧存档保留，新规则需新开Yummn局，Kait规则不变 |
-| Git 基线 | 0.9.0源码/卡图/说明提交b381b01已推送origin/master，标签v0.9.0指向同一提交；Release含APK且远端大小与SHA256匹配本地。Yummn/kait保持PUBLIC。后续提交仅补记发布状态；AudioPreviews/VFXPreviews选稿仅本地 |
-| 最近 Windows 构建 | Build/kait.exe v0.9.7；Logs/palm097-windows.log构建成功退出0；resources.assets与Assembly-CSharp.dll更新于2026-09-14 15:08。震颤掌拳踢共享印记已同步；Android仍为0.9.3 |
+| 本地规则版本 | 应用0.9.15，Android版本码915；Yummn牌池/规则保持0.9.7-palm-kick，共56牌（15主动/41被动，11普通/33非凡/12稀有）；存档Kait.Run.Yummn.0.9.7。0.9.8—0.9.15为界面/点击修正，无须重开；Kait规则不变 |
+| Git 基线 | 0.9.15源码、正式资源与说明已推送origin/master；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
+| 最近 Windows 构建 | Build/kait.exe v0.9.15；Logs/storybook0915-windows-final.log成功退出0；resources.assets为2026-09-15 09:38:12、Assembly-CSharp.dll为09:38:13；源码/Windows/Android同步 |
 | 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | yummn-defaults-runtime.log：YUMMN_DEFAULTS_QA_COMPLETE；实际Windows设置页已看，默认7气、按格耗1、击杀回3、有效移动补一个2、气竭回满、高速攻击耗1、移动不额外推进、4开始出怪、气格挡、16得牌；补给选择保留并统一文案，删除项无残留且无文字溢出。40项偏好/存档原类型原值还原；非Android验收 |
-| 最新 Android | Build/kait-v0.9.3.apk，2026-09-14 12:47:46，282111683字节；Logs/android093-build.log构建成功退出0。同步合成联动、设置文字修复、胜利smile循环与前序修改。版本903、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效且与0.9.0证书一致。SHA256 B4B35CCFBB16EA079D9217CA4E432D886872BDD7DDCE69B4E094BC3E1F6648EE。旧0.9.0包保留；ADB无设备，未真机验收，未上传GitHub |
+| 最近视觉运行检查 | storybook0915-runtime.log：STORYBOOK0915_QA_COMPLETE。两角色1920×1080、2400×1080实际图已看；森林真实1302×1208加载、地砖间隙/外沿、前景树层级、左移HUD与7气边界通过。首轮宽屏树枝直切口修正；隐藏进程首张黑帧被新增检查拦截，改为先真实切分辨率后最终四张均正常。41项偏好恢复。未跑全量EditMode，不是Android实机验收 |
+| 最新 Android | Build/kait-v0.9.15.apk，2026-09-15 10:03:54，316349485字节；Logs/storybook0915-android.log成功退出0。版本915、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效且与0.9.14证书一致，IL2CPP元数据确认KaitForestDetail/KaitCornerBough。SHA256 E8AD620BAE140242E8D7CA6B656BFBA979DA6BBFBD80ECC33A1AF9480E1A2FE5。旧APK保留；ADB无设备，未真机验收 |
 | Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
@@ -25,9 +25,27 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 
 ## 2. 进行中与占用登记
 
-UI-20260914-STORYBOOK098：进行中，绘本棋匣界面会话。先将当前0.9.7源码/正式资源与Windows包备份到GitHub，保持PUBLIC；随后实施获批C风格：战斗HUD/控制区/紧凑卡牌、卡框与卡牌大全，保留规则/人物/5x5双盘/双色裁切。拟更新应用0.9.8但不变更0.9.7规则存档。涉及KaitGame布局、Sunlit/GUI皮肤、卡牌组件/卡牌大全、版本与新增绘本主题。已确认Android097构建日志结束、无Unity进程；不新增Android构建，不覆盖其他会话文件。
+BUILD-20260915-0915-ANDROID：完成，本会话。Build/kait-v0.9.15.apk于2026-09-15 10:03:54生成，316349485字节；Logs/storybook0915-android.log最终成功退出0（初轮旧DAG漏新类，Unity自动重建成功）。版本915、最低API26、目标API35、ARM64、UnityPlayerActivity核验通过；v2签名有效且与0.9.14证书一致，IL2CPP元数据包含KaitForestDetail/KaitCornerBough。SHA256 E8AD620BAE140242E8D7CA6B656BFBA979DA6BBFBD80ECC33A1AF9480E1A2FE5。当前源码/Windows/Android均0.9.15；旧APK保留，不改玩法、不上传GitHub，无Unity占用。ADB无设备，未真机启动验收。本记录取代上方快照中Android仍914的时点说明。
 
-BUILD-20260914-097-ANDROID：进行中，本会话。当前0.9.7源码打包Android，保留旧APK，验证版本/签名/架构，不改玩法、不上传GitHub。构建入口KaitBuild.BuildAndroidDemo，日志Logs/android097-build.log；启动前无Unity占用。
+UI-20260915-STORYBOOK0915：完成，本会话。左侧独立1302×1208森林细节、右下树枝透明前景/按轮廓少量搭边、HUD左移10、Kait草地衔接与双角色各六种少缝地砖接入。内置图像生成+获准本地背景抠图，原图保留；整图非4K，未虚称分辨率。首轮树枝直切口已通过贴屏幕边缘修正；隐藏进程首张黑帧检查拦截后改先真实切分辨率，最终四张两角色/两比例图已看，STORYBOOK0915_QA_COMPLETE，41项偏好恢复。Windows和Android最终成功退出0，新类首轮旧DAG漏列后Unity自动重建成功；应用0.9.15、规则存档不变，无Unity/游戏占用。详见Docs/v0.9.15-森林清晰度与铺地衔接.md；保留全部既有未提交工作。
+
+UI-20260914-STORYBOOK0914：完成，本会话。默认7气固定原比例34高，8/9允许外溢不挤压；HUD细边/拳头边距/头像与行动条重排。方键改固定外框与独立下沉内面，矮设置行保留文字高度；薄托盘/内凹格/简约裂纹石，生成雪地衔接层并沿用用户允许的本地抠图保留原RGB。两轮实际看图修正半截色带、刷痕及矮键边距，STORYBOOK0914_QA_COMPLETE，7气/生命/拳头内边界、比例和按钮状态通过，41项偏好恢复。Windows/Android最终成功，签名/版本/入口/架构/元数据/哈希见快照；首轮旧DAG漏新类后Unity自动重建成功。应用0.9.14/914，规则/存档不变，无Unity/游戏占用，不上传GitHub，ADB无设备未真机验收。详见Docs/v0.9.14-界面精修与地面衔接.md。
+
+UI-20260914-STORYBOOK0913：完成，源码/Windows/Android同步，无Unity/游戏占用。72插画/164槽与完整绘本卡盘、0.24秒上浮淡入、替换时暂隐原折叠卡；全屏极简红边、方形双框按钮、紧凑HUD、独立副盘石块/配色、地面边缘与树影已改。方向点击覆盖层专用标识修复按下即被空白取消误判。storybook0913-runtime.log为STORYBOOK0913_QA_COMPLETE：两种技能各四向、六槽边界与实际替换、九气框内通过；20:9/16:9图已看，41项偏好还原。Windows/Android最终构建成功，APK版本/入口/架构/v2签名/IL2CPP元数据核验见快照。Android首轮旧DAG漏新文件后自动重建成功，未留编译错误。应用0.9.13/913，规则/存档不变；ADB无设备未真机验收，不上传，保留其他改动。详见Docs/v0.9.13-卡盘与绘本界面修正.md。
+
+BUILD-20260914-MOBILE0912-ANDROID：完成，本会话。0.9.12/912 APK构建成功退出0，版本、入口、ARM64、v2签名及新布局IL2CPP元数据核验通过，与0.9.11证书一致；大小/哈希见快照。切平台的旧DAG首轮漏列MobileLayoutQA，Unity自动重建后编译成功，未改源码规避。源码/Windows/Android同步；保留旧APK和全部既有未提交改动，不改玩法、不上传GitHub。日志Logs/mobile0912-android.log；ADB无设备，未真机验收，无Unity/游戏占用。
+
+UI-20260914-MOBILE0912：完成，本会话。安全区菜单、实际内容边界放大等大双盘、完整短卡、顶部两行被动/底部主动、选牌工具条和分辨率切换边界已调整；复用批准美术，不改玩法，应用0.9.12。6项专项通过，Windows最终构建成功，真实宽屏及安全区/六卡/展开/奖励看图完成，41项玩家偏好恢复；原截图固定16:9导致漏检的问题已在新QA纠正。源码/Windows同步，Android仍0.9.11（本轮未要求），未真机验收、未上传。无Unity/游戏占用，保留既有未提交工作与其他会话文档。详见Docs/v0.9.12-手机横屏布局.md。
+
+UI-20260914-STORYBOOK0911：完成，本会话。少雪六变体地砖、76×66操作按钮、118框外头像、原KiWispB与32高生命/气已接入；Windows最终构建成功，5项专项与最终实际运行看图通过，41项玩家数据恢复。应用0.9.11，规则/存档0.9.7不变。Android构建成功退出0，版本/ARM64/入口/v2签名与旧包证书核验通过，详情见快照；首次切Android时缓存漏新脚本，自动重建DAG后编译成功，不是未解决编译错误。新地砖Storybook0911原图保留且无本地修改。无Unity/游戏占用；未真机验收、不上传GitHub，保留全部原有未提交改动。详见Docs/v0.9.11-地砖与操作区调整.md。
+
+UI-20260914-STORYBOOK0910：完成，本会话。按C重绘Q版头像/拳头/心/气滴/齿轮、两角色背景/地砖/障碍、右盘边饰和大全绘本页。新素材Storybook0910，原图保留，沿用明确允许的本地背景抠图；6种HUD小图mipmap抗锯齿，其余无mipmap。移除旧地面/树冠叠层；两盘同尺寸更贴合场景，完整绘本浮层不再硬裁卡图/按钮；九气/六心框内排列、重开按钮移除、折叠名居中无小图、内灰框/穿字横线去除，大全紧凑六卡分页。应用0.9.10/910，规则/存档0.9.7不变。Windows最终成功，14/14专项，运行截图检查通过，41项玩家数据恢复；测试临时清空的Standalone宏恢复。无Unity/游戏占用，不Android/GitHub；保留其他会话文档。详见Docs/v0.9.10-统一绘本美术.md，原图及完整提示词在内。
+
+UI-20260914-STORYBOOK099：完成，本会话。对照C图补齐短卡比例、层叠框/厚角、统一可拖拽跨线奖励工具条、原CG头像HUD、雪松灯笼及大全书堆旗帜。图集按已选C风格生成；本轮明确许可本地抠棋盘背景，原图/RGB保留。右盘空槽改灰藕色，数字/障碍颜色不动；UI改用已有Noto字体。应用0.9.9/909，规则/存档仍0.9.7。Windows成功，11/11专项通过，复用Storybook098入口并新增实际选牌检查；storybook099-runtime.log完成无QA错误，41项玩家数据恢复。实看奖励/大全/两角色战斗/设置，修正耗气行高度与边框间距、旗帜裁切；临时纹理支持EditMode清理。详见Docs/v0.9.9-绘本细节补齐.md。未Android、未GitHub上传；原改动和其他会话文档保留，无Unity/游戏占用。
+
+UI-20260914-STORYBOOK098：完成，绘本棋匣界面会话。先将0.9.7源码/正式资源与完整Windows包备份GitHub，PUBLIC不变，远端commit/tag/ZIP摘要均核验。再实施C绘本棋匣：奶油底/烟紫厚线/圆角，战斗HUD置主盘上方，中间无大底板；紧凑卡牌保留图标/名称/耗气冷却，原生银蓝金双风格框，大全角色目录+稀有度六张分页；首页按钮、设置和教程同步。9项专项通过，最终Windows构建成功，STORYBOOK098_QA_COMPLETE及九张运行截图已看；修正树冠遮HUD、按钮字色与边框、旧被动框回退。旧卡回退初次遗漏id导致QA中断，补齐后重跑通过；无须改规则。40项玩家数据恢复。应用0.9.8/908但沿用0.9.7规则牌池存档；本轮不Android、不再次上传0.9.8，保留其他任务的Android097说明和旧对照报告。无Unity/游戏占用，详见v0.9.8-绘本棋匣界面.md。
+
+BUILD-20260914-097-ANDROID：完成，本会话。当前0.9.7 Android构建成功退出0，版本907/ARM64/UnityPlayerActivity及v2签名核验通过，与0.9.3签名证书一致；大小与SHA256见快照。保留旧APK，不改玩法、不上传GitHub。Logs/android097-build.log，无Unity占用；ADB无设备，未真机启动/触摸验收。
 
 RULE-20260914-PALM097：完成源码/Windows，本会话。震颤掌共用ResolveYummnPalmHit，拳击和踢击可互相留印/异向引爆，额外2伤、同向保留、免伤不触发，沿用特效音效；卡面/大全/详细说明同步。应用/规则/存档0.9.7，旧存档保留。palm097-tests.xml 12/12专项通过（含四种拳踢组合、冰冻免伤和上轮反应回归），未做本轮视觉验收；palm097-windows.log构建成功退出0。不Android/上传，无Unity占用，收尾发现游戏kait PID22256运行中，未操作该进程。详见v0.9.7-拳踢共享震颤掌.md。
 

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 /// <summary>A single modal book, independent of the game's split-style controls.</summary>
 public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    static readonly Color Cream = new Color32(255, 244, 226, 255);
-    static readonly Color Peach = new Color32(250, 199, 183, 255);
-    static readonly Color Plum = new Color32(67, 56, 66, 255);
+    static readonly Color Cream = KaitStorybookTheme.Ink;
+    static readonly Color Peach = KaitStorybookTheme.Ink;
+    static readonly Color Plum = KaitStorybookTheme.Paper;
     Font font;
     Sprite rounded;
     Text heading, title, lead, body, leftCaption, rightCaption, tip, counter, nextLabel;
@@ -79,7 +79,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         lead=Label(card.transform,"",new Vector2(453,268),new Vector2(452,92),29,Peach);
         body=Label(card.transform,"",new Vector2(453,15),new Vector2(452,392),25,Cream,TextAnchor.UpperLeft);
         body.lineSpacing=1f;
-        note=Box("Quick Tip",card.transform,new Vector2(453,-255),new Vector2(470,137),new Color32(84,71,81,255));
+        note=Box("Quick Tip",card.transform,new Vector2(453,-255),new Vector2(470,137),KaitStorybookTheme.Mint);
         tip=Label(note.transform,"",Vector2.zero,new Vector2(428,115),23,Peach);
         thirdCaption=Label(card.transform,"",new Vector2(448,-274),new Vector2(416,120),24,Cream,TextAnchor.UpperLeft);
         BuildAppendix(card.transform);
@@ -92,7 +92,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
             var tab=AddButton(card.transform,(i+1).ToString(),new Vector2((i-(PageCount-1)*.5f)*63,-400),new Vector2(56,54),()=>ShowPage(index));
             tabs[i]=tab.GetComponent<Image>();
         }
-        navigationHint=Label(card.transform,"左右滑动 / ← → 翻页 · Esc 关闭",new Vector2(0,-353),new Vector2(750,32),18,new Color32(194,180,190,255),TextAnchor.MiddleCenter);
+        navigationHint=Label(card.transform,"左右滑动 / ← → 翻页 · Esc 关闭",new Vector2(0,-353),new Vector2(750,32),18,KaitStorybookTheme.Muted,TextAnchor.MiddleCenter);
     }
 
     public void ShowPage(int index)
@@ -118,7 +118,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         if(yummnDiagram!=null){yummnDiagram.gameObject.SetActive(YummnMode&&!ComicMode);if(YummnMode&&!ComicMode)yummnDiagram.Show(PageIndex,font,YummnRules!=null&&YummnRules.Legacy,YummnRules?.MaxKi??6,YummnRules);}
         previous.interactable=PageIndex>0;
         nextLabel.text=PageIndex==PageCount-1 ? "开始游戏" : "下一页";
-        for(int i=0;i<tabs.Length;i++){tabs[i].gameObject.SetActive(i<PageCount);tabs[i].rectTransform.anchoredPosition=new Vector2((i-(PageCount-1)*.5f)*63,-400);tabs[i].color=i==PageIndex ? new Color32(151,104,99,255) : new Color32(93,79,87,255);}
+        for(int i=0;i<tabs.Length;i++){tabs[i].gameObject.SetActive(i<PageCount);tabs[i].rectTransform.anchoredPosition=new Vector2((i-(PageCount-1)*.5f)*63,-400);tabs[i].color=i==PageIndex ? KaitStorybookTheme.Mint : Color.white;}
     }
     public void Next() { if(appendixOpen){ShowAppendix(false);return;} if(PageIndex==PageCount-1) { Close(); Completed?.Invoke(); } else ShowPage(PageIndex+1); }
 
@@ -236,6 +236,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         var go=new GameObject(name,typeof(RectTransform),typeof(Image)); go.transform.SetParent(parent,false);
         var rt=(RectTransform)go.transform; rt.sizeDelta=size; rt.anchoredPosition=position;
         var img=go.GetComponent<Image>(); img.color=color; img.sprite=rounded; img.type=Image.Type.Sliced;
+        if(name=="Tutorial Book")KaitStorybookTheme.PaperPanel(img);
         return img;
     }
     Text Label(Transform parent,string value,Vector2 position,Vector2 size,int fontSize,Color color,TextAnchor alignment=TextAnchor.MiddleLeft)
@@ -249,7 +250,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     }
     Button AddButton(Transform parent,string label,Vector2 position,Vector2 size,UnityEngine.Events.UnityAction action)
     {
-        var img=Box(label,parent,position,size,new Color32(93,79,87,255));
+        var img=Box(label,parent,position,size,Color.white);img.sprite=KaitStorybookTheme.Button;
         var button=img.gameObject.AddComponent<Button>(); button.targetGraphic=img;
         button.navigation=new Navigation{mode=Navigation.Mode.None};
         button.onClick.AddListener(()=>{ GameAudio.PlayClick(); action(); });

@@ -91,7 +91,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
             var card = Owned[i];
             if (!card.gameObject.activeSelf || card.Skill != run.skills[i])
             {
-                float x = (i - 1) * 216;
+                float x = (i - (run.skills.Count-1)*.5f) * 214;
                 card.Show(run.skills[i], false, selectedOrigin ?? new Vector2(x, KaitSkillCard.DockY(bounds.rect, false, false)), x);
                 selectedOrigin = null; rearrange = true;
             }
@@ -169,7 +169,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
         EventSystem.current.RaycastAll(data, previewHits);
         Transform hit=previewHits.Count>0?previewHits[0].gameObject.transform:null;
         bool cardHit=hit!=null&&hit.GetComponentInParent<KaitSkillCard>()!=null;
-        bool boardHit=hit!=null&&hit.GetComponentInParent<KaitBattleGestureSurface>()!=null;
+        bool boardHit=hit!=null&&(hit.GetComponentInParent<KaitBattleGestureSurface>()!=null||hit.GetComponentInParent<KaitSkillTargetSurface>()!=null);
         if(targeting!=KaitSkill.None&&!cardHit&&!boardHit)cancelTargeting?.Invoke();
         DismissOtherPreviews(hit);
     }

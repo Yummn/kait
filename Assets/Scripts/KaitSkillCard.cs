@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public static readonly Vector2 Size = new Vector2(200, 296);
+    public static readonly Vector2 Size = new Vector2(200, 256);
     public const float DockReveal = 80f;
     public const float PreviewHoldSeconds = 3f;
     public RectTransform Rect { get; private set; }
@@ -52,7 +52,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         hd=KaitSunlitTheme.Load("PassiveCardBlankHD")??hd;flat=KaitSunlitTheme.Load("PassiveCardFlatCompact")??KaitSunlitTheme.Load("PassiveCardBlankFlat")??flat;
         var go = new GameObject("Skill Card", typeof(RectTransform), typeof(CanvasRenderer),
-            typeof(HybridStyleGraphic), typeof(CanvasGroup), typeof(KaitSkillCard));
+            typeof(HybridStyleGraphic), typeof(CanvasGroup), typeof(KaitSkillCard),typeof(KaitUnifiedPaper));
         go.transform.SetParent(parent, false);
         var card = go.GetComponent<KaitSkillCard>();
         card.Rect = go.GetComponent<RectTransform>(); card.Rect.sizeDelta = Size;
@@ -63,11 +63,11 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         card.surface.SetRightSprite(flat); card.surface.raycastTarget = true;
         card.title = card.Label("Name", font, split, 85, 34, 24, FontStyle.Bold);
         card.logo = KaitCardLogo.Create(go.transform, split, font, new Vector2(0,30), 68);
-        card.logo.SetIllustrationSize(104);
+        card.logo.SetIllustrationSize(112);
         card.state = card.Label("Availability", font, split, 2, 22, 16, FontStyle.Bold);
-        card.description = card.Label("Effect", font, split, -65, 80, 22);
-        card.description.rectTransform.sizeDelta=new Vector2(156,80);
-        card.footer = card.Label("Gesture", font, split, -127, 24, 15);
+        card.description = card.Label("Effect", font, split, -55, 56, 22);
+        card.description.rectTransform.sizeDelta=new Vector2(152,56);
+        card.footer = card.Label("Gesture", font, split, -97, 24, 15);
         KaitLiftShadow.Attach(card.Rect);
         go.SetActive(false);
         return card;
@@ -100,6 +100,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         title.text = KaitRun.SkillName(skill);
         var def=KaitAbilityCatalog.Get(skill);face=KaitCardSkin.Face(def)??face;
         KaitCardSkin.Apply(gameObject,def,title.font,styleSplit);
+        surface.SetRightSprite(KaitStorybookTheme.Card(def,true));
         logo.Show(skill); description.text = Description(skill);
         gameObject.SetActive(true); RefreshText();
     }
@@ -117,6 +118,8 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     private void Advance(float deltaTime)
     {
         float blend = 1 - Mathf.Exp(-20 * deltaTime);
+        bool full=ShouldPreviewAt(Time.unscaledTime);
+        Rect.sizeDelta=full?Size:new Vector2(Size.x,DockReveal);
         group.alpha = Mathf.Lerp(group.alpha, covered ? 0 : 1, blend);
         if (!IsDragging)
         {
@@ -138,22 +141,29 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         Color tint = IsCandidate || Ready || targeting ? Color.white : new Color(.72f, .75f, .8f);
         if(!string.IsNullOrEmpty(missingRequirement))tint=new Color(.53f,.55f,.59f);
         if (IsDragging && InCastZone && Ready) tint = new Color(.82f, 1f, .91f);
-        surface.SetVisualState(face, tint, tint);
+        var skin=GetComponent<KaitCardSkin>();int compact=full?0:(int)DockReveal;
+        skin?.SetCompactHeight(compact);
+        surface.SetVisualState(skin!=null?skin.DisplayFace(compact)??face:face, tint, tint);
         logo.SetTint(tint);
         RefreshText();
+        if(!IsCandidate&&!covered)
+            Rect.anchoredPosition=KaitStorybookLayout.ClampCard(Rect.anchoredPosition,Rect.sizeDelta,bounds.rect);
     }
 
     public static float DockY(Rect area, bool expanded, bool covered) => covered ? area.yMin - Size.y * .5f - 8 :
-        expanded ? area.yMin + Size.y * .5f + 12 : area.yMin - Size.y * .5f + DockReveal;
+        expanded ? area.yMin + Size.y * .5f + 12 : area.yMin + DockReveal*.5f + 12;
 
     private void RefreshText()
     {
         bool readable=ShouldPreviewAt(Time.unscaledTime);
-        title.rectTransform.anchoredPosition=new Vector2(0,readable?106:94);
-        title.rectTransform.sizeDelta=new Vector2(156,readable?34:22);
-        state.rectTransform.anchoredPosition=new Vector2(0,readable?2:73);
+        title.rectTransform.anchoredPosition=new Vector2(0,readable?94:12);
+        title.rectTransform.sizeDelta=new Vector2(156,readable?34:28);
+        state.rectTransform.anchoredPosition=new Vector2(0,readable?2:-17);
         state.rectTransform.sizeDelta=new Vector2(156,readable?22:18);
-        logo.gameObject.SetActive(readable);description.gameObject.SetActive(readable);
+        logo.gameObject.SetActive(readable);
+        logo.transform.localScale=Vector3.one*(readable?1:.38f);
+        ((RectTransform)logo.transform).anchoredPosition=new Vector2(readable?0:-67,readable?24:83);
+        description.gameObject.SetActive(readable);
         GetComponent<KaitCardSkin>()?.SetDetailsVisible(readable);
         state.text = IsCandidate ? "" : !readable || cooldown > 0 ? $"冷却 {cooldown} 回合" :
             targeting ? (KaitRun.NeedsCellTarget(Skill)?"选择目标格":"选择敌人") : "";
@@ -241,7 +251,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
             dragPoint = local;
             var p = local + offset;
             p.x = Mathf.Clamp(p.x, bounds.rect.xMin + Size.x * .5f + 8, bounds.rect.xMax - Size.x * .5f - 8);
-            p.y = Mathf.Clamp(p.y, bounds.rect.yMin, bounds.rect.yMax - Size.y * .5f - 8);
+            p.y = Mathf.Clamp(p.y, bounds.rect.yMin + Size.y * .5f + 8, bounds.rect.yMax - Size.y * .5f - 8);
             Rect.anchoredPosition = p;
             if(IsCandidate) rewardMove?.Invoke(local);
         }

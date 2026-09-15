@@ -116,11 +116,11 @@ public sealed class KaitMainMenu : MonoBehaviour
         var frame = MakeRect(label, Layout, position, size);
         var border = frame.gameObject.AddComponent<Image>();
         border.sprite = rounded; border.type = Image.Type.Sliced;
-        border.color = primary ? new Color32(191, 143, 127, 255) : Peach;
+border.color = KaitStorybookTheme.Ink;
         var inset = MakeRect("Button Face", frame, Vector2.zero, size - new Vector2(6, 6));
         var face = inset.gameObject.AddComponent<Image>();
         face.sprite = rounded; face.type = Image.Type.Sliced;
-        face.color = primary ? Peach : Plum;
+face.color = primary ? KaitStorybookTheme.Mint : KaitStorybookTheme.Paper;
         face.raycastTarget = false;
         var button = frame.gameObject.AddComponent<Button>();
         button.targetGraphic = face;
@@ -135,7 +135,7 @@ public sealed class KaitMainMenu : MonoBehaviour
         var text = textRect.gameObject.AddComponent<Text>();
         text.font = font; text.fontStyle = FontStyle.Bold; text.fontSize = primary ? 32 : 27;
         text.alignment = TextAnchor.MiddleCenter; text.text = label;
-        text.color = primary ? Plum : new Color32(255, 242, 221, 255);
+text.color = KaitStorybookTheme.Ink;
         text.raycastTarget = false;
         text.horizontalOverflow = HorizontalWrapMode.Wrap;
         text.verticalOverflow = VerticalWrapMode.Truncate;

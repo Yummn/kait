@@ -65,34 +65,24 @@ public sealed partial class KaitGame
         kaitSpine?.Destroy();kaitSpine=null;
         if(originalYummnFloor==null)originalYummnFloor=dungeonFloorSprite;
         if(originalYummnWall==null)originalYummnWall=dungeonWallSprite;
-        dungeonFloorSprite=run.IsYummn ? YummnSnowCourtyard.Load("Floor") ?? originalYummnFloor : originalYummnFloor;
-        dungeonWallSprite=run.IsYummn ? YummnSnowCourtyard.Load("Pillar") ?? originalYummnWall : originalYummnWall;
-        if(gardenMapping!=null)
+        dungeonFloorSprite=KaitStorybookArt.Floor(run.IsYummn,1,1) ?? originalYummnFloor;
+        dungeonWallSprite=KaitStorybookArt.Wall(run.IsYummn) ?? originalYummnWall;
+        if(storybookBackdrop!=null)storybookBackdrop.sprite=KaitStorybookArt.Load(run.IsYummn?"SnowBackdrop":"GrassBackdrop");
+        if(storybookForestDetail!=null)storybookForestDetail.SetSeason(run.IsYummn);
+        if(storybookForegroundBough!=null)
         {
-            var ground=gardenMapping.GetComponent<Image>();ground.enabled=!run.IsYummn;
-            if(run.IsYummn&&yummnCourtyard==null)
-            {
-                yummnCourtyard=Rect("Yummn Courtyard",gardenMapping,Vector2.zero,Vector2.zero,Color.white);
-                yummnCourtyard.sprite=YummnSnowCourtyard.Load("Ground") ?? YummnSprite("Courtyard");yummnCourtyard.raycastTarget=false;
-                // Cover the left surface at the source aspect ratio, never squash its circles.
-                var fit=yummnCourtyard.gameObject.AddComponent<AspectRatioFitter>();
-                fit.aspectMode=AspectRatioFitter.AspectMode.EnvelopeParent;
-                fit.aspectRatio=yummnCourtyard.sprite.rect.width/yummnCourtyard.sprite.rect.height;
-            }
-            if(yummnCourtyard!=null)yummnCourtyard.gameObject.SetActive(run.IsYummn);
-            foreach(var decal in gardenMapping.GetComponentsInChildren<KaitGroundDecal>(true))decal.gameObject.SetActive(!run.IsYummn);
+            storybookForegroundBough.sprite=KaitStorybookArt.Detail(run.IsYummn?"SnowBough":"GrassBough");
+            var bough=storybookForegroundBough.GetComponent<KaitCornerBough>();bough.Snow=run.IsYummn;bough.Fit();
         }
-        if(layeredGarden!=null){layeredGarden.enabled=!run.IsYummn;var decor=layeredGarden.transform.Find("Garden Decorations");if(decor!=null)decor.gameObject.SetActive(!run.IsYummn);}
-        // Decorations live in a separate actor-level root in the layered garden layout.
-        foreach(var rt in canvas.GetComponentsInChildren<RectTransform>(true))if(rt.name=="Garden Decorations")rt.gameObject.SetActive(!run.IsYummn);
+        if(storybookGroundEdge!=null){storybookGroundEdge.sprite=KaitStorybookArt.GroundApron(run.IsYummn);storybookGroundEdge.gameObject.SetActive(true);}
+        foreach(var ground in gameContent.GetComponentsInChildren<KaitBoardGrounding>())
+        {ground.Snow=run.IsYummn;ground.SetVerticesDirty();}
         for(int y=1;y<=5;y++)for(int x=1;x<=5;x++)
         {
             int index=x+y*KaitRun.BattleSize;
-            if(run.IsYummn&&yummnSnowEdges[index]==null)
-                yummnSnowEdges[index]=YummnSnowCourtyard.CreateSnowEdges(battleCells[index].transform,x,y);
-            if(yummnSnowEdges[index]!=null)yummnSnowEdges[index].SetActive(run.IsYummn);
             battleObstacles[index].sprite=dungeonWallSprite;
-            YummnSnowCourtyard.SetWallGrounding(battleObstacles[index],battleObstacleShadows[index].GetComponent<KaitSoftShadow>(),run.IsYummn&&dungeonWallSprite!=originalYummnWall);
+            battleObstacles[index].rectTransform.sizeDelta=Vector2.one*118;
+            battleObstacles[index].rectTransform.anchoredPosition=Vector2.zero;
         }
     }
     private void SaveCharacterRun()
@@ -123,7 +113,8 @@ public sealed partial class KaitGame
         if(run.IsYummn)kaitSpine?.SetYummnKiState(run.ExactKi>0);
         if(yummnHud==null)
         {
-            yummnHud=MakeHybridSurface("Yummn Ki",turnText.transform.parent,new Vector2(0,-80),new Vector2(250,90),dungeonPanelSprite,Panel,5f,10f);
+            yummnHud=MakeHybridSurface("Yummn Ki",turnText.transform.parent,new Vector2(124.5f,-19),new Vector2(218,34),null,Color.clear,0f,10f);
+            yummnHud.Configure(styleSplit,null,Color.clear,Color.clear,Color.clear,0,0);
             yummnHud.raycastTarget=false;
         }
         if(actionPips.Length!=run.Yummn.profile.maxKi)
@@ -133,7 +124,7 @@ public sealed partial class KaitGame
             kiWisps=new YummnKiWisp[actionPips.Length];
             for(int i=0;i<actionPips.Length;i++)
             {
-                actionPips[i]=Rect("Ki "+(i+1),yummnHud.transform,Vector2.zero,new Vector2(22,36),Color.white);
+                actionPips[i]=Rect("Ki "+(i+1),yummnHud.transform,Vector2.zero,new Vector2(34f*328/536,34),Color.white);
                 kiWisps[i]=actionPips[i].gameObject.AddComponent<YummnKiWisp>();
                 kiWisps[i].Configure(styleSplit);
             }
@@ -143,9 +134,10 @@ public sealed partial class KaitGame
         for(int i=0;i<actionPips.Length;i++)
         {
             actionPips[i].gameObject.SetActive(i<run.Yummn.profile.maxKi);
-            float spacing=Mathf.Min(24,120f/Mathf.Max(1,actionPips.Length-1));
-            actionPips[i].rectTransform.localScale=Vector3.one*Mathf.Min(1,(spacing-2)/22f);
-            actionPips[i].rectTransform.anchoredPosition=new Vector2((i-(actionPips.Length-1)*.5f)*spacing,0);
+            // Default seven-qi layout; optional 8/9 extend without squeezing.
+            const float spacing=32.5f;
+            actionPips[i].rectTransform.localScale=Vector3.one;
+            actionPips[i].rectTransform.anchoredPosition=new Vector2((i-3)*spacing,0);
             kiWisps[i].SetState(run.ExactKi-i,exhausted);
         }
     }

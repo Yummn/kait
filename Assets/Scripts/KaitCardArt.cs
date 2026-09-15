@@ -28,6 +28,6 @@ public static class KaitCardArt
             left=Mathf.Max(0,left-pad);right=Mathf.Min(w-1,right+pad);bottom=Mathf.Max(0,bottom-pad);top=Mathf.Min(h-1,top+pad);
             return fitted[source]=Sprite.Create(texture,new Rect(area.x+left,area.y+bottom,right-left+1,top-bottom+1),Vector2.one*.5f,100,0,SpriteMeshType.FullRect);
         }
-        finally {RenderTexture.active=previous;RenderTexture.ReleaseTemporary(rt);if(copy!=null)Object.Destroy(copy);}
+        finally {RenderTexture.active=previous;RenderTexture.ReleaseTemporary(rt);if(copy!=null){if(Application.isPlaying)Object.Destroy(copy);else Object.DestroyImmediate(copy);}}
     }
 }

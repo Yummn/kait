@@ -126,10 +126,21 @@ public sealed class KaitPassiveDeck : MonoBehaviour
         var visible = new List<KaitPassiveCard>();
         foreach (var card in owned) if (card.gameObject.activeSelf) visible.Add(card);
         visible.Sort((a, b) => a.DockX.CompareTo(b.DockX));
-        float[] positions = new float[visible.Count];
-        for (int i = 0; i < positions.Length; i++) positions[i] = visible[i].DockX;
-        positions = ResolveDockPositions(positions, bounds.rect);
-        for (int i = 0; i < positions.Length; i++) visible[i].SetDock(positions[i]);
+        for(int i=0;i<visible.Count;i++)
+        {
+            Vector2 point=HeaderDock(i,visible.Count,bounds.rect);
+            visible[i].SetDock(point.x);visible[i].SetDockRow(Mathf.RoundToInt(point.y));
+        }
+    }
+
+    // Up to six passives occupy two compact rows beside the HUD, not over it.
+    public static Vector2 HeaderDock(int index,int count,Rect area)
+    {
+        int row=index/3,columns=Mathf.Min(3,count-row*3);
+        float start=area.center.x+12,end=area.xMax-208;
+        float center=(start+end)*.5f;
+        float spacing=Mathf.Min(214,(end-start-200)/Mathf.Max(1,columns-1));
+        return new Vector2(center+(index%3-(columns-1)*.5f)*spacing,row);
     }
 
     // Sorted inputs; reserve the top-left title and top-right menu buttons.

@@ -8,8 +8,18 @@ public sealed class KaitCardSkin : MonoBehaviour
     private static readonly Dictionary<string,Sprite> cache=new Dictionary<string,Sprite>();
     private KaitCardOutline outline;
     private KaitUiGlyph clockIcon;
+    private Image kiIcon;
     private Text cooldown;
     private KaitAbilityDef definition;
+    private int faceHeight=-1;
+    public void SetCompactHeight(int height)
+    {
+        if(definition==null||faceHeight==height)return;
+        faceHeight=height;
+        var surface=GetComponent<HybridStyleGraphic>();
+        surface.SetRightSprite(KaitStorybookTheme.Card(definition,true,false,height));
+    }
+    public Sprite DisplayFace(int height)=>definition==null?null:KaitStorybookTheme.Card(definition,false,false,height);
     private static Sprite rounded;
     public static Sprite RoundRect()
     {
@@ -26,14 +36,7 @@ public sealed class KaitCardSkin : MonoBehaviour
     public static Sprite Face(KaitAbilityDef def)
     {
         if(def==null) return null;
-        // Raw generation sheets are not runtime assets until alpha has been verified.
-        if(Resources.Load<TextAsset>(Root+"ArtReady")==null)return null;
-        string key="frame"+(int)def.kind+(int)def.rarity;
-        if(cache.TryGetValue(key,out var s))return s;
-        var t=Resources.Load<Texture2D>(Root+"CardFrames");if(t==null)return null;
-        float w=t.width/3f,h=t.height/2f;
-        s=Sprite.Create(t,new Rect((int)def.rarity*w,(def.kind==KaitAbilityKind.Active?0:1)*h,w,h),new Vector2(.5f,.5f),100,0,SpriteMeshType.FullRect);
-        cache[key]=s;return s;
+        return KaitStorybookTheme.Card(def);
     }
     public static Sprite Icon(KaitAbilityDef def)
     {
@@ -58,13 +61,15 @@ public sealed class KaitCardSkin : MonoBehaviour
     {
         if(def==null)return;
         var skin=card.GetComponent<KaitCardSkin>()??card.AddComponent<KaitCardSkin>();
-        skin.definition=def;
+        skin.definition=def;skin.faceHeight=-1;
+        card.GetComponent<HybridStyleGraphic>()?.SetRightSprite(KaitStorybookTheme.Card(def,true));
         if(skin.outline==null)
         {
             var border=new GameObject("Rarity Outline",typeof(RectTransform),typeof(CanvasRenderer),typeof(KaitCardOutline));border.transform.SetParent(card.transform,false);
             skin.outline=border.GetComponent<KaitCardOutline>();skin.outline.raycastTarget=false;
             var rect=skin.outline.rectTransform;rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.sizeDelta=Vector2.zero;
-            skin.clockIcon=KaitUiGlyph.Create(card.transform,KaitUiGlyph.Symbol.Clock,new Vector2(-12,-125),15);
+            skin.clockIcon=KaitUiGlyph.Create(card.transform,KaitUiGlyph.Symbol.Clock,new Vector2(-12,-97),15);
+            skin.kiIcon=KaitStorybookArt.Icon(card.transform,"Qi",new Vector2(-12,-97),new Vector2(13,18));
             var cd=new GameObject("Cooldown Number",typeof(RectTransform),typeof(Text));cd.transform.SetParent(card.transform,false);
             skin.cooldown=cd.GetComponent<Text>();skin.cooldown.font=font;skin.cooldown.fontSize=16;skin.cooldown.alignment=TextAnchor.MiddleCenter;skin.cooldown.raycastTarget=false;
             skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-107);skin.cooldown.rectTransform.sizeDelta=new Vector2(26,28);
@@ -73,24 +78,25 @@ public sealed class KaitCardSkin : MonoBehaviour
         }
         skin.outline.ConfigureRightSide(split);
         skin.outline.color=KaitAbilityCatalog.RarityColor(def.rarity);
+        skin.outline.enabled=false; // The new dual-style face already contains its rarity border.
         skin.clockIcon.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
         skin.cooldown.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
         skin.cooldown.text=def.cooldown.ToString();
-        skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-125);
-        skin.cooldown.rectTransform.sizeDelta=new Vector2(26,28);
+        skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-97);
+        skin.cooldown.rectTransform.sizeDelta=new Vector2(26,24);
         if(YummnCatalog.IsMonk(def))
         {
             skin.clockIcon.gameObject.SetActive(false);
-            skin.cooldown.rectTransform.anchoredPosition=new Vector2(0,-125);
-            skin.cooldown.rectTransform.sizeDelta=new Vector2(138,28);
-            skin.cooldown.text=def.kind==KaitAbilityKind.Active?"耗气 "+def.kiExtraCost:def.traditionTag;
+            skin.cooldown.text=def.kind==KaitAbilityKind.Active?def.kiExtraCost.ToString():def.traditionTag;
         }
+        skin.kiIcon.gameObject.SetActive(YummnCatalog.IsMonk(def)&&def.kind==KaitAbilityKind.Active);
     }
     public void SetDetailsVisible(bool visible)
     {
         bool monk=YummnCatalog.IsMonk(definition);
         bool show=visible&&(GetComponent<KaitSkillCard>()!=null||monk);
         if(clockIcon!=null)clockIcon.gameObject.SetActive(show&&!monk);
+        if(kiIcon!=null)kiIcon.gameObject.SetActive(show&&monk&&definition.kind==KaitAbilityKind.Active);
         if(cooldown!=null)cooldown.gameObject.SetActive(show);
     }
 }

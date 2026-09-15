@@ -16,6 +16,7 @@ public sealed partial class KaitGame
                 int index=i;
                 var b=MakeFlatButton(gameplayRoot.transform,Vector2.zero,new Vector2(84,72),new[]{"↑","→","↓","←"}[i]+"\n施放");
                 b.name="Yummn Cast "+CastDirections[i];
+                b.gameObject.AddComponent<KaitSkillTargetSurface>();
                 // Keep a generous click surface for occupied cells, but let the
                 // shared selector effect provide all visuals.
                 b.transition=Selectable.Transition.None;
@@ -26,7 +27,7 @@ public sealed partial class KaitGame
             }
             var button=yummnCastDirections[i];if(button==null)continue;
             button.gameObject.SetActive(visible);if(!visible)continue;
-            button.GetComponent<RectTransform>().sizeDelta=new Vector2(108,108);
+            button.GetComponent<RectTransform>().sizeDelta=Vector2.one*(120*gameContent.localScale.x);
             var d=KaitRun.Delta(CastDirections[i]);
             var origin=battleCells[run.katePos.x+run.katePos.y*KaitRun.BattleSize].rectTransform;
             // The hidden outer border has no UI cells; measure the playable grid.

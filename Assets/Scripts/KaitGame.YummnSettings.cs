@@ -30,9 +30,10 @@ public sealed partial class KaitGame
         string[] keys={"MaxHp","MaxKi","FixedMove","KillKi","SupplyMode"};
         for(int i=0;i<keys.Length;i++)
         {
-            int index=i;var b=MakeFlatButton(parent,new Vector2(0,137-i*34),new Vector2(580,32),"");
+            int index=i;var b=MakeFlatButton(parent,new Vector2(0,127-i*34),new Vector2(580,32),"");
+            b.GetComponent<Image>().sprite=KaitStorybookTheme.Surface("setting-row",new Color32(241,226,212,255),new Color32(219,202,208,255),2,8);
             b.gameObject.name="Yummn Rule "+keys[i];yummnSettingsControls.Add(b.gameObject);yummnRuleButtons.Add(b);
-            var label=b.GetComponentInChildren<Text>();label.font=threatBoardFont;label.fontSize=20;label.resizeTextMinSize=16;label.resizeTextMaxSize=20;
+            var label=b.GetComponentInChildren<Text>();label.font=threatBoardFont;label.fontSize=20;label.resizeTextMinSize=16;label.resizeTextMaxSize=20;label.fontStyle=FontStyle.Normal;
             // The shared button inset leaves only 22px in this 32px row.
             // This font's line metrics then truncate even a single fitted line.
             label.rectTransform.offsetMin=new Vector2(10,0);
@@ -110,13 +111,11 @@ public sealed partial class KaitGame
         {
             label.enabled=true;
             if(stable!=null)label.font=stable;
-            var color=label.color;color.a=1f;label.color=color;
+            label.color=KaitStorybookTheme.Ink;
             label.canvasRenderer.SetAlpha(1f);
             label.raycastTarget=false;
-            var outline=label.GetComponent<Outline>()??label.gameObject.AddComponent<Outline>();
-            outline.effectColor=new Color(.08f,.06f,.09f,.82f);
-            outline.effectDistance=new Vector2(1,-1);
-            outline.useGraphicAlpha=true;
+            var outline=label.GetComponent<Outline>();
+            if(outline!=null)outline.enabled=false;
         }
     }
 }

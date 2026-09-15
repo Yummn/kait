@@ -122,7 +122,7 @@ public sealed class HybridStyleGraphic : MaskableGraphic
         if (rightSprite != null) AddSlicedSide(vertexHelper, rect, bottomX, topX, rightSprite, false);
         else AddSolidSide(vertexHelper, rect, bottomX, topX, false, rightColor);
 
-        if (seamWidth > 0f && seamColor.a > 0f)
+        if (seamWidth > 0f && seamColor.a > 0f && !(bottomSplit>1f&&topSplit>1f) && !(bottomSplit<0f&&topSplit<0f))
         {
             float half = seamWidth * 0.5f;
             var seam = new List<HybridVertex>
@@ -266,6 +266,7 @@ public sealed class HybridStyleGraphic : MaskableGraphic
 
     private void GetSplits(out float bottom, out float top)
     {
+        if(GetComponentInParent<KaitUnifiedPaper>()!=null){bottom=top=2;return;}
         if (splitContext != null) splitContext.GetLocalSplits(rectTransform, out bottom, out top);
         else
         {

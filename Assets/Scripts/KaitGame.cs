@@ -19,8 +19,8 @@ public sealed partial class KaitGame : MonoBehaviour
     private const float EnemyAttackReleaseLead = 0.1f;
     private const float PostImpactHold = 0.06f;
     private const float EnemyMoveDuration = 0.2f;
-    private const float WorldStyleTopSplit = 0.563f;
-    private const float WorldStyleBottomSplit = 0.447f;
+    private const float WorldStyleTopSplit = 0.609f;
+    private const float WorldStyleBottomSplit = 0.425f;
     private const float ContentWidth = 1600f;
     private const float ContentHeight = 900f;
     private const string DisableThreatPillarsPreference = "Kait.DisableThreatPillars";
@@ -38,7 +38,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private RectTransform gameContent;
     private Coroutine screenShakeRoutine;
     private Coroutine kaitSkillAnimationRoutine;
-    private Vector2 gameContentBasePosition;
+    private Vector2 gameContentBasePosition => gameContent!=null?gameContent.GetComponent<KaitStorybookLayout>().Origin:Vector2.zero;
     private Sprite roundedSprite;
     private Image[] battleCells;
     private Image[] battleCellTiles;
@@ -74,6 +74,15 @@ public sealed partial class KaitGame : MonoBehaviour
     private GlobalStyleSplit styleSplit;
     private GlobalStyleSplit worldStyleSplit;
     private GameObject controlsPanel;
+    private Text storybookCharacter;
+    private Image storybookPortrait;
+    private Image storybookBackdrop;
+    private Image storybookGroundEdge;
+    private KaitForestDetail storybookForestDetail;
+    private Image storybookForegroundBough;
+    private Text storybookPower;
+    private readonly Image[] storybookHearts=new Image[6];
+    private GameObject storybookSnowDetails;
     private KaitSkill targetingSkill;
     private YummnSkillTargetMarker[] battleSkillTargetMarkers;
     private YummnSkillTargetMarker[] threatSkillTargetMarkers;
@@ -229,7 +238,7 @@ public sealed partial class KaitGame : MonoBehaviour
         threatBoardFont = Resources.Load<Font>("NotoSansCJKsc-Regular");
         if (threatBoardFont == null) threatBoardFont = Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei UI", "Microsoft YaHei", "Arial" }, 24);
         if (threatBoardFont == null) threatBoardFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        uiFont = Resources.Load<Font>("Fonts/FusionPixel12pxProportionalZhHans");
+        uiFont = threatBoardFont; // Storybook UI no longer mixes pixel lettering with painted art.
         if (uiFont == null) uiFont = threatBoardFont;
         ConfigureUiFontAtlas(uiFont);
         Font.textureRebuilt += OnFontTextureRebuilt;
@@ -246,10 +255,10 @@ public sealed partial class KaitGame : MonoBehaviour
         dungeonWallSprite = KaitSunlitTheme.Load("Pillar");
         spawnRiftSprite = KaitSunlitTheme.Load("Rift");
         riftDangerWarningSprite = LoadUiSprite("KaitVisuals/RiftDangerWarning");
-        dungeonPanelSprite = KaitSunlitTheme.Load("Panel", 0.10f, 160f);
-        dungeonButtonSprite = KaitSunlitTheme.Load("Button", 0.15f, 80f);
+        dungeonPanelSprite = KaitStorybookTheme.Panel;
+        dungeonButtonSprite = KaitStorybookTheme.Button;
         // Shared button state supplies the darkening and press/release scale.
-        dungeonButtonPressedSprite = dungeonButtonSprite;
+        dungeonButtonPressedSprite = KaitStorybookTheme.Pressed;
         healthFillSprites[0] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillLeft");
         healthFillSprites[1] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillMiddle");
         healthFillSprites[2] = LoadPixelSprite("KaitVisuals/DungeonUI/HealthFillRight");
@@ -610,23 +619,6 @@ public sealed partial class KaitGame : MonoBehaviour
 
         Image bg = Rect("Background", canvas.transform, Vector2.zero, new Vector2(1920, 1080), Background);
         gameplayRoot = bg.gameObject;
-        if (grassBackgroundSprite != null)
-        {
-            Image garden = Rect("Emerald Garden", bg.transform, Vector2.zero, Vector2.zero, Color.white);
-            garden.sprite = grassBackgroundSprite;
-            garden.type = Image.Type.Simple;
-            garden.raycastTarget = false;
-            garden.rectTransform.anchorMin = Vector2.zero;
-            garden.rectTransform.anchorMax = new Vector2(WorldStyleTopSplit, 1f);
-            garden.rectTransform.offsetMin = garden.rectTransform.offsetMax = Vector2.zero;
-            gardenMapping = garden.rectTransform;
-            if (KaitLayeredGarden.ArtReady)
-            {
-                layeredGarden = bg.gameObject.AddComponent<KaitLayeredGarden>();
-                layeredGarden.Initialize(gardenMapping);
-            }
-            AddGardenShadow(garden.transform, "Garden Shadow");
-        }
         bg.rectTransform.anchorMin = Vector2.zero;
         bg.rectTransform.anchorMax = Vector2.one;
         bg.rectTransform.sizeDelta = Vector2.zero;
@@ -636,18 +628,35 @@ public sealed partial class KaitGame : MonoBehaviour
         // boards with a straight vertical wall.
         // Continue the same diagonal used by the centre info/skill panels so
         // the pixel and flat halves read as one uninterrupted cut.
-        AddDiagonalCut(bg.transform, "World Style Split", WorldStyleTopSplit, WorldStyleBottomSplit, Background, Peach, 6f);
+        storybookBackdrop=KaitStorybookArt.Icon(bg.transform,"GrassBackdrop",Vector2.zero,new Vector2(1920,1080));
+        storybookBackdrop.preserveAspect=false;
+        var backdropFit=storybookBackdrop.gameObject.AddComponent<AspectRatioFitter>();
+        backdropFit.aspectMode=AspectRatioFitter.AspectMode.EnvelopeParent;backdropFit.aspectRatio=16f/9f;
+        // The quiet right field doesn't need the forest's texel density. This
+        // separate detail texture spends its pixels on the illustrated left side.
+        var forestObject=new GameObject("Forest Detail",typeof(RectTransform),typeof(KaitForestDetail));
+        forestObject.transform.SetParent(storybookBackdrop.transform,false);
+        storybookForestDetail=forestObject.GetComponent<KaitForestDetail>();storybookForestDetail.SetSeason(false);
+        storybookForestDetail.rectTransform.anchorMin=new Vector2(0,0);
+        storybookForestDetail.rectTransform.anchorMax=new Vector2(.606f,1);
+        storybookForestDetail.rectTransform.sizeDelta=Vector2.zero;
 
         Text title = MakeText("Kait", bg.transform, new Vector2(-860, 500), new Vector2(180, 48), 32, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
         title.font = threatBoardFont;
-        MakeFlatButton(bg.transform, new Vector2(792, 460), new Vector2(110, 42), "玩法教程").onClick.AddListener(() =>
+        title.gameObject.SetActive(false);
+        var helpButton=MakeFlatButton(bg.transform, new Vector2(804, 470), new Vector2(72, 72), "?");
+        helpButton.name="Tutorial Button";
+        helpButton.onClick.AddListener(() =>
         {
             GameAudio.PlayClick();
             if (settingsOverlay != null) settingsOverlay.SetActive(false);
             tutorialOverlay.SetActive(true);
             tutorialOverlay.transform.SetAsLastSibling();
         });
-        MakeFlatButton(bg.transform, new Vector2(902, 460), new Vector2(90, 42), "设置").onClick.AddListener(() =>
+        var settingsButton=MakeFlatButton(bg.transform, new Vector2(894, 470), new Vector2(72, 72), "");
+        settingsButton.name="Settings Gear";
+        KaitStorybookArt.Icon(((KaitStorybookButton)settingsButton).Face,"Gear",Vector2.zero,Vector2.one*38);
+        settingsButton.onClick.AddListener(() =>
         {
             GameAudio.PlayClick();
             if (tutorialOverlay != null) tutorialOverlay.SetActive(false);
@@ -659,15 +668,16 @@ public sealed partial class KaitGame : MonoBehaviour
         contentGo.transform.SetParent(bg.transform, false);
         RectTransform content = contentGo.GetComponent<RectTransform>();
         content.sizeDelta = new Vector2(ContentWidth, ContentHeight);
-        content.localScale = Vector3.one * 1.2f;
+        content.localScale = Vector3.one * 1.08f;
         gameContent = content;
-        gameContentBasePosition = content.anchoredPosition;
+        var responsive=contentGo.AddComponent<KaitStorybookLayout>();
+        responsive.UiRoot=bg.rectTransform;responsive.Help=(RectTransform)helpButton.transform;responsive.Settings=(RectTransform)settingsButton.transform;
         styleSplit = contentGo.AddComponent<GlobalStyleSplit>();
         // Background and floating UI share the same full-screen coordinate space.
         // A fixed design-space offset creates depth without changing the slope.
-        styleSplit.Configure(bg.rectTransform, WorldStyleBottomSplit, WorldStyleTopSplit, 28f);
+        styleSplit.Configure(storybookBackdrop.rectTransform, WorldStyleBottomSplit, WorldStyleTopSplit);
         worldStyleSplit = contentGo.AddComponent<GlobalStyleSplit>();
-        worldStyleSplit.Configure(bg.rectTransform, WorldStyleBottomSplit, WorldStyleTopSplit);
+        worldStyleSplit.Configure(storybookBackdrop.rectTransform, WorldStyleBottomSplit, WorldStyleTopSplit);
 
         BuildBattleBoard(content);
         BuildThreatBoard(content);
@@ -683,6 +693,12 @@ public sealed partial class KaitGame : MonoBehaviour
             layeredGarden.BuildDecorations(decorationRect, battleActorLayer);
             title.transform.SetAsLastSibling();
         }
+        // HUD belongs above scene foliage but below cards, modals and the menu.
+        var storybookHud=(RectTransform)storybookCharacter.transform.parent;
+        var storybookLayout=contentGo.GetComponent<KaitStorybookLayout>();
+        storybookLayout.HudPosition=storybookHud.anchoredPosition;
+        storybookHud.SetParent(bg.transform,true);
+        storybookLayout.Hud=storybookHud;
         var cardsObject = new GameObject("Passive Cards", typeof(RectTransform), typeof(KaitPassiveDeck));
         cardsObject.transform.SetParent(bg.transform, false);
         RectTransform cardArea = cardsObject.GetComponent<RectTransform>();
@@ -698,6 +714,9 @@ public sealed partial class KaitGame : MonoBehaviour
         var rewardObject=new GameObject("Mixed Reward Cards",typeof(RectTransform),typeof(KaitRewardDeck));
         rewardObject.transform.SetParent(bg.transform,false);var rewardArea=rewardObject.GetComponent<RectTransform>();Stretch(rewardArea,0);
         rewardDeck=rewardObject.GetComponent<KaitRewardDeck>();rewardDeck.Initialize(rewardArea,styleSplit,threatBoardFont,()=>!busy&&!TutorialBlocksInput(),RefreshAll);
+        rewardDeck.OwnedAreas=new[]{cardArea,skillArea};
+        responsive.CardAreas=new[]{cardArea,skillArea,rewardArea};
+        responsive.ApplyLayout();
         BuildEndOverlay(bg.transform);
         BuildTutorialOverlay(canvas.transform);
         BuildSettingsOverlay(canvas.transform);
@@ -756,6 +775,12 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void AddGardenShadow(Transform parent, string name)
     {
+        if(storybookBackdrop!=null)
+        {
+            var canopy=Resources.Load<Texture2D>("KaitVisuals/EmeraldCourtyard/CanopyMask");
+            if(canopy!=null)KaitGroundDecal.Create(parent,parent.parent as RectTransform,canopy,new Color(.24f,.31f,.38f,.14f),"Storybook Canopy Projection");
+            return;
+        }
         // Keep the existing artwork usable if a decoration asset is missing.
         Texture coverage = layeredGarden != null ? (Texture)layeredGarden.ShadowField
             : Resources.Load<Texture2D>(KaitSunlitTheme.ResourceRoot + "CanopyMask");
@@ -770,6 +795,7 @@ public sealed partial class KaitGame : MonoBehaviour
         boardRect.anchorMin = boardRect.anchorMax = boardRect.pivot = new Vector2(0.5f, 0.5f);
         boardRect.sizeDelta = new Vector2(600, 600);
         boardRect.anchoredPosition = new Vector2(-450, 0);
+        KaitBoardGrounding.Create(boardRect,false);
         var gridGo = new GameObject("Battle Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(boardGo.transform, false);
         RectTransform gridRect = gridGo.GetComponent<RectTransform>();
@@ -815,10 +841,10 @@ public sealed partial class KaitGame : MonoBehaviour
                 tile.type = Image.Type.Simple;
                 tile.preserveAspect = false;
                 tile.raycastTarget = false;
-                Stretch(tile.rectTransform, 0);
+                Stretch(tile.rectTransform, .45f);
                 // All stones meet on the same level; rotate only the neutral
                 // stone texture, never the shared canopy projection.
-                tile.rectTransform.localRotation = Quaternion.Euler(0, 0, ((x * 3 + visualY) % 4) * 90f);
+                tile.rectTransform.localRotation = Quaternion.identity;
                 battleCellTiles[index] = tile;
                 AddGardenShadow(cell.transform, "Pavement Shadow");
                 var contact = KaitSoftShadow.Create(cell.transform, "Stone Contact Shadow");
@@ -913,6 +939,10 @@ public sealed partial class KaitGame : MonoBehaviour
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(gridRect);
 
+        // Board-anchored painted transition: stays registered to the same floor
+        // at every aspect ratio. Under characters and combat feedback, no raycasts.
+        storybookGroundEdge=KaitStorybookDetails.Image(boardRect,"Painted Ground Edge",Vector2.zero,Vector2.one*750,KaitStorybookArt.GroundApron(false));
+
         // Impact marks that should sit behind character art but above the board
         // tiles live in their own layer. Keeping this separate from the actor
         // layer also makes the ordering stable while actors are reparented.
@@ -992,7 +1022,10 @@ public sealed partial class KaitGame : MonoBehaviour
     {
         // Match the battle board's outer 600 x 600 footprint. The inner grid
         // keeps the original 2048 spacing ratio so the simple style remains intact.
-        Image frame = Rect("Threat Panel", parent, new Vector2(450, 0), new Vector2(600, 600), Panel);
+        Image frame = Rect("Threat Panel", parent, new Vector2(450, 0), new Vector2(600, 600), Hex("#DDC6B2"));
+        frame.sprite=KaitStorybookTheme.Tray;
+        frame.type=Image.Type.Sliced;frame.color=Color.white;
+        KaitBoardGrounding.Create(frame.rectTransform,true);
         var gridGo = new GameObject("Threat Grid", typeof(RectTransform), typeof(GridLayoutGroup));
         gridGo.transform.SetParent(frame.transform, false);
         RectTransform rt = gridGo.GetComponent<RectTransform>();
@@ -1021,43 +1054,56 @@ public sealed partial class KaitGame : MonoBehaviour
                 Stretch(threatLabels[index].rectTransform, 2);
             }
         }
+        // Same board parent = stable overlap through aspect ratio changes and
+        // movement. Above tiles, below reward cards/HUD; never catches input.
+        storybookForegroundBough=KaitStorybookDetails.Image(frame.transform,"Foreground Corner Bough",new Vector2(242,-326),new Vector2(340,340*391f/412),KaitStorybookArt.Detail("GrassBough"));
+        storybookForegroundBough.preserveAspect=true;
+        storybookForegroundBough.gameObject.AddComponent<KaitCornerBough>().Viewport=gameContent.GetComponent<KaitStorybookLayout>().UiRoot;
     }
 
     private void BuildSidebar(Transform parent)
     {
-        HybridStyleGraphic info = MakeHybridSurface("Run Info", parent, new Vector2(0, 300), new Vector2(250, 70),
-            dungeonPanelSprite, Panel, 5f, 10f);
-        turnText = MakeText("", info.transform, new Vector2(0, 14), new Vector2(220, 26), 16, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-        MakeText("生命", info.transform, new Vector2(-86, -16), new Vector2(44, 20), 13, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
-        runHealthBar = MakeHealthBar(info.transform, new Vector2(8, -16), UnitHealthBarSize);
+        HybridStyleGraphic info = MakeHybridSurface("Run Info", parent, new Vector2(-497, 370), new Vector2(528, 96),
+            KaitStorybookTheme.Hud, Panel, 0f, 10f);
+        info.gameObject.AddComponent<KaitUnifiedPaper>();
+        storybookPortrait=KaitStorybookDetails.PortraitBadge(info.transform,KaitCharacter.Kait,new Vector2(-253,8),118);
+        storybookCharacter=MakeText("Kait",info.transform,new Vector2(-108,21),new Vector2(170,28),24,Cream,TextAnchor.MiddleLeft,FontStyle.Bold);
+        var actionPlate=Rect("Action Count Plate",info.transform,new Vector2(-144,-19),new Vector2(108,32),Color.white);
+        actionPlate.sprite=KaitStorybookTheme.Surface("action-count",new Color(.45f,.43f,.47f,.22f),Color.clear,0,10);actionPlate.type=Image.Type.Sliced;actionPlate.raycastTarget=false;
+        turnText = MakeText("", info.transform, new Vector2(-144, -19), new Vector2(98, 28), 19, Cream, TextAnchor.MiddleCenter, FontStyle.Bold);
+        KaitStorybookArt.Icon(info.transform,"Fist",new Vector2(-62,-18),new Vector2(32,34));
+        storybookPower=MakeText("1",info.transform,new Vector2(-32,-19),new Vector2(24,28),21,Cream,TextAnchor.MiddleCenter,FontStyle.Bold);
+        for(int i=0;i<storybookHearts.Length;i++)storybookHearts[i]=KaitStorybookArt.Icon(info.transform,"Heart",new Vector2(27+i*39,21),new Vector2(34,34));
+        runHealthBar = MakeHealthBar(info.transform, new Vector2(178, 20), UnitHealthBarSize);
+        runHealthBar.root.gameObject.SetActive(false);
         statusText = MakeText("", parent, Vector2.zero, Vector2.zero, 1, Color.clear, TextAnchor.MiddleCenter);
         statusText.gameObject.SetActive(false);
 
-        Vector2 controlsPosition = new Vector2(0, -210);
+        Vector2 controlsPosition = new Vector2(0, -20);
 
-        Vector2 controlsSize = new Vector2(250, 220);
+        Vector2 controlsSize = new Vector2(260, 244);
         HybridStyleGraphic controls = MakeHybridSurface("Controls", parent, controlsPosition, controlsSize,
-            dungeonPanelSprite, Panel, 5f, 14f);
+            null, Color.clear, 0f, 14f);
+        controls.Configure(styleSplit,null,Color.clear,Color.clear,Color.clear,0,0);
+        controls.gameObject.AddComponent<KaitUnifiedPaper>();
         controlsPanel = controls.gameObject;
-        Vector2 keySize = new Vector2(58, 46);
-        Vector2 upPosition = new Vector2(0, 65);
-        Vector2 leftPosition = new Vector2(-62, 14);
-        Vector2 downPosition = new Vector2(0, 14);
-        Vector2 rightPosition = new Vector2(62, 14);
-        Vector2 restartPosition = new Vector2(0, -57);
-        Vector2 restartSize = new Vector2(182, 48);
+        Vector2 keySize = new Vector2(76, 76);
+        Vector2 upPosition = new Vector2(0, 84);
+        Vector2 leftPosition = new Vector2(-84, 0);
+        Vector2 downPosition = new Vector2(0, -84);
+        Vector2 rightPosition = new Vector2(84, 0);
         Button up = MakeHybridButton(controls.transform, upPosition, keySize, "W");
         Button left = MakeHybridButton(controls.transform, leftPosition, keySize, "A");
         Button down = MakeHybridButton(controls.transform, downPosition, keySize, "S");
         Button right = MakeHybridButton(controls.transform, rightPosition, keySize, "D");
-        waitButton = MakeHybridButton(controls.transform, new Vector2(62,65), keySize, "等待");
+        waitButton = MakeHybridButton(controls.transform, Vector2.zero, keySize, "等待");
+        foreach(var key in new[]{up,left,down,right,waitButton})
+            foreach(var label in key.GetComponentsInChildren<Text>(true)){label.fontSize=24;label.resizeTextMaxSize=24;}
         waitButton.onClick.AddListener(HandleWait);
-        Button restart = MakeHybridButton(controls.transform, restartPosition, restartSize, "重新开始  R");
         BindHeldButton(up,KaitDirection.Up);
         BindHeldButton(left,KaitDirection.Left);
         BindHeldButton(down,KaitDirection.Down);
         BindHeldButton(right,KaitDirection.Right);
-        restart.onClick.AddListener(() => { GameAudio.PlayClick(); NewRun(); });
 
     }
 
@@ -1485,11 +1531,17 @@ public sealed partial class KaitGame : MonoBehaviour
         RefreshBattle();
         RefreshThreat();
         RefreshSkillUI();
-        turnText.text = run.IsYummn ? $"行动 {run.turn}　拳力 1" : $"回合 {run.turn}　速度 {run.momentum}";
+        turnText.text = run.IsYummn ? $"行动 {run.turn}" : $"回合 {run.turn}";
+        if(storybookPower!=null)storybookPower.text=run.IsYummn?"1":run.momentum.ToString();
         RefreshYummnHud();
+        if(storybookCharacter!=null)storybookCharacter.text=run.IsYummn?"Yummn":"Kait";
+        KaitStorybookDetails.SetPortrait(storybookPortrait,run.IsYummn?KaitCharacter.Yummn:KaitCharacter.Kait);
+        if(storybookSnowDetails!=null)storybookSnowDetails.SetActive(run.IsYummn);
         RefreshYummnSkillTargets();
         if(buildDirectionText!=null) buildDirectionText.text=run.HasPassive(KaitPassive.ReverseGravity)?$"重力反转   主 {DirectionGlyph(run.currentGlobalDirection)} / 右盘 {DirectionGlyph(run.actualThreatDirection)}":"";
         SetHealthBar(runHealthBar, run.kateHp);
+        for(int i=0;i<storybookHearts.Length;i++)if(storybookHearts[i]!=null)
+        {storybookHearts[i].gameObject.SetActive(i<run.KateMaxHp);storybookHearts[i].color=i<run.kateHp?Color.white:new Color(.55f,.50f,.58f,.28f);}
         ShowPendingSkillChoice();
         if (run.ended) ShowEnd();
     }
@@ -1762,7 +1814,7 @@ public sealed partial class KaitGame : MonoBehaviour
                 battleMageWarnings[index].gameObject.SetActive(false);
                 battleRifts[index].gameObject.SetActive(false);
                 battleRiftDangerIcons[index].gameObject.SetActive(false);
-                tile.sprite = dungeonFloorSprite != null ? dungeonFloorSprite : roundedSprite;
+                tile.sprite = KaitStorybookArt.Floor(run.IsYummn,x,y) ?? dungeonFloorSprite ?? roundedSprite;
                 tile.type = dungeonFloorSprite != null ? Image.Type.Simple : Image.Type.Sliced;
                 // Snow paving is authored in its final blue-gray palette.
                 tile.color = Color.white;
@@ -2025,10 +2077,12 @@ public sealed partial class KaitGame : MonoBehaviour
             {
                 int index = x + y * run.ThreatSize;
                 Vector2Int cell = new Vector2Int(x, y);
+                threatCells[index].type=Image.Type.Sliced;
                 if (run.IsThreatPillar(cell))
                 {
                     threatLabels[index].text = "";
-                    threatCells[index].color = run.HasPassive(KaitPassive.Passwall)?Color.Lerp(Void,Cyan,.38f):Void;
+                    threatCells[index].sprite=KaitStorybookTheme.ThreatStone();threatCells[index].type=Image.Type.Simple;
+                    threatCells[index].color = run.HasPassive(KaitPassive.Passwall)?Color.Lerp(Color.white,Cyan,.38f):Color.white;
                     continue;
                 }
                 int value = displayedThreat == null ? run.threat[x, y] : displayedThreat[x, y];
@@ -2036,13 +2090,15 @@ public sealed partial class KaitGame : MonoBehaviour
                 if (previewTwo)
                 {
                     threatLabels[index].text = "2";
-                    threatCells[index].color = Color.Lerp(ThreatColor(0), ThreatColor(2), 0.48f);
+                    threatCells[index].sprite=KaitStorybookTheme.Tile(Color.Lerp(ThreatColor(0), ThreatColor(2), 0.48f));
+                    threatCells[index].color = Color.white;
                     threatLabels[index].color = new Color(Void.r, Void.g, Void.b, 0.52f);
                     continue;
                 }
                 threatLabels[index].text = value == 0 || hideThreatValues ? "" : value.ToString();
-                threatCells[index].color = ThreatColor(value);
-                if(archive.Contains(cell))threatCells[index].color=Color.Lerp(threatCells[index].color,Gold,.35f);
+                Color tileFill=ThreatColor(value);
+                if(archive.Contains(cell))tileFill=Color.Lerp(tileFill,Gold,.35f);
+                threatCells[index].sprite=KaitStorybookTheme.Tile(tileFill,value==0);threatCells[index].color=Color.white;
                 threatLabels[index].color = value >= 16 ? Cream : Void;
             }
     }
@@ -4621,7 +4677,7 @@ public sealed partial class KaitGame : MonoBehaviour
         bool ivoryPanel = parentImage != null && parentImage.sprite == dungeonPanelSprite;
         bool paintedButton = parentImage != null && parentImage.sprite == dungeonButtonSprite;
         if (courtyardUi || ivoryPanel || paintedButton) addOutline = false;
-        if (ivoryPanel) color = Hex("#57402E");
+        if (ivoryPanel || paintedButton) color = KaitStorybookTheme.Ink;
         var go = new GameObject("Text", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
         go.transform.SetParent(parent, false);
         RectTransform rt = go.GetComponent<RectTransform>();
@@ -4692,21 +4748,13 @@ public sealed partial class KaitGame : MonoBehaviour
 
         HybridStyleGraphic surface = surfaceObject.GetComponent<HybridStyleGraphic>();
         surface.raycastTarget = false;
-        surface.Configure(styleSplit, pixelSprite, Color.white, flatColor, Peach, seamWidth, cornerRadius);
+        surface.Configure(styleSplit, pixelSprite, Color.white, flatColor, Peach, Mathf.Min(2,seamWidth), cornerRadius);
         return surface;
     }
 
     private Button MakeHybridButton(Transform parent, Vector2 position, Vector2 size, string label)
     {
-        HybridStyleGraphic surface = MakeHybridSurface("Hybrid Button", parent, position, size,
-            dungeonButtonSprite, PanelLight, 5f, Mathf.Min(10f, size.y * 0.18f));
-        surface.raycastTarget = true;
-        HybridStyleButton button = surface.gameObject.AddComponent<HybridStyleButton>();
-        button.Configure(surface, dungeonButtonSprite, dungeonButtonPressedSprite, PanelLight);
-        Text text = MakeText(label, surface.transform, Vector2.zero, size - new Vector2(8, 8), 17, Cream,
-            TextAnchor.MiddleCenter, FontStyle.Bold);
-        Stretch(text.rectTransform, 10);
-        return button;
+        return MakeFlatButton(parent,position,size,label);
     }
 
     private Button MakeFlatButton(Transform parent, Vector2 position, Vector2 size, string label)
@@ -4717,8 +4765,8 @@ public sealed partial class KaitGame : MonoBehaviour
             image.sprite = roundedSprite;
             image.type = Image.Type.Sliced;
         }
-        Button button = image.gameObject.AddComponent<Button>();
-        button.transition = Selectable.Transition.ColorTint;
+        KaitStorybookButton button = image.gameObject.AddComponent<KaitStorybookButton>();
+        button.Prepare();
         ColorBlock colors = button.colors;
         colors.normalColor = Color.white;
         colors.highlightedColor = new Color(1.08f, 1.08f, 1.08f, 1f);
@@ -4726,7 +4774,7 @@ public sealed partial class KaitGame : MonoBehaviour
         colors.selectedColor = colors.highlightedColor;
         colors.disabledColor = new Color(0.58f, 0.58f, 0.58f, 0.72f);
         button.colors = colors;
-        Text text = MakeText(label, image.transform, Vector2.zero, size - new Vector2(8, 8), 17, Cream,
+        Text text = MakeText(label, button.Face, Vector2.zero, size - new Vector2(8, 8), 17, KaitStorybookTheme.Ink,
             TextAnchor.MiddleCenter, FontStyle.Bold, false);
         text.font = threatBoardFont;
         Stretch(text.rectTransform, 5);
@@ -4735,7 +4783,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private Toggle MakeFlatToggle(Transform parent, Vector2 position, Vector2 size, string label)
     {
-        Image background = Rect("Flat Toggle", parent, position, size, PanelLight);
+        Image background = Rect("Flat Toggle", parent, position, size, KaitStorybookTheme.Peach);
         if (roundedSprite != null)
         {
             background.sprite = roundedSprite;
@@ -4768,7 +4816,7 @@ public sealed partial class KaitGame : MonoBehaviour
         mark.raycastTarget = false;
         toggle.graphic = mark;
 
-        Text text = MakeText(label, background.transform, new Vector2(24, 0), new Vector2(size.x - 88f, 46), 18, Cream,
+        Text text = MakeText(label, background.transform, new Vector2(24, 0), new Vector2(size.x - 88f, 46), 18, KaitStorybookTheme.Ink,
             TextAnchor.MiddleLeft, FontStyle.Normal, false);
         text.font = threatBoardFont;
         return toggle;
@@ -4798,10 +4846,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private void SkinFlatPanel(Image image)
     {
         if (image == null) return;
-        image.color = Panel;
-        if (roundedSprite == null) return;
-        image.sprite = roundedSprite;
-        image.type = Image.Type.Sliced;
+        KaitStorybookTheme.PaperPanel(image);
     }
 
     private HealthBarView MakeHealthBar(Transform parent, Vector2 position, Vector2 size)
@@ -4870,13 +4915,15 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private static Color ThreatColor(int value)
     {
-        if (value == 0) return Hex("#332D35");
-        if (value == 2) return Hex("#F9DED3");
-        if (value == 4) return Hex("#FAC7B7");
-        if (value == 8) return Hex("#EEA08F");
-        if (value == 16) return Hex("#C96D72");
-        if (value == 32) return Hex("#95485B");
-        return Hex("#652F47");
+        if (value == 0) return Hex("#BBA6A3");
+        if (value == 2) return Hex("#FFF0DB");
+        if (value == 4) return Hex("#F6DDB0");
+        if (value == 8) return Hex("#EEB38F");
+        if (value == 16) return Hex("#DC8572");
+        if (value == 32) return Hex("#C46F83");
+        if (value == 64) return Hex("#A46380");
+        if (value == 128) return Hex("#775473");
+        return Hex("#59445F");
     }
 
     private static Color BattleTint(Color color)
