@@ -12,7 +12,7 @@
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | 应用0.9.15，Android版本码915；Yummn牌池/规则保持0.9.7-palm-kick，共56牌（15主动/41被动，11普通/33非凡/12稀有）；存档Kait.Run.Yummn.0.9.7。0.9.8—0.9.15为界面/点击修正，无须重开；Kait规则不变 |
-| Git 基线 | 0.9.15源码、正式资源与说明已推送origin/master；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
+| Git 基线 | 0.9.15源码、正式资源与说明已由提交f358223推送origin/master；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
 | 最近 Windows 构建 | Build/kait.exe v0.9.15；Logs/storybook0915-windows-final.log成功退出0；resources.assets为2026-09-15 09:38:12、Assembly-CSharp.dll为09:38:13；源码/Windows/Android同步 |
 | 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
@@ -26,6 +26,8 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 ## 2. 进行中与占用登记
 
 BUILD-20260915-0915-ANDROID：完成，本会话。Build/kait-v0.9.15.apk于2026-09-15 10:03:54生成，316349485字节；Logs/storybook0915-android.log最终成功退出0（初轮旧DAG漏新类，Unity自动重建成功）。版本915、最低API26、目标API35、ARM64、UnityPlayerActivity核验通过；v2签名有效且与0.9.14证书一致，IL2CPP元数据包含KaitForestDetail/KaitCornerBough。SHA256 E8AD620BAE140242E8D7CA6B656BFBA979DA6BBFBD80ECC33A1AF9480E1A2FE5。当前源码/Windows/Android均0.9.15；旧APK保留，不改玩法、不上传GitHub，无Unity占用。ADB无设备，未真机启动验收。本记录取代上方快照中Android仍914的时点说明。
+
+RELEASE-20260915-STORYBOOK：完成，本会话。用户授权后，0.9.8—0.9.15绘本界面、正式美术、测试与说明共139个文件以提交f358223推送至origin/master；27个LFS图像对象（约28 MB）上传完成。未纳入未核实的Docs/v0.8.1-四组对照实测.md本地改动，APK仍按.gitignore仅保留本地。仓库继续公开，无Unity占用。
 
 UI-20260915-STORYBOOK0915：完成，本会话。左侧独立1302×1208森林细节、右下树枝透明前景/按轮廓少量搭边、HUD左移10、Kait草地衔接与双角色各六种少缝地砖接入。内置图像生成+获准本地背景抠图，原图保留；整图非4K，未虚称分辨率。首轮树枝直切口已通过贴屏幕边缘修正；隐藏进程首张黑帧检查拦截后改先真实切分辨率，最终四张两角色/两比例图已看，STORYBOOK0915_QA_COMPLETE，41项偏好恢复。Windows和Android最终成功退出0，新类首轮旧DAG漏列后Unity自动重建成功；应用0.9.15、规则存档不变，无Unity/游戏占用。详见Docs/v0.9.15-森林清晰度与铺地衔接.md；保留全部既有未提交工作。
 
