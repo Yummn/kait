@@ -36,7 +36,7 @@ public class YummnPool083Tests
     [Test] public void MisdirectionPreservesExistingLock()
     {var r=New(KaitPassive.Misdirection);var e=Enemy(r,new Vector2Int(3,3));var oldTarget=new Vector2Int(3,4);e.intent=new KaitIntent{type=KaitIntentType.Melee,target=oldTarget};e.intent.affectedCells.Add(oldTarget);r.Yummn.afterimages.Add(new YummnAfterimageMarker{id=1,cell=new Vector2Int(2,3)});var a=Result();Call(r,"ResolveYummnCommandActor",e,a);Assert.AreEqual(oldTarget,a.enemyActions[0].to);Assert.IsTrue(r.Yummn.afterimages[0].alive);}
     [Test] public void CommandOnlyActsChosenEnemyAndNoPhase()
-    {var r=New();r.skills.Add(KaitSkill.CommandAct);Place(r,new Vector2Int(3,3));var e=Enemy(r,new Vector2Int(3,4));var b=Enemy(r,new Vector2Int(2,3));Assert.IsTrue(r.TryUseSkillAt(KaitSkill.CommandAct,e.pos,out var msg),msg);Assert.AreNotEqual(KaitIntentType.None,e.intent.type);Assert.AreEqual(KaitIntentType.None,b.intent.type);Assert.AreEqual(0,r.EnemyResolveCount);Assert.AreEqual(4,r.Ki);}
+    {var r=New();r.skills.Add(KaitSkill.CommandAct);Place(r,new Vector2Int(3,3));var e=Enemy(r,new Vector2Int(3,4));var b=Enemy(r,new Vector2Int(2,3));Assert.IsTrue(r.TryUseSkillAt(KaitSkill.CommandAct,e.pos,out var msg),msg);Assert.AreNotEqual(KaitIntentType.None,e.intent.type);Assert.AreEqual(KaitIntentType.None,b.intent.type);Assert.AreEqual(0,r.EnemyResolveCount);Assert.AreEqual(6,r.Ki);}
     [Test] public void ArchiveHandlesAnyValueAndCreatesRealRiftAndReward()
     {var r=New(KaitPassive.OldNewsArchive);for(int x=0;x<5;x++){r.threat[x,2]=8;r.threatTwoBirth[x,2]=x+1;}var a=Result();Call(r,"ResolveYummnMergeChains",a);Assert.AreEqual(16,r.threat[0,2]);Assert.AreEqual(1,a.merges.Count);Assert.IsNotNull(r.CurrentReward);Assert.IsNotEmpty(r.spawns);}
     [Test] public void PendulumOnlyReturnsOnce()
@@ -91,7 +91,7 @@ public class YummnPool083Tests
     [Test] public void OldReplayIsRejectedAndNewReplayRoundTrips()
     {var r=New();var json=r.SaveReplay();Assert.IsTrue(New().RestoreReplay(json));Assert.IsFalse(New().RestoreReplay(json.Replace(YummnCatalog.Version,"0.8.2-exit-stun")));}
     [Test] public void RarityDistributionMatchesGuide()
-    {Assert.AreEqual(11,YummnCatalog.Cards.Count(d=>d.rarity==KaitRarity.Common));Assert.AreEqual(33,YummnCatalog.Cards.Count(d=>d.rarity==KaitRarity.Uncommon));Assert.AreEqual(12,YummnCatalog.Cards.Count(d=>d.rarity==KaitRarity.Rare));}
+    {Assert.AreEqual(17,YummnCatalog.Cards.Count(d=>d.rarity==KaitRarity.Common));Assert.AreEqual(30,YummnCatalog.Cards.Count(d=>d.rarity==KaitRarity.Uncommon));Assert.AreEqual(9,YummnCatalog.Cards.Count(d=>d.rarity==KaitRarity.Rare));}
     [Test] public void MageHandDoesNotTriggerExistingArchive()
     {var r=New(KaitPassive.OldNewsArchive);for(int x=0;x<5;x++)r.threat[x,2]=8;r.threat[2,3]=2;r.skills.Add(KaitSkill.MageHand);Assert.IsTrue(r.TryUseSkillAt(KaitSkill.MageHand,new Vector2Int(2,3),out _));Assert.IsEmpty(r.lastSkillResult.merges);Assert.IsNull(r.CurrentReward);}
     [Test] public void BracersHitTerrainOnlyOnce()

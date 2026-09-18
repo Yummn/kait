@@ -17,7 +17,7 @@ public class YummnPunchUnifiedTests
     {Assert.AreEqual(38,YummnCatalog.Cards.Count);Assert.IsFalse(YummnCatalog.Cards.Any(d=>d.passive==KaitPassive.Tranquility));Assert.AreEqual("无甲防御",YummnCatalog.Cards.Single(d=>d.passive==KaitPassive.WaitingGuard).nameZh);}
     [TestCase(YummnTileSupplyMode.KillOnly)] [TestCase(YummnTileSupplyMode.EveryAction)] [TestCase(YummnTileSupplyMode.EffectiveMove)]
     public void WaitAlwaysSuppliesExactlyOne(YummnTileSupplyMode supply)
-    {var r=New(supply);Assert.AreEqual(1,r.TryYummnWait().yummnAction.insertedTwos);r.passives.Add(KaitPassive.WaitSupply);Assert.AreEqual(1,r.TryYummnWait().yummnAction.insertedTwos);}
+    {var r=New(supply);Assert.AreEqual(1,r.TryYummnWait().yummnAction.insertedTwos);r.passives.Add(KaitPassive.WaitSupply);Assert.AreEqual(2,r.TryYummnWait().yummnAction.insertedTwos);}
     [Test] public void DoublePunchCostsTwoAndEachHitsFireSnake()
     {var r=New();r.passives.AddRange(new[]{KaitPassive.TwinPunch,KaitPassive.FireSnake});var e=Enemy(r,r.katePos+Vector2Int.right);var rear=Enemy(r,r.katePos+Vector2Int.right*2);int ki=r.Ki;var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(ki-2,r.Ki);Assert.AreEqual(6,e.hp);Assert.AreEqual(6,rear.hp);Assert.AreEqual(2,a.yummnPunches);}
     [Test] public void OneKiFallsBackToOnePunch()

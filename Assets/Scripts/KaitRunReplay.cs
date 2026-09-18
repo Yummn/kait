@@ -44,7 +44,10 @@ public sealed partial class KaitRun
         if(save.characterId==KaitCharacter.Yummn&&(snapshot==null||string.IsNullOrEmpty(snapshot.Version))&&save.rulesProfileId==YummnRulesProfile.LegacyVersion)snapshot=YummnRulesSnapshot.OldV08();
         if(save.characterId==KaitCharacter.Yummn&&(snapshot==null||!snapshot.Valid))return false;
         string expected=save.characterId==KaitCharacter.Yummn?snapshot.Version:"Kait.0.6.1";
-        if(!Enum.IsDefined(typeof(KaitCharacter),save.characterId)||save.rulesProfileId!=expected||save.cardPoolVersion!=(save.characterId==KaitCharacter.Yummn?YummnCatalog.Version:"0.6.1"))return false;
+        bool compatiblePool=save.characterId==KaitCharacter.Yummn?
+            save.cardPoolVersion==YummnCatalog.Version||save.cardPoolVersion==YummnCatalog.PreviousVersion:
+            save.cardPoolVersion=="0.6.1";
+        if(!Enum.IsDefined(typeof(KaitCharacter),save.characterId)||save.rulesProfileId!=expected||!compatiblePool)return false;
         replaying=true;
         try
         {

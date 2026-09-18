@@ -93,7 +93,7 @@ public sealed partial class KaitRun
         else if(!countersOnly&&a.voluntaryCells>0&&newKills==0&&noMove)requested=0;
         else if(!countersOnly&&a.voluntaryCells>0&&!noMove&&HasPassive(KaitPassive.FrugalStride))requested=2;
         if(!countersOnly&&(a.actionOverride=="Echo"||a.actionOverride=="Phantom"||a.actionOverride=="Shadow"))requested=0;
-        if(!countersOnly&&a.isWait)requested++;
+        if(!countersOnly&&a.isWait)requested+=HasPassive(KaitPassive.WaitSupply)?2:1;
         a.suppliedKills=a.killIds.Count;
         if(Yummn.rules.Supply==YummnTileSupplyMode.SkipStationaryPunch&&requested>0&&!a.didAttack&&katePos!=a.startCell&&HasPassive(KaitPassive.PassWithoutTrace))
         {a.suppressedTwo=true;Yummn.metrics.suppressedTwos++;YummnTrigger("S04",r);requested=0;}
@@ -140,7 +140,6 @@ public sealed partial class KaitRun
         if(ended)return;
         if(a.phaseAtStart==YummnPhase.Exhausted)Yummn.metrics.recoveryKi+=GainYummnKi(1,r,"Recovery");
         FinishYummnPhase(r);
-        if(IsYummnThreatLocked()){threatLocks++;Yummn.metrics.threatLocks++;End("ThreatBoardLocked",false);r.message="2048无可用移动，本局失败";return;}
     }
     private void HitYummn082Afterimages(KaitEnemy enemy,KaitIntent intent,int attackId,KaitTurnResult r)
     {

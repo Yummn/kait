@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-15（北京时间）。维护者：绘本棋匣界面会话。
+最后更新：2026-09-18（北京时间）。维护者：Yummn 卡牌平衡会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -11,19 +11,34 @@
 | 工程 | C:/Users/yummn/Downloads/kait |
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
-| 本地规则版本 | 应用0.9.15，Android版本码915；Yummn牌池/规则保持0.9.7-palm-kick，共56牌（15主动/41被动，11普通/33非凡/12稀有）；存档Kait.Run.Yummn.0.9.7。0.9.8—0.9.15为界面/点击修正，无须重开；Kait规则不变 |
+| 本地规则版本 | 应用0.9.18、Android配置版本码918（现有APK仍917）；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
 | Git 基线 | 0.9.15源码、正式资源与说明已由提交f358223推送origin/master；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
-| 最近 Windows 构建 | Build/kait.exe v0.9.15；Logs/storybook0915-windows-final.log成功退出0；resources.assets为2026-09-15 09:38:12、Assembly-CSharp.dll为09:38:13；源码/Windows/Android同步 |
+| 最近 Windows 构建 | Build/kait.exe v0.9.18；Logs/tutorial-readable0918-windows.log成功。Kait/Yummn详细说明顶部与底部实际截图已检查，正文和滚动条可辨、无正文溢出；源码/Windows同步。完整免安装包Build/kait-v0.9.18-windows.zip，318617500字节，SHA256 BBC97E4BF178BE429E2C8DEE02FA23704E1D6F28ED0FAFA6DC0A0C762B806AEE |
 | 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | storybook0915-runtime.log：STORYBOOK0915_QA_COMPLETE。两角色1920×1080、2400×1080实际图已看；森林真实1302×1208加载、地砖间隙/外沿、前景树层级、左移HUD与7气边界通过。首轮宽屏树枝直切口修正；隐藏进程首张黑帧被新增检查拦截，改为先真实切分辨率后最终四张均正常。41项偏好恢复。未跑全量EditMode，不是Android实机验收 |
-| 最新 Android | Build/kait-v0.9.15.apk，2026-09-15 10:03:54，316349485字节；Logs/storybook0915-android.log成功退出0。版本915、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效且与0.9.14证书一致，IL2CPP元数据确认KaitForestDetail/KaitCornerBough。SHA256 E8AD620BAE140242E8D7CA6B656BFBA979DA6BBFBD80ECC33A1AF9480E1A2FE5。旧APK保留；ADB无设备，未真机验收 |
+| 最近视觉运行检查 | rollback0916-runtime.log：STORYBOOK0915_QA_COMPLETE。恢复旧草雪边、森林层与原布局，两角色/两比例运行检查通过，Yummn1920实际截图已看；41项偏好恢复。不是Android实机验收 |
+| 最新 iOS 导出 | Build/kait-v0.9.18-ios-xcode.zip，514095718字节；Logs/ios0918-export.log成功。Xcode工程版本0.9.18(918)、com.kaitprototype.demo、iOS 13+、ARM64/Metal、iPhone+iPad、横屏、AppIcon与IL2CPP元数据核验通过；独立解压后3130个文件逐项SHA256一致。SHA256 8F4FCEAA708DA76635F071C83AAA4E4067B7122389655D5622FC7E921387855B。Windows无Xcode与Apple签名材料，尚未编译/签名IPA或真机验收 |
+| 最新 Android | Build/kait-v0.9.17.apk，2026-09-18 11:22:24，316351645字节；Logs/yummn-card-balance0917-android.log成功退出0。版本917、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效。SHA256 39315E90697EDA30024B5318CFA41AA560D854BC3E3462DB188D23F6C44FAF08。旧APK保留；未做真机验收 |
 | Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
+
+BUILD-20260918-IOS-0918：完成Xcode工程导出，本会话。安装Unity 6000.0.30f1官方Windows iOS Build Support，新增可复用的iOS Xcode导出入口；配置0.9.18/918、iOS 13+、iPhone与iPad、横屏、ARM64/Metal、IL2CPP、完整应用图标和com.kaitprototype.demo。Logs/ios0918-export.log成功；工程压缩后独立解压，3130个文件逐项SHA256一致，包体与哈希见上方快照。README-iOS.txt说明在Mac/Xcode选择Apple Team后运行或归档。Windows无Xcode和Apple签名材料，未编译/签名IPA、未真机验收；不上传GitHub。
+
+BUILD-20260918-WINDOWS-ZIP-0918：完成，本会话。将0.9.18 Windows运行所需exe、Data、MonoBleedingEdge、UnityPlayer、崩溃处理器和D3D12共195个文件打包；排除APK、Burst调试符号与旧归档。独立解压后逐文件大小/SHA256一致，并从解压目录启动存活10秒。包体和哈希见上方快照；不上传GitHub。
+
+UI-20260918-TUTORIAL-0918：完成，本会话。根因是详细说明面板为RGB(54,47,56)，正文沿用RGB(49,45,68)，亮度几乎相同。正文改为浅纸色、字号28升至30并增加少量行距，滚动条改为暖色；漫画页不变。应用升0.9.18，规则、牌池与0.9.17存档键保持不变。KaitComicTutorialTests 1/1通过；Windows构建成功。运行检查生成Kait/Yummn详细说明顶部/底部截图并逐张查看，正文清晰且无正文溢出；该旧QA另有气点和设置数量旧断言，不属于本次功能且未表述为整套通过。不构建Android、不上传GitHub。
+
+RULE-20260918-YUMMN-CARDS-0917：完成，本会话。按用户清单调整16张Yummn卡的范围、目标、气费、稀有度及补给/气上限/格挡效果；冬之吐息改前方4格伤害冻结，暗影步可选任意合法空暗影格，静谧心境等待补两个2，气海扩张上限+3，灵体护身任何状态3气格挡。更新牌池/规则/应用至0.9.17并保留0.9.7旧存档入口，卡面教程同步。专项6/6、相关回归10/10通过；Windows构建和烟测正常。Android 0.9.17构建成功，版本/入口/ARM64/v2签名核验通过，大小与哈希见上方快照；不上传GitHub，不改Kait牌池。详见Docs/v0.9.17-Yummn卡牌平衡.md。
+
+RULE-20260918-LOCKED2048-IDLE：完成，本会话。取消Kait、Yummn现行/旧规则及原2048控制器的锁盘判负/重置；锁死后数字盘保持不变，不移动、不合成、不补入数字，角色与敌方时序照常，等待也可继续。教程/结算同步，应用0.9.16。Locked2048IdleTests 4/4通过；首轮同时抽跑169项旧大类为120通过/49旧断言失败，不作为全量通过，锁盘专项均已改正并由独立测试复核。Windows构建成功并启动烟测，无异常；Android仍0.9.15，不上传。保留他人旧对照报告改动。详见Docs/v0.9.16-锁盘静止.md。
+
+ROLLBACK-20260915-SCENE0916：完成，本会话。用户要求恢复上一版本，0916中央镂空、素材与缩放已撤销；应用与构建配置恢复0.9.15，源码与HEAD一致（仅保留交接/历史记录及他人的报告改动）。Windows重建成功退出0，STORYBOOK0915_QA_COMPLETE，41项偏好恢复，Yummn1920实际图已确认恢复。新增文件归档Logs/reverted0916不参与构建，无Unity/游戏占用；不Android、不上传。
+
+UI-20260915-SCENE0916：已按用户后续要求撤销。中央镂空、场景合成和布局缩放不再使用，新增文件归档Logs/reverted0916；实现与版本恢复0.9.15。原检查与说明仅为历史试验记录，见Docs/v0.9.16-完整场景镂空衔接.md。
 
 BUILD-20260915-0915-ANDROID：完成，本会话。Build/kait-v0.9.15.apk于2026-09-15 10:03:54生成，316349485字节；Logs/storybook0915-android.log最终成功退出0（初轮旧DAG漏新类，Unity自动重建成功）。版本915、最低API26、目标API35、ARM64、UnityPlayerActivity核验通过；v2签名有效且与0.9.14证书一致，IL2CPP元数据包含KaitForestDetail/KaitCornerBough。SHA256 E8AD620BAE140242E8D7CA6B656BFBA979DA6BBFBD80ECC33A1AF9480E1A2FE5。当前源码/Windows/Android均0.9.15；旧APK保留，不改玩法、不上传GitHub，无Unity占用。ADB无设备，未真机启动验收。本记录取代上方快照中Android仍914的时点说明。
 

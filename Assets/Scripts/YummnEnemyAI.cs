@@ -137,7 +137,7 @@ public sealed partial class KaitRun
         if(intent.type==KaitIntentType.Melee&&Yummn.tranquility)
         {Yummn.tranquility=false;r.yummnGuard=true;YummnTrigger("O04",r);return true;}
         if(Yummn.defense){Yummn.defense=false;r.yummnGuard=true;return true;}
-        if(KiPhase==YummnPhase.Burst&&HasPassive(KaitPassive.KiAegis)&&SpendRepoolKi(3,r)){r.yummnGuard=true;return true;}
+        if(HasPassive(KaitPassive.KiAegis)&&SpendRepoolKi(3,r)){r.yummnGuard=true;return true;}
         if(Yummn.rules.KiGuard&&KiPhase==YummnPhase.Burst&&ExactKi>0&&!r.yummnAction.reachedZeroKi&&!r.yummnAction.kiGuardTriggered)
         {
             r.yummnAction.kiGuardTriggered=true;r.yummnAction.reachedZeroKi=true;

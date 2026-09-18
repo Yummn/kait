@@ -3321,12 +3321,12 @@ public sealed partial class KaitGame : MonoBehaviour
         }
         endOverlay.SetActive(true);
         endOverlay.transform.SetAsLastSibling();
-        string reason = run.won ? "击败盾骑士 · 本局胜利" : run.endReason == "Threat Locked"||run.endReason=="ThreatBoardLocked" ? "2048 无法移动 · 本局失败" : "凯特 HP 归零 · 本局失败";
+        string reason = run.won ? "击败盾骑士 · 本局胜利" : "凯特 HP 归零 · 本局失败";
         endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    主动刹车：{run.activeWallStops}\n刷怪抑制：{run.spawnSuppressedCount}    友伤：{run.friendlyFireDamage}";
         if(run.IsYummn)
         {
             var m=run.Yummn.metrics;
-            endText.text=$"{(run.won?"击败盾骑士 · 本局胜利":run.endReason=="ThreatBoardLocked"?"2048无可用移动，本局失败":"Yummn 生命归零 · 本局失败")}\n\n行动：{run.turn}    击杀：{run.kills}\n敌人阶段：{m.enemyPhases}    气竭循环：{m.exhaustionCycles}\n最长高速：{m.longestBurst}    {(run.Yummn.rules.Legacy?"数字盘重置":"锁盘失败")}：{m.threatLocks}";
+            endText.text=$"{(run.won?"击败盾骑士 · 本局胜利":"Yummn 生命归零 · 本局失败")}\n\n行动：{run.turn}    击杀：{run.kills}\n敌人阶段：{m.enemyPhases}    气竭循环：{m.exhaustionCycles}\n最长高速：{m.longestBurst}";
         }
     }
 

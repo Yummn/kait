@@ -32,7 +32,7 @@ public sealed partial class KaitGame
         for(int x=0;x<5;x++)for(int y=0;y<5;y++)if(!run.threatPillars[x,y])run.threat[x,y]=(x+y)%2==0?2:4;
         RefreshAll();yield return null;HandleDirection(KaitDirection.Right);while(busy)yield return null;
         yield return new WaitForSecondsRealtime(.2f);CaptureCanvasToPng(path+".v081-locked-defeat.png");
-        if(!run.ended||run.endReason!="ThreatBoardLocked")Debug.LogError("YUMMN_QA: v081 lock defeat not displayed");
+        if(run.ended||!run.IsYummnThreatLocked())Debug.LogError("YUMMN_QA: locked 2048 board should stay idle without ending the run");
         Debug.Log("YUMMN_V081_QA_COMPLETE multikill=2 supply=2 enemyPhases=1 snapshot immutable; locked board retained with defeat");
         endOverlay.SetActive(false);
         yield return VerifyYummnPunchPoses(path);

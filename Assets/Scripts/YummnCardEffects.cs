@@ -50,7 +50,7 @@ public sealed partial class KaitRun
             case "Winter":
                 a.didAttack=true;r.yummnFrost=true;
                 var winterTargets=new List<KaitEnemy>();
-                for(int i=1;i<=2;i++)
+                for(int i=1;i<=4;i++)
                 {
                     var p=katePos+d*i;if(IsHardBlocked(p))break;var e=EnemyAt(p);if(e==null)continue;
                     winterTargets.Add(e);

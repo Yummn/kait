@@ -60,13 +60,13 @@ public class YummnRepoolTests
     [Test] public void FrugalMoveSuppliesTwo()
     {var r=New();r.passives.Add(KaitPassive.FrugalStride);var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,a.yummnAction.movementKiCost);Assert.AreEqual(2,a.yummnAction.insertedTwos);}
     [Test] public void WaitSupplyReplacesMovingSupply()
-    {var r=New(supply:YummnTileSupplyMode.EveryAction);r.passives.Add(KaitPassive.WaitSupply);Assert.AreEqual(0,r.TryGlobalInput(KaitDirection.Right).yummnAction.insertedTwos);Assert.AreEqual(1,r.TryYummnWait().yummnAction.insertedTwos);}
+    {var r=New(supply:YummnTileSupplyMode.EveryAction);r.passives.Add(KaitPassive.WaitSupply);Assert.AreEqual(0,r.TryGlobalInput(KaitDirection.Right).yummnAction.insertedTwos);Assert.AreEqual(2,r.TryYummnWait().yummnAction.insertedTwos);}
     [Test] public void KillSupplyTwoNotThree()
     {var r=New(supply:YummnTileSupplyMode.EveryAction);r.passives.Add(KaitPassive.KillSupply);Enemy(r,r.katePos+Vector2Int.right,1);Assert.AreEqual(2,r.TryGlobalInput(KaitDirection.Right).yummnAction.insertedTwos);}
     [Test] public void HealingWaitCostsThreeAndActsOnce()
     {var r=New();typeof(KaitRun).GetProperty("kateHp").SetValue(r,1);r.skills.Add(KaitSkill.MendWait);r.TryUseSkill(KaitSkill.MendWait,-1,out _);var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(2,r.kateHp);Assert.AreEqual(3,r.Ki);Assert.AreEqual(1,r.EnemyResolveCount);Assert.IsTrue(a.yummnAction.isWait);}
     [Test] public void ReservoirExtendsCapacityAndDoesNotFillNewPips()
-    {var r=New();r.passives.Add(KaitPassive.DeepReservoir);r.TryYummnWait();Assert.AreEqual(9,r.Yummn.profile.maxKi);Assert.AreEqual(6,r.Ki);}
+    {var r=New();r.passives.Add(KaitPassive.DeepReservoir);r.TryYummnWait();Assert.AreEqual(10,r.Yummn.profile.maxKi);Assert.AreEqual(7,r.Ki);}
     [TestCase(false,false,1)] [TestCase(true,false,1)] [TestCase(false,true,2)]
     public void EchoDurability(bool first,bool all,int expectedHits)
     {

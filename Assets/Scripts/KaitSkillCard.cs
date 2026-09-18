@@ -290,7 +290,7 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
             case KaitSkill.Palm: return "推1";
             case KaitSkill.StunningFist: return "震";
             case KaitSkill.PatientDefense: return "防";
-            case KaitSkill.FrostBreath: return "霜3";
+            case KaitSkill.FrostBreath: return "霜4";
             case KaitSkill.SwiftBoots: return "+1";
             case KaitSkill.CatAgility: return "×2";
             case KaitSkill.DreadSlash: return "推∞";

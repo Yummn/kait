@@ -139,10 +139,13 @@ public sealed partial class KaitRun
             case "Heal":ctx.isWait=true;break;
             case "Phantom":ctx.targetCell=PhantomDestination(dir);if(ctx.targetCell==katePos)error="没有可停留空格";break;
             case "Decoy":if(!YummnEmpty(next))error="诱饵需要空格";else ctx.targetCell=next;break;
-            case "Winter":if(FirstYummnRayEnemy(dir,2)==null)error="前方两格没有目标";break;
+            case "Winter":if(FirstYummnRayEnemy(dir,4)==null)error="前方4格没有目标";break;
             case "Ice":if(!YummnEmpty(next)||PendingBossCell==next)error="不能在此处升起冰柱";else ctx.targetCell=next;break;
             case "Darkness":if(!IsLegalSkillCell(KaitSkill.Darkness,next))error="请选择主棋盘内的格子";else ctx.targetCell=next;break;
-            case "Shadow":ctx.targetCell=ShadowDestination(dir);if(ctx.targetCell.x<0)error="该方向没有空阴影格";break;
+            case "Shadow":
+                ctx.targetCell=repoolCellTarget.HasValue?next:ShadowDestination(dir);
+                if(ctx.targetCell.x<0||!YummnEmpty(ctx.targetCell)||!IsYummnShadow(ctx.targetCell))error="请选择空暗影格";
+                break;
             default:if(IsHardBlocked(next)&&!YummnThreatCanChange(ctx.threatDirection)&&!(Yummn.rules.Is082&&Yummn.rules.Supply==YummnTileSupplyMode.EveryAction))error="两盘均无法响应";break;
         }
         if(error==null&&Yummn.rules.Is082)PlanYummn082Movement(ctx);
@@ -191,12 +194,6 @@ public sealed partial class KaitRun
             if(!ended&&bossPending){SpawnShieldKnight(r);if(r.bossSpawned)Yummn.metrics.bossCreatedAction=a.actionId;}
             if(!ended&&a.phaseAtStart==YummnPhase.Exhausted){int gained=GainYummnKi(Yummn.profile.recoveryKi,r,"Recovery");Yummn.metrics.recoveryKi+=gained;}
             if(!ended)FinishYummnPhase(r);
-            if(!ended&&ThreatLocked())
-            {
-                threatLocks++;Yummn.metrics.threatLocks++;Array.Clear(threat,0,threat.Length);Array.Clear(threatTwoBirth,0,threatTwoBirth.Length);
-                for(int i=0;i<config.initialThreatTiles;i++)SpawnThreatTwo();
-                r.message="数字盘锁死，已重置";r.yummnEvents.Add(new YummnCombatEvent{kind=YummnEventKind.Status,status="ThreatReset",actionId=a.actionId});
-            }
         }
         a.kiAfter=Ki;a.phaseAtEnd=KiPhase;a.finalCell=katePos;r.threatAfter=CopyThreat();
         foreach(var m in r.merges){if(m.resultValue==32&&Yummn.metrics.first32Action<0)Yummn.metrics.first32Action=a.actionId;if(m.resultValue==128&&Yummn.metrics.first128Action<0)Yummn.metrics.first128Action=a.actionId;}

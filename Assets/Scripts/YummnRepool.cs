@@ -41,7 +41,7 @@ public sealed partial class KaitRun
         Yummn.profile.maxKi=Yummn.rules.MaxKi+(HasPassive(KaitPassive.DeepReservoir)?3:0);
         if(Ki>=Yummn.profile.maxKi){Yummn.ki=Yummn.profile.maxKi;Yummn.kiTenths=0;}
     }
-    private int YummnKillGain=>Mathf.Max(0,Yummn.rules.KillKi-(HasPassive(KaitPassive.DeepReservoir)?1:0)-(HasPassive(KaitPassive.KiAegis)?1:0));
+    private int YummnKillGain=>Yummn.rules.KillKi;
     private bool SpendRepoolKi(int amount,KaitTurnResult r)
     {
         if(ExactKi<amount)return false;

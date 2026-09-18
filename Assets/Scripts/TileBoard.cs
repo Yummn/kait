@@ -175,9 +175,8 @@ public class TileBoard : MonoBehaviour
             CreateTile();
         }
 
-        if (CheckForGameOver()) {
-            GameManager.Instance.GameOver();
-        }
+        // A locked 2048 board stays unchanged. Other game systems decide
+        // whether play can continue; the board itself no longer ends a run.
     }
 
     public bool CheckForGameOver()

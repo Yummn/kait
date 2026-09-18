@@ -11,11 +11,11 @@ public class KaitThreatDefeatTests
         return r;
     }
     private void Finish(KaitRun r) => typeof(KaitRun).GetMethod("FinishTurn",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(r,new object[]{new KaitTurnResult()});
-    [Test] public void LockedBoardLosesAndPreservesNumbers()
+    [Test] public void LockedBoardStaysIdleAndRunContinues()
     {
         var r=Board();var before=(int[,])r.threat.Clone();Finish(r);
-        Assert.IsTrue(r.ended);Assert.IsFalse(r.won);Assert.AreEqual("Threat Locked",r.endReason);
-        CollectionAssert.AreEqual(before,r.threat);Assert.AreEqual(1,r.threatLocks);
+        Assert.IsFalse(r.ended);Assert.IsFalse(r.won);Assert.AreEqual(string.Empty,r.endReason);
+        CollectionAssert.AreEqual(before,r.threat);Assert.AreEqual(0,r.threatLocks);
     }
     [Test] public void MergeOrEmptyCellStillAllowsPlay()
     {

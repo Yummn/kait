@@ -14,6 +14,7 @@ public sealed partial class KaitRun
             if(skill==KaitSkill.CommandAct)return EnemyAt(cell)!=null;
             if(skill==KaitSkill.Darkness)return cell.x>=1&&cell.y>=1&&cell.x<BattleSize-1&&cell.y<BattleSize-1;
             if(skill==KaitSkill.ShatterWave)return Inside(cell)&&cell.x>0&&cell.y>0&&cell.x<6&&cell.y<6;
+            if(skill==KaitSkill.YummnShadowStep)return Inside(cell)&&YummnEmpty(cell)&&IsYummnShadow(cell);
             if(YummnCatalog.TargetsSelf(skill))return cell==katePos;
             if(YummnCatalog.TargetsGround(skill))return YummnEmpty(cell)&&cell!=PendingBossCell;
             if((cell-katePos).sqrMagnitude!=1)return false;

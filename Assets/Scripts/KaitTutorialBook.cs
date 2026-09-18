@@ -153,11 +153,13 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         appendix=view.gameObject.AddComponent<ScrollRect>();appendix.horizontal=false;appendix.movementType=ScrollRect.MovementType.Clamped;
         var viewport=Box("Viewport",view.transform,Vector2.zero,new Vector2(1280,620),Color.clear);
         viewport.gameObject.AddComponent<RectMask2D>();appendix.viewport=viewport.rectTransform;
-        appendixText=Label(viewport.transform,"",Vector2.zero,new Vector2(1250,620),28,Cream,TextAnchor.UpperLeft);
+        // The appendix sits on a dark reading surface, unlike the paper-backed comic UI.
+        appendixText=Label(viewport.transform,"",Vector2.zero,new Vector2(1250,620),30,KaitStorybookTheme.Paper,TextAnchor.UpperLeft);
+        appendixText.lineSpacing=1.08f;
         var content=appendixText.rectTransform;content.anchorMin=content.anchorMax=new Vector2(.5f,1);content.pivot=new Vector2(.5f,1);
         appendix.content=content;appendix.scrollSensitivity=45;
         var track=Box("Scroll Track",view.transform,new Vector2(653,0),new Vector2(12,620),new Color(1,1,1,.08f));
-        var handle=Box("Scroll Handle",track.transform,Vector2.zero,new Vector2(12,80),Peach);
+        var handle=Box("Scroll Handle",track.transform,Vector2.zero,new Vector2(12,80),KaitStorybookTheme.Peach);
         handle.rectTransform.anchorMin=Vector2.zero;handle.rectTransform.anchorMax=Vector2.one;
         handle.rectTransform.offsetMin=handle.rectTransform.offsetMax=Vector2.zero;
         var bar=track.gameObject.AddComponent<Scrollbar>();bar.direction=Scrollbar.Direction.BottomToTop;bar.handleRect=handle.rectTransform;bar.targetGraphic=handle;

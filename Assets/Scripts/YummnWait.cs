@@ -43,7 +43,6 @@ public sealed partial class KaitRun
         if(!ended&&a.phaseAtStart==YummnPhase.Exhausted)
             Yummn.metrics.recoveryKi+=GainYummnKi(1,r,"Recovery");
         if(!ended)FinishYummnPhase(r);
-        if(!ended&&IsYummnThreatLocked()){End("ThreatBoardLocked",false);r.message="2048无可用移动，本局失败";}
         a.kiAfter=Ki;a.phaseAtEnd=KiPhase;a.finalCell=katePos;
         r.threatAfter=CopyThreat();Yummn.history.Add(a);turn++;PrepareThreatTwoPreview();
         RecordReplay("wait",0,0,0);return r;

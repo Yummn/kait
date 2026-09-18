@@ -561,7 +561,6 @@ public sealed partial class KaitRun
                 }
             }
             ResolveOldNewsArchive(result);
-            if (!ended && ThreatLocked()) { threatLocks++; End("Threat Locked", false); }
             if (bossPending) SpawnShieldKnight(result);
             if (kateHp <= 0) End("Kate Defeated", false);
         }

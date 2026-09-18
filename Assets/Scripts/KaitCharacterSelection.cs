@@ -72,7 +72,7 @@ public sealed class KaitCharacterSelection : MonoBehaviour
             for(int j=0;j<saves.Count;j++)
             {
                 string key=saves[j];
-                string title=key.EndsWith("0.8.2")?"继续 v0.8.2":key.EndsWith("0.8.1")?"旧版 v0.8.1":key.EndsWith("0.8")?"旧版 v0.8":"继续上次";
+                string title=key.EndsWith("0.9.7")?"旧版 v0.9.7":key.EndsWith("0.8.2")?"继续 v0.8.2":key.EndsWith("0.8.1")?"旧版 v0.8.1":key.EndsWith("0.8")?"旧版 v0.8":"继续上次";
                 var resume=ButtonAt(title,layout,x+j*174,987,166,44,new Color(.13f,.14f,.2f),()=>ContinueCharacter?.Invoke(key));
                 ContinueButtons.Add(resume);
             }
@@ -81,7 +81,7 @@ public sealed class KaitCharacterSelection : MonoBehaviour
         Label("两种战斗节奏 · 同一个双盘战场",layout,64,1042,610,25,15,new Color(.7f,.69f,.77f));
         Select(KaitCharacter.Kait);
     }
-    public static string[] SaveKeys(KaitCharacter c)=>c==KaitCharacter.Yummn?new[]{KaitVersion.YummnSaveKey}:new[]{"Kait.Run.Kait"};
+    public static string[] SaveKeys(KaitCharacter c)=>c==KaitCharacter.Yummn?new[]{KaitVersion.YummnSaveKey,KaitVersion.YummnPreviousSaveKey}:new[]{"Kait.Run.Kait"};
     public void Select(KaitCharacter c)
     {
         Selected=c;

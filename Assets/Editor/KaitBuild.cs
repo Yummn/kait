@@ -73,6 +73,56 @@ public static class KaitBuild
 
         Debug.Log("Kait Android build created: " + output);
     }
+
+    [MenuItem("Kait/Export iOS Xcode Project")]
+    public static void BuildIOSXcodeProject()
+    {
+        KaitAppIconSettings.Apply();
+        KaitBuildArtSettings.Apply();
+        KaitStorybookDetailImport.Apply();
+        string projectRoot = Directory.GetParent(Application.dataPath).FullName;
+        string output = Path.Combine(projectRoot, "Build", "kait-v" + KaitVersion.App + "-ios-xcode");
+        Directory.CreateDirectory(Path.GetDirectoryName(output));
+
+        PlayerSettings.productName = "Kait";
+        PlayerSettings.bundleVersion = KaitVersion.App;
+        PlayerSettings.iOS.buildNumber = KaitVersion.AndroidCode.ToString();
+        PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "com.kaitprototype.demo");
+        PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
+        PlayerSettings.allowedAutorotateToPortrait = false;
+        PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
+        PlayerSettings.allowedAutorotateToLandscapeLeft = true;
+        PlayerSettings.allowedAutorotateToLandscapeRight = true;
+        PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
+        PlayerSettings.iOS.targetDevice = iOSTargetDevice.iPhoneAndiPad;
+        PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
+        PlayerSettings.iOS.targetOSVersionString = "13.0";
+
+        var portrait = AssetDatabase.LoadAssetAtPath<Texture2D>(KaitAppIconSettings.PortraitPath);
+        if (portrait == null) throw new BuildFailedException("Missing Kait iOS app icon");
+        PlayerSettings.SetIcons(NamedBuildTarget.iOS, new[] { portrait }, IconKind.Any);
+
+        var options = new BuildPlayerOptions
+        {
+            scenes = new[] { "Assets/Scenes/Scene.unity" },
+            locationPathName = output,
+            target = BuildTarget.iOS,
+            options = BuildOptions.None
+        };
+
+        BuildReport report = BuildPipeline.BuildPlayer(options);
+        if (report.summary.result != BuildResult.Succeeded)
+            throw new BuildFailedException("Kait iOS Xcode export failed: " + report.summary.result);
+
+        File.WriteAllText(Path.Combine(output, "README-iOS.txt"),
+            "Kait " + KaitVersion.App + " iOS Xcode export\n\n" +
+            "Requires macOS, Xcode, and an Apple development team.\n" +
+            "1. Open Unity-iPhone.xcodeproj in Xcode.\n" +
+            "2. Select the Unity-iPhone target, then choose your Team under Signing & Capabilities.\n" +
+            "3. Keep bundle identifier com.kaitprototype.demo, or change it to your registered identifier.\n" +
+            "4. Choose a connected device and Run, or use Product > Archive to create a signed IPA.\n");
+        Debug.Log("Kait iOS Xcode project created: " + output);
+    }
 }
 
 /// <summary>

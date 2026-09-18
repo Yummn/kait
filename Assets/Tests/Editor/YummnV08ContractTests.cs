@@ -44,8 +44,8 @@ public sealed class YummnV08ContractTests
     private KaitTurnResult Phase(KaitRun r)
     {var result=new KaitTurnResult{yummnAction=new YummnActionContext{actionId=r.Yummn.actionId,phaseAtStart=YummnPhase.Exhausted,startCell=r.katePos}};typeof(KaitRun).GetMethod("ResolveYummnEnemyPhase",Hidden).Invoke(r,new object[]{result});return result;}
     private void Rift(KaitRun r,int x,int y,int tier=1)=>r.spawns.Add(new KaitSpawnRequest{targetCell=new Vector2Int(x,y),sourceThreatCell=new Vector2Int(x-1,y-1),tier=tier,createdTurn=r.turn});
-    [Test] public void C01_KaitIsSeparateAndKeepsExistingLockDefeat()
-    {var r=new KaitRun(new KaitBalanceConfig{enableThreatPillars=false,newThreatTilesPerTurn=0});r.SelectCharacter(KaitCharacter.Kait,42);for(int x=0;x<5;x++)for(int y=0;y<5;y++)r.threat[x,y]=(x+y)%2==0?2:4;typeof(KaitRun).GetMethod("FinishTurn",Hidden).Invoke(r,new object[]{new KaitTurnResult()});Assert.IsTrue(r.ended);Assert.AreEqual("Kait.0.6.1",r.RulesProfileId);Assert.IsFalse(r.EligibleAbilities().Any(YummnCatalog.IsMonk));}
+    [Test] public void C01_KaitIsSeparateAndLockedBoardStaysIdle()
+    {var r=new KaitRun(new KaitBalanceConfig{enableThreatPillars=false,newThreatTilesPerTurn=0});r.SelectCharacter(KaitCharacter.Kait,42);for(int x=0;x<5;x++)for(int y=0;y<5;y++)r.threat[x,y]=(x+y)%2==0?2:4;var before=(int[,])r.threat.Clone();typeof(KaitRun).GetMethod("FinishTurn",Hidden).Invoke(r,new object[]{new KaitTurnResult()});Assert.IsFalse(r.ended);CollectionAssert.AreEqual(before,r.threat);Assert.AreEqual("Kait.0.6.1",r.RulesProfileId);Assert.IsFalse(r.EligibleAbilities().Any(YummnCatalog.IsMonk));}
     [Test] public void C02_BurstSpendsOnceMovesThreatOnceNoEnemyPhase()
     {var r=R();r.threat[2,2]=2;var result=r.TryGlobalInput(KaitDirection.Right);Assert.IsTrue(result.valid);Assert.AreEqual(2,r.Ki);Assert.AreEqual(0,r.EnemyResolveCount);Assert.AreEqual(1,r.NormalTileSpawnCount);Assert.AreEqual(1,r.turn);Assert.IsFalse(r.YummnWindow);}
     [Test] public void C03_ExhaustionRemainsWalkingUntilFull()
@@ -78,8 +78,8 @@ public sealed class YummnV08ContractTests
     {var r=R();typeof(KaitRun).GetField("bossPending",Hidden).SetValue(r,true);typeof(KaitRun).GetField("bossPendingCell",Hidden).SetValue(r,r.katePos);var spawn=typeof(KaitRun).GetMethod("SpawnShieldKnight",Hidden);spawn.Invoke(r,new object[]{new KaitTurnResult()});Assert.IsFalse(r.bossSpawned);var p=r.katePos;Pos(r,2,2);spawn.Invoke(r,new object[]{new KaitTurnResult()});var boss=r.EnemyAt(p);Assert.AreEqual(Vector2Int.down,boss.facing);Assert.AreEqual(KaitIntentType.None,boss.intent.type);}
     [Test] public void C17_ShadowUsesOnlyMainInteriorPillars()
     {var r=R();Assert.AreEqual(7,r.walls.GetLength(0));Assert.IsTrue(r.IsYummnShadow(new Vector2Int(2,5)));Assert.IsFalse(r.IsYummnShadow(new Vector2Int(1,3)));r.threatPillars[2,2]=true;Assert.IsFalse(r.IsYummnShadow(new Vector2Int(3,2)));}
-    [Test] public void C18_YummnLockedThreatResetsWithoutChangingPhase()
-    {var r=R();for(int x=0;x<5;x++)for(int y=0;y<5;y++)if(!r.threatPillars[x,y])r.threat[x,y]=(x+y)%2==0?2:4;r.TryGlobalInput(KaitDirection.Right);Assert.IsFalse(r.ended);Assert.AreEqual(1,r.threatLocks);Assert.AreEqual(3,r.threat.Cast<int>().Count(v=>v==2));Assert.AreEqual(2,r.Ki);}
+    [Test] public void C18_YummnLockedThreatStaysIdleWithoutChangingPhase()
+    {var r=R();for(int x=0;x<5;x++)for(int y=0;y<5;y++)if(!r.threatPillars[x,y])r.threat[x,y]=(x+y)%2==0?2:4;var before=(int[,])r.threat.Clone();r.TryGlobalInput(KaitDirection.Right);Assert.IsFalse(r.ended);Assert.AreEqual(0,r.threatLocks);CollectionAssert.AreEqual(before,r.threat);Assert.AreEqual(2,r.Ki);}
     [Test] public void K01_CombinedFlurryPalmCostsThreeAndEmitsThreeHits()
     {var r=R();var e=E(r,2,3,4);S(r,KaitSkill.Flurry,KaitSkill.Palm);var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(3,a.yummnAction.totalKiCost);Assert.AreEqual(1,e.hp);Assert.AreEqual(new Vector2Int(3,3),e.pos);Assert.AreEqual(3,a.yummnEvents.Count(ev=>ev.kind==YummnEventKind.Hit));}
     [Test] public void K02_OpenHandAndPalmDoNotDoublePush()

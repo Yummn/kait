@@ -22,8 +22,8 @@ public class YummnExhaustedSupplyTests
     {var r=Run();typeof(KaitRun).GetProperty("katePos").SetValue(r,new Vector2Int(1,3));Assert.IsFalse(r.TryGlobalInput(KaitDirection.Left).valid);Assert.AreEqual(0,r.NormalTileSpawnCount);}
     [Test] public void WalkCounterKillAddsSeparateKillReward()
     {var r=Run();r.passives.Add(KaitPassive.Opportunist);r.enemies.Add(new KaitEnemy{id=99,pos=new Vector2Int(5,3),hp=1,maxHp=1,type=KaitEnemyType.Swordsman,life=KaitEnemyLife.Active});var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,r.kills);Assert.AreEqual(2,a.newThreatCells.Count);Assert.AreEqual(1,r.EnemyResolveCount);}
-    [Test] public void FullBoardRecordsDroppedWalkSupply()
-    {var r=Run();for(int x=0;x<5;x++)for(int y=0;y<5;y++)if(!r.threatPillars[x,y])r.threat[x,y]=(x+y)%2==0?2:4;var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,a.yummnAction.requestedTwos);Assert.AreEqual(1,a.yummnAction.droppedTwos);Assert.AreEqual("ThreatBoardLocked",r.endReason);}
+    [Test] public void FullBoardRecordsDroppedWalkSupplyWithoutLoss()
+    {var r=Run();for(int x=0;x<5;x++)for(int y=0;y<5;y++)if(!r.threatPillars[x,y])r.threat[x,y]=(x+y)%2==0?2:4;var before=(int[,])r.threat.Clone();var a=r.TryGlobalInput(KaitDirection.Right);Assert.AreEqual(1,a.yummnAction.requestedTwos);Assert.AreEqual(1,a.yummnAction.droppedTwos);Assert.IsFalse(r.ended);CollectionAssert.AreEqual(before,r.threat);}
     [Test] public void NewRuleSnapshotReplaysAndOldSnapshotStaysOld()
     {foreach(bool enabled in new[]{false,true}){var r=new KaitRun();r.SelectCharacter(KaitCharacter.Yummn,910,new YummnRulesSnapshot(moveSupply:enabled));for(int i=0;i<8;i++)r.TryGlobalInput((KaitDirection)(i%4));var copy=new KaitRun();Assert.IsTrue(copy.RestoreReplay(r.SaveReplay()));Assert.AreEqual(enabled,copy.Yummn.rules.ExhaustedMoveSupply);CollectionAssert.AreEqual(r.threat,copy.threat);Assert.AreEqual(r.ScoreRulesKey,copy.ScoreRulesKey);}}
     [Test] public void NoPairsIsNoLongerPermanentStarvation()

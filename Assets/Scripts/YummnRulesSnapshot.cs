@@ -19,7 +19,8 @@ public enum YummnMovementCostMode { PerCell, FixedOne }
     [SerializeField] private bool bossLine;
     // Absent in old replays: preserve their pre-hit/stationary-punch rule.
     [SerializeField] private bool actualMoveSupply;
-    public const string CurrentVersion="yummn-0.9.7-palm-kick";
+    public const string CurrentVersion="yummn-0.9.17-card-balance";
+    public const string PreviousVersion="yummn-0.9.7-palm-kick";
     [SerializeField] private int maxKi082,killKi082;
     [SerializeField] private YummnMovementCostMode movementCostMode;
     [SerializeField] private bool attackAdvancesEnemyPhase,exhaustionNeedsFullKi;
@@ -37,7 +38,7 @@ public enum YummnMovementCostMode { PerCell, FixedOne }
     public bool KiGuard=>Is082&&kiGuard;
     public int AttackCostTenths=>AttackCostsOne?10:AttackCostsTenth?1:0;
     public bool MovementAdvancesEnemyPhase=>Is082&&movementAdvancesEnemyPhase;
-    public bool Is082=>version==CurrentVersion;
+    public bool Is082=>version==CurrentVersion||version==PreviousVersion;
     public YummnMovementCostMode MovementCostMode=>movementCostMode;
     public bool AttackAdvancesEnemyPhase=>Is082&&attackAdvancesEnemyPhase;
     public bool ExhaustionNeedsFullKi=>!Is082||exhaustionNeedsFullKi;
@@ -132,6 +133,5 @@ public sealed partial class KaitRun
         if(bossPending){SpawnShieldKnight(r);if(r.bossSpawned)Yummn.metrics.bossCreatedAction=a.actionId;}
         if(a.phaseAtStart==YummnPhase.Exhausted){int gained=GainYummnKi(Yummn.profile.recoveryKi,r,"Recovery");Yummn.metrics.recoveryKi+=gained;}
         FinishYummnPhase(r);
-        if(!ended&&IsYummnThreatLocked()){threatLocks++;Yummn.metrics.threatLocks++;End("ThreatBoardLocked",false);r.message="2048无可用移动，本局失败";}
     }
 }
