@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-20（北京时间）。维护者：Reynard战斗页修复会话。
+最后更新：2026-09-20（北京时间）。维护者：Reynard GitHub发布会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -12,7 +12,7 @@
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | 应用0.9.33、Android配置版本码933；Reynard规则Reynard.0.4-direction-shot，牌池reynard-core24-direction-shot-20260920，存档Kait.Run.Reynard.0.4；Kait保留47个身份，普通对局默认池24张、实验池11张、Legacy池12张，牌池kait-round2-default24-20260919，规则Kait.0.9.21-round2-default24；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
-| Git 基线 | 0.9.19—0.9.23规则、卡图、测试与说明由本次发布提交推送origin/master并建立v0.9.23标签；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
+| Git 基线 | 0.9.24—0.9.33 Reynard第三角色、资源、规则、测试和说明已由提交4cc90df推送origin/master；Yummn/kait保持PUBLIC。0.9.23标签与改版前0.9.7标签继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
 | 最近 Windows 构建 | Build/kait.exe及配套kait_Data v0.9.33；Logs/reynard-blocked-shot-0933-windows-final.log成功退出0，受阻仍朝输入方向射击已同步；旧APK/ZIP未更新 |
 | 最近 EditMode 测试 | Logs/reynard-blocked-shot-0933-final.xml：Reynard 37/37通过；非全量测试 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
@@ -26,7 +26,7 @@ Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.ex
 
 ## 2. 进行中与占用登记
 
-RELEASE-20260920-REYNARD-0933-GITHUB：进行中，本会话。按用户明确要求，将本地0.9.24—0.9.33的Reynard第三角色、场景/首页、选牌修复、伊甸语音、移动射击、裂隙白块修复及受阻仍射击规则上传公开origin/master；明确排除来源未核实的旧Docs/v0.8.1-四组对照实测.md本地修改，Build与Logs继续按忽略规则仅保留本地。
+RELEASE-20260920-REYNARD-0933-GITHUB：完成，本会话。0.9.24—0.9.33的Reynard第三角色、场景/首页、选牌修复、伊甸语音、移动射击、裂隙白块修复及受阻仍射击规则以提交4cc90df推送公开origin/master；168个LFS对象约69 MB上传完成。明确排除来源未核实的旧Docs/v0.8.1-四组对照实测.md本地修改，Build与Logs继续按忽略规则仅保留本地。
 
 RULE-20260920-REYNARD-BLOCKED-SHOT：完成，v0.9.33，本会话。Reynard每次方向操作都朝输入方向发射1伤子弹；被敌人、柱子或边界阻挡时人物不位移，但弹道、附加法术、右盘及敌方阶段照常。规则/牌池/存档独立升版；专项37/37，Windows构建退出0，运行构造相邻敌人阻挡并核验原位、1伤和右向弹道，47项偏好恢复。Android仍0.9.32，不上传。说明见Docs/v0.9.33-Reynard受阻仍射击.md。
 
