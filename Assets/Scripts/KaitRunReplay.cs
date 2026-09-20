@@ -32,7 +32,7 @@ public sealed partial class KaitRun
     {bool ok=ResolveSkill(skill,targetEnemyId,out message);if(ok)RecordReplay("skill",(int)skill,targetEnemyId,0);return ok;}
     public bool SelectReward(int index,int replaceSlot=-1,KaitPassive copy=KaitPassive.None)
     {bool ok=ResolveRewardSelection(index,replaceSlot,copy);if(ok)RecordReplay("reward",index,replaceSlot,(int)copy);return ok;}
-    public string SaveReplay()=>JsonUtility.ToJson(new ReplaySave{seed=replaySeed,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsYummn?YummnCatalog.Version:KaitAbilityCatalog.Version,balance=JsonUtility.FromJson<KaitBalanceConfig>(replayInitialBalance),steps=replaySteps,yummnRules=IsYummn?Yummn.rules:null});
+    public string SaveReplay()=>JsonUtility.ToJson(new ReplaySave{seed=replaySeed,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsReynard?ReynardCatalog.Version:IsYummn?YummnCatalog.Version:KaitAbilityCatalog.Version,balance=JsonUtility.FromJson<KaitBalanceConfig>(replayInitialBalance),steps=replaySteps,yummnRules=IsYummn?Yummn.rules:null});
     public bool RestoreReplay(string json)
     {
         ReplaySave save;
@@ -43,8 +43,8 @@ public sealed partial class KaitRun
         // object rather than null when loading a save written before this field.
         if(save.characterId==KaitCharacter.Yummn&&(snapshot==null||string.IsNullOrEmpty(snapshot.Version))&&save.rulesProfileId==YummnRulesProfile.LegacyVersion)snapshot=YummnRulesSnapshot.OldV08();
         if(save.characterId==KaitCharacter.Yummn&&(snapshot==null||!snapshot.Valid))return false;
-        string expected=save.characterId==KaitCharacter.Yummn?snapshot.Version:KaitAbilityCatalog.RulesVersion;
-        bool compatiblePool=save.characterId==KaitCharacter.Yummn?
+        string expected=save.characterId==KaitCharacter.Reynard?ReynardCatalog.RulesVersion:save.characterId==KaitCharacter.Yummn?snapshot.Version:KaitAbilityCatalog.RulesVersion;
+        bool compatiblePool=save.characterId==KaitCharacter.Reynard?save.cardPoolVersion==ReynardCatalog.Version:save.characterId==KaitCharacter.Yummn?
             save.cardPoolVersion==YummnCatalog.Version||save.cardPoolVersion==YummnCatalog.PreviousVersion:
             save.cardPoolVersion==KaitAbilityCatalog.Version;
         if(!Enum.IsDefined(typeof(KaitCharacter),save.characterId)||save.rulesProfileId!=expected||!compatiblePool)return false;

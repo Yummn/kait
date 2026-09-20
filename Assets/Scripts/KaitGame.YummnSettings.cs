@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public sealed partial class KaitGame
@@ -67,7 +67,7 @@ public sealed partial class KaitGame
         bool yummn=character==KaitCharacter.Yummn;
         if(kaitEffectiveMoveSupplyToggle!=null)
         {
-            kaitEffectiveMoveSupplyToggle.gameObject.SetActive(!yummn);
+            kaitEffectiveMoveSupplyToggle.gameObject.SetActive(character==KaitCharacter.Kait);
             kaitEffectiveMoveSupplyToggle.SetIsOnWithoutNotify(MainMenuVisible?PlayerPrefs.GetInt(KaitEffectiveMoveSupplyPreference,0)==1:run.config.kaitEffectiveMoveSupply);
         }
         if(characterSettingsTitle!=null)characterSettingsTitle.text=character+" · 设置";

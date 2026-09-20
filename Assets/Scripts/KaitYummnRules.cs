@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum KaitCharacter { Kait, Yummn }
+public enum KaitCharacter { Kait, Yummn, Reynard }
 public sealed partial class KaitRun
 {
     public KaitCharacter Character { get; private set; }
+    public readonly ReynardRun Reynard=new ReynardRun();
+    public bool IsReynard=>Character==KaitCharacter.Reynard;
     public bool IsYummn => Character==KaitCharacter.Yummn;
     public int KateMaxHp=>IsYummn?Yummn.rules.MaxHp:config.kateMaxHp;
-    public string RulesProfileId => IsYummn?Yummn.rules.Version:KaitAbilityCatalog.RulesVersion;
+    public string RulesProfileId => IsReynard?ReynardCatalog.RulesVersion:IsYummn?Yummn.rules.Version:KaitAbilityCatalog.RulesVersion;
     public readonly YummnRun Yummn=new YummnRun();
     public int Ki=>Yummn.ki;
     public float ExactKi=>Ki+Yummn.kiTenths/10f;

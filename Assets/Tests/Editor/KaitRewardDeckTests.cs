@@ -22,7 +22,7 @@ public sealed class KaitRewardDeckTests
         var area=root.GetComponent<RectTransform>();area.sizeDelta=new Vector2(1920,1080);
         deck=root.AddComponent<KaitRewardDeck>();
         deck.Initialize(area,null,Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"),()=>allow,()=>{});
-        run=new KaitRun();run.Reset(61);run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=16,resultValue=32});
+        run=new KaitRun();run.Reset(61);run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=8,resultValue=16});
         run.CurrentReward.choices.Clear();
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitSkill.HexCurse));
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitPassive.BloodBookmark));
@@ -53,7 +53,7 @@ public sealed class KaitRewardDeckTests
     {
         run.skills.AddRange(new[]{KaitSkill.SwiftBoots,KaitSkill.CatAgility,KaitSkill.Command});
         Select(0);Assert.AreEqual(3,run.skills.Count);
-        for(int i=0;i<Slots.Length;i++)Assert.AreEqual(i<3,Slots[i].gameObject.activeSelf,"Kait retains only three visible replacement targets");
+        for(int i=0;i<Slots.Length;i++)Assert.AreEqual(i<4,Slots[i].gameObject.activeSelf,"Three equipped cards plus one empty shared slot are visible");
         ((Button)Field(deck,"cancel")).onClick.Invoke();Assert.IsNotNull(run.CurrentReward);
         CollectionAssert.DoesNotContain(run.skills,KaitSkill.HexCurse);
     }
@@ -61,7 +61,7 @@ public sealed class KaitRewardDeckTests
     {
         run.skills.AddRange(new[]{KaitSkill.SwiftBoots,KaitSkill.CatAgility,KaitSkill.Command});
         Drop(0,1);CollectionAssert.AreEqual(new[]{KaitSkill.SwiftBoots,KaitSkill.HexCurse,KaitSkill.Command},run.skills);
-        Assert.IsTrue(run.IsSkillActive(KaitSkill.CatAgility));Assert.IsFalse(run.IsSkillActive(KaitSkill.HexCurse));
+        CollectionAssert.DoesNotContain(run.skills,KaitSkill.CatAgility);Assert.IsTrue(run.IsAbilityPending(KaitAbilityCatalog.Get(KaitSkill.HexCurse)));
     }
     [Test] public void WrongSideReleaseNeverConsumesReward()
     {
@@ -73,10 +73,10 @@ public sealed class KaitRewardDeckTests
         Assert.IsTrue((bool)Call("BeginDrag",0));var pos=Slots[0].rectTransform.anchoredPosition;
         allow=false;Call("EndDrag",0,pos);Assert.IsNotNull(run.CurrentReward);Assert.IsEmpty(run.skills);
     }
-    [Test] public void PassiveTargetsAreAboveAndActiveTargetsBelow()
+    [Test] public void PassiveAndActiveUseTheSameSharedSixSlotTray()
     {
-        Select(1);Assert.Greater(Slots[0].rectTransform.anchoredPosition.y,250);
-        Select(0);Assert.Less(Slots[0].rectTransform.anchoredPosition.y,-250);
+        Select(1);var passivePosition=Slots[0].rectTransform.anchoredPosition;
+        Select(0);Assert.AreEqual(passivePosition,Slots[0].rectTransform.anchoredPosition);
         foreach(var target in Slots)Assert.IsFalse(target.raycastTarget);
     }
     [Test] public void SimulacrumNeedsTwoSeparateDropsAndPreservesOriginal()
@@ -96,14 +96,14 @@ public sealed class KaitRewardDeckTests
     {
         Assert.IsTrue((bool)Call("BeginDrag",0));Assert.IsFalse((bool)Call("BeginDrag",1));
         var pos=Slots[0].rectTransform.anchoredPosition;
-        run.SkipReward();run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=16,resultValue=32});
+        run.SkipReward();run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=8,resultValue=16});
         Call("EndDrag",0,pos);Assert.IsEmpty(run.skills);Assert.IsNotNull(run.CurrentReward);
     }
     [Test] public void ButtonsAndDropZonesHaveLargeTouchAreas()
     {
         foreach(string name in new[]{"skip","cancel","reroll","fold"})
         {var rect=((Button)Field(deck,name)).GetComponent<RectTransform>();Assert.GreaterOrEqual(rect.rect.width,140);Assert.GreaterOrEqual(rect.rect.height,60);}
-        Select(0);Assert.GreaterOrEqual(Slots[0].rectTransform.rect.width,230);Assert.GreaterOrEqual(Slots[0].rectTransform.rect.height,160);
+        Select(0);Assert.GreaterOrEqual(Slots[0].rectTransform.rect.width,160);Assert.GreaterOrEqual(Slots[0].rectTransform.rect.height,160);
         var bar=(RectTransform)Field(deck,"bar");Assert.AreEqual(1,bar.GetComponent<HybridStyleGraphic>().color.a);
         Assert.IsNotNull(bar.Find("Drag Handle").GetComponent<KaitRewardBarDrag>());
         foreach(var button in bar.GetComponentsInChildren<Button>())Assert.IsInstanceOf<HybridStyleButton>(button);
@@ -147,5 +147,31 @@ public sealed class KaitRewardDeckTests
         float top=card.Rect.anchoredPosition.y+text.rectTransform.anchoredPosition.y+text.rectTransform.rect.height*.5f;
         Assert.LessOrEqual(top,area.rect.yMax-12);
         Assert.AreEqual("警戒武器",text.text);
+    }
+    [Test] public void QueuedRewardStaysHiddenUntilInteractionIsAllowed()
+    {
+        allow=false;deck.Sync(run);
+        Assert.IsFalse(((RectTransform)Field(deck,"bar")).gameObject.activeSelf);
+        foreach(var card in (KaitSkillCard[])Field(deck,"active"))Assert.IsFalse(card.gameObject.activeSelf);
+        foreach(var card in (KaitPassiveCard[])Field(deck,"passive"))Assert.IsFalse(card.gameObject.activeSelf);
+        Assert.IsNotNull(run.CurrentReward,"The reward remains queued rather than being consumed");
+        allow=true;deck.Sync(run);
+        Assert.IsTrue(((RectTransform)Field(deck,"bar")).gameObject.activeSelf);
+        Assert.IsTrue(((KaitSkillCard[])Field(deck,"active"))[0].gameObject.activeSelf);
+    }
+    [Test] public void SelectingOrDraggingCapturesGameplayInputForEveryCharacter()
+    {
+        Assert.IsFalse(deck.CapturesGameplayInput);
+        Select(0);Assert.IsTrue(deck.CapturesGameplayInput);
+        Assert.IsTrue((bool)Call("BeginDrag",0));Assert.IsTrue(deck.CapturesGameplayInput);
+    }
+    [Test] public void DisablingDeckRestoresFadedOwnedArea()
+    {
+        var owned=new GameObject("Owned",typeof(RectTransform),typeof(CanvasGroup)).GetComponent<RectTransform>();owned.SetParent(root.transform,false);
+        deck.OwnedAreas=new[]{owned};Select(0);
+        typeof(KaitRewardDeck).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(deck,null);
+        typeof(KaitRewardDeck).GetMethod("OnDisable",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(deck,null);
+        var group=owned.GetComponent<CanvasGroup>();
+        Assert.AreEqual(1,group.alpha);Assert.IsTrue(group.blocksRaycasts);Assert.IsTrue(group.interactable);
     }
 }

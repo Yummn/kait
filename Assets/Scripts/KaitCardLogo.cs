@@ -77,7 +77,11 @@ public sealed class KaitCardLogo : MonoBehaviour
     {
         picture.SetBlackKeyLeft(YummnCatalog.IsMonk(def)&&YummnRepoolArt.NewIcon(def)==null);
         var art=KaitCardArt.Fit(KaitCardSkin.Icon(def));
-        if(art!=null) { current=art;picture.SetVisualState(current,Color.white,Color.clear);FitIllustration(); }
+        // Never leave HybridStyleGraphic on its default white texture. Missing
+        // art should be transparent (and may use the text sigil), not a white box.
+        current=art;
+        picture.SetVisualState(current,current!=null?Color.white:Color.clear,Color.clear);
+        FitIllustration();
         if(YummnCatalog.IsMonk(def))symbol.text=def.sigil;
         else if(def!=null && string.IsNullOrEmpty(symbol.text)) symbol.text=def.nameZh.Substring(0,Mathf.Min(2,def.nameZh.Length));
     }

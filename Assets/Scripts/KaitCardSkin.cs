@@ -42,6 +42,7 @@ public sealed class KaitCardSkin : MonoBehaviour
     {
         if(def==null)return null;
         string key=def.id;if(cache.TryGetValue(key,out var s))return s;
+        if(def.id.StartsWith("reynard.")){s=ReynardArt.Load("Cards/"+def.id.Substring(8));if(s!=null)cache[key]=s;return s;}
         string artName=def.id.Substring(def.id.LastIndexOf('.')+1);
         var round2=Resources.Load<Texture2D>("KaitVisuals/KaitRound2/"+artName);
         if(round2!=null)

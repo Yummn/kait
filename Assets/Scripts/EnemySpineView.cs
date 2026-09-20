@@ -38,7 +38,7 @@ public sealed class EnemySpineView
 
     public static EnemySpineView Create(SkeletonDataAsset data, string animationPrefix, Transform parent, Vector2 size, string name, float visualScale = 1f)
     {
-        if (data == null || parent == null || string.IsNullOrEmpty(animationPrefix)) return null;
+        if (data == null || parent == null || animationPrefix==null) return null;
 
         var host = new GameObject(name, typeof(RectTransform));
         host.transform.SetParent(parent, false);
@@ -190,16 +190,16 @@ public sealed class EnemySpineView
         graphic.AnimationState.SetAnimation(0, animation, true);
     }
 
-    public void PlayLanding() => PlayOnce(prefix + LandingSuffix);
+    public void PlayLanding() => PlayOnce(Resolve(prefix + LandingSuffix));
     public void PlayAttack() => PlayOnce(prefix + AttackSuffix);
-    public void PlayDamage() => PlayOnce(prefix + DamageSuffix);
+    public void PlayDamage() => PlayOnce(Resolve(prefix + DamageSuffix));
     public void PlayDeath() => PlayOnce(prefix + DeathSuffix, false);
     public void PlayPrepareAttack()
     {
         if(!IsReady)return;
         var current=CurrentAnimation;
-        if(current?.Animation?.Name==PrepareAttackAnimation&&current.Loop)return;
-        graphic.AnimationState.SetAnimation(0,PrepareAttackAnimation,true);
+        if(current?.Animation?.Name==Resolve(PrepareAttackAnimation)&&current.Loop)return;
+        graphic.AnimationState.SetAnimation(0,Resolve(PrepareAttackAnimation),true);
     }
     public void SyncPreparation(bool preparing)
     {
@@ -209,14 +209,14 @@ public sealed class EnemySpineView
         // Do not interrupt landing, damage, attack or death. Their queued idle
         // is repaired below; repeated UI refreshes never restart the pose.
         if(preparing&&current.Animation.Name==prefix+IdleSuffix)PlayPrepareAttack();
-        else if(!preparing&&current.Animation.Name==PrepareAttackAnimation)PlayIdle();
+        else if(!preparing&&current.Animation.Name==Resolve(PrepareAttackAnimation))PlayIdle();
     }
 
-    public float LandingDuration => Duration(prefix + LandingSuffix);
+    public float LandingDuration => Duration(Resolve(prefix + LandingSuffix));
     public float AttackDuration => Duration(prefix + AttackSuffix);
-    public float DamageDuration => Duration(prefix + DamageSuffix);
+    public float DamageDuration => Duration(Resolve(prefix + DamageSuffix));
     public float DeathDuration => Duration(prefix + DeathSuffix);
-    public float PrepareAttackDuration => Duration(PrepareAttackAnimation);
+    public float PrepareAttackDuration => Duration(Resolve(PrepareAttackAnimation));
 
     private void PlayOnce(string animation, bool returnToIdle = true)
     {
@@ -225,6 +225,12 @@ public sealed class EnemySpineView
         if (returnToIdle) graphic.AnimationState.AddAnimation(0, prefix + IdleSuffix, true, 0f);
     }
 
+    private string Resolve(string animation)
+    {
+        if(graphic.Skeleton.Data.FindAnimation(animation)!=null)return animation;
+        string fallback=animation==LandingSuffix?"land":animation==DamageSuffix?"hit_1":animation==PrepareAttackAnimation?"prepare":"idle";
+        return graphic.Skeleton.Data.FindAnimation(fallback)!=null?fallback:"idle";
+    }
     private float Duration(string animation)
     {
         if (!IsReady) return 0f;

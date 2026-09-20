@@ -4,10 +4,11 @@ using UnityEngine;
 public sealed partial class KaitRun
 {
     public static bool NeedsEnemyTarget(KaitSkill s) => s==KaitSkill.HexCurse || s==KaitSkill.IceTomb || s==KaitSkill.LesserPhantom || s==KaitSkill.Command || s==KaitSkill.GraspHadar || s==KaitSkill.EldritchBlast;
-    public static bool NeedsCellTarget(KaitSkill s) => YummnCatalog.IsActive(s) || s==KaitSkill.DispelMagic || s==KaitSkill.MistyStep || s==KaitSkill.RelentlessHex || s==KaitSkill.HungerOfHadar;
+    public static bool NeedsCellTarget(KaitSkill s) => ReynardCatalog.Get(s)!=null || YummnCatalog.IsActive(s) || s==KaitSkill.DispelMagic || s==KaitSkill.MistyStep || s==KaitSkill.RelentlessHex || s==KaitSkill.HungerOfHadar;
     public KaitTurnResult lastSkillResult { get; private set; }
     public bool IsLegalSkillCell(KaitSkill skill,Vector2Int cell)
     {
+        if(IsReynard)return IsLegalReynardCell(skill,cell);
         if(IsYummn&&YummnCatalog.IsActive(skill))
         {
             if(skill==KaitSkill.MageHand)return cell.x>=0&&cell.y>=0&&cell.x<ThreatSize&&cell.y<ThreatSize&&!IsThreatPillar(cell)&&threat[cell.x,cell.y]>0;
@@ -31,6 +32,7 @@ public sealed partial class KaitRun
     public bool TryUseSkillAt(KaitSkill skill,Vector2Int cell,out string message)
     {
         message="目标格不合法";
+        if(IsReynard)return CastReynard(skill,cell,out message);
         if(IsYummn)return CastYummnCell(skill,cell,out message);
         if(ended || !IsSkillActive(skill) || SkillCooldown(skill)>0 || !IsLegalSkillCell(skill,cell)) return false;
         lastSkillResult=new KaitTurnResult { valid=true };

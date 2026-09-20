@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public enum KaitRangedState { Ready, Aim }
 public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
 public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor, Flurry, WindStep, Palm, StunningFist, PatientDefense, FrostBreath, WaterWhip, UnbrokenAir, ShapeIce, YummnShadowStep, Darkness, PreciseStep, EchoStep, MendWait, AirPalm, PhantomSlide, UniqueDecoy, ThunderWave, ShatterWave, MirrorImage, CommandAct, MageHand,
-    EldritchBlast, HungerOfHadar }
+    EldritchBlast, HungerOfHadar, ReynardThunderwave, ReynardMistyStep, ReynardShatter, ReynardFireball, ReynardLightningBolt, ReynardCounterspell, ReynardChainLightning, ReynardMissileArray, ReynardFog, ReynardWeb, ReynardFoxfire, ReynardQuickenedCircle }
 public enum KaitSpeedModifier { AddOne, Double }
 
 [Serializable] public sealed class KaitBalanceConfig
@@ -62,10 +62,12 @@ public enum KaitSpeedModifier { AddOne, Double }
     public bool hitKate;
     public bool guarded;
 }
-[Serializable] public sealed class KaitThreatMotion { public int value; public Vector2Int from, to; public bool merged; }
+[Serializable] public sealed class KaitThreatMotion { public int value; public Vector2Int from, to; public bool merged, spellReady, mirrorFox; }
 
 public sealed class KaitTurnResult
 {
+    public KaitSkill reynardCast;
+    public readonly List<ReynardVisualEvent> reynardEvents=new List<ReynardVisualEvent>();
     public YummnActionContext yummnAction;
     public readonly List<YummnCombatEvent> yummnEvents = new List<YummnCombatEvent>();
     public bool valid, turnComplete, awaitingTurnChoice;
@@ -226,9 +228,11 @@ public sealed partial class KaitRun
             AddThreatPillar(5, IsYummn ? 5 : 4);
         }
         ResetYummnTurn();
+        Reynard.Reset(ThreatSize);
         EvaluateEmptyMapReachability();
         katePos = FindOpenNearCenter(); kateHp = KateMaxHp;
         for (int i = 0; i < config.initialThreatTiles; i++) SpawnThreatTwo();
+        if(IsReynard)InitializeMirrorFox();
         LockEnemyIntents();
     }
 
@@ -332,6 +336,7 @@ public sealed partial class KaitRun
 
     private KaitTurnResult ResolveGlobalInput(KaitDirection direction)
     {
+        if (IsReynard) return TryReynardDirection(direction);
         if (IsYummn) return TryYummnDirection(direction);
         var result = new KaitTurnResult();
         if (ended) { result.message = "本局已结束"; return result; }
@@ -383,6 +388,7 @@ public sealed partial class KaitRun
 
     private KaitTurnResult ResolveChainInput(KaitDirection direction)
     {
+        if (IsReynard) return TryReynardDirection(direction);
         if (IsYummn) return TryYummnDirection(direction);
         var result = new KaitTurnResult();
         if (!chainActive) { result.message = "当前没有可继续的连斩"; return result; }
@@ -719,10 +725,11 @@ public sealed partial class KaitRun
     private KaitIntent BuildLineIntent(Vector2Int origin, Vector2Int direction, int range, bool stopAtFirstUnit)
     {
         var intent = new KaitIntent { type = KaitIntentType.LineShot, origin = origin, direction = direction, damage = 1 };
+        if(ReynardFogAt(origin))return intent;
         for (int i = 1; i <= range; i++)
         {
             Vector2Int p = origin + direction * i;
-            if (!Inside(p) || walls[p.x, p.y]) break;
+            if (!Inside(p) || walls[p.x, p.y] || ReynardFogAt(p)) break;
             intent.affectedCells.Add(p); intent.target = p;
             if (stopAtFirstUnit && (katePos == p || EnemyAt(p) != null && !HasPassive(KaitPassive.PiercingArrow))) break;
         }
@@ -741,13 +748,14 @@ public sealed partial class KaitRun
     private int DamageKate(int amount, KaitTurnResult result)
     {
         if (config.playerInvincible || tombArmed || amount <= 0) return 0;
+        if(IsReynard && Reynard.mirrorWard){Reynard.mirrorWard=false;return 0;}
         int appliedDamage = Mathf.Min(kateHp, amount);
         kateHp -= appliedDamage;
         result.playerDamage += appliedDamage;
         return appliedDamage;
     }
 
-    private sealed class ThreatToken { public int value, birthOrder; public readonly List<Vector2Int> sources = new List<Vector2Int>(); public bool merged; }
+    private sealed class ThreatToken { public int value, birthOrder; public readonly List<Vector2Int> sources = new List<Vector2Int>(); public bool merged, spellReady, mirrorFox; }
     private List<KaitMergeEvent> MoveThreat(KaitDirection direction, List<KaitThreatMotion> motions)
     {
         var merges = new List<KaitMergeEvent>(); bool horizontal = direction == KaitDirection.Left || direction == KaitDirection.Right;
@@ -821,6 +829,7 @@ public sealed partial class KaitRun
         Vector2Int p = endTurn && nextTwoPriority.Count>0 ? nextTwoPriority.Find(cell=>candidates.Contains(cell)) : candidates[random.Next(candidates.Count)];
         if(Yummn081&&endTurn&&!candidates.Contains(p))p=candidates[random.Next(candidates.Count)];
         threat[p.x, p.y] = 2;
+        if(IsReynard)Reynard.spellReady[p.x,p.y]=true;
         threatTwoBirth[p.x, p.y] = ++nextThreatTwoBirth;
         if (endTurn) nextThreatTwoPreview = new Vector2Int(-1, -1);
         if (usedPreview) TriggerPassive(KaitPassive.BirdEye, result, p, MapThreatToBattle(p), "预览位置生成了新 2");

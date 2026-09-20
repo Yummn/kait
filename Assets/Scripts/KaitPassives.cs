@@ -31,7 +31,8 @@ public enum KaitPassive
     ResonanceCrystal, SpellEcho, BountyJar,
     SwiftBoots, CatAgility, EldritchSmite,
     ResidualSlash, HexBlade, PiercingArrow, ProvokingWhispers, WarMage, TwinSigil,
-    EldritchBlast
+    EldritchBlast,
+    ReynardTrident, ReynardRingFlame, ReynardBackfirePush, ReynardInterwoven, ReynardStillBackfire, ReynardArcaneRecall, ReynardArcaneDevour, ReynardReprise, ReynardDiffusion, ReynardDistantSpell, ReynardMirrorWard, ReynardConcord
 }
 
 public enum KaitPassiveCategory

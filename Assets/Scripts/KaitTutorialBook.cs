@@ -20,6 +20,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     Button appendixButton;
     ScrollRect appendix;
     bool appendixOpen;
+    public bool ReynardMode;
     public bool AppendixOpen => appendixOpen;
     bool ComicMode => !YummnMode || YummnRules != null && YummnRules.Is082;
     readonly Image[] tabs = new Image[KaitTutorialPages.All.Length];
@@ -99,6 +100,7 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
     {
         PageIndex=Mathf.Clamp(index,0,PageCount-1);
         if(comic==null)return;
+        if(ReynardMode){ShowReynardTutorial();return;}
         heading.text=YummnMode ? "Yummn · 玩法图解" : "Kait · 玩法图解";
         appendixOpen=false;appendix.gameObject.SetActive(false);
         SetComicLayout(ComicMode);
@@ -119,6 +121,17 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         previous.interactable=PageIndex>0;
         nextLabel.text=PageIndex==PageCount-1 ? "开始游戏" : "下一页";
         for(int i=0;i<tabs.Length;i++){tabs[i].gameObject.SetActive(i<PageCount);tabs[i].rectTransform.anchoredPosition=new Vector2((i-(PageCount-1)*.5f)*63,-400);tabs[i].color=i==PageIndex ? KaitStorybookTheme.Mint : Color.white;}
+    }
+    private void ShowReynardTutorial()
+    {
+        SetComicLayout(false);heading.text="Reynard · 方向编咒";title.text="方向施咒，等待召狐";
+        comic.gameObject.SetActive(false);leftCaption.text=rightCaption.text=thirdCaption.text="";
+        body.gameObject.SetActive(true);body.rectTransform.anchoredPosition=new Vector2(-235,0);body.rectTransform.sizeDelta=new Vector2(820,510);body.fontSize=28;
+        SetReadableCopy(body,"每次方向操作尝试移动一格，同时滑动右盘。\n\n无论是否成功移动，Reynard都会朝输入方向发射一发子弹。子弹命中前方第一个敌人并造成1点伤害；受阻时人物留在原地。\n\n等待：把镜狐残影召到脚下对应的右盘数字。没有数字则保留原位置。\n\n镜狐数字不随滑动移动。同值数字可以撞入合并。");
+        SetReadableCopy(lead,"2＝I环 · 4＝II环 · 8＝III环\n高环可施放低环法术。");
+        SetReadableCopy(tip,"点卡牌，再点目标施放。法术耗竭节点；合并使节点恢复。六槽自由混装，同时只维持一个持续法术。方向、等待、施法均补一个2并推进敌人行动。");
+        counter.text="核心规则";previous.interactable=false;nextLabel.text="关闭";PageIndex=PageCount-1;
+        appendix.gameObject.SetActive(false);if(yummnDiagram!=null)yummnDiagram.gameObject.SetActive(false);bossNumberLabel.gameObject.SetActive(false);
     }
     public void Next() { if(appendixOpen){ShowAppendix(false);return;} if(PageIndex==PageCount-1) { Close(); Completed?.Invoke(); } else ShowPage(PageIndex+1); }
 

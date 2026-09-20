@@ -7,13 +7,23 @@ public sealed partial class KaitRun
     private bool ResolveSharedReward(KaitAbilityDef def,int slot,KaitPassive copy=KaitPassive.None)
     {
         if(slot < -1||slot>=EquippedCardCount||EquippedCardCount>=6&&slot<0)return false;
+        int activeInsert=-1,passiveInsert=-1;
         if(slot>=0)
         {
-            var old=EquippedCard(slot);if(!inactiveAbilities.Remove(old.id))retiredAbilities.Add(old.id);
+            int activeCountBefore=skills.Count;
+            if(def.kind==KaitAbilityKind.Active&&slot<activeCountBefore)activeInsert=slot;
+            if(def.kind==KaitAbilityKind.Passive&&slot>=activeCountBefore)passiveInsert=slot-activeCountBefore;
+            var old=EquippedCard(slot);
+            // Definitions can move between active/passive pools across versions.
+            // A legacy slot must still be replaceable even when its old
+            // definition can no longer be resolved.
+            if(old!=null&&!inactiveAbilities.Remove(old.id))retiredAbilities.Add(old.id);
             if(slot<skills.Count)skills.RemoveAt(slot);else passives.RemoveAt(slot-skills.Count);
-            if(IsYummn)Yummn.prepared.Remove(old.id);
+            if(IsYummn&&old!=null)Yummn.prepared.Remove(old.id);
+            if(IsReynard&&old!=null&&old.skill==Reynard.focusedSkill)Reynard.focusedSkill=KaitSkill.None;
         }
-        if(def.kind==KaitAbilityKind.Active){skills.Add(def.skill);skillCooldowns[def.skill]=0;}else{passives.Add(def.passive);if(def.cooldown>0)passiveCooldowns[def.passive]=0;}
+        if(def.kind==KaitAbilityKind.Active){if(activeInsert>=0)skills.Insert(activeInsert,def.skill);else skills.Add(def.skill);skillCooldowns[def.skill]=0;}
+        else{if(passiveInsert>=0)passives.Insert(Mathf.Min(passiveInsert,passives.Count),def.passive);else passives.Add(def.passive);if(def.cooldown>0)passiveCooldowns[def.passive]=0;}
         inactiveAbilities.Add(def.id);
         if(def.passive==KaitPassive.Simulacrum)copiedPassive=copy;
         if(IsYummn)

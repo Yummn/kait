@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,7 +60,7 @@ public sealed partial class KaitRun
     public List<KaitAbilityDef> EligibleAbilities(List<KaitAbilityDef> pack=null)
     {
         bool curse=HasCurseSource(), repeatable=HasRepeatableMagic(), cooldown=HasCooldownAbility();
-        return (IsYummn ? YummnCatalog.Pool() : KaitAbilityCatalog.DefaultPool()).FindAll(d=> (IsYummn?!d.experimental:true) && YummnPrerequisite(d) &&
+        return (IsReynard ? ReynardCatalog.Pool() : IsYummn ? YummnCatalog.Pool() : KaitAbilityCatalog.DefaultPool()).FindAll(d=> (IsYummn?!d.experimental:true) && YummnPrerequisite(d) && (!IsReynard || ReynardPrerequisite(d)) &&
             true &&
             !(d.kind==KaitAbilityKind.Active?skills.Contains(d.skill):passives.Contains(d.passive)) &&
             (pack==null || !pack.Contains(d)) &&
@@ -117,7 +117,7 @@ public sealed partial class KaitRun
     {
         int rewardValue=IsYummn?Yummn.rules.RewardMergeValue:16;
         if(merge.resultValue!=rewardValue || (merge.sourceValue!=0 && merge.sourceValue!=rewardValue/2)) return;
-        var pack=new KaitRewardPack { id=++nextRewardId,sourceTurn=turn,sourceMergeCell=merge.threatCell,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsYummn?YummnCatalog.Version:KaitAbilityCatalog.Version };
+        var pack=new KaitRewardPack { id=++nextRewardId,sourceTurn=turn,sourceMergeCell=merge.threatCell,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsReynard?ReynardCatalog.Version:IsYummn?YummnCatalog.Version:KaitAbilityCatalog.Version };
         pack.generationSeed=replaySeed;
         FillReward(pack); rewardQueue.Enqueue(pack);
     }
@@ -126,7 +126,7 @@ public sealed partial class KaitRun
     {
         if(!CanSelectReward || index<0 || index>=CurrentReward.choices.Count) return false;
         var def=CurrentReward.choices[index];
-        if(!YummnPrerequisite(def))return false;
+        if(!YummnPrerequisite(def)||IsReynard&&!ReynardPrerequisite(def))return false;
         if(def.kind==KaitAbilityKind.Active ? skills.Contains(def.skill) : passives.Contains(def.passive)) return false;
         if(def.passive==KaitPassive.Simulacrum && (!passives.Contains(copy) || KaitAbilityCatalog.Get(copy)?.copyable!=true)) return false;
         return ResolveSharedReward(def,replaceSlot,copy);

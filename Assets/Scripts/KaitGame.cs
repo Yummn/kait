@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -124,6 +124,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private Sprite dungeonFloorSprite;
     private Sprite dungeonWallSprite;
     private Sprite spawnRiftSprite;
+    private Sprite transparentSpawnRiftSprite;
     private Sprite riftDangerWarningSprite;
     private Sprite dungeonPanelSprite;
     private Sprite dungeonButtonSprite;
@@ -254,6 +255,11 @@ public sealed partial class KaitGame : MonoBehaviour
         dungeonFloorSprite = KaitSunlitTheme.Load("Floor");
         dungeonWallSprite = KaitSunlitTheme.Load("Pillar");
         spawnRiftSprite = KaitSunlitTheme.Load("Rift");
+        // Yummn's authored crack was originally an RGB luminance mask.  The
+        // same coverage is baked into a real alpha texture so Yummn and
+        // Reynard can share the exact fissure without a transient mask
+        // material ever exposing the source's opaque white background.
+        transparentSpawnRiftSprite = LoadUiSprite("KaitVisuals/YummnRiftMask");
         riftDangerWarningSprite = LoadUiSprite("KaitVisuals/RiftDangerWarning");
         dungeonPanelSprite = KaitStorybookTheme.Panel;
         dungeonButtonSprite = KaitStorybookTheme.Button;
@@ -406,6 +412,7 @@ public sealed partial class KaitGame : MonoBehaviour
         else if (CommandLineValue("-pool083QA") == "1") StartCoroutine(VerifyPool083Runtime());
         else if (CommandLineValue("-root090QA") == "1") StartCoroutine(VerifyRoot090Runtime());
         else if (CommandLineValue("-yummnDefaultsQA") == "1") StartCoroutine(VerifyYummnDefaultsRuntime(screenshotPath));
+        else if (CommandLineValue("-reynardQA") == "1") StartCoroutine(VerifyReynardRuntime());
         else if (CommandLineValue("-repoolQA") == "1") StartCoroutine(VerifyRepool());
         else if (CommandLineValue("-kaitWarningsQA") == "1") StartCoroutine(VerifyApprovedWarnings(screenshotPath));
         else if (CommandLineValue("-kaitYummn082QA") == "1") StartCoroutine(VerifyYummn082Runtime(screenshotPath));
@@ -484,7 +491,9 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void Update()
     {
-        if(run.IsYummn&&((skillDeck!=null&&System.Array.Exists(skillDeck.Owned,c=>c!=null&&c.IsDragging))||(passiveDeck!=null&&System.Array.Exists(passiveDeck.Owned,c=>c!=null&&c.IsDragging))||(rewardDeck!=null&&rewardDeck.IsDragging)))
+        if((skillDeck!=null&&System.Array.Exists(skillDeck.Owned,c=>c!=null&&c.IsDragging))||
+           (passiveDeck!=null&&System.Array.Exists(passiveDeck.Owned,c=>c!=null&&c.IsDragging))||
+           (rewardDeck!=null&&rewardDeck.CapturesGameplayInput))
         {ResetSwipeTracking();ClearHeldInput();yummnBufferedDirection=null;yummnAcceptBuffer=false;return;}
         if (Input.GetKeyDown(KeyCode.Escape) && settingsOverlay != null && settingsOverlay.activeSelf)
         {
@@ -557,7 +566,7 @@ public sealed partial class KaitGame : MonoBehaviour
         }
 
         if(!swipeTriggered&&!swipeStartedOverButton&&!holdWaitTriggered&&trackedTouch.phase!=TouchPhase.Ended&&
-            stationaryHold.Poll(trackedTouch.position,Time.unscaledTime,Mathf.Max(20,Mathf.Min(Screen.width,Screen.height)*.025f),run.IsYummn&&AutoInputReady))
+            stationaryHold.Poll(trackedTouch.position,Time.unscaledTime,Mathf.Max(20,Mathf.Min(Screen.width,Screen.height)*.025f),(run.IsYummn||run.IsReynard)&&AutoInputReady))
         {holdWaitTriggered=true;HandleWait();}
         if (trackedTouch.phase == TouchPhase.Ended || trackedTouch.phase == TouchPhase.Canceled)
             ResetSwipeTracking();
@@ -760,7 +769,7 @@ public sealed partial class KaitGame : MonoBehaviour
         tutorialOverlay.SetActive(true);
         tutorialOverlay.transform.SetAsLastSibling();
         var book=tutorialOverlay.GetComponent<KaitTutorialBook>();
-        book.YummnMode=mainMenu.Selected==KaitCharacter.Yummn;
+        book.ReynardMode=mainMenu.Selected==KaitCharacter.Reynard;book.YummnMode=mainMenu.Selected==KaitCharacter.Yummn;
         book.YummnRules=YummnPreset();
         book.ShowPage(0);
     }
@@ -1312,9 +1321,9 @@ public sealed partial class KaitGame : MonoBehaviour
     private void HandleDirection(KaitDirection direction)
     {
         if (TutorialBlocksInput()) return;
-        if(run.IsYummn&&targetingSkill!=KaitSkill.None){ClearHeldInput();statusText.text=YummnCatalog.TargetHint(targetingSkill)+"，或取消施放";return;}
+        if((run.IsYummn||run.IsReynard)&&targetingSkill!=KaitSkill.None){ClearHeldInput();statusText.text=(run.IsReynard?ReynardCatalog.TargetHint(targetingSkill):YummnCatalog.TargetHint(targetingSkill))+"，或取消施放";return;}
         if (run.ended) return;
-        if (busy && run.IsYummn) { if(yummnAcceptBuffer) { yummnBufferedDirection=direction;yummnBufferedTurn=run.turn;yummnBufferedAction=run.ActionIndex; } return; }
+        if (busy && (run.IsYummn||run.IsReynard)) { if(yummnAcceptBuffer) { yummnBufferedDirection=direction;yummnBufferedTurn=run.turn;yummnBufferedAction=run.ActionIndex; } return; }
         if(!run.IsYummn)InterruptKaitAnimationForMovement();
         else {kaitSpine?.SetHitFlash(0f);kaitSpine?.SetTint(Color.white);}
         if (busy) InterruptActivePresentationForMovement();
@@ -1404,7 +1413,7 @@ public sealed partial class KaitGame : MonoBehaviour
             string objectName = candidate.gameObject.name;
             if (objectName != "Animation Token" && objectName != "Animation Unit" &&
                 objectName != "Archer Projectile" && objectName != "Dread Slash Wave" &&
-                objectName != "Floating Damage") continue;
+                objectName != "Floating Damage" && objectName != "Reynard Spell FX") continue;
             candidate.gameObject.SetActive(false);
             if (Application.isPlaying) Destroy(candidate.gameObject);
             else DestroyImmediate(candidate.gameObject);
@@ -1413,6 +1422,7 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private IEnumerator PlayTurn(KaitTurnResult result, Vector2Int start, List<KaitEnemy> enemySnapshot, List<KaitSpawnRequest> spawnSnapshot)
     {
+        if(run.IsReynard){yield return PlayReynardTurn(result,start,enemySnapshot,spawnSnapshot);yield break;}
         if(run.IsYummn){yield return PlayYummnTurn(result,start,enemySnapshot,spawnSnapshot);yield break;}
         busy = true;
         var healthBefore = new List<KaitEnemy>();
@@ -1534,11 +1544,12 @@ public sealed partial class KaitGame : MonoBehaviour
         turnText.text = run.IsYummn ? $"行动 {run.turn}" : $"回合 {run.turn}";
         if(storybookPower!=null)storybookPower.text=run.IsYummn?"1":run.momentum.ToString();
         RefreshYummnHud();
-        if(storybookCharacter!=null)storybookCharacter.text=run.IsYummn?"Yummn":"Kait";
-        KaitStorybookDetails.SetPortrait(storybookPortrait,run.IsYummn?KaitCharacter.Yummn:KaitCharacter.Kait);
+        if(storybookCharacter!=null)storybookCharacter.text=run.Character.ToString();
+        KaitStorybookDetails.SetPortrait(storybookPortrait,run.Character);
         if(storybookSnowDetails!=null)storybookSnowDetails.SetActive(run.IsYummn);
         RefreshYummnSkillTargets();
         if(buildDirectionText!=null) buildDirectionText.text=run.HasPassive(KaitPassive.ReverseGravity)?$"重力反转   主 {DirectionGlyph(run.currentGlobalDirection)} / 右盘 {DirectionGlyph(run.actualThreatDirection)}":"";
+        RefreshReynardHud();
         SetHealthBar(runHealthBar, run.kateHp);
         for(int i=0;i<storybookHearts.Length;i++)if(storybookHearts[i]!=null)
         {storybookHearts[i].gameObject.SetActive(i<run.KateMaxHp);storybookHearts[i].color=i<run.kateHp?Color.white:new Color(.55f,.50f,.58f,.28f);}
@@ -1660,12 +1671,12 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void HandleBattleCellClick(Vector2Int cell,bool threatTarget=false)
     {
-        if (run.ended || targetingSkill == KaitSkill.None) return;
+        if (run.ended || targetingSkill == KaitSkill.None || run.IsReynard && busy) return;
         if(run.IsYummn&&targetingSkill==KaitSkill.MageHand&&!threatTarget){ShowYummnCastFailure("请选择右侧副盘数字");return;}
         if (busy) InterruptActivePresentationForMovement();
         KaitEnemy target = run.EnemyAt(cell);
         KaitSkill skill = targetingSkill;
-        if(run.IsYummn)
+        if(run.IsYummn||run.IsReynard)
         {
             targetingSkill=KaitSkill.None;ClearHeldInput();run.Yummn.prepared.Clear();
             var previous=SnapshotEnemies();var pending=SnapshotSpawns();var origin=run.katePos;
@@ -1816,8 +1827,8 @@ public sealed partial class KaitGame : MonoBehaviour
                 battleRiftDangerIcons[index].gameObject.SetActive(false);
                 tile.sprite = KaitStorybookArt.Floor(run.IsYummn,x,y) ?? dungeonFloorSprite ?? roundedSprite;
                 tile.type = dungeonFloorSprite != null ? Image.Type.Simple : Image.Type.Sliced;
-                // Snow paving is authored in its final blue-gray palette.
-                tile.color = Color.white;
+                // Reynard uses a cool moonlit tint; other characters retain their palettes.
+                tile.color = run.IsReynard?new Color(.85f,.80f,1f):Color.white;
                 battleObstacles[index].gameObject.SetActive(run.walls[x, y]);
                 battleObstacleShadows[index].SetActive(run.walls[x, y]);
                 image.color = Color.clear;
@@ -1843,10 +1854,24 @@ public sealed partial class KaitGame : MonoBehaviour
 
                 KaitSpawnRequest spawn = SpawnAtVisual(p);
                 KaitEnemy enemy = EnemyAtVisual(p);
+                Image riftVisual = battleRifts[index];
+                Image riftCoreVisual = riftVisual.transform.Find("Fracture Core")?.GetComponent<Image>();
+                bool useTransparentRift = (run.IsYummn || run.IsReynard) && transparentSpawnRiftSprite != null;
+                riftVisual.sprite = useTransparentRift ? transparentSpawnRiftSprite : spawnRiftSprite;
+                riftVisual.material = useTransparentRift ? null : KaitGroundDecal.MaskMaterial;
+                riftVisual.color = useTransparentRift ? Color.white : new Color(0.59f, 0.39f, 0.20f, 0.9f);
+                if (riftCoreVisual != null)
+                {
+                    riftCoreVisual.gameObject.SetActive(true);
+                    riftCoreVisual.sprite = useTransparentRift ? transparentSpawnRiftSprite : spawnRiftSprite;
+                    riftCoreVisual.material = useTransparentRift ? null : KaitGroundDecal.MaskMaterial;
+                }
                 if (spawn != null)
                 {
-                    Image rift = battleRifts[index];
-                    rift.gameObject.SetActive(true);
+                    // Never leave an active Image with no source texture: Unity
+                    // renders that state as the opaque white rectangle reported
+                    // in the Reynard board screenshot.
+                    riftVisual.gameObject.SetActive(riftVisual.sprite != null);
                 }
                 if (enemy != null)
                 {
@@ -1878,7 +1903,11 @@ public sealed partial class KaitGame : MonoBehaviour
                             battlePortraits[index].transform.SetParent(battleActorLayer, true);
                             battlePortraits[index].rectTransform.position = battleCells[index].rectTransform.position;
                         }
-                        battlePortraits[index].gameObject.SetActive(true);
+                        // A UI Image with no sprite renders Unity's built-in
+                        // white quad.  Never use that as a loading fallback;
+                        // keep the slot empty until a real Spine view or
+                        // portrait exists.
+                        battlePortraits[index].gameObject.SetActive(battlePortraits[index].sprite != null);
                         battlePortraits[index].color = unitTint;
                     }
                     SetHealthBar(battleHealthBars[index], enemy.hp);
@@ -1914,7 +1943,7 @@ public sealed partial class KaitGame : MonoBehaviour
                             battlePortraits[index].transform.SetParent(battleKaitLayer, true);
                             battlePortraits[index].rectTransform.position = battleCells[index].rectTransform.position;
                         }
-                        battlePortraits[index].gameObject.SetActive(true);
+                        battlePortraits[index].gameObject.SetActive(battlePortraits[index].sprite != null);
                     }
                     if (run.chainActive) battleFacingLabels[index].text = ">";
                     battleFacingLabels[index].rectTransform.localRotation = Quaternion.Euler(0f, 0f, HalfArrowAngle(KaitRun.Delta(run.currentDirection)));
@@ -3100,6 +3129,10 @@ public sealed partial class KaitGame : MonoBehaviour
 
     private void TriggerChainShake(int chainCount)
     {
+        // Reynard's one-cell walk should remain camera-stable.  In particular,
+        // a kill resolved during that movement must not move both boards and
+        // make an otherwise smooth walk read as a screen shake.
+        if (run.IsReynard) return;
         if (chainCount < 2 || gameContent == null) return;
         if (screenShakeRoutine != null)
         {
@@ -3323,6 +3356,7 @@ public sealed partial class KaitGame : MonoBehaviour
         endOverlay.transform.SetAsLastSibling();
         string reason = run.won ? "击败盾骑士 · 本局胜利" : "凯特 HP 归零 · 本局失败";
         endText.text = $"{reason}\n\n回合：{run.turn}    击杀：{run.kills}    推动：{run.pushCount}\n最高动量：{run.highestMomentum}    主动刹车：{run.activeWallStops}\n刷怪抑制：{run.spawnSuppressedCount}    友伤：{run.friendlyFireDamage}";
+        if(run.IsReynard)endText.text=$"{(run.won?"击败盾骑士 · 本局胜利":"Reynard 生命归零 · 本局失败")}\n\n回合：{run.turn}    击杀：{run.kills}\n射击：{run.Reynard.directionSpells}    法术：{run.Reynard.casts}\n召狐：{run.Reynard.summons}    吞并：{run.Reynard.devours}";
         if(run.IsYummn)
         {
             var m=run.Yummn.metrics;
@@ -4589,10 +4623,11 @@ public sealed partial class KaitGame : MonoBehaviour
     {
         if (enemy == null) return null;
         if (enemySpines.TryGetValue(enemy.id, out EnemySpineView existing)) return existing;
-        if (!enemySkeletonData.TryGetValue(enemy.type, out SkeletonDataAsset data) || data == null) return null;
+        SkeletonDataAsset data=run.IsReynard?Resources.Load<SkeletonDataAsset>("Characters/Reynard/"+ReynardArt.EnemyId(enemy.type)+"/"+ReynardArt.EnemyId(enemy.type)+"_SkeletonData"):enemySkeletonData.TryGetValue(enemy.type,out var oldData)?oldData:null;
+        if(data==null)return null;
         float visualScale = enemy.type == KaitEnemyType.Guard ? 1.1f : 1f;
         Transform parent = battleActorLayer != null ? battleActorLayer : canvas.transform;
-        EnemySpineView created = EnemySpineView.Create(data, EnemyAnimationPrefix(enemy.type), parent, new Vector2(115, 115), $"Enemy {enemy.id} Spine", visualScale);
+        EnemySpineView created = EnemySpineView.Create(data, run.IsReynard?"":EnemyAnimationPrefix(enemy.type), parent, new Vector2(115, 115), $"Enemy {enemy.id} Spine", visualScale);
         if (created != null)
         {
             // Creation is intentionally invisible until a valid board cell has

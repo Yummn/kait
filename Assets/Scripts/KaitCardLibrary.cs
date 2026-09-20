@@ -26,9 +26,9 @@ public sealed class KaitCardLibrary : MonoBehaviour
         var backdrop=KaitStorybookArt.Icon(view.layout,"LibraryBackdrop",Vector2.zero,new Vector2(1920,1080));backdrop.preserveAspect=false;
         view.heading=view.Label(view.layout,"卡牌大全",new Vector2(-660,436),new Vector2(320,60),38,Ink);
         view.Button(view.layout,"×",new Vector2(870,455),new Vector2(58,56),()=>Destroy(go));
-        foreach(var c in new[]{KaitCharacter.Kait,KaitCharacter.Yummn})
+        foreach(var c in new[]{KaitCharacter.Kait,KaitCharacter.Yummn,KaitCharacter.Reynard})
         {
-            var selected=c;var button=view.Button(view.layout,c.ToString(),new Vector2(-680,c==KaitCharacter.Kait?294:188),new Vector2(256,88),()=>view.Select(selected,view.Rarity));
+            var selected=c;var button=view.Button(view.layout,c.ToString(),new Vector2(-680,294-(int)c*106),new Vector2(256,88),()=>view.Select(selected,view.Rarity));
             var label=button.GetComponentInChildren<Text>();label.rectTransform.anchoredPosition=new Vector2(33,0);label.rectTransform.sizeDelta=new Vector2(138,50);
             KaitStorybookDetails.PortraitBadge(button.transform,c,new Vector2(-74,0),66);view.filters.Add(button);
         }
@@ -44,7 +44,7 @@ public sealed class KaitCardLibrary : MonoBehaviour
     public void ChangePage(int delta){Page=Mathf.Clamp(Page+delta,0,Mathf.Max(0,(Total-1)/PageSize));Refresh();}
     public static List<KaitAbilityDef> Cards(KaitCharacter c,int rarity)
     {
-        var list=new List<KaitAbilityDef>(c==KaitCharacter.Yummn?YummnCatalog.Cards:KaitAbilityCatalog.All);
+        var list=new List<KaitAbilityDef>(c==KaitCharacter.Reynard?ReynardCatalog.Cards:c==KaitCharacter.Yummn?YummnCatalog.Cards:KaitAbilityCatalog.All);
         if(rarity>=0)list.RemoveAll(d=>(int)d.rarity!=rarity);
         list.Sort((a,b)=>{int rank=a.rarity.CompareTo(b.rarity);if(rank!=0)return rank;rank=a.kind.CompareTo(b.kind);return rank!=0?rank:System.StringComparer.Ordinal.Compare(a.id,b.id);});
         return list;
@@ -58,7 +58,7 @@ public sealed class KaitCardLibrary : MonoBehaviour
         previous.interactable=Page>0;next.interactable=(Page+1)*PageSize<Total;
         for(int i=0;i<filters.Count;i++)
         {
-            bool selected=i<2?i==(int)Character:i-3==Rarity;
+            bool selected=i<3?i==(int)Character:i-4==Rarity;
             var image=filters[i].GetComponent<Image>();image.color=Color.white;
             image.sprite=selected?KaitStorybookTheme.Surface("library-selected",KaitStorybookTheme.Mint,Ink,5):KaitStorybookTheme.Button;
         }
@@ -77,7 +77,7 @@ public sealed class KaitCardLibrary : MonoBehaviour
         if(art.sprite==null)art.color=Color.clear;
         var description=Label(card,def.cardText.TrimEnd('。'),new Vector2(0,-86),new Vector2(282,82),24,Ink);
         description.resizeTextMinSize=20;
-        string cost=def.experimental?"实验牌 · 未启用":def.cooldown>0?(YummnCatalog.IsMonk(def)&&active?"耗气 "+def.kiExtraCost:"冷却 "+def.cooldown+" 回合"):"";
+        string cost=def.spellLevel>0?ReynardCatalog.Roman(def.spellLevel)+"环":def.experimental?"实验牌 · 未启用":def.cooldown>0?(YummnCatalog.IsMonk(def)&&active?"耗气 "+def.kiExtraCost:"冷却 "+def.cooldown+" 回合"):"";
         if(active&&YummnCatalog.IsMonk(def)&&!def.experimental)
         {KaitStorybookArt.Icon(card,"Qi",new Vector2(-16,-144),new Vector2(16,22));Label(card,def.kiExtraCost.ToString(),new Vector2(12,-144),new Vector2(40,26),21,Ink);}
         else Label(card,cost,new Vector2(0,-144),new Vector2(264,24),18,KaitStorybookTheme.Muted);

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,7 @@ using UnityEngine;
 public sealed class GameAudio : MonoBehaviour
 {
     public static bool YummnMode;
+    public static bool ReynardMode;
     private const string MusicPath = "Audio/BackgroundMusic";
     private const string MergePath = "Audio/UI/SelectedModel/Merge_B";
     private const string CombatPath = "Audio/Combat/";
@@ -17,6 +18,8 @@ public sealed class GameAudio : MonoBehaviour
     private const string SelectedSkillPath = "Audio/Skills/SelectedModel/";
     private const string KaitVoicePath = "Audio/Voice/Gloria/";
     private const string EnemyCharacterVoicePath = "Audio/Voice/Enemies/";
+    private const string ReynardVoicePath = "Audio/Voice/Reynard/Noel/";
+    private const string ReynardEnemyVoicePath = "Audio/Voice/Reynard/Enemies/";
     private const float VoiceChannelVolume = 0.5f;
     private const float DuckedEnemyVoiceMultiplier = 0.32f;
     private const float EnemyVoiceFadeSeconds = 0.08f;
@@ -55,6 +58,7 @@ public sealed class GameAudio : MonoBehaviour
     private AudioSource impactSource;
     private AudioSource killSource;
     private AudioSource kaitVoiceSource;
+    private AudioSource reynardVoiceSource;
     private readonly Dictionary<KaitEnemyType, AudioSource> enemyVoiceSources =
         new Dictionary<KaitEnemyType, AudioSource>();
     private AudioSource rangedSource;
@@ -82,7 +86,20 @@ public sealed class GameAudio : MonoBehaviour
     private AudioClip kaitWinVoiceClip;
     private AudioClip kaitFailVoiceClip;
     private AudioClip kaitDeathVoiceClip;
+    private AudioClip[] reynardNormalVoiceClips;
+    private AudioClip[] reynardHurtVoiceClips;
+    private AudioClip reynardKillVoiceClip;
+    private AudioClip reynardSmallSkillVoiceClip;
+    private AudioClip reynardLargeSkillVoiceClip;
+    private AudioClip reynardUltimateVoiceClip;
+    private AudioClip reynardHeavyHurtVoiceClip;
+    private AudioClip reynardStartVoiceClip;
+    private AudioClip reynardWinVoiceClip;
+    private AudioClip reynardFailVoiceClip;
+    private AudioClip reynardDeathVoiceClip;
     private readonly Dictionary<KaitEnemyType, EnemyCharacterVoiceBank> enemyCharacterVoiceBanks =
+        new Dictionary<KaitEnemyType, EnemyCharacterVoiceBank>();
+    private readonly Dictionary<KaitEnemyType, EnemyCharacterVoiceBank> reynardEnemyCharacterVoiceBanks =
         new Dictionary<KaitEnemyType, EnemyCharacterVoiceBank>();
     private AudioClip enemyHurtClip;
     private AudioClip magicImpactClip;
@@ -145,6 +162,7 @@ public sealed class GameAudio : MonoBehaviour
         impactSource = CreateSource("Combat Impact", null, false, 0.72f);
         killSource = CreateSource("Kill Impact", null, false, 0.78f);
         kaitVoiceSource = CreateSource("Kait Voice", null, false, VoiceChannelVolume);
+        reynardVoiceSource = CreateSource("Reynard Voice - Noel", null, false, VoiceChannelVolume);
         foreach (KaitEnemyType type in System.Enum.GetValues(typeof(KaitEnemyType)))
             enemyVoiceSources[type] = CreateSource($"Enemy Voice - {type}", null, false, VoiceChannelVolume);
         rangedSource = CreateSource("Ranged Effects", null, false, 0.58f);
@@ -176,12 +194,29 @@ public sealed class GameAudio : MonoBehaviour
         kaitWinVoiceClip = LoadKaitVoice("Gloria_Win_1");
         kaitFailVoiceClip = LoadKaitVoice("Gloria_Fail_1");
         kaitDeathVoiceClip = LoadKaitVoice("Gloria_Battle_Die_1");
+        reynardNormalVoiceClips = LoadReynardVoiceClips(
+            "Noel_Battle_N_2", "Noel_Battle_N_3", "Noel_Battle_N_4", "Noel_Battle_N_5");
+        reynardKillVoiceClip = LoadReynardVoice("Noel_Battle_N_1");
+        reynardSmallSkillVoiceClip = LoadReynardVoice("Noel_Battle_H_1");
+        reynardLargeSkillVoiceClip = LoadReynardVoice("Noel_Battle_H_2");
+        reynardUltimateVoiceClip = LoadReynardVoice("Noel_Battle_C_2");
+        reynardHurtVoiceClips = LoadReynardVoiceClips(
+            "Noel_Battle_Hit_1", "Noel_Battle_Hit_3", "Noel_Battle_Hit_5");
+        reynardHeavyHurtVoiceClip = LoadReynardVoice("Noel_Battle_Hit_6");
+        reynardStartVoiceClip = LoadReynardVoice("Noel_Go_1");
+        reynardWinVoiceClip = LoadReynardVoice("Noel_Win_1");
+        reynardFailVoiceClip = LoadReynardVoice("Noel_Fail_1");
+        reynardDeathVoiceClip = LoadReynardVoice("Noel_Battle_Die_1");
         enemyCharacterVoiceBanks[KaitEnemyType.Grunt] = LoadEnemyCharacterVoiceBank("April");
         enemyCharacterVoiceBanks[KaitEnemyType.Swordsman] = LoadEnemyCharacterVoiceBank("Olivia");
         enemyCharacterVoiceBanks[KaitEnemyType.Archer] = LoadEnemyCharacterVoiceBank("Monica");
         enemyCharacterVoiceBanks[KaitEnemyType.Guard] = LoadEnemyCharacterVoiceBank("Coonya");
         enemyCharacterVoiceBanks[KaitEnemyType.Warlock] = LoadEnemyCharacterVoiceBank("Aloe");
         enemyCharacterVoiceBanks[KaitEnemyType.ShieldKnight] = LoadEnemyCharacterVoiceBank("Ursula");
+        // The Reynard cast and these six battle models come from the same Eden package.
+        // Keep a dedicated bank so Kait/Yummn retain their approved voice assignments.
+        foreach (KaitEnemyType type in System.Enum.GetValues(typeof(KaitEnemyType)))
+            reynardEnemyCharacterVoiceBanks[type] = LoadReynardEnemyVoiceBank(ReynardEnemyVoiceCharacter(type));
         enemyHurtClip = Resources.Load<AudioClip>("Audio/Combat/KaitHurt_03");
         riftWarningClip = Resources.Load<AudioClip>(SelectedWorldPath + "RiftOpen_B2");
         magicImpactClip = Resources.Load<AudioClip>(SelectedRangedPath + "MagicImpact_B2");
@@ -260,11 +295,20 @@ public sealed class GameAudio : MonoBehaviour
         instance.killSource.PlayOneShot(clip, 1f);
 
         if (chainKills <= 1)
-            instance.PlayKaitVoice(instance.kaitKillVoiceClip, true);
+        {
+            if (ReynardMode) instance.PlayReynardVoice(instance.reynardKillVoiceClip, true);
+            else instance.PlayKaitVoice(instance.kaitKillVoiceClip, true);
+        }
         else if (chainKills == 2)
-            instance.PlayKaitVoice(instance.kaitChainVoiceClip, true);
+        {
+            if (ReynardMode) instance.PlayReynardVoice(instance.reynardLargeSkillVoiceClip, true);
+            else instance.PlayKaitVoice(instance.kaitChainVoiceClip, true);
+        }
         else
-            instance.PlayKaitVoice(RandomClip(instance.kaitNormalAttackVoiceClips), false);
+        {
+            if (ReynardMode) instance.PlayReynardVoice(RandomClip(instance.reynardNormalVoiceClips), false);
+            else instance.PlayKaitVoice(RandomClip(instance.kaitNormalAttackVoiceClips), false);
+        }
     }
 
     public static void PlaySwordSwing()
@@ -290,6 +334,11 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayKaitNormalAttackVoice()
     {
         if (instance == null) return;
+        if (ReynardMode)
+        {
+            instance.PlayReynardVoice(RandomClip(instance.reynardNormalVoiceClips), false);
+            return;
+        }
         instance.PlayKaitVoice(RandomClip(instance.kaitNormalAttackVoiceClips), false);
     }
 
@@ -308,18 +357,46 @@ public sealed class GameAudio : MonoBehaviour
         return Resources.Load<AudioClip>("Audio/Voice/Yummn/Bridget/"+original.name.Replace("Gloria_","Bridget_"));
     }
 
-    public static void PlayKaitSmallAttackSkillVoice() =>
-        instance?.PlayKaitVoice(instance.kaitSmallAttackSkillVoiceClip, true);
+    public static void PlayKaitSmallAttackSkillVoice()
+    {
+        if (instance == null) return;
+        if (ReynardMode) instance.PlayReynardVoice(instance.reynardSmallSkillVoiceClip, true);
+        else instance.PlayKaitVoice(instance.kaitSmallAttackSkillVoiceClip, true);
+    }
 
-    public static void PlayKaitLargeAttackSkillVoice() =>
-        instance?.PlayKaitVoice(instance.kaitLargeAttackSkillVoiceClip, true);
+    public static void PlayKaitLargeAttackSkillVoice()
+    {
+        if (instance == null) return;
+        if (ReynardMode) instance.PlayReynardVoice(instance.reynardLargeSkillVoiceClip, true);
+        else instance.PlayKaitVoice(instance.kaitLargeAttackSkillVoiceClip, true);
+    }
 
-    public static void PlayKaitUltimateVoice() =>
-        instance?.PlayKaitVoice(instance.kaitUltimateVoiceClip, true);
+    public static void PlayKaitUltimateVoice()
+    {
+        if (instance == null) return;
+        if (ReynardMode) instance.PlayReynardVoice(instance.reynardUltimateVoiceClip, true);
+        else instance.PlayKaitVoice(instance.kaitUltimateVoiceClip, true);
+    }
+
+    public static void PlayReynardSpellVoice(bool major)
+    {
+        if (instance == null || !ReynardMode) return;
+        instance.PlayReynardVoice(major ? instance.reynardLargeSkillVoiceClip : instance.reynardSmallSkillVoiceClip, true);
+    }
 
     public static void PlayKaitDamageVoice(int currentHp, int maximumHp)
     {
         if (instance == null) return;
+        if (ReynardMode)
+        {
+            AudioClip reynardClip = currentHp <= 0
+                ? instance.reynardDeathVoiceClip
+                : currentHp <= Mathf.Max(1, maximumHp / 3)
+                    ? instance.reynardHeavyHurtVoiceClip
+                    : RandomClip(instance.reynardHurtVoiceClips);
+            instance.PlayReynardVoice(reynardClip, true);
+            return;
+        }
         if (currentHp <= 0)
         {
             instance.PlayKaitVoice(instance.kaitDeathVoiceClip, true);
@@ -338,16 +415,21 @@ public sealed class GameAudio : MonoBehaviour
         if (instance == null) return;
         instance.CancelQueuedKaitVoice();
         instance.ResetEnemyCharacterVoiceState();
-        instance.PlayKaitVoice(instance.kaitStartVoiceClip, true);
+        if (ReynardMode) instance.PlayReynardVoice(instance.reynardStartVoiceClip, true);
+        else instance.PlayKaitVoice(instance.kaitStartVoiceClip, true);
     }
 
-    public static void PlayKaitVictory() =>
-        instance?.PlayKaitVoice(instance.kaitWinVoiceClip, true);
+    public static void PlayKaitVictory()
+    {
+        if (instance == null) return;
+        if (ReynardMode) instance.PlayReynardVoice(instance.reynardWinVoiceClip, true);
+        else instance.PlayKaitVoice(instance.kaitWinVoiceClip, true);
+    }
 
     public static void PlayKaitFailure()
     {
         if (instance == null) return;
-        instance.QueueKaitVoice(instance.kaitFailVoiceClip);
+        instance.QueueKaitVoice(ReynardMode ? instance.reynardFailVoiceClip : instance.kaitFailVoiceClip);
     }
 
     public static void PlayEnemyHurt()
@@ -371,24 +453,24 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayEnemySpawnVoice(KaitEnemyType type, int enemyId)
     {
         if (instance == null) return;
-        EnemyCharacterVoiceBank bank;
-        if (!instance.enemyCharacterVoiceBanks.TryGetValue(type, out bank) || bank.spawnPlayed) return;
+        EnemyCharacterVoiceBank bank = instance.EnemyVoiceBank(type);
+        if (bank == null || bank.spawnPlayed) return;
         if (instance.TryPlayEnemyCharacterVoice(type, bank.spawnClip, false)) bank.spawnPlayed = true;
     }
 
     public static void PlayEnemyPrepareVoice(KaitEnemyType type, int enemyId)
     {
         if (instance == null) return;
-        EnemyCharacterVoiceBank bank;
-        if (!instance.enemyCharacterVoiceBanks.TryGetValue(type, out bank) || bank.preparePlayed.Contains(enemyId)) return;
+        EnemyCharacterVoiceBank bank = instance.EnemyVoiceBank(type);
+        if (bank == null || bank.preparePlayed.Contains(enemyId)) return;
         if (instance.TryPlayEnemyCharacterVoice(type, bank.prepareClip, false)) bank.preparePlayed.Add(enemyId);
     }
 
     public static void PlayEnemyAttackVoice(KaitEnemyType type, int enemyId)
     {
         if (instance == null || Random.value > 0.5f) return;
-        EnemyCharacterVoiceBank bank;
-        if (!instance.enemyCharacterVoiceBanks.TryGetValue(type, out bank)) return;
+        EnemyCharacterVoiceBank bank = instance.EnemyVoiceBank(type);
+        if (bank == null) return;
         AudioClip[] pool = Random.value < 0.2f ? bank.rareAttackClips : bank.shortAttackClips;
         instance.TryPlayEnemyCharacterVoice(type, RandomClip(pool), false);
     }
@@ -396,8 +478,8 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayEnemyHurt(KaitEnemyType type, int enemyId, int currentHp, bool pushed)
     {
         if (instance == null) return;
-        EnemyCharacterVoiceBank bank;
-        if (!instance.enemyCharacterVoiceBanks.TryGetValue(type, out bank))
+        EnemyCharacterVoiceBank bank = instance.EnemyVoiceBank(type);
+        if (bank == null)
         {
             PlayEnemyHurt(type);
             return;
@@ -423,8 +505,8 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayEnemyDeath(KaitEnemyType type, int enemyId)
     {
         if (instance == null) return;
-        EnemyCharacterVoiceBank bank;
-        if (!instance.enemyCharacterVoiceBanks.TryGetValue(type, out bank))
+        EnemyCharacterVoiceBank bank = instance.EnemyVoiceBank(type);
+        if (bank == null)
         {
             instance.PlayEnemyVoiceOneShot(type, instance.enemyDeathClip, 0.76f, 0.96f, 1.04f);
             return;
@@ -447,8 +529,8 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayEnemyDefeatedKaitVoice(KaitEnemyType type, int enemyId)
     {
         if (instance == null) return;
-        EnemyCharacterVoiceBank bank;
-        if (!instance.enemyCharacterVoiceBanks.TryGetValue(type, out bank)) return;
+        EnemyCharacterVoiceBank bank = instance.EnemyVoiceBank(type);
+        if (bank == null) return;
         AudioClip defeatClip = bank.defeatKaitClip;
         instance.CancelQueuedEnemyCharacterVoice(type);
         instance.queuedEnemyVoiceRoutines[type] = instance.StartCoroutine(
@@ -462,6 +544,21 @@ public sealed class GameAudio : MonoBehaviour
     public static void PlayMagicCharge() => PlayActionCue(instance?.magicActionSource, instance?.magicChargeClip, 2f, 0.96f, 1.02f);
     public static void PlayRiftWarning() => PlayOneShot(instance?.magicSource, instance?.riftWarningClip, 0.62f, 0.96f, 1.02f);
     public static void PlayMagicCast() => PlayActionCue(instance?.magicActionSource, instance?.magicCastClip, 0.66f, 0.98f, 1.03f);
+    public static void PlayReynard(string cue)
+    {var clip=Resources.Load<AudioClip>("Audio/Reynard/"+cue);PlayOneShot(instance?.magicSource,clip,.65f,1f,1f);}
+    public static string ReynardEnemyVoiceCharacter(KaitEnemyType type)
+    {
+        switch (type)
+        {
+            case KaitEnemyType.Grunt: return "Chocolat";
+            case KaitEnemyType.Swordsman: return "Stick";
+            case KaitEnemyType.Archer: return "Quinn";
+            case KaitEnemyType.Guard: return "Kiki";
+            case KaitEnemyType.Warlock: return "Megumin";
+            case KaitEnemyType.ShieldKnight: return "Nouet";
+            default: return "Chocolat";
+        }
+    }
     public static void PlayMagicImpact() => PlayOneShot(instance?.magicSource, instance?.magicImpactClip, 0.78f, 0.96f, 1.04f);
     public static void PlayLanding() => PlayOneShot(instance?.worldSource, instance?.landingClip, 0.66f, 0.94f, 1.02f);
     public static void PlayPush() => PlayOneShot(instance?.impactSource, instance?.pushClip, 1f);
@@ -537,6 +634,17 @@ public sealed class GameAudio : MonoBehaviour
     private static EnemyCharacterVoiceBank LoadEnemyCharacterVoiceBank(string characterName)
     {
         string root = EnemyCharacterVoicePath + characterName + "/";
+        return LoadEnemyCharacterVoiceBankAt(root, characterName);
+    }
+
+    private static EnemyCharacterVoiceBank LoadReynardEnemyVoiceBank(string characterName)
+    {
+        string root = ReynardEnemyVoicePath + characterName + "/";
+        return LoadEnemyCharacterVoiceBankAt(root, characterName);
+    }
+
+    private static EnemyCharacterVoiceBank LoadEnemyCharacterVoiceBankAt(string root, string characterName)
+    {
         string prefix = characterName + "_";
         return new EnemyCharacterVoiceBank
         {
@@ -553,6 +661,18 @@ public sealed class GameAudio : MonoBehaviour
             deathClip = Resources.Load<AudioClip>(root + prefix + "Battle_Die_1"),
             defeatKaitClip = Resources.Load<AudioClip>(root + prefix + "Battle_C_1")
         };
+    }
+
+    private static AudioClip LoadReynardVoice(string clipName)
+    {
+        return Resources.Load<AudioClip>(ReynardVoicePath + clipName);
+    }
+
+    private static AudioClip[] LoadReynardVoiceClips(params string[] clipNames)
+    {
+        var clips = new AudioClip[clipNames.Length];
+        for (int i = 0; i < clipNames.Length; i++) clips[i] = LoadReynardVoice(clipNames[i]);
+        return clips;
     }
 
     private static AudioClip[] LoadEnemyCharacterVoiceClips(string root, params string[] clipNames)
@@ -641,6 +761,11 @@ public sealed class GameAudio : MonoBehaviour
 
     private void PlayKaitVoice(AudioClip clip, bool interruptCurrent)
     {
+        if (ReynardMode)
+        {
+            PlayReynardVoice(clip, interruptCurrent);
+            return;
+        }
         clip=ResolvePlayerVoice(clip,YummnMode);
         if (kaitVoiceSource == null || clip == null) return;
         if (!interruptCurrent && Time.realtimeSinceStartup < kaitVoiceEndsAt) return;
@@ -649,6 +774,18 @@ public sealed class GameAudio : MonoBehaviour
         if (interruptCurrent) kaitVoiceSource.Stop();
         kaitVoiceSource.pitch = 1f;
         kaitVoiceSource.PlayOneShot(clip, 1f);
+        kaitVoiceEndsAt = Time.realtimeSinceStartup + clip.length;
+    }
+
+    private void PlayReynardVoice(AudioClip clip, bool interruptCurrent)
+    {
+        if (reynardVoiceSource == null || clip == null) return;
+        if (!interruptCurrent && Time.realtimeSinceStartup < kaitVoiceEndsAt) return;
+
+        CancelQueuedKaitVoice();
+        if (interruptCurrent) reynardVoiceSource.Stop();
+        reynardVoiceSource.pitch = 1f;
+        reynardVoiceSource.PlayOneShot(clip, 1f);
         kaitVoiceEndsAt = Time.realtimeSinceStartup + clip.length;
     }
 
@@ -683,6 +820,14 @@ public sealed class GameAudio : MonoBehaviour
     {
         AudioSource source;
         return enemyVoiceSources.TryGetValue(type, out source) ? source : null;
+    }
+
+    private EnemyCharacterVoiceBank EnemyVoiceBank(KaitEnemyType type)
+    {
+        EnemyCharacterVoiceBank bank;
+        Dictionary<KaitEnemyType, EnemyCharacterVoiceBank> banks =
+            ReynardMode ? reynardEnemyCharacterVoiceBanks : enemyCharacterVoiceBanks;
+        return banks.TryGetValue(type, out bank) ? bank : null;
     }
 
     private float EnemyCharacterVoiceEnd(KaitEnemyType type)
@@ -726,6 +871,9 @@ public sealed class GameAudio : MonoBehaviour
     private void ResetEnemyCharacterVoiceState()
     {
         CancelAllQueuedEnemyCharacterVoices();
+        kaitVoiceSource?.Stop();
+        reynardVoiceSource?.Stop();
+        kaitVoiceEndsAt = 0f;
         foreach (AudioSource source in enemyVoiceSources.Values) source?.Stop();
         enemyCharacterVoiceEndsAt.Clear();
         enemyDeathVoiceEndsAt.Clear();
@@ -734,6 +882,7 @@ public sealed class GameAudio : MonoBehaviour
         foreach (AudioSource source in enemyVoiceSources.Values)
             if (source != null) source.volume = VoiceChannelVolume;
         foreach (EnemyCharacterVoiceBank bank in enemyCharacterVoiceBanks.Values) bank.ResetState();
+        foreach (EnemyCharacterVoiceBank bank in reynardEnemyCharacterVoiceBanks.Values) bank.ResetState();
     }
 
     private void CancelQueuedEnemyCharacterVoice(KaitEnemyType type)

@@ -69,7 +69,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
     }
 
     public static bool IsInCastZone(Vector2 position) => CastZone.Contains(position);
-    public static bool IsReady(KaitRun run, KaitSkill skill) => run.IsYummn ? run.CanUseYummnSkill(skill) : !run.ended && run.IsSkillActive(skill) &&
+    public static bool IsReady(KaitRun run, KaitSkill skill) => run.IsReynard ? run.ReynardCastFailure(skill)==null : run.IsYummn ? run.CanUseYummnSkill(skill) : !run.ended && run.IsSkillActive(skill) &&
         (skill == KaitSkill.ShadowStep ? run.chainActive && run.shadowStepAvailable : run.SkillCooldown(skill) == 0);
 
     public void ResetDeck()
@@ -97,6 +97,7 @@ public sealed class KaitSkillDeck : MonoBehaviour
             }
             card.SetAvailability(IsReady(run, card.Skill), run.SkillCooldown(card.Skill), targeting == card.Skill);
             if(run.IsYummn)card.SetYummnPreparation(run.IsYummnPrepared(card.Skill),run.PreparedKiCost,run.Yummn.rules.Is082);
+            card.SetReynardState(run.IsReynard?(run.Reynard.focusedSkill==card.Skill?"维持中":ReynardCatalog.Roman(ReynardCatalog.Get(card.Skill)?.spellLevel??0)+"环 · "+(run.ReynardCastFailure(card.Skill)??"可用")):null);
             card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Skill)));
             card.SetCovered(run.ended);
         }

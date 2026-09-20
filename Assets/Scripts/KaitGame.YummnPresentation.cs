@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +10,7 @@ public sealed partial class KaitGame
     private Coroutine yummnThreatPulseRoutine;
     private Vector3 KaitVisualPosition(Vector2Int cell)
     {
-        return run.IsYummn&&yummnMoving
+        return (run.IsYummn||run.IsReynard)&&yummnMoving
             ? Vector3.Lerp(YummnCellPosition(yummnMoveFrom),YummnCellPosition(yummnMoveTo),yummnMoveProgress)
             : YummnCellPosition(cell);
     }
@@ -132,7 +132,7 @@ public sealed partial class KaitGame
         if(index==0||index==1||index==3||index==4||index==8)fx.rectTransform.localEulerAngles=new Vector3(0,0,HalfArrowAngle(KaitRun.Delta(direction)));
         fx.Initialize(index,index==10?.48f:.32f);
     }
-    private IEnumerator AnimateYummnMove(Vector2Int from,Vector2Int to,YummnMoveCause cause,KaitDirection direction,bool preserveAttack=false,YummnPhase? phaseAtStart=null)
+    private IEnumerator AnimateYummnMove(Vector2Int from,Vector2Int to,YummnMoveCause cause,KaitDirection direction,bool preserveAttack=false,YummnPhase? phaseAtStart=null,string animationOverride=null,bool playYummnMoveAudio=true)
     {
         if(from==to)yield break;
         // Rules have already finished resolving; use the starting phase even
@@ -141,18 +141,33 @@ public sealed partial class KaitGame
         if(movementPhase==YummnPhase.Exhausted)ClearAllTrailVisuals();
         kaitSpine?.Face(direction);
         if(cause==YummnMoveCause.Teleport){PlayV08Fx(from,6,direction,104);PlayV08Fx(to,6,direction,104);YummnAudio.Play("Shadow");}
-        else {if(!preserveAttack)kaitSpine?.PlayLoop(YummnMovementStyle.Animation(movementPhase));YummnAudio.Play("Move");}
+        else
+        {
+            if(!preserveAttack)kaitSpine?.PlayLoop(string.IsNullOrEmpty(animationOverride)?YummnMovementStyle.Animation(movementPhase):animationOverride);
+            if(playYummnMoveAudio)YummnAudio.Play("Move");
+        }
         float duration=cause==YummnMoveCause.Teleport?.12f:Mathf.Min(.3f,.14f+Vector2Int.Distance(from,to)*.025f);
         yummnMoving=true;yummnMoveFrom=from;yummnMoveTo=to;yummnMoveProgress=0;
         int ghostCount=YummnMovementStyle.GhostCount(movementPhase,cause,Vector2Int.Distance(from,to)),ghosts=0;
+        bool captured=false;
         try
         {
-            for(float t=0;t<duration;t+=Time.unscaledDeltaTime)
+            // Clamp a single presentation step so a frame spike cannot skip
+            // the whole cell and visually turn movement back into a teleport.
+            for(float t=0;t<duration;t+=Mathf.Min(Time.unscaledDeltaTime,1f/30f))
             {
                 yummnMoveProgress=EaseOutCubic(t/duration);
                 if(kaitSpine!=null)kaitSpine.Root.position=KaitVisualPosition(from);
                 while(ghosts<ghostCount&&yummnMoveProgress>(ghosts+1f)/(ghostCount+1f))
                 {ghosts++;var ghost=CreateGhostToken(Vector3.Lerp(YummnCellPosition(from),YummnCellPosition(to),ghosts/(ghostCount+1f)),Mathf.Max(1,run.Ki),direction,.62f);StartCoroutine(FadeAndDestroyTrail(ghost,.16f));}
+                if(!captured&&run.IsReynard&&yummnMoveProgress>.15f&&yummnMoveProgress<.95f&&CommandLineValue("-reynardQA")=="1")
+                {
+                    captured=true;
+                    if(kaitSpine?.CurrentAnimation?.Animation?.Name!="walk")Debug.LogError("REYNARD_MOVE_STYLE: expected walk loop");
+                    if(ghostCount!=0)Debug.LogError("REYNARD_MOVE_STYLE: exhausted-style movement must not create trails");
+                    Debug.Log("REYNARD_MOVE_INTERMEDIATE "+yummnMoveProgress);
+                    CaptureCanvasToPng(System.IO.Path.Combine(Application.dataPath,"../Logs/reynard-move-mid.png"));
+                }
                 yield return null;
             }
             displayKate=to;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,9 +48,11 @@ public sealed partial class KaitGame
     private void ConfigureCharacterVisuals()
     {
         ClearYummnLogicalGhosts();
+          var powerIcon=storybookPower!=null?storybookPower.transform.parent.Find("Fist")?.GetComponent<Image>():null;
+          if(powerIcon!=null)powerIcon.sprite=run.IsReynard?ReynardArt.Load("Cards/R08"):KaitStorybookArt.Load("Fist");
         yummnPunchPose.Reset();
         yummnMoving=false;StopYummnThreatPulses();
-        yummnBufferedDirection=null;GameAudio.YummnMode=run.IsYummn;
+        yummnBufferedDirection=null;GameAudio.YummnMode=run.IsYummn;GameAudio.ReynardMode=run.IsReynard;
         run.StateCommitted=SaveCharacterRun;
         disableThreatPillarsToggle?.SetIsOnWithoutNotify(!run.config.enableThreatPillars);
         if(disableThreatPillarsToggle!=null)disableThreatPillarsToggle.interactable=!run.IsYummn;
@@ -59,15 +61,15 @@ public sealed partial class KaitGame
         disableFriendlyFireToggle?.SetIsOnWithoutNotify(run.IsYummn||!run.config.enableFriendlyFire);
         disableCollisionDamageToggle?.SetIsOnWithoutNotify(run.IsYummn||!run.config.enableCollisionDamage);
         if(rewardDeck!=null)rewardDeck.SelectionStarted=()=>yummnBufferedDirection=null;
-        if(tutorialOverlay!=null){var book=tutorialOverlay.GetComponent<KaitTutorialBook>();book.YummnRules=run.Yummn.rules;book.YummnMode=run.IsYummn;book.ShowPage(book.PageIndex);}
+        if(tutorialOverlay!=null){var book=tutorialOverlay.GetComponent<KaitTutorialBook>();book.YummnRules=run.Yummn.rules;book.ReynardMode=run.IsReynard;book.YummnMode=run.IsYummn;book.ShowPage(book.PageIndex);}
         RefreshCharacterSettings();
-        makotoSkeletonData=Resources.Load<SkeletonDataAsset>(run.IsYummn?"Characters/Yummn/108231_SkeletonData":"Characters/Makoto/Makoto_SkeletonData");
+        makotoSkeletonData=Resources.Load<SkeletonDataAsset>(run.IsReynard?"Characters/Reynard/11202003/11202003_SkeletonData":run.IsYummn?"Characters/Yummn/108231_SkeletonData":"Characters/Makoto/Makoto_SkeletonData");
         kaitSpine?.Destroy();kaitSpine=null;
         if(originalYummnFloor==null)originalYummnFloor=dungeonFloorSprite;
         if(originalYummnWall==null)originalYummnWall=dungeonWallSprite;
         dungeonFloorSprite=KaitStorybookArt.Floor(run.IsYummn,1,1) ?? originalYummnFloor;
         dungeonWallSprite=KaitStorybookArt.Wall(run.IsYummn) ?? originalYummnWall;
-        if(storybookBackdrop!=null)storybookBackdrop.sprite=KaitStorybookArt.Load(run.IsYummn?"SnowBackdrop":"GrassBackdrop");
+        if(storybookBackdrop!=null)storybookBackdrop.sprite=run.IsReynard?ReynardArt.Load("MoonShrine"):KaitStorybookArt.Load(run.IsYummn?"SnowBackdrop":"GrassBackdrop");
         if(storybookForestDetail!=null)storybookForestDetail.SetSeason(run.IsYummn);
         if(storybookForegroundBough!=null)
         {
@@ -77,6 +79,7 @@ public sealed partial class KaitGame
         if(storybookGroundEdge!=null){storybookGroundEdge.sprite=KaitStorybookArt.GroundApron(run.IsYummn);storybookGroundEdge.gameObject.SetActive(true);}
         foreach(var ground in gameContent.GetComponentsInChildren<KaitBoardGrounding>())
         {ground.Snow=run.IsYummn;ground.SetVerticesDirty();}
+        ConfigureReynardScene();
         for(int y=1;y<=5;y++)for(int x=1;x<=5;x++)
         {
             int index=x+y*KaitRun.BattleSize;
@@ -87,7 +90,7 @@ public sealed partial class KaitGame
     }
     private void SaveCharacterRun()
     {
-        string key=run.IsYummn?(run.Yummn.rules.Is082?KaitVersion.YummnSaveKey:run.Yummn.rules.Legacy?"Kait.Run.Yummn.0.8":"Kait.Run.Yummn.0.8.1"):"Kait.Run.Kait";
+        string key=run.IsReynard?KaitVersion.ReynardSaveKey:run.IsYummn?(run.Yummn.rules.Is082?KaitVersion.YummnSaveKey:run.Yummn.rules.Legacy?"Kait.Run.Yummn.0.8":"Kait.Run.Yummn.0.8.1"):"Kait.Run.Kait";
         if(run.ended){PlayerPrefs.DeleteKey(key);RecordCharacterScore();}
         else PlayerPrefs.SetString(key,run.SaveReplay());
         PlayerPrefs.Save();
@@ -143,7 +146,7 @@ public sealed partial class KaitGame
     }
     private void RefreshYummnHud()
     {
-        if(waitButton!=null){waitButton.gameObject.SetActive(run.IsYummn);waitButton.interactable=!busy&&!run.ended;}
+        if(waitButton!=null){waitButton.gameObject.SetActive(run.IsYummn||run.IsReynard);waitButton.interactable=!busy&&!run.ended;}
         RefreshYummnKiDisplay();
         RefreshYummnTerrain();
         if(!busy)SyncYummnLogicalGhosts();

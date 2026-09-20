@@ -4,6 +4,7 @@ public sealed partial class KaitRun
 {
     public KaitTurnResult TryYummnWait()
     {
+        if(IsReynard)return TryReynardWait();
         var r=new KaitTurnResult();
         if(!IsYummn||ended){r.message="当前不能等待";return r;}
         ActivateBuildForInput();SyncYummnCapacity();

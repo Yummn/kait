@@ -33,6 +33,9 @@ public sealed class KaitRewardDeck : MonoBehaviour
     private GameObject replacementPrompt;
     private Font uiFont;
     public bool IsDragging=>dragging>=0;
+    // While the reward tray owns a pointer/focus, gameplay must not also consume
+    // direction input. This applies to every character, not only Yummn.
+    public bool CapturesGameplayInput=>dragging>=0||selected>=0||replacementPrompt!=null;
     public Action SelectionStarted;
     public RectTransform[] OwnedAreas;
 
@@ -99,7 +102,11 @@ public sealed class KaitRewardDeck : MonoBehaviour
     public void Sync(KaitRun current)
     {
         if(current!=run){ResetSelection();shown=null;collapsed=false;}
-        run=current;var pack=run.CurrentReward;
+        run=current;
+        // A reward may be queued before the current presentation/chain has
+        // finished. Keep it queued, but do not put unresponsive cards over the
+        // board until it is actually legal to choose them.
+        var pack=Allowed()?run.CurrentReward:null;
         if(pack!=shown)
         {
             ResetSelection();shown=pack;
@@ -156,6 +163,10 @@ public sealed class KaitRewardDeck : MonoBehaviour
             slots[i].rectTransform.sizeDelta=new Vector2(164,164);
             slots[i].rectTransform.anchoredPosition=new Vector2((i-(visible-1)*.5f)*176,0);
             bool filled=i<count;var equipped=filled?run.EquippedCard(i):null;
+            // Old saves can contain an enum whose definition changed type or
+            // no longer exists. Treat that slot as empty instead of throwing
+            // halfway through opening the reward tray.
+            filled=filled&&equipped!=null;
             validSlots[i]=Allowed()&&run.YummnPrerequisite(def)&&(!copying||filled&&equipped.kind==KaitAbilityKind.Passive&&equipped.copyable);
             bool hovered=validSlots[i]&&hoverSlot==i;
             slots[i].sprite=hovered?KaitStorybookTheme.Pressed:KaitStorybookTheme.Button;
@@ -206,7 +217,7 @@ public sealed class KaitRewardDeck : MonoBehaviour
     private void Update()
     {
         if(run!=null)Sync(run);
-        bool open=run?.CurrentReward!=null&&!collapsed&&selected>=0;
+        bool open=Allowed()&&!collapsed&&selected>=0;
         trayReveal=Mathf.MoveTowards(trayReveal,open?1:0,Time.unscaledDeltaTime/0.24f);
         tray.gameObject.SetActive(trayReveal>0);
         float eased=1-Mathf.Pow(1-trayReveal,3);
@@ -219,9 +230,23 @@ public sealed class KaitRewardDeck : MonoBehaviour
             group.alpha=1-eased;group.blocksRaycasts=group.interactable=!open;
         }
     }
-    private void OnDisable(){ResetSelection();shown=null;}
+    private void RestoreOwnedAreas()
+    {
+        trayReveal=0;
+        if(tray!=null){tray.gameObject.SetActive(false);if(trayFade!=null)trayFade.alpha=0;}
+        if(OwnedAreas==null)return;
+        foreach(var owned in OwnedAreas)if(owned!=null)
+        {
+            var group=owned.GetComponent<CanvasGroup>();
+            if(group==null)continue;
+            group.alpha=1;group.blocksRaycasts=true;group.interactable=true;
+        }
+    }
+    private void OnDisable(){ResetSelection();shown=null;RestoreOwnedAreas();}
     private void OnApplicationFocus(bool focused)
-    {if(!focused&&IsDragging){ResetSelection();shown=null;if(run!=null)Sync(run);}}
+    {if(!focused&&CapturesGameplayInput){ResetSelection();shown=null;RestoreOwnedAreas();if(run!=null)Sync(run);}}
+    private void OnApplicationPause(bool paused)
+    {if(paused&&CapturesGameplayInput){ResetSelection();shown=null;RestoreOwnedAreas();}}
     private static Text Label(RectTransform parent,Font font,string name,Vector2 pos,Vector2 size,int fontSize)
     {
         var t=new GameObject(name,typeof(RectTransform),typeof(CanvasRenderer),typeof(Text)).GetComponent<Text>();

@@ -6,7 +6,7 @@ public sealed partial class KaitGame
     private Button waitButton;
     private void HandleWait()
     {
-        if(!run.IsYummn||busy||run.ended||TutorialBlocksInput()||targetingSkill!=KaitSkill.None)return;
+        if((!run.IsYummn&&!run.IsReynard)||busy||run.ended||TutorialBlocksInput()||targetingSkill!=KaitSkill.None)return;
         var start=run.katePos;var enemiesBefore=SnapshotEnemies();var spawnsBefore=SnapshotSpawns();
         var result=run.TryYummnWait();if(!result.valid)return;
         yummnBufferedDirection=null;yummnAcceptBuffer=false;

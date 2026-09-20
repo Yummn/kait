@@ -19,7 +19,7 @@ public sealed class KaitMainMenu : MonoBehaviour
     public string ContinueKey { get; private set; }
     Func<string,bool> hasSave = PlayerPrefs.HasKey;
     Text selectedName, selectedTrait;
-    readonly KaitHomeArt[] portraits = new KaitHomeArt[2];
+    readonly KaitHomeDiagonalArt[] portraits = new KaitHomeDiagonalArt[3];
     public RectTransform Layout { get; private set; }
     static readonly Color Peach = new Color32(250, 199, 183, 255);
     static readonly Color Plum = new Color32(41, 35, 47, 255);
@@ -36,47 +36,54 @@ public sealed class KaitMainMenu : MonoBehaviour
         root.GetComponent<Image>().color = Plum;
         var menu = root.GetComponent<KaitMainMenu>();
         menu.Layout = MakeRect("Menu Artwork and Controls", root.transform, Vector2.zero, new Vector2(1920, 1080));
-        menu.CharacterButtons = new Button[2];
-        for(int i=0;i<2;i++)
+        menu.CharacterButtons = new Button[3];
+        string[] names = { "KAIT", "YUMMN", "REYNARD" };
+        string[] roles = { "咒 剑 士", "武 僧", "白 狐 法 师" };
+        string[] subtitles = { "助跑蓄势 · 击杀转向", "气与残影 · 三宗派构筑", "移动射击 · 镜狐法术位" };
+        for (int i = 0; i < 3; i++)
         {
-            int index=i;
-            var artRect=MakeRect(i==0?"Kait CG":"Yummn CG",menu.Layout,Vector2.zero,new Vector2(1920,1080));
-            var art=artRect.gameObject.AddComponent<KaitHomeArt>();
-            art.Configure(i==1,Resources.Load<Texture2D>("KaitVisuals/CharacterSelection/"+(i==0?"Kait":"Yummn")));
-            menu.portraits[i]=art;
-            var button=artRect.gameObject.AddComponent<Button>();button.targetGraphic=art;button.transition=Selectable.Transition.None;
-            button.navigation=new Navigation{mode=Navigation.Mode.None};
-            button.onClick.AddListener(()=>{GameAudio.PlayClick();menu.Select((KaitCharacter)index);});
-            menu.CharacterButtons[i]=button;
-            float x=i==0?-695:695;
-            menu.Label(font,i==0?"KAIT":"YUMMN",new Vector2(x,-314),new Vector2(420,160),62,Peach);
-            menu.Label(font,i==0?"助跑蓄势 · 击杀转向":"气与残影 · 三宗派构筑",new Vector2(x,-380),new Vector2(430,44),25,new Color32(255,242,232,255));
-            menu.Label(font,i==0?"让每一次击杀，延续下一斩。":"在爆发与恢复之间掌握节奏。",new Vector2(x,-428),new Vector2(460,40),20,new Color32(190,174,190,255));
+            int index = i;
+            var art = MakeRect(names[i] + " CG", menu.Layout, Vector2.zero, new Vector2(1920,1080)).gameObject.AddComponent<KaitHomeDiagonalArt>();
+            art.Configure(i, Resources.Load<Texture2D>("KaitVisuals/CharacterSelection/" + (i == 2 ? "ReynardCG" : names[i] == "KAIT" ? "Kait" : "Yummn")));
+            menu.portraits[i] = art;
+            var button = art.gameObject.AddComponent<Button>(); button.targetGraphic = art;
+            button.transition = Selectable.Transition.None;
+            button.navigation = new Navigation { mode = Navigation.Mode.None };
+            button.onClick.AddListener(() => { GameAudio.PlayClick(); menu.Select((KaitCharacter)index); });
+            menu.CharacterButtons[i] = button;
         }
-        var seams=MakeRect("Parallel Seams",menu.Layout,Vector2.zero,new Vector2(1920,1080)).gameObject.AddComponent<KaitHomeSeams>();seams.raycastTarget=false;
-        menu.Label(font,"KAIT",new Vector2(RowCenter(342),342),new Vector2(410,200),80,new Color32(255,242,232,255));
-        menu.Label(font,"双 境 之 间",new Vector2(RowCenter(260),260),new Vector2(410,40),22,Peach);
-        menu.selectedName=menu.Label(font,"",new Vector2(RowCenter(173),173),new Vector2(420,46),28,Peach);
-        menu.selectedTrait=menu.Label(font,"",new Vector2(RowCenter(128),128),new Vector2(430,35),19,new Color32(181,164,181,255));
-        menu.ContinueButton=menu.MakeButton(font,rounded,"继续游戏",new Vector2(RowCenter(36),36),new Vector2(366,70),false,()=>{menu.RefreshSaves();if(menu.ContinueKey!=null)menu.ContinueCharacter?.Invoke(menu.ContinueKey);});
-        menu.StartButton = menu.MakeButton(font, rounded, "开始游戏", new Vector2(RowCenter(-56), -56), new Vector2(366,84), true, start);
-        menu.TutorialButton = menu.MakeButton(font, rounded, "玩法教程", new Vector2(RowCenter(-157), -157), new Vector2(366,70), false, tutorial);
-        menu.SettingsButton = menu.MakeButton(font, rounded, "设置", new Vector2(RowCenter(-250), -250), new Vector2(366,70), false, settings);
-        menu.LibraryButton=menu.MakeButton(font,rounded,"卡牌大全",new Vector2(RowCenter(-343),-343),new Vector2(366,70),false,()=>menu.OpenLibrary?.Invoke());
-        menu.Label(font,"选择人物后，点击开始或继续",new Vector2(RowCenter(-434),-434),new Vector2(400,36),18,new Color32(181,164,181,255));
-        menu.Select(PlayerPrefs.GetInt("Kait.Character",0)==1?KaitCharacter.Yummn:KaitCharacter.Kait);
+        var seams = MakeRect("Diagonal Seams", menu.Layout, Vector2.zero, new Vector2(1920,1080)).gameObject.AddComponent<KaitHomeDiagonalSeams>();
+        seams.raycastTarget = false;
+        for (int i = 0; i < 3; i++)
+        {
+            menu.Label(font, roles[i], new Vector2(KaitHomeDiagonalArt.Center(i, -287), -287), new Vector2(350,40), 22, Peach);
+            menu.Label(font, names[i], new Vector2(KaitHomeDiagonalArt.Center(i, -344), -344), new Vector2(360,80), 46, new Color32(255,242,232,255));
+            menu.Label(font, subtitles[i], new Vector2(KaitHomeDiagonalArt.Center(i, -405), -405), new Vector2(390,42), 22, new Color32(214,201,218,255));
+        }
+        menu.Label(font,"2048",new Vector2(MenuRowCenter(346),346),new Vector2(390,150),86,Peach);
+        menu.Label(font,"三 境 之 间",new Vector2(MenuRowCenter(263),263),new Vector2(390,44),23,Peach);
+        menu.selectedName=menu.Label(font,"",new Vector2(MenuRowCenter(176),176),new Vector2(390,45),26,Peach);
+        menu.selectedTrait=menu.Label(font,"",new Vector2(MenuRowCenter(125),125),new Vector2(390,40),19,new Color32(194,180,199,255));
+        menu.ContinueButton=menu.MakeButton(font,rounded,"继续游戏",new Vector2(MenuRowCenter(35),35),new Vector2(330,70),false,()=>{menu.RefreshSaves();if(menu.ContinueKey!=null)menu.ContinueCharacter?.Invoke(menu.ContinueKey);});
+        menu.StartButton=menu.MakeButton(font,rounded,"开始游戏",new Vector2(MenuRowCenter(-57),-57),new Vector2(330,84),true,start);
+        menu.TutorialButton=menu.MakeButton(font,rounded,"玩法教程",new Vector2(MenuRowCenter(-157),-157),new Vector2(330,70),false,tutorial);
+        menu.SettingsButton=menu.MakeButton(font,rounded,"设置",new Vector2(MenuRowCenter(-250),-250),new Vector2(330,70),false,settings);
+        menu.LibraryButton=menu.MakeButton(font,rounded,"卡牌大全",new Vector2(MenuRowCenter(-343),-343),new Vector2(330,70),false,()=>menu.OpenLibrary?.Invoke());
+        menu.Select((KaitCharacter)Mathf.Clamp(PlayerPrefs.GetInt("Kait.Character",0),0,2));
         menu.Fit();
         return menu;
     }
+
+    public static float MenuRowCenter(float y) => KaitHomeDiagonalArt.Center(3, y);
 
     public static float FitScale(Vector2 available) => Mathf.Min(available.x / 1920f, available.y / 1080f);
 
     public void Select(KaitCharacter character)
     {
         Selected=character;
-        for(int i=0;i<2;i++) portraits[i].Selected=i==(int)character;
-        selectedName.text=character==KaitCharacter.Kait?"KAIT · 蓄势连斩":"YUMMN · 气息轮转";
-        selectedTrait.text=character==KaitCharacter.Kait?"助跑蓄势 · 击杀转向":"气与残影 · 三宗派构筑";
+        for (int i=0;i<portraits.Length;i++) portraits[i].Selected = i==(int)character;
+        selectedName.text=character==KaitCharacter.Reynard?"REYNARD · 方向编咒":character==KaitCharacter.Kait?"KAIT · 蓄势连斩":"YUMMN · 气息轮转";
+        selectedTrait.text=character==KaitCharacter.Reynard?"镜狐法术位 · 持续法术":character==KaitCharacter.Kait?"助跑蓄势 · 击杀转向":"气与残影 · 三宗派构筑";
         RefreshSaves();
     }
     public void SetSaveLookup(Func<string,bool> lookup){hasSave=lookup;RefreshSaves();}

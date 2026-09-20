@@ -1,4 +1,4 @@
-using Spine;
+﻿using Spine;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
@@ -197,7 +197,8 @@ public sealed class KaitSpineView
         }
         Material flashMaterial = CreateFlashMaterial(name + " Hit Flash");
         if (flashMaterial != null) skeletonGraphic.material = flashMaterial;
-        skeletonGraphic.AnimationState.SetAnimation(0, skeletonGraphic.Skeleton.Data.FindAnimation(Idle)!=null?Idle:"01_idle", true);
+        if(skeletonGraphic.Skeleton.Data.FindSkin("3")!=null){skeletonGraphic.Skeleton.SetSkin("3");skeletonGraphic.Skeleton.SetSlotsToSetupPose();}
+        skeletonGraphic.AnimationState.SetAnimation(0, skeletonGraphic.Skeleton.Data.FindAnimation("idle")!=null?"idle":skeletonGraphic.Skeleton.Data.FindAnimation(Idle)!=null?Idle:"01_idle", true);
         skeletonGraphic.Update(0f);
         skeletonGraphic.MatchRectTransformWithBounds();
 
@@ -215,8 +216,10 @@ public sealed class KaitSpineView
         // Keep her body at the same visual scale in the selector, board and trails.
         bool yummn = skeletonGraphic.Skeleton.Data.FindAnimation("108201_skill0") != null;
         if (yummn) scale *= .82f;
+        bool eden=skeletonGraphic.Skeleton.Data.FindAnimation("uniqueskill")!=null;
+        if(eden)scale=Mathf.Min(size.x*.94f/Mathf.Max(.01f,bodyBounds.size.x),size.y*.94f/Mathf.Max(.01f,bodyBounds.size.y));
         skeletonRect.localScale = Vector3.one * scale;
-        Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
+        Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -(eden?bodyBounds.center.y:meshBounds.center.y) * scale);
         skeletonRect.anchoredPosition = centeredPosition;
         if (!name.Contains("Trail"))
             KaitContactShadow.Create(hostRect, skeletonGraphic,
@@ -240,6 +243,18 @@ public sealed class KaitSpineView
 
     private static Bounds BodyBounds(SkeletonGraphic skeletonGraphic, Bounds fallback)
     {
+        if(skeletonGraphic.Skeleton.Data.FindAnimation("uniqueskill")!=null){
+            bool any=false;Bounds body=new Bounds();float unit=skeletonGraphic.canvas!=null?skeletonGraphic.canvas.referencePixelsPerUnit:100;
+            foreach(var slot in skeletonGraphic.Skeleton.Slots){
+                if(slot.Data.Name.StartsWith("wuqi")||slot.A<.02f)continue;
+                float[] v=null;
+                if(slot.Attachment is RegionAttachment region){v=new float[8];region.ComputeWorldVertices(slot.Bone,v,0);}
+                else if(slot.Attachment is VertexAttachment vertex){v=new float[vertex.WorldVerticesLength];vertex.ComputeWorldVertices(slot,v);}
+                if(v==null)continue;
+                for(int i=0;i<v.Length;i+=2){var p=new Vector3(v[i]*unit,v[i+1]*unit,0);if(!any){body=new Bounds(p,Vector3.zero);any=true;}else body.Encapsulate(p);}
+            }
+            if(any)return body;
+        }
         Slot centerSlot = skeletonGraphic.Skeleton.FindSlot("Center");
         BoundingBoxAttachment bodyBox = centerSlot?.Attachment as BoundingBoxAttachment;
         if (bodyBox == null || bodyBox.WorldVerticesLength < 4) return fallback;
@@ -348,6 +363,13 @@ public sealed class KaitSpineView
     }
     private string ResolveAnimation(string name)
     {
+        if(graphic.Skeleton.Data.FindAnimation("uniqueskill")!=null)
+        {
+            if(graphic.Skeleton.Data.FindAnimation(name)!=null)return name;
+            if(name==Run)return "run";if(name==Victory)return "win";if(name==Die)return "die";if(name==Damage)return "hit_1";
+            if(name==Attack||name==ChainAttack)return "attack";if(name==WallStop)return "land";
+            if(name==OtherSkill)return "skill";return "idle";
+        }
         if (graphic.Skeleton.Data.FindAnimation("108201_skill0") != null)
         {
             if(yummnHasKi.HasValue && IsYummnRest(name))

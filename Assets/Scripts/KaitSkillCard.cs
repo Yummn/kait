@@ -107,6 +107,8 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
     public void Hide() { IsDragging = pendingDockSound = false; pointer = int.MinValue; gameObject.SetActive(false); }
     public void SetDock(float x) => DockX = x;
     public void SetCovered(bool value) { covered = value; group.blocksRaycasts = !value; if (value) { IsDragging = pendingDockSound = false; pointer = int.MinValue; } }
+    private string reynardState;
+    public void SetReynardState(string text){reynardState=text;RefreshText();}
     public void SetAvailability(bool ready, int turns, bool selecting) { Ready = ready; cooldown = turns; targeting = selecting; RefreshText(); }
     public void SetPending(bool value) { pendingAbility=value; RefreshText(); }
     private string missingRequirement;
@@ -168,10 +170,12 @@ public sealed class KaitSkillCard : MonoBehaviour, IPointerEnterHandler, IPointe
         state.text = IsCandidate ? "" : !readable || cooldown > 0 ? $"冷却 {cooldown} 回合" :
             targeting ? (KaitRun.NeedsCellTarget(Skill)?"选择目标格":"选择敌人") : "";
         var def=KaitAbilityCatalog.Get(Skill);
+        if(def!=null&&def.spellLevel>0)state.text=reynardState??ReynardCatalog.Roman(def.spellLevel)+"环";
         if(readable&&YummnCatalog.IsMonk(def))state.rectTransform.anchoredPosition=new Vector2(0,-10);
         if(YummnCatalog.IsMonk(def))state.text=IsCandidate?def.traditionTag:readable?(targeting?"点选释放":def.traditionTag):"气 "+def.kiExtraCost;
         footer.text = Time.unscaledTime < feedbackUntil ? feedback : IsCandidate ? "" :
             IsDragging && InCastZone && Ready && !YummnCatalog.IsMonk(def) ? "松手施放" : "";
+        if(def!=null&&def.spellLevel>0)footer.text=targeting?ReynardCatalog.TargetHint(Skill):reynardState??ReynardCatalog.Roman(def.spellLevel)+"环";
         if(!string.IsNullOrEmpty(missingRequirement)&&readable)footer.text=missingRequirement;
         // Expanded cards already show cost/cooldown below. Put temporary prompts
         // in the footer rather than over the enlarged illustration.

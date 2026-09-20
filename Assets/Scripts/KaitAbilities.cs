@@ -16,6 +16,7 @@ public enum KaitAbilityOrigin { Dnd5e, KaitOriginal, ProjectOriginal }
     public KaitPassive passive;
     public int cooldown;
     public int kiExtraCost;
+    public int spellLevel;
     public string traditionTag, actionOverride, sigil;
     public string artSourceId;
     public string[] allowedCharacters, prerequisiteIds, effectTags;
@@ -119,8 +120,8 @@ public static class KaitAbilityCatalog
     public static List<KaitAbilityDef> LegacyPool()=>All.FindAll(d=>Array.IndexOf(DefaultIds,d.id)<0&&Array.IndexOf(ExperimentalIds,d.id)<0);
     public static List<KaitAbilityDef> CandidatePool()=>new List<KaitAbilityDef>(All);
     public static List<KaitAbilityDef> RecommendedFinalPool()=>DefaultPool();
-    public static KaitAbilityDef Get(KaitSkill skill) => All.Find(d=>(d.kind==KaitAbilityKind.Active && d.skill==skill)||d.id=="active."+skill) ?? YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Active && d.skill==skill);
-    public static KaitAbilityDef Get(KaitPassive passive) => All.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive) ?? YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive);
+    public static KaitAbilityDef Get(KaitSkill skill) => All.Find(d=>(d.kind==KaitAbilityKind.Active && d.skill==skill)||d.id=="active."+skill) ?? YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Active && d.skill==skill) ?? ReynardCatalog.Get(skill);
+    public static KaitAbilityDef Get(KaitPassive passive) => All.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive) ?? YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive && d.passive==passive) ?? ReynardCatalog.Get(passive);
     public static string RarityName(KaitRarity rarity) => rarity==KaitRarity.Common?"普通":rarity==KaitRarity.Uncommon?"罕见":"稀有";
     public static Color RarityColor(KaitRarity rarity) => rarity==KaitRarity.Common?new Color(.82f,.87f,.92f):rarity==KaitRarity.Uncommon?new Color(.25f,.62f,1f):new Color(1f,.76f,.27f);
 }

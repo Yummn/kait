@@ -1,0 +1,2535 @@
+fileFormatVersion: 2
+guid: 47d367c152492f74d8e663040c545b66
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7787020714650790126
+    second: CardSpine_11300006_0
+  - first:
+      213: -1705654598542074852
+    second: CardSpine_11300006_1
+  - first:
+      213: -6760406082469936400
+    second: CardSpine_11300006_2
+  - first:
+      213: 7000971728799520719
+    second: CardSpine_11300006_3
+  - first:
+      213: 2188825778112980460
+    second: CardSpine_11300006_4
+  - first:
+      213: -604357630867847093
+    second: CardSpine_11300006_5
+  - first:
+      213: -1695047987058062937
+    second: CardSpine_11300006_6
+  - first:
+      213: -7702828769394783712
+    second: CardSpine_11300006_7
+  - first:
+      213: 1970176342090020632
+    second: CardSpine_11300006_8
+  - first:
+      213: 2805181087414241941
+    second: CardSpine_11300006_9
+  - first:
+      213: -897389030119121395
+    second: CardSpine_11300006_10
+  - first:
+      213: -2973961896303940400
+    second: CardSpine_11300006_11
+  - first:
+      213: 5117713521573654390
+    second: CardSpine_11300006_12
+  - first:
+      213: 5779261236671726718
+    second: CardSpine_11300006_13
+  - first:
+      213: 7681189304452353679
+    second: CardSpine_11300006_14
+  - first:
+      213: -7171173380526780787
+    second: CardSpine_11300006_15
+  - first:
+      213: 8543209847134610912
+    second: CardSpine_11300006_16
+  - first:
+      213: -8957283281141654352
+    second: CardSpine_11300006_17
+  - first:
+      213: -3784744941022637035
+    second: CardSpine_11300006_18
+  - first:
+      213: -4523980039819187123
+    second: CardSpine_11300006_19
+  - first:
+      213: 7650335469080347427
+    second: CardSpine_11300006_20
+  - first:
+      213: 171779562662376847
+    second: CardSpine_11300006_21
+  - first:
+      213: -1004366704719639034
+    second: CardSpine_11300006_22
+  - first:
+      213: 3428870499120759765
+    second: CardSpine_11300006_23
+  - first:
+      213: 7705836157448869221
+    second: CardSpine_11300006_24
+  - first:
+      213: 2030226127159827878
+    second: CardSpine_11300006_25
+  - first:
+      213: 558319921259620537
+    second: CardSpine_11300006_26
+  - first:
+      213: 2339648983123317511
+    second: CardSpine_11300006_27
+  - first:
+      213: 4286612199846048909
+    second: CardSpine_11300006_28
+  - first:
+      213: -5211667656541651140
+    second: CardSpine_11300006_29
+  - first:
+      213: 1506686726655526697
+    second: CardSpine_11300006_30
+  - first:
+      213: 8936937220044930953
+    second: CardSpine_11300006_31
+  - first:
+      213: 5964606966369208929
+    second: CardSpine_11300006_32
+  - first:
+      213: -258766039828530699
+    second: CardSpine_11300006_33
+  - first:
+      213: 7896671989909183457
+    second: CardSpine_11300006_34
+  - first:
+      213: 2769652777589078811
+    second: CardSpine_11300006_35
+  - first:
+      213: 6001299321411441977
+    second: CardSpine_11300006_36
+  - first:
+      213: -8361366123026954590
+    second: CardSpine_11300006_37
+  - first:
+      213: -3486807007533785684
+    second: CardSpine_11300006_38
+  - first:
+      213: 5814351411001627071
+    second: CardSpine_11300006_39
+  - first:
+      213: -3724498770211185851
+    second: CardSpine_11300006_40
+  - first:
+      213: -6193190785417890884
+    second: CardSpine_11300006_41
+  - first:
+      213: 1341127990985351384
+    second: CardSpine_11300006_42
+  - first:
+      213: 2786655653721580655
+    second: CardSpine_11300006_43
+  - first:
+      213: 1490779856755964876
+    second: CardSpine_11300006_44
+  - first:
+      213: -1320787642054366090
+    second: CardSpine_11300006_45
+  - first:
+      213: 8112499094253314247
+    second: CardSpine_11300006_46
+  - first:
+      213: 277659022735972408
+    second: CardSpine_11300006_47
+  - first:
+      213: 8238423131695703101
+    second: CardSpine_11300006_48
+  - first:
+      213: -4826807403818367898
+    second: CardSpine_11300006_49
+  - first:
+      213: 2388995046949082281
+    second: CardSpine_11300006_50
+  - first:
+      213: 7611129891560930814
+    second: CardSpine_11300006_51
+  - first:
+      213: 6904373338907805010
+    second: CardSpine_11300006_52
+  - first:
+      213: 5666835123411298526
+    second: CardSpine_11300006_53
+  - first:
+      213: -3748580100891737446
+    second: CardSpine_11300006_54
+  - first:
+      213: -1136713519364137030
+    second: CardSpine_11300006_55
+  - first:
+      213: 188833066879546253
+    second: CardSpine_11300006_56
+  - first:
+      213: 1096239734938715313
+    second: CardSpine_11300006_57
+  - first:
+      213: 6011698570673258258
+    second: CardSpine_11300006_58
+  - first:
+      213: 633628032792264076
+    second: CardSpine_11300006_59
+  - first:
+      213: -4632619478796371229
+    second: CardSpine_11300006_60
+  - first:
+      213: -7226971224078713318
+    second: CardSpine_11300006_61
+  - first:
+      213: -6409138113878957282
+    second: CardSpine_11300006_62
+  - first:
+      213: 4720035021845805229
+    second: CardSpine_11300006_63
+  - first:
+      213: 2187639319624920546
+    second: CardSpine_11300006_64
+  - first:
+      213: 2323387767535097896
+    second: CardSpine_11300006_65
+  - first:
+      213: 7009773497108026851
+    second: CardSpine_11300006_66
+  - first:
+      213: 906257935829341607
+    second: CardSpine_11300006_67
+  - first:
+      213: -1549114337417410026
+    second: CardSpine_11300006_68
+  - first:
+      213: 6057252274979243200
+    second: CardSpine_11300006_69
+  - first:
+      213: 8782286888131040600
+    second: CardSpine_11300006_70
+  - first:
+      213: 8144954426310663746
+    second: CardSpine_11300006_71
+  - first:
+      213: 4111421888016847170
+    second: CardSpine_11300006_72
+  - first:
+      213: -6269375400688277619
+    second: CardSpine_11300006_73
+  - first:
+      213: 2905832574200450957
+    second: CardSpine_11300006_74
+  - first:
+      213: -2267821120176301259
+    second: CardSpine_11300006_75
+  - first:
+      213: -982608238765630096
+    second: CardSpine_11300006_76
+  - first:
+      213: -5671224990619322358
+    second: CardSpine_11300006_77
+  - first:
+      213: 207235611466166694
+    second: CardSpine_11300006_78
+  - first:
+      213: -8191338367364841120
+    second: CardSpine_11300006_79
+  - first:
+      213: -7037158850976806403
+    second: CardSpine_11300006_80
+  - first:
+      213: 8873301079186030885
+    second: CardSpine_11300006_81
+  - first:
+      213: 625573995933653617
+    second: CardSpine_11300006_82
+  - first:
+      213: 1358411070716073709
+    second: CardSpine_11300006_83
+  - first:
+      213: 9183978119637365017
+    second: CardSpine_11300006_84
+  - first:
+      213: 191376067403801064
+    second: CardSpine_11300006_85
+  - first:
+      213: -3621288423807926704
+    second: CardSpine_11300006_86
+  - first:
+      213: -332625221810064534
+    second: CardSpine_11300006_87
+  - first:
+      213: -210803385333386745
+    second: CardSpine_11300006_88
+  - first:
+      213: 7282039973827876122
+    second: CardSpine_11300006_89
+  - first:
+      213: -2301803833998564915
+    second: CardSpine_11300006_90
+  - first:
+      213: 463999072927462685
+    second: CardSpine_11300006_91
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CardSpine_11300006_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 965
+        width: 104
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21791acdae1fee390800000000000000
+      internalID: -7787020714650790126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 984
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1c5368fd2c4458e0800000000000000
+      internalID: -1705654598542074852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 965
+        width: 71
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f24df47c763e22a0800000000000000
+      internalID: -6760406082469936400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 972
+        width: 57
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc7d5a1d1b2782160800000000000000
+      internalID: 7000971728799520719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_4
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 971
+        width: 69
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce564a3c275406e10800000000000000
+      internalID: 2188825778112980460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 940
+        width: 103
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4843decfe3ec97f0800000000000000
+      internalID: -604357630867847093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_6
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 934
+        width: 136
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9c92626daf978e0800000000000000
+      internalID: -1695047987058062937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_7
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 965
+        width: 84
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a809aab0e0a1590800000000000000
+      internalID: -7702828769394783712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_8
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 964
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8177727d1f8775b10800000000000000
+      internalID: 1970176342090020632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_9
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 962
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59a48f526510ee620800000000000000
+      internalID: 2805181087414241941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_10
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 959
+        width: 57
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0eda628e65db83f0800000000000000
+      internalID: -897389030119121395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 830
+        width: 197
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dca14b796d5ab6d0800000000000000
+      internalID: -2973961896303940400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_12
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 830
+        width: 123
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67f6c934555c50740800000000000000
+      internalID: 5117713521573654390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 795
+        width: 90
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e74c004997f043050800000000000000
+      internalID: 5779261236671726718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_14
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 825
+        width: 105
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8e8968c9f0199a60800000000000000
+      internalID: 7681189304452353679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_15
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 903
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8ec6fe0ecfda7c90800000000000000
+      internalID: -7171173380526780787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_16
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 927
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e5e31497149f8670800000000000000
+      internalID: 8543209847134610912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_17
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 927
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc9103405651b380800000000000000
+      internalID: -8957283281141654352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 890
+        width: 110
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51493e05782e97bc0800000000000000
+      internalID: -3784744941022637035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_19
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 890
+        width: 71
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4cae937f189731c0800000000000000
+      internalID: -4523980039819187123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_20
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 888
+        width: 70
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3230b1f63937b2a60800000000000000
+      internalID: 7650335469080347427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_21
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 905
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f85b9242a98426200800000000000000
+      internalID: 171779562662376847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_22
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 770
+        width: 60
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60ec4fcadc5cf02f0800000000000000
+      internalID: -1004366704719639034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_23
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 784
+        width: 105
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3c8e05d8bc59f20800000000000000
+      internalID: 3428870499120759765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_24
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 813
+        width: 69
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 565d91e6821a0fa60800000000000000
+      internalID: 7705836157448869221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_25
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 813
+        width: 71
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ad1413f7efcc2c10800000000000000
+      internalID: 2030226127159827878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_26
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 879
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b824b1a20d8fb700800000000000000
+      internalID: 558319921259620537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_27
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 653
+        width: 317
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7035b2aaa5a187020800000000000000
+      internalID: 2339648983123317511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_28
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 662
+        width: 109
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d84fda5951b1d7b30800000000000000
+      internalID: 4286612199846048909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_29
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 795
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3f317401ef6ca7b0800000000000000
+      internalID: -5211667656541651140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_30
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 662
+        width: 69
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 927491a5893d8e410800000000000000
+      internalID: 1506686726655526697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_31
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 737
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98fbebc3d01660c70800000000000000
+      internalID: 8936937220044930953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_32
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 735
+        width: 64
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16ac14f1f6a86c250800000000000000
+      internalID: 5964606966369208929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_33
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 735
+        width: 19
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f9f51468ada86cf0800000000000000
+      internalID: -258766039828530699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_34
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 775
+        width: 29
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb5052265d969d60800000000000000
+      internalID: 7896671989909183457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_35
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 770
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1bfe57e688cf6620800000000000000
+      internalID: 2769652777589078811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_36
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 653
+        width: 102
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9359583cfe5e84350800000000000000
+      internalID: 6001299321411441977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_37
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 653
+        width: 82
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a64effbfc576fb80800000000000000
+      internalID: -8361366123026954590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_38
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 730
+        width: 37
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cad1b93208f5c9fc0800000000000000
+      internalID: -3486807007533785684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_39
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 734
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb11b047dc9b0b050800000000000000
+      internalID: 5814351411001627071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_40
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 734
+        width: 28
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bde2b0a1cef4cc0800000000000000
+      internalID: -3724498770211185851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_41
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 650
+        width: 75
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3b1f82bcd5d0aa0800000000000000
+      internalID: -6193190785417890884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_42
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 649
+        width: 70
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d0e30d5dc4ac9210800000000000000
+      internalID: 1341127990985351384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_43
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 649
+        width: 57
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64a86f7d803ca620800000000000000
+      internalID: 2786655653721580655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_44
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 671
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccb3f38916050b410800000000000000
+      internalID: 1490779856755964876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_45
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 671
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67caf9b23ae9bade0800000000000000
+      internalID: -1320787642054366090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_46
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 709
+        width: 48
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c0a5a1c1f2659070800000000000000
+      internalID: 8112499094253314247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_47
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 686
+        width: 42
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8381cdaf8617ad300800000000000000
+      internalID: 277659022735972408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_48
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 619
+        width: 71
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3465127032c45270800000000000000
+      internalID: 8238423131695703101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_49
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 603
+        width: 57
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6644e206d3cb30db0800000000000000
+      internalID: -4826807403818367898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_50
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 668
+        width: 41
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a45197765a672120800000000000000
+      internalID: 2388995046949082281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_51
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 284
+        width: 321
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efdb8d59f4a20a960800000000000000
+      internalID: 7611129891560930814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_52
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 602
+        width: 156
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255074688f241df50800000000000000
+      internalID: 6904373338907805010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_53
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 642
+        width: 24
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed823a34584a4ae40800000000000000
+      internalID: 5666835123411298526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_54
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 568
+        width: 135
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a920042524e5afbc0800000000000000
+      internalID: -3748580100891737446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_55
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 568
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abf9ae2a3159930f0800000000000000
+      internalID: -1136713519364137030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_56
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 567
+        width: 80
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d83f3318caede9200800000000000000
+      internalID: 188833066879546253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_57
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 632
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4c0b51b30a63f00800000000000000
+      internalID: 1096239734938715313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_58
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 452
+        width: 121
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ff3b9aff7dd6350800000000000000
+      internalID: 6011698570673258258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_59
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 600
+        width: 52
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8dff46b6591bc800800000000000000
+      internalID: 633628032792264076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_60
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 546
+        width: 64
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ea79c2f021a5bfb0800000000000000
+      internalID: -4632619478796371229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_61
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 539
+        width: 67
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e71da36f3a4bb90800000000000000
+      internalID: -7226971224078713318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_62
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 539
+        width: 61
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e13e3dda7da2e07a0800000000000000
+      internalID: -6409138113878957282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_63
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 452
+        width: 94
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da8b58438dee08140800000000000000
+      internalID: 4720035021845805229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_64
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 491
+        width: 155
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2edabeede5e0c5e10800000000000000
+      internalID: 2187639319624920546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_65
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 466
+        width: 71
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 828da6f5dd45e3020800000000000000
+      internalID: 2323387767535097896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_66
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 502
+        width: 46
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e552133bd7b74160800000000000000
+      internalID: 7009773497108026851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_67
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 451
+        width: 76
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a59cf38acca39c00800000000000000
+      internalID: 906257935829341607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_68
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 451
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61a45c9b7b0708ae0800000000000000
+      internalID: -1549114337417410026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_69
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 451
+        width: 54
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c48015f9deaf0450800000000000000
+      internalID: 6057252274979243200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_70
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 429
+        width: 144
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8551f9ae463f0e970800000000000000
+      internalID: 8782286888131040600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_71
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 466
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24e1efb95e0b80170800000000000000
+      internalID: 8144954426310663746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_72
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 389
+        width: 104
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24192058c64be0930800000000000000
+      internalID: 4111421888016847170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_73
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 285
+        width: 104
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8727662a44bef8a0800000000000000
+      internalID: -6269375400688277619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_74
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 329
+        width: 111
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8f0af99457935820800000000000000
+      internalID: 2905832574200450957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_75
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 389
+        width: 92
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b53c5e4b41780e0800000000000000
+      internalID: -2267821120176301259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_76
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 451
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07d900f43031d52f0800000000000000
+      internalID: -982608238765630096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_77
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 402
+        width: 54
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0831d02be2cb41b0800000000000000
+      internalID: -5671224990619322358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_78
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 389
+        width: 67
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a1704ec0bf30e200800000000000000
+      internalID: 207235611466166694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_79
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 329
+        width: 146
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 061c03a8725825e80800000000000000
+      internalID: -8191338367364841120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_80
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 419
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df9088b3f4df65e90800000000000000
+      internalID: -7037158850976806403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_81
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 323
+        width: 47
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52149f9915c442b70800000000000000
+      internalID: 8873301079186030885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_82
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 394
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ad8502c3c7ea800800000000000000
+      internalID: 625573995933653617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_83
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 116
+        width: 255
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de65df0fbab0ad210800000000000000
+      internalID: 1358411070716073709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_84
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 329
+        width: 30
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911f1f5e07b047f70800000000000000
+      internalID: 9183978119637365017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_85
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 323
+        width: 165
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e16d14f487e7a200800000000000000
+      internalID: 191376067403801064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_86
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 282
+        width: 85
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05eb1bd6d599ebdc0800000000000000
+      internalID: -3621288423807926704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_87
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 457
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63fca28f17426bf0800000000000000
+      internalID: -332625221810064534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_88
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 284
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702f0cb1073131df0800000000000000
+      internalID: -210803385333386745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_89
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 116
+        width: 212
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15943836c00f0560800000000000000
+      internalID: 7282039973827876122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_90
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 1
+        width: 562
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc122e3cb995e00e0800000000000000
+      internalID: -2301803833998564915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardSpine_11300006_91
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 116
+        width: 82
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15b3fdc2b4707600800000000000000
+      internalID: 463999072927462685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CardSpine_11300006_0: -7787020714650790126
+      CardSpine_11300006_1: -1705654598542074852
+      CardSpine_11300006_10: -897389030119121395
+      CardSpine_11300006_11: -2973961896303940400
+      CardSpine_11300006_12: 5117713521573654390
+      CardSpine_11300006_13: 5779261236671726718
+      CardSpine_11300006_14: 7681189304452353679
+      CardSpine_11300006_15: -7171173380526780787
+      CardSpine_11300006_16: 8543209847134610912
+      CardSpine_11300006_17: -8957283281141654352
+      CardSpine_11300006_18: -3784744941022637035
+      CardSpine_11300006_19: -4523980039819187123
+      CardSpine_11300006_2: -6760406082469936400
+      CardSpine_11300006_20: 7650335469080347427
+      CardSpine_11300006_21: 171779562662376847
+      CardSpine_11300006_22: -1004366704719639034
+      CardSpine_11300006_23: 3428870499120759765
+      CardSpine_11300006_24: 7705836157448869221
+      CardSpine_11300006_25: 2030226127159827878
+      CardSpine_11300006_26: 558319921259620537
+      CardSpine_11300006_27: 2339648983123317511
+      CardSpine_11300006_28: 4286612199846048909
+      CardSpine_11300006_29: -5211667656541651140
+      CardSpine_11300006_3: 7000971728799520719
+      CardSpine_11300006_30: 1506686726655526697
+      CardSpine_11300006_31: 8936937220044930953
+      CardSpine_11300006_32: 5964606966369208929
+      CardSpine_11300006_33: -258766039828530699
+      CardSpine_11300006_34: 7896671989909183457
+      CardSpine_11300006_35: 2769652777589078811
+      CardSpine_11300006_36: 6001299321411441977
+      CardSpine_11300006_37: -8361366123026954590
+      CardSpine_11300006_38: -3486807007533785684
+      CardSpine_11300006_39: 5814351411001627071
+      CardSpine_11300006_4: 2188825778112980460
+      CardSpine_11300006_40: -3724498770211185851
+      CardSpine_11300006_41: -6193190785417890884
+      CardSpine_11300006_42: 1341127990985351384
+      CardSpine_11300006_43: 2786655653721580655
+      CardSpine_11300006_44: 1490779856755964876
+      CardSpine_11300006_45: -1320787642054366090
+      CardSpine_11300006_46: 8112499094253314247
+      CardSpine_11300006_47: 277659022735972408
+      CardSpine_11300006_48: 8238423131695703101
+      CardSpine_11300006_49: -4826807403818367898
+      CardSpine_11300006_5: -604357630867847093
+      CardSpine_11300006_50: 2388995046949082281
+      CardSpine_11300006_51: 7611129891560930814
+      CardSpine_11300006_52: 6904373338907805010
+      CardSpine_11300006_53: 5666835123411298526
+      CardSpine_11300006_54: -3748580100891737446
+      CardSpine_11300006_55: -1136713519364137030
+      CardSpine_11300006_56: 188833066879546253
+      CardSpine_11300006_57: 1096239734938715313
+      CardSpine_11300006_58: 6011698570673258258
+      CardSpine_11300006_59: 633628032792264076
+      CardSpine_11300006_6: -1695047987058062937
+      CardSpine_11300006_60: -4632619478796371229
+      CardSpine_11300006_61: -7226971224078713318
+      CardSpine_11300006_62: -6409138113878957282
+      CardSpine_11300006_63: 4720035021845805229
+      CardSpine_11300006_64: 2187639319624920546
+      CardSpine_11300006_65: 2323387767535097896
+      CardSpine_11300006_66: 7009773497108026851
+      CardSpine_11300006_67: 906257935829341607
+      CardSpine_11300006_68: -1549114337417410026
+      CardSpine_11300006_69: 6057252274979243200
+      CardSpine_11300006_7: -7702828769394783712
+      CardSpine_11300006_70: 8782286888131040600
+      CardSpine_11300006_71: 8144954426310663746
+      CardSpine_11300006_72: 4111421888016847170
+      CardSpine_11300006_73: -6269375400688277619
+      CardSpine_11300006_74: 2905832574200450957
+      CardSpine_11300006_75: -2267821120176301259
+      CardSpine_11300006_76: -982608238765630096
+      CardSpine_11300006_77: -5671224990619322358
+      CardSpine_11300006_78: 207235611466166694
+      CardSpine_11300006_79: -8191338367364841120
+      CardSpine_11300006_8: 1970176342090020632
+      CardSpine_11300006_80: -7037158850976806403
+      CardSpine_11300006_81: 8873301079186030885
+      CardSpine_11300006_82: 625573995933653617
+      CardSpine_11300006_83: 1358411070716073709
+      CardSpine_11300006_84: 9183978119637365017
+      CardSpine_11300006_85: 191376067403801064
+      CardSpine_11300006_86: -3621288423807926704
+      CardSpine_11300006_87: -332625221810064534
+      CardSpine_11300006_88: -210803385333386745
+      CardSpine_11300006_89: 7282039973827876122
+      CardSpine_11300006_9: 2805181087414241941
+      CardSpine_11300006_90: -2301803833998564915
+      CardSpine_11300006_91: 463999072927462685
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

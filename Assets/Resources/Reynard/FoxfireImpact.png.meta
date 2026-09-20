@@ -1,0 +1,1521 @@
+fileFormatVersion: 2
+guid: 761e11c5b2c7ed74998ccc1ea97996b8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7066085304275872767
+    second: FoxfireImpact_0
+  - first:
+      213: 2062632767831553941
+    second: FoxfireImpact_1
+  - first:
+      213: -999551280368251104
+    second: FoxfireImpact_2
+  - first:
+      213: -6584315974884668207
+    second: FoxfireImpact_3
+  - first:
+      213: -3218738313363838294
+    second: FoxfireImpact_4
+  - first:
+      213: 7280840753841123063
+    second: FoxfireImpact_5
+  - first:
+      213: 6656109606523214527
+    second: FoxfireImpact_6
+  - first:
+      213: 1260231210917078180
+    second: FoxfireImpact_7
+  - first:
+      213: -8661538456067166199
+    second: FoxfireImpact_8
+  - first:
+      213: 1128028533054497339
+    second: FoxfireImpact_9
+  - first:
+      213: 7256074691147103166
+    second: FoxfireImpact_10
+  - first:
+      213: 9111316324818687856
+    second: FoxfireImpact_11
+  - first:
+      213: -5036615834492333653
+    second: FoxfireImpact_12
+  - first:
+      213: -2127308239533862237
+    second: FoxfireImpact_13
+  - first:
+      213: 6236716162294652400
+    second: FoxfireImpact_14
+  - first:
+      213: -1753701803148307459
+    second: FoxfireImpact_15
+  - first:
+      213: -5331025423472776353
+    second: FoxfireImpact_16
+  - first:
+      213: 1078494572682313953
+    second: FoxfireImpact_17
+  - first:
+      213: 6612026563622015714
+    second: FoxfireImpact_18
+  - first:
+      213: -3429872570649578315
+    second: FoxfireImpact_19
+  - first:
+      213: -6710934671110972852
+    second: FoxfireImpact_20
+  - first:
+      213: 6781650709121588643
+    second: FoxfireImpact_21
+  - first:
+      213: 1236593338004476384
+    second: FoxfireImpact_22
+  - first:
+      213: 4956975103683607705
+    second: FoxfireImpact_23
+  - first:
+      213: 3160374577193759481
+    second: FoxfireImpact_24
+  - first:
+      213: -7854109591631340026
+    second: FoxfireImpact_25
+  - first:
+      213: 8452438531647891120
+    second: FoxfireImpact_26
+  - first:
+      213: -649007372930003946
+    second: FoxfireImpact_27
+  - first:
+      213: -9154225181200390082
+    second: FoxfireImpact_28
+  - first:
+      213: 3373114189551384577
+    second: FoxfireImpact_29
+  - first:
+      213: -2837574471784675427
+    second: FoxfireImpact_30
+  - first:
+      213: -1580117616153159663
+    second: FoxfireImpact_31
+  - first:
+      213: 7527542765058000511
+    second: FoxfireImpact_32
+  - first:
+      213: -4679453323673400234
+    second: FoxfireImpact_33
+  - first:
+      213: -8003033339435807557
+    second: FoxfireImpact_34
+  - first:
+      213: 4158079157276429261
+    second: FoxfireImpact_35
+  - first:
+      213: 4591647245558821349
+    second: FoxfireImpact_36
+  - first:
+      213: -1064262532192962500
+    second: FoxfireImpact_37
+  - first:
+      213: 3905634260669015662
+    second: FoxfireImpact_38
+  - first:
+      213: 1393629233457150656
+    second: FoxfireImpact_39
+  - first:
+      213: -6823907450716996078
+    second: FoxfireImpact_40
+  - first:
+      213: 170447151005961332
+    second: FoxfireImpact_41
+  - first:
+      213: -7036605876094516588
+    second: FoxfireImpact_42
+  - first:
+      213: -5464089658631994380
+    second: FoxfireImpact_43
+  - first:
+      213: 3275672546800589252
+    second: FoxfireImpact_44
+  - first:
+      213: 9117098154206652381
+    second: FoxfireImpact_45
+  - first:
+      213: -8814885537306188387
+    second: FoxfireImpact_46
+  - first:
+      213: -8609608438203123803
+    second: FoxfireImpact_47
+  - first:
+      213: 4259579477840183871
+    second: FoxfireImpact_48
+  - first:
+      213: -8321390253901769683
+    second: FoxfireImpact_49
+  - first:
+      213: -1605304646898396720
+    second: FoxfireImpact_50
+  - first:
+      213: -2650398113709324578
+    second: FoxfireImpact_51
+  - first:
+      213: -3840584139846444663
+    second: FoxfireImpact_52
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FoxfireImpact_0
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1014
+        width: 74
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 104570e7ad830fd90800000000000000
+      internalID: -7066085304275872767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_1
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 1014
+        width: 100
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5973ea4f291ff9c10800000000000000
+      internalID: 2062632767831553941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_2
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 1135
+        width: 208
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f0dd60861e022f0800000000000000
+      internalID: -999551280368251104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 630
+        width: 220
+        height: 467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dcc11c818fcf94a0800000000000000
+      internalID: -6584315974884668207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_4
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 515
+        width: 321
+        height: 588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa220fbe8eb453d0800000000000000
+      internalID: -3218738313363838294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_5
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 1004
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fe23ee071eba0560800000000000000
+      internalID: 7280840753841123063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_6
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 489
+        width: 325
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fba91eaeb604f5c50800000000000000
+      internalID: 6656109606523214527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_7
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 881
+        width: 61
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4a29dfb9d3d7110800000000000000
+      internalID: 1260231210917078180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_8
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 567
+        width: 255
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9003bbd3aa80cc780800000000000000
+      internalID: -8661538456067166199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_9
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 698
+        width: 36
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b32e73969ff87af00800000000000000
+      internalID: 1128028533054497339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_10
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 722
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb768dbc71c2b460800000000000000
+      internalID: 7256074691147103166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_11
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 723
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07719017ce5e17e70800000000000000
+      internalID: 9111316324818687856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_12
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 414
+        width: 131
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba11afa65985a1ab0800000000000000
+      internalID: -5036615834492333653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_13
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 515
+        width: 34
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a292d65d684a72e0800000000000000
+      internalID: -2127308239533862237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_14
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 415
+        width: 118
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd928a5e444d8650800000000000000
+      internalID: 6236716162294652400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_15
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 447
+        width: 90
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df31265608999a7e0800000000000000
+      internalID: -1753701803148307459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_16
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 510
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5b24515f946406b0800000000000000
+      internalID: -5331025423472776353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_17
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 419
+        width: 93
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e08ae8891597fe00800000000000000
+      internalID: 1078494572682313953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_18
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 462
+        width: 112
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e2132aa023a2cb50800000000000000
+      internalID: 6612026563622015714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_19
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 491
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b47399b115a660d0800000000000000
+      internalID: -3429872570649578315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_20
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 523
+        width: 39
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ad3910978fdd2a0800000000000000
+      internalID: -6710934671110972852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_21
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 513
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3add7f3a3634d1e50800000000000000
+      internalID: 6781650709121588643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_22
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 471
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e11f53d613492110800000000000000
+      internalID: 1236593338004476384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_23
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 428
+        width: 64
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99c3487f796bac440800000000000000
+      internalID: 4956975103683607705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_24
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 465
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f23fcefee7ebdb20800000000000000
+      internalID: 3160374577193759481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_25
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 443
+        width: 43
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e53d370f8900390800000000000000
+      internalID: -7854109591631340026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_26
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 413
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b662b4cf081d4570800000000000000
+      internalID: 8452438531647891120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_27
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 419
+        width: 43
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61cc5ef9b334ef6f0800000000000000
+      internalID: -649007372930003946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_28
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 417
+        width: 35
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e386d98e2b8a5f080800000000000000
+      internalID: -9154225181200390082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_29
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 375
+        width: 81
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1083a0fdb75bfce20800000000000000
+      internalID: 3373114189551384577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 258
+        width: 145
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97ce815d09ee98d0800000000000000
+      internalID: -2837574471784675427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_31
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 264
+        width: 105
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1189ad1666b421ae0800000000000000
+      internalID: -1580117616153159663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_32
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 394
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7608de1344377860800000000000000
+      internalID: 7527542765058000511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_33
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 387
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c0d63befd3f0fb0800000000000000
+      internalID: -4679453323673400234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_34
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 97
+        width: 259
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbc025564938fe090800000000000000
+      internalID: -8003033339435807557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_35
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 272
+        width: 37
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcbca6d86f674b930800000000000000
+      internalID: 4158079157276429261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_36
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 71
+        width: 184
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e13f6d97dec8bf30800000000000000
+      internalID: 4591647245558821349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_37
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 296
+        width: 82
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3871ec9ddafa31f0800000000000000
+      internalID: -1064262532192962500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_38
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 278
+        width: 31
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66a5c9caa9933630800000000000000
+      internalID: 3905634260669015662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_39
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 287
+        width: 51
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca30d0776a275310800000000000000
+      internalID: 1393629233457150656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_40
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 306
+        width: 86
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21e3fd3045c9c41a0800000000000000
+      internalID: -6823907450716996078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_41
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 306
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47c00b0e7cc8d5200800000000000000
+      internalID: 170447151005961332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_42
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 152
+        width: 92
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 492c5fabc34f85e90800000000000000
+      internalID: -7036605876094516588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_43
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 69
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3ca5cc767ab24b0800000000000000
+      internalID: -5464089658631994380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_44
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 111
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c95c8873d6857d20800000000000000
+      internalID: 3275672546800589252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_45
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 114
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd76bdf7770768e70800000000000000
+      internalID: 9117098154206652381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_46
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 119
+        width: 51
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d95e22d9e4c3ba580800000000000000
+      internalID: -8814885537306188387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_47
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 119
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a772b9bdb6848880800000000000000
+      internalID: -8609608438203123803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_48
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 128
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32453587f01d1b30800000000000000
+      internalID: 4259579477840183871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_49
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 55
+        width: 196
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2499c617ab748c80800000000000000
+      internalID: -8321390253901769683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_50
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 206
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1565dcdefc8b9e0800000000000000
+      internalID: -1605304646898396720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_51
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 63
+        width: 92
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed68dfe35f4e73bd0800000000000000
+      internalID: -2650398113709324578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxfireImpact_52
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 231
+        width: 80
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9891476b21183bac0800000000000000
+      internalID: -3840584139846444663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FoxfireImpact_0: -7066085304275872767
+      FoxfireImpact_1: 2062632767831553941
+      FoxfireImpact_10: 7256074691147103166
+      FoxfireImpact_11: 9111316324818687856
+      FoxfireImpact_12: -5036615834492333653
+      FoxfireImpact_13: -2127308239533862237
+      FoxfireImpact_14: 6236716162294652400
+      FoxfireImpact_15: -1753701803148307459
+      FoxfireImpact_16: -5331025423472776353
+      FoxfireImpact_17: 1078494572682313953
+      FoxfireImpact_18: 6612026563622015714
+      FoxfireImpact_19: -3429872570649578315
+      FoxfireImpact_2: -999551280368251104
+      FoxfireImpact_20: -6710934671110972852
+      FoxfireImpact_21: 6781650709121588643
+      FoxfireImpact_22: 1236593338004476384
+      FoxfireImpact_23: 4956975103683607705
+      FoxfireImpact_24: 3160374577193759481
+      FoxfireImpact_25: -7854109591631340026
+      FoxfireImpact_26: 8452438531647891120
+      FoxfireImpact_27: -649007372930003946
+      FoxfireImpact_28: -9154225181200390082
+      FoxfireImpact_29: 3373114189551384577
+      FoxfireImpact_3: -6584315974884668207
+      FoxfireImpact_30: -2837574471784675427
+      FoxfireImpact_31: -1580117616153159663
+      FoxfireImpact_32: 7527542765058000511
+      FoxfireImpact_33: -4679453323673400234
+      FoxfireImpact_34: -8003033339435807557
+      FoxfireImpact_35: 4158079157276429261
+      FoxfireImpact_36: 4591647245558821349
+      FoxfireImpact_37: -1064262532192962500
+      FoxfireImpact_38: 3905634260669015662
+      FoxfireImpact_39: 1393629233457150656
+      FoxfireImpact_4: -3218738313363838294
+      FoxfireImpact_40: -6823907450716996078
+      FoxfireImpact_41: 170447151005961332
+      FoxfireImpact_42: -7036605876094516588
+      FoxfireImpact_43: -5464089658631994380
+      FoxfireImpact_44: 3275672546800589252
+      FoxfireImpact_45: 9117098154206652381
+      FoxfireImpact_46: -8814885537306188387
+      FoxfireImpact_47: -8609608438203123803
+      FoxfireImpact_48: 4259579477840183871
+      FoxfireImpact_49: -8321390253901769683
+      FoxfireImpact_5: 7280840753841123063
+      FoxfireImpact_50: -1605304646898396720
+      FoxfireImpact_51: -2650398113709324578
+      FoxfireImpact_52: -3840584139846444663
+      FoxfireImpact_6: 6656109606523214527
+      FoxfireImpact_7: 1260231210917078180
+      FoxfireImpact_8: -8661538456067166199
+      FoxfireImpact_9: 1128028533054497339
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

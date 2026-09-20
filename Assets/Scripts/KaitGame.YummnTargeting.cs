@@ -8,7 +8,7 @@ public sealed partial class KaitGame
     private static readonly KaitDirection[] CastDirections={KaitDirection.Up,KaitDirection.Right,KaitDirection.Down,KaitDirection.Left};
     private void RefreshYummnSkillTargets()
     {
-        bool visible=run.IsYummn&&!run.ended&&YummnCatalog.TargetsDirection(targetingSkill);
+        bool visible=!run.ended&&(run.IsReynard?targetingSkill==KaitSkill.ReynardLightningBolt:run.IsYummn&&YummnCatalog.TargetsDirection(targetingSkill));
         for(int i=0;i<4;i++)
         {
             if(yummnCastDirections[i]==null&&visible)
