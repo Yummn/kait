@@ -17,6 +17,24 @@ public sealed partial class KaitGame
     {
         while(gameContent==null)yield return null;
         yield return new WaitForSecondsRealtime(.6f);
+        if(CommandLineValue("-kaitArt0923QA")=="1")
+        {
+            mainMenu.gameObject.SetActive(true);gameplayRoot.SetActive(false);
+            mainMenu.LibraryButton.onClick.Invoke();yield return null;
+            var gallery=canvas.GetComponentInChildren<KaitCardLibrary>();
+            foreach(var character in new[]{KaitCharacter.Kait,KaitCharacter.Yummn})
+            {
+                gallery.Select(character,-1);
+                int pages=character==KaitCharacter.Kait?(gallery.Total+5)/6:1;
+                for(int page=0;page<pages;page++)
+                {
+                    yield return null;Canvas.ForceUpdateCanvases();
+                    CaptureCanvasToPng("C:/Users/yummn/Downloads/kait/Logs/art0923-"+character+"-"+page+".png");
+                    gallery.ChangePage(1);
+                }
+            }
+            Debug.Log("ART0923_GALLERY_COMPLETE");Application.Quit();yield break;
+        }
         if(mainMenu!=null)mainMenu.gameObject.SetActive(false);
         gameplayRoot.SetActive(true);
         run.SelectCharacter(KaitCharacter.Yummn,9102);ConfigureCharacterVisuals();run.StateCommitted=null;EnsureKaitSpine();

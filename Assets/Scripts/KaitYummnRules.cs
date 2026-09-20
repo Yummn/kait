@@ -8,7 +8,7 @@ public sealed partial class KaitRun
     public KaitCharacter Character { get; private set; }
     public bool IsYummn => Character==KaitCharacter.Yummn;
     public int KateMaxHp=>IsYummn?Yummn.rules.MaxHp:config.kateMaxHp;
-    public string RulesProfileId => IsYummn?Yummn.rules.Version:"Kait.0.6.1";
+    public string RulesProfileId => IsYummn?Yummn.rules.Version:KaitAbilityCatalog.RulesVersion;
     public readonly YummnRun Yummn=new YummnRun();
     public int Ki=>Yummn.ki;
     public float ExactKi=>Ki+Yummn.kiTenths/10f;
@@ -161,7 +161,7 @@ public sealed partial class KaitRun
         if(!valid){inactiveAbilities.UnionWith(inactive);retiredAbilities.UnionWith(retired);previousCopiedPassive=copy;r.message=error;return r;}
         Yummn.actionId=a.actionId;Yummn.metrics.actions++;r.yummnAction=a;r.valid=r.turnComplete=true;
         r.globalDirection=r.kaitDirection=dir;currentGlobalDirection=currentDirection=dir;actualThreatDirection=a.threatDirection;
-        r.threatBefore=CopyThreat();turnTriggers.Clear();momentumResonanceTriggeredThisTurn=false;
+        r.threatBefore=CopyThreat();turnTriggers.Clear();
         BeginYummnRoot();BeginYummnRangeTracking();
         if(!Yummn.rules.Is082){Yummn.ki-=a.totalKiCost;Yummn.metrics.kiSpent+=a.totalKiCost;}
         foreach(var id in a.plannedSkills)YummnTrigger(id,r);

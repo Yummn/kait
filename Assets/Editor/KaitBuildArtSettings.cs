@@ -7,6 +7,8 @@ public sealed class KaitBuildArtSettings : AssetPostprocessor
     private void OnPreprocessTexture()
     {
         if(assetPath.StartsWith(Root))Configure((TextureImporter)assetImporter);
+        else if(assetPath.StartsWith("Assets/Resources/KaitVisuals/KaitRound2/")||assetPath.StartsWith("Assets/Resources/KaitVisuals/KaitCandidate47/"))
+            ConfigureKaitCard((TextureImporter)assetImporter);
     }
     private static void Configure(TextureImporter importer)
     {
@@ -27,5 +29,20 @@ public sealed class KaitBuildArtSettings : AssetPostprocessor
             if(importer==null)continue;
             Configure(importer);importer.SaveAndReimport();
         }
+        foreach(string guid in AssetDatabase.FindAssets("t:Texture2D",new[]{"Assets/Resources/KaitVisuals/KaitRound2","Assets/Resources/KaitVisuals/KaitCandidate47"}))
+        {
+            var importer=AssetImporter.GetAtPath(AssetDatabase.GUIDToAssetPath(guid)) as TextureImporter;
+            if(importer==null)continue;
+            ConfigureKaitCard(importer);importer.SaveAndReimport();
+        }
+    }
+    private static void ConfigureKaitCard(TextureImporter importer)
+    {
+        // Match Yummn's card texture size and clean alpha edges at UI scale.
+        Configure(importer);
+        importer.maxTextureSize=512;
+        var settings=importer.GetDefaultPlatformTextureSettings();
+        settings.maxTextureSize=512;settings.textureCompression=TextureImporterCompression.Uncompressed;
+        importer.SetPlatformTextureSettings(settings);
     }
 }

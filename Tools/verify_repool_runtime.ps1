@@ -1,4 +1,4 @@
-param([switch]$CardNames,[switch]$PunchUnified,[switch]$DragTarget,[switch]$Darkness,[switch]$VictorySmile,[switch]$Merge091,[switch]$Cards096,[switch]$Storybook098,[switch]$MobileLayout,[switch]$Storybook0913,[switch]$Storybook0914,[switch]$Storybook0915)
+param([switch]$CardNames,[switch]$PunchUnified,[switch]$DragTarget,[switch]$Darkness,[switch]$VictorySmile,[switch]$Merge091,[switch]$Cards096,[switch]$Storybook098,[switch]$MobileLayout,[switch]$Storybook0913,[switch]$Storybook0914,[switch]$Storybook0915,[switch]$KaitArt0923)
 $ErrorActionPreference = 'Stop'
 $project = Split-Path -Parent $PSScriptRoot
 $key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Software\KaitPrototype\Kait', $true)
@@ -15,6 +15,7 @@ try {
     if($VictorySmile){$qaArgs+=' -victorySmileQA 1'}
     if($Merge091){$qaArgs+=' -merge091QA 1'}
     if($Cards096){$qaArgs+=' -cards096QA 1'}
+    if($KaitArt0923){$qaArgs+=' -kaitArt0923QA 1'}
     if($Storybook098){$qaArgs+=' -storybook098QA 1'}
     if($MobileLayout){$qaArgs+=' -mobileLayoutQA 1'}
     if($Storybook0913){$qaArgs+=' -storybook0913QA 1'}
@@ -40,6 +41,10 @@ try {
     $key.Close()
 }
 $log = Get-Content -LiteralPath (Join-Path $project 'Logs/repool-runtime.log')
+if($KaitArt0923){
+    if(!($log -match 'ART0923_GALLERY_COMPLETE') -or ($log -match 'NullReferenceException|MissingReferenceException|Shader error')){throw 'Card art runtime capture failed'}
+    Write-Output 'ART0923_GALLERY_COMPLETE';exit
+}
 if($Storybook0915){
     if(!($log -match 'STORYBOOK0915_QA_COMPLETE') -or ($log -match 'STORYBOOK0915_QA:|STORYBOOK0914_QA:|MOBILE0912_QA:|NullReferenceException|MissingReferenceException|Shader error')){throw '0915 runtime QA failed'}
     Write-Output 'STORYBOOK0915_QA_COMPLETE';exit

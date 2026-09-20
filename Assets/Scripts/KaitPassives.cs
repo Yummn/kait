@@ -28,7 +28,10 @@ public enum KaitPassive
     KillSupply, WaitSupply, DeepReservoir, KiAegis, OpportunityAttack,
     SweepingPursuit, StoneBracers, ManaPearl, WardingGlyph, MirrorResonance,
     ShadowBladeEcho, Misdirection, LastingImage, MagicMissile, GravityPendulum,
-    ResonanceCrystal, SpellEcho, BountyJar
+    ResonanceCrystal, SpellEcho, BountyJar,
+    SwiftBoots, CatAgility, EldritchSmite,
+    ResidualSlash, HexBlade, PiercingArrow, ProvokingWhispers, WarMage, TwinSigil,
+    EldritchBlast
 }
 
 public enum KaitPassiveCategory
@@ -72,7 +75,11 @@ public static class KaitPassiveCatalog
         KaitPassive.HexArmor, KaitPassive.MasterHex, KaitPassive.MaddeningHex,
         KaitPassive.LuckBlade, KaitPassive.Lifedrinker, KaitPassive.Simulacrum,
         KaitPassive.AccursedSpecter, KaitPassive.RepellingBlast, KaitPassive.DisplacementCloak,
-        KaitPassive.Passwall, KaitPassive.BagHolding, KaitPassive.ReverseGravity
+        KaitPassive.Passwall, KaitPassive.BagHolding, KaitPassive.ReverseGravity, KaitPassive.WildMagic,
+        KaitPassive.SwiftBoots, KaitPassive.CatAgility, KaitPassive.EldritchSmite,
+        KaitPassive.ResidualSlash, KaitPassive.HexBlade, KaitPassive.PiercingArrow,
+        KaitPassive.ProvokingWhispers, KaitPassive.WarMage, KaitPassive.TwinSigil,
+        KaitPassive.EldritchBlast
     };
 
     public static string Name(KaitPassive passive)

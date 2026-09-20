@@ -42,6 +42,29 @@ public sealed class KaitCardSkin : MonoBehaviour
     {
         if(def==null)return null;
         string key=def.id;if(cache.TryGetValue(key,out var s))return s;
+        string artName=def.id.Substring(def.id.LastIndexOf('.')+1);
+        var round2=Resources.Load<Texture2D>("KaitVisuals/KaitRound2/"+artName);
+        if(round2!=null)
+        {
+            s=Sprite.Create(round2,new Rect(0,0,round2.width,round2.height),Vector2.one*.5f,100,0,SpriteMeshType.FullRect);
+            cache[key]=s;return s;
+        }
+        if(KaitAbilityCatalog.All.IndexOf(def)>=39)
+        {
+            var dedicated=Resources.Load<Texture2D>("KaitVisuals/KaitCandidate47/"+artName);
+            if(dedicated!=null)
+            {
+                s=Sprite.Create(dedicated,new Rect(0,0,dedicated.width,dedicated.height),Vector2.one*.5f,100,0,SpriteMeshType.FullRect);
+                cache[key]=s;
+                return s;
+            }
+        }
+        if(!string.IsNullOrEmpty(def.artSourceId))
+        {
+            var source=YummnCatalog.Get(def.artSourceId);
+            s=YummnRepoolArt.Icon(source);
+            if(s!=null){cache[key]=s;return s;}
+        }
         int yummnIndex=YummnCatalog.Cards.IndexOf(def);
         if(yummnIndex>=0)
         {
@@ -79,8 +102,9 @@ public sealed class KaitCardSkin : MonoBehaviour
         skin.outline.ConfigureRightSide(split);
         skin.outline.color=KaitAbilityCatalog.RarityColor(def.rarity);
         skin.outline.enabled=false; // The new dual-style face already contains its rarity border.
-        skin.clockIcon.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
-        skin.cooldown.gameObject.SetActive(def.kind==KaitAbilityKind.Active);
+        bool hasCooldown=def.cooldown>0;
+        skin.clockIcon.gameObject.SetActive(hasCooldown);
+        skin.cooldown.gameObject.SetActive(hasCooldown);
         skin.cooldown.text=def.cooldown.ToString();
         skin.cooldown.rectTransform.anchoredPosition=new Vector2(10,-97);
         skin.cooldown.rectTransform.sizeDelta=new Vector2(26,24);
@@ -94,9 +118,10 @@ public sealed class KaitCardSkin : MonoBehaviour
     public void SetDetailsVisible(bool visible)
     {
         bool monk=YummnCatalog.IsMonk(definition);
-        bool show=visible&&(GetComponent<KaitSkillCard>()!=null||monk);
+        bool show=visible&&(definition.cooldown>0||monk);
         if(clockIcon!=null)clockIcon.gameObject.SetActive(show&&!monk);
         if(kiIcon!=null)kiIcon.gameObject.SetActive(show&&monk&&definition.kind==KaitAbilityKind.Active);
         if(cooldown!=null)cooldown.gameObject.SetActive(show);
     }
+    public void SetCooldown(int turns){if(cooldown!=null)cooldown.text=Mathf.Max(0,turns).ToString();}
 }

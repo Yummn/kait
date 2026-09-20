@@ -19,7 +19,6 @@ public sealed partial class KaitRun
     public bool tombArmed { get; private set; }
     public bool smiteArmed { get; private set; }
     public bool specterReady { get; private set; }
-    private bool transferCurse;
     private int lockedBaseMomentum;
     private readonly List<Vector2Int> nextTwoPriority = new List<Vector2Int>();
 
@@ -27,7 +26,7 @@ public sealed partial class KaitRun
     {
         rewardQueue.Clear(); inactiveAbilities.Clear(); retiredAbilities.Clear(); turnTriggers.Clear(); chainTriggers.Clear();
         packsWithoutRare=nextRewardId=lockedBaseMomentum=0; copiedPassive=previousCopiedPassive=KaitPassive.None;
-        mirrorNextRift=tombArmed=smiteArmed=specterReady=transferCurse=false; nextTwoPriority.Clear();
+        mirrorNextRift=tombArmed=smiteArmed=specterReady=false; nextTwoPriority.Clear();
     }
     public bool IsAbilityPending(KaitAbilityDef def) => def!=null && inactiveAbilities.Contains(def.id);
     private static string SkillAbilityId(KaitSkill skill)=>KaitAbilityCatalog.Get(skill)?.id??"active."+skill;
@@ -60,17 +59,25 @@ public sealed partial class KaitRun
     }
     public List<KaitAbilityDef> EligibleAbilities(List<KaitAbilityDef> pack=null)
     {
-        bool curse=skills.Contains(KaitSkill.HexCurse)||(pack!=null && pack.Exists(d=>d.skill==KaitSkill.HexCurse));
-        return (IsYummn ? YummnCatalog.Pool() : KaitAbilityCatalog.All).FindAll(d=> !d.experimental && YummnPrerequisite(d) &&
+        bool curse=HasCurseSource(), repeatable=HasRepeatableMagic(), cooldown=HasCooldownAbility();
+        return (IsYummn ? YummnCatalog.Pool() : KaitAbilityCatalog.DefaultPool()).FindAll(d=> (IsYummn?!d.experimental:true) && YummnPrerequisite(d) &&
             true &&
             !(d.kind==KaitAbilityKind.Active?skills.Contains(d.skill):passives.Contains(d.passive)) &&
             (pack==null || !pack.Contains(d)) &&
             (!(d.skill==KaitSkill.RelentlessHex || d.passive==KaitPassive.HexArmor || d.passive==KaitPassive.MasterHex ||
                 d.passive==KaitPassive.MaddeningHex || d.passive==KaitPassive.Lifedrinker) || curse) &&
-            (d.passive!=KaitPassive.Devil || skills.Count>=2) &&
-            (d.passive!=KaitPassive.BladeCovenant || skills.Count>0) &&
+            (d.passive!=KaitPassive.TwinSigil || repeatable) &&
+            (!(d.passive==KaitPassive.Devil||d.passive==KaitPassive.BladeCovenant) || cooldown) &&
             (d.passive!=KaitPassive.Simulacrum || passives.Exists(p=>KaitAbilityCatalog.Get(p)?.copyable==true)) &&
             (d.passive!=KaitPassive.Passwall || config.enableThreatPillars));
+    }
+    public bool HasCurseSource()=>passives.Contains(KaitPassive.HexBlade)||skills.Contains(KaitSkill.HungerOfHadar);
+    public bool HasRepeatableMagic()=>passives.Contains(KaitPassive.EldritchBlast)||skills.Contains(KaitSkill.HungerOfHadar);
+    public bool HasCooldownAbility()
+    {
+        foreach(var s in skills)if((KaitAbilityCatalog.Get(s)?.cooldown??0)>0)return true;
+        foreach(var p in passives)if((KaitAbilityCatalog.Get(p)?.cooldown??0)>0)return true;
+        return false;
     }
     private KaitAbilityDef WeightedAbility(List<KaitAbilityDef> pool)
     {
@@ -108,9 +115,9 @@ public sealed partial class KaitRun
     }
     public void EnqueueMergeReward(KaitMergeEvent merge)
     {
-        int rewardValue=IsYummn?Yummn.rules.RewardMergeValue:32;
+        int rewardValue=IsYummn?Yummn.rules.RewardMergeValue:16;
         if(merge.resultValue!=rewardValue || (merge.sourceValue!=0 && merge.sourceValue!=rewardValue/2)) return;
-        var pack=new KaitRewardPack { id=++nextRewardId,sourceTurn=turn,sourceMergeCell=merge.threatCell,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsYummn?YummnCatalog.Version:"0.6.1" };
+        var pack=new KaitRewardPack { id=++nextRewardId,sourceTurn=turn,sourceMergeCell=merge.threatCell,characterId=Character,rulesProfileId=RulesProfileId,cardPoolVersion=IsYummn?YummnCatalog.Version:KaitAbilityCatalog.Version };
         pack.generationSeed=replaySeed;
         FillReward(pack); rewardQueue.Enqueue(pack);
     }
@@ -122,37 +129,14 @@ public sealed partial class KaitRun
         if(!YummnPrerequisite(def))return false;
         if(def.kind==KaitAbilityKind.Active ? skills.Contains(def.skill) : passives.Contains(def.passive)) return false;
         if(def.passive==KaitPassive.Simulacrum && (!passives.Contains(copy) || KaitAbilityCatalog.Get(copy)?.copyable!=true)) return false;
-        if(IsYummn)return ResolveYummnSharedReward(def,replaceSlot);
-        int count=def.kind==KaitAbilityKind.Active?skills.Count:passives.Count;
-        if(replaceSlot < -1 || replaceSlot>=count || count>=3 && replaceSlot<0) return false;
-        if(IsYummn)
-        {
-            var nextSkills=new List<KaitSkill>(skills);var nextPassives=new List<KaitPassive>(passives);
-            if(def.kind==KaitAbilityKind.Active){if(replaceSlot>=0)nextSkills[replaceSlot]=def.skill;else nextSkills.Add(def.skill);}
-            else {if(replaceSlot>=0)nextPassives[replaceSlot]=def.passive;else nextPassives.Add(def.passive);}
-            if(YummnMissingRequirement(def,nextSkills,nextPassives)!=null)return false;
-            var counts=replaceSlot>=0?Yummn.metrics.cardReplacements:Yummn.metrics.cardSelections;
-            counts[def.id]=counts.TryGetValue(def.id,out var n)?n+1:1;
-        }
-        if(replaceSlot>=0)
-        {
-            string old=def.kind==KaitAbilityKind.Active?SkillAbilityId(skills[replaceSlot]):PassiveAbilityId(passives[replaceSlot]);
-            if(!inactiveAbilities.Remove(old)) retiredAbilities.Add(old);
-            if(def.kind==KaitAbilityKind.Active) skills[replaceSlot]=def.skill; else passives[replaceSlot]=def.passive;
-        }
-        else if(def.kind==KaitAbilityKind.Active) skills.Add(def.skill); else passives.Add(def.passive);
-        inactiveAbilities.Add(def.id);
-        if(def.kind==KaitAbilityKind.Active) skillCooldowns[def.skill]=0;
-        if(def.passive==KaitPassive.Simulacrum) copiedPassive=copy;
-        rewardQueue.Dequeue(); return true;
+        return ResolveSharedReward(def,replaceSlot,copy);
     }
     public string YummnReplacementConsequences(int index,int slot)
     {
-        if(IsYummn)return null;
-        if(!IsYummn||CurrentReward==null||index<0||index>=CurrentReward.choices.Count||slot<0)return null;
+        if(CurrentReward==null||index<0||index>=CurrentReward.choices.Count||slot<0||slot>=EquippedCardCount)return null;
         var d=CurrentReward.choices[index];var aa=new List<KaitSkill>(skills);var pp=new List<KaitPassive>(passives);
-        if(d.kind==KaitAbilityKind.Active){if(slot>=aa.Count)return null;aa[slot]=d.skill;}
-        else {if(slot>=pp.Count)return null;pp[slot]=d.passive;}
+        if(slot<aa.Count)aa.RemoveAt(slot);else pp.RemoveAt(slot-aa.Count);
+        if(d.kind==KaitAbilityKind.Active)aa.Add(d.skill);else pp.Add(d.passive);
         var names=new List<string>();
         foreach(var p in pp){var def=KaitAbilityCatalog.Get(p);if(YummnMissingRequirement(def,skills,passives)==null&&YummnMissingRequirement(def,aa,pp)!=null)names.Add(def.nameZh);}
         return names.Count==0?null:string.Join("、",names)+"将失去前置";

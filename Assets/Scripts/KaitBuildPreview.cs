@@ -16,7 +16,7 @@ public sealed partial class KaitGame
         }
         if(mode=="reward")
         {
-            run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=16,resultValue=32});
+        run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=8,resultValue=16});
             run.CurrentReward.choices.Clear();
             run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitSkill.HexCurse));
             run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitPassive.BloodBookmark));

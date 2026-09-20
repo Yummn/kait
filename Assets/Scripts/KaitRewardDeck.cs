@@ -123,7 +123,7 @@ public sealed class KaitRewardDeck : MonoBehaviour
         if(expanded&&selected>=0)ShowSlots();else foreach(var s in slots)s.gameObject.SetActive(false);
         guide.text=!Allowed()?"结算后选牌":
             Time.unscaledTime<noticeUntil&&!string.IsNullOrEmpty(notice)?notice:
-            IsDragging&&hoverSlot>=0?(NeedsCopy?"复制":hoverSlot<(run.IsYummn?run.EquippedCardCount:Definition.kind==KaitAbilityKind.Active?run.skills.Count:run.passives.Count)?"替换":"装备")+" · "+slotNames[hoverSlot].text:
+            IsDragging&&hoverSlot>=0?(NeedsCopy?"复制":hoverSlot<run.EquippedCardCount?"替换":"装备")+" · "+slotNames[hoverSlot].text:
             NeedsCopy?"① 选择要复制的被动":
             copy!=KaitPassive.None?"② 拖入装备槽":"";
         guideBackdrop.gameObject.SetActive(expanded&&!string.IsNullOrEmpty(guide.text));
@@ -148,25 +148,26 @@ public sealed class KaitRewardDeck : MonoBehaviour
     {
         var def=Definition;if(def==null)return;
         bool copying=NeedsCopy,isPassive=def.kind==KaitAbilityKind.Passive;
-        int count=run.IsYummn?run.EquippedCardCount:isPassive?run.passives.Count:run.skills.Count,visible=copying?count:Mathf.Min(run.IsYummn?6:3,count+1);
+        int count=run.EquippedCardCount,visible=copying?count:Mathf.Min(6,count+1);
         for(int i=0;i<slots.Length;i++)
         {
             bool show=i<visible;slots[i].gameObject.SetActive(show);validSlots[i]=false;if(!show)continue;
             slots[i].transform.SetAsLastSibling();
             slots[i].rectTransform.sizeDelta=new Vector2(164,164);
             slots[i].rectTransform.anchoredPosition=new Vector2((i-(visible-1)*.5f)*176,0);
-            bool filled=i<count;validSlots[i]=Allowed()&&run.YummnPrerequisite(def)&&(!copying||filled&&KaitAbilityCatalog.Get(run.passives[i])?.copyable==true);
+            bool filled=i<count;var equipped=filled?run.EquippedCard(i):null;
+            validSlots[i]=Allowed()&&run.YummnPrerequisite(def)&&(!copying||filled&&equipped.kind==KaitAbilityKind.Passive&&equipped.copyable);
             bool hovered=validSlots[i]&&hoverSlot==i;
             slots[i].sprite=hovered?KaitStorybookTheme.Pressed:KaitStorybookTheme.Button;
             slots[i].color=validSlots[i]?Color.white:new Color(.75f,.75f,.75f,1);
             slotOutlines[i].color=Color.clear;
             slots[i].transform.localScale=Vector3.one*(hovered?1.035f:1f);
-            slotNames[i].text=filled?(run.IsYummn?run.EquippedCard(i).nameZh:isPassive?KaitPassiveCatalog.Name(run.passives[i]):KaitRun.SkillName(run.skills[i])):"";
+            slotNames[i].text=filled?equipped.nameZh:"";
             slotHints[i].text="";
             dropGlyphs[i].SetSymbol(!validSlots[i]?KaitUiGlyph.Symbol.Close:hovered?KaitUiGlyph.Symbol.Check:filled?KaitUiGlyph.Symbol.Swap:KaitUiGlyph.Symbol.Plus);
             slotHints[i].color=hovered?Color.white:new Color(.60f,1,.84f);
             slotIcons[i].gameObject.SetActive(filled);
-            if(filled){var equipped=run.IsYummn?run.EquippedCard(i):null;if(equipped!=null){if(equipped.kind==KaitAbilityKind.Active)slotIcons[i].Show(equipped.skill);else slotIcons[i].Show(equipped.passive);}else if(isPassive)slotIcons[i].Show(run.passives[i]);else slotIcons[i].Show(run.skills[i]);}
+            if(filled){if(equipped.kind==KaitAbilityKind.Active)slotIcons[i].Show(equipped.skill);else slotIcons[i].Show(equipped.passive);}
         }
         tray.sizeDelta=new Vector2(visible*176+24,204);
     }
@@ -184,8 +185,8 @@ public sealed class KaitRewardDeck : MonoBehaviour
         {hoverSlot=-1;Notify("暂不可选 · 已归位");Sync(run);return;}
         ShowSlots();int slot=HitSlot(point);hoverSlot=-1;
         if(slot<0){Notify("已归位");Sync(run);return;}
-        if(NeedsCopy){copy=run.passives[slot];GameAudio.PlayCardSnap();Sync(run);return;}
-        int count=run.IsYummn?run.EquippedCardCount:Definition.kind==KaitAbilityKind.Active?run.skills.Count:run.passives.Count;
+        if(NeedsCopy){copy=run.EquippedCard(slot).passive;GameAudio.PlayCardSnap();Sync(run);return;}
+        int count=run.EquippedCardCount;
         string consequence=run.YummnReplacementConsequences(selected,slot<count?slot:-1);
         if(consequence!=null){ConfirmReplacement(slot,consequence);return;}
         if(run.SelectReward(selected,slot<count?slot:-1,copy))Complete();else{Notify("暂不可装备 · 已归位");Sync(run);}

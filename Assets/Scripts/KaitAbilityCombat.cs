@@ -3,8 +3,8 @@ using UnityEngine;
 
 public sealed partial class KaitRun
 {
-    public static bool NeedsEnemyTarget(KaitSkill s) => s==KaitSkill.HexCurse || s==KaitSkill.IceTomb || s==KaitSkill.LesserPhantom || s==KaitSkill.Command || s==KaitSkill.GraspHadar;
-    public static bool NeedsCellTarget(KaitSkill s) => YummnCatalog.IsActive(s) || s==KaitSkill.DispelMagic || s==KaitSkill.MistyStep || s==KaitSkill.RelentlessHex;
+    public static bool NeedsEnemyTarget(KaitSkill s) => s==KaitSkill.HexCurse || s==KaitSkill.IceTomb || s==KaitSkill.LesserPhantom || s==KaitSkill.Command || s==KaitSkill.GraspHadar || s==KaitSkill.EldritchBlast;
+    public static bool NeedsCellTarget(KaitSkill s) => YummnCatalog.IsActive(s) || s==KaitSkill.DispelMagic || s==KaitSkill.MistyStep || s==KaitSkill.RelentlessHex || s==KaitSkill.HungerOfHadar;
     public KaitTurnResult lastSkillResult { get; private set; }
     public bool IsLegalSkillCell(KaitSkill skill,Vector2Int cell)
     {
@@ -22,6 +22,7 @@ public sealed partial class KaitRun
             return true; // Direction selectors remain clickable even at the map edge.
         }
         if(skill==KaitSkill.DispelMagic) return SpawnAt(cell)!=null;
+        if(skill==KaitSkill.HungerOfHadar)return Inside(cell)&&!IsHardBlocked(cell);
         if(IsHardBlocked(cell) || cell==katePos || EnemyAt(cell)!=null) return false;
         if(skill==KaitSkill.MistyStep) return Mathf.Abs(cell.x-katePos.x)+Mathf.Abs(cell.y-katePos.y)==1;
         if(skill==KaitSkill.RelentlessHex) return enemies.Exists(e=>e.life!=KaitEnemyLife.Dead && e.cursed && Mathf.Abs(cell.x-e.pos.x)+Mathf.Abs(cell.y-e.pos.y)==1);
@@ -34,6 +35,7 @@ public sealed partial class KaitRun
         if(ended || !IsSkillActive(skill) || SkillCooldown(skill)>0 || !IsLegalSkillCell(skill,cell)) return false;
         lastSkillResult=new KaitTurnResult { valid=true };
         if(skill==KaitSkill.DispelMagic) spawns.Remove(SpawnAt(cell));
+        else if(skill==KaitSkill.HungerOfHadar)ApplyKaitSpellEffect(skill,null,cell,DirectionToward(katePos,cell),lastSkillResult,false);
         else { katePos=cell;lastSkillResult.katePath.Add(cell);lastSkillResult.pathMomentum.Add(momentum); }
         skillCooldowns[skill]=BaseCooldown(skill);skillsUsedBeforeInput.Add(skill);ResolveDevil(skill,lastSkillResult);
         message="已使用："+SkillName(skill);RecordReplay("cellskill",(int)skill,cell.x,cell.y);return true;
@@ -70,29 +72,36 @@ public sealed partial class KaitRun
     }
     private void ApplyPillarStagger(KaitEnemy enemy,Vector2Int wall,KaitTurnResult result)
     {
-        if(enemy.life==KaitEnemyLife.Dead || !HasPassive(KaitPassive.StaggeringSmite) ||
-            wall.x<=0 || wall.y<=0 || wall.x>=BattleSize-1 || wall.y>=BattleSize-1 || !IsHardBlocked(wall)) return;
-        enemy.frozenActions=1;TriggerPassive(KaitPassive.StaggeringSmite,result,wall-Vector2Int.one,enemy.pos,"撞柱：跳过下一次行动");
+        // Compatibility entry point for old callers; the rule now keys off collision damage.
+        ApplyCollisionStagger(enemy,wall,result);
     }
     private void PushToEnd(KaitEnemy enemy,Vector2Int delta,KaitTurnResult result)
     {
-        Vector2Int from=enemy.pos,current=from;
-        while(!IsHardBlocked(current+delta) && current+delta!=katePos && EnemyAt(current+delta)==null) current+=delta;
-        enemy.pos=current;result.pushFrom=from;result.pushTo=current;result.pushed=current!=from;
-        if(current!=from)
+        Vector2Int from=enemy.pos;
+        for(int guard=0;guard<BattleSize*BattleSize;guard++)
         {
-            result.enemyActions.Add(new KaitEnemyAction {enemyId=enemy.id,type=KaitIntentType.Move,from=from,to=current});
+            Vector2Int next=enemy.pos+delta;
+            if(IsHardBlocked(next)||next==katePos)break;
+            var blocker=EnemyAt(next);
+            if(blocker==null){enemy.pos=next;continue;}
+            if(!HasPassive(KaitPassive.RepellingBlast)||!TryShiftEnemyLine(next,delta,result))break;
+            enemy.pos=next;
+        }
+        result.pushFrom=from;result.pushTo=enemy.pos;result.pushed|=enemy.pos!=from;
+        if(enemy.pos!=from)
+        {
+            result.enemyActions.Add(new KaitEnemyAction {enemyId=enemy.id,type=KaitIntentType.Move,from=from,to=enemy.pos});
             ResolveMomentumResonance(from,delta,result);katePos=from;
         }
-        if(IsHardBlocked(current+delta))
+        if(IsHardBlocked(enemy.pos+delta))
         {
             int damage=config.enableCollisionDamage?config.wallCollisionDamage:0;
-            DamageEnemy(enemy,damage,true,result);result.collisionDamage+=damage;ApplyPillarStagger(enemy,current+delta,result);
+            DamageEnemy(enemy,damage,true,result);result.collisionDamage+=damage;if(damage>0)ApplyCollisionStagger(enemy,enemy.pos+delta,result);
         }
-        else if(EnemyAt(current+delta) is KaitEnemy blocker)
+        else if(EnemyAt(enemy.pos+delta) is KaitEnemy blocker)
         {
             int damage=config.enableCollisionDamage?config.unitCollisionDamage:0;
-            DamageEnemy(enemy,damage,true,result);DamageEnemy(blocker,damage,false,result);result.collisionDamage+=damage*2;
+            DamageEnemy(enemy,damage,true,result);DamageEnemy(blocker,damage,false,result);result.collisionDamage+=damage*2;if(damage>0)ApplyCollisionStagger(enemy,blocker.pos,result);
         }
     }
     private bool CancelEnemyAttack(KaitEnemy attacker,KaitIntent intent,KaitTurnResult result)
@@ -100,7 +109,7 @@ public sealed partial class KaitRun
         if(intent.type==KaitIntentType.None || intent.type==KaitIntentType.Move)return false;
         if(attacker.cursed && !attacker.hexArmorSpent && HasPassive(KaitPassive.HexArmor))
         {
-            attacker.hexArmorSpent=true;TriggerPassive(KaitPassive.HexArmor,result,attacker.pos-Vector2Int.one,attacker.pos,"咒术护甲使攻击失效");return true;
+            attacker.cursed=false;attacker.hexArmorSpent=true;TriggerPassive(KaitPassive.HexArmor,result,attacker.pos-Vector2Int.one,attacker.pos,"咒术护甲消耗诅咒并使攻击失效");return true;
         }
         if(specterReady)
         {
@@ -114,17 +123,16 @@ public sealed partial class KaitRun
     }
     private void OnCursedDamage(KaitEnemy enemy,bool cursed,KaitTurnResult result)
     {
-        if(!cursed || !HasPassive(KaitPassive.MaddeningHex) || !turnTriggers.Add("Maddening")) return;
+        if(!cursed || !HasPassive(KaitPassive.MaddeningHex)) return;
         foreach(var neighbour in new List<KaitEnemy>(enemies))
             if(neighbour.id!=enemy.id && neighbour.life!=KaitEnemyLife.Dead &&
                 Mathf.Abs(neighbour.pos.x-enemy.pos.x)+Mathf.Abs(neighbour.pos.y-enemy.pos.y)==1)
-                DamageEnemy(neighbour,PassiveCopies(KaitPassive.MaddeningHex),false,result);
+                DamageEnemyWithContext(neighbour,new KaitDamageContext{kind=KaitDamageKind.CurseBurst,baseAmount=PassiveCopies(KaitPassive.MaddeningHex),
+                    creditKate=true,primaryEnemyId=primaryContact?.enemyId??-1,parentEventId=++nextDamageEventId},result);
         TriggerPassive(KaitPassive.MaddeningHex,result,enemy.pos-Vector2Int.one,enemy.pos,"疯狂咒缚波及相邻敌人");
     }
     private void OnAbilityKill(KaitEnemy enemy,bool cursed,bool creditKate,KaitTurnResult result)
     {
-        if(cursed && chainActive && HasPassive(KaitPassive.MasterHex))
-        { transferCurse=true;TriggerPassive(KaitPassive.MasterHex,result,enemy.pos-Vector2Int.one,enemy.pos,"诅咒等待传递给下一命中目标"); }
         if(cursed && creditKate && HasPassive(KaitPassive.Lifedrinker) && chainTriggers.Add("Lifedrinker"))
         { kateHp=Mathf.Min(KateMaxHp,kateHp+PassiveCopies(KaitPassive.Lifedrinker));TriggerPassive(KaitPassive.Lifedrinker,result,enemy.pos-Vector2Int.one,katePos,"饮命者恢复生命"); }
         if(creditKate && HasPassive(KaitPassive.AccursedSpecter) && chainTriggers.Add("Specter"))

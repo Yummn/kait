@@ -11,7 +11,7 @@ public sealed partial class KaitGame
         yield return new WaitForSecondsRealtime(.3f);
         run.skills.Clear();run.skills.AddRange(new[]{KaitSkill.SwiftBoots,KaitSkill.CatAgility,KaitSkill.Command});
         run.passives.Clear();run.passives.AddRange(new[]{KaitPassive.BirdEye,KaitPassive.CheshireCat,KaitPassive.Trend});
-        run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=16,resultValue=32});
+        run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=8,resultValue=16});
         run.CurrentReward.choices.Clear();
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitSkill.HexCurse));
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitPassive.Simulacrum));
@@ -50,7 +50,7 @@ public sealed partial class KaitGame
         EndRewardPointer(card.gameObject,pointer);
         if(run.skills[1]!=KaitSkill.HexCurse||run.CurrentReward!=null||!run.IsAbilityPending(KaitAbilityCatalog.Get(KaitSkill.HexCurse)))Debug.LogError("RewardDrag QA: replacement or staging failed");
         yield return new WaitForSecondsRealtime(.4f);yield return new WaitForEndOfFrame();CaptureCanvasToPng(path+".equipped.png");yield return null;
-        run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=16,resultValue=32});run.CurrentReward.choices.Clear();
+        run.EnqueueMergeReward(new KaitMergeEvent{sourceValue=8,resultValue=16});run.CurrentReward.choices.Clear();
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitPassive.Simulacrum));
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitSkill.IceTomb));
         run.CurrentReward.choices.Add(KaitAbilityCatalog.Get(KaitPassive.BloodBookmark));

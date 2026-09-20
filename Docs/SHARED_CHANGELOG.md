@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-18（北京时间）。维护者：Yummn 卡牌平衡会话。
+最后更新：2026-09-20（北京时间）。维护者：Kait 人物卡图统一会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -11,20 +11,34 @@
 | 工程 | C:/Users/yummn/Downloads/kait |
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
-| 本地规则版本 | 应用0.9.18、Android配置版本码918（现有APK仍917）；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
-| Git 基线 | 0.9.15源码、正式资源与说明已由提交f358223推送origin/master；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
-| 最近 Windows 构建 | Build/kait.exe v0.9.18；Logs/tutorial-readable0918-windows.log成功。Kait/Yummn详细说明顶部与底部实际截图已检查，正文和滚动条可辨、无正文溢出；源码/Windows同步。完整免安装包Build/kait-v0.9.18-windows.zip，318617500字节，SHA256 BBC97E4BF178BE429E2C8DEE02FA23704E1D6F28ED0FAFA6DC0A0C762B806AEE |
-| 最近 EditMode 测试 | Logs/root090-handoff-tests.xml：135/135专项与Kait核心/重开回归通过。此前全量1064项979通过85失败，包含旧规则/UI断言，未全部核定原因，不能表述为全量通过 |
+| 本地规则版本 | 应用0.9.23、Android配置版本码923；Kait保留47个身份，普通对局默认池24张、实验池11张、Legacy池12张，牌池kait-round2-default24-20260919，规则Kait.0.9.21-round2-default24；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
+| Git 基线 | 0.9.19—0.9.23规则、卡图、测试与说明由本次发布提交推送origin/master并建立v0.9.23标签；Yummn/kait保持PUBLIC。改版前0.9.7源码/正式资源/文档提交ccd33f6569ee9e12ed6115e53332cda47660259b及标签backup-v0.9.7-before-storybook-20260914继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
+| 最近 Windows 构建 | Build/kait.exe v0.9.23；Logs/kait0923-windows-final.log成功退出0，构建数据内版本0.9.23。47张简洁卡图已接入，512像素无压缩导入与Yummn一致。实际运行完成Kait八页与Yummn对照页截图，ART0923_GALLERY_COMPLETE，42项玩家偏好已恢复；源码/Windows同步，旧ZIP未重打 |
+| 最近 EditMode 测试 | Logs/kait0922-art-tests.xml：Kait 47张卡图资源加载、二轮分池、六槽及相关战斗规则专项21/21通过；47张最终PNG均为RGBA并含真实透明像素。上轮全量Logs/candidate47-all-tests.xml共1131项962通过、169项旧契约失败，不能表述为全量通过 |
 | 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
 | 最近视觉运行检查 | rollback0916-runtime.log：STORYBOOK0915_QA_COMPLETE。恢复旧草雪边、森林层与原布局，两角色/两比例运行检查通过，Yummn1920实际截图已看；41项偏好恢复。不是Android实机验收 |
 | 最新 iOS 导出 | Build/kait-v0.9.18-ios-xcode.zip，514095718字节；Logs/ios0918-export.log成功。Xcode工程版本0.9.18(918)、com.kaitprototype.demo、iOS 13+、ARM64/Metal、iPhone+iPad、横屏、AppIcon与IL2CPP元数据核验通过；独立解压后3130个文件逐项SHA256一致。SHA256 8F4FCEAA708DA76635F071C83AAA4E4067B7122389655D5622FC7E921387855B。Windows无Xcode与Apple签名材料，尚未编译/签名IPA或真机验收 |
-| 最新 Android | Build/kait-v0.9.17.apk，2026-09-18 11:22:24，316351645字节；Logs/yummn-card-balance0917-android.log成功退出0。版本917、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效。SHA256 39315E90697EDA30024B5318CFA41AA560D854BC3E3462DB188D23F6C44FAF08。旧APK保留；未做真机验收 |
+| 最新 Android | Build/kait-v0.9.23.apk，2026-09-20 10:52:46，324869599字节；Logs/kait0923-android.log成功退出0。版本0.9.23(923)、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效。SHA256 4FA8A4571B6E64D61806993F644AD62644C10C0D88C4577F665E2E3E4EA886EF。ADB无设备，未做真机验收 |
 | Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
+
+RELEASE-20260920-0923-ANDROID-GITHUB：完成，本会话。基于当前0.9.23简洁Kait卡图与二轮牌池工作树，KaitCandidate47Tests 21/21通过；Android构建成功并核验版本923、API26/35、ARM64、UnityPlayerActivity、v2签名及SHA256，ADB无设备故未真机验收。0.9.19—0.9.23源码、正式资源、测试与说明已由本次发布提交推送公开origin/master并建立v0.9.23标签，APK随同名GitHub Release发布。明确排除未核实的旧v0.8.1对照实测报告本地修改。
+
+ART-20260920-KAIT-SIMPLE：完成，本会话。以用户Yummn截图为参考，内置图像工具逐张重做47张Kait卡图；44张物件/符号，3张简化Q版人物。47张RGBA透明检查通过，冰墓人物黑紫发已单独修正，导入设为512像素无压缩。Windows0.9.23构建成功并核实版本，Kait八页与Yummn对照页实际截图已检查，图像完整且无卡框裁剪，42项玩家偏好恢复；不改玩法。说明与提示词见Docs/v0.9.23-Kait简洁卡图.md。未Android/上传。
+
+BUILD-20260920-WINDOWS-0922：完成，本会话。当前0.9.22源码、二轮牌池和统一Kait人物卡图已构建到Build/kait.exe及配套kait_Data。Logs/kait0922-windows.log成功退出0，构建数据内版本0.9.22，资源/程序集时间为2026-09-20 00:04；隐藏窗口启动烟测存活12秒且初始化正常。未重打Windows ZIP，不构建Android、不上传GitHub。
+
+ART-20260919-KAIT-CHARACTER-CONSISTENCY：完成，本会话。逐张检查Kait全部47张卡图，重绘其中33张含Kait Q版人物的卡图；人物固定为黑紫发、琥珀眼、猫耳、黑棕/紫色咒剑士服装、金色扣带与巨型暗色咒剑。纯道具、法术和敌方剪影14张保留原构图。正式资源路径不变，卡牌大全/选牌/折叠卡直接加载新版；47张RGBA透明校验通过，Unity专项21/21通过。应用0.9.22(922)，规则/牌池/存档不变；不构建Android/Windows、不上传GitHub。详见Docs/v0.9.22-Kait人物卡图统一.md。
+
+RULE-20260919-KAIT-ROUND2-ART39：完成，本会话。按《试玩反馈后二轮牌池重构》实施默认24/实验11/Legacy12、首刀/余势/咒刃/震慑/自动魔能爆/统一主动被动冷却及动态抽取前置；47个身份、旧ID和解析入口保留。为上一轮新增8张之外的其余39张Kait牌生成独立透明卡图并接入，画风对齐Yummn ApprovedA，应用0.9.21(921)。专项21/21通过；本轮不构建Android/Windows、不上传GitHub。详见Docs/v0.9.21-Kait二轮牌池与全卡图.md。
+
+RULE-20260918-KAIT-ART-REWARD16：完成，本会话。新增8张透明独立卡图并接入Kait新牌，画风对齐Yummn ApprovedA；Kait每次合成出16三选一，Yummn阈值不变。应用0.9.20(920)，Kait规则/牌池快照升版避免旧回放静默套用。Unity专项18/18通过；Android构建、版本/入口/API/ARM64/v2签名与SHA256已核验，ADB无设备未真机验收。Windows仍0.9.18，未上传GitHub。详见Docs/v0.9.20-Kait新卡图与16选牌.md。
+
+RULE-20260918-KAIT-CANDIDATE47：完成，本会话。按《Kait 候选47张全接入》实现47张候选池（13主动/34被动）、37张建议正式池、共享六槽跨类型替换及重剑/咒剑/敌军内斗/战争法师/真实合并规则；8张新牌优先复用Yummn获批卡图。应用0.9.19，独立规则与牌池版本阻止旧回放静默套用新规则。专项17/17通过；全量1131项962通过、169项旧契约失败，如实保留。Android构建、版本/入口/API/ARM64/v2签名与哈希已核验，ADB无设备未真机验收；首次切Android的旧DAG漏新脚本后Unity自动刷新并在同次构建成功。Yummn 56张牌池不改，不上传GitHub。详见Docs/v0.9.19-Kait候选47张与六槽构筑.md。
 
 BUILD-20260918-IOS-0918：完成Xcode工程导出，本会话。安装Unity 6000.0.30f1官方Windows iOS Build Support，新增可复用的iOS Xcode导出入口；配置0.9.18/918、iOS 13+、iPhone与iPad、横屏、ARM64/Metal、IL2CPP、完整应用图标和com.kaitprototype.demo。Logs/ios0918-export.log成功；工程压缩后独立解压，3130个文件逐项SHA256一致，包体与哈希见上方快照。README-iOS.txt说明在Mac/Xcode选择Apple Team后运行或归档。Windows无Xcode和Apple签名材料，未编译/签名IPA、未真机验收；不上传GitHub。
 

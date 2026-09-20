@@ -81,6 +81,7 @@ public sealed class KaitPassiveDeck : MonoBehaviour
             card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Passive)));
             card.SetRequirement(run.IsYummn?run.YummnMissingRequirement(KaitAbilityCatalog.Get(card.Passive)):null);
             card.SetCopiedPassive(run.copiedPassive);
+            card.GetComponent<KaitCardSkin>()?.SetCooldown(run.PassiveCooldown(card.Passive));
             if (triggers > shownTriggers[i]) card.Pulse(triggers);
             shownTriggers[i] = triggers;
         }
