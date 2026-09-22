@@ -1,0 +1,949 @@
+fileFormatVersion: 2
+guid: de5a8d020a0f70d4cba4ee170733f23b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -136271353987458261
+    second: RuneDetonation_0
+  - first:
+      213: -1461388503819157644
+    second: RuneDetonation_1
+  - first:
+      213: -1557580331563802881
+    second: RuneDetonation_2
+  - first:
+      213: -2639005113360595979
+    second: RuneDetonation_3
+  - first:
+      213: -5601163753640697978
+    second: RuneDetonation_4
+  - first:
+      213: -1450676847264450558
+    second: RuneDetonation_5
+  - first:
+      213: -3394212730683888588
+    second: RuneDetonation_6
+  - first:
+      213: 396380371344589651
+    second: RuneDetonation_7
+  - first:
+      213: -8263993334563857343
+    second: RuneDetonation_8
+  - first:
+      213: -8854089187612526797
+    second: RuneDetonation_9
+  - first:
+      213: -1169175901649888082
+    second: RuneDetonation_10
+  - first:
+      213: 5044867419064751802
+    second: RuneDetonation_11
+  - first:
+      213: 969265132109519224
+    second: RuneDetonation_12
+  - first:
+      213: -8236287305296064011
+    second: RuneDetonation_13
+  - first:
+      213: -1686899396331793572
+    second: RuneDetonation_14
+  - first:
+      213: -1674227278926310534
+    second: RuneDetonation_15
+  - first:
+      213: -1650533133926617197
+    second: RuneDetonation_16
+  - first:
+      213: -1951884573405328081
+    second: RuneDetonation_17
+  - first:
+      213: 4250809354431178686
+    second: RuneDetonation_18
+  - first:
+      213: -5857934249884144348
+    second: RuneDetonation_19
+  - first:
+      213: 8684069424807057310
+    second: RuneDetonation_20
+  - first:
+      213: 5984616281473129802
+    second: RuneDetonation_21
+  - first:
+      213: 2777409757607574890
+    second: RuneDetonation_22
+  - first:
+      213: -8424206464693170038
+    second: RuneDetonation_23
+  - first:
+      213: -5906869729913264165
+    second: RuneDetonation_24
+  - first:
+      213: 2872544061367545449
+    second: RuneDetonation_25
+  - first:
+      213: -5843901683046183229
+    second: RuneDetonation_26
+  - first:
+      213: -761145946921446365
+    second: RuneDetonation_27
+  - first:
+      213: 4585136979569680123
+    second: RuneDetonation_28
+  - first:
+      213: -5470961257913720933
+    second: RuneDetonation_29
+  - first:
+      213: 6081885858623155602
+    second: RuneDetonation_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RuneDetonation_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 418
+        width: 421
+        height: 439
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b1480fceddb1ef0800000000000000
+      internalID: -136271353987458261
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_1
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 485
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47ff40706ea18bbe0800000000000000
+      internalID: -1461388503819157644
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_2
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 291
+        width: 446
+        height: 576
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffe110cd0fc526ae0800000000000000
+      internalID: -1557580331563802881
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_3
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 265
+        width: 461
+        height: 593
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f3c3b9d4de506bd0800000000000000
+      internalID: -2639005113360595979
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_4
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 410
+        width: 433
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68fd3770e3ba442b0800000000000000
+      internalID: -5601163753640697978
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_5
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 438
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2083beae7192edbe0800000000000000
+      internalID: -1450676847264450558
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_6
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 430
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c6a77318555e0d0800000000000000
+      internalID: -3394212730683888588
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 23
+        width: 423
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3538eedf8d9308500800000000000000
+      internalID: 396380371344589651
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_8
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 0
+        width: 418
+        height: 397
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14c1023c8d5605d80800000000000000
+      internalID: -8263993334563857343
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_9
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 394
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3377aba7bc4ff1580800000000000000
+      internalID: -8854089187612526797
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_10
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 375
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac163646b046cfe0800000000000000
+      internalID: -1169175901649888082
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_11
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 356
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab6db445038f20640800000000000000
+      internalID: 5044867419064751802
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_12
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 369
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8795f849085837d00800000000000000
+      internalID: 969265132109519224
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_13
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 354
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f1d4c36554d2bd80800000000000000
+      internalID: -8236287305296064011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_14
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 33
+        width: 320
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5392d5cfede698e0800000000000000
+      internalID: -1686899396331793572
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_15
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 338
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7314560923f3c8e0800000000000000
+      internalID: -1674227278926310534
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_16
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 55
+        width: 183
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39faa4e0cd02819e0800000000000000
+      internalID: -1650533133926617197
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_17
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 339
+        width: 52
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2d4c9f625389e4e0800000000000000
+      internalID: -1951884573405328081
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_18
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 293
+        width: 63
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb727ca0698edfa30800000000000000
+      internalID: 4250809354431178686
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_19
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 287
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42daf0e16df64bea0800000000000000
+      internalID: -5857934249884144348
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_20
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 233
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e979476b123048870800000000000000
+      internalID: 8684069424807057310
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_21
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 273
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d9936dcc0ad0350800000000000000
+      internalID: 5984616281473129802
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_22
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 51
+        width: 62
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d37ed85775b8620800000000000000
+      internalID: 2777409757607574890
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_23
+      rect:
+        serializedVersion: 2
+        x: 1605
+        y: 156
+        width: 44
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a801a6d8ad4371b80800000000000000
+      internalID: -8424206464693170038
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_24
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 104
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7230ec645960ea0800000000000000
+      internalID: -5906869729913264165
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_25
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 102
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96e687bba935dd720800000000000000
+      internalID: 2872544061367545449
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_26
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 103
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce89bfa16a46eea0800000000000000
+      internalID: -5843901683046183229
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_27
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 100
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324d4834bcddf65f0800000000000000
+      internalID: -761145946921446365
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_28
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 31
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfe12c13acda1af30800000000000000
+      internalID: 4585136979569680123
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_29
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 39
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9fd02ae8bd3314b0800000000000000
+      internalID: -5470961257913720933
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneDetonation_30
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 37
+        width: 76
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29d64b717f2376450800000000000000
+      internalID: 6081885858623155602
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RuneDetonation_0: -136271353987458261
+      RuneDetonation_1: -1461388503819157644
+      RuneDetonation_10: -1169175901649888082
+      RuneDetonation_11: 5044867419064751802
+      RuneDetonation_12: 969265132109519224
+      RuneDetonation_13: -8236287305296064011
+      RuneDetonation_14: -1686899396331793572
+      RuneDetonation_15: -1674227278926310534
+      RuneDetonation_16: -1650533133926617197
+      RuneDetonation_17: -1951884573405328081
+      RuneDetonation_18: 4250809354431178686
+      RuneDetonation_19: -5857934249884144348
+      RuneDetonation_2: -1557580331563802881
+      RuneDetonation_20: 8684069424807057310
+      RuneDetonation_21: 5984616281473129802
+      RuneDetonation_22: 2777409757607574890
+      RuneDetonation_23: -8424206464693170038
+      RuneDetonation_24: -5906869729913264165
+      RuneDetonation_25: 2872544061367545449
+      RuneDetonation_26: -5843901683046183229
+      RuneDetonation_27: -761145946921446365
+      RuneDetonation_28: 4585136979569680123
+      RuneDetonation_29: -5470961257913720933
+      RuneDetonation_3: -2639005113360595979
+      RuneDetonation_30: 6081885858623155602
+      RuneDetonation_4: -5601163753640697978
+      RuneDetonation_5: -1450676847264450558
+      RuneDetonation_6: -3394212730683888588
+      RuneDetonation_7: 396380371344589651
+      RuneDetonation_8: -8263993334563857343
+      RuneDetonation_9: -8854089187612526797
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

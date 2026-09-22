@@ -21,7 +21,7 @@ public static class KaitStorybookDetails
     }
     static Sprite Portrait(KaitCharacter character)
     {
-        if(character==KaitCharacter.Reynard){if(sprites.TryGetValue("ReynardPortrait",out var sp))return sp;var t=Resources.Load<Texture2D>("KaitVisuals/CharacterSelection/Reynard");return sprites["ReynardPortrait"]=t==null?null:Sprite.Create(t,new Rect(t.width*.17f,t.height*.41f,t.width*.54f,t.height*.57f),Vector2.one*.5f);}
+        if(character==KaitCharacter.Reynard){if(sprites.TryGetValue("ReynardPortrait",out var sp))return sp;var t=Resources.Load<Texture2D>("KaitVisuals/ReynardPortrait");return sprites["ReynardPortrait"]=t==null?null:Sprite.Create(t,new Rect(0,0,t.width,t.height),Vector2.one*.5f);}
         return KaitStorybookArt.Load(character+"Portrait");
     }
     public static Image PortraitBadge(Transform parent,KaitCharacter character,Vector2 pos,float size)

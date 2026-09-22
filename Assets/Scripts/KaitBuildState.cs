@@ -29,8 +29,8 @@ public sealed partial class KaitRun
         mirrorNextRift=tombArmed=smiteArmed=specterReady=false; nextTwoPriority.Clear();
     }
     public bool IsAbilityPending(KaitAbilityDef def) => def!=null && inactiveAbilities.Contains(def.id);
-    private static string SkillAbilityId(KaitSkill skill)=>KaitAbilityCatalog.Get(skill)?.id??"active."+skill;
-    private string PassiveAbilityId(KaitPassive passive)=>(IsYummn?YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passive):null)?.id??KaitAbilityCatalog.Get(passive)?.id??"passive."+passive;
+    private string SkillAbilityId(KaitSkill skill)=>(IsReynard?ReynardCatalog.Get(skill):KaitAbilityCatalog.Get(skill))?.id??"active."+skill;
+    private string PassiveAbilityId(KaitPassive passive)=>(IsReynard?ReynardCatalog.Get(passive):IsYummn?YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passive):null)?.id??KaitAbilityCatalog.Get(passive)?.id??"passive."+passive;
     public bool IsSkillActive(KaitSkill skill) => (skills.Contains(skill) && !inactiveAbilities.Contains(SkillAbilityId(skill))) || retiredAbilities.Contains(SkillAbilityId(skill));
     private bool RawPassiveActive(KaitPassive passive) =>
         (passives.Contains(passive) && !inactiveAbilities.Contains(PassiveAbilityId(passive))) || retiredAbilities.Contains(PassiveAbilityId(passive));
@@ -133,6 +133,7 @@ public sealed partial class KaitRun
     }
     public string YummnReplacementConsequences(int index,int slot)
     {
+        if(!IsYummn)return null;
         if(CurrentReward==null||index<0||index>=CurrentReward.choices.Count||slot<0||slot>=EquippedCardCount)return null;
         var d=CurrentReward.choices[index];var aa=new List<KaitSkill>(skills);var pp=new List<KaitPassive>(passives);
         if(slot<aa.Count)aa.RemoveAt(slot);else pp.RemoveAt(slot-aa.Count);

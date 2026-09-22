@@ -1,0 +1,1131 @@
+fileFormatVersion: 2
+guid: 24e2baf8347a5094f948676db6b05c34
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1667645746460070303
+    second: TailGained_0
+  - first:
+      213: 2301011652172182276
+    second: TailGained_1
+  - first:
+      213: -3956658486953265029
+    second: TailGained_2
+  - first:
+      213: 5277892842531282297
+    second: TailGained_3
+  - first:
+      213: -1502415034376089452
+    second: TailGained_4
+  - first:
+      213: 2099142522704942500
+    second: TailGained_5
+  - first:
+      213: 1207293561325577089
+    second: TailGained_6
+  - first:
+      213: -3544824089705567852
+    second: TailGained_7
+  - first:
+      213: -7102293038997130769
+    second: TailGained_8
+  - first:
+      213: -55475473099092301
+    second: TailGained_9
+  - first:
+      213: -7555095521808870278
+    second: TailGained_10
+  - first:
+      213: -5070242694391732213
+    second: TailGained_11
+  - first:
+      213: -444354194809067020
+    second: TailGained_12
+  - first:
+      213: -5134195722684655928
+    second: TailGained_13
+  - first:
+      213: 7815919681877478102
+    second: TailGained_14
+  - first:
+      213: -3939332243392240409
+    second: TailGained_15
+  - first:
+      213: -7626632808663676798
+    second: TailGained_16
+  - first:
+      213: -7203315968792220390
+    second: TailGained_17
+  - first:
+      213: -537635009917957747
+    second: TailGained_18
+  - first:
+      213: 3928425546316621008
+    second: TailGained_19
+  - first:
+      213: 5538047493462846067
+    second: TailGained_20
+  - first:
+      213: 7623412618627619373
+    second: TailGained_21
+  - first:
+      213: 4923008811425333340
+    second: TailGained_22
+  - first:
+      213: -6964860742476428742
+    second: TailGained_23
+  - first:
+      213: 1045819871158053132
+    second: TailGained_24
+  - first:
+      213: 5152461842812317933
+    second: TailGained_25
+  - first:
+      213: -458302633180473511
+    second: TailGained_26
+  - first:
+      213: -1397568039758997159
+    second: TailGained_27
+  - first:
+      213: -8238081544154602565
+    second: TailGained_28
+  - first:
+      213: -4403566123205815568
+    second: TailGained_29
+  - first:
+      213: -3356363445327652750
+    second: TailGained_30
+  - first:
+      213: 5237268721737417202
+    second: TailGained_31
+  - first:
+      213: 3301885756469757725
+    second: TailGained_32
+  - first:
+      213: 2253712576643280114
+    second: TailGained_33
+  - first:
+      213: -3194807675908168078
+    second: TailGained_34
+  - first:
+      213: -1061658247410568083
+    second: TailGained_35
+  - first:
+      213: 8572215078246428567
+    second: TailGained_36
+  - first:
+      213: 7023301974961196857
+    second: TailGained_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TailGained_0
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 757
+        width: 100
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e6e0777055bd8e0800000000000000
+      internalID: -1667645746460070303
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_1
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 370
+        width: 495
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 403f1c708e5deef10800000000000000
+      internalID: 2301011652172182276
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_2
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 805
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78bd93c1102719c0800000000000000
+      internalID: -3956658486953265029
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_3
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 217
+        width: 422
+        height: 632
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d57a9a397de3940800000000000000
+      internalID: 5277892842531282297
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_4
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 805
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4909ec28c79562be0800000000000000
+      internalID: -1502415034376089452
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_5
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 761
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a5debea007a12d10800000000000000
+      internalID: 2099142522704942500
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_6
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 727
+        width: 20
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1836d66f81b21c010800000000000000
+      internalID: 1207293561325577089
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_7
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 390
+        width: 286
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4992add85414ecec0800000000000000
+      internalID: -3544824089705567852
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_8
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 305
+        width: 448
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe1b8df4c169f6d90800000000000000
+      internalID: -7102293038997130769
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_9
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 716
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be8e24e959ea3ff0800000000000000
+      internalID: -55475473099092301
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_10
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 585
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a74107ac6a8e62790800000000000000
+      internalID: -7555095521808870278
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_11
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 567
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b08e2cbf121e2a9b0800000000000000
+      internalID: -5070242694391732213
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_12
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 532
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f963ffc63655d9f0800000000000000
+      internalID: -444354194809067020
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 499
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c61d0e313cafb8b0800000000000000
+      internalID: -5134195722684655928
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_14
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 21
+        width: 376
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da8a474a89b77c60800000000000000
+      internalID: 7815919681877478102
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_15
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 29
+        width: 422
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e4ec54323ea459c0800000000000000
+      internalID: -3939332243392240409
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_16
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 359
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 288034f3ed1c82690800000000000000
+      internalID: -7626632808663676798
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_17
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 340
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1dad3b8a4ea80c90800000000000000
+      internalID: -7203315968792220390
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_18
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 203
+        width: 280
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d89c6079ecfe988f0800000000000000
+      internalID: -537635009917957747
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_19
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 356
+        width: 46
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4a5ce7832948630800000000000000
+      internalID: 3928425546316621008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_20
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 356
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37a681d7ad81bdc40800000000000000
+      internalID: 5538047493462846067
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_21
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 297
+        width: 61
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2a9785d26dcbc960800000000000000
+      internalID: 7623412618627619373
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_22
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5000274e6a025440800000000000000
+      internalID: 4923008811425333340
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_23
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 305
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a01ae5e08d75f90800000000000000
+      internalID: -6964860742476428742
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_24
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 0
+        width: 239
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c09ab6fb1af738e00800000000000000
+      internalID: 1045819871158053132
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_25
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 146
+        width: 60
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de035934fb8318740800000000000000
+      internalID: 5152461842812317933
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_26
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 208
+        width: 73
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957d6adee28c3a9f0800000000000000
+      internalID: -458302633180473511
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_27
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 196
+        width: 64
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 959d9b0c547da9ce0800000000000000
+      internalID: -1397568039758997159
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_28
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 164
+        width: 162
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb3a6f99b747cad80800000000000000
+      internalID: -8238081544154602565
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_29
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 100
+        width: 87
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f29f5921f363e2c0800000000000000
+      internalID: -4403566123205815568
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_30
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 98
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2789320ba3dcb61d0800000000000000
+      internalID: -3356363445327652750
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_31
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 76
+        width: 161
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f14c6877248ea840800000000000000
+      internalID: 5237268721737417202
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_32
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 144
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d174d43f997a2dd20800000000000000
+      internalID: 3301885756469757725
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_33
+      rect:
+        serializedVersion: 2
+        x: 1622
+        y: 118
+        width: 27
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc27a4d5abc64f10800000000000000
+      internalID: 2253712576643280114
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_34
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 69
+        width: 70
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2766dc77853c9a3d0800000000000000
+      internalID: -3194807675908168078
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_35
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 37
+        width: 62
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d64ba3ae27b3441f0800000000000000
+      internalID: -1061658247410568083
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_36
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 37
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79f20253230a6f670800000000000000
+      internalID: 8572215078246428567
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailGained_37
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 21
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f8cd76fe7c77160800000000000000
+      internalID: 7023301974961196857
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TailGained_0: -1667645746460070303
+      TailGained_1: 2301011652172182276
+      TailGained_10: -7555095521808870278
+      TailGained_11: -5070242694391732213
+      TailGained_12: -444354194809067020
+      TailGained_13: -5134195722684655928
+      TailGained_14: 7815919681877478102
+      TailGained_15: -3939332243392240409
+      TailGained_16: -7626632808663676798
+      TailGained_17: -7203315968792220390
+      TailGained_18: -537635009917957747
+      TailGained_19: 3928425546316621008
+      TailGained_2: -3956658486953265029
+      TailGained_20: 5538047493462846067
+      TailGained_21: 7623412618627619373
+      TailGained_22: 4923008811425333340
+      TailGained_23: -6964860742476428742
+      TailGained_24: 1045819871158053132
+      TailGained_25: 5152461842812317933
+      TailGained_26: -458302633180473511
+      TailGained_27: -1397568039758997159
+      TailGained_28: -8238081544154602565
+      TailGained_29: -4403566123205815568
+      TailGained_3: 5277892842531282297
+      TailGained_30: -3356363445327652750
+      TailGained_31: 5237268721737417202
+      TailGained_32: 3301885756469757725
+      TailGained_33: 2253712576643280114
+      TailGained_34: -3194807675908168078
+      TailGained_35: -1061658247410568083
+      TailGained_36: 8572215078246428567
+      TailGained_37: 7023301974961196857
+      TailGained_4: -1502415034376089452
+      TailGained_5: 2099142522704942500
+      TailGained_6: 1207293561325577089
+      TailGained_7: -3544824089705567852
+      TailGained_8: -7102293038997130769
+      TailGained_9: -55475473099092301
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

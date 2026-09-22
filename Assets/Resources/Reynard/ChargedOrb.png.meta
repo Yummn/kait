@@ -1,0 +1,1443 @@
+fileFormatVersion: 2
+guid: 7796d954d5c0d4244a1bb52fc5bc269f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1544147822174159072
+    second: ChargedOrb_0
+  - first:
+      213: 4266328214969409611
+    second: ChargedOrb_1
+  - first:
+      213: -2604940394352992303
+    second: ChargedOrb_2
+  - first:
+      213: -6339243913969678930
+    second: ChargedOrb_3
+  - first:
+      213: -3245433392825667100
+    second: ChargedOrb_4
+  - first:
+      213: 1892974739167779102
+    second: ChargedOrb_5
+  - first:
+      213: 6335382521255238761
+    second: ChargedOrb_6
+  - first:
+      213: -3650929441667569978
+    second: ChargedOrb_7
+  - first:
+      213: 4665121094548668934
+    second: ChargedOrb_8
+  - first:
+      213: 6383024096785486419
+    second: ChargedOrb_9
+  - first:
+      213: -1669085612793520936
+    second: ChargedOrb_10
+  - first:
+      213: -5657033431280885094
+    second: ChargedOrb_11
+  - first:
+      213: -8904158581779023890
+    second: ChargedOrb_12
+  - first:
+      213: 996476641076830518
+    second: ChargedOrb_13
+  - first:
+      213: 6031364288462483091
+    second: ChargedOrb_14
+  - first:
+      213: -2702687028704331947
+    second: ChargedOrb_15
+  - first:
+      213: -6736089369613014355
+    second: ChargedOrb_16
+  - first:
+      213: 44041788851029995
+    second: ChargedOrb_17
+  - first:
+      213: -2283766175408756709
+    second: ChargedOrb_18
+  - first:
+      213: 6888039292389375787
+    second: ChargedOrb_19
+  - first:
+      213: -8610331192825707009
+    second: ChargedOrb_20
+  - first:
+      213: 1096829513063211672
+    second: ChargedOrb_21
+  - first:
+      213: 6789348421779631226
+    second: ChargedOrb_22
+  - first:
+      213: 3435340045240677147
+    second: ChargedOrb_23
+  - first:
+      213: 344404811530542461
+    second: ChargedOrb_24
+  - first:
+      213: -6413829595280385744
+    second: ChargedOrb_25
+  - first:
+      213: 2144892072200968705
+    second: ChargedOrb_26
+  - first:
+      213: 2174485324040300389
+    second: ChargedOrb_27
+  - first:
+      213: -6466657671871980665
+    second: ChargedOrb_28
+  - first:
+      213: 8208764854940382339
+    second: ChargedOrb_29
+  - first:
+      213: 2214925908254054080
+    second: ChargedOrb_30
+  - first:
+      213: -6788612994310502238
+    second: ChargedOrb_31
+  - first:
+      213: -6810709846639069245
+    second: ChargedOrb_32
+  - first:
+      213: 2935333500492214768
+    second: ChargedOrb_33
+  - first:
+      213: 1854957692590784697
+    second: ChargedOrb_34
+  - first:
+      213: 893999124684155091
+    second: ChargedOrb_35
+  - first:
+      213: -3081947422754926984
+    second: ChargedOrb_36
+  - first:
+      213: 1780702297527979045
+    second: ChargedOrb_37
+  - first:
+      213: 3814047832902946467
+    second: ChargedOrb_38
+  - first:
+      213: 5136397060020237293
+    second: ChargedOrb_39
+  - first:
+      213: -138749671703013652
+    second: ChargedOrb_40
+  - first:
+      213: 1186060853842608251
+    second: ChargedOrb_41
+  - first:
+      213: 2765336220126711868
+    second: ChargedOrb_42
+  - first:
+      213: -6946952098151985366
+    second: ChargedOrb_43
+  - first:
+      213: 8517824565792627615
+    second: ChargedOrb_44
+  - first:
+      213: 4814998344213656930
+    second: ChargedOrb_45
+  - first:
+      213: -3454805868011199989
+    second: ChargedOrb_46
+  - first:
+      213: 6218665660822495974
+    second: ChargedOrb_47
+  - first:
+      213: 4000260173786356506
+    second: ChargedOrb_48
+  - first:
+      213: 7934066523516942166
+    second: ChargedOrb_49
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ChargedOrb_0
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 436
+        width: 517
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e04265534aed6510800000000000000
+      internalID: 1544147822174159072
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_1
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 857
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b406a7458ea053b30800000000000000
+      internalID: 4266328214969409611
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 473
+        width: 404
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1df168d438469dbd0800000000000000
+      internalID: -2604940394352992303
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 713
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5c74b3f3b7608a0800000000000000
+      internalID: -6339243913969678930
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_4
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 313
+        width: 447
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e17f663687e5f2d0800000000000000
+      internalID: -3245433392825667100
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_5
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 725
+        width: 42
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1912e0fe72354a10800000000000000
+      internalID: 1892974739167779102
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_6
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 483
+        width: 344
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c13a736dccbe750800000000000000
+      internalID: 6335382521255238761
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_7
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 597
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6a369240b455dc0800000000000000
+      internalID: -3650929441667569978
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_8
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 498
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60241ca2be6ddb040800000000000000
+      internalID: 4665121094548668934
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_9
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 473
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35258a9e89e059850800000000000000
+      internalID: 6383024096785486419
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_10
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 475
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc1ab57a7736d8e0800000000000000
+      internalID: -1669085612793520936
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_11
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 467
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a926ef5011e2e71b0800000000000000
+      internalID: -5657033431280885094
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_12
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 469
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee7b05532f21e6480800000000000000
+      internalID: -8904158581779023890
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_13
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 447
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 631eb5ab93234dd00800000000000000
+      internalID: 996476641076830518
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_14
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 440
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39e68c46dd5b3b350800000000000000
+      internalID: 6031364288462483091
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_15
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 55
+        width: 408
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557b50387702e7ad0800000000000000
+      internalID: -2702687028704331947
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_16
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 429
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa6eec586a9482a0800000000000000
+      internalID: -6736089369613014355
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_17
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 400
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be70dbb06c77c9000800000000000000
+      internalID: 44041788851029995
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_18
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 378
+        width: 43
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1865bc63ce6e40e0800000000000000
+      internalID: -2283766175408756709
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_19
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 384
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f3dc5fd3b379f50800000000000000
+      internalID: 6888039292389375787
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_20
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 327
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5882d4665f18880800000000000000
+      internalID: -8610331192825707009
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_21
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 344
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8922c4181a8b83f00800000000000000
+      internalID: 1096829513063211672
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_22
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 0
+        width: 415
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7ca8880b6c983e50800000000000000
+      internalID: 6789348421779631226
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_23
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 405
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b13be37e197ccaf20800000000000000
+      internalID: 3435340045240677147
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_24
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 404
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d9632f95297c400800000000000000
+      internalID: 344404811530542461
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_25
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 410
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039dc6b07ff7df6a0800000000000000
+      internalID: -6413829595280385744
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_26
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 383
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10a171db9ff24cd10800000000000000
+      internalID: 2144892072200968705
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_27
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 366
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 567e8bc91e25d2e10800000000000000
+      internalID: 2174485324040300389
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_28
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 352
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78b1408fb11d146a0800000000000000
+      internalID: -6466657671871980665
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_29
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 368
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384be67c4246be170800000000000000
+      internalID: 8208764854940382339
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_30
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 354
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c6da4dd06ffcbe10800000000000000
+      internalID: 2214925908254054080
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_31
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 328
+        width: 93
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8858403700ac1a0800000000000000
+      internalID: -6788612994310502238
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_32
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 223
+        width: 90
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c7b2daaa7f7b71a0800000000000000
+      internalID: -6810709846639069245
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_33
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 369
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f1742244466cb820800000000000000
+      internalID: 2935333500492214768
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_34
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 334
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b0804481322eb910800000000000000
+      internalID: 1854957692590784697
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_35
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 337
+        width: 77
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d82f40a77f186c00800000000000000
+      internalID: 893999124684155091
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_36
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 356
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87e034ad529ba35d0800000000000000
+      internalID: -3081947422754926984
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_37
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 112
+        width: 214
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52c80e61e4356b810800000000000000
+      internalID: 1780702297527979045
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_38
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 289
+        width: 34
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ae478cdb483ee430800000000000000
+      internalID: 3814047832902946467
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_39
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 285
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de3fddb89e5284740800000000000000
+      internalID: 5136397060020237293
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_40
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 254
+        width: 45
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce69071a8ef031ef0800000000000000
+      internalID: -138749671703013652
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_41
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 166
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b700943001cb57010800000000000000
+      internalID: 1186060853842608251
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_42
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 176
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c309c2d04a2706620800000000000000
+      internalID: 2765336220126711868
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_43
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 168
+        width: 117
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f0ffd8fd7779f90800000000000000
+      internalID: -6946952098151985366
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_44
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 158
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9b5a2f2054653670800000000000000
+      internalID: 8517824565792627615
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_45
+      rect:
+        serializedVersion: 2
+        x: 1605
+        y: 144
+        width: 41
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 265f2fcab7f42d240800000000000000
+      internalID: 4814998344213656930
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_46
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 166
+        width: 62
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b02e14d0e501e00d0800000000000000
+      internalID: -3454805868011199989
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_47
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 31
+        width: 84
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e2ae3a78732d4650800000000000000
+      internalID: 6218665660822495974
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_48
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 25
+        width: 72
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1b9dab0f67c38730800000000000000
+      internalID: 4000260173786356506
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChargedOrb_49
+      rect:
+        serializedVersion: 2
+        x: 1713
+        y: 33
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 657bb8677777b1e60800000000000000
+      internalID: 7934066523516942166
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ChargedOrb_0: 1544147822174159072
+      ChargedOrb_1: 4266328214969409611
+      ChargedOrb_10: -1669085612793520936
+      ChargedOrb_11: -5657033431280885094
+      ChargedOrb_12: -8904158581779023890
+      ChargedOrb_13: 996476641076830518
+      ChargedOrb_14: 6031364288462483091
+      ChargedOrb_15: -2702687028704331947
+      ChargedOrb_16: -6736089369613014355
+      ChargedOrb_17: 44041788851029995
+      ChargedOrb_18: -2283766175408756709
+      ChargedOrb_19: 6888039292389375787
+      ChargedOrb_2: -2604940394352992303
+      ChargedOrb_20: -8610331192825707009
+      ChargedOrb_21: 1096829513063211672
+      ChargedOrb_22: 6789348421779631226
+      ChargedOrb_23: 3435340045240677147
+      ChargedOrb_24: 344404811530542461
+      ChargedOrb_25: -6413829595280385744
+      ChargedOrb_26: 2144892072200968705
+      ChargedOrb_27: 2174485324040300389
+      ChargedOrb_28: -6466657671871980665
+      ChargedOrb_29: 8208764854940382339
+      ChargedOrb_3: -6339243913969678930
+      ChargedOrb_30: 2214925908254054080
+      ChargedOrb_31: -6788612994310502238
+      ChargedOrb_32: -6810709846639069245
+      ChargedOrb_33: 2935333500492214768
+      ChargedOrb_34: 1854957692590784697
+      ChargedOrb_35: 893999124684155091
+      ChargedOrb_36: -3081947422754926984
+      ChargedOrb_37: 1780702297527979045
+      ChargedOrb_38: 3814047832902946467
+      ChargedOrb_39: 5136397060020237293
+      ChargedOrb_4: -3245433392825667100
+      ChargedOrb_40: -138749671703013652
+      ChargedOrb_41: 1186060853842608251
+      ChargedOrb_42: 2765336220126711868
+      ChargedOrb_43: -6946952098151985366
+      ChargedOrb_44: 8517824565792627615
+      ChargedOrb_45: 4814998344213656930
+      ChargedOrb_46: -3454805868011199989
+      ChargedOrb_47: 6218665660822495974
+      ChargedOrb_48: 4000260173786356506
+      ChargedOrb_49: 7934066523516942166
+      ChargedOrb_5: 1892974739167779102
+      ChargedOrb_6: 6335382521255238761
+      ChargedOrb_7: -3650929441667569978
+      ChargedOrb_8: 4665121094548668934
+      ChargedOrb_9: 6383024096785486419
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

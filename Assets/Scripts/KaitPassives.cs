@@ -32,7 +32,12 @@ public enum KaitPassive
     SwiftBoots, CatAgility, EldritchSmite,
     ResidualSlash, HexBlade, PiercingArrow, ProvokingWhispers, WarMage, TwinSigil,
     EldritchBlast,
-    ReynardTrident, ReynardRingFlame, ReynardBackfirePush, ReynardInterwoven, ReynardStillBackfire, ReynardArcaneRecall, ReynardArcaneDevour, ReynardReprise, ReynardDiffusion, ReynardDistantSpell, ReynardMirrorWard, ReynardConcord
+    ReynardTrident, ReynardRingFlame, ReynardBackfirePush, ReynardInterwoven, ReynardStillBackfire, ReynardArcaneRecall, ReynardArcaneDevour, ReynardReprise, ReynardDiffusion, ReynardDistantSpell, ReynardMirrorWard, ReynardConcord,
+    ReynardMissileArrayPassive, ReynardFoxfirePassive, ReynardQuickenedTome,
+    ReynardDoubleVolley, ReynardSplitOrb, ReynardStarOrb, ReynardChargedOrb, ReynardReverseOrb,
+    ReynardRuneDetonation, ReynardCircleResonance, ReynardOverflowInk, ReynardArcaneManifest,
+    ReynardNineTails, ReynardTailGuard, ReynardFoxfireRite, ReynardTailToSigil,
+    ReynardFoxHunt, ReynardTailChant
 }
 
 public enum KaitPassiveCategory

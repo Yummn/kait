@@ -1,0 +1,1521 @@
+fileFormatVersion: 2
+guid: 5dd246bae3e88d44aaa81ab5e8a3c251
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 973220884329766471
+    second: CircleResonance_0
+  - first:
+      213: -1784110130603145897
+    second: CircleResonance_1
+  - first:
+      213: -2706620499740437039
+    second: CircleResonance_2
+  - first:
+      213: -4974760344223158384
+    second: CircleResonance_3
+  - first:
+      213: 511799618682278583
+    second: CircleResonance_4
+  - first:
+      213: -4867117821454029175
+    second: CircleResonance_5
+  - first:
+      213: -795864406602690723
+    second: CircleResonance_6
+  - first:
+      213: 7873953634052179997
+    second: CircleResonance_7
+  - first:
+      213: 3902719171096030584
+    second: CircleResonance_8
+  - first:
+      213: 8456088635803832192
+    second: CircleResonance_9
+  - first:
+      213: -8710877076123533451
+    second: CircleResonance_10
+  - first:
+      213: 1386070941908064031
+    second: CircleResonance_11
+  - first:
+      213: -7651284559301435848
+    second: CircleResonance_12
+  - first:
+      213: 7134585889635180096
+    second: CircleResonance_13
+  - first:
+      213: 8638743650799757214
+    second: CircleResonance_14
+  - first:
+      213: 6440576493871585262
+    second: CircleResonance_15
+  - first:
+      213: -2818578509434555342
+    second: CircleResonance_16
+  - first:
+      213: -6602181559251347594
+    second: CircleResonance_17
+  - first:
+      213: -6310733907530424818
+    second: CircleResonance_18
+  - first:
+      213: 6486868813313762790
+    second: CircleResonance_19
+  - first:
+      213: -3406208048571755456
+    second: CircleResonance_20
+  - first:
+      213: -8877507471328219790
+    second: CircleResonance_21
+  - first:
+      213: -2268996336435495221
+    second: CircleResonance_22
+  - first:
+      213: 5118142921984120305
+    second: CircleResonance_23
+  - first:
+      213: -8040918116609437730
+    second: CircleResonance_24
+  - first:
+      213: -1976469147797698458
+    second: CircleResonance_25
+  - first:
+      213: 1080762398113769615
+    second: CircleResonance_26
+  - first:
+      213: -2639325618001942913
+    second: CircleResonance_27
+  - first:
+      213: 8558656713292922767
+    second: CircleResonance_28
+  - first:
+      213: -5887055820223298337
+    second: CircleResonance_29
+  - first:
+      213: -336396494117635737
+    second: CircleResonance_30
+  - first:
+      213: -2523890791212948198
+    second: CircleResonance_31
+  - first:
+      213: -5349000986933517338
+    second: CircleResonance_32
+  - first:
+      213: 2027800570205938163
+    second: CircleResonance_33
+  - first:
+      213: -7800055530156997492
+    second: CircleResonance_34
+  - first:
+      213: 1409783418261181333
+    second: CircleResonance_35
+  - first:
+      213: -3170400775292840942
+    second: CircleResonance_36
+  - first:
+      213: 3879928160706204336
+    second: CircleResonance_37
+  - first:
+      213: -4933345267092704890
+    second: CircleResonance_38
+  - first:
+      213: -6950791429552838936
+    second: CircleResonance_39
+  - first:
+      213: 1319595842954889423
+    second: CircleResonance_40
+  - first:
+      213: -5944638212784558109
+    second: CircleResonance_41
+  - first:
+      213: -4551027261938158881
+    second: CircleResonance_42
+  - first:
+      213: -5621988923979549594
+    second: CircleResonance_43
+  - first:
+      213: 4116566709735039799
+    second: CircleResonance_44
+  - first:
+      213: 3719623062775996543
+    second: CircleResonance_45
+  - first:
+      213: 73889803742359121
+    second: CircleResonance_46
+  - first:
+      213: 3008523460514540733
+    second: CircleResonance_47
+  - first:
+      213: -1481812329202321298
+    second: CircleResonance_48
+  - first:
+      213: -3309073827695389205
+    second: CircleResonance_49
+  - first:
+      213: 1647162987395584254
+    second: CircleResonance_50
+  - first:
+      213: 2522495663581115907
+    second: CircleResonance_51
+  - first:
+      213: -6309243561074025540
+    second: CircleResonance_52
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CircleResonance_0
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 757
+        width: 76
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e977aec33918d00800000000000000
+      internalID: 973220884329766471
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_1
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 725
+        width: 92
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7554931f9419d37e0800000000000000
+      internalID: -1784110130603145897
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_2
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 821
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d55e2beef6207ad0800000000000000
+      internalID: -2706620499740437039
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_3
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 812
+        width: 76
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09fe0e703d916fab0800000000000000
+      internalID: -4974760344223158384
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_4
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 344
+        width: 469
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2dcb3aa074a1700800000000000000
+      internalID: 511799618682278583
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_5
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 846
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e6244e026847cb0800000000000000
+      internalID: -4867117821454029175
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 485
+        width: 161
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fc113f98584f4f0800000000000000
+      internalID: -795864406602690723
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_7
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 748
+        width: 67
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d188397bc17e54d60800000000000000
+      internalID: 7873953634052179997
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_8
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 541
+        width: 138
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87d294b986e392630800000000000000
+      internalID: 3902719171096030584
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_9
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 824
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08f0e4edfcf0a5570800000000000000
+      internalID: 8456088635803832192
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_10
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 715
+        width: 104
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57f3093937fbc1780800000000000000
+      internalID: -8710877076123533451
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_11
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 747
+        width: 33
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17dbed8d205c3310800000000000000
+      internalID: 1386070941908064031
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_12
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 404
+        width: 395
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e18674b3d21d590800000000000000
+      internalID: -7651284559301435848
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_13
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 811
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04e1833e014230360800000000000000
+      internalID: 7134585889635180096
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_14
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 811
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e97a493949bf2e770800000000000000
+      internalID: 8638743650799757214
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_15
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 789
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee752f19236816950800000000000000
+      internalID: 6440576493871585262
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_16
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 779
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2347a9577c562e8d0800000000000000
+      internalID: -2818578509434555342
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_17
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 791
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 677503a0ad65064a0800000000000000
+      internalID: -6602181559251347594
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_18
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 757
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ed2a162f4cb68a0800000000000000
+      internalID: -6310733907530424818
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_19
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 757
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e5602a11dcf50a50800000000000000
+      internalID: 6486868813313762790
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_20
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 745
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 044ddc1a3d7bab0d0800000000000000
+      internalID: -3406208048571755456
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_21
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 729
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27dea986df1ccc480800000000000000
+      internalID: -8877507471328219790
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_22
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 745
+        width: 29
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bce791a8ad7e280e0800000000000000
+      internalID: -2268996336435495221
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_23
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 729
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f51b86dedb470740800000000000000
+      internalID: 5118142921984120305
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_24
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 757
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edfcd77539be86090800000000000000
+      internalID: -8040918116609437730
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_25
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 656
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 668cff728cb2294e0800000000000000
+      internalID: -1976469147797698458
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_26
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 713
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f88ab2acca3affe00800000000000000
+      internalID: 1080762398113769615
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_27
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 471
+        width: 245
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f76e76c855b3f5bd0800000000000000
+      internalID: -2639325618001942913
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_28
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 698
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8f365e5fe476c670800000000000000
+      internalID: 8558656713292922767
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_29
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 450
+        width: 136
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd4c1b62ce9fc4ea0800000000000000
+      internalID: -5887055820223298337
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_30
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 455
+        width: 110
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7697e60cb21e45bf0800000000000000
+      internalID: -336396494117635737
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_31
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 0
+        width: 493
+        height: 466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a156fd192b659fcd0800000000000000
+      internalID: -2523890791212948198
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_32
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 398
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e32d9e41f784c5b0800000000000000
+      internalID: -5349000986933517338
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_33
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 0
+        width: 435
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f1a576ffd1342c10800000000000000
+      internalID: 2027800570205938163
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_34
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 394
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84cba062d2a0c390800000000000000
+      internalID: -7800055530156997492
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_35
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 370
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59391bfac8e809310800000000000000
+      internalID: 1409783418261181333
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_36
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 288
+        width: 96
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2141c09da497004d0800000000000000
+      internalID: -3170400775292840942
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_37
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 217
+        width: 76
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b29decfa1648d530800000000000000
+      internalID: 3879928160706204336
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_38
+      rect:
+        serializedVersion: 2
+        x: 1492
+        y: 325
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 681b5981e9c398bb0800000000000000
+      internalID: -4933345267092704890
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_39
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 313
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e66cad8504d98f90800000000000000
+      internalID: -6950791429552838936
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_40
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 54
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc8886a7d65205210800000000000000
+      internalID: 1319595842954889423
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_41
+      rect:
+        serializedVersion: 2
+        x: 1377
+        y: 80
+        width: 92
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ef63c0aa07608da0800000000000000
+      internalID: -5944638212784558109
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_42
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 47
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2be0151d087d0c0800000000000000
+      internalID: -4551027261938158881
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_43
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 144
+        width: 65
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 664b4073cdeaaf1b0800000000000000
+      internalID: -5621988923979549594
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_44
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 178
+        width: 96
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 733a4fbac9bf02930800000000000000
+      internalID: 4116566709735039799
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_45
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 63
+        width: 49
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f702d1bd771ce9330800000000000000
+      internalID: 3719623062775996543
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_46
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 66
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e26909262860100800000000000000
+      internalID: 73889803742359121
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_47
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 84
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbce562c52c60c920800000000000000
+      internalID: 3008523460514540733
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_48
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 71
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e68f91e998b8f6be0800000000000000
+      internalID: -1481812329202321298
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_49
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 55
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be59cacc2eec312d0800000000000000
+      internalID: -3309073827695389205
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_50
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 76
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef092ee8206ebd610800000000000000
+      internalID: 1647162987395584254
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_51
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 259
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3063737f074b10320800000000000000
+      internalID: 2522495663581115907
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CircleResonance_52
+      rect:
+        serializedVersion: 2
+        x: 1605
+        y: 17
+        width: 142
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb13c4b8601178a0800000000000000
+      internalID: -6309243561074025540
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CircleResonance_0: 973220884329766471
+      CircleResonance_1: -1784110130603145897
+      CircleResonance_10: -8710877076123533451
+      CircleResonance_11: 1386070941908064031
+      CircleResonance_12: -7651284559301435848
+      CircleResonance_13: 7134585889635180096
+      CircleResonance_14: 8638743650799757214
+      CircleResonance_15: 6440576493871585262
+      CircleResonance_16: -2818578509434555342
+      CircleResonance_17: -6602181559251347594
+      CircleResonance_18: -6310733907530424818
+      CircleResonance_19: 6486868813313762790
+      CircleResonance_2: -2706620499740437039
+      CircleResonance_20: -3406208048571755456
+      CircleResonance_21: -8877507471328219790
+      CircleResonance_22: -2268996336435495221
+      CircleResonance_23: 5118142921984120305
+      CircleResonance_24: -8040918116609437730
+      CircleResonance_25: -1976469147797698458
+      CircleResonance_26: 1080762398113769615
+      CircleResonance_27: -2639325618001942913
+      CircleResonance_28: 8558656713292922767
+      CircleResonance_29: -5887055820223298337
+      CircleResonance_3: -4974760344223158384
+      CircleResonance_30: -336396494117635737
+      CircleResonance_31: -2523890791212948198
+      CircleResonance_32: -5349000986933517338
+      CircleResonance_33: 2027800570205938163
+      CircleResonance_34: -7800055530156997492
+      CircleResonance_35: 1409783418261181333
+      CircleResonance_36: -3170400775292840942
+      CircleResonance_37: 3879928160706204336
+      CircleResonance_38: -4933345267092704890
+      CircleResonance_39: -6950791429552838936
+      CircleResonance_4: 511799618682278583
+      CircleResonance_40: 1319595842954889423
+      CircleResonance_41: -5944638212784558109
+      CircleResonance_42: -4551027261938158881
+      CircleResonance_43: -5621988923979549594
+      CircleResonance_44: 4116566709735039799
+      CircleResonance_45: 3719623062775996543
+      CircleResonance_46: 73889803742359121
+      CircleResonance_47: 3008523460514540733
+      CircleResonance_48: -1481812329202321298
+      CircleResonance_49: -3309073827695389205
+      CircleResonance_5: -4867117821454029175
+      CircleResonance_50: 1647162987395584254
+      CircleResonance_51: 2522495663581115907
+      CircleResonance_52: -6309243561074025540
+      CircleResonance_6: -795864406602690723
+      CircleResonance_7: 7873953634052179997
+      CircleResonance_8: 3902719171096030584
+      CircleResonance_9: 8456088635803832192
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

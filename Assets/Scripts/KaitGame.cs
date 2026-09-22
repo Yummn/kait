@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -176,6 +176,9 @@ public sealed partial class KaitGame : MonoBehaviour
         public KaitCombatEffectGraphic pressure;
         public KaitEnemy enemy;
         public RectTransform rect;
+        public RectTransform hud;
+        public EnemySpineView spine;
+        public Vector2Int direction;
         public Vector3 from;
         public Vector3 to;
     }
@@ -1413,7 +1416,8 @@ public sealed partial class KaitGame : MonoBehaviour
             string objectName = candidate.gameObject.name;
             if (objectName != "Animation Token" && objectName != "Animation Unit" &&
                 objectName != "Archer Projectile" && objectName != "Dread Slash Wave" &&
-                objectName != "Floating Damage" && objectName != "Reynard Spell FX") continue;
+                objectName != "Floating Damage" && objectName != "Reynard Spell FX" &&
+                objectName != "Reynard Forward Bullet") continue;
             candidate.gameObject.SetActive(false);
             if (Application.isPlaying) Destroy(candidate.gameObject);
             else DestroyImmediate(candidate.gameObject);
@@ -1550,9 +1554,7 @@ public sealed partial class KaitGame : MonoBehaviour
         RefreshYummnSkillTargets();
         if(buildDirectionText!=null) buildDirectionText.text=run.HasPassive(KaitPassive.ReverseGravity)?$"重力反转   主 {DirectionGlyph(run.currentGlobalDirection)} / 右盘 {DirectionGlyph(run.actualThreatDirection)}":"";
         RefreshReynardHud();
-        SetHealthBar(runHealthBar, run.kateHp);
-        for(int i=0;i<storybookHearts.Length;i++)if(storybookHearts[i]!=null)
-        {storybookHearts[i].gameObject.SetActive(i<run.KateMaxHp);storybookHearts[i].color=i<run.kateHp?Color.white:new Color(.55f,.50f,.58f,.28f);}
+        RefreshPlayerHealthDisplay();
         ShowPendingSkillChoice();
         if (run.ended) ShowEnd();
     }
@@ -1561,6 +1563,20 @@ public sealed partial class KaitGame : MonoBehaviour
     {
         skillDeck?.Sync(run, targetingSkill);
         RefreshPassiveUI();
+    }
+
+    private void RefreshPlayerHealthDisplay()
+    {
+        // The storybook HUD uses hearts.  runHealthBar is a legacy segmented
+        // bar kept only for prefab/code compatibility and must never reappear
+        // after a restart, character switch or delayed damage coroutine.
+        if (runHealthBar != null && runHealthBar.root != null)
+            runHealthBar.root.gameObject.SetActive(false);
+        for(int i=0;i<storybookHearts.Length;i++)if(storybookHearts[i]!=null)
+        {
+            storybookHearts[i].gameObject.SetActive(i<run.KateMaxHp);
+            storybookHearts[i].color=i<run.kateHp?Color.white:new Color(.55f,.50f,.58f,.28f);
+        }
     }
 
     private void ShowPendingSkillChoice()
@@ -1828,7 +1844,7 @@ public sealed partial class KaitGame : MonoBehaviour
                 tile.sprite = KaitStorybookArt.Floor(run.IsYummn,x,y) ?? dungeonFloorSprite ?? roundedSprite;
                 tile.type = dungeonFloorSprite != null ? Image.Type.Simple : Image.Type.Sliced;
                 // Reynard uses a cool moonlit tint; other characters retain their palettes.
-                tile.color = run.IsReynard?new Color(.85f,.80f,1f):Color.white;
+                tile.color = run.IsReynard?new Color(.70f,.70f,.92f,.94f):Color.white;
                 battleObstacles[index].gameObject.SetActive(run.walls[x, y]);
                 battleObstacleShadows[index].SetActive(run.walls[x, y]);
                 image.color = Color.clear;
@@ -1891,7 +1907,9 @@ public sealed partial class KaitGame : MonoBehaviour
                         enemySpine.SetParent(actorParent);
                         enemySpine.Root.position = battleCells[index].rectTransform.position;
                         enemySpine.SetTint(unitTint);
-                        enemySpine.SyncPreparation(KaitTelegraphPlan.Ready(enemy));
+                        bool reynardControlled=run.IsReynard&&(enemy.frozenActions>0||
+                            Mathf.Abs(enemy.pos.x-run.Reynard.webCell.x)+Mathf.Abs(enemy.pos.y-run.Reynard.webCell.y)<=1);
+                        enemySpine.SyncState(KaitTelegraphPlan.Ready(enemy),reynardControlled);
                         enemySpine.Face(enemy.type == KaitEnemyType.ShieldKnight ? enemy.facing : enemy.intent.direction);
                         enemySpine.SetVisible(true);
                     }
@@ -2410,12 +2428,17 @@ public sealed partial class KaitGame : MonoBehaviour
             if (enemy == null) continue;
             if (action.type == KaitIntentType.Move && action.from != action.to)
             {
-                RectTransform token = CreateFloatingPortrait(EnemyPortrait(enemy.type), Color.clear, battleCells[action.from.x + action.from.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115), enemy.hp, enemy.maxHp);
+                EnemySpineView movingSpine=run.IsReynard?EnemySpine(enemy):null;
+                RectTransform token=movingSpine!=null?movingSpine.Root:CreateFloatingPortrait(EnemyPortrait(enemy.type), Color.clear, battleCells[action.from.x + action.from.y * KaitRun.BattleSize].rectTransform, new Vector2(115, 115), enemy.hp, enemy.maxHp);
+                RectTransform movingHud=null;if(movingSpine!=null){movingHud=CreateFloatingPortrait(null,Color.clear,battleCells[action.from.x+action.from.y*KaitRun.BattleSize].rectTransform,new Vector2(115,115),enemy.hp,enemy.maxHp);var portrait=movingHud.Find("Portrait");if(portrait!=null)portrait.gameObject.SetActive(false);}
                 moves.Add(new EnemyMoveVisual
                 {
                     pressure = dreadSlash ? PlayDreadPressure(action.from, action.to - action.from) : null,
                     enemy = enemy,
                     rect = token,
+                    hud=movingHud,
+                    spine=movingSpine,
+                    direction=action.to-action.from,
                     from = battleCells[action.from.x + action.from.y * KaitRun.BattleSize].rectTransform.position,
                     to = battleCells[action.to.x + action.to.y * KaitRun.BattleSize].rectTransform.position
                 });
@@ -2485,6 +2508,7 @@ public sealed partial class KaitGame : MonoBehaviour
         RefreshBattle();
         if (moves.Count > 0)
         {
+            foreach(EnemyMoveVisual move in moves)if(move.spine!=null){move.spine.SetParent(battleActorLayer);move.spine.Root.position=move.from;move.spine.Face(move.direction);move.spine.PlayMove();move.spine.SetVisible(true);}
             float moveElapsed = 0f;
             while (moveElapsed < EnemyMoveDuration)
             {
@@ -2492,6 +2516,7 @@ public sealed partial class KaitGame : MonoBehaviour
                 foreach (EnemyMoveVisual move in moves)
                 {
                     move.rect.position = Vector3.LerpUnclamped(move.from, move.to, t);
+                    if(move.hud!=null)move.hud.position=move.rect.position;
                     if (move.pressure != null)
                         move.pressure.transform.position = move.rect.position - (move.to - move.from).normalized * 38f * battleUnderEffectLayer.lossyScale.x;
                 }
@@ -2505,7 +2530,9 @@ public sealed partial class KaitGame : MonoBehaviour
                     move.pressure.transform.position = move.to - (move.to - move.from).normalized * 38f * battleUnderEffectLayer.lossyScale.x;
                 move.enemy.pos = run.enemies.Find(e => e.id == move.enemy.id)?.pos ?? move.enemy.pos;
                 animatedEnemies.Add(move.enemy);
-                Destroy(move.rect.gameObject);
+                if(move.spine!=null){move.spine.Root.position=move.to;move.spine.SetVisible(false);move.spine.PlayIdle();}
+                else Destroy(move.rect.gameObject);
+                if(move.hud!=null)Destroy(move.hud.gameObject);
             }
             RefreshBattle();
         }
@@ -2595,7 +2622,17 @@ public sealed partial class KaitGame : MonoBehaviour
         if (arrowHit) GameAudio.PlayArrowImpact();
         if (impactPhase == 0 && hasMagicAttack) GameAudio.PlayMagicImpact();
         if (meleeHit) GameAudio.PlayNormalHit();
-        if (bodyHit) GameAudio.PlayBodyHurt();
+        if (bodyHit)
+        {
+            // Resolve body feedback on the exact impact frame.  The previous
+            // aggregate pass ran only after all enemy actions and made ranged
+            // or magic hits look visibly late.
+            GameAudio.PlayBodyHurt();
+            kaitSpine?.PlayOnce(run.kateHp<=0?KaitSpineView.Die:KaitSpineView.Damage,
+                run.kateHp<=0?null:KaitSpineView.Idle);
+            StartCoroutine(FlashKaitWhite());
+            RefreshPlayerHealthDisplay();
+        }
         if (kaitWasHit)
         {
             // Yummn's ordered Hit event owns the voice and uses that event's HP,
@@ -2724,12 +2761,24 @@ public sealed partial class KaitGame : MonoBehaviour
         hideThreatValues = true;
         RefreshThreat();
         var visuals = new List<ThreatVisual>();
+        KaitThreatMotion reynardFoxMotion = null;
         foreach (KaitThreatMotion motion in result.threatMotions)
         {
             RectTransform fromCell = threatCells[motion.from.x + motion.from.y * run.ThreatSize].rectTransform;
             RectTransform toCell = threatCells[motion.to.x + motion.to.y * run.ThreatSize].rectTransform;
             RectTransform token = CreateFloatingToken(motion.value.ToString(), ThreatColor(motion.value), fromCell, new Vector2(74, 74), 28);
             visuals.Add(new ThreatVisual { rect = token, from = fromCell.position, to = toCell.position });
+            if (run.IsReynard && motion.mirrorFox) reynardFoxMotion = motion;
+        }
+
+        RectTransform reynardFoxVisual = reynardFoxMotion != null && reynardMirrorGhost != null ? reynardMirrorGhost.Root : null;
+        Vector3 reynardFoxFrom = Vector3.zero, reynardFoxTo = Vector3.zero;
+        if (reynardFoxVisual != null)
+        {
+            reynardFoxFrom = threatCells[reynardFoxMotion.from.x + reynardFoxMotion.from.y * run.ThreatSize].rectTransform.position;
+            reynardFoxTo = threatCells[reynardFoxMotion.to.x + reynardFoxMotion.to.y * run.ThreatSize].rectTransform.position;
+            reynardFoxVisual.position = reynardFoxFrom;
+            reynardFoxVisual.gameObject.SetActive(true);
         }
 
         float elapsed = 0f;
@@ -2738,9 +2787,26 @@ public sealed partial class KaitGame : MonoBehaviour
         {
             float t = EaseOutCubic(elapsed / duration);
             foreach (ThreatVisual visual in visuals) visual.rect.position = Vector3.LerpUnclamped(visual.from, visual.to, t);
-            elapsed += Time.unscaledDeltaTime;
+            if (reynardFoxVisual != null)
+            {
+                reynardFoxVisual.position = Vector3.LerpUnclamped(reynardFoxFrom, reynardFoxTo, t);
+                if (t > .2f && t < .95f)
+                {
+                    reynardMirrorSlideObserved = true;
+                    if (reynardCaptureMirrorSlide)
+                    {
+                        reynardCaptureMirrorSlide = false;
+                        Canvas.ForceUpdateCanvases();
+                        CaptureCanvasToPng(Path.Combine(Application.dataPath, "../Logs/reynard-mirror-slide-mid.png"));
+                    }
+                }
+            }
+            // A slow import or first frame must not collapse the whole slide
+            // into one update; the mirror fox and number need the same visible path.
+            elapsed += Mathf.Min(Time.unscaledDeltaTime, 1f / 30f);
             yield return null;
         }
+        if (reynardFoxVisual != null) reynardFoxVisual.position = reynardFoxTo;
         foreach (ThreatVisual visual in visuals) Destroy(visual.rect.gameObject);
 
         displayedThreat = result.threatAfter;
@@ -2761,13 +2827,17 @@ public sealed partial class KaitGame : MonoBehaviour
             foreach (KaitMergeEvent merge in result.merges)
             {
                 strongest = Mathf.Max(strongest, merge.resultValue);
-                mergeCells.Add(threatCells[merge.threatCell.x + merge.threatCell.y * run.ThreatSize].rectTransform);
+                int index=merge.threatCell.x + merge.threatCell.y * run.ThreatSize;
+                mergeCells.Add(run.IsReynard?threatLabels[index].rectTransform:threatCells[index].rectTransform);
             }
             GameAudio.PlayMerge(strongest);
             yield return ScalePulseMany(mergeCells, 0.72f, 1.2f, 0.14f);
         }
         foreach (Vector2Int cell in result.newThreatCells)
-            yield return ScalePulse(threatCells[cell.x + cell.y * run.ThreatSize].rectTransform, 0.1f, 1.1f, 0.1f);
+        {
+            int index=cell.x + cell.y * run.ThreatSize;
+            yield return ScalePulse(run.IsReynard?threatLabels[index].rectTransform:threatCells[index].rectTransform, 0.1f, 1.1f, 0.1f);
+        }
     }
 
     private RectTransform CreateFloatingToken(string label, Color color, RectTransform source, Vector2 size, int fontSize)
@@ -2942,7 +3012,7 @@ public sealed partial class KaitGame : MonoBehaviour
     private static bool ShouldPlayBodyHurt(KaitEnemyAction action, bool playerInvincible)
     {
         return action != null && !playerInvincible && !action.guarded && action.hitKate && action.damage > 0
-            && action.type == KaitIntentType.Melee;
+            && action.type != KaitIntentType.Move;
     }
 
     private IEnumerator AnimateCombatFeedback(KaitTurnResult result, List<KaitEnemy> healthBefore, int kateHpBefore)
@@ -2978,12 +3048,16 @@ public sealed partial class KaitGame : MonoBehaviour
                 GameAudio.PlayBodyHurt();
                 GameAudio.PlayKaitDamageVoice(run.kateHp, run.KateMaxHp);
             }
-            kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
-            StartCoroutine(FlashKaitWhite());
+            bool playedAtImpact=result.enemyActions.Exists(action=>ShouldPlayBodyHurt(action,run.config.playerInvincible));
+            if(!playedAtImpact)
+            {
+                kaitSpine?.PlayOnce(run.kateHp <= 0 ? KaitSpineView.Die : KaitSpineView.Damage, run.kateHp <= 0 ? null : KaitSpineView.Idle);
+                StartCoroutine(FlashKaitWhite());
+            }
             KaitEnemyAction incoming = result.enemyActions.Find(action => action.hitKate && action.damage > 0);
             PlayKaitHurtEffect(incoming != null ? incoming.from : run.katePos);
             StartCoroutine(FloatDamage(run.katePos, result.playerDamage, Gold));
-            StartCoroutine(AnimateHealthLoss(runHealthBar, kateHpBefore, run.kateHp, false));
+            RefreshPlayerHealthDisplay();
             longestHealthLoss = Mathf.Max(longestHealthLoss, kateHpBefore - run.kateHp);
             hasImpact = true;
         }
@@ -3089,6 +3163,14 @@ public sealed partial class KaitGame : MonoBehaviour
     private IEnumerator AnimateHealthLoss(HealthBarView bar, int before, int after, bool hideWhenDone)
     {
         if (bar == null) yield break;
+        if (bar == runHealthBar)
+        {
+            // Legacy player bar is intentionally retired in favour of the
+            // heart HUD.  This also neutralises an already-running old damage
+            // coroutine when a new run starts.
+            if (bar.root != null) bar.root.gameObject.SetActive(false);
+            yield break;
+        }
         bar.root.gameObject.SetActive(true);
         SetHealthBar(bar, before);
         for (int hp = before; hp > after; hp--)
@@ -4625,7 +4707,9 @@ public sealed partial class KaitGame : MonoBehaviour
         if (enemySpines.TryGetValue(enemy.id, out EnemySpineView existing)) return existing;
         SkeletonDataAsset data=run.IsReynard?Resources.Load<SkeletonDataAsset>("Characters/Reynard/"+ReynardArt.EnemyId(enemy.type)+"/"+ReynardArt.EnemyId(enemy.type)+"_SkeletonData"):enemySkeletonData.TryGetValue(enemy.type,out var oldData)?oldData:null;
         if(data==null)return null;
-        float visualScale = enemy.type == KaitEnemyType.Guard ? 1.1f : 1f;
+        float visualScale = run.IsReynard
+            ? ReynardArt.EnemyVisualScale(enemy.type)
+            : enemy.type == KaitEnemyType.Guard ? 1.1f : 1f;
         Transform parent = battleActorLayer != null ? battleActorLayer : canvas.transform;
         EnemySpineView created = EnemySpineView.Create(data, run.IsReynard?"":EnemyAnimationPrefix(enemy.type), parent, new Vector2(115, 115), $"Enemy {enemy.id} Spine", visualScale);
         if (created != null)

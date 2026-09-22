@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: fad9fe95b5aeb984ba616a42aa62fbd1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4238719719604826442
+    second: GardenFoliageApron_0
+  - first:
+      213: -1239883524900785728
+    second: GardenFoliageApron_1
+  - first:
+      213: -7454014391882667868
+    second: GardenFoliageApron_2
+  - first:
+      213: 8219519160192342485
+    second: GardenFoliageApron_3
+  - first:
+      213: 1872753989153147240
+    second: GardenFoliageApron_4
+  - first:
+      213: -7966068368350789501
+    second: GardenFoliageApron_5
+  - first:
+      213: 3139152016006821515
+    second: GardenFoliageApron_6
+  - first:
+      213: 4588355137745658872
+    second: GardenFoliageApron_7
+  - first:
+      213: 3425189815376150075
+    second: GardenFoliageApron_8
+  - first:
+      213: 239910694532074411
+    second: GardenFoliageApron_9
+  - first:
+      213: -2544257151227275933
+    second: GardenFoliageApron_10
+  - first:
+      213: 4132962244630722454
+    second: GardenFoliageApron_11
+  - first:
+      213: -1146587607950979304
+    second: GardenFoliageApron_12
+  - first:
+      213: -2794776383912592867
+    second: GardenFoliageApron_13
+  - first:
+      213: 2049387707195081190
+    second: GardenFoliageApron_14
+  - first:
+      213: 856410980787549677
+    second: GardenFoliageApron_15
+  - first:
+      213: -6731025463086667690
+    second: GardenFoliageApron_16
+  - first:
+      213: -612701959804265360
+    second: GardenFoliageApron_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GardenFoliageApron_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 638
+        width: 652
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a413d759025f2da30800000000000000
+      internalID: 4238719719604826442
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_1
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1173
+        width: 45
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1fd67d08c0bcee0800000000000000
+      internalID: -1239883524900785728
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_2
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1160
+        width: 29
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a82f2557650e8890800000000000000
+      internalID: -7454014391882667868
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_3
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 688
+        width: 565
+        height: 534
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d918c79029911270800000000000000
+      internalID: 8219519160192342485
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_4
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 1196
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8694b23b4db5df910800000000000000
+      internalID: 1872753989153147240
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_5
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 1173
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380c9f76607d27190800000000000000
+      internalID: -7966068368350789501
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_6
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 1012
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86b90a6022809b20800000000000000
+      internalID: 3139152016006821515
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_7
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 970
+        width: 64
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f32ba800bc1daf30800000000000000
+      internalID: 4588355137745658872
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_8
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 947
+        width: 42
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3ef7c95df7b88f20800000000000000
+      internalID: 3425189815376150075
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_9
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 932
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: babc66d6185545300800000000000000
+      internalID: 239910694532074411
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_10
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 938
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365d9dbd99bf0bcd0800000000000000
+      internalID: -2544257151227275933
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 604
+        height: 625
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697b05d934b3b5930800000000000000
+      internalID: 4132962244630722454
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_12
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 264
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f873c35a08610f0800000000000000
+      internalID: -1146587607950979304
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_13
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 590
+        height: 677
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a3d3aafa5f639d0800000000000000
+      internalID: -2794776383912592867
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_14
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 80
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e14a66f243e07c10800000000000000
+      internalID: 2049387707195081190
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_15
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 75
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5f593ef3592eb00800000000000000
+      internalID: 856410980787549677
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_16
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 65
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6582c9af0089692a0800000000000000
+      internalID: -6731025463086667690
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GardenFoliageApron_17
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 63
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c5ea450de3f77f0800000000000000
+      internalID: -612701959804265360
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GardenFoliageApron_0: 4238719719604826442
+      GardenFoliageApron_1: -1239883524900785728
+      GardenFoliageApron_10: -2544257151227275933
+      GardenFoliageApron_11: 4132962244630722454
+      GardenFoliageApron_12: -1146587607950979304
+      GardenFoliageApron_13: -2794776383912592867
+      GardenFoliageApron_14: 2049387707195081190
+      GardenFoliageApron_15: 856410980787549677
+      GardenFoliageApron_16: -6731025463086667690
+      GardenFoliageApron_17: -612701959804265360
+      GardenFoliageApron_2: -7454014391882667868
+      GardenFoliageApron_3: 8219519160192342485
+      GardenFoliageApron_4: 1872753989153147240
+      GardenFoliageApron_5: -7966068368350789501
+      GardenFoliageApron_6: 3139152016006821515
+      GardenFoliageApron_7: 4588355137745658872
+      GardenFoliageApron_8: 3425189815376150075
+      GardenFoliageApron_9: 239910694532074411
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

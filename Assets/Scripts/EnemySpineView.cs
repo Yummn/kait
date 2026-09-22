@@ -20,6 +20,8 @@ public sealed class EnemySpineView
     private readonly Material flashMaterial;
     private readonly float rightFacingVisualX;
     private readonly string prefix;
+    private bool desiredPreparing;
+    private bool desiredControlled;
 
     public RectTransform Root => root;
     public TrackEntry CurrentAnimation => IsReady ? graphic.AnimationState.GetCurrent(0) : null;
@@ -98,7 +100,9 @@ public sealed class EnemySpineView
         float height = Mathf.Max(0.01f, meshBounds.size.y);
         float scale = Mathf.Min(size.x * VisualFill / width, size.y * VisualFill / height) * Mathf.Max(0.01f, visualScale);
         skeletonRect.localScale = Vector3.one * scale;
-        Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -meshBounds.center.y * scale);
+        // Center the visible body rather than the full mesh. Long bows, shields
+        // and spell effects must not push the actor away from the tile centre.
+        Vector2 centeredPosition = new Vector2(-bodyBounds.center.x * scale, -bodyBounds.center.y * scale);
         skeletonRect.anchoredPosition = centeredPosition;
         KaitContactShadow.Create(hostRect, skeletonGraphic, new Vector2(0, -size.y * .36f), new Vector2(size.x * .36f, size.y * .09f));
 
@@ -186,20 +190,32 @@ public sealed class EnemySpineView
         if (!IsReady) return;
         string animation = prefix + IdleSuffix;
         TrackEntry current = graphic.AnimationState.GetCurrent(0);
+        if(current!=null&&!current.Loop&&current.Animation!=null&&
+            (current.Animation.Name==prefix+DamageSuffix||current.Animation.Name==prefix+"hit_1"||current.Animation.Name==prefix+"hit_2"||
+             current.Animation.Name=="hit_1"||current.Animation.Name=="hit_2"))return;
         if (current != null && current.Animation != null && current.Animation.Name == animation && current.Loop) return;
         graphic.AnimationState.SetAnimation(0, animation, true);
     }
 
     public void PlayLanding() => PlayOnce(Resolve(prefix + LandingSuffix));
     public void PlayAttack() => PlayOnce(prefix + AttackSuffix);
-    public void PlayDamage() => PlayOnce(Resolve(prefix + DamageSuffix));
+    public void PlayDamage()
+    {
+        if(!IsReady)return;
+        string authored=prefix+DamageSuffix;
+        if(graphic.Skeleton.Data.FindAnimation(authored)!=null){PlayOnce(authored);return;}
+        string first=graphic.Skeleton.Data.FindAnimation(prefix+"hit_1")!=null?prefix+"hit_1":"hit_1";
+        string second=graphic.Skeleton.Data.FindAnimation(prefix+"hit_2")!=null?prefix+"hit_2":"hit_2";
+        PlayOnce(graphic.Skeleton.Data.FindAnimation(second)!=null&&UnityEngine.Random.value>=.5f?second:first);
+    }
     public void PlayDeath() => PlayOnce(prefix + DeathSuffix, false);
     public void PlayPrepareAttack()
     {
         if(!IsReady)return;
         var current=CurrentAnimation;
-        if(current?.Animation?.Name==Resolve(PrepareAttackAnimation)&&current.Loop)return;
-        graphic.AnimationState.SetAnimation(0,Resolve(PrepareAttackAnimation),true);
+        string prepare=PrepareAnimation;
+        if(current?.Animation?.Name==prepare&&current.Loop)return;
+        graphic.AnimationState.SetAnimation(0,prepare,true);
     }
     public void SyncPreparation(bool preparing)
     {
@@ -209,20 +225,46 @@ public sealed class EnemySpineView
         // Do not interrupt landing, damage, attack or death. Their queued idle
         // is repaired below; repeated UI refreshes never restart the pose.
         if(preparing&&current.Animation.Name==prefix+IdleSuffix)PlayPrepareAttack();
-        else if(!preparing&&current.Animation.Name==Resolve(PrepareAttackAnimation))PlayIdle();
+        else if(!preparing&&current.Animation.Name==PrepareAnimation)PlayIdle();
     }
+    public void SyncState(bool preparing,bool controlled)
+    {
+        if(!IsReady)return;
+        desiredPreparing=preparing;desiredControlled=controlled;
+        var current=CurrentAnimation;if(current==null||current.Animation==null)return;
+        string name=current.Animation.Name,stun=Existing(prefix+"stun","stun");
+        if(controlled){if(current.Loop&&name!=stun)PlayLoopAnimation(stun);return;}
+        if(name==stun){if(preparing)PlayPrepareAttack();else PlayIdle();return;}
+        SyncPreparation(preparing);
+    }
+    public void PlayMove()=>PlayLoopAnimation(Existing(prefix+"walk","walk"));
+    public void PlayControlled()=>PlayLoopAnimation(Existing(prefix+"stun","stun"));
+    public void PlayVictoryLoop()=>PlayLoopAnimation(Existing(prefix+"win","win",prefix+"uniqueskill","uniqueskill",prefix+IdleSuffix,"idle"));
 
     public float LandingDuration => Duration(Resolve(prefix + LandingSuffix));
     public float AttackDuration => Duration(prefix + AttackSuffix);
     public float DamageDuration => Duration(Resolve(prefix + DamageSuffix));
     public float DeathDuration => Duration(prefix + DeathSuffix);
-    public float PrepareAttackDuration => Duration(Resolve(PrepareAttackAnimation));
+    public float PrepareAttackDuration => Duration(PrepareAnimation);
+    private string PrepareAnimation=>string.IsNullOrEmpty(prefix)?Existing("prepare",PrepareAttackAnimation,"idle"):Resolve(PrepareAttackAnimation);
 
     private void PlayOnce(string animation, bool returnToIdle = true)
     {
         if (!IsReady || graphic.Skeleton.Data.FindAnimation(animation) == null) return;
         graphic.AnimationState.SetAnimation(0, animation, false);
-        if (returnToIdle) graphic.AnimationState.AddAnimation(0, prefix + IdleSuffix, true, 0f);
+        var current=CurrentAnimation;if(current!=null&&(animation==prefix+DamageSuffix||animation==prefix+"hit_1"||animation==prefix+"hit_2"||animation=="hit_1"||animation=="hit_2"))current.TimeScale=.75f;
+        if (returnToIdle) graphic.AnimationState.AddAnimation(0,desiredControlled?Existing(prefix+"stun","stun"):desiredPreparing?PrepareAnimation:prefix+IdleSuffix,true,0f);
+    }
+    private void PlayLoopAnimation(string animation)
+    {
+        if(!IsReady||string.IsNullOrEmpty(animation)||graphic.Skeleton.Data.FindAnimation(animation)==null)return;
+        var current=CurrentAnimation;if(current?.Animation?.Name==animation&&current.Loop)return;
+        graphic.AnimationState.SetAnimation(0,animation,true);
+    }
+    private string Existing(params string[] names)
+    {
+        foreach(string name in names)if(!string.IsNullOrEmpty(name)&&graphic.Skeleton.Data.FindAnimation(name)!=null)return name;
+        return prefix+IdleSuffix;
     }
 
     private string Resolve(string animation)

@@ -311,7 +311,7 @@ public sealed partial class KaitRun
                         int before=hit.hp;DamageEnemy(hit,intent.damage,false,result,true);int dealt=before-hit.hp;
                         if(dealt>0){action.friendlyHitIds.Add(hit.id);QueueProvokedRetaliation(hit,reactor,dealt);}
                     }
-                    if(katePos==cell){DamageKate(intent.damage,result);action.hitKate=true;break;}
+                    if(katePos==cell){DamageKate(intent.damage,result,reactor);action.hitKate=true;break;}
                     if(reactor.type==KaitEnemyType.Archer&&hit!=null&&!HasPassive(KaitPassive.PiercingArrow))break;
                 }
                 result.enemyActions.Add(action);

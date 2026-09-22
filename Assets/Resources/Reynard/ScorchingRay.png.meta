@@ -1,0 +1,819 @@
+fileFormatVersion: 2
+guid: 847b19dea98ae9b42b0b1a3471e2bb9a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5363267254104059550
+    second: ScorchingRay_0
+  - first:
+      213: -5890962344586951169
+    second: ScorchingRay_1
+  - first:
+      213: -6243396176257626273
+    second: ScorchingRay_2
+  - first:
+      213: -509621852062594218
+    second: ScorchingRay_3
+  - first:
+      213: 8619746592929172095
+    second: ScorchingRay_4
+  - first:
+      213: 8593837932628744029
+    second: ScorchingRay_5
+  - first:
+      213: 9149569717563903474
+    second: ScorchingRay_6
+  - first:
+      213: -3408998986236780549
+    second: ScorchingRay_7
+  - first:
+      213: 8057369750013293615
+    second: ScorchingRay_8
+  - first:
+      213: 6324920407724519799
+    second: ScorchingRay_9
+  - first:
+      213: 1343875262318738270
+    second: ScorchingRay_10
+  - first:
+      213: -3889862925158215367
+    second: ScorchingRay_11
+  - first:
+      213: -6680862194187884572
+    second: ScorchingRay_12
+  - first:
+      213: 4456651824097886667
+    second: ScorchingRay_13
+  - first:
+      213: -7680102132272361728
+    second: ScorchingRay_14
+  - first:
+      213: 3702981894110788246
+    second: ScorchingRay_15
+  - first:
+      213: 8062008221850032493
+    second: ScorchingRay_16
+  - first:
+      213: -1961090303717495807
+    second: ScorchingRay_17
+  - first:
+      213: -6087525524451249655
+    second: ScorchingRay_18
+  - first:
+      213: -27949311329540408
+    second: ScorchingRay_19
+  - first:
+      213: 1864631800707109045
+    second: ScorchingRay_20
+  - first:
+      213: -7798524869157911305
+    second: ScorchingRay_21
+  - first:
+      213: -6690452920680069723
+    second: ScorchingRay_22
+  - first:
+      213: -3554784660266383124
+    second: ScorchingRay_23
+  - first:
+      213: 2352229326697324726
+    second: ScorchingRay_24
+  - first:
+      213: -6589634030083257290
+    second: ScorchingRay_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ScorchingRay_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 369
+        width: 400
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9e6b5cd6272e6a40800000000000000
+      internalID: 5363267254104059550
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_1
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 392
+        width: 489
+        height: 459
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff541b195f81f3ea0800000000000000
+      internalID: -5890962344586951169
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_2
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 717
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5fc122b1400b59a0800000000000000
+      internalID: -6243396176257626273
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_3
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 358
+        width: 454
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65b480a20a57de8f0800000000000000
+      internalID: -509621852062594218
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_4
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 334
+        width: 429
+        height: 460
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a4d6d5bdd7f9770800000000000000
+      internalID: 8619746592929172095
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_5
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 410
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d571d9f4112734770800000000000000
+      internalID: 8593837932628744029
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_6
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 394
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd411f7e2dc9fe70800000000000000
+      internalID: 9149569717563903474
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_7
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 374
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff90b1db7dc0b0d0800000000000000
+      internalID: -3408998986236780549
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_8
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 31
+        width: 441
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f24358d091781df60800000000000000
+      internalID: 8057369750013293615
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_9
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 375
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771f9079991a6c750800000000000000
+      internalID: 6324920407724519799
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_10
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 369
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5b71f05e6766a210800000000000000
+      internalID: 1343875262318738270
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_11
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 380
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9319bf8674e640ac0800000000000000
+      internalID: -3889862925158215367
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_12
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 21
+        width: 426
+        height: 349
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7281a2b3fc843a0800000000000000
+      internalID: -6680862194187884572
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_13
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 368
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc183feb83539dd30800000000000000
+      internalID: 4456651824097886667
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_14
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 356
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f8f273dcbca6590800000000000000
+      internalID: -7680102132272361728
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_15
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 354
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69a3d28d962a36330800000000000000
+      internalID: 3702981894110788246
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_16
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 37
+        width: 435
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6956af63c102ef60800000000000000
+      internalID: 8062008221850032493
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_17
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 348
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ca47252cec8c4e0800000000000000
+      internalID: -1961090303717495807
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_18
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 338
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902b5f1e9c3c48ba0800000000000000
+      internalID: -6087525524451249655
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_19
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 31
+        width: 335
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c66c7adf34bc9ff0800000000000000
+      internalID: -27949311329540408
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_20
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 257
+        width: 115
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b05b065eb080e910800000000000000
+      internalID: 1864631800707109045
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_21
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 219
+        width: 57
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f40bc923f216c390800000000000000
+      internalID: -7798524869157911305
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_22
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 299
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5c364248cb623a0800000000000000
+      internalID: -6690452920680069723
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_23
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 174
+        width: 31
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce880df7f2edaaec0800000000000000
+      internalID: -3554784660266383124
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_24
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 49
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b0ec082c1cc4a020800000000000000
+      internalID: 2352229326697324726
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScorchingRay_25
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 55
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ccf0553caec84a0800000000000000
+      internalID: -6589634030083257290
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ScorchingRay_0: 5363267254104059550
+      ScorchingRay_1: -5890962344586951169
+      ScorchingRay_10: 1343875262318738270
+      ScorchingRay_11: -3889862925158215367
+      ScorchingRay_12: -6680862194187884572
+      ScorchingRay_13: 4456651824097886667
+      ScorchingRay_14: -7680102132272361728
+      ScorchingRay_15: 3702981894110788246
+      ScorchingRay_16: 8062008221850032493
+      ScorchingRay_17: -1961090303717495807
+      ScorchingRay_18: -6087525524451249655
+      ScorchingRay_19: -27949311329540408
+      ScorchingRay_2: -6243396176257626273
+      ScorchingRay_20: 1864631800707109045
+      ScorchingRay_21: -7798524869157911305
+      ScorchingRay_22: -6690452920680069723
+      ScorchingRay_23: -3554784660266383124
+      ScorchingRay_24: 2352229326697324726
+      ScorchingRay_25: -6589634030083257290
+      ScorchingRay_3: -509621852062594218
+      ScorchingRay_4: 8619746592929172095
+      ScorchingRay_5: 8593837932628744029
+      ScorchingRay_6: 9149569717563903474
+      ScorchingRay_7: -3408998986236780549
+      ScorchingRay_8: 8057369750013293615
+      ScorchingRay_9: 6324920407724519799
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

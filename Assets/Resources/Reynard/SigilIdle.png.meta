@@ -1,0 +1,3185 @@
+fileFormatVersion: 2
+guid: 35b6d94dce2202945a060001799b5e77
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5411738938924942008
+    second: SigilIdle_0
+  - first:
+      213: 7825232639392380867
+    second: SigilIdle_1
+  - first:
+      213: 6633960510370218595
+    second: SigilIdle_2
+  - first:
+      213: -6805959323974135124
+    second: SigilIdle_3
+  - first:
+      213: -1862456298042073515
+    second: SigilIdle_4
+  - first:
+      213: 6949425106100245343
+    second: SigilIdle_5
+  - first:
+      213: -3073307140951029564
+    second: SigilIdle_6
+  - first:
+      213: -3478538130493634258
+    second: SigilIdle_7
+  - first:
+      213: -775631363781489038
+    second: SigilIdle_8
+  - first:
+      213: 1210241690578885306
+    second: SigilIdle_9
+  - first:
+      213: -4423507313057068580
+    second: SigilIdle_10
+  - first:
+      213: 1798472439062309594
+    second: SigilIdle_11
+  - first:
+      213: 4384788644576901195
+    second: SigilIdle_12
+  - first:
+      213: 1672940466294854673
+    second: SigilIdle_13
+  - first:
+      213: 2335854729619386724
+    second: SigilIdle_14
+  - first:
+      213: -5710198991166339909
+    second: SigilIdle_15
+  - first:
+      213: 1802918534228176961
+    second: SigilIdle_16
+  - first:
+      213: -1173559368307875922
+    second: SigilIdle_17
+  - first:
+      213: 2181328474084877630
+    second: SigilIdle_18
+  - first:
+      213: 6621215775953144558
+    second: SigilIdle_19
+  - first:
+      213: -5522092884051227889
+    second: SigilIdle_20
+  - first:
+      213: -7064028120382971770
+    second: SigilIdle_21
+  - first:
+      213: -1889600594654968902
+    second: SigilIdle_22
+  - first:
+      213: -2856565149593162256
+    second: SigilIdle_23
+  - first:
+      213: 4969517830824566056
+    second: SigilIdle_24
+  - first:
+      213: -595116464323226159
+    second: SigilIdle_25
+  - first:
+      213: 7768450525294157384
+    second: SigilIdle_26
+  - first:
+      213: 2437081041657535784
+    second: SigilIdle_27
+  - first:
+      213: -891631376125400936
+    second: SigilIdle_28
+  - first:
+      213: -25214107780794605
+    second: SigilIdle_29
+  - first:
+      213: -7331365729015420943
+    second: SigilIdle_30
+  - first:
+      213: 6003266019391952034
+    second: SigilIdle_31
+  - first:
+      213: -5899720040787292397
+    second: SigilIdle_32
+  - first:
+      213: -6080723977127430338
+    second: SigilIdle_33
+  - first:
+      213: -4703834189114984798
+    second: SigilIdle_34
+  - first:
+      213: -5764786314135115632
+    second: SigilIdle_35
+  - first:
+      213: 716854786066547638
+    second: SigilIdle_36
+  - first:
+      213: 1715188455188069241
+    second: SigilIdle_37
+  - first:
+      213: -4719410236471117630
+    second: SigilIdle_38
+  - first:
+      213: 2944157580853423367
+    second: SigilIdle_39
+  - first:
+      213: -5721293639821795374
+    second: SigilIdle_40
+  - first:
+      213: -6012376502576617807
+    second: SigilIdle_41
+  - first:
+      213: -3097540342384070800
+    second: SigilIdle_42
+  - first:
+      213: 3835042852257164547
+    second: SigilIdle_43
+  - first:
+      213: -5897685753306543506
+    second: SigilIdle_44
+  - first:
+      213: -1943966806724733781
+    second: SigilIdle_45
+  - first:
+      213: 4914060412569698387
+    second: SigilIdle_46
+  - first:
+      213: 2862117241384089880
+    second: SigilIdle_47
+  - first:
+      213: -3445616601175636486
+    second: SigilIdle_48
+  - first:
+      213: 3012760794695760011
+    second: SigilIdle_49
+  - first:
+      213: -8063035268882935944
+    second: SigilIdle_50
+  - first:
+      213: 16365617486862840
+    second: SigilIdle_51
+  - first:
+      213: 2278773336761398969
+    second: SigilIdle_52
+  - first:
+      213: -8085394577525342299
+    second: SigilIdle_53
+  - first:
+      213: -8280704274398226616
+    second: SigilIdle_54
+  - first:
+      213: -6688428865673635666
+    second: SigilIdle_55
+  - first:
+      213: -2099931782865807085
+    second: SigilIdle_56
+  - first:
+      213: 7159659415613411922
+    second: SigilIdle_57
+  - first:
+      213: -4635578181265086908
+    second: SigilIdle_58
+  - first:
+      213: -833720859192727271
+    second: SigilIdle_59
+  - first:
+      213: -2150861529864558734
+    second: SigilIdle_60
+  - first:
+      213: -311857272009962786
+    second: SigilIdle_61
+  - first:
+      213: -8975992888559348440
+    second: SigilIdle_62
+  - first:
+      213: -700855826968819491
+    second: SigilIdle_63
+  - first:
+      213: 7456455095462899480
+    second: SigilIdle_64
+  - first:
+      213: 6687514598883254612
+    second: SigilIdle_65
+  - first:
+      213: -8243557969794946984
+    second: SigilIdle_66
+  - first:
+      213: -6751384813784268274
+    second: SigilIdle_67
+  - first:
+      213: -6574118304279446347
+    second: SigilIdle_68
+  - first:
+      213: -716948042164464609
+    second: SigilIdle_69
+  - first:
+      213: -3326548626290444738
+    second: SigilIdle_70
+  - first:
+      213: -1755018382559873591
+    second: SigilIdle_71
+  - first:
+      213: 6600703918327566569
+    second: SigilIdle_72
+  - first:
+      213: 3039383409314097582
+    second: SigilIdle_73
+  - first:
+      213: -4657396273354382330
+    second: SigilIdle_74
+  - first:
+      213: 7288946947438670573
+    second: SigilIdle_75
+  - first:
+      213: -7715574001808554960
+    second: SigilIdle_76
+  - first:
+      213: 4876300539632056582
+    second: SigilIdle_77
+  - first:
+      213: -8946824915451358492
+    second: SigilIdle_78
+  - first:
+      213: -8995233501499668986
+    second: SigilIdle_79
+  - first:
+      213: 2772748789095770464
+    second: SigilIdle_80
+  - first:
+      213: 4943800140072664865
+    second: SigilIdle_81
+  - first:
+      213: -7875772714136298910
+    second: SigilIdle_82
+  - first:
+      213: 1461172601346800550
+    second: SigilIdle_83
+  - first:
+      213: 2058025434792758752
+    second: SigilIdle_84
+  - first:
+      213: -6249919866298957444
+    second: SigilIdle_85
+  - first:
+      213: -8267627457155766551
+    second: SigilIdle_86
+  - first:
+      213: -2217874965064867020
+    second: SigilIdle_87
+  - first:
+      213: -3597653966462502020
+    second: SigilIdle_88
+  - first:
+      213: 7952512793239860079
+    second: SigilIdle_89
+  - first:
+      213: -5872247210110871740
+    second: SigilIdle_90
+  - first:
+      213: 8666843807554989257
+    second: SigilIdle_91
+  - first:
+      213: 4834600260476293704
+    second: SigilIdle_92
+  - first:
+      213: -7961254012288835625
+    second: SigilIdle_93
+  - first:
+      213: -1446502169584442098
+    second: SigilIdle_94
+  - first:
+      213: 7055183345457049706
+    second: SigilIdle_95
+  - first:
+      213: -192545571009706986
+    second: SigilIdle_96
+  - first:
+      213: 8197799620449815581
+    second: SigilIdle_97
+  - first:
+      213: 4464489216548032388
+    second: SigilIdle_98
+  - first:
+      213: 1178343147501910824
+    second: SigilIdle_99
+  - first:
+      213: -8209241126195328040
+    second: SigilIdle_100
+  - first:
+      213: -4593380470190494062
+    second: SigilIdle_101
+  - first:
+      213: 3110368539112364294
+    second: SigilIdle_102
+  - first:
+      213: 3597095047638558873
+    second: SigilIdle_103
+  - first:
+      213: 1974267406298067441
+    second: SigilIdle_104
+  - first:
+      213: -6924581141168464812
+    second: SigilIdle_105
+  - first:
+      213: -2977468817905163287
+    second: SigilIdle_106
+  - first:
+      213: 6079583370861082752
+    second: SigilIdle_107
+  - first:
+      213: 4239736200393888886
+    second: SigilIdle_108
+  - first:
+      213: -4541651246121768561
+    second: SigilIdle_109
+  - first:
+      213: -6553913513633536992
+    second: SigilIdle_110
+  - first:
+      213: -9023761000899269003
+    second: SigilIdle_111
+  - first:
+      213: -4833317862820046167
+    second: SigilIdle_112
+  - first:
+      213: -707223512357224657
+    second: SigilIdle_113
+  - first:
+      213: 4969431308305657216
+    second: SigilIdle_114
+  - first:
+      213: -1009260002109950339
+    second: SigilIdle_115
+  - first:
+      213: -4660390799305232989
+    second: SigilIdle_116
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SigilIdle_0
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 762
+        width: 69
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b245cf64eb5a1b40800000000000000
+      internalID: 5411738938924942008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_1
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 781
+        width: 239
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c776cb20afc89c60800000000000000
+      internalID: 7825232639392380867
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_2
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 858
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 362069a9fef801c50800000000000000
+      internalID: 6633960510370218595
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_3
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 860
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca293caed006c81a0800000000000000
+      internalID: -6805959323974135124
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_4
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 827
+        width: 20
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55e53895dd93726e0800000000000000
+      internalID: -1862456298042073515
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_5
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 822
+        width: 13
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f53594a7051517060800000000000000
+      internalID: 6949425106100245343
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_6
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 356
+        width: 424
+        height: 507
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c841f9307b6955d0800000000000000
+      internalID: -3073307140951029564
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_7
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 809
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e29864a1000c9bfc0800000000000000
+      internalID: -3478538130493634258
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_8
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 795
+        width: 83
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27e072552676c35f0800000000000000
+      internalID: -775631363781489038
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_9
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 811
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aba925bc764abc010800000000000000
+      internalID: 1210241690578885306
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_10
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 781
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd904e7198b8c92c0800000000000000
+      internalID: -4423507313057068580
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_11
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 755
+        width: 29
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adaa3a4972575f810800000000000000
+      internalID: 1798472439062309594
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_12
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 798
+        width: 155
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b483c276a06e9dc30800000000000000
+      internalID: 4384788644576901195
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_13
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 803
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11491ef8d7a773710800000000000000
+      internalID: 1672940466294854673
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_14
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 797
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46131ed208f9a6020800000000000000
+      internalID: 2335854729619386724
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_15
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 384
+        width: 449
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb48cbe754c41c0b0800000000000000
+      internalID: -5710198991166339909
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_16
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 789
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14073a7cad0450910800000000000000
+      internalID: 1802918534228176961
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_17
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 817
+        width: 43
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf5d29e8fda6bfe0800000000000000
+      internalID: -1173559368307875922
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_18
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 804
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e352644a0b2a54e10800000000000000
+      internalID: 2181328474084877630
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_19
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 819
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea46e2eaa843eb50800000000000000
+      internalID: 6621215775953144558
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_20
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 821
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b0a6d77c59d53b0800000000000000
+      internalID: -5522092884051227889
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_21
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 684
+        width: 44
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680e331f9d787fd90800000000000000
+      internalID: -7064028120382971770
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_22
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 809
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab3493c454ac6c5e0800000000000000
+      internalID: -1889600594654968902
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_23
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 817
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd2db491217b58d0800000000000000
+      internalID: -2856565149593162256
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_24
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 797
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d9443332647f440800000000000000
+      internalID: 4969517830824566056
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_25
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 822
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d517009ab8bdb7f0800000000000000
+      internalID: -595116464323226159
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_26
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 836
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84eda5ff7941fcb60800000000000000
+      internalID: 7768450525294157384
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_27
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 805
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d16d09b4042d120800000000000000
+      internalID: 2437081041657535784
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_28
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 763
+        width: 36
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 898e37bccf940a3f0800000000000000
+      internalID: -891631376125400936
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_29
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 773
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 317b56e07eb66aff0800000000000000
+      internalID: -25214107780794605
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_30
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 698
+        width: 29
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f7209376b1c14a90800000000000000
+      internalID: -7331365729015420943
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_31
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 634
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a4d70253a2ef4350800000000000000
+      internalID: 6003266019391952034
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_32
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 759
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31fce9681ebff1ea0800000000000000
+      internalID: -5899720040787292397
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_33
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 404
+        width: 368
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e377e1682cdec9ba0800000000000000
+      internalID: -6080723977127430338
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_34
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 729
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6b67b1abf98beb0800000000000000
+      internalID: -4703834189114984798
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_35
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 741
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09861f3f36d5fffa0800000000000000
+      internalID: -5764786314135115632
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_36
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 737
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b3090f31a7c2f900800000000000000
+      internalID: 716854786066547638
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_37
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 392
+        width: 376
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97bf55200d29dc710800000000000000
+      internalID: 1715188455188069241
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_38
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 711
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8fbc9f469418eb0800000000000000
+      internalID: -4719410236471117630
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_39
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 711
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70daa8198bfbbd820800000000000000
+      internalID: 2944157580853423367
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_40
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 485
+        width: 48
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2df58be4fb1e990b0800000000000000
+      internalID: -5721293639821795374
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_41
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 459
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b6e3040d6fbf8ca0800000000000000
+      internalID: -6012376502576617807
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_42
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 463
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f61c658735305d0800000000000000
+      internalID: -3097540342384070800
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_43
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 426
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d603bb72fc83530800000000000000
+      internalID: 3835042852257164547
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_44
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 436
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a084dfd06372ea0800000000000000
+      internalID: -5897685753306543506
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_45
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 418
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba495062d74a505e0800000000000000
+      internalID: -1943966806724733781
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_46
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 420
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 350c600d8ef323440800000000000000
+      internalID: 4914060412569698387
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_47
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 418
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8193836877848b720800000000000000
+      internalID: 2862117241384089880
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_48
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 350
+        width: 26
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af5ccb6f4f5be20d0800000000000000
+      internalID: -3445616601175636486
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_49
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 404
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8870110bf97fc920800000000000000
+      internalID: 3012760794695760011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_50
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 17
+        width: 427
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87f49ca84285a1090800000000000000
+      internalID: -8063035268882935944
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_51
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 384
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f995d041742a3000800000000000000
+      internalID: 16365617486862840
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_52
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 370
+        width: 11
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b67b4db644df9f10800000000000000
+      internalID: 2278773336761398969
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_53
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 0
+        width: 380
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af7bb15878eacf80800000000000000
+      internalID: -8085394577525342299
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_54
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 393
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8475f62e557051d80800000000000000
+      internalID: -8280704274398226616
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_55
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 0
+        width: 402
+        height: 397
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea8dd0c226ded23a0800000000000000
+      internalID: -6688428865673635666
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_56
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 388
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3191bbd5b2b8bd2e0800000000000000
+      internalID: -2099931782865807085
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_57
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 354
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2521b641e483c5360800000000000000
+      internalID: 7159659415613411922
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_58
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 360
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 446a429543e1bafb0800000000000000
+      internalID: -4635578181265086908
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_59
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 370
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919ebf9bb470e64f0800000000000000
+      internalID: -833720859192727271
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_60
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 354
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 277ae5795da9622e0800000000000000
+      internalID: -2150861529864558734
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_61
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 352
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eda4931a67f0cabf0800000000000000
+      internalID: -311857272009962786
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_62
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 247
+        width: 112
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 825dcf2560ede6380800000000000000
+      internalID: -8975992888559348440
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_63
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 0
+        width: 392
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd8c2c2b65f0646f0800000000000000
+      internalID: -700855826968819491
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_64
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 289
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81fa7b04766aa7760800000000000000
+      internalID: 7456455095462899480
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_65
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 311
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 451eca08813decc50800000000000000
+      internalID: 6687514598883254612
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_66
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 305
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8582805e3bff89d80800000000000000
+      internalID: -8243557969794946984
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_67
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 321
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e020c6048434e42a0800000000000000
+      internalID: -6751384813784268274
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_68
+      rect:
+        serializedVersion: 2
+        x: 1714
+        y: 322
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bcb702cb3a04c4a0800000000000000
+      internalID: -6574118304279446347
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_69
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 317
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f141060ed83ec06f0800000000000000
+      internalID: -716948042164464609
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_70
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 307
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e36f4e136a9b5d1d0800000000000000
+      internalID: -3326548626290444738
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_71
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 281
+        width: 11
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c5fc3d541ce4a7e0800000000000000
+      internalID: -1755018382559873591
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_72
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 292
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0917fdd396a9b50800000000000000
+      internalID: 6600703918327566569
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_73
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 276
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea9e1608b1f0e2a20800000000000000
+      internalID: 3039383409314097582
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_74
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 279
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 604eb7ce3ca9d5fb0800000000000000
+      internalID: -4657396273354382330
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_75
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 132
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de2ffb451aa872560800000000000000
+      internalID: 7288946947438670573
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_76
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 168
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03446fff256cce490800000000000000
+      internalID: -7715574001808554960
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_77
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 120
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60970da41891ca340800000000000000
+      internalID: 4876300539632056582
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_78
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 132
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e258e6442e76d380800000000000000
+      internalID: -8946824915451358492
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_79
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 135
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6064b670ac28a2380800000000000000
+      internalID: -8995233501499668986
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_80
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 104
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 069a2714558ca7620800000000000000
+      internalID: 2772748789095770464
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_81
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 100
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12fbe85b808eb9440800000000000000
+      internalID: 4943800140072664865
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_82
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 104
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26a1132b172a3b290800000000000000
+      internalID: -7875772714136298910
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_83
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 20
+        width: 51
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab3fc24db0274410800000000000000
+      internalID: 1461172601346800550
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_84
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 83
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed8a83aa339f8c10800000000000000
+      internalID: 2058025434792758752
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_85
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 69
+        width: 13
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71089ebef2d349a0800000000000000
+      internalID: -6249919866298957444
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_86
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 66
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e6e6f8a1ac734d80800000000000000
+      internalID: -8267627457155766551
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_87
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 55
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433a31758768831e0800000000000000
+      internalID: -2217874965064867020
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_88
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 47
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7b3a3857c0921ec0800000000000000
+      internalID: -3597653966462502020
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_89
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 51
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f63bfc050400d5e60800000000000000
+      internalID: 7952512793239860079
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_90
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 51
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44710106646918ea0800000000000000
+      internalID: -5872247210110871740
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_91
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 47
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cceb192680d64870800000000000000
+      internalID: 8666843807554989257
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_92
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 66
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84253b47253f71340800000000000000
+      internalID: 4834600260476293704
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_93
+      rect:
+        serializedVersion: 2
+        x: 1111
+        y: 53
+        width: 7
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dfded608a1f38190800000000000000
+      internalID: -7961254012288835625
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_94
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 29
+        width: 15
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05661fc0fdfcebe0800000000000000
+      internalID: -1446502169584442098
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_95
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 53
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a60383b6fdb09e160800000000000000
+      internalID: 7055183345457049706
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_96
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 37
+        width: 15
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61444e4c2d0f35df0800000000000000
+      internalID: -192545571009706986
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_97
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 51
+        width: 42
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c4ebc225f64c170800000000000000
+      internalID: 8197799620449815581
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_98
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 49
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f48efd94d05fd30800000000000000
+      internalID: 4464489216548032388
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_99
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 47
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82bfd5a79d05a5010800000000000000
+      internalID: 1178343147501910824
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_100
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 26
+        width: 11
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8db899da0bae21e80800000000000000
+      internalID: -8209241126195328040
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_101
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 51
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29e24149cc80140c0800000000000000
+      internalID: -4593380470190494062
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_102
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 66
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609d756f4bf3a2b20800000000000000
+      internalID: 3110368539112364294
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_103
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 65
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99820d933e27be130800000000000000
+      internalID: 3597095047638558873
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_104
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 33
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f13704feb1066b10800000000000000
+      internalID: 1974267406298067441
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_105
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 37
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45cd84ed322f6ef90800000000000000
+      internalID: -6924581141168464812
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_106
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 23
+        width: 34
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3e5faa2e7eda6d0800000000000000
+      internalID: -2977468817905163287
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_107
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 29
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 088fb826dd40f5450800000000000000
+      internalID: 6079583370861082752
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_108
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 37
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67497d57c9196da30800000000000000
+      internalID: 4239736200393888886
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_109
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 31
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f89a33d1140d8f0c0800000000000000
+      internalID: -4541651246121768561
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_110
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 35
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024ad3b2262db05a0800000000000000
+      internalID: -6553913513633536992
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_111
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 39
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57e206bfd2925c280800000000000000
+      internalID: -9023761000899269003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_112
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 25
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa9f04030b9cecb0800000000000000
+      internalID: -4833317862820046167
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_113
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 25
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2fb42966ff6f26f0800000000000000
+      internalID: -707223512357224657
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_114
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 32
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08d634b1277f6f440800000000000000
+      internalID: 4969431308305657216
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_115
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 33
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76f93810636ef1f0800000000000000
+      internalID: -1009260002109950339
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilIdle_116
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 17
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ada9e48247f25fb0800000000000000
+      internalID: -4660390799305232989
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SigilIdle_0: 5411738938924942008
+      SigilIdle_1: 7825232639392380867
+      SigilIdle_10: -4423507313057068580
+      SigilIdle_100: -8209241126195328040
+      SigilIdle_101: -4593380470190494062
+      SigilIdle_102: 3110368539112364294
+      SigilIdle_103: 3597095047638558873
+      SigilIdle_104: 1974267406298067441
+      SigilIdle_105: -6924581141168464812
+      SigilIdle_106: -2977468817905163287
+      SigilIdle_107: 6079583370861082752
+      SigilIdle_108: 4239736200393888886
+      SigilIdle_109: -4541651246121768561
+      SigilIdle_11: 1798472439062309594
+      SigilIdle_110: -6553913513633536992
+      SigilIdle_111: -9023761000899269003
+      SigilIdle_112: -4833317862820046167
+      SigilIdle_113: -707223512357224657
+      SigilIdle_114: 4969431308305657216
+      SigilIdle_115: -1009260002109950339
+      SigilIdle_116: -4660390799305232989
+      SigilIdle_12: 4384788644576901195
+      SigilIdle_13: 1672940466294854673
+      SigilIdle_14: 2335854729619386724
+      SigilIdle_15: -5710198991166339909
+      SigilIdle_16: 1802918534228176961
+      SigilIdle_17: -1173559368307875922
+      SigilIdle_18: 2181328474084877630
+      SigilIdle_19: 6621215775953144558
+      SigilIdle_2: 6633960510370218595
+      SigilIdle_20: -5522092884051227889
+      SigilIdle_21: -7064028120382971770
+      SigilIdle_22: -1889600594654968902
+      SigilIdle_23: -2856565149593162256
+      SigilIdle_24: 4969517830824566056
+      SigilIdle_25: -595116464323226159
+      SigilIdle_26: 7768450525294157384
+      SigilIdle_27: 2437081041657535784
+      SigilIdle_28: -891631376125400936
+      SigilIdle_29: -25214107780794605
+      SigilIdle_3: -6805959323974135124
+      SigilIdle_30: -7331365729015420943
+      SigilIdle_31: 6003266019391952034
+      SigilIdle_32: -5899720040787292397
+      SigilIdle_33: -6080723977127430338
+      SigilIdle_34: -4703834189114984798
+      SigilIdle_35: -5764786314135115632
+      SigilIdle_36: 716854786066547638
+      SigilIdle_37: 1715188455188069241
+      SigilIdle_38: -4719410236471117630
+      SigilIdle_39: 2944157580853423367
+      SigilIdle_4: -1862456298042073515
+      SigilIdle_40: -5721293639821795374
+      SigilIdle_41: -6012376502576617807
+      SigilIdle_42: -3097540342384070800
+      SigilIdle_43: 3835042852257164547
+      SigilIdle_44: -5897685753306543506
+      SigilIdle_45: -1943966806724733781
+      SigilIdle_46: 4914060412569698387
+      SigilIdle_47: 2862117241384089880
+      SigilIdle_48: -3445616601175636486
+      SigilIdle_49: 3012760794695760011
+      SigilIdle_5: 6949425106100245343
+      SigilIdle_50: -8063035268882935944
+      SigilIdle_51: 16365617486862840
+      SigilIdle_52: 2278773336761398969
+      SigilIdle_53: -8085394577525342299
+      SigilIdle_54: -8280704274398226616
+      SigilIdle_55: -6688428865673635666
+      SigilIdle_56: -2099931782865807085
+      SigilIdle_57: 7159659415613411922
+      SigilIdle_58: -4635578181265086908
+      SigilIdle_59: -833720859192727271
+      SigilIdle_6: -3073307140951029564
+      SigilIdle_60: -2150861529864558734
+      SigilIdle_61: -311857272009962786
+      SigilIdle_62: -8975992888559348440
+      SigilIdle_63: -700855826968819491
+      SigilIdle_64: 7456455095462899480
+      SigilIdle_65: 6687514598883254612
+      SigilIdle_66: -8243557969794946984
+      SigilIdle_67: -6751384813784268274
+      SigilIdle_68: -6574118304279446347
+      SigilIdle_69: -716948042164464609
+      SigilIdle_7: -3478538130493634258
+      SigilIdle_70: -3326548626290444738
+      SigilIdle_71: -1755018382559873591
+      SigilIdle_72: 6600703918327566569
+      SigilIdle_73: 3039383409314097582
+      SigilIdle_74: -4657396273354382330
+      SigilIdle_75: 7288946947438670573
+      SigilIdle_76: -7715574001808554960
+      SigilIdle_77: 4876300539632056582
+      SigilIdle_78: -8946824915451358492
+      SigilIdle_79: -8995233501499668986
+      SigilIdle_8: -775631363781489038
+      SigilIdle_80: 2772748789095770464
+      SigilIdle_81: 4943800140072664865
+      SigilIdle_82: -7875772714136298910
+      SigilIdle_83: 1461172601346800550
+      SigilIdle_84: 2058025434792758752
+      SigilIdle_85: -6249919866298957444
+      SigilIdle_86: -8267627457155766551
+      SigilIdle_87: -2217874965064867020
+      SigilIdle_88: -3597653966462502020
+      SigilIdle_89: 7952512793239860079
+      SigilIdle_9: 1210241690578885306
+      SigilIdle_90: -5872247210110871740
+      SigilIdle_91: 8666843807554989257
+      SigilIdle_92: 4834600260476293704
+      SigilIdle_93: -7961254012288835625
+      SigilIdle_94: -1446502169584442098
+      SigilIdle_95: 7055183345457049706
+      SigilIdle_96: -192545571009706986
+      SigilIdle_97: 8197799620449815581
+      SigilIdle_98: 4464489216548032388
+      SigilIdle_99: 1178343147501910824
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

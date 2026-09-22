@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: bbea13c6876b47b45968bf98c46912ef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6641608087558517106
+    second: TailToSigil_0
+  - first:
+      213: 9097638200546986391
+    second: TailToSigil_1
+  - first:
+      213: -3046140041752221013
+    second: TailToSigil_2
+  - first:
+      213: -9133290941195343301
+    second: TailToSigil_3
+  - first:
+      213: 4562334764073013435
+    second: TailToSigil_4
+  - first:
+      213: 2021722089432424368
+    second: TailToSigil_5
+  - first:
+      213: -1151766194286935906
+    second: TailToSigil_6
+  - first:
+      213: 8869669871308087309
+    second: TailToSigil_7
+  - first:
+      213: 3628075471681439131
+    second: TailToSigil_8
+  - first:
+      213: 873392106153067056
+    second: TailToSigil_9
+  - first:
+      213: 3563431344474597748
+    second: TailToSigil_10
+  - first:
+      213: 4668147510655786669
+    second: TailToSigil_11
+  - first:
+      213: -1061017653569662008
+    second: TailToSigil_12
+  - first:
+      213: 8828400752608627357
+    second: TailToSigil_13
+  - first:
+      213: -1392740444495417610
+    second: TailToSigil_14
+  - first:
+      213: 2850766440329704235
+    second: TailToSigil_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TailToSigil_0
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 741
+        width: 65
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e86b312a444d3a0800000000000000
+      internalID: -6641608087558517106
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_1
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 374
+        width: 543
+        height: 491
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79980a6fdbd414e70800000000000000
+      internalID: 9097638200546986391
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_2
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 459
+        width: 423
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baae34b65cfe9b5d0800000000000000
+      internalID: -3046140041752221013
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_3
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 370
+        width: 355
+        height: 492
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3a22cb7748004180800000000000000
+      internalID: -9133290941195343301
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 444
+        width: 322
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0dcfeab4ba05f30800000000000000
+      internalID: 4562334764073013435
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 19
+        width: 435
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf1e2f57899e0c10800000000000000
+      internalID: 2021722089432424368
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_6
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 0
+        width: 378
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e904935afba1400f0800000000000000
+      internalID: -1151766194286935906
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_7
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 15
+        width: 423
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d00ad4221c5671b70800000000000000
+      internalID: 8869669871308087309
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_8
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 126
+        width: 198
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9541eb4b63895230800000000000000
+      internalID: 3628075471681439131
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_9
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 360
+        width: 24
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03242ec3e79ee1c00800000000000000
+      internalID: 873392106153067056
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_10
+      rect:
+        serializedVersion: 2
+        x: 1389
+        y: 257
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 479a6ec8de9d37130800000000000000
+      internalID: 3563431344474597748
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_11
+      rect:
+        serializedVersion: 2
+        x: 1516
+        y: 82
+        width: 195
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dae13c39d6798c040800000000000000
+      internalID: 4668147510655786669
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_12
+      rect:
+        serializedVersion: 2
+        x: 1606
+        y: 285
+        width: 41
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3df8ac0128641f0800000000000000
+      internalID: -1061017653569662008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_13
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 160
+        width: 36
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9a470aa5b7c48a70800000000000000
+      internalID: 8828400752608627357
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_14
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 30
+        width: 78
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fee78dd1fdfbace0800000000000000
+      internalID: -1392740444495417610
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailToSigil_15
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 31
+        width: 104
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23f47539f4ff8720800000000000000
+      internalID: 2850766440329704235
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TailToSigil_0: -6641608087558517106
+      TailToSigil_1: 9097638200546986391
+      TailToSigil_10: 3563431344474597748
+      TailToSigil_11: 4668147510655786669
+      TailToSigil_12: -1061017653569662008
+      TailToSigil_13: 8828400752608627357
+      TailToSigil_14: -1392740444495417610
+      TailToSigil_15: 2850766440329704235
+      TailToSigil_2: -3046140041752221013
+      TailToSigil_3: -9133290941195343301
+      TailToSigil_4: 4562334764073013435
+      TailToSigil_5: 2021722089432424368
+      TailToSigil_6: -1151766194286935906
+      TailToSigil_7: 8869669871308087309
+      TailToSigil_8: 3628075471681439131
+      TailToSigil_9: 873392106153067056
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

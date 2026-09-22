@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+
 public sealed partial class KaitRun
 {
+ // Legacy accessors remain readable for old tooling; 0.5 casting does not use them.
  public int ReynardSlotValue=>Reynard.mirrorFoxCell.x>=0?threat[Reynard.mirrorFoxCell.x,Reynard.mirrorFoxCell.y]:0;
- public bool ReynardSlotReady=>ReynardSlotValue>0&&Reynard.spellReady[Reynard.mirrorFoxCell.x,Reynard.mirrorFoxCell.y];
+ public bool ReynardSlotReady=>ReynardSlotValue>0;
  private void InitializeMirrorFox(){for(int y=0;y<ThreatSize;y++)for(int x=0;x<ThreatSize;x++)if(threat[x,y]>0){Reynard.mirrorFoxCell=new Vector2Int(x,y);return;}}
  private List<KaitMergeEvent> MoveThreatReynard(KaitDirection direction,List<KaitThreatMotion> motions)
  {
@@ -11,18 +13,11 @@ public sealed partial class KaitRun
   for(int line=0;line<ThreatSize;line++){
    var segment=new List<Vector2Int>();
    for(int i=0;i<ThreatSize;i++){int index=reverse?ThreatSize-1-i:i;var p=horizontal?new Vector2Int(index,line):new Vector2Int(line,index);
-    if(IsThreatPillar(p)){ProcessReynardLine(segment,motions,merges);segment.Clear();}else segment.Add(p);
-   }ProcessReynardLine(segment,motions,merges);
+    if(IsThreatPillar(p)){PackReynard(segment,motions,merges);segment.Clear();}else segment.Add(p);
+   }PackReynard(segment,motions,merges);
   }return merges;
  }
- private void ProcessReynardLine(List<Vector2Int> cells,List<KaitThreatMotion> motions,List<KaitMergeEvent> merges)
- {
-  int fox=cells.IndexOf(Reynard.mirrorFoxCell);
-  if(fox<0){PackReynard(cells,false,motions,merges);return;}
-  PackReynard(cells.GetRange(0,fox),false,motions,merges);
-  PackReynard(cells.GetRange(fox,cells.Count-fox),true,motions,merges);
- }
- private void PackReynard(List<Vector2Int> cells,bool anchored,List<KaitThreatMotion> motions,List<KaitMergeEvent> merges)
+ private void PackReynard(List<Vector2Int> cells,List<KaitThreatMotion> motions,List<KaitMergeEvent> merges)
  {
   if(cells.Count==0)return;var tokens=new List<ThreatToken>();
   foreach(var p in cells){if(threat[p.x,p.y]==0)continue;var t=new ThreatToken{value=threat[p.x,p.y],birthOrder=threatTwoBirth[p.x,p.y],spellReady=Reynard.spellReady[p.x,p.y],mirrorFox=p==Reynard.mirrorFoxCell};t.sources.Add(p);tokens.Add(t);}
@@ -33,28 +28,60 @@ public sealed partial class KaitRun
   foreach(var p in cells){threat[p.x,p.y]=threatTwoBirth[p.x,p.y]=0;Reynard.spellReady[p.x,p.y]=false;}
   for(int i=0;i<packed.Count;i++){
    var t=packed[i];var p=cells[i];threat[p.x,p.y]=t.value;threatTwoBirth[p.x,p.y]=t.birthOrder;Reynard.spellReady[p.x,p.y]=t.spellReady;
+   Vector2Int foxSource=t.mirrorFox?t.sources.Find(source=>source==Reynard.mirrorFoxCell):new Vector2Int(-1,-1);
    if(t.mirrorFox)Reynard.mirrorFoxCell=p;
-   foreach(var from in t.sources)motions.Add(new KaitThreatMotion{from=from,to=p,value=t.merged?t.value/2:t.value,merged=t.merged});
-   if(t.merged)merges.Add(new KaitMergeEvent{sourceValue=t.value/2,resultValue=t.value,threatCell=p,sequence=merges.Count,actualThreatDirection=actualThreatDirection,mergeSource="ReynardSlide",rootActionId=Reynard.actionId});
+   foreach(var from in t.sources)motions.Add(new KaitThreatMotion{from=from,to=p,value=t.merged?t.value/2:t.value,merged=t.merged,mirrorFox=t.mirrorFox&&from==foxSource});
+   if(t.merged)merges.Add(new KaitMergeEvent{sourceValue=t.value/2,resultValue=t.value,threatCell=p,sequence=merges.Count,actualThreatDirection=actualThreatDirection,mergeSource="ReynardSlide",rootActionId=Reynard.actionId,reynardFoxParticipated=t.mirrorFox});
   }
  }
  private void ProcessReynardMerges(KaitTurnResult r)
  {
-  bool foxMerged=false;foreach(var m in r.merges){RegisterReynardMerge(m,r);foxMerged|=m.threatCell==Reynard.mirrorFoxCell;}
+  bool foxMerged=false;foreach(var m in r.merges){RegisterReynardMerge(m,r);foxMerged|=m.reynardFoxParticipated;}
   if(!foxMerged||!HasPassive(KaitPassive.ReynardArcaneDevour))return;
   while(true){int best=int.MaxValue;var found=new Vector2Int(-1,-1);for(int y=0;y<ThreatSize;y++)for(int x=0;x<ThreatSize;x++){
    var p=new Vector2Int(x,y);if(p==Reynard.mirrorFoxCell||threat[x,y]!=ReynardSlotValue)continue;int dist=Manhattan(p,Reynard.mirrorFoxCell);if(dist<best){best=dist;found=p;}}
    if(found.x<0)break;int v=ReynardSlotValue;threat[found.x,found.y]=threatTwoBirth[found.x,found.y]=0;Reynard.spellReady[found.x,found.y]=false;
    var fox=Reynard.mirrorFoxCell;threat[fox.x,fox.y]=v*2;Reynard.spellReady[fox.x,fox.y]=true;
-   r.threatMotions.Add(new KaitThreatMotion{from=found,to=fox,value=v,merged=true});
-   var m=new KaitMergeEvent{sourceValue=v,resultValue=v*2,threatCell=fox,sequence=r.merges.Count,actualThreatDirection=actualThreatDirection,mergeSource="ReynardDevour",rootActionId=Reynard.actionId};r.merges.Add(m);RegisterReynardMerge(m,r);Reynard.devours++;
+   r.threatMotions.Add(new KaitThreatMotion{from=found,to=fox,value=v,merged=true,mirrorFox=false});
+   var m=new KaitMergeEvent{sourceValue=v,resultValue=v*2,threatCell=fox,sequence=r.merges.Count,actualThreatDirection=actualThreatDirection,mergeSource="ReynardDevour",rootActionId=Reynard.actionId,reynardFoxParticipated=true};r.merges.Add(m);RegisterReynardMerge(m,r);Reynard.devours++;
   }
  }
  private void RegisterReynardMerge(KaitMergeEvent m,KaitTurnResult r)
  {
   m.mergeId=m.sequence+1;highestThreat=Mathf.Max(highestThreat,m.resultValue);mergeHeatmap[m.threatCell.x,m.threatCell.y]++;
   HandleMilestoneMergeWithResult(m,r);if(m.resultValue<config.winValue)QueueSpawn(m,r);
-  if(HasPassive(KaitPassive.ReynardArcaneRecall)&&Manhattan(m.threatCell,Reynard.mirrorFoxCell)==1&&ReynardSlotValue>0)Reynard.spellReady[Reynard.mirrorFoxCell.x,Reynard.mirrorFoxCell.y]=true;
+  bool already=Reynard.sigils[m.threatCell.x,m.threatCell.y];
+  if(!already)CreateReynardSigil(m.threatCell,r);
+  else if(HasPassive(KaitPassive.ReynardOverflowInk))CreateNearestReynardSigil(m.threatCell,r);
+  if(m.reynardFoxParticipated)GainReynardTails(1,r);
+  if(m.reynardFoxParticipated&&HasPassive(KaitPassive.ReynardFoxHunt))
+  {
+   var center=MapThreatToBattle(m.threatCell);bool hit=false;
+   foreach(var e in new List<KaitEnemy>(enemies))if(Manhattan(e.pos,center)<=1&&ReynardHit(e,1,ReynardDamageKind.MergeEffect,r)>0)hit=true;
+   if(hit)r.reynardEvents.Add(new ReynardVisualEvent{kind="SpiritFoxHunt",from=center,to=center,amount=1});
+  }
+ }
+ private bool CreateReynardSigil(Vector2Int p,KaitTurnResult r)
+ {
+  if(p.x<0||p.y<0||p.x>=ThreatSize||p.y>=ThreatSize||IsThreatPillar(p)||Reynard.sigils[p.x,p.y])return false;
+  Reynard.sigils[p.x,p.y]=true;Reynard.sigilCreated[p.x,p.y]=++Reynard.nextSigilSequence;r.reynardEvents.Add(new ReynardVisualEvent{kind="SigilCreated",from=p,to=MapThreatToBattle(p),amount=1});
+  if(HasPassive(KaitPassive.ReynardArcaneManifest))
+  {
+   var cell=MapThreatToBattle(p);var target=EnemyAt(cell);
+   if(target!=null&&ReynardHit(target,1,ReynardDamageKind.SigilEffect,r)>0)r.reynardEvents.Add(new ReynardVisualEvent{kind="ArcaneManifest",from=cell,to=cell,amount=1});
+  }
+  return true;
+ }
+ private bool CreateNearestReynardSigil(Vector2Int center,KaitTurnResult r,string visualKind=null)
+ {
+  var cells=new List<Vector2Int>{center+Vector2Int.up,center+Vector2Int.left,center+Vector2Int.right,center+Vector2Int.down};cells.Sort((a,b)=>(a.y*ThreatSize+a.x).CompareTo(b.y*ThreatSize+b.x));foreach(var p in cells)if(CreateReynardSigil(p,r)){if(!string.IsNullOrEmpty(visualKind))r.reynardEvents.Add(new ReynardVisualEvent{kind=visualKind,from=MapThreatToBattle(center),to=MapThreatToBattle(p),amount=1});return true;}return false;
+ }
+ private void GainReynardTails(int count,KaitTurnResult r)
+ {
+  for(int i=0;i<count;i++){
+   if(Reynard.tails<ReynardTailCap){Reynard.tails++;r.reynardEvents.Add(new ReynardVisualEvent{kind="TailGained",from=Reynard.mirrorFoxCell,to=katePos,amount=1});continue;}
+   r.reynardEvents.Add(new ReynardVisualEvent{kind="TailOverflow",from=Reynard.mirrorFoxCell,to=katePos,amount=1});if(HasPassive(KaitPassive.ReynardTailToSigil))CreateNearestReynardSigil(Reynard.mirrorFoxCell,r,"TailToSigil");
+  }
  }
  private static int Manhattan(Vector2Int a,Vector2Int b)=>Mathf.Abs(a.x-b.x)+Mathf.Abs(a.y-b.y);
 }

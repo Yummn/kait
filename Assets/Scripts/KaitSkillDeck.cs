@@ -97,8 +97,8 @@ public sealed class KaitSkillDeck : MonoBehaviour
             }
             card.SetAvailability(IsReady(run, card.Skill), run.SkillCooldown(card.Skill), targeting == card.Skill);
             if(run.IsYummn)card.SetYummnPreparation(run.IsYummnPrepared(card.Skill),run.PreparedKiCost,run.Yummn.rules.Is082);
-            card.SetReynardState(run.IsReynard?(run.Reynard.focusedSkill==card.Skill?"维持中":ReynardCatalog.Roman(ReynardCatalog.Get(card.Skill)?.spellLevel??0)+"环 · "+(run.ReynardCastFailure(card.Skill)??"可用")):null);
-            card.SetPending(run.IsAbilityPending(KaitAbilityCatalog.Get(card.Skill)));
+            if(run.IsReynard){var rd=ReynardCatalog.Get(card.Skill);string cost=rd!=null&&rd.id=="reynard.R43"?"2狐尾":(rd?.spellLevel??0)+"材料";card.SetReynardState(cost+" · "+(run.ReynardCastFailure(card.Skill)??"可用"));}else card.SetReynardState(null);
+            card.SetPending(run.IsAbilityPending(run.IsReynard?ReynardCatalog.Get(card.Skill):KaitAbilityCatalog.Get(card.Skill)));
             card.SetCovered(run.ended);
         }
         if (rearrange) Dock(null, 0);

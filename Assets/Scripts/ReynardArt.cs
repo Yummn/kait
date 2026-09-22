@@ -4,8 +4,11 @@ using UnityEngine.EventSystems;
 public static class ReynardArt
 {
  static readonly Dictionary<string,Sprite> cache=new Dictionary<string,Sprite>();
+ static readonly Dictionary<string,Sprite[]> sequences=new Dictionary<string,Sprite[]>();
  static readonly Sprite[] impact=new Sprite[8];
- public static Sprite ImpactFrame(int index){if(impact[index]!=null)return impact[index];var t=Resources.Load<Texture2D>("Reynard/FoxfireImpact");if(t==null)return null;float sx=t.width/1280f,sy=t.height/1280f;float top=index<4?225:635;return impact[index]=Sprite.Create(t,new Rect(index%4*320*sx,t.height-(top+400)*sy,320*sx,400*sy),Vector2.one*.5f);}
+ public static float EnemyVisualScale(KaitEnemyType type)=>type==KaitEnemyType.Swordsman||type==KaitEnemyType.Guard?1.18f:type==KaitEnemyType.Archer?1.16f:1f;
+ public static Sprite ImpactFrame(int index){index=Mathf.Clamp(index,0,7);if(impact[index]!=null)return impact[index];var t=Resources.Load<Texture2D>("Reynard/FoxfireImpact");if(t==null)return null;float w=t.width/4f,h=t.height/2f;return impact[index]=Sprite.Create(t,new Rect(index%4*w,t.height-(index/4+1)*h,w,h),Vector2.one*.5f);}
+ public static Sprite SequenceFrame(string path,int index){index=Mathf.Clamp(index,0,7);if(!sequences.TryGetValue(path,out var frames)){frames=new Sprite[8];sequences[path]=frames;}if(frames[index]!=null)return frames[index];var t=Resources.Load<Texture2D>("Reynard/"+path);if(t==null)return null;float w=t.width/4f,h=t.height/2f;return frames[index]=Sprite.Create(t,new Rect(index%4*w,t.height-(index/4+1)*h,w,h),Vector2.one*.5f);}
  public static string EnemyId(KaitEnemyType t)=>new[]{"","11300041","11300006","11201007","11202007","11300040","11101005"}[(int)t];
  public static Sprite Load(string path){if(cache.TryGetValue(path,out var s))return s;var t=Resources.Load<Texture2D>("Reynard/"+path);if(t==null)return null;s=Sprite.Create(t,new Rect(0,0,t.width,t.height),Vector2.one*.5f);cache[path]=s;return s;}
 }

@@ -1,0 +1,1027 @@
+fileFormatVersion: 2
+guid: 967f2d1008aa25c43be6c3aeca99130b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3020823472139579444
+    second: MassHold_0
+  - first:
+      213: -3667619701629846911
+    second: MassHold_1
+  - first:
+      213: 5452042644213518293
+    second: MassHold_2
+  - first:
+      213: 8974460801847653792
+    second: MassHold_3
+  - first:
+      213: -2227226617745958531
+    second: MassHold_4
+  - first:
+      213: 5703265444140761364
+    second: MassHold_5
+  - first:
+      213: 8883310447580257340
+    second: MassHold_6
+  - first:
+      213: -4576335959052524063
+    second: MassHold_7
+  - first:
+      213: -4168834597082268889
+    second: MassHold_8
+  - first:
+      213: -7795799752261699745
+    second: MassHold_9
+  - first:
+      213: 654712719072698727
+    second: MassHold_10
+  - first:
+      213: 5659741432656458882
+    second: MassHold_11
+  - first:
+      213: 8406560854365379836
+    second: MassHold_12
+  - first:
+      213: 5640461508059527687
+    second: MassHold_13
+  - first:
+      213: -4266097549623824686
+    second: MassHold_14
+  - first:
+      213: 4193710319234437407
+    second: MassHold_15
+  - first:
+      213: 6163302839709227217
+    second: MassHold_16
+  - first:
+      213: 3383818468086424021
+    second: MassHold_17
+  - first:
+      213: 5904372458654334254
+    second: MassHold_18
+  - first:
+      213: 3625354559437836283
+    second: MassHold_19
+  - first:
+      213: -2365899498496703972
+    second: MassHold_20
+  - first:
+      213: -5423471231419750618
+    second: MassHold_21
+  - first:
+      213: 2457340015032428313
+    second: MassHold_22
+  - first:
+      213: -4474848533216128835
+    second: MassHold_23
+  - first:
+      213: -8625022587875376542
+    second: MassHold_24
+  - first:
+      213: 4058763285011593965
+    second: MassHold_25
+  - first:
+      213: 6294620219737120558
+    second: MassHold_26
+  - first:
+      213: 6894647669183239605
+    second: MassHold_27
+  - first:
+      213: 4535114330187580818
+    second: MassHold_28
+  - first:
+      213: -1471477089527838990
+    second: MassHold_29
+  - first:
+      213: 6654433686175366590
+    second: MassHold_30
+  - first:
+      213: 3301260105925810972
+    second: MassHold_31
+  - first:
+      213: -2982417956126992965
+    second: MassHold_32
+  - first:
+      213: 6690299490494871102
+    second: MassHold_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MassHold_0
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 422
+        width: 453
+        height: 439
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 430ba0261fe1ce920800000000000000
+      internalID: 3020823472139579444
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_1
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 860
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18af021305ff91dc0800000000000000
+      internalID: -3667619701629846911
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_2
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 362
+        width: 443
+        height: 513
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfc0a416eb89ab40800000000000000
+      internalID: 5452042644213518293
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_3
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 386
+        width: 423
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a5fbc0fc80bb8c70800000000000000
+      internalID: 8974460801847653792
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_4
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 844
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7915f6013d4711e0800000000000000
+      internalID: -2227226617745958531
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_5
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 426
+        width: 386
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41145c944b1162f40800000000000000
+      internalID: 5703265444140761364
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_6
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 795
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c998949cbd74b70800000000000000
+      internalID: 8883310447580257340
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_7
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 805
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e5e3d311b69d70c0800000000000000
+      internalID: -4576335959052524063
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_8
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 780
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b7d8975035526c0800000000000000
+      internalID: -4168834597082268889
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_9
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 755
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57fc52ed61cfc390800000000000000
+      internalID: -7795799752261699745
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_10
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 723
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761224acfb1061900800000000000000
+      internalID: 654712719072698727
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_11
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 596
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2847c0ea8d07b8e40800000000000000
+      internalID: 5659741432656458882
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_12
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 477
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc1723ae8a1aa470800000000000000
+      internalID: 8406560854365379836
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_13
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 459
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70af62d6bd1f64e40800000000000000
+      internalID: 5640461508059527687
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_14
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 446
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dee181a1e6cbc4c0800000000000000
+      internalID: -4266097549623824686
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_15
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 422
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f11dbdce05d033a30800000000000000
+      internalID: 4193710319234437407
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_16
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 414
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d856043743788550800000000000000
+      internalID: 6163302839709227217
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_17
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 412
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1a2bee7fcb5fe20800000000000000
+      internalID: 3383818468086424021
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_18
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 420
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2df0bbe77b80f150800000000000000
+      internalID: 5904372458654334254
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 441
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff822c83c8df4230800000000000000
+      internalID: 3625354559437836283
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_20
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 25
+        width: 433
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1244d1f0f2aa2fd0800000000000000
+      internalID: -2365899498496703972
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_21
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 404
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 627eca956a5fbb4b0800000000000000
+      internalID: -5423471231419750618
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_22
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 400
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9176c5069b93a1220800000000000000
+      internalID: 2457340015032428313
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_23
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 0
+        width: 467
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db099f1c7f426e1c0800000000000000
+      internalID: -4474848533216128835
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_24
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 383
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262c7f557a3cd4880800000000000000
+      internalID: -8625022587875376542
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_25
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 386
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea738614bf935830800000000000000
+      internalID: 4058763285011593965
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_26
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 386
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f1c615dbbfa5750800000000000000
+      internalID: 6294620219737120558
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_27
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 215
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b554259685beaf50800000000000000
+      internalID: 6894647669183239605
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_28
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 49
+        width: 234
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2954d9a8476ffee30800000000000000
+      internalID: 4535114330187580818
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_29
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 76
+        width: 167
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6419f1263449be0800000000000000
+      internalID: -1471477089527838990
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_30
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 164
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebd30ed4e2c495c50800000000000000
+      internalID: 6654433686175366590
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_31
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 55
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1b50e4539e60dd20800000000000000
+      internalID: 3301260105925810972
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_32
+      rect:
+        serializedVersion: 2
+        x: 1653
+        y: 33
+        width: 58
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb5dd41aba25c96d0800000000000000
+      internalID: -2982417956126992965
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MassHold_33
+      rect:
+        serializedVersion: 2
+        x: 1736
+        y: 35
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e367ceb90f7b8dc50800000000000000
+      internalID: 6690299490494871102
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MassHold_0: 3020823472139579444
+      MassHold_1: -3667619701629846911
+      MassHold_10: 654712719072698727
+      MassHold_11: 5659741432656458882
+      MassHold_12: 8406560854365379836
+      MassHold_13: 5640461508059527687
+      MassHold_14: -4266097549623824686
+      MassHold_15: 4193710319234437407
+      MassHold_16: 6163302839709227217
+      MassHold_17: 3383818468086424021
+      MassHold_18: 5904372458654334254
+      MassHold_19: 3625354559437836283
+      MassHold_2: 5452042644213518293
+      MassHold_20: -2365899498496703972
+      MassHold_21: -5423471231419750618
+      MassHold_22: 2457340015032428313
+      MassHold_23: -4474848533216128835
+      MassHold_24: -8625022587875376542
+      MassHold_25: 4058763285011593965
+      MassHold_26: 6294620219737120558
+      MassHold_27: 6894647669183239605
+      MassHold_28: 4535114330187580818
+      MassHold_29: -1471477089527838990
+      MassHold_3: 8974460801847653792
+      MassHold_30: 6654433686175366590
+      MassHold_31: 3301260105925810972
+      MassHold_32: -2982417956126992965
+      MassHold_33: 6690299490494871102
+      MassHold_4: -2227226617745958531
+      MassHold_5: 5703265444140761364
+      MassHold_6: 8883310447580257340
+      MassHold_7: -4576335959052524063
+      MassHold_8: -4168834597082268889
+      MassHold_9: -7795799752261699745
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -9,7 +9,8 @@ public enum KaitRangedState { Ready, Aim }
 public enum KaitIntentType { None, Move, Melee, LineShot, CrossBlast }
 public enum KaitSpawnState { Preview, Ready }
 public enum KaitSkill { None, SwiftBoots, DreadSlash, IceTomb, LesserPhantom, CatAgility, ShadowStep, HexCurse, DispelMagic, Command, MistyStep, GraspHadar, EldritchSmite, RelentlessHex, LevistusTomb, DimensionDoor, Flurry, WindStep, Palm, StunningFist, PatientDefense, FrostBreath, WaterWhip, UnbrokenAir, ShapeIce, YummnShadowStep, Darkness, PreciseStep, EchoStep, MendWait, AirPalm, PhantomSlide, UniqueDecoy, ThunderWave, ShatterWave, MirrorImage, CommandAct, MageHand,
-    EldritchBlast, HungerOfHadar, ReynardThunderwave, ReynardMistyStep, ReynardShatter, ReynardFireball, ReynardLightningBolt, ReynardCounterspell, ReynardChainLightning, ReynardMissileArray, ReynardFog, ReynardWeb, ReynardFoxfire, ReynardQuickenedCircle }
+    EldritchBlast, HungerOfHadar, ReynardThunderwave, ReynardMistyStep, ReynardShatter, ReynardFireball, ReynardLightningBolt, ReynardCounterspell, ReynardChainLightning, ReynardMissileArray, ReynardFog, ReynardWeb, ReynardFoxfire, ReynardQuickenedCircle,
+    ReynardScorchingRay, ReynardRuneStep, ReynardStoneWall, ReynardTailNova, ReynardMassHold }
 public enum KaitSpeedModifier { AddOne, Double }
 
 [Serializable] public sealed class KaitBalanceConfig
@@ -23,7 +24,7 @@ public enum KaitSpeedModifier { AddOne, Double }
     public bool kaitEffectiveMoveSupply;
 }
 
-[Serializable] public sealed class KaitMergeEvent { public int sourceValue, resultValue, sequence; public Vector2Int threatCell; public KaitDirection actualThreatDirection; public bool spawnSuppressed, systemMerge; public int rootActionId,mergeId; public string mergeSource; }
+[Serializable] public sealed class KaitMergeEvent { public int sourceValue, resultValue, sequence; public Vector2Int threatCell; public KaitDirection actualThreatDirection; public bool spawnSuppressed, systemMerge, reynardFoxParticipated; public int rootActionId,mergeId; public string mergeSource; }
 [Serializable] public sealed class KaitIntent
 {
     public KaitIntentType type;
@@ -641,7 +642,7 @@ public sealed partial class KaitRun
                 if (katePos == cell)
                 {
                     action.guarded = IsYummn && PreventYummnHit(attacker,intent,result);
-                    if (!action.guarded) DamageKate(intent.damage, result);
+                    if (!action.guarded) DamageKate(intent.damage, result, attacker);
                     action.hitKate = true; hitUnit = true;
                 }
                 if (config.enableFriendlyFire && !IsYummn)
@@ -745,13 +746,24 @@ public sealed partial class KaitRun
             parentEventId=++nextDamageEventId},result);
     }
 
-    private int DamageKate(int amount, KaitTurnResult result)
+    private int DamageKate(int amount, KaitTurnResult result, KaitEnemy attacker=null)
     {
         if (config.playerInvincible || tombArmed || amount <= 0) return 0;
-        if(IsReynard && Reynard.mirrorWard){Reynard.mirrorWard=false;return 0;}
+        if(IsReynard && Reynard.mirrorWard){Reynard.mirrorWard=false;result.reynardEvents.Add(new ReynardVisualEvent{kind="MirrorWardBlock",from=katePos,to=katePos,amount=amount});return 0;}
+        int spentTails=0;
+        if(IsReynard&&Reynard.tails>0)
+        {
+            spentTails=Mathf.Min(amount,Reynard.tails);Reynard.tails-=spentTails;amount-=spentTails;
+            for(int i=0;i<spentTails;i++)result.reynardEvents.Add(new ReynardVisualEvent{kind="TailSpentDefense",from=katePos,to=katePos,amount=1});
+        }
         int appliedDamage = Mathf.Min(kateHp, amount);
         kateHp -= appliedDamage;
         result.playerDamage += appliedDamage;
+        if(IsReynard&&kateHp>0&&spentTails>0)
+        {
+            if(attacker!=null&&HasPassive(KaitPassive.ReynardTailGuard)&&ReynardHit(attacker,spentTails,ReynardDamageKind.TailCounter,result)>0)result.reynardEvents.Add(new ReynardVisualEvent{kind="FoxfireGuard",from=katePos,to=attacker.pos,amount=spentTails});
+            if(HasPassive(KaitPassive.ReynardTailChant))for(int i=0;i<spentTails;i++){int before=Reynard.directionSpells;ResolveReynardShot(Reynard.hasLastDirection?Reynard.lastDirection:KaitDirection.Up,result);if(Reynard.directionSpells>before)result.reynardEvents.Add(new ReynardVisualEvent{kind="TailwindChant",from=katePos,to=katePos,amount=1});}
+        }
         return appliedDamage;
     }
 
@@ -870,6 +882,11 @@ public sealed partial class KaitRun
 
             KaitEnemy occupant = EnemyAt(request.targetCell);
             bool occupied=katePos==request.targetCell || occupant!=null || IsHardBlocked(request.targetCell);
+            if(IsReynard&&ReynardWallAt(request.targetCell))
+            {
+                // A temporary spell wall pauses this rift instead of deleting it.
+                request.turnsUntilSpawn=1;request.state=KaitSpawnState.Preview;i++;continue;
+            }
             if(occupied && HasPassive(KaitPassive.ArcaneLock) && !request.lockDelayed)
             {
                 request.lockDelayed=true;request.turnsUntilSpawn=1;request.state=KaitSpawnState.Preview;
@@ -1376,7 +1393,7 @@ public sealed partial class KaitRun
     private Vector2Int FindOpenNearCenter()
     { Vector2Int center = new Vector2Int(BattleSize / 2, BattleSize / 2); if (!walls[center.x, center.y]) return center; return center + Vector2Int.left; }
     private bool CanEnterFrom(Vector2Int from, KaitDirection d) { Vector2Int p = from + Delta(d); return !IsHardBlocked(p) || EnemyAt(p) != null; }
-    public bool IsHardBlocked(Vector2Int p) => !Inside(p) || walls[p.x, p.y] || IsYummn && Yummn.icePillar==p;
+    public bool IsHardBlocked(Vector2Int p) => !Inside(p) || walls[p.x, p.y] || IsYummn && Yummn.icePillar==p || IsReynard && ReynardWallAt(p);
     private static bool Inside(Vector2Int p) => p.x >= 0 && p.x < BattleSize && p.y >= 0 && p.y < BattleSize;
     private int[,] CopyThreat() { var copy = new int[ThreatSize, ThreatSize]; Array.Copy(threat, copy, threat.Length); return copy; }
     private void End(string reason, bool victory) { ended = true; won = victory; endReason = reason; chainActive = false; }

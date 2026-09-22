@@ -1,0 +1,1105 @@
+fileFormatVersion: 2
+guid: 02d51c1a70343144fb7021c068d8d37e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8942530998245931982
+    second: SplitOrb_0
+  - first:
+      213: 2239217880062269148
+    second: SplitOrb_1
+  - first:
+      213: -8722970252829273924
+    second: SplitOrb_2
+  - first:
+      213: -3091957657114947063
+    second: SplitOrb_3
+  - first:
+      213: -4748385874491030416
+    second: SplitOrb_4
+  - first:
+      213: -1609106016596230503
+    second: SplitOrb_5
+  - first:
+      213: -5769044543985310924
+    second: SplitOrb_6
+  - first:
+      213: -72163648046568884
+    second: SplitOrb_7
+  - first:
+      213: 5665101369247206629
+    second: SplitOrb_8
+  - first:
+      213: 8881210541744282968
+    second: SplitOrb_9
+  - first:
+      213: -8714389565881233438
+    second: SplitOrb_10
+  - first:
+      213: -7355927860076890199
+    second: SplitOrb_11
+  - first:
+      213: 1463476056473816081
+    second: SplitOrb_12
+  - first:
+      213: -6534867854294072984
+    second: SplitOrb_13
+  - first:
+      213: -2812623615812024926
+    second: SplitOrb_14
+  - first:
+      213: 2875654973018216007
+    second: SplitOrb_15
+  - first:
+      213: 1458747938914111595
+    second: SplitOrb_16
+  - first:
+      213: -2096078066342768792
+    second: SplitOrb_17
+  - first:
+      213: 5669521186172424500
+    second: SplitOrb_18
+  - first:
+      213: 3260573323772368548
+    second: SplitOrb_19
+  - first:
+      213: -6559048179606492467
+    second: SplitOrb_20
+  - first:
+      213: -1506695059024570410
+    second: SplitOrb_21
+  - first:
+      213: -5450588245189764678
+    second: SplitOrb_22
+  - first:
+      213: -2636294874104439935
+    second: SplitOrb_23
+  - first:
+      213: -2429616259383624467
+    second: SplitOrb_24
+  - first:
+      213: -6135918421327633518
+    second: SplitOrb_25
+  - first:
+      213: 3910830170051816887
+    second: SplitOrb_26
+  - first:
+      213: 7500257887948481993
+    second: SplitOrb_27
+  - first:
+      213: -5117047756867047309
+    second: SplitOrb_28
+  - first:
+      213: 4879760874788237063
+    second: SplitOrb_29
+  - first:
+      213: -5962807842795087826
+    second: SplitOrb_30
+  - first:
+      213: 2389163295151954535
+    second: SplitOrb_31
+  - first:
+      213: 7252005477800459598
+    second: SplitOrb_32
+  - first:
+      213: 6356595460412642094
+    second: SplitOrb_33
+  - first:
+      213: 8962105902048154094
+    second: SplitOrb_34
+  - first:
+      213: -2659552237135467900
+    second: SplitOrb_35
+  - first:
+      213: -763321613710628049
+    second: SplitOrb_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SplitOrb_0
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 696
+        width: 158
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 234c1a8cf6fb5e380800000000000000
+      internalID: -8942530998245931982
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_1
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 307
+        width: 483
+        height: 562
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd690db4ccc431f10800000000000000
+      internalID: 2239217880062269148
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_2
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 283
+        width: 418
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb0dfc575c8c1f680800000000000000
+      internalID: -8722970252829273924
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_3
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 212
+        width: 452
+        height: 625
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9025d1b84e82715d0800000000000000
+      internalID: -3091957657114947063
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_4
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 814
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 074ca7684385a1eb0800000000000000
+      internalID: -4748385874491030416
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_5
+      rect:
+        serializedVersion: 2
+        x: 1586
+        y: 811
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e76d27a9e4ba9e0800000000000000
+      internalID: -1609106016596230503
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_6
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 779
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433a95e8d8c30ffa0800000000000000
+      internalID: -5769044543985310924
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_7
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 723
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4aec706b8f9ffef0800000000000000
+      internalID: -72163648046568884
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_8
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 725
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec0f8a2eab7e9e40800000000000000
+      internalID: 5665101369247206629
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_9
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 733
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85d5f1cdee5604b70800000000000000
+      internalID: 8881210541744282968
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 658
+        width: 46
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef47435cd4401780800000000000000
+      internalID: -8714389565881233438
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_11
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 516
+        width: 334
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a7b7baa59e7ae990800000000000000
+      internalID: -7355927860076890199
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_12
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 467
+        width: 290
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11c496338bf4f4410800000000000000
+      internalID: 1463476056473816081
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_13
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 467
+        width: 19
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 861ceaa4f4c7f45a0800000000000000
+      internalID: -6534867854294072984
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_14
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 35
+        width: 380
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a546ac29bd87f8d0800000000000000
+      internalID: -2812623615812024926
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_15
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 371
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 746165b46f068e720800000000000000
+      internalID: 2875654973018216007
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_16
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 321
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b601fcb85838e3410800000000000000
+      internalID: 1458747938914111595
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_17
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 136
+        width: 368
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86fc62aaa1c39e2e0800000000000000
+      internalID: -2096078066342768792
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_18
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 327
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 431db5cfa7f2eae40800000000000000
+      internalID: 5669521186172424500
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_19
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 325
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a61197a922ef3d20800000000000000
+      internalID: 3260573323772368548
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_20
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 319
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcae1e59e6499f4a0800000000000000
+      internalID: -6559048179606492467
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_21
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 323
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7110e93d4271be0800000000000000
+      internalID: -1506695059024570410
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_22
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 176
+        width: 165
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab95b849ede9b54b0800000000000000
+      internalID: -5450588245189764678
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_23
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 289
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b52d997cff96bd0800000000000000
+      internalID: -2636294874104439935
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_24
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 303
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: decfcee72e4484ed0800000000000000
+      internalID: -2429616259383624467
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_25
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 265
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 293adfd84b6d8daa0800000000000000
+      internalID: -6135918421327633518
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_26
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 293
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bda1d6b15f064630800000000000000
+      internalID: 3910830170051816887
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_27
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 281
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c5adfe9fc4461860800000000000000
+      internalID: 7500257887948481993
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_28
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 39
+        width: 285
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 370fa392d289cf8b0800000000000000
+      internalID: -5117047756867047309
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_29
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 91
+        width: 136
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70f2a9a59a468b340800000000000000
+      internalID: 4879760874788237063
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_30
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 194
+        width: 43
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e28194afbd9df3da0800000000000000
+      internalID: -5962807842795087826
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_31
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 162
+        width: 90
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76a1fedcb53082120800000000000000
+      internalID: 2389163295151954535
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_32
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 39
+        width: 195
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4dbb7d2f8c44a460800000000000000
+      internalID: 7252005477800459598
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_33
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 47
+        width: 93
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2391ce74e9273850800000000000000
+      internalID: 6356595460412642094
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_34
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 109
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1130ba5dbcf5c70800000000000000
+      internalID: 8962105902048154094
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_35
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 111
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ae1fbc45f571bd0800000000000000
+      internalID: -2659552237135467900
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplitOrb_36
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 47
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b666d59032865f0800000000000000
+      internalID: -763321613710628049
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SplitOrb_0: -8942530998245931982
+      SplitOrb_1: 2239217880062269148
+      SplitOrb_10: -8714389565881233438
+      SplitOrb_11: -7355927860076890199
+      SplitOrb_12: 1463476056473816081
+      SplitOrb_13: -6534867854294072984
+      SplitOrb_14: -2812623615812024926
+      SplitOrb_15: 2875654973018216007
+      SplitOrb_16: 1458747938914111595
+      SplitOrb_17: -2096078066342768792
+      SplitOrb_18: 5669521186172424500
+      SplitOrb_19: 3260573323772368548
+      SplitOrb_2: -8722970252829273924
+      SplitOrb_20: -6559048179606492467
+      SplitOrb_21: -1506695059024570410
+      SplitOrb_22: -5450588245189764678
+      SplitOrb_23: -2636294874104439935
+      SplitOrb_24: -2429616259383624467
+      SplitOrb_25: -6135918421327633518
+      SplitOrb_26: 3910830170051816887
+      SplitOrb_27: 7500257887948481993
+      SplitOrb_28: -5117047756867047309
+      SplitOrb_29: 4879760874788237063
+      SplitOrb_3: -3091957657114947063
+      SplitOrb_30: -5962807842795087826
+      SplitOrb_31: 2389163295151954535
+      SplitOrb_32: 7252005477800459598
+      SplitOrb_33: 6356595460412642094
+      SplitOrb_34: 8962105902048154094
+      SplitOrb_35: -2659552237135467900
+      SplitOrb_36: -763321613710628049
+      SplitOrb_4: -4748385874491030416
+      SplitOrb_5: -1609106016596230503
+      SplitOrb_6: -5769044543985310924
+      SplitOrb_7: -72163648046568884
+      SplitOrb_8: 5665101369247206629
+      SplitOrb_9: 8881210541744282968
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

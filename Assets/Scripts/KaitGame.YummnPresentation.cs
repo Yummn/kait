@@ -163,7 +163,8 @@ public sealed partial class KaitGame
                 if(!captured&&run.IsReynard&&yummnMoveProgress>.15f&&yummnMoveProgress<.95f&&CommandLineValue("-reynardQA")=="1")
                 {
                     captured=true;
-                    if(kaitSpine?.CurrentAnimation?.Animation?.Name!="walk")Debug.LogError("REYNARD_MOVE_STYLE: expected walk loop");
+                    string expected=string.IsNullOrEmpty(animationOverride)?"walk":animationOverride;
+                    if(kaitSpine?.CurrentAnimation?.Animation?.Name!=expected)Debug.LogError("REYNARD_MOVE_STYLE: expected "+expected+" loop");
                     if(ghostCount!=0)Debug.LogError("REYNARD_MOVE_STYLE: exhausted-style movement must not create trails");
                     Debug.Log("REYNARD_MOVE_INTERMEDIATE "+yummnMoveProgress);
                     CaptureCanvasToPng(System.IO.Path.Combine(Application.dataPath,"../Logs/reynard-move-mid.png"));

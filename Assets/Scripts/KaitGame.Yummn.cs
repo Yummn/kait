@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,7 +69,7 @@ public sealed partial class KaitGame
         if(originalYummnWall==null)originalYummnWall=dungeonWallSprite;
         dungeonFloorSprite=KaitStorybookArt.Floor(run.IsYummn,1,1) ?? originalYummnFloor;
         dungeonWallSprite=KaitStorybookArt.Wall(run.IsYummn) ?? originalYummnWall;
-        if(storybookBackdrop!=null)storybookBackdrop.sprite=run.IsReynard?ReynardArt.Load("MoonShrine"):KaitStorybookArt.Load(run.IsYummn?"SnowBackdrop":"GrassBackdrop");
+        if(storybookBackdrop!=null)storybookBackdrop.sprite=run.IsReynard?ReynardArt.Load("MoonGarden"):KaitStorybookArt.Load(run.IsYummn?"SnowBackdrop":"GrassBackdrop");
         if(storybookForestDetail!=null)storybookForestDetail.SetSeason(run.IsYummn);
         if(storybookForegroundBough!=null)
         {

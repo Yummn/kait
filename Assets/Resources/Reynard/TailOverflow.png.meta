@@ -1,0 +1,1573 @@
+fileFormatVersion: 2
+guid: fa9b7bbb9313ebd4491379c9e3b4d336
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1037677561396077816
+    second: TailOverflow_0
+  - first:
+      213: 4587189774282231159
+    second: TailOverflow_1
+  - first:
+      213: -3007357389620350569
+    second: TailOverflow_2
+  - first:
+      213: -224360811017718969
+    second: TailOverflow_3
+  - first:
+      213: 5401096548418726541
+    second: TailOverflow_4
+  - first:
+      213: -6337689909232250379
+    second: TailOverflow_5
+  - first:
+      213: 2429416380759110713
+    second: TailOverflow_6
+  - first:
+      213: 6762856737815229047
+    second: TailOverflow_7
+  - first:
+      213: -1189518795024790904
+    second: TailOverflow_8
+  - first:
+      213: 4056946296175073535
+    second: TailOverflow_9
+  - first:
+      213: -4935927441206627453
+    second: TailOverflow_10
+  - first:
+      213: -6054087084002913690
+    second: TailOverflow_11
+  - first:
+      213: 2315575675526458098
+    second: TailOverflow_12
+  - first:
+      213: 7014460725568861316
+    second: TailOverflow_13
+  - first:
+      213: 7817267063228657215
+    second: TailOverflow_14
+  - first:
+      213: 5092389756010815619
+    second: TailOverflow_15
+  - first:
+      213: -3316630122821149712
+    second: TailOverflow_16
+  - first:
+      213: -4922431422377987133
+    second: TailOverflow_17
+  - first:
+      213: -8360479260849585648
+    second: TailOverflow_18
+  - first:
+      213: 6763298561717347014
+    second: TailOverflow_19
+  - first:
+      213: -6466799255100867504
+    second: TailOverflow_20
+  - first:
+      213: 1588198740196692441
+    second: TailOverflow_21
+  - first:
+      213: -9151867124013874560
+    second: TailOverflow_22
+  - first:
+      213: 5871538707831393039
+    second: TailOverflow_23
+  - first:
+      213: -6971722665138230688
+    second: TailOverflow_24
+  - first:
+      213: 3233099048385082859
+    second: TailOverflow_25
+  - first:
+      213: -1825283598562220889
+    second: TailOverflow_26
+  - first:
+      213: 5038593331142040594
+    second: TailOverflow_27
+  - first:
+      213: -5621106862585355777
+    second: TailOverflow_28
+  - first:
+      213: 539563383292586406
+    second: TailOverflow_29
+  - first:
+      213: 5537119957184112476
+    second: TailOverflow_30
+  - first:
+      213: -584930502404184111
+    second: TailOverflow_31
+  - first:
+      213: 5618278370114950219
+    second: TailOverflow_32
+  - first:
+      213: 6777425983611472093
+    second: TailOverflow_33
+  - first:
+      213: 4325030637529999460
+    second: TailOverflow_34
+  - first:
+      213: 2182084469126264201
+    second: TailOverflow_35
+  - first:
+      213: 73838225925241440
+    second: TailOverflow_36
+  - first:
+      213: -2373472025737121773
+    second: TailOverflow_37
+  - first:
+      213: -1288807238453225967
+    second: TailOverflow_38
+  - first:
+      213: -3782601074488122250
+    second: TailOverflow_39
+  - first:
+      213: 3725422909547862896
+    second: TailOverflow_40
+  - first:
+      213: 1503867410672431024
+    second: TailOverflow_41
+  - first:
+      213: 7047634155490641164
+    second: TailOverflow_42
+  - first:
+      213: 8370932224451401207
+    second: TailOverflow_43
+  - first:
+      213: -3699378132891116765
+    second: TailOverflow_44
+  - first:
+      213: 6000613999201590155
+    second: TailOverflow_45
+  - first:
+      213: -2810229221948428138
+    second: TailOverflow_46
+  - first:
+      213: 6299578475065541739
+    second: TailOverflow_47
+  - first:
+      213: 7140944992827147308
+    second: TailOverflow_48
+  - first:
+      213: -5177992216886962649
+    second: TailOverflow_49
+  - first:
+      213: -478532629597648160
+    second: TailOverflow_50
+  - first:
+      213: -7000139484712035077
+    second: TailOverflow_51
+  - first:
+      213: -3970307295404563591
+    second: TailOverflow_52
+  - first:
+      213: -1606238101172004486
+    second: TailOverflow_53
+  - first:
+      213: 2771046643827191536
+    second: TailOverflow_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TailOverflow_0
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 354
+        width: 489
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f428668e32966e00800000000000000
+      internalID: 1037677561396077816
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_1
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 790
+        width: 59
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77d8565bbc8f8af30800000000000000
+      internalID: 4587189774282231159
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_2
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 188
+        width: 424
+        height: 677
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79178074368b346d0800000000000000
+      internalID: -3007357389620350569
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_3
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 862
+        width: 40
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74335c5f709e2ecf0800000000000000
+      internalID: -224360811017718969
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 410
+        width: 358
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8a261ec1bc84fa40800000000000000
+      internalID: 5401096548418726541
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_5
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 779
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f152a72b900c08a0800000000000000
+      internalID: -6337689909232250379
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_6
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 771
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93479a2a35507b120800000000000000
+      internalID: 2429416380759110713
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_7
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 209
+        width: 449
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77275543f5e7add50800000000000000
+      internalID: 6762856737815229047
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_8
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 757
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a85e055fafd7fe0800000000000000
+      internalID: -1189518795024790904
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_9
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 771
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff81a58692b2d4830800000000000000
+      internalID: 4056946296175073535
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_10
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 656
+        width: 50
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383b6c5d420108bb0800000000000000
+      internalID: -4935927441206627453
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 698
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662d9be7fdf8bfba0800000000000000
+      internalID: -6054087084002913690
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_12
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 698
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fa2a46fec3922020800000000000000
+      internalID: 2315575675526458098
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 714
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484f57e9dde585160800000000000000
+      internalID: 7014460725568861316
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_14
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 640
+        width: 90
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3eea12f9f28c7c60800000000000000
+      internalID: 7817267063228657215
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_15
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 725
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380ecd0a08dcba640800000000000000
+      internalID: 5092389756010815619
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_16
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 660
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb92edb976f8f1d0800000000000000
+      internalID: -3316630122821149712
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_17
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 596
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c370f593b200bbb0800000000000000
+      internalID: -4922431422377987133
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_18
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 475
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0124a01786c99fb80800000000000000
+      internalID: -8360479260849585648
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_19
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 467
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2a21955301cdd50800000000000000
+      internalID: 6763298561717347014
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_20
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 424
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05cb3fd07505146a0800000000000000
+      internalID: -6466799255100867504
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_21
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 407
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1952ee65a6a0610800000000000000
+      internalID: 1588198740196692441
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_22
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 395
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082c391e6590ef080800000000000000
+      internalID: -9151867124013874560
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_23
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 356
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b0f359855eb7150800000000000000
+      internalID: 5871538707831393039
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_24
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 307
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a65ef7c277f3f90800000000000000
+      internalID: -6971722665138230688
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_25
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 336
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be575ae64764edc20800000000000000
+      internalID: 3233099048385082859
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_26
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 344
+        width: 8
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a42a55ec3a4ba6e0800000000000000
+      internalID: -1825283598562220889
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_27
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 43
+        width: 419
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c9f5660fdace540800000000000000
+      internalID: 5038593331142040594
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_28
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 317
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff1e6132711ddf1b0800000000000000
+      internalID: -5621106862585355777
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_29
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 277
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a966f2d90aec7700800000000000000
+      internalID: 539563383292586406
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_30
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 267
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c576fae934dc7dc40800000000000000
+      internalID: 5537119957184112476
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_31
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 277
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d768e1aec8e1e7f0800000000000000
+      internalID: -584930502404184111
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_32
+      rect:
+        serializedVersion: 2
+        x: 1095
+        y: 32
+        width: 190
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4456f3296228fd40800000000000000
+      internalID: 5618278370114950219
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_33
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 275
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd80aa416014e0e50800000000000000
+      internalID: 6777425983611472093
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_34
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 273
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46828a82378950c30800000000000000
+      internalID: 4325030637529999460
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_35
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 265
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 985fa247342584e10800000000000000
+      internalID: 2182084469126264201
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_36
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 269
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a7e1ba973560100800000000000000
+      internalID: 73838225925241440
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_37
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 261
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 310bc9d84cbbf0fd0800000000000000
+      internalID: -2373472025737121773
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_38
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 215
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1161b0025ac3d1ee0800000000000000
+      internalID: -1288807238453225967
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_39
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 0
+        width: 223
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 674ef142d50818bc0800000000000000
+      internalID: -3782601074488122250
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_40
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 23
+        width: 273
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07bd3b9e56c53b330800000000000000
+      internalID: 3725422909547862896
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_41
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 216
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bfaa62317fced410800000000000000
+      internalID: 1503867410672431024
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_42
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 209
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c050ee8ace93ec160800000000000000
+      internalID: 7047634155490641164
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_43
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 217
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5db4dc1868b2470800000000000000
+      internalID: 8370932224451401207
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_44
+      rect:
+        serializedVersion: 2
+        x: 1423
+        y: 213
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b5d23303b29acc0800000000000000
+      internalID: -3699378132891116765
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_45
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 112
+        width: 117
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b95a0c3a6764350800000000000000
+      internalID: 6000613999201590155
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_46
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 158
+        width: 34
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6907750796f0009d0800000000000000
+      internalID: -2810229221948428138
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_47
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 84
+        width: 157
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b648af81f399c6750800000000000000
+      internalID: 6299578475065541739
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_48
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 152
+        width: 68
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c24011af2abb91360800000000000000
+      internalID: 7140944992827147308
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_49
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 102
+        width: 40
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72617be43831428b0800000000000000
+      internalID: -5177992216886962649
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_50
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 67
+        width: 32
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ea0667db19eb59f0800000000000000
+      internalID: -478532629597648160
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_51
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 65
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc9d8b1a328ade90800000000000000
+      internalID: -7000139484712035077
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_52
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 31
+        width: 88
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 973e448ec82a6e8c0800000000000000
+      internalID: -3970307295404563591
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_53
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 71
+        width: 24
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a79d1fa05fe75b9e0800000000000000
+      internalID: -1606238101172004486
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailOverflow_54
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 31
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0feab5dad3cb47620800000000000000
+      internalID: 2771046643827191536
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TailOverflow_0: 1037677561396077816
+      TailOverflow_1: 4587189774282231159
+      TailOverflow_10: -4935927441206627453
+      TailOverflow_11: -6054087084002913690
+      TailOverflow_12: 2315575675526458098
+      TailOverflow_13: 7014460725568861316
+      TailOverflow_14: 7817267063228657215
+      TailOverflow_15: 5092389756010815619
+      TailOverflow_16: -3316630122821149712
+      TailOverflow_17: -4922431422377987133
+      TailOverflow_18: -8360479260849585648
+      TailOverflow_19: 6763298561717347014
+      TailOverflow_2: -3007357389620350569
+      TailOverflow_20: -6466799255100867504
+      TailOverflow_21: 1588198740196692441
+      TailOverflow_22: -9151867124013874560
+      TailOverflow_23: 5871538707831393039
+      TailOverflow_24: -6971722665138230688
+      TailOverflow_25: 3233099048385082859
+      TailOverflow_26: -1825283598562220889
+      TailOverflow_27: 5038593331142040594
+      TailOverflow_28: -5621106862585355777
+      TailOverflow_29: 539563383292586406
+      TailOverflow_3: -224360811017718969
+      TailOverflow_30: 5537119957184112476
+      TailOverflow_31: -584930502404184111
+      TailOverflow_32: 5618278370114950219
+      TailOverflow_33: 6777425983611472093
+      TailOverflow_34: 4325030637529999460
+      TailOverflow_35: 2182084469126264201
+      TailOverflow_36: 73838225925241440
+      TailOverflow_37: -2373472025737121773
+      TailOverflow_38: -1288807238453225967
+      TailOverflow_39: -3782601074488122250
+      TailOverflow_4: 5401096548418726541
+      TailOverflow_40: 3725422909547862896
+      TailOverflow_41: 1503867410672431024
+      TailOverflow_42: 7047634155490641164
+      TailOverflow_43: 8370932224451401207
+      TailOverflow_44: -3699378132891116765
+      TailOverflow_45: 6000613999201590155
+      TailOverflow_46: -2810229221948428138
+      TailOverflow_47: 6299578475065541739
+      TailOverflow_48: 7140944992827147308
+      TailOverflow_49: -5177992216886962649
+      TailOverflow_5: -6337689909232250379
+      TailOverflow_50: -478532629597648160
+      TailOverflow_51: -7000139484712035077
+      TailOverflow_52: -3970307295404563591
+      TailOverflow_53: -1606238101172004486
+      TailOverflow_54: 2771046643827191536
+      TailOverflow_6: 2429416380759110713
+      TailOverflow_7: 6762856737815229047
+      TailOverflow_8: -1189518795024790904
+      TailOverflow_9: 4056946296175073535
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

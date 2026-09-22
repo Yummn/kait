@@ -1,0 +1,1937 @@
+fileFormatVersion: 2
+guid: b8921db449cd0944cb5b945fd733d5d7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5790835876974183241
+    second: StarChaser_0
+  - first:
+      213: -7129446201161830426
+    second: StarChaser_1
+  - first:
+      213: -4764521800854038701
+    second: StarChaser_2
+  - first:
+      213: 1384099313056952843
+    second: StarChaser_3
+  - first:
+      213: 447054613152833273
+    second: StarChaser_4
+  - first:
+      213: 4436010125366960764
+    second: StarChaser_5
+  - first:
+      213: 6408508566309027397
+    second: StarChaser_6
+  - first:
+      213: 5300720053755585995
+    second: StarChaser_7
+  - first:
+      213: 3316647355421526655
+    second: StarChaser_8
+  - first:
+      213: 1517640397013562962
+    second: StarChaser_9
+  - first:
+      213: 1426375799725565076
+    second: StarChaser_10
+  - first:
+      213: -8307024255044898054
+    second: StarChaser_11
+  - first:
+      213: -7734945843269156889
+    second: StarChaser_12
+  - first:
+      213: 2819403490899998397
+    second: StarChaser_13
+  - first:
+      213: 7469821319533520387
+    second: StarChaser_14
+  - first:
+      213: -355477714498800870
+    second: StarChaser_15
+  - first:
+      213: -7706953200974751786
+    second: StarChaser_16
+  - first:
+      213: 5805096574172336527
+    second: StarChaser_17
+  - first:
+      213: -5202235340832510130
+    second: StarChaser_18
+  - first:
+      213: 5081062650513536270
+    second: StarChaser_19
+  - first:
+      213: -5672790498738131674
+    second: StarChaser_20
+  - first:
+      213: 1517719194742658675
+    second: StarChaser_21
+  - first:
+      213: -7407154024227324900
+    second: StarChaser_22
+  - first:
+      213: -4678799041906410640
+    second: StarChaser_23
+  - first:
+      213: 4554473505449396674
+    second: StarChaser_24
+  - first:
+      213: 3230760081598489421
+    second: StarChaser_25
+  - first:
+      213: 7050364538368967118
+    second: StarChaser_26
+  - first:
+      213: 6793839836168329746
+    second: StarChaser_27
+  - first:
+      213: 5063674690002417937
+    second: StarChaser_28
+  - first:
+      213: 8422990671767944506
+    second: StarChaser_29
+  - first:
+      213: 2887361813944411154
+    second: StarChaser_30
+  - first:
+      213: -6323157450473669417
+    second: StarChaser_31
+  - first:
+      213: -5555649942112707513
+    second: StarChaser_32
+  - first:
+      213: 7215541122394346092
+    second: StarChaser_33
+  - first:
+      213: 1003297165203463839
+    second: StarChaser_34
+  - first:
+      213: 243579861559260414
+    second: StarChaser_35
+  - first:
+      213: -5953464635094942688
+    second: StarChaser_36
+  - first:
+      213: 1378071836032767715
+    second: StarChaser_37
+  - first:
+      213: 605244891796388493
+    second: StarChaser_38
+  - first:
+      213: -2966178155401430423
+    second: StarChaser_39
+  - first:
+      213: 5401725135677530760
+    second: StarChaser_40
+  - first:
+      213: -8435120891294059292
+    second: StarChaser_41
+  - first:
+      213: -5222480914773165703
+    second: StarChaser_42
+  - first:
+      213: -967370496496549923
+    second: StarChaser_43
+  - first:
+      213: 6426717150510524494
+    second: StarChaser_44
+  - first:
+      213: 147905857757754791
+    second: StarChaser_45
+  - first:
+      213: 4332560084117494294
+    second: StarChaser_46
+  - first:
+      213: -4997566428925195457
+    second: StarChaser_47
+  - first:
+      213: -5323124906899786882
+    second: StarChaser_48
+  - first:
+      213: -1335454779830736492
+    second: StarChaser_49
+  - first:
+      213: -2766306029156665889
+    second: StarChaser_50
+  - first:
+      213: -5343016809848443526
+    second: StarChaser_51
+  - first:
+      213: 8914613285219973003
+    second: StarChaser_52
+  - first:
+      213: 8000282420303633739
+    second: StarChaser_53
+  - first:
+      213: 3513848300244141977
+    second: StarChaser_54
+  - first:
+      213: 6304614536175232943
+    second: StarChaser_55
+  - first:
+      213: -3749979130809691756
+    second: StarChaser_56
+  - first:
+      213: -196789341807026003
+    second: StarChaser_57
+  - first:
+      213: 1229166811017553735
+    second: StarChaser_58
+  - first:
+      213: 1727626497753101617
+    second: StarChaser_59
+  - first:
+      213: -7872939496235780151
+    second: StarChaser_60
+  - first:
+      213: -3812409468514577830
+    second: StarChaser_61
+  - first:
+      213: -8837999940391389149
+    second: StarChaser_62
+  - first:
+      213: -8956653187681735097
+    second: StarChaser_63
+  - first:
+      213: -8045322730666495397
+    second: StarChaser_64
+  - first:
+      213: -2639415803059225400
+    second: StarChaser_65
+  - first:
+      213: -2269262806782424678
+    second: StarChaser_66
+  - first:
+      213: 4697656823007071159
+    second: StarChaser_67
+  - first:
+      213: -5836413433952451946
+    second: StarChaser_68
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StarChaser_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 448
+        width: 322
+        height: 379
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bcbd587371d2afa0800000000000000
+      internalID: -5790835876974183241
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_1
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 747
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6efad76147e1f0d90800000000000000
+      internalID: -7129446201161830426
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_2
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 485
+        width: 445
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3579d776aa401edb0800000000000000
+      internalID: -4764521800854038701
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_3
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 771
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b023f90fdfe453310800000000000000
+      internalID: 1384099313056952843
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_4
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 781
+        width: 40
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fe9c245dc1443600800000000000000
+      internalID: 447054613152833273
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_5
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 815
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c72a88eb4bfdf8d30800000000000000
+      internalID: 4436010125366960764
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_6
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 811
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54eb5ea56989fe850800000000000000
+      internalID: 6408508566309027397
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_7
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 797
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc524e1fdc0ff8940800000000000000
+      internalID: 5300720053755585995
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_8
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 717
+        width: 27
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a83298239170e20800000000000000
+      internalID: 3316647355421526655
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_9
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 753
+        width: 39
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 256b6c876edbf0510800000000000000
+      internalID: 1517640397013562962
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_10
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 796
+        width: 94
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4942bda8b318bc310800000000000000
+      internalID: 1426375799725565076
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_11
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 789
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2be79d37587bc80800000000000000
+      internalID: -8307024255044898054
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_12
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 789
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7efbe0facb3f7a490800000000000000
+      internalID: -7734945843269156889
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_13
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 805
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db637918988802720800000000000000
+      internalID: 2819403490899998397
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_14
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 797
+        width: 30
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3066f6ec9e22aa760800000000000000
+      internalID: 7469821319533520387
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_15
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 749
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a133bbde6e6111bf0800000000000000
+      internalID: -355477714498800870
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_16
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 757
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7175b95e66b0590800000000000000
+      internalID: -7706953200974751786
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_17
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 761
+        width: 104
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f811166d398df8050800000000000000
+      internalID: 5805096574172336527
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_18
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 761
+        width: 78
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4fe1b72582fdc7b0800000000000000
+      internalID: -5202235340832510130
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_19
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 742
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e053d5d5f8f838640800000000000000
+      internalID: 5081062650513536270
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_20
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 739
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62da08dd8133641b0800000000000000
+      internalID: -5672790498738131674
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_21
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 744
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3769d6ff095001510800000000000000
+      internalID: 1517719194742658675
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_22
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 281
+        width: 519
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1c3355e8a0843990800000000000000
+      internalID: -7407154024227324900
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_23
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 211
+        width: 382
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07bfabb8f01911fb0800000000000000
+      internalID: -4678799041906410640
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_24
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 725
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c94d37c58db43f30800000000000000
+      internalID: 4554473505449396674
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_25
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 450
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43a03a4d27f5dc20800000000000000
+      internalID: 3230760081598489421
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_26
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 450
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec14e76713de7d160800000000000000
+      internalID: 7050364538368967118
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_27
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 450
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21a16bfe551984e50800000000000000
+      internalID: 6793839836168329746
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_28
+      rect:
+        serializedVersion: 2
+        x: 1397
+        y: 418
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 119fab35d49c54640800000000000000
+      internalID: 5063674690002417937
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_29
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 362
+        width: 7
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d3829936974e470800000000000000
+      internalID: 8422990671767944506
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_30
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 23
+        width: 475
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2142f2a9548f11820800000000000000
+      internalID: 2887361813944411154
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_31
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 380
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dcf6a1ecc1af38a0800000000000000
+      internalID: -6323157450473669417
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_32
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 380
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74cd3ff00dd56e2b0800000000000000
+      internalID: -5555649942112707513
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_33
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 373
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c62d986db60c22460800000000000000
+      internalID: 7215541122394346092
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_34
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 81
+        width: 323
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9edb10c47d6ced00800000000000000
+      internalID: 1003297165203463839
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_35
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 338
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4bda2f79e516300800000000000000
+      internalID: 243579861559260414
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_36
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 111
+        width: 260
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cb05a057b016da0800000000000000
+      internalID: -5953464635094942688
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_37
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 360
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e614b59805ef1310800000000000000
+      internalID: 1378071836032767715
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_38
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 305
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8ab4a9b503466800800000000000000
+      internalID: 605244891796388493
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_39
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 317
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96a36c2eea406d6d0800000000000000
+      internalID: -2966178155401430423
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_40
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 277
+        width: 44
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 882ab5e2468c6fa40800000000000000
+      internalID: 5401725135677530760
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_41
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 296
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e4f0f49d3e60fa80800000000000000
+      internalID: -8435120891294059292
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_42
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 288
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97930b427450687b0800000000000000
+      internalID: -5222480914773165703
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_43
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 293
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf3126a8a53392f0800000000000000
+      internalID: -967370496496549923
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_44
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 287
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e48271cb239403950800000000000000
+      internalID: 6426717150510524494
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_45
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 264
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a5b9df08977d0200800000000000000
+      internalID: 147905857757754791
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_46
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 227
+        width: 61
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61a1cdd0178502c30800000000000000
+      internalID: 4332560084117494294
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_47
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 275
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b0f76afc315aab0800000000000000
+      internalID: -4997566428925195457
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_48
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 257
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73343da9167026b0800000000000000
+      internalID: -5323124906899786882
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_49
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 243
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 499679a04f2877de0800000000000000
+      internalID: -1335454779830736492
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_50
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 217
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd57810b25b1c99d0800000000000000
+      internalID: -2766306029156665889
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_51
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 247
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7dea0c158ac9d5b0800000000000000
+      internalID: -5343016809848443526
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_52
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 33
+        width: 138
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b87b38f1d8117bb70800000000000000
+      internalID: 8914613285219973003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_53
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 222
+        width: 31
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d10055976b60f60800000000000000
+      internalID: 8000282420303633739
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_54
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 152
+        width: 146
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99789a27962b3c030800000000000000
+      internalID: 3513848300244141977
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_55
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 151
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa72d72748d7e7750800000000000000
+      internalID: 6304614536175232943
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_56
+      rect:
+        serializedVersion: 2
+        x: 1526
+        y: 0
+        width: 124
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 491d5f849d565fbc0800000000000000
+      internalID: -3749979130809691756
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_57
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 183
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da06202e22dd44df0800000000000000
+      internalID: -196789341807026003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_58
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 96
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 747a664c3b0ee0110800000000000000
+      internalID: 1229166811017553735
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_59
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 80
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13530277523c9f710800000000000000
+      internalID: 1727626497753101617
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_60
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 37
+        width: 88
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c739b4ad33bdb290800000000000000
+      internalID: -7872939496235780151
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_61
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 83
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a525ad299c9971bc0800000000000000
+      internalID: -3812409468514577830
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_62
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 79
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3283c0441ed195580800000000000000
+      internalID: -8837999940391389149
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_63
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 0
+        width: 50
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e2cd3516393b380800000000000000
+      internalID: -8956653187681735097
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_64
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 31
+        width: 43
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b527f373a95495090800000000000000
+      internalID: -8045322730666495397
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_65
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 31
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cc3a14bf49ee5bd0800000000000000
+      internalID: -2639415803059225400
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_66
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 55
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a994ab31085f180e0800000000000000
+      internalID: -2269262806782424678
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_67
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 55
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bbc604cdfd613140800000000000000
+      internalID: 4697656823007071159
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarChaser_68
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 32
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69242fa87e4e00fa0800000000000000
+      internalID: -5836413433952451946
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      StarChaser_0: -5790835876974183241
+      StarChaser_1: -7129446201161830426
+      StarChaser_10: 1426375799725565076
+      StarChaser_11: -8307024255044898054
+      StarChaser_12: -7734945843269156889
+      StarChaser_13: 2819403490899998397
+      StarChaser_14: 7469821319533520387
+      StarChaser_15: -355477714498800870
+      StarChaser_16: -7706953200974751786
+      StarChaser_17: 5805096574172336527
+      StarChaser_18: -5202235340832510130
+      StarChaser_19: 5081062650513536270
+      StarChaser_2: -4764521800854038701
+      StarChaser_20: -5672790498738131674
+      StarChaser_21: 1517719194742658675
+      StarChaser_22: -7407154024227324900
+      StarChaser_23: -4678799041906410640
+      StarChaser_24: 4554473505449396674
+      StarChaser_25: 3230760081598489421
+      StarChaser_26: 7050364538368967118
+      StarChaser_27: 6793839836168329746
+      StarChaser_28: 5063674690002417937
+      StarChaser_29: 8422990671767944506
+      StarChaser_3: 1384099313056952843
+      StarChaser_30: 2887361813944411154
+      StarChaser_31: -6323157450473669417
+      StarChaser_32: -5555649942112707513
+      StarChaser_33: 7215541122394346092
+      StarChaser_34: 1003297165203463839
+      StarChaser_35: 243579861559260414
+      StarChaser_36: -5953464635094942688
+      StarChaser_37: 1378071836032767715
+      StarChaser_38: 605244891796388493
+      StarChaser_39: -2966178155401430423
+      StarChaser_4: 447054613152833273
+      StarChaser_40: 5401725135677530760
+      StarChaser_41: -8435120891294059292
+      StarChaser_42: -5222480914773165703
+      StarChaser_43: -967370496496549923
+      StarChaser_44: 6426717150510524494
+      StarChaser_45: 147905857757754791
+      StarChaser_46: 4332560084117494294
+      StarChaser_47: -4997566428925195457
+      StarChaser_48: -5323124906899786882
+      StarChaser_49: -1335454779830736492
+      StarChaser_5: 4436010125366960764
+      StarChaser_50: -2766306029156665889
+      StarChaser_51: -5343016809848443526
+      StarChaser_52: 8914613285219973003
+      StarChaser_53: 8000282420303633739
+      StarChaser_54: 3513848300244141977
+      StarChaser_55: 6304614536175232943
+      StarChaser_56: -3749979130809691756
+      StarChaser_57: -196789341807026003
+      StarChaser_58: 1229166811017553735
+      StarChaser_59: 1727626497753101617
+      StarChaser_6: 6408508566309027397
+      StarChaser_60: -7872939496235780151
+      StarChaser_61: -3812409468514577830
+      StarChaser_62: -8837999940391389149
+      StarChaser_63: -8956653187681735097
+      StarChaser_64: -8045322730666495397
+      StarChaser_65: -2639415803059225400
+      StarChaser_66: -2269262806782424678
+      StarChaser_67: 4697656823007071159
+      StarChaser_68: -5836413433952451946
+      StarChaser_7: 5300720053755585995
+      StarChaser_8: 3316647355421526655
+      StarChaser_9: 1517640397013562962
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

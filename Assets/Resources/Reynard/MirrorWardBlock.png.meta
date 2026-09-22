@@ -1,0 +1,2093 @@
+fileFormatVersion: 2
+guid: b6be474d6626ccf4fa025693c4ee5499
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 964710684363226955
+    second: MirrorWardBlock_0
+  - first:
+      213: 4406880766206339236
+    second: MirrorWardBlock_1
+  - first:
+      213: 8405500453858489399
+    second: MirrorWardBlock_2
+  - first:
+      213: 6317053671840861257
+    second: MirrorWardBlock_3
+  - first:
+      213: 693965598262122819
+    second: MirrorWardBlock_4
+  - first:
+      213: 4197724907912977658
+    second: MirrorWardBlock_5
+  - first:
+      213: 5931011346373350536
+    second: MirrorWardBlock_6
+  - first:
+      213: 9206836341469869410
+    second: MirrorWardBlock_7
+  - first:
+      213: 1417062647073486986
+    second: MirrorWardBlock_8
+  - first:
+      213: 5814840858888644827
+    second: MirrorWardBlock_9
+  - first:
+      213: 231657033530671106
+    second: MirrorWardBlock_10
+  - first:
+      213: 5017352704305820904
+    second: MirrorWardBlock_11
+  - first:
+      213: -6028798356532563960
+    second: MirrorWardBlock_12
+  - first:
+      213: 9034219312791112584
+    second: MirrorWardBlock_13
+  - first:
+      213: -1817985742286800381
+    second: MirrorWardBlock_14
+  - first:
+      213: -1378311283429666968
+    second: MirrorWardBlock_15
+  - first:
+      213: -1670687149099774224
+    second: MirrorWardBlock_16
+  - first:
+      213: -5114491387871257083
+    second: MirrorWardBlock_17
+  - first:
+      213: -4395579373508693680
+    second: MirrorWardBlock_18
+  - first:
+      213: 2187570059734624669
+    second: MirrorWardBlock_19
+  - first:
+      213: 4347741306690008986
+    second: MirrorWardBlock_20
+  - first:
+      213: -655365608124875980
+    second: MirrorWardBlock_21
+  - first:
+      213: -426120126325302892
+    second: MirrorWardBlock_22
+  - first:
+      213: -6309588190029560198
+    second: MirrorWardBlock_23
+  - first:
+      213: -1645937356904143110
+    second: MirrorWardBlock_24
+  - first:
+      213: -430129923538634316
+    second: MirrorWardBlock_25
+  - first:
+      213: 6217107730774702482
+    second: MirrorWardBlock_26
+  - first:
+      213: 6623640697761521735
+    second: MirrorWardBlock_27
+  - first:
+      213: -6312611216910806612
+    second: MirrorWardBlock_28
+  - first:
+      213: 3440617611970516952
+    second: MirrorWardBlock_29
+  - first:
+      213: 1308906285771083916
+    second: MirrorWardBlock_30
+  - first:
+      213: -7694905032177864016
+    second: MirrorWardBlock_31
+  - first:
+      213: 1707972086420858327
+    second: MirrorWardBlock_32
+  - first:
+      213: -769300328073351643
+    second: MirrorWardBlock_33
+  - first:
+      213: 8885488490085219112
+    second: MirrorWardBlock_34
+  - first:
+      213: -5825275785974528492
+    second: MirrorWardBlock_35
+  - first:
+      213: -2175864668809098332
+    second: MirrorWardBlock_36
+  - first:
+      213: -7369176929808383481
+    second: MirrorWardBlock_37
+  - first:
+      213: 3376072707654984392
+    second: MirrorWardBlock_38
+  - first:
+      213: -8391950324224214112
+    second: MirrorWardBlock_39
+  - first:
+      213: 8635269939064353711
+    second: MirrorWardBlock_40
+  - first:
+      213: 6763726012417898107
+    second: MirrorWardBlock_41
+  - first:
+      213: -1106285918404089468
+    second: MirrorWardBlock_42
+  - first:
+      213: -7675140736392244709
+    second: MirrorWardBlock_43
+  - first:
+      213: -8923617019531876086
+    second: MirrorWardBlock_44
+  - first:
+      213: 3878245129632051989
+    second: MirrorWardBlock_45
+  - first:
+      213: -5114481475946744739
+    second: MirrorWardBlock_46
+  - first:
+      213: 6359641109815187644
+    second: MirrorWardBlock_47
+  - first:
+      213: 2231280663512405953
+    second: MirrorWardBlock_48
+  - first:
+      213: -3662562008637747084
+    second: MirrorWardBlock_49
+  - first:
+      213: 3000008210249035913
+    second: MirrorWardBlock_50
+  - first:
+      213: -5003916446740067583
+    second: MirrorWardBlock_51
+  - first:
+      213: -7015810351428972154
+    second: MirrorWardBlock_52
+  - first:
+      213: 8822224273503640699
+    second: MirrorWardBlock_53
+  - first:
+      213: 3199340070156047488
+    second: MirrorWardBlock_54
+  - first:
+      213: 8086748474089711465
+    second: MirrorWardBlock_55
+  - first:
+      213: -2256450063148535467
+    second: MirrorWardBlock_56
+  - first:
+      213: -6561852298423157357
+    second: MirrorWardBlock_57
+  - first:
+      213: 5502725950389220292
+    second: MirrorWardBlock_58
+  - first:
+      213: 7259094459603167739
+    second: MirrorWardBlock_59
+  - first:
+      213: 6510040042055044045
+    second: MirrorWardBlock_60
+  - first:
+      213: 1439189063375608505
+    second: MirrorWardBlock_61
+  - first:
+      213: -8886588515386081600
+    second: MirrorWardBlock_62
+  - first:
+      213: 717679509066435126
+    second: MirrorWardBlock_63
+  - first:
+      213: 2800074165287706641
+    second: MirrorWardBlock_64
+  - first:
+      213: -2247989630676033605
+    second: MirrorWardBlock_65
+  - first:
+      213: 4483739945438157956
+    second: MirrorWardBlock_66
+  - first:
+      213: -3907864963851603835
+    second: MirrorWardBlock_67
+  - first:
+      213: -2648021666297875200
+    second: MirrorWardBlock_68
+  - first:
+      213: 1858710925082723845
+    second: MirrorWardBlock_69
+  - first:
+      213: 9123468390886573936
+    second: MirrorWardBlock_70
+  - first:
+      213: 352596364529177846
+    second: MirrorWardBlock_71
+  - first:
+      213: 6602543353830831680
+    second: MirrorWardBlock_72
+  - first:
+      213: -7570607075289695271
+    second: MirrorWardBlock_73
+  - first:
+      213: -2454383480566016202
+    second: MirrorWardBlock_74
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MirrorWardBlock_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 725
+        width: 161
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f7e749147536d00800000000000000
+      internalID: 964710684363226955
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_1
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 773
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a8ea3d45b2682d30800000000000000
+      internalID: 4406880766206339236
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 805
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 734be97e02656a470800000000000000
+      internalID: 8405500453858489399
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_3
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 811
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94cc62968deaaa750800000000000000
+      internalID: 6317053671840861257
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 856
+        width: 35
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34951cae80671a900800000000000000
+      internalID: 693965598262122819
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_5
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 805
+        width: 33
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc56f03090514a30800000000000000
+      internalID: 4197724907912977658
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_6
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 759
+        width: 128
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 884156b456f2f4250800000000000000
+      internalID: 5931011346373350536
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_7
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 392
+        width: 533
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 265f7766fd045cf70800000000000000
+      internalID: 9206836341469869410
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_8
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 725
+        width: 20
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a883a4738fa6aa310800000000000000
+      internalID: 1417062647073486986
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_9
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 821
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd82c7be3f672b050800000000000000
+      internalID: 5814840858888644827
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_10
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 825
+        width: 43
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200015938d2073300800000000000000
+      internalID: 231657033530671106
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_11
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 757
+        width: 33
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e47ef493b731a540800000000000000
+      internalID: 5017352704305820904
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_12
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 799
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 800fa6036d7655ca0800000000000000
+      internalID: -6028798356532563960
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_13
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 481
+        width: 368
+        height: 388
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88b43e1899eff5d70800000000000000
+      internalID: 9034219312791112584
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_14
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 791
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a3548799735c6e0800000000000000
+      internalID: -1817985742286800381
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_15
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 844
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86f0349b0314fdce0800000000000000
+      internalID: -1378311283429666968
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_16
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 431
+        width: 499
+        height: 418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe091bb3e680d8e0800000000000000
+      internalID: -1670687149099774224
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_17
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 805
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50e93233e2da509b0800000000000000
+      internalID: -5114491387871257083
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_18
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 846
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051fafb39d3cff2c0800000000000000
+      internalID: -4395579373508693680
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_19
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 854
+        width: 61
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9923cb016fcb5e10800000000000000
+      internalID: 2187570059734624669
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_20
+      rect:
+        serializedVersion: 2
+        x: 1649
+        y: 827
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97fc80eea7465c30800000000000000
+      internalID: 4347741306690008986
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_21
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 789
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43b75b1a37ca7e6f0800000000000000
+      internalID: -655365608124875980
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_22
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 741
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4995cb6b00e161af0800000000000000
+      internalID: -426120126325302892
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_23
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 741
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76c94688f6df68a0800000000000000
+      internalID: -6309588190029560198
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_24
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 406
+        width: 271
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6ee27c1b47829e0800000000000000
+      internalID: -1645937356904143110
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_25
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 711
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b9b63c0d1fd70af0800000000000000
+      internalID: -430129923538634316
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_26
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 716
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 299392f9a8a974650800000000000000
+      internalID: 6217107730774702482
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_27
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 597
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74065edfe16ebeb50800000000000000
+      internalID: 6623640697761521735
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_28
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 549
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca192ea3b891568a0800000000000000
+      internalID: -6312611216910806612
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_29
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 530
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d794792d778fbf20800000000000000
+      internalID: 3440617611970516952
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_30
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 530
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8059aff45b2a2210800000000000000
+      internalID: 1308906285771083916
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_31
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 530
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b23ca084a4363590800000000000000
+      internalID: -7694905032177864016
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_32
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 515
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5e569309fe3b710800000000000000
+      internalID: 1707972086420858327
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_33
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 467
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52ea8937d65e255f0800000000000000
+      internalID: -769300328073351643
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_34
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 465
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82bf95354b89f4b70800000000000000
+      internalID: 8885488490085219112
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_35
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 481
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 416cd4a4986782fa0800000000000000
+      internalID: -5825275785974528492
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_36
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 456
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ab8f48ac96cdc1e0800000000000000
+      internalID: -2175864668809098332
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 438
+        width: 66
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70284cb30ac6bb990800000000000000
+      internalID: -7369176929808383481
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_38
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 450
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c2aaab8d383ade20800000000000000
+      internalID: 3376072707654984392
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_39
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 450
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab34ef74adc98b80800000000000000
+      internalID: -8391950324224214112
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_40
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 421
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa33a890244a6d770800000000000000
+      internalID: 8635269939064353711
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_41
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 0
+        width: 491
+        height: 463
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b76fc38f8f49ddd50800000000000000
+      internalID: 6763726012417898107
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_42
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 453
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 489e18d81dea5a0f0800000000000000
+      internalID: -1106285918404089468
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_43
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 451
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b12d5363a2c6c7590800000000000000
+      internalID: -7675140736392244709
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_44
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 449
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a092c2f9991f82480800000000000000
+      internalID: -8923617019531876086
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_45
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 456
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5137b97c56b42d530800000000000000
+      internalID: 3878245129632051989
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_46
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 450
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54f0eff136b509b0800000000000000
+      internalID: -5114481475946744739
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_47
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 450
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb8518105ebf14850800000000000000
+      internalID: 6359641109815187644
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_48
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 440
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c7dade01f917fe10800000000000000
+      internalID: 2231280663512405953
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_49
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 436
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4705e4b1247fb2dc0800000000000000
+      internalID: -3662562008637747084
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_50
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 434
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 980362f829b22a920800000000000000
+      internalID: 3000008210249035913
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_51
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 445
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10bc25ae0848e8ab0800000000000000
+      internalID: -5003916446740067583
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_52
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 414
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 681519f18a5d2ae90800000000000000
+      internalID: -7015810351428972154
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_53
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 420
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c530f0c36de6a70800000000000000
+      internalID: 8822224273503640699
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_54
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 420
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 084135dc7d6566c20800000000000000
+      internalID: 3199340070156047488
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_55
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 412
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 967ac0a44e6e93070800000000000000
+      internalID: 8086748474089711465
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_56
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 0
+        width: 386
+        height: 437
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 551bf9c6f9a7fa0e0800000000000000
+      internalID: -2256450063148535467
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_57
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 426
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39d38ebc91e9fe4a0800000000000000
+      internalID: -6561852298423157357
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_58
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 416
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c3f541e81c9d5c40800000000000000
+      internalID: 5502725950389220292
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_59
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 405
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf927af53fb7db460800000000000000
+      internalID: 7259094459603167739
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_60
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 0
+        width: 458
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcb82443dee485a50800000000000000
+      internalID: 6510040042055044045
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_61
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 17
+        width: 378
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ba5127f3d609f310800000000000000
+      internalID: 1439189063375608505
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_62
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 382
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ceb85314de7ca480800000000000000
+      internalID: -8886588515386081600
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_63
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 340
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63a4b7806b5b5f900800000000000000
+      internalID: 717679509066435126
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_64
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 275
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 110e8be2e9cdbd620800000000000000
+      internalID: 2800074165287706641
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_65
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 243
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbf1bcc57598dc0e0800000000000000
+      internalID: -2247989630676033605
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_66
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 168
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48c121979b1793e30800000000000000
+      internalID: 4483739945438157956
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_67
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 144
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5803e67258974c9c0800000000000000
+      internalID: -3907864963851603835
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_68
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 31
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 005f6c60356504bd0800000000000000
+      internalID: -2648021666297875200
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_69
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 37
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50681bd0db77bc910800000000000000
+      internalID: 1858710925082723845
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_70
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 31
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0778c4ec9221d9e70800000000000000
+      internalID: 9123468390886573936
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_71
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 23
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f41bd0868ca4e400800000000000000
+      internalID: 352596364529177846
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_72
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 39
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 046f333d232f0ab50800000000000000
+      internalID: 6602543353830831680
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_73
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 7
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9db7c4fc9fccfe690800000000000000
+      internalID: -7570607075289695271
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MirrorWardBlock_74
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 19
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63796427a3740fdd0800000000000000
+      internalID: -2454383480566016202
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MirrorWardBlock_0: 964710684363226955
+      MirrorWardBlock_1: 4406880766206339236
+      MirrorWardBlock_10: 231657033530671106
+      MirrorWardBlock_11: 5017352704305820904
+      MirrorWardBlock_12: -6028798356532563960
+      MirrorWardBlock_13: 9034219312791112584
+      MirrorWardBlock_14: -1817985742286800381
+      MirrorWardBlock_15: -1378311283429666968
+      MirrorWardBlock_16: -1670687149099774224
+      MirrorWardBlock_17: -5114491387871257083
+      MirrorWardBlock_18: -4395579373508693680
+      MirrorWardBlock_19: 2187570059734624669
+      MirrorWardBlock_2: 8405500453858489399
+      MirrorWardBlock_20: 4347741306690008986
+      MirrorWardBlock_21: -655365608124875980
+      MirrorWardBlock_22: -426120126325302892
+      MirrorWardBlock_23: -6309588190029560198
+      MirrorWardBlock_24: -1645937356904143110
+      MirrorWardBlock_25: -430129923538634316
+      MirrorWardBlock_26: 6217107730774702482
+      MirrorWardBlock_27: 6623640697761521735
+      MirrorWardBlock_28: -6312611216910806612
+      MirrorWardBlock_29: 3440617611970516952
+      MirrorWardBlock_3: 6317053671840861257
+      MirrorWardBlock_30: 1308906285771083916
+      MirrorWardBlock_31: -7694905032177864016
+      MirrorWardBlock_32: 1707972086420858327
+      MirrorWardBlock_33: -769300328073351643
+      MirrorWardBlock_34: 8885488490085219112
+      MirrorWardBlock_35: -5825275785974528492
+      MirrorWardBlock_36: -2175864668809098332
+      MirrorWardBlock_37: -7369176929808383481
+      MirrorWardBlock_38: 3376072707654984392
+      MirrorWardBlock_39: -8391950324224214112
+      MirrorWardBlock_4: 693965598262122819
+      MirrorWardBlock_40: 8635269939064353711
+      MirrorWardBlock_41: 6763726012417898107
+      MirrorWardBlock_42: -1106285918404089468
+      MirrorWardBlock_43: -7675140736392244709
+      MirrorWardBlock_44: -8923617019531876086
+      MirrorWardBlock_45: 3878245129632051989
+      MirrorWardBlock_46: -5114481475946744739
+      MirrorWardBlock_47: 6359641109815187644
+      MirrorWardBlock_48: 2231280663512405953
+      MirrorWardBlock_49: -3662562008637747084
+      MirrorWardBlock_5: 4197724907912977658
+      MirrorWardBlock_50: 3000008210249035913
+      MirrorWardBlock_51: -5003916446740067583
+      MirrorWardBlock_52: -7015810351428972154
+      MirrorWardBlock_53: 8822224273503640699
+      MirrorWardBlock_54: 3199340070156047488
+      MirrorWardBlock_55: 8086748474089711465
+      MirrorWardBlock_56: -2256450063148535467
+      MirrorWardBlock_57: -6561852298423157357
+      MirrorWardBlock_58: 5502725950389220292
+      MirrorWardBlock_59: 7259094459603167739
+      MirrorWardBlock_6: 5931011346373350536
+      MirrorWardBlock_60: 6510040042055044045
+      MirrorWardBlock_61: 1439189063375608505
+      MirrorWardBlock_62: -8886588515386081600
+      MirrorWardBlock_63: 717679509066435126
+      MirrorWardBlock_64: 2800074165287706641
+      MirrorWardBlock_65: -2247989630676033605
+      MirrorWardBlock_66: 4483739945438157956
+      MirrorWardBlock_67: -3907864963851603835
+      MirrorWardBlock_68: -2648021666297875200
+      MirrorWardBlock_69: 1858710925082723845
+      MirrorWardBlock_7: 9206836341469869410
+      MirrorWardBlock_70: 9123468390886573936
+      MirrorWardBlock_71: 352596364529177846
+      MirrorWardBlock_72: 6602543353830831680
+      MirrorWardBlock_73: -7570607075289695271
+      MirrorWardBlock_74: -2454383480566016202
+      MirrorWardBlock_8: 1417062647073486986
+      MirrorWardBlock_9: 5814840858888644827
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

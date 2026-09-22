@@ -3,7 +3,7 @@ using UnityEngine;
 public sealed partial class KaitRun
 {
     public int EquippedCardCount=>skills.Count+passives.Count;
-    public KaitAbilityDef EquippedCard(int index)=>index<0?null:index<skills.Count?KaitAbilityCatalog.Get(skills[index]):index<EquippedCardCount?(IsYummn?YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passives[index-skills.Count]):null)??KaitAbilityCatalog.Get(passives[index-skills.Count]):null;
+    public KaitAbilityDef EquippedCard(int index)=>index<0?null:index<skills.Count?(IsReynard?ReynardCatalog.Get(skills[index]):KaitAbilityCatalog.Get(skills[index])):index<EquippedCardCount?(IsReynard?ReynardCatalog.Get(passives[index-skills.Count]):IsYummn?YummnCatalog.Cards.Find(d=>d.kind==KaitAbilityKind.Passive&&d.passive==passives[index-skills.Count]):null)??KaitAbilityCatalog.Get(passives[index-skills.Count]):null;
     private bool ResolveSharedReward(KaitAbilityDef def,int slot,KaitPassive copy=KaitPassive.None)
     {
         if(slot < -1||slot>=EquippedCardCount||EquippedCardCount>=6&&slot<0)return false;
@@ -20,7 +20,7 @@ public sealed partial class KaitRun
             if(old!=null&&!inactiveAbilities.Remove(old.id))retiredAbilities.Add(old.id);
             if(slot<skills.Count)skills.RemoveAt(slot);else passives.RemoveAt(slot-skills.Count);
             if(IsYummn&&old!=null)Yummn.prepared.Remove(old.id);
-            if(IsReynard&&old!=null&&old.skill==Reynard.focusedSkill)Reynard.focusedSkill=KaitSkill.None;
+            if(IsReynard&&old!=null){if(old.skill==KaitSkill.ReynardFog)Reynard.fogCell=new Vector2Int(-1,-1);else if(old.skill==KaitSkill.ReynardWeb)Reynard.webCell=new Vector2Int(-1,-1);else if(old.skill==KaitSkill.ReynardStoneWall)Reynard.stoneWallCell=new Vector2Int(-1,-1);}
         }
         if(def.kind==KaitAbilityKind.Active){if(activeInsert>=0)skills.Insert(activeInsert,def.skill);else skills.Add(def.skill);skillCooldowns[def.skill]=0;}
         else{if(passiveInsert>=0)passives.Insert(Mathf.Min(passiveInsert,passives.Count),def.passive);else passives.Add(def.passive);if(def.cooldown>0)passiveCooldowns[def.passive]=0;}
@@ -31,6 +31,7 @@ public sealed partial class KaitRun
             var counts=slot>=0?Yummn.metrics.cardReplacements:Yummn.metrics.cardSelections;
             counts[def.id]=counts.TryGetValue(def.id,out var n)?n+1:1;
         }
+        if(IsReynard&&Reynard.tails>ReynardTailCap)Reynard.tails=ReynardTailCap;
         rewardQueue.Dequeue();return true;
     }
     private Vector2Int? repoolCellTarget;

@@ -127,9 +127,9 @@ public sealed class KaitTutorialBook : MonoBehaviour, IBeginDragHandler, IEndDra
         SetComicLayout(false);heading.text="Reynard · 方向编咒";title.text="方向施咒，等待召狐";
         comic.gameObject.SetActive(false);leftCaption.text=rightCaption.text=thirdCaption.text="";
         body.gameObject.SetActive(true);body.rectTransform.anchoredPosition=new Vector2(-235,0);body.rectTransform.sizeDelta=new Vector2(820,510);body.fontSize=28;
-        SetReadableCopy(body,"每次方向操作尝试移动一格，同时滑动右盘。\n\n无论是否成功移动，Reynard都会朝输入方向发射一发子弹。子弹命中前方第一个敌人并造成1点伤害；受阻时人物留在原地。\n\n等待：把镜狐残影召到脚下对应的右盘数字。没有数字则保留原位置。\n\n镜狐数字不随滑动移动。同值数字可以撞入合并。");
-        SetReadableCopy(lead,"2＝I环 · 4＝II环 · 8＝III环\n高环可施放低环法术。");
-        SetReadableCopy(tip,"点卡牌，再点目标施放。法术耗竭节点；合并使节点恢复。六槽自由混装，同时只维持一个持续法术。方向、等待、施法均补一个2并推进敌人行动。");
+        SetReadableCopy(body,"每次方向操作尝试移动一格，同时滑动右盘。\n\n无论移动是否受阻，Reynard都会朝输入方向发射一枚1伤法球。\n\n每次真实合并会在结果格留下法印；镜狐参与合并还会获得1条狐尾。镜狐随数字一起滑动。\n\n等待：把镜狐残影转移到脚下对应的右盘数字，没有数字则保留原位。");
+        SetReadableCopy(lead,"法印优先支付 · 狐尾补足费用\n狐尾还能优先抵挡伤害。");
+        SetReadableCopy(tip,"点卡牌，再点目标施放。支付是完整结算：材料不足时不会消耗。云雾、蛛网和石墙可同时存在，同一种场地再次施放会替换旧位置。六槽可任意混装主动与被动牌。方向、等待、施法均补一个2并推进敌人行动。");
         counter.text="核心规则";previous.interactable=false;nextLabel.text="关闭";PageIndex=PageCount-1;
         appendix.gameObject.SetActive(false);if(yummnDiagram!=null)yummnDiagram.gameObject.SetActive(false);bossNumberLabel.gameObject.SetActive(false);
     }

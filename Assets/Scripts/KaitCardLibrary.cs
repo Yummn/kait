@@ -77,7 +77,7 @@ public sealed class KaitCardLibrary : MonoBehaviour
         if(art.sprite==null)art.color=Color.clear;
         var description=Label(card,def.cardText.TrimEnd('。'),new Vector2(0,-86),new Vector2(282,82),24,Ink);
         description.resizeTextMinSize=20;
-        string cost=def.spellLevel>0?ReynardCatalog.Roman(def.spellLevel)+"环":def.experimental?"实验牌 · 未启用":def.cooldown>0?(YummnCatalog.IsMonk(def)&&active?"耗气 "+def.kiExtraCost:"冷却 "+def.cooldown+" 回合"):"";
+        string cost=def.spellLevel>0?(def.id=="reynard.R43"?"2狐尾":def.spellLevel+"材料"):def.experimental?"实验牌 · 未启用":def.cooldown>0?(YummnCatalog.IsMonk(def)&&active?"耗气 "+def.kiExtraCost:"冷却 "+def.cooldown+" 回合"):"";
         if(active&&YummnCatalog.IsMonk(def)&&!def.experimental)
         {KaitStorybookArt.Icon(card,"Qi",new Vector2(-16,-144),new Vector2(16,22));Label(card,def.kiExtraCost.ToString(),new Vector2(12,-144),new Vector2(40,26),21,Ink);}
         else Label(card,cost,new Vector2(0,-144),new Vector2(264,24),18,KaitStorybookTheme.Muted);

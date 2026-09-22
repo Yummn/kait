@@ -320,6 +320,8 @@ public sealed class KaitSpineView
         if(IsTerminalAnimation(animation)){PlayOnce(animation,null);return;}
         animation = ResolveAnimation(animation);
         TrackEntry current = graphic.AnimationState.GetCurrent(0);
+        if(animation=="idle"&&current!=null&&!current.Loop&&current.Animation!=null&&
+            (current.Animation.Name=="hit_1"||current.Animation.Name=="hit_2"))return;
         if (current != null && current.Animation != null && current.Animation.Name == animation && current.Loop) return;
         graphic.timeScale = 1f;
         TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, true);
@@ -329,10 +331,13 @@ public sealed class KaitSpineView
     public void PlayOnce(string animation, string followUp = Idle)
     {
         if (!IsReady || string.IsNullOrEmpty(animation) || terminalPose) return;
+        if(animation==Damage&&graphic.Skeleton.Data.FindAnimation("uniqueskill")!=null)
+            animation=graphic.Skeleton.Data.FindAnimation("hit_2")!=null&&UnityEngine.Random.value>=.5f?"hit_2":"hit_1";
         if(IsTerminalAnimation(animation)){terminalPose=true;followUp=null;}
         animation=ResolveAnimation(animation);if(!string.IsNullOrEmpty(followUp))followUp=ResolveAnimation(followUp);
         graphic.timeScale = 1f;
         TrackEntry entry = graphic.AnimationState.SetAnimation(0, animation, false);
+        if(animation=="hit_1"||animation=="hit_2")entry.TimeScale=.75f;
         if (animation == WallStop) entry.TimeScale = WallStopTimeScale;
         if (graphic.Skeleton.Data.FindAnimation("108201_skill0") != null &&
             (animation == "01_attack" || animation == YummnFollowUpAttack || animation == YummnKill))

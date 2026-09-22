@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 0fe7790f7343b16408a242708f0f31d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3644867830214601293
+    second: StoneWall_0
+  - first:
+      213: 4007423936329004504
+    second: StoneWall_1
+  - first:
+      213: 3205947554750951262
+    second: StoneWall_2
+  - first:
+      213: -6299373777481230144
+    second: StoneWall_3
+  - first:
+      213: 329894538495015338
+    second: StoneWall_4
+  - first:
+      213: 8181818153270352352
+    second: StoneWall_5
+  - first:
+      213: 8175735508948743517
+    second: StoneWall_6
+  - first:
+      213: 5924759622699352954
+    second: StoneWall_7
+  - first:
+      213: 2250899380254686161
+    second: StoneWall_8
+  - first:
+      213: -5925965122315313113
+    second: StoneWall_9
+  - first:
+      213: -549063316513645936
+    second: StoneWall_10
+  - first:
+      213: 8642566800546161055
+    second: StoneWall_11
+  - first:
+      213: -4174089829461583182
+    second: StoneWall_12
+  - first:
+      213: -2653576796623951216
+    second: StoneWall_13
+  - first:
+      213: 293055370337447235
+    second: StoneWall_14
+  - first:
+      213: -6029029399364626799
+    second: StoneWall_15
+  - first:
+      213: -1040024430208147723
+    second: StoneWall_16
+  - first:
+      213: 3516465949167987539
+    second: StoneWall_17
+  - first:
+      213: 3670095583518911380
+    second: StoneWall_18
+  - first:
+      213: -567600264748461357
+    second: StoneWall_19
+  - first:
+      213: -2453093379183335085
+    second: StoneWall_20
+  - first:
+      213: 819644547531454320
+    second: StoneWall_21
+  - first:
+      213: 2804323014238639713
+    second: StoneWall_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StoneWall_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 769
+        width: 179
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4aa031fafb259230800000000000000
+      internalID: 3644867830214601293
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_1
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 834
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d5b94d76da3d9730800000000000000
+      internalID: 4007423936329004504
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_2
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 445
+        width: 423
+        height: 424
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f6671b050dd7c20800000000000000
+      internalID: 3205947554750951262
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_3
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 428
+        width: 444
+        height: 427
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c812d5cce02498a0800000000000000
+      internalID: -6299373777481230144
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_4
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 448
+        width: 424
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9365cb555049400800000000000000
+      internalID: 329894538495015338
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_5
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 819
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e99582e248ab8170800000000000000
+      internalID: 8181818153270352352
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_6
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 836
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d55ff64e02c067170800000000000000
+      internalID: 8175735508948743517
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_7
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 442
+        width: 356
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7382927c79f83250800000000000000
+      internalID: 5924759622699352954
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_8
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 781
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1db3a318f0dcc3f10800000000000000
+      internalID: 2250899380254686161
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_9
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 756
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 720aa0d4e1eb2cda0800000000000000
+      internalID: -5925965122315313113
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_10
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 781
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a910c92d55168f0800000000000000
+      internalID: -549063316513645936
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_11
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 757
+        width: 118
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91632ef6b090f770800000000000000
+      internalID: 8642566800546161055
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_12
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 745
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba1f565a67a216c0800000000000000
+      internalID: -4174089829461583182
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_13
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 783
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09aa20576f99c2bd0800000000000000
+      internalID: -2653576796623951216
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_14
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 757
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34deb708e44211400800000000000000
+      internalID: 293055370337447235
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_15
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 741
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1961c7654b5945ca0800000000000000
+      internalID: -6029029399364626799
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_16
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 729
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe17bf7a471191f0800000000000000
+      internalID: -1040024430208147723
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_17
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 21
+        width: 404
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35b2ae4562ffcc030800000000000000
+      internalID: 3516465949167987539
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_18
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 45
+        width: 467
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49bef5bfc7ccee230800000000000000
+      internalID: 3670095583518911380
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_19
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 428
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d21045019a7f18f0800000000000000
+      internalID: -567600264748461357
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_20
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 35
+        width: 403
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3592ae4919cd4fdd0800000000000000
+      internalID: -2453093379183335085
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_21
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 348
+        width: 37
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 077b2b19f56ff5b00800000000000000
+      internalID: 819644547531454320
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoneWall_22
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 23
+        width: 439
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166952b6ce4fae620800000000000000
+      internalID: 2804323014238639713
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      StoneWall_0: 3644867830214601293
+      StoneWall_1: 4007423936329004504
+      StoneWall_10: -549063316513645936
+      StoneWall_11: 8642566800546161055
+      StoneWall_12: -4174089829461583182
+      StoneWall_13: -2653576796623951216
+      StoneWall_14: 293055370337447235
+      StoneWall_15: -6029029399364626799
+      StoneWall_16: -1040024430208147723
+      StoneWall_17: 3516465949167987539
+      StoneWall_18: 3670095583518911380
+      StoneWall_19: -567600264748461357
+      StoneWall_2: 3205947554750951262
+      StoneWall_20: -2453093379183335085
+      StoneWall_21: 819644547531454320
+      StoneWall_22: 2804323014238639713
+      StoneWall_3: -6299373777481230144
+      StoneWall_4: 329894538495015338
+      StoneWall_5: 8181818153270352352
+      StoneWall_6: 8175735508948743517
+      StoneWall_7: 5924759622699352954
+      StoneWall_8: 2250899380254686161
+      StoneWall_9: -5925965122315313113
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

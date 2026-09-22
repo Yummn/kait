@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 93e6462d2d440f04aa3e7ee8ba5aafd1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6081491462644347608
+    second: RuneStep_0
+  - first:
+      213: 72546600577775057
+    second: RuneStep_1
+  - first:
+      213: -5859309531840980711
+    second: RuneStep_2
+  - first:
+      213: 5661805221979437772
+    second: RuneStep_3
+  - first:
+      213: 3672940115972567463
+    second: RuneStep_4
+  - first:
+      213: -8857313245329730757
+    second: RuneStep_5
+  - first:
+      213: -3021974609791740309
+    second: RuneStep_6
+  - first:
+      213: 6000926854163579873
+    second: RuneStep_7
+  - first:
+      213: 4336087651471605314
+    second: RuneStep_8
+  - first:
+      213: -5448293787818608197
+    second: RuneStep_9
+  - first:
+      213: 3476094349284450375
+    second: RuneStep_10
+  - first:
+      213: -1829276087507978224
+    second: RuneStep_11
+  - first:
+      213: 6836762659731591713
+    second: RuneStep_12
+  - first:
+      213: -6558114249580078382
+    second: RuneStep_13
+  - first:
+      213: 5429836088119527655
+    second: RuneStep_14
+  - first:
+      213: 2220417955918423027
+    second: RuneStep_15
+  - first:
+      213: 358149239176792780
+    second: RuneStep_16
+  - first:
+      213: 8370195036601758737
+    second: RuneStep_17
+  - first:
+      213: 1273000220056014822
+    second: RuneStep_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RuneStep_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 453
+        height: 397
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2bc7f934cc56450800000000000000
+      internalID: 6081491462644347608
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_1
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 444
+        width: 424
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d5b915bfbcb10100800000000000000
+      internalID: 72546600577775057
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_2
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 713
+        width: 56
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919de85560d8faea0800000000000000
+      internalID: -5859309531840980711
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_3
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 422
+        width: 331
+        height: 427
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cca39831ad5c29e40800000000000000
+      internalID: 5661805221979437772
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_4
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 806
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a1b3dd4397e8f230800000000000000
+      internalID: 3672940115972567463
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_5
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 344
+        width: 449
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3352cb0880841580800000000000000
+      internalID: -8857313245329730757
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_6
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 508
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b661d1f7a1acf06d0800000000000000
+      internalID: -3021974609791740309
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_7
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 515
+        width: 35
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e3c589fd23974350800000000000000
+      internalID: 6000926854163579873
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 31
+        width: 373
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24e3ce4deb0ec2c30800000000000000
+      internalID: 4336087651471605314
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_9
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 23
+        width: 398
+        height: 388
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb9ba119aa5c364b0800000000000000
+      internalID: -5448293787818608197
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_10
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 27
+        width: 351
+        height: 366
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 740a7deb4619d3030800000000000000
+      internalID: 3476094349284450375
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_11
+      rect:
+        serializedVersion: 2
+        x: 1516
+        y: 323
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01878ff171b1d96e0800000000000000
+      internalID: -1829276087507978224
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_12
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 357
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 122d4f29a6f01ee50800000000000000
+      internalID: 6836762659731591713
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 338
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da1a5d16d5ecf4a0800000000000000
+      internalID: -6558114249580078382
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_14
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 23
+        width: 366
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e806f45727aa5b40800000000000000
+      internalID: 5429836088119527655
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_15
+      rect:
+        serializedVersion: 2
+        x: 1550
+        y: 243
+        width: 145
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f3aa6bdd5280de10800000000000000
+      internalID: 2220417955918423027
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_16
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 132
+        width: 54
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cca85b1e5d668f400800000000000000
+      internalID: 358149239176792780
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_17
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 104
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 114b261e908e82470800000000000000
+      internalID: 8370195036601758737
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RuneStep_18
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 54
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6efce6b94fa9aa110800000000000000
+      internalID: 1273000220056014822
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RuneStep_0: 6081491462644347608
+      RuneStep_1: 72546600577775057
+      RuneStep_10: 3476094349284450375
+      RuneStep_11: -1829276087507978224
+      RuneStep_12: 6836762659731591713
+      RuneStep_13: -6558114249580078382
+      RuneStep_14: 5429836088119527655
+      RuneStep_15: 2220417955918423027
+      RuneStep_16: 358149239176792780
+      RuneStep_17: 8370195036601758737
+      RuneStep_18: 1273000220056014822
+      RuneStep_2: -5859309531840980711
+      RuneStep_3: 5661805221979437772
+      RuneStep_4: 3672940115972567463
+      RuneStep_5: -8857313245329730757
+      RuneStep_6: -3021974609791740309
+      RuneStep_7: 6000926854163579873
+      RuneStep_8: 4336087651471605314
+      RuneStep_9: -5448293787818608197
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

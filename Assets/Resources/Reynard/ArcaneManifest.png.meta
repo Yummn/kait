@@ -1,0 +1,2951 @@
+fileFormatVersion: 2
+guid: 9ab28c326d2f93c4b91eee4cd476283f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7436929133686398348
+    second: ArcaneManifest_0
+  - first:
+      213: 4470759339806274345
+    second: ArcaneManifest_1
+  - first:
+      213: -8797161577913410903
+    second: ArcaneManifest_2
+  - first:
+      213: -3145482631030605755
+    second: ArcaneManifest_3
+  - first:
+      213: -7571482206195752364
+    second: ArcaneManifest_4
+  - first:
+      213: 3535865655549526846
+    second: ArcaneManifest_5
+  - first:
+      213: 8492687675753429871
+    second: ArcaneManifest_6
+  - first:
+      213: -3919932519956063381
+    second: ArcaneManifest_7
+  - first:
+      213: -931768822495315055
+    second: ArcaneManifest_8
+  - first:
+      213: -7436478432696110570
+    second: ArcaneManifest_9
+  - first:
+      213: 8456587394964670125
+    second: ArcaneManifest_10
+  - first:
+      213: 2498311008371595320
+    second: ArcaneManifest_11
+  - first:
+      213: -1487263667514568920
+    second: ArcaneManifest_12
+  - first:
+      213: -908077510671777928
+    second: ArcaneManifest_13
+  - first:
+      213: 8279248439329759724
+    second: ArcaneManifest_14
+  - first:
+      213: -186799000662878305
+    second: ArcaneManifest_15
+  - first:
+      213: -6922394924777205040
+    second: ArcaneManifest_16
+  - first:
+      213: -3508959423196246162
+    second: ArcaneManifest_17
+  - first:
+      213: -5868466232443013106
+    second: ArcaneManifest_18
+  - first:
+      213: -3606815216827364050
+    second: ArcaneManifest_19
+  - first:
+      213: -2543300541155425694
+    second: ArcaneManifest_20
+  - first:
+      213: -7668287598792165435
+    second: ArcaneManifest_21
+  - first:
+      213: 5548303283068410405
+    second: ArcaneManifest_22
+  - first:
+      213: 5738781941754294498
+    second: ArcaneManifest_23
+  - first:
+      213: 2273396746130424723
+    second: ArcaneManifest_24
+  - first:
+      213: 8511846875660123246
+    second: ArcaneManifest_25
+  - first:
+      213: -7204532741741656203
+    second: ArcaneManifest_26
+  - first:
+      213: -5099394958783295106
+    second: ArcaneManifest_27
+  - first:
+      213: -1937344344956591821
+    second: ArcaneManifest_28
+  - first:
+      213: -5039472405234719066
+    second: ArcaneManifest_29
+  - first:
+      213: -8596161939442970906
+    second: ArcaneManifest_30
+  - first:
+      213: -8613813754327593691
+    second: ArcaneManifest_31
+  - first:
+      213: 3069627717608629944
+    second: ArcaneManifest_32
+  - first:
+      213: 3246215793104364312
+    second: ArcaneManifest_33
+  - first:
+      213: -925612398710396279
+    second: ArcaneManifest_34
+  - first:
+      213: 3262725514794983672
+    second: ArcaneManifest_35
+  - first:
+      213: 4647740544153724631
+    second: ArcaneManifest_36
+  - first:
+      213: -2292386239320106906
+    second: ArcaneManifest_37
+  - first:
+      213: 2309803007683931809
+    second: ArcaneManifest_38
+  - first:
+      213: 5748996225618022545
+    second: ArcaneManifest_39
+  - first:
+      213: -3827627762843391164
+    second: ArcaneManifest_40
+  - first:
+      213: 1361111424649445426
+    second: ArcaneManifest_41
+  - first:
+      213: 6295205055730584366
+    second: ArcaneManifest_42
+  - first:
+      213: 8613163825014071028
+    second: ArcaneManifest_43
+  - first:
+      213: -9084060938582567727
+    second: ArcaneManifest_44
+  - first:
+      213: -5980655189098241493
+    second: ArcaneManifest_45
+  - first:
+      213: -6076044810335954603
+    second: ArcaneManifest_46
+  - first:
+      213: -7230719433892725270
+    second: ArcaneManifest_47
+  - first:
+      213: 2985401015047637721
+    second: ArcaneManifest_48
+  - first:
+      213: 323797316695224884
+    second: ArcaneManifest_49
+  - first:
+      213: -1743286967112122783
+    second: ArcaneManifest_50
+  - first:
+      213: -588936275321172677
+    second: ArcaneManifest_51
+  - first:
+      213: -5404158296063041789
+    second: ArcaneManifest_52
+  - first:
+      213: 9113777631842478088
+    second: ArcaneManifest_53
+  - first:
+      213: -1497702476817811582
+    second: ArcaneManifest_54
+  - first:
+      213: -4430545513276458147
+    second: ArcaneManifest_55
+  - first:
+      213: -51623729204070197
+    second: ArcaneManifest_56
+  - first:
+      213: -5447619013459113901
+    second: ArcaneManifest_57
+  - first:
+      213: 4402065845394759219
+    second: ArcaneManifest_58
+  - first:
+      213: 3786086421619441067
+    second: ArcaneManifest_59
+  - first:
+      213: -9213047656066723293
+    second: ArcaneManifest_60
+  - first:
+      213: -2149853420578664121
+    second: ArcaneManifest_61
+  - first:
+      213: -4404094382519632776
+    second: ArcaneManifest_62
+  - first:
+      213: -1403303582056808104
+    second: ArcaneManifest_63
+  - first:
+      213: 7603949133413113540
+    second: ArcaneManifest_64
+  - first:
+      213: -7529738512330648999
+    second: ArcaneManifest_65
+  - first:
+      213: -7654235787741542416
+    second: ArcaneManifest_66
+  - first:
+      213: -5794031977037593231
+    second: ArcaneManifest_67
+  - first:
+      213: -4422460466505257898
+    second: ArcaneManifest_68
+  - first:
+      213: -100230068856983582
+    second: ArcaneManifest_69
+  - first:
+      213: -3797204961140763459
+    second: ArcaneManifest_70
+  - first:
+      213: 2887103430476801892
+    second: ArcaneManifest_71
+  - first:
+      213: 1302584299439519684
+    second: ArcaneManifest_72
+  - first:
+      213: 5083257447072933500
+    second: ArcaneManifest_73
+  - first:
+      213: 481018897812453842
+    second: ArcaneManifest_74
+  - first:
+      213: 1237802078361289373
+    second: ArcaneManifest_75
+  - first:
+      213: -1525726095623637627
+    second: ArcaneManifest_76
+  - first:
+      213: -2223802082931320285
+    second: ArcaneManifest_77
+  - first:
+      213: -2216181460183896697
+    second: ArcaneManifest_78
+  - first:
+      213: 7190883374854764136
+    second: ArcaneManifest_79
+  - first:
+      213: 8040937142616457654
+    second: ArcaneManifest_80
+  - first:
+      213: 4227709101012319742
+    second: ArcaneManifest_81
+  - first:
+      213: -2519557288733776242
+    second: ArcaneManifest_82
+  - first:
+      213: -3681474386107896088
+    second: ArcaneManifest_83
+  - first:
+      213: 8055035698220272020
+    second: ArcaneManifest_84
+  - first:
+      213: -1637206396473559388
+    second: ArcaneManifest_85
+  - first:
+      213: -2935214151054483842
+    second: ArcaneManifest_86
+  - first:
+      213: -2938111296389384815
+    second: ArcaneManifest_87
+  - first:
+      213: -1080046463603000391
+    second: ArcaneManifest_88
+  - first:
+      213: -7334326189621880069
+    second: ArcaneManifest_89
+  - first:
+      213: 5223481052558171569
+    second: ArcaneManifest_90
+  - first:
+      213: 9069209271906984444
+    second: ArcaneManifest_91
+  - first:
+      213: -1583066914276121895
+    second: ArcaneManifest_92
+  - first:
+      213: -2015791895015151082
+    second: ArcaneManifest_93
+  - first:
+      213: -3160549414962749866
+    second: ArcaneManifest_94
+  - first:
+      213: 4006172263510912090
+    second: ArcaneManifest_95
+  - first:
+      213: 5349771957639445469
+    second: ArcaneManifest_96
+  - first:
+      213: -4580738063812775265
+    second: ArcaneManifest_97
+  - first:
+      213: 4329137130310919034
+    second: ArcaneManifest_98
+  - first:
+      213: 5723614419356473031
+    second: ArcaneManifest_99
+  - first:
+      213: 1114999337225673679
+    second: ArcaneManifest_100
+  - first:
+      213: 4810479068132673281
+    second: ArcaneManifest_101
+  - first:
+      213: -1947528960283817743
+    second: ArcaneManifest_102
+  - first:
+      213: -1569870162954056155
+    second: ArcaneManifest_103
+  - first:
+      213: 7196711430496037845
+    second: ArcaneManifest_104
+  - first:
+      213: -59404042444409104
+    second: ArcaneManifest_105
+  - first:
+      213: 9077790320177186703
+    second: ArcaneManifest_106
+  - first:
+      213: 6184909009931482376
+    second: ArcaneManifest_107
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ArcaneManifest_0
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 789
+        width: 142
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d912105a7453760800000000000000
+      internalID: 7436929133686398348
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_1
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 342
+        width: 566
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 923b965bee35b0e30800000000000000
+      internalID: 4470759339806274345
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_2
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 840
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa91cc77243ae580800000000000000
+      internalID: -8797161577913410903
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_3
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 840
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 548724a66300954d0800000000000000
+      internalID: -3145482631030605755
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_4
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 838
+        width: 45
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 452e2848c01bce690800000000000000
+      internalID: -7571482206195752364
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_5
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 838
+        width: 45
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e338884741be11130800000000000000
+      internalID: 3535865655549526846
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_6
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 382
+        width: 326
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6bfe95e1761cd570800000000000000
+      internalID: 8492687675753429871
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_7
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 824
+        width: 22
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b548c442a9999c0800000000000000
+      internalID: -3919932519956063381
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_8
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 805
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19bf1625131b113f0800000000000000
+      internalID: -931768822495315055
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_9
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 169
+        width: 362
+        height: 695
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6127b4ff3425cc890800000000000000
+      internalID: -7436478432696110570
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 773
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da64ae84e65db5570800000000000000
+      internalID: 8456587394964670125
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_11
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 811
+        width: 49
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838df6020a8cba220800000000000000
+      internalID: 2498311008371595320
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_12
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 505
+        width: 152
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f0372039d2c5be0800000000000000
+      internalID: -1487263667514568920
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_13
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 803
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87f33e3b05cd563f0800000000000000
+      internalID: -908077510671777928
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_14
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 793
+        width: 34
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce12579179cc5e270800000000000000
+      internalID: 8279248439329759724
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_15
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 775
+        width: 62
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9757117c4b586df0800000000000000
+      internalID: -186799000662878305
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_16
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 808
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d210b90e76beef90800000000000000
+      internalID: -6922394924777205040
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_17
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 803
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6fc021fefbad4fc0800000000000000
+      internalID: -3508959423196246162
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_18
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 799
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e08fbd6dd050f8ea0800000000000000
+      internalID: -5868466232443013106
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_19
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 788
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d08868ba402fdc0800000000000000
+      internalID: -3606815216827364050
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_20
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 372
+        width: 96
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2624f5ff1a164bcd0800000000000000
+      internalID: -2543300541155425694
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_21
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 694
+        width: 48
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c7b576ae05c49590800000000000000
+      internalID: -7668287598792165435
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_22
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 633
+        width: 81
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a1d6590788ffc40800000000000000
+      internalID: 5548303283068410405
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_23
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 700
+        width: 25
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e0f0b945cf34af40800000000000000
+      internalID: 5738781941754294498
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_24
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 737
+        width: 16
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39302aeab4abc8f10800000000000000
+      internalID: 2273396746130424723
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_25
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 721
+        width: 16
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c7d3eb2a7202670800000000000000
+      internalID: 8511846875660123246
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_26
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 711
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57741d384ab540c90800000000000000
+      internalID: -7204532741741656203
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_27
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 709
+        width: 11
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e71dd408d4f4b39b0800000000000000
+      internalID: -5099394958783295106
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_28
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 711
+        width: 63
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 331204f259b2d15e0800000000000000
+      internalID: -1937344344956591821
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_29
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 741
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a6e9963c82301ab0800000000000000
+      internalID: -5039472405234719066
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_30
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 727
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eec4cfa24c44b880800000000000000
+      internalID: -8596161939442970906
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_31
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 761
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d0ee34706957880800000000000000
+      internalID: -8613813754327593691
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_32
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 494
+        width: 144
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b661c44522899a20800000000000000
+      internalID: 3069627717608629944
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_33
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 567
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 813af3c8010ec0d20800000000000000
+      internalID: 3246215793104364312
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_34
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 555
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98a6b2f6d609723f0800000000000000
+      internalID: -925612398710396279
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_35
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 557
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f065fca197874d20800000000000000
+      internalID: 3262725514794983672
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_36
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 501
+        width: 28
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6a67e6667108040800000000000000
+      internalID: 4647740544153724631
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_37
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 539
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 668d4556cdecf20e0800000000000000
+      internalID: -2292386239320106906
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_38
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 531
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ae212ef8911e0020800000000000000
+      internalID: 2309803007683931809
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_39
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 519
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19016039b9988cf40800000000000000
+      internalID: 5748996225618022545
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_40
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 515
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44beb4f44d881eac0800000000000000
+      internalID: -3827627762843391164
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_41
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 389
+        width: 78
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 230c4f511a3a3e210800000000000000
+      internalID: 1361111424649445426
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_42
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 21
+        width: 398
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b801f05af0d5750800000000000000
+      internalID: 6295205055730584366
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_43
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 392
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe55364dda188770800000000000000
+      internalID: 8613163825014071028
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_44
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 370
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d4d8cda4beeee180800000000000000
+      internalID: -9084060938582567727
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_45
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 386
+        width: 26
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22e3b9dac1700da0800000000000000
+      internalID: -5980655189098241493
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_46
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 480
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 559d190ff6d8daba0800000000000000
+      internalID: -6076044810335954603
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_47
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 421
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aed7f402cf257ab90800000000000000
+      internalID: -7230719433892725270
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_48
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 416
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da4106e7664e6920800000000000000
+      internalID: 2985401015047637721
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_49
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 390
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 432f7d8a1fb5e7400800000000000000
+      internalID: 323797316695224884
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_50
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 457
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16eb6bf5db99ec7e0800000000000000
+      internalID: -1743286967112122783
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_51
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 467
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3dc322f39da3d7f0800000000000000
+      internalID: -588936275321172677
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_52
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 481
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30f9e2589a29005b0800000000000000
+      internalID: -5404158296063041789
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_53
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 410
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8082fd32874aa7e70800000000000000
+      internalID: 9113777631842478088
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_54
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 471
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2873d025887173be0800000000000000
+      internalID: -1497702476817811582
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_55
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 348
+        width: 43
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5bb4f7645a8382c0800000000000000
+      internalID: -4430545513276458147
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_56
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 403
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc87fc6ed78984ff0800000000000000
+      internalID: -51623729204070197
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_57
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 386
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3580b17be5b2664b0800000000000000
+      internalID: -5447619013459113901
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_58
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 376
+        width: 72
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33e52a03097471d30800000000000000
+      internalID: 4402065845394759219
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_59
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 469
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bad7e897a81ea8430800000000000000
+      internalID: 3786086421619441067
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_60
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 416
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 322d56938fda42080800000000000000
+      internalID: -9213047656066723293
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_61
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 424
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741104354bf2a22e0800000000000000
+      internalID: -2149853420578664121
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_62
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 412
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87cbf943e7381e2c0800000000000000
+      internalID: -4404094382519632776
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_63
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 392
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851887fb3d6768ce0800000000000000
+      internalID: -1403303582056808104
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_64
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 392
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce5a3b0377a68960800000000000000
+      internalID: 7603949133413113540
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_65
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 348
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95214f0a7bef08790800000000000000
+      internalID: -7529738512330648999
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_66
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 412
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f7459cda11b6c590800000000000000
+      internalID: -7654235787741542416
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_67
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 419
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1758b6f6d96779fa0800000000000000
+      internalID: -5794031977037593231
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_68
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 406
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65ceebc03a340a2c0800000000000000
+      internalID: -4422460466505257898
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_69
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 0
+        width: 485
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef67fd8849eb9ef0800000000000000
+      internalID: -100230068856983582
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_70
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 366
+        width: 9
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db49adfc43e9d4bc0800000000000000
+      internalID: -3797204961140763459
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_71
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 0
+        width: 342
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 467a163064d011820800000000000000
+      internalID: 2887103430476801892
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_72
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 371
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c7f71ad485b31210800000000000000
+      internalID: 1302584299439519684
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_73
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 376
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7624a247bb5b8640800000000000000
+      internalID: 5083257447072933500
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_74
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 359
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d97c56932ceca600800000000000000
+      internalID: 481018897812453842
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_75
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 247
+        width: 82
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9207fe9e6e8d2110800000000000000
+      internalID: 1237802078361289373
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_76
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 343
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5853fcd133883dae0800000000000000
+      internalID: -1525726095623637627
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_77
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 287
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ada1ca9c77321e0800000000000000
+      internalID: -2223802082931320285
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_78
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 308
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78daeeb24ba8e31e0800000000000000
+      internalID: -2216181460183896697
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_79
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 277
+        width: 57
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866fa7b94562bc360800000000000000
+      internalID: 7190883374854764136
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_80
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 319
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b106ee7ab5279f60800000000000000
+      internalID: 8040937142616457654
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_81
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 287
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd768b2707dbaa30800000000000000
+      internalID: 4227709101012319742
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_82
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 229
+        width: 17
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e86e6cdbefbb80dd0800000000000000
+      internalID: -2519557288733776242
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_83
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 207
+        width: 82
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eee6561d86c8ecc0800000000000000
+      internalID: -3681474386107896088
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_84
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 261
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49982854a4c39cf60800000000000000
+      internalID: 8055035698220272020
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_85
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 259
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6323ae4797749e0800000000000000
+      internalID: -1637206396473559388
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_86
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 237
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e92b2f7460447d0800000000000000
+      internalID: -2935214151054483842
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_87
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 76
+        width: 145
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 195f52cb75bb937d0800000000000000
+      internalID: -2938111296389384815
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_88
+      rect:
+        serializedVersion: 2
+        x: 1556
+        y: 190
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bbb604b677e201f0800000000000000
+      internalID: -1080046463603000391
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_89
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 196
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa5eb0803d373a90800000000000000
+      internalID: -7334326189621880069
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_90
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 148
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bd96b497588d7840800000000000000
+      internalID: 5223481052558171569
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_91
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 166
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1e1b538cd4cdd70800000000000000
+      internalID: 9069209271906984444
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_92
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 102
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d2e5e66701d70ae0800000000000000
+      internalID: -1583066914276121895
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_93
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 17
+        width: 120
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61aa28c93f77604e0800000000000000
+      internalID: -2015791895015151082
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_94
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 88
+        width: 7
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65e931a6d097324d0800000000000000
+      internalID: -3160549414962749866
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_95
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 33
+        width: 110
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5c2793b278c89730800000000000000
+      internalID: 4006172263510912090
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_96
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 86
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddbf17c40453e3a40800000000000000
+      internalID: 5349771957639445469
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_97
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 80
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9234513003fd60c0800000000000000
+      internalID: -4580738063812775265
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_98
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 82
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a73e224884f241c30800000000000000
+      internalID: 4329137130310919034
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_99
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 39
+        width: 62
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c6db094dfc5e6f40800000000000000
+      internalID: 5723614419356473031
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_100
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 33
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcbd12c5df5497f00800000000000000
+      internalID: 1114999337225673679
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_101
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 39
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1070087b93142c240800000000000000
+      internalID: 4810479068132673281
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_102
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 39
+        width: 37
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f84f74aabcf8f4e0800000000000000
+      internalID: -1947528960283817743
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_103
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 47
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e83a18763b63ae0800000000000000
+      internalID: -1569870162954056155
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_104
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 33
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dba5bd8aeadfd360800000000000000
+      internalID: 7196711430496037845
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_105
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 17
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f6f0ef8654fc2ff0800000000000000
+      internalID: -59404042444409104
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_106
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 27
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8704a3333acafd70800000000000000
+      internalID: 9077790320177186703
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcaneManifest_107
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 20
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8053419b9f535d550800000000000000
+      internalID: 6184909009931482376
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ArcaneManifest_0: 7436929133686398348
+      ArcaneManifest_1: 4470759339806274345
+      ArcaneManifest_10: 8456587394964670125
+      ArcaneManifest_100: 1114999337225673679
+      ArcaneManifest_101: 4810479068132673281
+      ArcaneManifest_102: -1947528960283817743
+      ArcaneManifest_103: -1569870162954056155
+      ArcaneManifest_104: 7196711430496037845
+      ArcaneManifest_105: -59404042444409104
+      ArcaneManifest_106: 9077790320177186703
+      ArcaneManifest_107: 6184909009931482376
+      ArcaneManifest_11: 2498311008371595320
+      ArcaneManifest_12: -1487263667514568920
+      ArcaneManifest_13: -908077510671777928
+      ArcaneManifest_14: 8279248439329759724
+      ArcaneManifest_15: -186799000662878305
+      ArcaneManifest_16: -6922394924777205040
+      ArcaneManifest_17: -3508959423196246162
+      ArcaneManifest_18: -5868466232443013106
+      ArcaneManifest_19: -3606815216827364050
+      ArcaneManifest_2: -8797161577913410903
+      ArcaneManifest_20: -2543300541155425694
+      ArcaneManifest_21: -7668287598792165435
+      ArcaneManifest_22: 5548303283068410405
+      ArcaneManifest_23: 5738781941754294498
+      ArcaneManifest_24: 2273396746130424723
+      ArcaneManifest_25: 8511846875660123246
+      ArcaneManifest_26: -7204532741741656203
+      ArcaneManifest_27: -5099394958783295106
+      ArcaneManifest_28: -1937344344956591821
+      ArcaneManifest_29: -5039472405234719066
+      ArcaneManifest_3: -3145482631030605755
+      ArcaneManifest_30: -8596161939442970906
+      ArcaneManifest_31: -8613813754327593691
+      ArcaneManifest_32: 3069627717608629944
+      ArcaneManifest_33: 3246215793104364312
+      ArcaneManifest_34: -925612398710396279
+      ArcaneManifest_35: 3262725514794983672
+      ArcaneManifest_36: 4647740544153724631
+      ArcaneManifest_37: -2292386239320106906
+      ArcaneManifest_38: 2309803007683931809
+      ArcaneManifest_39: 5748996225618022545
+      ArcaneManifest_4: -7571482206195752364
+      ArcaneManifest_40: -3827627762843391164
+      ArcaneManifest_41: 1361111424649445426
+      ArcaneManifest_42: 6295205055730584366
+      ArcaneManifest_43: 8613163825014071028
+      ArcaneManifest_44: -9084060938582567727
+      ArcaneManifest_45: -5980655189098241493
+      ArcaneManifest_46: -6076044810335954603
+      ArcaneManifest_47: -7230719433892725270
+      ArcaneManifest_48: 2985401015047637721
+      ArcaneManifest_49: 323797316695224884
+      ArcaneManifest_5: 3535865655549526846
+      ArcaneManifest_50: -1743286967112122783
+      ArcaneManifest_51: -588936275321172677
+      ArcaneManifest_52: -5404158296063041789
+      ArcaneManifest_53: 9113777631842478088
+      ArcaneManifest_54: -1497702476817811582
+      ArcaneManifest_55: -4430545513276458147
+      ArcaneManifest_56: -51623729204070197
+      ArcaneManifest_57: -5447619013459113901
+      ArcaneManifest_58: 4402065845394759219
+      ArcaneManifest_59: 3786086421619441067
+      ArcaneManifest_6: 8492687675753429871
+      ArcaneManifest_60: -9213047656066723293
+      ArcaneManifest_61: -2149853420578664121
+      ArcaneManifest_62: -4404094382519632776
+      ArcaneManifest_63: -1403303582056808104
+      ArcaneManifest_64: 7603949133413113540
+      ArcaneManifest_65: -7529738512330648999
+      ArcaneManifest_66: -7654235787741542416
+      ArcaneManifest_67: -5794031977037593231
+      ArcaneManifest_68: -4422460466505257898
+      ArcaneManifest_69: -100230068856983582
+      ArcaneManifest_7: -3919932519956063381
+      ArcaneManifest_70: -3797204961140763459
+      ArcaneManifest_71: 2887103430476801892
+      ArcaneManifest_72: 1302584299439519684
+      ArcaneManifest_73: 5083257447072933500
+      ArcaneManifest_74: 481018897812453842
+      ArcaneManifest_75: 1237802078361289373
+      ArcaneManifest_76: -1525726095623637627
+      ArcaneManifest_77: -2223802082931320285
+      ArcaneManifest_78: -2216181460183896697
+      ArcaneManifest_79: 7190883374854764136
+      ArcaneManifest_8: -931768822495315055
+      ArcaneManifest_80: 8040937142616457654
+      ArcaneManifest_81: 4227709101012319742
+      ArcaneManifest_82: -2519557288733776242
+      ArcaneManifest_83: -3681474386107896088
+      ArcaneManifest_84: 8055035698220272020
+      ArcaneManifest_85: -1637206396473559388
+      ArcaneManifest_86: -2935214151054483842
+      ArcaneManifest_87: -2938111296389384815
+      ArcaneManifest_88: -1080046463603000391
+      ArcaneManifest_89: -7334326189621880069
+      ArcaneManifest_9: -7436478432696110570
+      ArcaneManifest_90: 5223481052558171569
+      ArcaneManifest_91: 9069209271906984444
+      ArcaneManifest_92: -1583066914276121895
+      ArcaneManifest_93: -2015791895015151082
+      ArcaneManifest_94: -3160549414962749866
+      ArcaneManifest_95: 4006172263510912090
+      ArcaneManifest_96: 5349771957639445469
+      ArcaneManifest_97: -4580738063812775265
+      ArcaneManifest_98: 4329137130310919034
+      ArcaneManifest_99: 5723614419356473031
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

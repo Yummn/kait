@@ -1,0 +1,1443 @@
+fileFormatVersion: 2
+guid: c50e367ca7fd76f4da96a343371778f9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7250478372285533809
+    second: TailNova_0
+  - first:
+      213: 1980987759478714855
+    second: TailNova_1
+  - first:
+      213: -904844496159639235
+    second: TailNova_2
+  - first:
+      213: 8592969290924501824
+    second: TailNova_3
+  - first:
+      213: -6724157381472359370
+    second: TailNova_4
+  - first:
+      213: 25206867504488617
+    second: TailNova_5
+  - first:
+      213: -419174734870220672
+    second: TailNova_6
+  - first:
+      213: -547140678660778093
+    second: TailNova_7
+  - first:
+      213: 6837179332055547332
+    second: TailNova_8
+  - first:
+      213: -7415854715281483741
+    second: TailNova_9
+  - first:
+      213: 2332883012086810013
+    second: TailNova_10
+  - first:
+      213: -1844559241778008884
+    second: TailNova_11
+  - first:
+      213: 5175050331589487657
+    second: TailNova_12
+  - first:
+      213: -5306485578759135213
+    second: TailNova_13
+  - first:
+      213: -4728065508981181325
+    second: TailNova_14
+  - first:
+      213: 6614435811363235900
+    second: TailNova_15
+  - first:
+      213: 1412288223272307799
+    second: TailNova_16
+  - first:
+      213: 3956619963957494081
+    second: TailNova_17
+  - first:
+      213: -4404884873051020184
+    second: TailNova_18
+  - first:
+      213: 1771977100958338286
+    second: TailNova_19
+  - first:
+      213: -5633316862715820102
+    second: TailNova_20
+  - first:
+      213: -2322065310003494759
+    second: TailNova_21
+  - first:
+      213: 7955018036808974668
+    second: TailNova_22
+  - first:
+      213: 7459120092323150652
+    second: TailNova_23
+  - first:
+      213: 7889343314227988295
+    second: TailNova_24
+  - first:
+      213: -9194908264460032780
+    second: TailNova_25
+  - first:
+      213: -1614236328560531181
+    second: TailNova_26
+  - first:
+      213: 5543874424759114763
+    second: TailNova_27
+  - first:
+      213: -8054572612387679654
+    second: TailNova_28
+  - first:
+      213: 1432531991078017036
+    second: TailNova_29
+  - first:
+      213: -3806161381058018413
+    second: TailNova_30
+  - first:
+      213: -6069147760129485156
+    second: TailNova_31
+  - first:
+      213: -2396327367352131002
+    second: TailNova_32
+  - first:
+      213: 7121762297193925722
+    second: TailNova_33
+  - first:
+      213: -8117878808608779577
+    second: TailNova_34
+  - first:
+      213: -6126275084842243878
+    second: TailNova_35
+  - first:
+      213: 5330503945945079447
+    second: TailNova_36
+  - first:
+      213: 4407880595867230418
+    second: TailNova_37
+  - first:
+      213: 3261518518716373013
+    second: TailNova_38
+  - first:
+      213: -4762724109456305801
+    second: TailNova_39
+  - first:
+      213: 4130884277624370192
+    second: TailNova_40
+  - first:
+      213: 3142570361677009364
+    second: TailNova_41
+  - first:
+      213: -2599726977961208141
+    second: TailNova_42
+  - first:
+      213: 3762716172493605717
+    second: TailNova_43
+  - first:
+      213: 7667187734848477567
+    second: TailNova_44
+  - first:
+      213: 2077134618640541433
+    second: TailNova_45
+  - first:
+      213: -7224479569894669933
+    second: TailNova_46
+  - first:
+      213: -101232872230005946
+    second: TailNova_47
+  - first:
+      213: -4825364124218089055
+    second: TailNova_48
+  - first:
+      213: -8477289379986136767
+    second: TailNova_49
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TailNova_0
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 418
+        width: 448
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81b448c550216b90800000000000000
+      internalID: -7250478372285533809
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_1
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 276
+        width: 484
+        height: 593
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1302c1fd1ed7b10800000000000000
+      internalID: 1980987759478714855
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_2
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 862
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39ff6d89b85173f0800000000000000
+      internalID: -904844496159639235
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_3
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 829
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b2567ea0c504770800000000000000
+      internalID: 8592969290924501824
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_4
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 844
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ce487dc7efea2a0800000000000000
+      internalID: -6724157381472359370
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_5
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 819
+        width: 44
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a0618f238d895000800000000000000
+      internalID: 25206867504488617
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_6
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 428
+        width: 437
+        height: 413
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 080fd3daccace2af0800000000000000
+      internalID: -419174734870220672
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_7
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 287
+        width: 398
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397124e937a2868f0800000000000000
+      internalID: -547140678660778093
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_8
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 780
+        width: 40
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd30d8a06a82ee50800000000000000
+      internalID: 6837179332055547332
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_9
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 610
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328ddb56d67951990800000000000000
+      internalID: -7415854715281483741
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_10
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 597
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d954af54db0106020800000000000000
+      internalID: 2332883012086810013
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_11
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 531
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc68aa742fc666e0800000000000000
+      internalID: -1844559241778008884
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_12
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 485
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92ca825abd871d740800000000000000
+      internalID: 5175050331589487657
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_13
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 453
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31024582b739b56b0800000000000000
+      internalID: -5306485578759135213
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_14
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 455
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374766e4879826eb0800000000000000
+      internalID: -4728065508981181325
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_15
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 445
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c38aded53523bcb50800000000000000
+      internalID: 6614435811363235900
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_16
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 440
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75c0d9c08a4799310800000000000000
+      internalID: 1412288223272307799
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_17
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 489
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 141c7e6e4ecb8e630800000000000000
+      internalID: 3956619963957494081
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_18
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 428
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8646d49cb84bed2c0800000000000000
+      internalID: -4404884873051020184
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_19
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 426
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec8fb4f8c3579810800000000000000
+      internalID: 1771977100958338286
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_20
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 420
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab70b92f82072d1b0800000000000000
+      internalID: -5633316862715820102
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_21
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 424
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9900cf347ed56cfd0800000000000000
+      internalID: -2322065310003494759
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_22
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 27
+        width: 430
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4103d9c1c6e56e60800000000000000
+      internalID: 7955018036808974668
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_23
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 394
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3b76ef243e148760800000000000000
+      internalID: 7459120092323150652
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_24
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 386
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74789abd1f39c7d60800000000000000
+      internalID: 7889343314227988295
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_25
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 376
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f46e8276af156080800000000000000
+      internalID: -9194908264460032780
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_26
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 368
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3196e9c9c941999e0800000000000000
+      internalID: -1614236328560531181
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_27
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 235
+        width: 142
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0cd327aa6ccfec40800000000000000
+      internalID: 5543874424759114763
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_28
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 360
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a52da0d42e8683090800000000000000
+      internalID: -8054572612387679654
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_29
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 365
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c089699814061e310800000000000000
+      internalID: 1432531991078017036
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_30
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 356
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3930a3cc36ccd2bc0800000000000000
+      internalID: -3806161381058018413
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_31
+      rect:
+        serializedVersion: 2
+        x: 1649
+        y: 338
+        width: 11
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c96df14944e06cba0800000000000000
+      internalID: -6069147760129485156
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_32
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 327
+        width: 11
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642ed67a4f88ebed0800000000000000
+      internalID: -2396327367352131002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_33
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 352
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5c830b931595d260800000000000000
+      internalID: 7121762297193925722
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_34
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 291
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c2d333eb30875f80800000000000000
+      internalID: -8117878808608779577
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_35
+      rect:
+        serializedVersion: 2
+        x: 1466
+        y: 253
+        width: 134
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad8e6abc4491bfaa0800000000000000
+      internalID: -6126275084842243878
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_36
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 327
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79edfdbb811c9f940800000000000000
+      internalID: 5330503945945079447
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_37
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 313
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0e0094c00fb2d30800000000000000
+      internalID: 4407880595867230418
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_38
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 304
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518927000dd334d20800000000000000
+      internalID: 3261518518716373013
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_39
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 55
+        width: 162
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7711bac08a767edb0800000000000000
+      internalID: -4762724109456305801
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_40
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 203
+        width: 102
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 014fb083d59d35930800000000000000
+      internalID: 4130884277624370192
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_41
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 176
+        width: 76
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d1dd690817ac9b20800000000000000
+      internalID: 3142570361677009364
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_42
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 257
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b65f95661aebebd0800000000000000
+      internalID: -2599726977961208141
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_43
+      rect:
+        serializedVersion: 2
+        x: 1649
+        y: 213
+        width: 58
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b49145c6ad73430800000000000000
+      internalID: 3762716172493605717
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_44
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 102
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7910e15f92576a60800000000000000
+      internalID: 7667187734848477567
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_45
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 39
+        width: 286
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f66cb63ee673dc10800000000000000
+      internalID: 2077134618640541433
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_46
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 98
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3918c5dab1e7dbb90800000000000000
+      internalID: -7224479569894669933
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_47
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 55
+        width: 187
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64353233d39589ef0800000000000000
+      internalID: -101232872230005946
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_48
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 49
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1211815ecd80db0800000000000000
+      internalID: -4825364124218089055
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TailNova_49
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 33
+        width: 138
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1412cb7393e9a5a80800000000000000
+      internalID: -8477289379986136767
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TailNova_0: -7250478372285533809
+      TailNova_1: 1980987759478714855
+      TailNova_10: 2332883012086810013
+      TailNova_11: -1844559241778008884
+      TailNova_12: 5175050331589487657
+      TailNova_13: -5306485578759135213
+      TailNova_14: -4728065508981181325
+      TailNova_15: 6614435811363235900
+      TailNova_16: 1412288223272307799
+      TailNova_17: 3956619963957494081
+      TailNova_18: -4404884873051020184
+      TailNova_19: 1771977100958338286
+      TailNova_2: -904844496159639235
+      TailNova_20: -5633316862715820102
+      TailNova_21: -2322065310003494759
+      TailNova_22: 7955018036808974668
+      TailNova_23: 7459120092323150652
+      TailNova_24: 7889343314227988295
+      TailNova_25: -9194908264460032780
+      TailNova_26: -1614236328560531181
+      TailNova_27: 5543874424759114763
+      TailNova_28: -8054572612387679654
+      TailNova_29: 1432531991078017036
+      TailNova_3: 8592969290924501824
+      TailNova_30: -3806161381058018413
+      TailNova_31: -6069147760129485156
+      TailNova_32: -2396327367352131002
+      TailNova_33: 7121762297193925722
+      TailNova_34: -8117878808608779577
+      TailNova_35: -6126275084842243878
+      TailNova_36: 5330503945945079447
+      TailNova_37: 4407880595867230418
+      TailNova_38: 3261518518716373013
+      TailNova_39: -4762724109456305801
+      TailNova_4: -6724157381472359370
+      TailNova_40: 4130884277624370192
+      TailNova_41: 3142570361677009364
+      TailNova_42: -2599726977961208141
+      TailNova_43: 3762716172493605717
+      TailNova_44: 7667187734848477567
+      TailNova_45: 2077134618640541433
+      TailNova_46: -7224479569894669933
+      TailNova_47: -101232872230005946
+      TailNova_48: -4825364124218089055
+      TailNova_49: -8477289379986136767
+      TailNova_5: 25206867504488617
+      TailNova_6: -419174734870220672
+      TailNova_7: -547140678660778093
+      TailNova_8: 6837179332055547332
+      TailNova_9: -7415854715281483741
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

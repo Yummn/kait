@@ -1,0 +1,793 @@
+fileFormatVersion: 2
+guid: ae1f2433fb1699348a3986acf28725ae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4548405179174626752
+    second: SigilSpent_0
+  - first:
+      213: 3764175248989770366
+    second: SigilSpent_1
+  - first:
+      213: -1790622565360309638
+    second: SigilSpent_2
+  - first:
+      213: -6782081553358618551
+    second: SigilSpent_3
+  - first:
+      213: 7258708994640543965
+    second: SigilSpent_4
+  - first:
+      213: -6624439314949793255
+    second: SigilSpent_5
+  - first:
+      213: -6545669116501965973
+    second: SigilSpent_6
+  - first:
+      213: 2199243838348513651
+    second: SigilSpent_7
+  - first:
+      213: -520004574912106969
+    second: SigilSpent_8
+  - first:
+      213: 1345099701035101173
+    second: SigilSpent_9
+  - first:
+      213: -5374131688229824507
+    second: SigilSpent_10
+  - first:
+      213: 7493293193147019917
+    second: SigilSpent_11
+  - first:
+      213: 4767285334397926861
+    second: SigilSpent_12
+  - first:
+      213: 647431951148753887
+    second: SigilSpent_13
+  - first:
+      213: 5401072831652680692
+    second: SigilSpent_14
+  - first:
+      213: 4571631648317357553
+    second: SigilSpent_15
+  - first:
+      213: 6636608422085629794
+    second: SigilSpent_16
+  - first:
+      213: -2491210386467570153
+    second: SigilSpent_17
+  - first:
+      213: 4174656519172766065
+    second: SigilSpent_18
+  - first:
+      213: 4741779564776112272
+    second: SigilSpent_19
+  - first:
+      213: -5830916663971683809
+    second: SigilSpent_20
+  - first:
+      213: 8895044666849695513
+    second: SigilSpent_21
+  - first:
+      213: 8639810107044765700
+    second: SigilSpent_22
+  - first:
+      213: 3854147491304901655
+    second: SigilSpent_23
+  - first:
+      213: -5624572317285788408
+    second: SigilSpent_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SigilSpent_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 467
+        width: 408
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04adfb88691d0e0c0800000000000000
+      internalID: -4548405179174626752
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_1
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 636
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e725a5c02790d3430800000000000000
+      internalID: 3764175248989770366
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_2
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 388
+        width: 475
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7a66e0934e6627e0800000000000000
+      internalID: -1790622565360309638
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_3
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 360
+        width: 401
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940845e92c431e1a0800000000000000
+      internalID: -6782081553358618551
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_4
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 273
+        width: 419
+        height: 545
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd08b715f5d1cb460800000000000000
+      internalID: 7258708994640543965
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 39
+        width: 399
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91a19447a834114a0800000000000000
+      internalID: -6624439314949793255
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_6
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 427
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63c7a57e9c1925a0800000000000000
+      internalID: -6545669116501965973
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_7
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 424
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 371da3f6e98458e10800000000000000
+      internalID: 2199243838348513651
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_8
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 418
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e29ce189298c8f0800000000000000
+      internalID: -520004574912106969
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_9
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 402
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb6eab2d01caa210800000000000000
+      internalID: 1345099701035101173
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_10
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 398
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50814e2f3bf3b65b0800000000000000
+      internalID: -5374131688229824507
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_11
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 31
+        width: 464
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82716f35768df760800000000000000
+      internalID: 7493293193147019917
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_12
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 366
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcdb7b3e0ccc82240800000000000000
+      internalID: 4767285334397926861
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_13
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 372
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd3a578ede32cf800800000000000000
+      internalID: 647431951148753887
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_14
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 307
+        width: 28
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3dba0df1774fa40800000000000000
+      internalID: 5401072831652680692
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_15
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 239
+        width: 155
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fdb3e933c2b17f30800000000000000
+      internalID: 4571631648317357553
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_16
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 31
+        width: 235
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26797c79238f91c50800000000000000
+      internalID: 6636608422085629794
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_17
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 17
+        width: 276
+        height: 314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e36dd3a517d6dd0800000000000000
+      internalID: -2491210386467570153
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_18
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 161
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 179bf846cfb5fe930800000000000000
+      internalID: 4174656519172766065
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_19
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 15
+        width: 143
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090cfa1246f2ec140800000000000000
+      internalID: 4741779564776112272
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 102
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f12ef09003c641fa0800000000000000
+      internalID: -5830916663971683809
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_21
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 47
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9171fcc1ffb817b70800000000000000
+      internalID: 8895044666849695513
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_22
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 59
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 400ab354485c6e770800000000000000
+      internalID: 8639810107044765700
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_23
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 52
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c013329beac7530800000000000000
+      internalID: 3854147491304901655
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigilSpent_24
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 61
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8055fa6174181f1b0800000000000000
+      internalID: -5624572317285788408
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SigilSpent_0: -4548405179174626752
+      SigilSpent_1: 3764175248989770366
+      SigilSpent_10: -5374131688229824507
+      SigilSpent_11: 7493293193147019917
+      SigilSpent_12: 4767285334397926861
+      SigilSpent_13: 647431951148753887
+      SigilSpent_14: 5401072831652680692
+      SigilSpent_15: 4571631648317357553
+      SigilSpent_16: 6636608422085629794
+      SigilSpent_17: -2491210386467570153
+      SigilSpent_18: 4174656519172766065
+      SigilSpent_19: 4741779564776112272
+      SigilSpent_2: -1790622565360309638
+      SigilSpent_20: -5830916663971683809
+      SigilSpent_21: 8895044666849695513
+      SigilSpent_22: 8639810107044765700
+      SigilSpent_23: 3854147491304901655
+      SigilSpent_24: -5624572317285788408
+      SigilSpent_3: -6782081553358618551
+      SigilSpent_4: 7258708994640543965
+      SigilSpent_5: -6624439314949793255
+      SigilSpent_6: -6545669116501965973
+      SigilSpent_7: 2199243838348513651
+      SigilSpent_8: -520004574912106969
+      SigilSpent_9: 1345099701035101173
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

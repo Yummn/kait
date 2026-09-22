@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-20（北京时间）。维护者：Reynard GitHub发布会话。
+最后更新：2026-09-22（北京时间）。维护者：Android 0.9.52构建会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -11,20 +11,53 @@
 | 工程 | C:/Users/yummn/Downloads/kait |
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
-| 本地规则版本 | 应用0.9.33、Android配置版本码933；Reynard规则Reynard.0.4-direction-shot，牌池reynard-core24-direction-shot-20260920，存档Kait.Run.Reynard.0.4；Kait保留47个身份，普通对局默认池24张、实验池11张、Legacy池12张，牌池kait-round2-default24-20260919，规则Kait.0.9.21-round2-default24；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
+| 本地规则版本 | 应用0.9.52、Android配置版本码952；Reynard规则Reynard.0.6-targeted-shot-animation，候选池reynard-dual42-animation-20260921（42张，R18/R24仅Legacy），存档Kait.Run.Reynard.0.6；Kait保留47个身份，普通对局默认池24张、实验池11张、Legacy池12张，牌池kait-round2-default24-20260919，规则Kait.0.9.21-round2-default24；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
 | Git 基线 | 0.9.24—0.9.33 Reynard第三角色、资源、规则、测试和说明已由提交4cc90df推送origin/master；Yummn/kait保持PUBLIC。0.9.23标签与改版前0.9.7标签继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
-| 最近 Windows 构建 | Build/kait.exe及配套kait_Data v0.9.33；Logs/reynard-blocked-shot-0933-windows-final.log成功退出0，受阻仍朝输入方向射击已同步；旧APK/ZIP未更新 |
-| 最近 EditMode 测试 | Logs/reynard-blocked-shot-0933-final.xml：Reynard 37/37通过；非全量测试 |
-| 本轮运行检查 | enemy-aim-runtime.log：WARNINGS_QA_COMPLETE；六兵种、出手变黄、三敌重叠、盾骑士四方向、死亡清理及气氛特效。已看六兵种/术士黄色/重叠/上下方向截图。34项玩家设置存档按类型和值还原，非Android验收 |
-| 最近视觉运行检查 | Logs/reynard-runtime.log：HOME0926_SELECTION_QA_COMPLETE、REYNARD_QA_COMPLETE；47项玩家偏好已恢复。Build/Logs/reynard-blocked-shot.png与reynard-forward-bullet.png已查看：相邻敌人阻挡时人物保持原位、右向弹道与1伤结算正确，之后可继续操作；非Android实机验收 |
+| 最近 Windows 构建 | Build/kait.exe及配套kait_Data v0.9.52；Logs/reynard-vfx-final2-build.log显示Build Finished, Result: Success；旧APK/ZIP未更新 |
+| 最近 EditMode 测试 | Logs/reynard-vfx-final2-tests.xml：Reynard专项27/27通过；非全量测试 |
+| 本轮运行检查 | Logs/reynard-hit-prepare-runtime-retry.log与runtime-confirm.log：两次连续REYNARD_QA_COMPLETE；首次QA启动曾在Spine JSON初始化处原生异常，随后未复现，非Android验收 |
+| 最近视觉运行检查 | Logs/reynard-runtime.log：HOME0926_SELECTION_QA_COMPLETE、REYNARD_QA_COMPLETE。已查看Build/Logs/reynard-battle.png、reynard-mirror-slide-mid.png、reynard-tail-nova.png与reynard-mass-hold.png：镜狐与数字同轨滑动、法印、敌人体量/居中、不透明草框及最终两套特效表现正常；非Android实机验收 |
 | 最新 iOS 导出 | Build/kait-v0.9.18-ios-xcode.zip，514095718字节；Logs/ios0918-export.log成功。Xcode工程版本0.9.18(918)、com.kaitprototype.demo、iOS 13+、ARM64/Metal、iPhone+iPad、横屏、AppIcon与IL2CPP元数据核验通过；独立解压后3130个文件逐项SHA256一致。SHA256 8F4FCEAA708DA76635F071C83AAA4E4067B7122389655D5622FC7E921387855B。Windows无Xcode与Apple签名材料，尚未编译/签名IPA或真机验收 |
-| 最新 Android | Build/kait-v0.9.32.apk，2026-09-20 17:17:38，354260781字节；Logs/kait0932-android.log成功退出0。版本0.9.32(932)、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效。SHA256 44612CF56AD7EE4BC24818412956DE144C24E822FA48097CA66DE2B70922E393。ADB无设备，未做真机验收 |
+| 最新 Android | Build/kait-v0.9.52.apk，2026-09-22 11:43:13，399132597字节；Logs/kait0952-android.log成功退出0。版本0.9.52(952)、最低API26、目标API35、ARM64、UnityPlayerActivity；v2签名有效。SHA256 5026F200F1EB1A75FBE0A1C9F9FB2D7F344A1376F169E8130E237067C6532BAD。已通过ADB安装到e02b65b6并启动，12秒后进程5674仍存活、UnityPlayerActivity位于前台，未发现本应用崩溃；未做完整玩法实机验收 |
 | Android | Build/kait-v0.8.2.apk，2026-09-12 23:52:44，234614258字节；Logs/android-exit-stun-20260912.log成功退出0；同步主动技能拖放分类、R40借机攻击及整回合震慑。版本802、Android 8.0+、ARM64、UnityPlayerActivity、v2签名有效且签名与旧包一致。SHA256 84B07BFDDB9A8CADB451C0A1034BC34B3BFC7B2D315D14064EE4E7D0DB8ADBA6；ADB无设备未真机验收，未上传GitHub |
 | 历史文档 | README / VERSION_HISTORY 中部分内容描述 v0.6.1 归档，不是当前未提交工作树的完整说明 |
 
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
+RELEASE-20260922-0952-GITHUB：进行中。本会话按用户要求把0.9.34—0.9.52的Reynard功能、正式资源、获批特效、审批预览、测试与说明提交并推送origin/master；继续排除来源未核实的旧Docs/v0.8.1-四组对照实测.md本地改动，Build/Logs按忽略规则不上传。
+BUILD-20260922-0952-ANDROID：完成。本会话把当前v0.9.52源码与资源生成Build/kait-v0.9.52.apk；版本952、API26/35、ARM64、UnityPlayerActivity及v2签名均核验通过。ADB设备e02b65b6安装成功，启动12秒后进程仍存活且主Activity在前台，未发现本应用崩溃。哈希和包体见上方快照；不改玩法、不上传GitHub。
+FIX-20260922-REYNARD-FOX-SCALE-SIGIL：完成，v0.9.52。本会话按用户选择接入燃尾新星C「双尾星坠」、群体定身术B「狐耳封笼」；镜狐按唯一来源身份与所属数字使用同一EaseOutCubic轨迹滑动。新增八帧错相循环法印，Reynard射手/重甲分别放大至1.16/1.18并按身体二维范围视觉居中，草边框改为完全不透明。Reynard专项27/27通过，Windows构建成功，运行QA完成并实际查看四张截图；不生成Android、不上传。说明见Docs/v0.9.52-Reynard镜狐滑动与最终特效.md。
+ART-20260922-REYNARD-VFX19-21：完成，v0.9.51。按用户选择接入灼热射线C赤晶齐射、符文跃迁B狐尾换位、石墙术C晶石壁垒；新增施放位置的专用视觉事件，不改变费用、伤害、范围、传送或阻挡规则。Reynard专项24/24通过，Windows构建成功，运行QA完成并查看三张实际截图。未Android/上传。
+ART-20260921-REYNARD-FOLIAGE-RIM：完成，v0.9.43。本会话依据MoonGarden重绘Reynard专用透明植物框，蓝紫叶簇、淡紫花和青色月光高光与背景统一；首轮运行后透明度降至0.86。Windows构建成功，运行REYNARD_QA_COMPLETE并查看Build/Logs/reynard-battle.png，人物/血条/操作键无遮挡，49项偏好恢复。未Android/上传。
+ART-20260921-REYNARD-VFX01：完成，v0.9.44。本会话按用户选择接入A月蓝狐火，正式素材替换为透明4×2八帧序列，运行时按实际宽高等分切帧。B紫焰狐爪、C银蓝狐印仅保留候选。Logs/reynard-moon-foxfire-build.log构建成功，Logs/reynard-runtime.log完成HOME0926_SELECTION_QA_COMPLETE/REYNARD_QA_COMPLETE；已查看reynard-live-impact.png与reynard-fx.png，无矩形边缘或错误切帧。未Android/上传。
+ART-20260921-REYNARD-VFX02-03：完成，v0.9.45。按用户选择接入法印生成C星轨书写、狐尾获得C星纱尾迹；新增通用透明4×2序列加载与专用事件播放。Windows构建成功，运行QA完成；已查看reynard-sigil-created.png和reynard-tail-gained.png，位置、透明边缘与遮挡关系正常。未Android/上传。
+ART-20260921-REYNARD-VFX04-06：完成，v0.9.46。按用户选择接入法印消耗C星印碎散、狐尾消耗C尾焰献祭、镜衣格挡A镜月护壁；镜衣挡伤新增专用视觉事件。最终Windows构建与运行QA通过，三张实际截图已查看，格位、透明边缘与差异化轮廓正常。未Android/上传。
+ART-20260921-REYNARD-VFX07-09：完成，v0.9.47。按用户选择接入分裂弹A月晶分裂、逐星弹A月白追星、狐尾溢出A紫月溢尾；三套统一月蓝、淡紫、冰青主色。Reynard专项18/18通过，Windows构建成功，运行QA完成并查看三张正式效果截图。未Android/上传。
+ART-20260922-REYNARD-VFX10-12：完成，v0.9.48。按用户选择接入聚能弹B双环增幅、符文引爆A月印碎裂、法阵共振B星桥脉冲；视觉事件只在原规则确实命中时生成，不修改伤害、范围、支付与触发次数。Reynard专项19/19通过，Windows构建成功，运行QA完成并查看三张实际截图。未Android/上传。
+ART-20260922-REYNARD-VFX13-15：完成，v0.9.49。按用户选择接入秘法显形B冰晶降印、狐火护身C月焰护反、狐焰祭仪B狐尾火环；秘法保持月蓝体系，两组火焰按语义使用橙红主色。新增实际规则触发位置的专用视觉事件，不修改伤害与支付。Reynard专项21/21通过，Windows构建成功，运行QA完成并查看三张实际截图。未Android/上传。
+ART-20260922-REYNARD-VFX16-18：完成，v0.9.50。按用户选择接入聚尾成印A尾墨成印、灵狐猎场A灵狐扑击、尾流咏唱B咏唱绸光；视觉事件只在真实新建法印、真实造成猎场伤害、真实追加射击时生成，不改变数值规则。Reynard专项22/22通过，Windows构建成功，运行QA完成并查看三张实际截图。未Android/上传。
+PREVIEW-20260922-REYNARD-VFX22-23：完成审批并接入v0.9.52。用户选择燃尾新星C「双尾星坠」和群体定身术B「狐耳封笼」；未选方案仅保留预览。至此本轮23组Reynard特效均已完成选择和正式接入。
+ART-20260921-REYNARD-GRASS-RIM：完成，v0.9.42。本会话按用户要求改用Kait同结构草框，蓝紫半透明染色适配Reynard庭院；移除上一版背景采样渐变。Windows构建成功，运行REYNARD_QA_COMPLETE并查看Build/Logs/reynard-battle.png：草框与外围植物衔接、5×5边界清楚，人物和血条无遮挡；49项偏好恢复。未Android/上传。
+ART-20260921-GARDEN-BLEND：完成，v0.9.41。接入获批白狐娘头像；移除整圈石框，改同位背景采样的窄幅边缘过渡，地砖降低亮度与不透明度。首轮看图后缩窄过渡并移到人物/血条下层，第二轮Windows构建成功并运行REYNARD_QA_COMPLETE，已查看实际战斗截图，49项偏好恢复；未Android/上传。
+
+ART-20260921-MOONGARDEN：完成，v0.9.40。已选蓝紫庭院接入，独立透明石沿跟随主盘边界、少量花草覆盖边角，移除旧屏幕开口映射；白狐娘头像仅预览。Windows构建成功，运行REYNARD_QA_COMPLETE，已查看Build/Logs/reynard-battle.png；49项偏好已恢复。未Android实机验收、未Android构建/上传。
+
+ART-20260921-REYNARD-PORTRAIT-FRAMES：完成预览与头像接入，v0.9.39，本会话。Reynard透明Q版头像已供状态栏和卡牌大全共用；A紫藤神社、B蓝月观星庭、C枫叶露台三种完整背景+独立边框预览已保存，等待用户选择，未替换正式战斗背景。选定后将拆分响应式背景与九宫格边框以修复手机裁剪。专项17/17通过；Windows仍0.9.38、Android仍0.9.37，不上传GitHub。说明见Docs/v0.9.39-Reynard头像与背景边框预览.md。
+
+ANIM-20260921-REYNARD-HIT-PREPARE：完成，v0.9.38，本会话。Reynard与专属敌人受击统一0.75倍速，普通待机刷新不再提前覆盖；敌人攻击准备循环prepare，控制状态仍优先stun。规则/牌池/存档不变；专项16/16、Windows构建和两次连续运行QA通过。首次自动QA曾在Spine JSON初始化处原生异常，随后两次未复现并保留日志。Android仍0.9.37，不上传GitHub。说明见Docs/v0.9.38-Reynard受击与准备动画.md。
+
+BUILD-20260921-0937-ANDROID：完成，本会话。Build/kait-v0.9.37.apk生成成功，360908615字节；版本0.9.37(937)、API26/35、ARM64、UnityPlayerActivity与v2签名均已核验。SHA256 FF5A29F14D769B337946877FD453E55D263D4F15CAE0D01A30211AA616BBB157；ADB无设备，未安装/真机启动，不上传GitHub。
+
+ANIM-20260921-REYNARD-ENEMY：完成，v0.9.37，本会话。Reynard空路只播放walk不再生成空弹；接敌移动jump_f后衔接attack，主动技能按直接攻击/防御/其他映射skill、uniqueskill、prepare。主控与敌人随机hit_1/hit_2，镜狐idle_2；敌人移动walk、定身/蛛网控制stun，击败Reynard后循环win（缺win素材时回退uniqueskill）。规则/存档升0.6；专项16/16、Windows构建与运行QA通过。Android随后已同步为0.9.37，不上传GitHub。说明见Docs/v0.9.37-Reynard动画表现.md。
+
+BUILD-20260921-0936-ANDROID：完成，本会话。Build/kait-v0.9.36.apk生成成功，360907983字节；版本0.9.36(936)、API26/35、ARM64、UnityPlayerActivity与v2签名均已核验。SHA256 0264486539A61BC8ACA9EFE3AD8A7A018D79049FDE6821E481B9BCEFB7D4005A；ADB无设备，未安装/真机启动，不上传GitHub。
+
+FIX-20260921-REYNARD-FEEDBACK：完成，v0.9.36，本会话。Reynard合并脉冲改为只缩放数字，场景镂空忽略格子临时缩放；首枚狐火先定位后显示并纳入中断清理。旧人物血条从刷新及延迟协程两处永久隐藏；近战/弓箭/法术命中主控时在命中帧播放受击，Reynard子弹命中敌人补播受击动画。专项13/13、Windows构建与运行检查通过，已查看合成和弹道截图；Android仍0.9.32，不上传GitHub。说明见Docs/v0.9.36-Reynard反馈修复.md。
+
+RULE-20260920-REYNARD-DUAL42：完成，v0.9.35，本会话。按《Reynard 法印×狐尾双资源与42张候选技能池》实施Reynard.0.5：一格一法印、镜狐随数字滑动/合并产尾、最旧印优先且尾补差的原子支付、尾抵伤、三种独立场地、42张候选牌、六槽混装及新存档/回放隔离。生成并接入R25—R44二十张同画风透明卡图、法印/狐尾HUD与场地表现；教程和卡牌大全同步。专项12/12通过，Windows构建成功，运行完成七页42牌及战斗HUD/镜狐/裂隙/射击画面检查，REYNARD_QA_COMPLETE。Android仍0.9.32，不上传GitHub；保留v0.9.34剑士修正与旧v0.8.1未核实报告。说明见Docs/v0.9.35-Reynard法印狐尾42牌.md。
+
+UI-20260920-REYNARD-SWORDSMAN-SCALE：完成，v0.9.34，本会话。Reynard专属剑士视觉缩放从1.00提高到1.18，在同一115×115单位格内与其他敌人视觉体量接近；保持既有视觉中心、血条和逻辑格。Reynard专项38/38，Windows构建成功，运行REYNARD_QA_COMPLETE；已查看Build/Logs/reynard-battle.png，六兵种均在格内，剑士尺寸与同场角色协调。Android仍0.9.32，不上传GitHub。说明见Docs/v0.9.34-Reynard剑士视觉尺寸.md。
 
 RELEASE-20260920-REYNARD-0933-GITHUB：完成，本会话。0.9.24—0.9.33的Reynard第三角色、场景/首页、选牌修复、伊甸语音、移动射击、裂隙白块修复及受阻仍射击规则以提交4cc90df推送公开origin/master；168个LFS对象约69 MB上传完成。明确排除来源未核实的旧Docs/v0.8.1-四组对照实测.md本地修改，Build与Logs继续按忽略规则仅保留本地。
 
