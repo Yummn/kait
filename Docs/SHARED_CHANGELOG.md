@@ -1,6 +1,6 @@
 # Kait 共享修改清单
 
-最后更新：2026-09-22（北京时间）。维护者：Android 0.9.52构建会话。
+最后更新：2026-09-22（北京时间）。维护者：GitHub 0.9.52发布会话。
 
 这是多个 Codex 任务的本地交接入口。打开同一个工程的任务共读此文件；不同目录的项目副本或远程任务不会自动同步。当前用户请求优先；文中的待办和其他会话记录不是执行授权。
 
@@ -12,7 +12,7 @@
 | Unity | 6000.0.30f1；C:/Unity/6000.0.30f1/Editor/Unity.exe |
 | 场景 | Assets/Scenes/Scene.unity |
 | 本地规则版本 | 应用0.9.52、Android配置版本码952；Reynard规则Reynard.0.6-targeted-shot-animation，候选池reynard-dual42-animation-20260921（42张，R18/R24仅Legacy），存档Kait.Run.Reynard.0.6；Kait保留47个身份，普通对局默认池24张、实验池11张、Legacy池12张，牌池kait-round2-default24-20260919，规则Kait.0.9.21-round2-default24；Yummn牌池0.9.17-card-balance，共56牌（白17/蓝30/金9），规则快照yummn-0.9.17-card-balance，新存档Kait.Run.Yummn.0.9.17；保留0.9.7旧存档入口。2048锁盘保持静止，不判负、不重置 |
-| Git 基线 | 0.9.24—0.9.33 Reynard第三角色、资源、规则、测试和说明已由提交4cc90df推送origin/master；Yummn/kait保持PUBLIC。0.9.23标签与改版前0.9.7标签继续保留。未覆盖/上传未核实的旧v0.8.1对照实测报告 |
+| Git 基线 | 0.9.34—0.9.52 Reynard法印狐尾、场景/动画修复、23组获批特效及审批预览已由提交4fcd94c推送origin/master，并建立v0.9.52标签；Yummn/kait保持PUBLIC。0.9.23与改版前0.9.7标签继续保留。未覆盖/上传来源未核实的旧v0.8.1对照实测报告 |
 | 最近 Windows 构建 | Build/kait.exe及配套kait_Data v0.9.52；Logs/reynard-vfx-final2-build.log显示Build Finished, Result: Success；旧APK/ZIP未更新 |
 | 最近 EditMode 测试 | Logs/reynard-vfx-final2-tests.xml：Reynard专项27/27通过；非全量测试 |
 | 本轮运行检查 | Logs/reynard-hit-prepare-runtime-retry.log与runtime-confirm.log：两次连续REYNARD_QA_COMPLETE；首次QA启动曾在Spine JSON初始化处原生异常，随后未复现，非Android验收 |
@@ -25,7 +25,7 @@
 Windows 交付必须带整个 Build 内的关联文件，不能只拷贝 kait.exe。构建后核对日志和 kait_Data 中资源/程序集时间，不只看启动 exe 的时间。
 
 ## 2. 进行中与占用登记
-RELEASE-20260922-0952-GITHUB：进行中。本会话按用户要求把0.9.34—0.9.52的Reynard功能、正式资源、获批特效、审批预览、测试与说明提交并推送origin/master；继续排除来源未核实的旧Docs/v0.8.1-四组对照实测.md本地改动，Build/Logs按忽略规则不上传。
+RELEASE-20260922-0952-GITHUB：完成。本会话把0.9.34—0.9.52的Reynard功能、正式资源、获批特效、审批预览、测试与说明以提交4fcd94c推送origin/master，并建立、推送v0.9.52标签；200个LFS对象约132 MB上传完成。继续排除来源未核实的旧Docs/v0.8.1-四组对照实测.md本地改动，Build/Logs按忽略规则未上传。
 BUILD-20260922-0952-ANDROID：完成。本会话把当前v0.9.52源码与资源生成Build/kait-v0.9.52.apk；版本952、API26/35、ARM64、UnityPlayerActivity及v2签名均核验通过。ADB设备e02b65b6安装成功，启动12秒后进程仍存活且主Activity在前台，未发现本应用崩溃。哈希和包体见上方快照；不改玩法、不上传GitHub。
 FIX-20260922-REYNARD-FOX-SCALE-SIGIL：完成，v0.9.52。本会话按用户选择接入燃尾新星C「双尾星坠」、群体定身术B「狐耳封笼」；镜狐按唯一来源身份与所属数字使用同一EaseOutCubic轨迹滑动。新增八帧错相循环法印，Reynard射手/重甲分别放大至1.16/1.18并按身体二维范围视觉居中，草边框改为完全不透明。Reynard专项27/27通过，Windows构建成功，运行QA完成并实际查看四张截图；不生成Android、不上传。说明见Docs/v0.9.52-Reynard镜狐滑动与最终特效.md。
 ART-20260922-REYNARD-VFX19-21：完成，v0.9.51。按用户选择接入灼热射线C赤晶齐射、符文跃迁B狐尾换位、石墙术C晶石壁垒；新增施放位置的专用视觉事件，不改变费用、伤害、范围、传送或阻挡规则。Reynard专项24/24通过，Windows构建成功，运行QA完成并查看三张实际截图。未Android/上传。
